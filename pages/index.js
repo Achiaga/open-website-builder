@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useTranslation } from '../hooks/translation';
+
 import { Box, Heading, Text, Image, Badge } from '@chakra-ui/react';
 import styles from '../styles/Home.module.css';
 
@@ -61,6 +64,15 @@ function AirbnbExample() {
 }
 
 export default function Home() {
+	const router = useRouter();
+	const { locale } = router;
+	const [t] = useTranslation();
+
+	const changeLanguage = (e) => {
+		const locale = e.target.value;
+		router.push(router.pathname, router.asPath, { locale });
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -69,15 +81,26 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
+				<select
+					onChange={changeLanguage}
+					defaultValue={locale}
+					className='text-white text-shadow-sm text-lg bg-transparent tracking-wide'>
+					<option className='text-black' value='en'>
+						EN
+					</option>
+					<option className='text-black' value='es'>
+						ES
+					</option>
+				</select>
 				<Heading fontFamily='Raleway' as='h1' size='2xl' mb='2'>
-					Welcome to Next.js!
+					{t.welcome.title}
 				</Heading>
 				<Text
 					bgGradient='linear(to-l, #7928CA,#FF0080)'
 					bgClip='text'
 					fontSize='6xl'
 					fontFamily='Big Shoulders Display'>
-					Your Online Resume Builder
+					{t.welcome.title2}
 				</Text>
 
 				<AirbnbExample />
