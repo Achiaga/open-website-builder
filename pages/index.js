@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Text, Image, Badge } from '@chakra-ui/react';
+import { Box, Heading, Text, Image, Badge } from '@chakra-ui/react';
 import styles from '../styles/Home.module.css';
 
 function AirbnbExample() {
@@ -55,20 +55,6 @@ function AirbnbExample() {
 						/ wk
 					</Box>
 				</Box>
-
-				{/* <Box d='flex' mt='2' alignItems='center'>
-					{Array(5)
-						.fill('')
-						.map((_, i) => (
-							<StarIcon
-								key={i}
-								color={i < property.rating ? 'teal.500' : 'gray.300'}
-							/>
-						))}
-					<Box as='span' ml='2' color='gray.600' fontSize='sm'>
-						{property.reviewCount} reviews
-					</Box>
-				</Box> */}
 			</Box>
 		</Box>
 	);
@@ -83,11 +69,14 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
+				<Heading fontFamily='Raleway' as='h1' size='2xl' mb='2'>
+					Welcome to Next.js!
+				</Heading>
 				<Text
 					bgGradient='linear(to-l, #7928CA,#FF0080)'
 					bgClip='text'
 					fontSize='6xl'
-					fontWeight='extrabold'>
+					fontFamily='Big Shoulders Display'>
 					Your Online Resume Builder
 				</Text>
 
