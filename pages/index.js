@@ -114,6 +114,10 @@ export default function Home() {
 					Powered by{' '}
 					<img src='/vercel.svg' alt='Vercel Logo' className={styles.logo} />
 				</a>
+				<script
+					defer
+					src='https://static.cloudflareinsights.com/beacon.min.js'
+					data-cf-beacon='{"token": "c79b12b941ff4b8a9bedaa86f7060de0"}'></script>
 			</footer>
 		</div>
 	);
