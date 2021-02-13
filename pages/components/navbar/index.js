@@ -4,8 +4,8 @@ import { useTranslation } from '../../../hooks/translation';
 
 import { AnalyticsEvent } from '../../../utils/analytics';
 import Button from '../../../Components/Button';
-import LogoSvg from '../../../assets/logo.tsx';
-import BgCircle from '../../../assets/navbar-circle.tsx';
+import LogoSvg from '../../../assets/logo.js';
+import BgCircle from '../../../assets/navbar-circle.js';
 
 const Navbar = () => {
 	const router = useRouter();

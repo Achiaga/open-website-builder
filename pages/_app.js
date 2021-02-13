@@ -4,7 +4,7 @@ import { customTheme } from '../custom-theme';
 import { Fonts } from '../fonts';
 import '../styles/globals.css';
 
-import { InitializeAnalytics } from '../utils/analytics';
+import { InitializeAnalytics } from '../utils/analytics.js';
 
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {

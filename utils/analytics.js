@@ -1,7 +1,6 @@
 import ReactGA from 'react-ga';
 
 export const InitializeAnalytics = () => {
-	console.log(process.env.NEXT_APP_GA_TRACKING);
 	if (!process.env.NEXT_APP_GA_TRACKING) throw new Error('localhost');
 	const trackingId = process.env.NEXT_APP_GA_TRACKING || '';
 	ReactGA.initialize(trackingId);

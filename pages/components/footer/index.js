@@ -1,10 +1,10 @@
 import { Box, Input, Button } from '@chakra-ui/react';
 import { useTranslation } from '../../../hooks/translation';
 
-import LogoSvg from '../../../assets/logo.tsx';
+import LogoSvg from '../../../assets/logo.js';
 // import Button from '../../../Components/Button';
-import Linkedin from '../../../assets/linkedin.tsx';
-import Twitter from '../../../assets/twitter.tsx';
+import Linkedin from '../../../assets/linkedin.js';
+import Twitter from '../../../assets/twitter.js';
 
 const Features = () => {
 	const [t] = useTranslation();

@@ -4,7 +4,7 @@ import { Box, Text } from '@chakra-ui/react';
 import { useTranslation } from '../../../hooks/translation';
 
 import Button from '../../../Components/Button';
-import CircleBg from '../../../assets/features-circle.tsx';
+import CircleBg from '../../../assets/features-circle.js';
 
 const Features = () => {
 	const [t] = useTranslation();

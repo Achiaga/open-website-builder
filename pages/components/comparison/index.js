@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { Box, Text } from '@chakra-ui/react';
 import { useTranslation } from '../../../hooks/translation';
 
-import CheckIcon from '../../../assets/check-icon.tsx';
-import CloseIcon from '../../../assets/close-icon.tsx';
-import UnsexyBg from '../../../assets/unsexy-circle.tsx';
-import SexyBg from '../../../assets/sexy-circle.tsx';
+import CheckIcon from '../../../assets/check-icon.js';
+import CloseIcon from '../../../assets/close-icon.js';
+import UnsexyBg from '../../../assets/unsexy-circle.js';
+import SexyBg from '../../../assets/sexy-circle.js';
 
 const Comparison = () => {
 	const [t] = useTranslation();
