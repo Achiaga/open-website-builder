@@ -3,6 +3,7 @@ import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from '../../../hooks/translation'
 
 import Button from '../../../Components/Button'
+import { addUserToBetaList } from '../../helpers/transport'
 
 const Hero = () => {
 	const [t] = useTranslation()
@@ -45,7 +46,10 @@ const Hero = () => {
 					as='h2'>
 					{t.hero.subtitle}
 				</Text>
-				<Button padding='1.5rem' marginTop='1.5rem'>
+				<Button
+					padding='1.5rem'
+					marginTop='1.5rem'
+					onClick={() => addUserToBetaList('gonzalo')}>
 					{t.hero.button}
 				</Button>
 			</Box>

@@ -847,6 +847,11 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
   integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
+"@types/node@>=8.0.0 <15":
+  version "14.14.27"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.27.tgz#c7127f8da0498993e13b1a42faf1303d3110d2f2"
+  integrity sha512-Ecfmo4YDQPwuqTCl1yBxLV5ihKfRlkBmzUEDcfIRvDxOTGQEeikr317Ln7Gcv0tjA8dVgKI3rniqW2G1OyKDng==
+
 "@types/object-assign@4.0.30":
   version "4.0.30"
   resolved "https://registry.yarnpkg.com/@types/object-assign/-/object-assign-4.0.30.tgz#8949371d5a99f4381ee0f1df0a9b7a187e07e652"
@@ -867,12 +872,17 @@
   resolved "https://registry.yarnpkg.com/@types/warning/-/warning-3.0.0.tgz#0d2501268ad8f9962b740d387c4654f5f8e23e52"
   integrity sha1-DSUBJorY+ZYrdA04fEZU9fjiPlI=
 
-abort-controller@3.0.0:
+abort-controller@3.0.0, abort-controller@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
   integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
   dependencies:
     event-target-shim "^5.0.0"
+
+abortcontroller-polyfill@^1.4.0:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.1.tgz#27084bac87d78a7224c8ee78135d05df430c2d2f"
+  integrity sha512-yml9NiDEH4M4p0G4AcPkg8AAa4mF3nfYF28VQxaokpO67j9H7gWgmsVWJ/f1Rn+PzsnDYvzJzWIQzCqDKRvWlA==
 
 agent-base@6:
   version "6.0.2"
@@ -880,6 +890,17 @@ agent-base@6:
   integrity sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==
   dependencies:
     debug "4"
+
+airtable@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/airtable/-/airtable-0.10.1.tgz#0b311002bb44b39f19bf7c4bd2d47d75c733bf87"
+  integrity sha512-obFW+R3ly2mKtCj0D/xto0ggUvYwdM0RJT3VJ9wvgqoxDkzqg2mNtkuTNfYjF6wWQA0GvoHG9guqzgBBqFjItw==
+  dependencies:
+    "@types/node" ">=8.0.0 <15"
+    abort-controller "^3.0.0"
+    abortcontroller-polyfill "^1.4.0"
+    lodash "^4.17.19"
+    node-fetch "^2.6.1"
 
 anser@1.4.9:
   version "1.4.9"
@@ -2190,7 +2211,7 @@ node-addon-api@^3.0.2:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-3.1.0.tgz#98b21931557466c6729e51cb77cd39c965f42239"
   integrity sha512-flmrDNB06LIl5lywUz7YlNGZH/5p0M7W28k8hzd9Lshtdh1wshD2Y+U4h9LD6KObOy1f+fEVdgprPrEymjM5uw==
 
-node-fetch@2.6.1:
+node-fetch@2.6.1, node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
