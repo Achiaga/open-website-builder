@@ -14,7 +14,7 @@ const CheckIcon = () => {
 			<path
 				d='M14.25 28L19.9999 33.7499L37.7498 16'
 				stroke='black'
-				stroke-width='2'
+				strokeWidth='2'
 			/>
 		</svg>
 	);
