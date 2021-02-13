@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
 		try {
 			InitializeAnalytics();
 		} catch (err) {
-			console.log('HOTJAR not working on local');
+			console.log(err);
 		}
 	}, []);
 	return (

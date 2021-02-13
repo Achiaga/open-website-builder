@@ -29,7 +29,6 @@ export const InitializeAnalytics = async () => {
 };
 
 export const AnalyticsEvent = (category, action) => {
-	console.log({ ReactGA });
 	ReactGA.event({
 		category: category,
 		action: action,

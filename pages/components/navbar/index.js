@@ -3,14 +3,17 @@ import { useRouter } from 'next/router';
 import { useTranslation } from '../../../hooks/translation';
 
 import { AnalyticsEvent } from '../../../utils/analytics';
+import BgCircle from '../../../assets/navbar-circle.js';
 import Button from '../../../Components/Button';
 import LogoSvg from '../../../assets/logo.js';
-import BgCircle from '../../../assets/navbar-circle.js';
+import SubscriptionModal from '../modals/subscription-modal';
+import { useState } from 'react';
 
 const Navbar = () => {
 	const router = useRouter();
 	const { locale } = router;
 	const [t] = useTranslation();
+	const [isModalOpen, toggleModalOpen] = useState(false);
 
 	const changeLanguage = (e) => {
 		const locale = e.target.value;
@@ -18,6 +21,7 @@ const Navbar = () => {
 	};
 
 	const handleFreeTrial = () => {
+		toggleModalOpen(true);
 		AnalyticsEvent('Free Trial', 'clicked');
 	};
 
@@ -31,6 +35,7 @@ const Navbar = () => {
 			paddingRight='7rem'
 			paddingLeft='6rem'
 			fontFamily='Montserrat'>
+			{isModalOpen && <SubscriptionModal toggleModalOpen={toggleModalOpen} />}
 			<Box zIndex='-1' position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>

@@ -33,7 +33,6 @@ const Features = () => {
 	const handleTextIndex = (e) => {
 		const { id } = e.currentTarget;
 		setStopInterval(true);
-		console.log(Number(id));
 		setTextIndex(Number(id));
 	};
 
