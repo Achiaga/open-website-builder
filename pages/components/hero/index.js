@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+import Image from 'next/image'
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import Button from '../../../Components/Button';
+import Button from '../../../Components/Button'
 
 const Hero = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -31,7 +31,7 @@ const Hero = () => {
 					fontSize='50px'
 					lineHeight='60px'>
 					{t.hero.title_1}
-					<Text as='span' color='primary.500'>
+					<Text as='h1' color='primary.500'>
 						{t.hero.title_color_2}
 						<br />
 					</Text>
@@ -42,7 +42,7 @@ const Hero = () => {
 					marginTop='1.25rem'
 					fontFamily='Montserrat'
 					fontSize='24px'
-					as='span'>
+					as='h2'>
 					{t.hero.subtitle}
 				</Text>
 				<Button padding='1.5rem' marginTop='1.5rem'>
@@ -66,7 +66,7 @@ const Hero = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Hero;
+export default Hero
