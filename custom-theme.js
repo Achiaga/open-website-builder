@@ -16,6 +16,7 @@ export const customTheme = {
 			900: '',
 		},
 		gray: {
+			100: '#F9F9FB',
 			500: '#243141',
 			600: '#8A95A5',
 		},
@@ -24,6 +25,7 @@ export const customTheme = {
 		},
 		green: {
 			400: '#43E28E',
+			500: '#43E28E',
 		},
 	},
 	fonts: {

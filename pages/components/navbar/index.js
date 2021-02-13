@@ -35,7 +35,12 @@ const Navbar = () => {
 			paddingRight='7rem'
 			paddingLeft='6rem'
 			fontFamily='Montserrat'>
-			{isModalOpen && <SubscriptionModal toggleModalOpen={toggleModalOpen} />}
+			{isModalOpen && (
+				<SubscriptionModal
+					isModalOpen={isModalOpen}
+					toggleModalOpen={toggleModalOpen}
+				/>
+			)}
 			<Box zIndex='-1' position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>

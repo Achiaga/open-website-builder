@@ -43,4 +43,23 @@ export default {
 			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
 		button: 'Empieza Ahora',
 	},
+	subscriptionModal: {
+		header: "Join our ealy adopters' List, and get the job of your dreams",
+		body_1: 'We are thrilled to see you here 😁!',
+		body_2:
+			'Unfortunately, the app is not open to the public yet, it works by invitation only. If you want to join us, ask for early access.',
+		body_3:
+			'We want people to enjoy making their resume as they have never done before. If you want to help us in this adventure and change how people present themself! Let us know, we have ',
+		body_color_1: '50 Free Pro accounts ',
+		body_4: 'for our beta testers.',
+		progressLabel_color: '30 ',
+		progressLabel: 'spots left',
+		footer_color_1: 'Standout Resume ',
+		footer: "is so fast and delightful — you'll feel like you have ",
+		footer_color_2: 'superpowers.',
+		join: 'Join',
+		join_color: 'Standout Resume',
+		email_subscription: 'Type your email',
+		access: 'Get early access',
+	},
 };
