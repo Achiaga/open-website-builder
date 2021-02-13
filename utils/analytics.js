@@ -1,6 +1,7 @@
 import ReactGA from 'react-ga';
 
 export const InitializeAnalytics = () => {
+	console.log('test variable', process.env.NEXT_PUBLIC_ANALYTICS_ID);
 	if (!process.env.NEXT_APP_GA_TRACKING) throw new Error('localhost');
 	const trackingId = process.env.NEXT_APP_GA_TRACKING || '';
 	ReactGA.initialize(trackingId);
@@ -21,6 +22,7 @@ export const InitializeAnalytics = () => {
 };
 
 export const AnalyticsEvent = (category, action) => {
+	console.log({ ReactGA });
 	ReactGA.event({
 		category: category,
 		action: action,
