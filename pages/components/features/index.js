@@ -47,11 +47,10 @@ const Features = () => {
 			width='100%'
 			marginTop='4rem'
 			marginBottom='6.5rem'>
-			<Box position='absolute' right='0' bottom='-30rem' zIndex='0'>
+			<Box zIndex='-1' position='absolute' right='0' bottom='-30rem'>
 				<CircleBg />
 			</Box>
 			<Text
-				position='relative'
 				fontWeight='bold'
 				width='1053px'
 				textAlign='center'
@@ -94,7 +93,6 @@ const Features = () => {
 					/>
 				</Box>
 				<Box
-					position='relative'
 					display='flex'
 					justifyContent='start'
 					flexDirection='column'

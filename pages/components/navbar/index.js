@@ -2,6 +2,7 @@ import { Box, Select } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useTranslation } from '../../../hooks/translation';
 
+import { AnalyticsEvent } from '../../../utils/analytics';
 import Button from '../../../Components/Button';
 import LogoSvg from '../../../assets/logo.tsx';
 import BgCircle from '../../../assets/navbar-circle.tsx';
@@ -15,6 +16,11 @@ const Navbar = () => {
 		const locale = e.target.value;
 		router.push(router.pathname, router.asPath, { locale });
 	};
+
+	const handleFreeTrial = () => {
+		AnalyticsEvent('Free Trial', 'clicked');
+	};
+
 	return (
 		<Box
 			display='flex'
@@ -25,10 +31,10 @@ const Navbar = () => {
 			paddingRight='7rem'
 			paddingLeft='6rem'
 			fontFamily='Montserrat'>
-			<Box position='absolute' right='-79px' top='-92px'>
+			<Box zIndex='-1' position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>
-			<Box paddingTop='1rem'>
+			<Box zIndex='-1' paddingTop='1rem'>
 				<LogoSvg />
 			</Box>
 			<Box
@@ -62,7 +68,7 @@ const Navbar = () => {
 						es
 					</option>
 				</Select>
-				<Button>{t.navbar.buttonTrial}</Button>
+				<Button onClick={handleFreeTrial}>{t.navbar.buttonTrial}</Button>
 			</Box>
 		</Box>
 	);

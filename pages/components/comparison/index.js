@@ -20,10 +20,10 @@ const Comparison = () => {
 			width='100%'
 			marginTop='6rem'
 			marginBottom='6.5rem'>
-			<Box position='absolute' left='0' top='1rem' zIndex='0'>
+			<Box zIndex='-1' position='absolute' left='0' top='1rem'>
 				<UnsexyBg />
 			</Box>
-			<Box position='absolute' right='0' top='12rem' zIndex='0'>
+			<Box zIndex='-1' position='absolute' right='0' top='12rem'>
 				<SexyBg />
 			</Box>
 			<Text
@@ -62,7 +62,7 @@ const Comparison = () => {
 					alignItems='center'
 					width='100%'
 					height='100%'>
-					<Box display='flex' paddingBottom='2rem' pos='relative'>
+					<Box display='flex' paddingBottom='2rem'>
 						<CloseIcon />
 						<Text
 							paddingLeft='1.5rem'
@@ -91,7 +91,7 @@ const Comparison = () => {
 					alignItems='center'
 					width='100%'
 					height='100%'>
-					<Box display='flex' paddingBottom='2rem' pos='relative'>
+					<Box display='flex' paddingBottom='2rem'>
 						<CheckIcon />
 						<Text
 							paddingLeft='1.5rem'

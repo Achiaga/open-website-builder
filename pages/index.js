@@ -7,13 +7,17 @@ import Comparison from './components/comparison';
 import Features from './components/features';
 import Footer from './components/footer';
 
-import styles from '../styles/Home.module.css';
-
 export default function Home() {
 	return (
-		<div className={styles.container}>
+		<Box
+			minHeight='100vh'
+			display='flex'
+			flexDirection='column'
+			justifyContent='center'
+			alignItems='center'
+			maxWidth='100vw'>
 			<Head>
-				<title>Create Next App</title>
+				<title>Standout Resume</title>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
@@ -23,14 +27,13 @@ export default function Home() {
 				flexDirection='column'
 				justifyContent='start'
 				alignItems='center'
-				width='100%'
-				backgroundColor='#f8f9fb'>
+				width='100%'>
 				<Navbar />
 				<Hero />
 				<Comparison />
 				<Features />
 				<Footer />
 			</Box>
-		</div>
+		</Box>
 	);
 }
