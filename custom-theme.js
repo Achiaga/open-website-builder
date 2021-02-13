@@ -5,9 +5,9 @@ export const customTheme = {
 	colors: {
 		...theme.colors,
 		primary: {
-			100: '',
+			100: '#EEF0FE',
 			200: '',
-			300: '',
+			300: '#B9C4F9',
 			400: '',
 			500: '#506BF0',
 			600: '',
@@ -16,6 +16,7 @@ export const customTheme = {
 			900: '',
 		},
 		gray: {
+			500: '#243141',
 			600: '#8A95A5',
 		},
 		red: {

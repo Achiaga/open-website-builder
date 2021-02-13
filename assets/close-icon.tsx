@@ -18,7 +18,7 @@ const closeIcon = () => {
 			<path
 				d='M14.5 35.5L35.5 14.5M35.5 35.5L14.5 14.5L35.5 35.5Z'
 				stroke='black'
-				stroke-width='2'
+				strokeWidth='2'
 			/>
 		</svg>
 	);

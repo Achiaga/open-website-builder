@@ -61,12 +61,11 @@ const Comparison = () => {
 					justifyContent='center'
 					alignItems='center'
 					width='100%'
-					height='100%'
-					paddingBottom='3.75rem'>
-					<Box display='flex' paddingBottom='2.5rem' pos='relative'>
+					height='100%'>
+					<Box display='flex' paddingBottom='2rem' pos='relative'>
 						<CloseIcon />
 						<Text
-							w='405px'
+							paddingLeft='1.5rem'
 							fontSize='36px'
 							lineHeight='43.2px'
 							textAlign='center'
@@ -81,8 +80,8 @@ const Comparison = () => {
 					<Image
 						src={'/unsexy.png'}
 						alt='unsexy_image'
-						width={535}
-						height={750}
+						width={520}
+						height={735}
 					/>
 				</Box>
 				<Box
@@ -107,7 +106,7 @@ const Comparison = () => {
 							{t.comparison.sexy_3}
 						</Text>
 					</Box>
-					<Image src={'/sexy.png'} alt='sexy' width={519} height={867} />
+					<Image src={'/sexy.png'} alt='sexy' width={520} height={735} />
 				</Box>
 			</Box>
 		</Box>
