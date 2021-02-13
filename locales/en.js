@@ -62,4 +62,7 @@ export default {
 		email_subscription: 'Type your email',
 		access: 'Get early access',
 	},
+	footer: {
+		button: 'Sign Up',
+	},
 };
