@@ -1,49 +1,88 @@
-import { Box, Text, Input, Button } from '@chakra-ui/react';
-import Modal from '../../modal';
+import { Box, Text, Input, Button, Progress } from '@chakra-ui/react';
+import { useTranslation } from '../../../../hooks/translation';
+import {
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalCloseButton,
+} from '@chakra-ui/react';
 
-const SubscriptionModal = ({ toggleModalOpen }) => {
+const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
+	const [t] = useTranslation();
 	return (
-		<Modal toggleModalOpen={toggleModalOpen}>
-			<Box
+		<Modal isOpen={isModalOpen} onClose={() => toggleModalOpen(false)}>
+			<ModalOverlay />
+			<ModalContent
 				bg='white'
+				maxWidth='50rem'
+				margin='auto'
 				borderRadius='12px'
-				width='706px'
-				height='400px'
 				display='flex'
+				flexDirection='row'
 				justifyContent='center'
-				alignItems='center'
-				zIndex='2'
-				onClick={(e) => e.stopPropagation()}>
+				alignItems='stretch'>
 				<Box
 					width='60%'
 					borderRadius='12px'
 					display='flex'
 					padding='1rem'
+					paddingX='2rem'
 					flexDirection='column'
 					justifyContent='center'
+					fontSize='16px'
+					fontFamily='Montserrat'
+					fontWeight='400'
 					alignItems='center'>
-					<Text>
-						Join our ealy adopters' List, and get the job of your dreams
+					<ModalCloseButton />
+					<Text
+						color='primary.500'
+						paddingTop='0.5rem'
+						fontSize='16px'
+						fontWeight='500'
+						textAlign='center'>
+						{t.subscriptionModal.header}
 					</Text>
-					<Text>
-						We are thrilled to see you here 😁! Unfortunately, the app is not
-						open to the public yet, it works by invitation only. If you want to
-						join us, ask for early access. We want people to enjoy making their
-						resume as they have never done before. If you want to help us in
-						this adventure and change how people present themself! Let us know,
-						we have 50 Free Pro accounts for our beta testers.
+					<Text lineHeight='20px' paddingTop='1rem'>
+						{t.subscriptionModal.body_1}
+						<br />
+						<br />
+						{t.subscriptionModal.body_2}
+						<br />
+						<br />
+						{t.subscriptionModal.body_3}
+						<Text as='span' color='primary.500'>
+							{t.subscriptionModal.body_color_1}
+						</Text>
+						{t.subscriptionModal.body_4}
 					</Text>
-					<Text>slider</Text>
-					<Text>
-						Standout Resume is so fast and delightful — you'll feel like you
-						have superpowers.
+					<Box w='100%' paddingTop='2rem' paddingBottom='1rem'>
+						<Progress
+							borderRadius='10px'
+							bg='primary.100'
+							// color='primary'
+							colorScheme='green'
+							value={40}
+						/>
+						<Text fontWeight='500' as='p' paddingTop='1rem' textAlign='center'>
+							<Text fontWeight='600' as='span' color='green.400'>
+								{t.subscriptionModal.progressLabel_color}
+							</Text>
+							{t.subscriptionModal.progressLabel}
+						</Text>
+					</Box>
+					<Text fontWeight='500' as='p' fontSize='14px' textAlign='center'>
+						<Text as='span' color='primary.500'>
+							{t.subscriptionModal.footer_color_1}
+						</Text>
+						{t.subscriptionModal.footer}
+						<Text as='span' color='primary.500'>
+							{t.subscriptionModal.footer_color_2}
+						</Text>
 					</Text>
-					<Input placeholder='type your email' />
 				</Box>
 				<Box
 					width='40%'
 					borderRadius='0 12px 12px 0'
-					height='100%'
 					padding='1rem'
 					bg='primary.100'
 					fontSize='18px'
@@ -54,16 +93,43 @@ const SubscriptionModal = ({ toggleModalOpen }) => {
 					justifyContent='center'
 					alignItems='center'>
 					<Text textAlign='center' lineHeight='24px'>
-						Join
+						{t.subscriptionModal.join_color}
 						<br />
 						<Text as='span' color='primary.500'>
-							Standout Resume
+							{t.subscriptionModal.join}
 						</Text>
 					</Text>
-					<Input placeholder='type your email' />
-					<Button>Get early access</Button>
+					<Input
+						marginY='1rem'
+						marginTop='2rem'
+						border='none'
+						bg='gray.100'
+						placeholder={t.subscriptionModal.email_subscription}
+						type='email'
+						id='email'
+					/>
+					<Button
+						fontSize='16px'
+						fontWeight='semibold'
+						color='white'
+						bg='primary.500'
+						borderRadius='5px'
+						minWidth='7.5rem'
+						height='2.5rem'
+						_hover={{ bg: 'primary.500' }}
+						_active={{
+							bg: 'primary.500',
+							transform: 'scale(0.98)',
+							borderColor: '#bec3c9',
+						}}
+						_focus={{
+							boxShadow:
+								'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+						}}>
+						{t.subscriptionModal.access}
+					</Button>
 				</Box>
-			</Box>
+			</ModalContent>
 		</Modal>
 	);
 };
