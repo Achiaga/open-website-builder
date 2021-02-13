@@ -6,6 +6,7 @@ import Hero from './components/hero';
 import Comparison from './components/comparison';
 import Features from './components/features';
 import Steps from './components/steps';
+import CardInfo from './components/card-info';
 import Footer from './components/footer';
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
 				<Comparison />
 				<Features />
 				<Steps />
+				<CardInfo />
 				<Footer />
 			</Box>
 		</Box>
