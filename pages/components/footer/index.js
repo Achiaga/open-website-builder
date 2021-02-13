@@ -33,6 +33,8 @@ const Features = () => {
 					borderRadius='5px'
 					w='315px'
 					placeholder='Type your email'
+					type='email'
+					id='email'
 				/>
 				<Button
 					w='212px'
@@ -63,8 +65,12 @@ const Features = () => {
 				display='flex'
 				justifyContent='space-between'
 				alignItems='center'>
-				<Linkedin />
-				<Twitter />
+				<Button>
+					<Linkedin />
+				</Button>
+				<Button>
+					<Twitter />
+				</Button>
 			</Box>
 		</Box>
 	)

@@ -1,29 +1,29 @@
-import { Box, Select } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { useTranslation } from '../../../hooks/translation'
+import { Box, Select } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useTranslation } from '../../../hooks/translation';
 
-import { AnalyticsEvent } from '../../../utils/analytics'
-import BgCircle from '../../../assets/navbar-circle'
-import Button from '../../../Components/Button'
-import LogoSvg from '../../../assets/logo'
-import SubscriptionModal from '../modals/subscription-modal'
-import { useState } from 'react'
+import { AnalyticsEvent } from '../../../utils/analytics';
+import BgCircle from '../../../assets/navbar-circle';
+import Button from '../../../Components/Button';
+import LogoSvg from '../../../assets/logo';
+import SubscriptionModal from '../modals/subscription-modal';
+import { useState } from 'react';
 
 const Navbar = () => {
-	const router = useRouter()
-	const { locale } = router
-	const [t] = useTranslation()
-	const [isModalOpen, toggleModalOpen] = useState(false)
+	const router = useRouter();
+	const { locale } = router;
+	const [t] = useTranslation();
+	const [isModalOpen, toggleModalOpen] = useState(false);
 
 	const changeLanguage = (e) => {
-		const locale = e.target.value
-		router.push(router.pathname, router.asPath, { locale })
-	}
+		const locale = e.target.value;
+		router.push(router.pathname, router.asPath, { locale });
+	};
 
 	const handleFreeTrial = () => {
-		toggleModalOpen(true)
-		AnalyticsEvent('Free Trial', 'clicked')
-	}
+		toggleModalOpen(true);
+		AnalyticsEvent('Free Trial', 'clicked');
+	};
 
 	return (
 		<Box
@@ -35,7 +35,12 @@ const Navbar = () => {
 			paddingRight='7rem'
 			paddingLeft='6rem'
 			fontFamily='Montserrat'>
-			{isModalOpen && <SubscriptionModal toggleModalOpen={toggleModalOpen} />}
+			{isModalOpen && (
+				<SubscriptionModal
+					isModalOpen={isModalOpen}
+					toggleModalOpen={toggleModalOpen}
+				/>
+			)}
 			<Box position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>
@@ -77,7 +82,7 @@ const Navbar = () => {
 				<Button onClick={handleFreeTrial}>{t.navbar.buttonTrial}</Button>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Navbar
+export default Navbar;
