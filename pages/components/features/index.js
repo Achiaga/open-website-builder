@@ -1,40 +1,40 @@
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import Button from '../../../Components/Button';
-import CircleBg from '../../../assets/features-circle.js';
+import Button from '../../../Components/Button'
+import CircleBg from '../../../assets/features-circle'
 
 const Features = () => {
-	const [t] = useTranslation();
-	const [textIndex, setTextIndex] = useState(0);
-	const [stopInterval, setStopInterval] = useState(false);
+	const [t] = useTranslation()
+	const [textIndex, setTextIndex] = useState(0)
+	const [stopInterval, setStopInterval] = useState(false)
 
 	useEffect(() => {
 		if (!stopInterval) {
 			const intervalIndex = setInterval(() => {
 				setTextIndex((state) => {
-					if (state < 3) setTextIndex(state + 1);
-					else setTextIndex(0);
-				});
-			}, 3000);
-			return () => clearInterval(intervalIndex);
+					if (state < 3) setTextIndex(state + 1)
+					else setTextIndex(0)
+				})
+			}, 3000)
+			return () => clearInterval(intervalIndex)
 		}
-	}, [textIndex]);
+	}, [textIndex])
 
 	const selectedImg = {
 		0: '/features_simple.png',
 		1: '/features_template.png',
 		2: '/features_wow.png',
-		3: '/features_template.png',
-	}[textIndex];
+		3: '/features_template.png'
+	}[textIndex]
 
 	const handleTextIndex = (e) => {
-		const { id } = e.currentTarget;
-		setStopInterval(true);
-		setTextIndex(Number(id));
-	};
+		const { id } = e.currentTarget
+		setStopInterval(true)
+		setTextIndex(Number(id))
+	}
 
 	return (
 		<Box
@@ -46,10 +46,11 @@ const Features = () => {
 			width='100%'
 			marginTop='4rem'
 			marginBottom='6.5rem'>
-			<Box zIndex='-1' position='absolute' right='0' bottom='-30rem'>
+			<Box position='absolute' right='0' bottom='-30rem'>
 				<CircleBg />
 			</Box>
 			<Text
+				position='relative'
 				fontWeight='bold'
 				width='1053px'
 				textAlign='center'
@@ -69,10 +70,15 @@ const Features = () => {
 				</Text>
 				{t.features.title_5}
 			</Text>
-			<Text fontSize='24px' marginTop='1rem' color='gray.600'>
+			<Text
+				position='relative'
+				fontSize='24px'
+				marginTop='1rem'
+				color='gray.600'>
 				{t.features.subtitle}
 			</Text>
 			<Box
+				position='relative'
 				display='flex'
 				justifyContent='center'
 				alignItems='center'
@@ -224,7 +230,7 @@ const Features = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Features;
+export default Features

@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+import Image from 'next/image'
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import CheckIcon from '../../../assets/check-icon.js';
-import CloseIcon from '../../../assets/close-icon.js';
-import UnsexyBg from '../../../assets/unsexy-circle.js';
-import SexyBg from '../../../assets/sexy-circle.js';
+import CheckIcon from '../../../assets/check-icon'
+import CloseIcon from '../../../assets/close-icon'
+import UnsexyBg from '../../../assets/unsexy-circle'
+import SexyBg from '../../../assets/sexy-circle'
 
 const Comparison = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -20,13 +20,14 @@ const Comparison = () => {
 			width='100%'
 			marginTop='6rem'
 			marginBottom='6.5rem'>
-			<Box zIndex='-1' position='absolute' left='0' top='1rem'>
+			<Box position='absolute' left='0' top='1rem'>
 				<UnsexyBg />
 			</Box>
-			<Box zIndex='-1' position='absolute' right='0' top='12rem'>
+			<Box position='absolute' right='0' top='12rem'>
 				<SexyBg />
 			</Box>
 			<Text
+				position='relative'
 				fontWeight='bold'
 				width='1053px'
 				textAlign='center'
@@ -45,10 +46,15 @@ const Comparison = () => {
 					{t.comparison.title_color_4}
 				</Text>
 			</Text>
-			<Text fontSize='24px' marginTop='1rem' color='gray.600'>
+			<Text
+				position='relative'
+				fontSize='24px'
+				marginTop='1rem'
+				color='gray.600'>
 				{t.comparison.subtitle}
 			</Text>
 			<Box
+				position='relative'
 				display='flex'
 				justifyContent='center'
 				alignItems='center'
@@ -110,7 +116,7 @@ const Comparison = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Comparison;
+export default Comparison

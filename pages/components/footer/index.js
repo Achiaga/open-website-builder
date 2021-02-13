@@ -1,13 +1,13 @@
-import { Box, Input, Button } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+import { Box, Input, Button } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import LogoSvg from '../../../assets/logo.js';
+import LogoSvg from '../../../assets/logo'
 // import Button from '../../../Components/Button';
-import Linkedin from '../../../assets/linkedin.js';
-import Twitter from '../../../assets/twitter.js';
+import Linkedin from '../../../assets/linkedin'
+import Twitter from '../../../assets/twitter'
 
 const Features = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -49,11 +49,11 @@ const Features = () => {
 					_active={{
 						bg: 'primary.500',
 						transform: 'scale(0.98)',
-						borderColor: '#bec3c9',
+						borderColor: '#bec3c9'
 					}}
 					_focus={{
 						boxShadow:
-							'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+							'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
 					}}>
 					Sign Up
 				</Button>
@@ -73,7 +73,7 @@ const Features = () => {
 				</Button>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Features;
+export default Features

@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import { useTranslation } from '../../../hooks/translation';
 
 import { AnalyticsEvent } from '../../../utils/analytics';
-import BgCircle from '../../../assets/navbar-circle.js';
+import BgCircle from '../../../assets/navbar-circle';
 import Button from '../../../Components/Button';
-import LogoSvg from '../../../assets/logo.js';
+import LogoSvg from '../../../assets/logo';
 import SubscriptionModal from '../modals/subscription-modal';
 import { useState } from 'react';
 
@@ -41,13 +41,14 @@ const Navbar = () => {
 					toggleModalOpen={toggleModalOpen}
 				/>
 			)}
-			<Box zIndex='-1' position='absolute' right='-79px' top='-92px'>
+			<Box position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>
-			<Box zIndex='-1' paddingTop='1rem'>
+			<Box paddingTop='1rem'>
 				<LogoSvg />
 			</Box>
 			<Box
+				position='relative'
 				fontSize='md'
 				display='flex'
 				justifyContent='space-between'
