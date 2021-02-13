@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Box, Text, Input, Button, Progress } from '@chakra-ui/react';
 import { useTranslation } from '../../../../hooks/translation';
+import { addUserToBetaList } from '../../../../helpers/transport';
 import {
 	Modal,
 	ModalOverlay,
@@ -9,6 +11,18 @@ import {
 
 const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const [t] = useTranslation();
+	const [emailValue, setEmailValue] = useState('');
+
+	const handleSubmitEmail = (e) => {
+		e.preventDefault();
+		addUserToBetaList(emailValue);
+	};
+
+	const handleEmail = (e) => {
+		const { value } = e.target;
+		setEmailValue(value);
+	};
+
 	return (
 		<Modal isOpen={isModalOpen} onClose={() => toggleModalOpen(false)}>
 			<ModalOverlay />
@@ -99,35 +113,47 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							{t.subscriptionModal.join}
 						</Text>
 					</Text>
-					<Input
-						marginY='1rem'
-						marginTop='2rem'
-						border='none'
-						bg='gray.100'
-						placeholder={t.subscriptionModal.email_subscription}
-						type='email'
-						id='email'
-					/>
-					<Button
-						fontSize='16px'
-						fontWeight='semibold'
-						color='white'
-						bg='primary.500'
-						borderRadius='5px'
-						minWidth='7.5rem'
-						height='2.5rem'
-						_hover={{ bg: 'primary.500' }}
-						_active={{
-							bg: 'primary.500',
-							transform: 'scale(0.98)',
-							borderColor: '#bec3c9',
+					<form
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							width: '100%',
 						}}
-						_focus={{
-							boxShadow:
-								'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-						}}>
-						{t.subscriptionModal.access}
-					</Button>
+						onSubmit={handleSubmitEmail}>
+						<Input
+							marginY='1.5rem'
+							marginTop='2rem'
+							border='none'
+							bg='gray.100'
+							placeholder={t.subscriptionModal.email_subscription}
+							type='email'
+							id='email'
+							value={emailValue}
+							onChange={handleEmail}
+						/>
+						<Button
+							type='submit'
+							fontSize='16px'
+							fontWeight='semibold'
+							color='white'
+							bg='primary.500'
+							borderRadius='5px'
+							minWidth='7.5rem'
+							height='2.5rem'
+							_hover={{ bg: 'primary.500' }}
+							_active={{
+								bg: 'primary.500',
+								transform: 'scale(0.98)',
+								borderColor: '#bec3c9',
+							}}
+							_focus={{
+								boxShadow:
+									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+							}}>
+							{t.subscriptionModal.access}
+						</Button>
+					</form>
 				</Box>
 			</ModalContent>
 		</Modal>

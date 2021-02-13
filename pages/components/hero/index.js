@@ -1,12 +1,11 @@
-import Image from 'next/image'
-import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+import Image from 'next/image';
+import { Box, Text } from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
-import Button from '../../../Components/Button'
-import { addUserToBetaList } from '../../helpers/transport'
+import Button from '../../../Components/Button';
 
 const Hero = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 
 	return (
 		<Box
@@ -46,10 +45,7 @@ const Hero = () => {
 					as='h2'>
 					{t.hero.subtitle}
 				</Text>
-				<Button
-					padding='1.5rem'
-					marginTop='1.5rem'
-					onClick={() => addUserToBetaList('gonzalo')}>
+				<Button padding='1.5rem' marginTop='1.5rem'>
 					{t.hero.button}
 				</Button>
 			</Box>
@@ -70,7 +66,7 @@ const Hero = () => {
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Hero
+export default Hero;
