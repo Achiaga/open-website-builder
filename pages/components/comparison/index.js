@@ -93,7 +93,7 @@ const ImageSlider = () => {
 				</SliderThumb>
 				{showHelper && (
 					<Box position='absolute' top='22px' left='43%'>
-						<SlideIcon fill='#506BF0' zIndex='2' />
+						<SlideIcon fill='#506BF0' zindex='2' />
 					</Box>
 				)}
 			</Slider>

@@ -1,13 +1,14 @@
-import { Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react'
 
-import Head from 'next/head';
-import Navbar from './components/navbar';
-import Hero from './components/hero';
-import Comparison from './components/comparison';
-import Features from './components/features';
-import Steps from './components/steps';
-import CardInfo from './components/card-info';
-import Footer from './components/footer';
+import Head from 'next/head'
+import Navbar from './components/navbar'
+import Hero from './components/hero'
+import Comparison from './components/comparison'
+import Features from './components/features'
+import Steps from './components/steps'
+import CardInfo from './components/card-info'
+import Footer from './components/footer'
+import { initLiveChatScript } from '../utils/analytics'
 
 export default function Home() {
 	return (
@@ -25,6 +26,11 @@ export default function Home() {
 				/>
 				<title>Standout Resume</title>
 				<link rel='icon' href='/favicon.ico' />
+				<script
+					dangerouslySetInnerHTML={{
+						__html: initLiveChatScript
+					}}
+				/>
 			</Head>
 
 			<Box
@@ -43,5 +49,5 @@ export default function Home() {
 				<Footer />
 			</Box>
 		</Box>
-	);
+	)
 }

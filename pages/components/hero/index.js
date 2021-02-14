@@ -23,7 +23,7 @@ const Hero = () => {
 				flexDirection='column'
 				alignItems='baseline'
 				justifyContent='center'
-				marginLeft={[0, '6.5rem']}
+				marginleft={[0, '6.5rem']}
 				width={['100%', '30%']}
 				marginTop='2rem'>
 				<Text
@@ -43,7 +43,7 @@ const Hero = () => {
 				</Text>
 				{isSmallerThan900 && (
 					<Image
-						marginLeft={'-10rem'}
+						marginleft={'-10rem'}
 						src={'/hero.png'}
 						alt='hero_image'
 						width={720}
