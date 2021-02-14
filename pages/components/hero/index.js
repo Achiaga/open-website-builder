@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import { Box, Text, useMediaQuery } from '@chakra-ui/react';
+import Image from 'next/image'
+import { Box, Text, useMediaQuery } from '@chakra-ui/react'
 
-import { useTranslation } from '../../../hooks/translation';
-import Button from '../../../Components/Button';
+import { useTranslation } from '../../../hooks/translation'
+import Button from '../../../Components/Button'
 
 const Hero = ({ handleFreeTrial }) => {
-	const [t] = useTranslation();
-	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)');
+	const [t] = useTranslation()
+	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
 
 	return (
 		<Box
@@ -17,13 +17,14 @@ const Hero = ({ handleFreeTrial }) => {
 			alignItems='center'
 			width={['90vw', '100%']}
 			marginTop={[0, '1.25rem']}
-			marginBottom={['3rem', '6.5rem']}>
+			marginBottom={['3rem', '6.5rem']}
+			pl={['0', '6rem']}>
 			<Box
 				display='flex'
 				flexDirection='column'
 				alignItems='baseline'
 				justifyContent='center'
-				marginLeft={[0, '6.5rem']}
+				marginleft={[0, '6.5rem']}
 				width={['100%', '30%']}
 				marginTop='2rem'>
 				<Text
@@ -35,7 +36,7 @@ const Hero = ({ handleFreeTrial }) => {
 					fontSize='50px'
 					lineHeight='60px'>
 					{t.hero.title_1}
-					<Text as='h1' color='primary.500'>
+					<Text as='span' color='primary.500'>
 						{t.hero.title_color_2}
 						<br />
 					</Text>
@@ -43,7 +44,7 @@ const Hero = ({ handleFreeTrial }) => {
 				</Text>
 				{isSmallerThan900 && (
 					<Image
-						marginLeft={'-10rem'}
+						marginleft={'-10rem'}
 						src={'/hero.png'}
 						alt='hero_image'
 						width={720}
@@ -69,7 +70,13 @@ const Hero = ({ handleFreeTrial }) => {
 				alignItems='center'
 				justifyContent='center'>
 				{!isSmallerThan900 && (
-					<Image src={'/hero.png'} alt='hero_image' width={720} height={458} />
+					<Image
+						src={'/hero.png'}
+						alt='hero_image'
+						width={720}
+						height={458}
+						loading='eager'
+					/>
 				)}
 				{!isSmallerThan900 && (
 					<Box position='absolute' left='-0.5rem' bottom='-6.5rem'>
@@ -83,7 +90,7 @@ const Hero = ({ handleFreeTrial }) => {
 				)}
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Hero;
+export default Hero

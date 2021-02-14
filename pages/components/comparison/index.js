@@ -1,25 +1,25 @@
-import Image from 'next/image';
+import Image from 'next/image'
 import {
 	Box,
 	Slider,
 	SliderFilledTrack,
 	SliderThumb,
 	SliderTrack,
-	Text,
-} from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+	Text
+} from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import CheckIcon from '../../../assets/check-icon';
-import CloseIcon from '../../../assets/close-icon';
-import UnsexyBg from '../../../assets/unsexy-circle';
-import SexyBg from '../../../assets/sexy-circle';
-import { useEffect, useState } from 'react';
-import SlideIcon from '../../../assets/slide-icon';
+import CheckIcon from '../../../assets/check-icon'
+import CloseIcon from '../../../assets/close-icon'
+import UnsexyBg from '../../../assets/unsexy-circle'
+import SexyBg from '../../../assets/sexy-circle'
+import { useEffect, useState } from 'react'
+import SlideIcon from '../../../assets/slide-icon'
 
-const INITIAL_SLIDE_VALUE = 50;
+const INITIAL_SLIDE_VALUE = 50
 
 const TextSlider = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 	return (
 		<Box d={['flex', 'none']} mt='3rem' alignItems='center'>
 			<CheckIcon />
@@ -31,16 +31,16 @@ const TextSlider = () => {
 				{t.comparison.sexy_3_mobile}
 			</Text>
 		</Box>
-	);
-};
+	)
+}
 
 const ImageSlider = () => {
-	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE);
-	const [showHelper, setShowHelper] = useState(true);
+	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE)
+	const [showHelper, setShowHelper] = useState(true)
 
 	useEffect(() => {
-		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false);
-	}, [sliderValue, showHelper]);
+		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false)
+	}, [sliderValue, showHelper])
 
 	return (
 		<Box
@@ -93,16 +93,16 @@ const ImageSlider = () => {
 				</SliderThumb>
 				{showHelper && (
 					<Box position='absolute' top='22px' left='43%'>
-						<SlideIcon fill='#506BF0' zIndex='2' />
+						<SlideIcon fill='#506BF0' zindex='2' />
 					</Box>
 				)}
 			</Slider>
 		</Box>
-	);
-};
+	)
+}
 
 const Comparison = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -170,7 +170,8 @@ const Comparison = () => {
 						justifyContent='center'
 						alignItems='center'
 						width='100%'
-						height='100%'>
+						height='100%'
+						mr='15px'>
 						<Box display='flex' paddingBottom='2rem'>
 							<CloseIcon />
 							<Text
@@ -201,7 +202,8 @@ const Comparison = () => {
 						justifyContent='center'
 						alignItems='center'
 						width='100%'
-						height='100%'>
+						height='100%'
+						ml='15px'>
 						<Box display='flex' paddingBottom='2rem'>
 							<CheckIcon />
 							<Text
@@ -228,7 +230,7 @@ const Comparison = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Comparison;
+export default Comparison

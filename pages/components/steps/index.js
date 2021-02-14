@@ -13,12 +13,12 @@ const Steps = () => {
 			alignItems='center'
 			width='100%'
 			marginTop='3rem'
-			marginBottom={['2rem', '6.5rem']}>
+			marginBottom={['2rem', '6.5rem']}
+			px={['0', '6rem']}>
 			<Text
 				position='relative'
 				fontWeight='bold'
 				color='primary.500'
-				width='1053px'
 				textAlign='center'
 				fontFamily='Montserrat'
 				fontSize={['2.5rem', '50px']}
@@ -31,7 +31,7 @@ const Steps = () => {
 				display='flex'
 				justifyContent='space-between'
 				alignItems='center'
-				width='80%'
+				width='100%'
 				paddingTop='5rem'
 				paddingX='2rem'
 				flexDir={['column', 'row']}>

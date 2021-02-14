@@ -1,25 +1,25 @@
-import { Box } from '@chakra-ui/react';
-import { useState } from 'react';
+import { Box } from '@chakra-ui/react'
+import { useState } from 'react'
 
-import { AnalyticsEvent } from '../utils/analytics';
+import { AnalyticsEvent, initLiveChatScript } from '../utils/analytics'
 
-import Head from 'next/head';
-import Navbar from './components/navbar';
-import Hero from './components/hero';
-import Comparison from './components/comparison';
-import Features from './components/features';
-import Steps from './components/steps';
-import CardInfo from './components/card-info';
-import Footer from './components/footer';
-import SubscriptionModal from './components/modals/subscription-modal';
+import Head from 'next/head'
+import Navbar from './components/navbar'
+import Hero from './components/hero'
+import Comparison from './components/comparison'
+import Features from './components/features'
+import Steps from './components/steps'
+import CardInfo from './components/card-info'
+import Footer from './components/footer'
+import SubscriptionModal from './components/modals/subscription-modal'
 
 export default function Home() {
-	const [isModalOpen, toggleModalOpen] = useState(false);
+	const [isModalOpen, toggleModalOpen] = useState(false)
 
 	const handleFreeTrial = () => {
-		toggleModalOpen(true);
-		AnalyticsEvent('Modal Opened', 'clicked');
-	};
+		toggleModalOpen(true)
+		AnalyticsEvent('Modal Opened', 'clicked')
+	}
 
 	return (
 		<Box
@@ -36,6 +36,11 @@ export default function Home() {
 				/>
 				<title>Standout Resume</title>
 				<link rel='icon' href='/favicon.ico' />
+				<script
+					dangerouslySetInnerHTML={{
+						__html: initLiveChatScript
+					}}
+				/>
 			</Head>
 
 			<Box
@@ -60,5 +65,5 @@ export default function Home() {
 				<Footer />
 			</Box>
 		</Box>
-	);
+	)
 }
