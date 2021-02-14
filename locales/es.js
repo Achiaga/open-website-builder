@@ -1,13 +1,13 @@
 export default {
 	navbar: {
-		buttonTrial: 'Prueba Gratis'
+		buttonTrial: 'Prueba Gratis',
 	},
 	hero: {
 		title_1: 'Crea tu ',
 		title_color_2: 'portfolio ',
 		title_3: 'en minutos',
 		subtitle: 'Un portfolio online gratis, simple y sorprendente',
-		button: 'Crea tu CV gratis'
+		button: 'Crea tu CV gratis',
 	},
 	comparison: {
 		title_1: 'Crea un cv ',
@@ -22,15 +22,15 @@ export default {
 		sexy_1_mobile: 'Desliza para tu nuevo ',
 		sexy_color_2: 'sexy ',
 		sexy_3: 'Currículum',
-		sexy_3_mobile: 'CV'
+		sexy_3_mobile: 'CV',
 	},
 	features: {
 		title_1: 'Super ',
 		title_color_2: 'simple ',
-		title_3: 'interfaz para ',
+		title_3: 'diseño para ',
 		title_color_4: 'impresionar ',
-		title_5: 'a tu nueva compañia ',
-		subtitle: 'Empatiza con tu CV! destaca entre la multitud',
+		title_5: 'a las empresa ',
+		subtitle: 'Empatiza con tu curriculum! Destaca entre la multitud',
 		feature_1: 'Simple',
 		feature_text_1:
 			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
@@ -43,9 +43,9 @@ export default {
 		feature_4: 'Multi-lenguage',
 		feature_text_4:
 			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		button: 'Empieza Ahora'
+		button: 'Empieza Ahora',
 	},
-	subscriptionModal: {
+	subscription_modal: {
 		header: "Join our ealy adopters' List, and get the job of your dreams",
 		body_1: 'We are thrilled to see you here 😁!',
 		body_2:
@@ -62,9 +62,56 @@ export default {
 		join: 'Join',
 		join_color: 'Standout Resume',
 		email_subscription: 'Type your email',
-		access: 'Get early access'
+		access: 'Get early access',
+	},
+	steps: {
+		title: 'How does it works?',
+		step_1: 'Step 1',
+		step_1_title: 'Choose Template',
+		step_1_body:
+			'We have dozens of templates with predefined senteces to make your live easier. Just choose one you like and you are ready to go.',
+		step_2: 'Step 2',
+		step_2_title: 'Populate',
+		step_2_body:
+			'Add your skills and experince to the resume, we will guide you through out the process so dont worry, it will be fun.',
+		step_2_body_2:
+			"You don't like this part, we don't either. That is why we have invested a lot of time to make it easy and fun. You will never want to go back to the old way of populating resumes.",
+		step_3: 'Step 3',
+		step_3_title: 'Publish',
+		step_3_body:
+			'Congrats, you have finished your web-resume. now you have your own part of the internet. You can share the url and anyone you want will be able to see your awesome resume.',
+	},
+	card_info: {
+		title: 'Creating resumes used to be a pain',
+		subtitle: 'The way we work has changed, but resumes haven’t. Until now.',
+		old_title: 'The old way',
+		old_body:
+			'The old way is boring and time-consuming. You have to and design the resume in software like Word, then populate it and after that tedious task, you will need to export PDF to share it. The worst part being, you need to redo the whole process every time you update the resume 😢',
+		old_list: {
+			1: 'Word document.',
+			2: 'Only sharable via email.',
+			3: 'Difficulty to fit everything together.',
+			4: 'Time consuming to update.',
+			5: 'Similar to the rest of candidates resumes.',
+			6: 'Time consuming to update.',
+			7: 'Average first impression.',
+			8: 'Once you share it you can not update it.',
+		},
+		new_title: 'The new way',
+		new_body:
+			'The new way is more fun. Two steps. First, you select a template, then you populate it with the help of our pre-written ( by experts ) sentence. That is it 🥳. Easy, simple, and fun. Once you are finished you will give your own domain where your new web-resume will be hosted.',
+		new_list: {
+			1: 'Online creation.',
+			2: 'Update your resume in seconds.',
+			3: 'Dozends of templates, just one click away.',
+			4: 'Add pre-written phrases.',
+			5: 'Export to anything.',
+			6: 'Share with everyone.',
+			7: 'Accesible by URL.',
+			8: 'Instantly accesible, just share the link.',
+		},
 	},
 	footer: {
-		button: 'registrate'
-	}
-}
+		button: 'registrate',
+	},
+};

@@ -54,20 +54,20 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 						fontSize='16px'
 						fontWeight='500'
 						textAlign='center'>
-						{t.subscriptionModal.header}
+						{t.subscription_modal.header}
 					</Text>
 					<Text lineHeight='20px' paddingTop='1rem'>
-						{t.subscriptionModal.body_1}
+						{t.subscription_modal.body_1}
 						<br />
 						<br />
-						{t.subscriptionModal.body_2}
+						{t.subscription_modal.body_2}
 						<br />
 						<br />
-						{t.subscriptionModal.body_3}
+						{t.subscription_modal.body_3}
 						<Text as='span' color='primary.500'>
-							{t.subscriptionModal.body_color_1}
+							{t.subscription_modal.body_color_1}
 						</Text>
-						{t.subscriptionModal.body_4}
+						{t.subscription_modal.body_4}
 					</Text>
 					<Box w='100%' paddingTop='2rem' paddingBottom='1rem'>
 						<Progress
@@ -79,18 +79,18 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 						/>
 						<Text fontWeight='500' as='p' paddingTop='1rem' textAlign='center'>
 							<Text fontWeight='600' as='span' color='green.400'>
-								{t.subscriptionModal.progressLabel_color}
+								{t.subscription_modal.progressLabel_color}
 							</Text>
-							{t.subscriptionModal.progressLabel}
+							{t.subscription_modal.progressLabel}
 						</Text>
 					</Box>
 					<Text fontWeight='500' as='p' fontSize='14px' textAlign='center'>
 						<Text as='span' color='primary.500'>
-							{t.subscriptionModal.footer_color_1}
+							{t.subscription_modal.footer_color_1}
 						</Text>
-						{t.subscriptionModal.footer}
+						{t.subscription_modal.footer}
 						<Text as='span' color='primary.500'>
-							{t.subscriptionModal.footer_color_2}
+							{t.subscription_modal.footer_color_2}
 						</Text>
 					</Text>
 				</Box>
@@ -107,10 +107,10 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 					justifyContent='center'
 					alignItems='center'>
 					<Text textAlign='center' lineHeight='24px'>
-						{t.subscriptionModal.join_color}
+						{t.subscription_modal.join}
 						<br />
 						<Text as='span' color='primary.500'>
-							{t.subscriptionModal.join}
+							{t.subscription_modal.join_color}
 						</Text>
 					</Text>
 					<form
@@ -126,7 +126,7 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							marginTop='2rem'
 							border='none'
 							bg='gray.100'
-							placeholder={t.subscriptionModal.email_subscription}
+							placeholder={t.subscription_modal.email_subscription}
 							type='email'
 							id='email'
 							value={emailValue}
@@ -151,7 +151,7 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 								boxShadow:
 									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
 							}}>
-							{t.subscriptionModal.access}
+							{t.subscription_modal.access}
 						</Button>
 					</form>
 				</Box>
