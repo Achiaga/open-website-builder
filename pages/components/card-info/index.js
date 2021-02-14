@@ -31,14 +31,14 @@ const Steps = () => {
 				fontFamily='Montserrat'
 				fontSize={['2.5rem', '50px']}
 				lineHeight={['3rem', '4rem']}>
-				Creating resumes used to be a pain
+				{t.card_info.title}
 			</Text>
 			<Text
 				position='relative'
 				fontSize='24px'
 				marginTop='1rem'
 				color='gray.600'>
-				The way we work has changed, but resumes haven’t. Until now.
+				{t.card_info.subtitle}
 			</Text>
 			<Box
 				position='relative'
@@ -72,7 +72,7 @@ const Steps = () => {
 							lineHeight='29px'
 							letterSpacing='0em'
 							textAlign='start'>
-							The old way
+							{t.card_info.old_title}
 						</Text>
 						<Text
 							as='h1'
@@ -84,60 +84,56 @@ const Steps = () => {
 							lineHeight='26px'
 							letterSpacing='0em'
 							textAlign='start'>
-							The old way is boring and time-consuming. You have to and design
-							the resume in software like Word, then populate it and after that
-							tedious task, you will need to export PDF to share it. The worst
-							part being, you need to redo the whole process every time you
-							update the resume 😢
+							{t.card_info.old_body}
 						</Text>
 						<List paddingTop='2rem' spacing='2'>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Word document.
+								{t.card_info.old_list[1]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Only sharable via email.
+								{t.card_info.old_list[2]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Difficulty to fit everything together.
+								{t.card_info.old_list[3]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Time consuming to update.
+								{t.card_info.old_list[4]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Similar to the rest of candidates resumes.
+								{t.card_info.old_list[5]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Time consuming to update.
+								{t.card_info.old_list[6]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Average first impression.
+								{t.card_info.old_list[7]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<HandDown />
 								</Box>
-								Once you share it you can not update it.
+								{t.card_info.old_list[8]}
 							</ListItem>
 						</List>
 					</Box>
@@ -158,7 +154,7 @@ const Steps = () => {
 							lineHeight='29px'
 							letterSpacing='0em'
 							textAlign='start'>
-							The new way
+							{t.card_info.new_title}
 						</Text>
 						<Text
 							as='h1'
@@ -170,61 +166,57 @@ const Steps = () => {
 							lineHeight='26px'
 							letterSpacing='0em'
 							textAlign='start'>
-							The new way is more fun. Two steps. First, you select a template,
-							then you populate it with the help of our pre-written ( by experts
-							) sentence. That is it 🥳. Easy, simple, and fun. Once you are
-							finished you will give your own domain where your new web-resume
-							will be hosted.
+							{t.card_info.new_body}
 						</Text>
 						<List paddingTop='3.5rem' spacing='2'>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Online creation.
+								{t.card_info.new_list[1]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Update your resume in seconds.
+								{t.card_info.new_list[2]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Dozends of templates, just one click away.
+								{t.card_info.new_list[3]}
 							</ListItem>
 							{/* You can also use custom icons from react-icons */}
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Add pre-written phrases.
+								{t.card_info.new_list[4]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Export to anything.
+								{t.card_info.new_list[5]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Share with everyone.
+								{t.card_info.new_list[6]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Accesible by URL.
+								{t.card_info.new_list[7]}
 							</ListItem>
 							<ListItem display='flex' alignItems='center'>
 								<Box marginRight='0.5rem'>
 									<CheckList />
 								</Box>
-								Instantly accesible, just share the link.
+								{t.card_info.new_list[8]}
 							</ListItem>
 						</List>
 					</Box>

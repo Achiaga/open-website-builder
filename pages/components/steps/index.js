@@ -1,8 +1,8 @@
-import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+import { Box, Text } from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
 const Steps = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 
 	return (
 		<Box
@@ -24,7 +24,7 @@ const Steps = () => {
 				fontSize={['2.5rem', '50px']}
 				lineHeight={['3rem', '4rem']}
 				width={['auto', '50rem']}>
-				How does it works?
+				{t.steps.title}
 			</Text>
 			<Box
 				position='relative'
@@ -49,7 +49,7 @@ const Steps = () => {
 					padding='1.5rem'
 					mb={['4rem', 0]}>
 					<Text as='h1' fontSize={['20px', '36px']} fontWeight='400'>
-						Step 1
+						{t.steps.step_1}
 					</Text>
 					<Text
 						as='h3'
@@ -57,11 +57,10 @@ const Steps = () => {
 						color='primary.500'
 						fontWeight='700'
 						paddingBottom='1rem'>
-						Choose template
+						{t.steps.step_1_title}
 					</Text>
 					<Text as='p' fontSize={['16px', '18px']} fontWeight='400'>
-						We have dozens of templates with predefined senteces to make your
-						live easier. Just choose one you like and you are ready to go.
+						{t.steps.step_1_body}
 					</Text>
 				</Box>
 				<Box
@@ -78,7 +77,7 @@ const Steps = () => {
 					padding='1.5rem'
 					mb={['4rem', 0]}>
 					<Text as='h1' fontSize={['20px', '36px']} fontWeight='400'>
-						Step 2
+						{t.steps.step_2}
 					</Text>
 					<Text
 						as='h3'
@@ -86,11 +85,10 @@ const Steps = () => {
 						color='primary.500'
 						fontWeight='700'
 						paddingBottom='1rem'>
-						Populate
+						{t.steps.step_2_title}
 					</Text>
 					<Text as='p' fontSize={['16px', '18px']} fontWeight='400'>
-						Add your skills and experince to the resume, we will guide you
-						through out the process so dont worry, it will be fun.
+						{t.steps.step_2_body}
 					</Text>
 					<Text
 						as='p'
@@ -99,9 +97,7 @@ const Steps = () => {
 						fontWeight='400'
 						paddingTop='1.5rem'
 						paddingBottom='2rem'>
-						You don't like this part, we don't either. That is why we have
-						invested a lot of time to make it easy and fun. You will never want
-						to go back to the old way of populating resumes.
+						{t.steps.step_2_body}
 					</Text>
 				</Box>
 				<Box
@@ -117,7 +113,7 @@ const Steps = () => {
 					borderRadius='20px'
 					padding='1.5rem'>
 					<Text as='h1' fontSize={['20px', '36px']} fontWeight='400'>
-						Step 3
+						{t.steps.step_3}
 					</Text>
 					<Text
 						as='h3'
@@ -125,17 +121,15 @@ const Steps = () => {
 						color='primary.500'
 						fontWeight='700'
 						paddingBottom='1rem'>
-						Publish
+						{t.steps.step_3_title}
 					</Text>
 					<Text as='p' fontSize={['16px', '18px']} fontWeight='400'>
-						Congrats, you have finished your web-resume. now you have your own
-						part of the internet. You can share the url and anyone you want will
-						be able to see your awesome resume.
+						{t.steps.step_3_body}
 					</Text>
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Steps
+export default Steps;
