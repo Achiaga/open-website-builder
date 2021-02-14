@@ -13,7 +13,7 @@ const Steps = () => {
 			alignItems='center'
 			width='100%'
 			marginTop='3rem'
-			marginBottom='6.5rem'>
+			marginBottom={['2rem', '6.5rem']}>
 			<Text
 				position='relative'
 				fontWeight='bold'
@@ -21,10 +21,9 @@ const Steps = () => {
 				width='1053px'
 				textAlign='center'
 				fontFamily='Montserrat'
-				fontSize='50px'
-				lineHeight='60px'
-				width={['auto', '50rem']}
-				lineHeight='4rem'>
+				fontSize={['2.5rem', '50px']}
+				lineHeight={['3rem', '4rem']}
+				width={['auto', '50rem']}>
 				How does it works?
 			</Text>
 			<Box

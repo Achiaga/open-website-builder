@@ -119,7 +119,7 @@ const Comparison = () => {
 				mx={['auto', 0]}
 				marginTop={['2rem', '6rem']}
 				marginBottom={['2rem', '6rem']}>
-				<Box position='absolute' left='0' top='1rem'>
+				<Box position='absolute' left='0' top='1rem' d={['none', 'block']}>
 					<UnsexyBg />
 				</Box>
 				<Box position='absolute' right='0' top='12rem'>
