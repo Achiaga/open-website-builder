@@ -12,12 +12,12 @@ const Hero = () => {
 		<Box
 			position='relative'
 			display='flex'
-			flexDir='column'
+			flexDir={['column', 'row']}
 			justifyContent='space-between'
 			alignItems='center'
 			width={['90vw', '100%']}
 			marginTop={[0, '1.25rem']}
-			marginBottom={[0, '6.5rem']}>
+			marginBottom={['3rem', '6.5rem']}>
 			<Box
 				display='flex'
 				flexDirection='column'

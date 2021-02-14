@@ -1,8 +1,8 @@
-const LogoSvg = () => {
+const LogoSvg = ({ width = '65' }) => {
 	return (
 		<svg
-			width='65'
-			height='60'
+			width={width}
+			height={width}
 			viewBox='0 0 59 55'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'>
@@ -81,7 +81,7 @@ const LogoSvg = () => {
 				fill='#506BF0'
 			/>
 		</svg>
-	);
-};
+	)
+}
 
-export default LogoSvg;
+export default LogoSvg

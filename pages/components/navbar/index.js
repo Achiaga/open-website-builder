@@ -44,8 +44,8 @@ const Navbar = () => {
 			<Box position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>
-			<Box paddingTop={[0, '1rem']} position='relative' width={'40px'}>
-				<LogoSvg />
+			<Box paddingTop={[0, '1rem']} position='relative'>
+				<LogoSvg width={'2.5rem'} />
 			</Box>
 			<Box
 				position='relative'

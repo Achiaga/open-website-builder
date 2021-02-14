@@ -1,13 +1,13 @@
 export default {
 	navbar: {
-		buttonTrial: 'Prueba Gratis',
+		buttonTrial: 'Prueba Gratis'
 	},
 	hero: {
 		title_1: 'Crea tu ',
 		title_color_2: 'portfolio ',
 		title_3: 'en minutos',
 		subtitle: 'Un portfolio online gratis, simple y sorprendente',
-		button: 'Crea tu CV gratis',
+		button: 'Crea tu CV gratis'
 	},
 	comparison: {
 		title_1: 'Crea un cv ',
@@ -19,8 +19,10 @@ export default {
 		un_sexy_color_2: 'unsexy ',
 		un_sexy_3: 'Currículum',
 		sexy_1: 'Tu nuevo ',
+		sexy_1_mobile: 'Desliza para tu nuevo ',
 		sexy_color_2: 'sexy ',
 		sexy_3: 'Currículum',
+		sexy_3_mobile: 'CV'
 	},
 	features: {
 		title_1: 'Super ',
@@ -41,7 +43,7 @@ export default {
 		feature_4: 'Multi-lenguage',
 		feature_text_4:
 			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		button: 'Empieza Ahora',
+		button: 'Empieza Ahora'
 	},
 	subscriptionModal: {
 		header: "Join our ealy adopters' List, and get the job of your dreams",
@@ -60,9 +62,9 @@ export default {
 		join: 'Join',
 		join_color: 'Standout Resume',
 		email_subscription: 'Type your email',
-		access: 'Get early access',
+		access: 'Get early access'
 	},
 	footer: {
-		button: 'registrate',
-	},
-};
+		button: 'registrate'
+	}
+}
