@@ -1,29 +1,29 @@
-import { Box, Select } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { useTranslation } from '../../../hooks/translation';
+import { Box, Select } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { useTranslation } from '../../../hooks/translation'
 
-import { AnalyticsEvent } from '../../../utils/analytics';
-import BgCircle from '../../../assets/navbar-circle';
-import Button from '../../../Components/Button';
-import LogoSvg from '../../../assets/logo';
-import SubscriptionModal from '../modals/subscription-modal';
-import { useState } from 'react';
+import { AnalyticsEvent } from '../../../utils/analytics'
+import BgCircle from '../../../assets/navbar-circle'
+import Button from '../../../Components/Button'
+import LogoSvg from '../../../assets/logo'
+import SubscriptionModal from '../modals/subscription-modal'
+import { useState } from 'react'
 
 const Navbar = () => {
-	const router = useRouter();
-	const { locale } = router;
-	const [t] = useTranslation();
-	const [isModalOpen, toggleModalOpen] = useState(false);
+	const router = useRouter()
+	const { locale } = router
+	const [t] = useTranslation()
+	const [isModalOpen, toggleModalOpen] = useState(false)
 
 	const changeLanguage = (e) => {
-		const locale = e.target.value;
-		router.push(router.pathname, router.asPath, { locale });
-	};
+		const locale = e.target.value
+		router.push(router.pathname, router.asPath, { locale })
+	}
 
 	const handleFreeTrial = () => {
-		toggleModalOpen(true);
-		AnalyticsEvent('Free Trial', 'clicked');
-	};
+		toggleModalOpen(true)
+		AnalyticsEvent('Free Trial', 'clicked')
+	}
 
 	return (
 		<Box
@@ -31,9 +31,9 @@ const Navbar = () => {
 			justifyContent='space-between'
 			alignItems='center'
 			width='100%'
-			height='100px'
-			paddingRight='7rem'
-			paddingLeft='6rem'
+			height={['70px', '100px']}
+			paddingRight={['1rem', '7rem']}
+			paddingLeft={['1rem', '6rem']}
 			fontFamily='Montserrat'>
 			{isModalOpen && (
 				<SubscriptionModal
@@ -44,12 +44,12 @@ const Navbar = () => {
 			<Box position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>
-			<Box paddingTop='1rem'>
+			<Box paddingTop={[0, '1rem']} position='relative' width={'40px'}>
 				<LogoSvg />
 			</Box>
 			<Box
 				position='relative'
-				fontSize='md'
+				fontSize={['12px', 'md']}
 				display='flex'
 				justifyContent='space-between'
 				alignItems='center'>
@@ -79,10 +79,12 @@ const Navbar = () => {
 						es
 					</option>
 				</Select>
-				<Button onClick={handleFreeTrial}>{t.navbar.buttonTrial}</Button>
+				<Button fontSize={['14px', 'md']} onClick={handleFreeTrial}>
+					{t.navbar.buttonTrial}
+				</Button>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Navbar;
+export default Navbar
