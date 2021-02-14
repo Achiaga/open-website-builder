@@ -1,11 +1,13 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react';
 
-import Head from 'next/head'
-import Navbar from './components/navbar'
-import Hero from './components/hero'
-import Comparison from './components/comparison'
-import Features from './components/features'
-import Footer from './components/footer'
+import Head from 'next/head';
+import Navbar from './components/navbar';
+import Hero from './components/hero';
+import Comparison from './components/comparison';
+import Features from './components/features';
+import Steps from './components/steps';
+import CardInfo from './components/card-info';
+import Footer from './components/footer';
 
 export default function Home() {
 	return (
@@ -36,8 +38,10 @@ export default function Home() {
 				<Hero />
 				<Comparison />
 				<Features />
+				<Steps />
+				<CardInfo />
 				<Footer />
 			</Box>
 		</Box>
-	)
+	);
 }
