@@ -1,4 +1,7 @@
 import { Box } from '@chakra-ui/react'
+import { useState } from 'react'
+
+import { AnalyticsEvent, initLiveChatScript } from '../utils/analytics'
 
 import Head from 'next/head'
 import Navbar from './components/navbar'
@@ -8,9 +11,16 @@ import Features from './components/features'
 import Steps from './components/steps'
 import CardInfo from './components/card-info'
 import Footer from './components/footer'
-import { initLiveChatScript } from '../utils/analytics'
+import SubscriptionModal from './components/modals/subscription-modal'
 
 export default function Home() {
+	const [isModalOpen, toggleModalOpen] = useState(false)
+
+	const handleFreeTrial = () => {
+		toggleModalOpen(true)
+		AnalyticsEvent('Modal Opened', 'clicked')
+	}
+
 	return (
 		<Box
 			minHeight='100vh'
@@ -40,10 +50,16 @@ export default function Home() {
 				justifyContent='start'
 				alignItems='center'
 				width='100%'>
-				<Navbar />
-				<Hero />
+				{isModalOpen && (
+					<SubscriptionModal
+						isModalOpen={isModalOpen}
+						toggleModalOpen={toggleModalOpen}
+					/>
+				)}
+				<Navbar handleFreeTrial={handleFreeTrial} />
+				<Hero handleFreeTrial={handleFreeTrial} />
 				<Comparison />
-				<Features />
+				<Features handleFreeTrial={handleFreeTrial} />
 				<Steps />
 				<CardInfo />
 				<Footer />

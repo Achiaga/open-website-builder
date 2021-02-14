@@ -1,40 +1,40 @@
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
-import Button from '../../../Components/Button'
-import CircleBg from '../../../assets/features-circle'
+import Button from '../../../Components/Button';
+import CircleBg from '../../../assets/features-circle';
 
-const Features = () => {
-	const [t] = useTranslation()
-	const [textIndex, setTextIndex] = useState(0)
-	const [stopInterval, setStopInterval] = useState(false)
+const Features = ({ handleFreeTrial }) => {
+	const [t] = useTranslation();
+	const [textIndex, setTextIndex] = useState(0);
+	const [stopInterval, setStopInterval] = useState(false);
 
 	useEffect(() => {
 		if (!stopInterval) {
 			const intervalIndex = setInterval(() => {
 				setTextIndex((state) => {
-					if (state < 3) setTextIndex(state + 1)
-					else setTextIndex(0)
-				})
-			}, 3000)
-			return () => clearInterval(intervalIndex)
+					if (state < 3) setTextIndex(state + 1);
+					else setTextIndex(0);
+				});
+			}, 3000);
+			return () => clearInterval(intervalIndex);
 		}
-	}, [textIndex])
+	}, [textIndex]);
 
 	const selectedImg = {
 		0: '/features_simple.png',
 		1: '/features_template.png',
 		2: '/features_wow.png',
-		3: '/features_template.png'
-	}[textIndex]
+		3: '/features_template.png',
+	}[textIndex];
 
 	const handleTextIndex = (e) => {
-		const { id } = e.currentTarget
-		setStopInterval(true)
-		setTextIndex(Number(id))
-	}
+		const { id } = e.currentTarget;
+		setStopInterval(true);
+		setTextIndex(Number(id));
+	};
 
 	return (
 		<Box
@@ -240,13 +240,13 @@ const Features = () => {
 							</Text>
 						)}
 					</Box>
-					<Button padding='1.5rem' marginTop='2rem'>
+					<Button onClick={handleFreeTrial} marginTop='2rem'>
 						{t.features.button}
 					</Button>
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Features
+export default Features;

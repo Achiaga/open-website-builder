@@ -1,27 +1,27 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import { Box, Input, Button, FormControl } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
-import { addUserToBetaList } from '../../../helpers/transport'
+import { useState } from 'react';
+import Link from 'next/link';
+import { Box, Input, Button, FormControl } from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
+import { addUserToBetaList } from '../../../helpers/transport';
 
-import LogoSvg from '../../../assets/logo'
+import LogoSvg from '../../../assets/logo';
 // import Button from '../../../Components/Button';
-import Linkedin from '../../../assets/linkedin'
-import Twitter from '../../../assets/twitter'
+import Linkedin from '../../../assets/linkedin';
+import Twitter from '../../../assets/twitter';
 
 const Features = () => {
-	const [t] = useTranslation()
-	const [emailValue, setEmailValue] = useState('')
+	const [t] = useTranslation();
+	const [emailValue, setEmailValue] = useState('');
 
 	const handleSubmitEmail = (e) => {
-		e.preventDefault()
-		addUserToBetaList(emailValue)
-	}
+		e.preventDefault();
+		addUserToBetaList(emailValue);
+	};
 
 	const handleEmail = (e) => {
-		const { value } = e.target
-		setEmailValue(value)
-	}
+		const { value } = e.target;
+		setEmailValue(value);
+	};
 
 	return (
 		<Box
@@ -37,7 +37,7 @@ const Features = () => {
 			</Box>
 			<FormControl
 				width={['200px', '537px']}
-				d={['none', 'row']}
+				d={['none', 'block']}
 				onSubmit={handleSubmitEmail}>
 				<Box display='flex' justifyContent='space-between' alignItems='center'>
 					<Input
@@ -55,6 +55,7 @@ const Features = () => {
 					<Button
 						type='submit'
 						w='212px'
+						color='white'
 						fontSize='18px'
 						fontWeight='bold'
 						bg='primary.500'
@@ -65,11 +66,11 @@ const Features = () => {
 						_active={{
 							bg: 'primary.500',
 							transform: 'scale(0.98)',
-							borderColor: '#bec3c9'
+							borderColor: '#bec3c9',
 						}}
 						_focus={{
 							boxShadow:
-								'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
+								'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
 						}}>
 						{t.footer.button}
 					</Button>
@@ -92,7 +93,7 @@ const Features = () => {
 				</Link>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Features
+export default Features;
