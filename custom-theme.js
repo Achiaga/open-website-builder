@@ -15,6 +15,7 @@ export const customTheme = {
 			800: '',
 			900: '',
 		},
+		black: '#243141',
 		gray: {
 			100: '#F9F9FB',
 			200: '#F2F2F2',
