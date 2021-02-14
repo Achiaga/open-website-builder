@@ -1,29 +1,20 @@
-import { Box, Select } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { useTranslation } from '../../../hooks/translation'
+import { Box, Select } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useTranslation } from '../../../hooks/translation';
 
-import { AnalyticsEvent } from '../../../utils/analytics'
-import BgCircle from '../../../assets/navbar-circle'
-import Button from '../../../Components/Button'
-import LogoSvg from '../../../assets/logo'
-import SubscriptionModal from '../modals/subscription-modal'
-import { useState } from 'react'
+import BgCircle from '../../../assets/navbar-circle';
+import Button from '../../../Components/Button';
+import LogoSvg from '../../../assets/logo';
 
-const Navbar = () => {
-	const router = useRouter()
-	const { locale } = router
-	const [t] = useTranslation()
-	const [isModalOpen, toggleModalOpen] = useState(false)
+const Navbar = ({ handleFreeTrial }) => {
+	const router = useRouter();
+	const { locale } = router;
+	const [t] = useTranslation();
 
 	const changeLanguage = (e) => {
-		const locale = e.target.value
-		router.push(router.pathname, router.asPath, { locale })
-	}
-
-	const handleFreeTrial = () => {
-		toggleModalOpen(true)
-		AnalyticsEvent('Free Trial', 'clicked')
-	}
+		const locale = e.target.value;
+		router.push(router.pathname, router.asPath, { locale });
+	};
 
 	return (
 		<Box
@@ -35,17 +26,14 @@ const Navbar = () => {
 			paddingRight={['1rem', '7rem']}
 			paddingLeft={['1rem', '6rem']}
 			fontFamily='Montserrat'>
-			{isModalOpen && (
-				<SubscriptionModal
-					isModalOpen={isModalOpen}
-					toggleModalOpen={toggleModalOpen}
-				/>
-			)}
 			<Box position='absolute' right='-79px' top='-92px'>
 				<BgCircle />
 			</Box>
-			<Box paddingTop={[0, '1rem']} position='relative'>
-				<LogoSvg width={'2.5rem'} />
+			<Box
+				paddingTop={[0, '1rem']}
+				width={['2.5rem', '3.5rem']}
+				position='relative'>
+				<LogoSvg width={'100%'} />
 			</Box>
 			<Box
 				position='relative'
@@ -84,7 +72,7 @@ const Navbar = () => {
 				</Button>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Navbar
+export default Navbar;

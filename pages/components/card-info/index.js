@@ -42,7 +42,6 @@ const Steps = () => {
 				justifyContent='center'
 				alignItems='center'
 				width='100%'
-				borderRadius='20px'
 				paddingTop='3rem'>
 				<Box
 					w='1100px'
