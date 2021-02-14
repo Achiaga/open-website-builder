@@ -1,11 +1,5 @@
-import Image from 'next/image';
 import { Box, Text } from '@chakra-ui/react';
 import { useTranslation } from '../../../hooks/translation';
-
-import CheckIcon from '../../../assets/check-icon';
-import CloseIcon from '../../../assets/close-icon';
-import UnsexyBg from '../../../assets/unsexy-circle';
-import SexyBg from '../../../assets/sexy-circle';
 
 const Steps = () => {
 	const [t] = useTranslation();
@@ -43,7 +37,7 @@ const Steps = () => {
 				paddingX='2rem'>
 				<Box
 					w='300px'
-					h='429px'
+					h='440px'
 					display='flex'
 					flexDirection='column'
 					justifyContent='start'
@@ -110,7 +104,7 @@ const Steps = () => {
 				</Box>
 				<Box
 					w='300px'
-					h='429px'
+					h='440px'
 					display='flex'
 					flexDirection='column'
 					justifyContent='start'
