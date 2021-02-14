@@ -1,13 +1,13 @@
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
-import { List, ListItem, ListIcon } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
+import { List, ListItem, ListIcon } from '@chakra-ui/react'
 
-import FooterCircle from '../../../assets/footer-circle';
-import CheckList from '../../../assets/check-list';
-import HandDown from '../../../assets/hand-down';
+import FooterCircle from '../../../assets/footer-circle'
+import CheckList from '../../../assets/check-list'
+import HandDown from '../../../assets/hand-down'
 
 const Steps = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -58,7 +58,7 @@ const Steps = () => {
 					borderRadius={'20px'}
 					flexDir={['column', 'row']}>
 					<Box
-						borderRadius={['20px 20px 0px 0px ', '0px 20px 20px 0px']}
+						borderRadius={['20px 20px 0px 0px ', '20px 0px 0px 20px']}
 						w={['100%', '50%']}
 						bg='gray.200'
 						px={['1rem', '3rem']}
@@ -231,7 +231,7 @@ const Steps = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Steps;
+export default Steps
