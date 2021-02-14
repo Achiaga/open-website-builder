@@ -32,6 +32,10 @@ const Steps = () => {
 				fontSize={['2.5rem', '50px']}
 				lineHeight={['3rem', '4rem']}>
 				{t.card_info.title}
+				<br />
+				<Text as='span' color='primary.500'>
+					{t.card_info.title_color}
+				</Text>
 			</Text>
 			<Text
 				position='relative'

@@ -3,18 +3,20 @@ export default {
 		buttonTrial: 'Free Trial',
 	},
 	hero: {
-		title_1: 'Create your ',
-		title_color_2: 'portfolio ',
-		title_3: 'in minutes',
-		subtitle: 'Free, simple, breath-taking web portfolio',
+		title_1: 'Create your free   ',
+		title_color_2: 'web-resume ',
+		title_3: 'in 5 minutes',
+		subtitle:
+			"Free, simple, breath-taking web resumes. Your next resume won't be a document, it will be a website.",
 		button: 'Create Free Resume',
 	},
 	comparison: {
-		title_1: 'Create a ',
-		title_color_2: 'awe-inspiring ',
-		title_3: 'resume that gets you ',
+		title_1: 'Create a awe-inspiring ',
+		title_color_2: 'website-resume ',
+		title_3: 'that gets you ',
 		title_color_4: 'hired ',
-		subtitle: 'We live on visual age! Stand out with images no text',
+		subtitle:
+			'Standout Resume allows you to have a full resume on an online website. Differentiate yourself from the rest by showing a fun, original, outstanding resume instead of a piece of paper. Always accessible - 100% customizable',
 		un_sexy_1: 'Your old ',
 		un_sexy_color_2: 'unsexy ',
 		un_sexy_3: 'Resume',
@@ -29,18 +31,21 @@ export default {
 		title_color_4: 'impress ',
 		title_5: 'your new companay ',
 		subtitle: 'Empathize with your cv, standout from the crowd',
-		feature_1: 'Simple',
+		feature_1: 'Simple Resume Builder',
 		feature_text_1:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		feature_2: 'Templates',
+			'Simple drag and drog builder. Simple, fast and fully customizable.',
+		feature_2: 'Resume Templates',
 		feature_text_2:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
+			'Need inspiration? Choose one of our beautiful templates and personalize it to your own style.',
 		feature_3: 'WOW Effect',
 		feature_text_3:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		feature_4: 'Multi-language',
+			'Create a lasting impression by astonishing anyone who checks your resume',
+		feature_4: 'Always online',
 		feature_text_4:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
+			'With your new web-resume sharing is as simple as sending a link.',
+		feature_5: 'PDF support',
+		feature_text_5:
+			'Dont worrry, we have you cover. Standout resume will create a pdf version just in case.',
 		button: 'Start Creating',
 	},
 	subscription_modal: {
@@ -67,7 +72,7 @@ export default {
 		step_1: 'Step 1',
 		step_1_title: 'Choose Template',
 		step_1_body:
-			'We have dozens of templates with predefined senteces to make your live easier. Just choose one you like and you are ready to go.',
+			'We have dozens of templates with predefined senteces to make your live easier. Just choose one you like and you are ready to go. ',
 		step_2: 'Step 2',
 		step_2_title: 'Populate',
 		step_2_body:
@@ -77,14 +82,15 @@ export default {
 		step_3: 'Step 3',
 		step_3_title: 'Publish',
 		step_3_body:
-			'Congrats, you have finished your web-resume. now you have your own part of the internet. You can share the url and anyone you want will be able to see your awesome resume.',
+			'Congrats, you have finished your web-resume. Now you have your own personalize space on the internet. Now is time to share your personalize link with your dream company and get hired. 😀',
 	},
 	card_info: {
-		title: 'Creating resumes used to be a pain',
-		subtitle: 'The way we work has changed, but resumes haven’t. Until now.',
+		title: 'Creating resumes used to be a pain. ',
+		title_color: 'Not any more!',
+		subtitle: 'The way we work has changed, but resumes haven’t. Until now. ',
 		old_title: 'The old way',
 		old_body:
-			'The old way is boring and time-consuming. You have to and design the resume in software like Word, then populate it and after that tedious task, you will need to export PDF to share it. The worst part being, you need to redo the whole process every time you update the resume 😢',
+			'The old way is boring and time-consuming. You had to design your resume with Word, then populate it (not to mention that when you add a space everything goes 💥  ) and after that tedious work,  export it as  PDF to share it. The worst part, you need to redo the whole process every time you update the resume  😢',
 		old_list: {
 			1: 'Word document.',
 			2: 'Only sharable via email.',
@@ -92,12 +98,12 @@ export default {
 			4: 'Time consuming to update.',
 			5: 'Similar to the rest of candidates resumes.',
 			6: 'Time consuming to update.',
-			7: 'Average first impression.',
+			7: "Companies don't empathize with you.",
 			8: 'Once you share it you can not update it.',
 		},
 		new_title: 'The new way',
 		new_body:
-			'The new way is more fun. Two steps. First, you select a template, then you populate it with the help of our pre-written ( by experts ) sentence. That is it 🥳. Easy, simple, and fun. Once you are finished you will give your own domain where your new web-resume will be hosted.',
+			'The new way is more fun. Two steps. First, you select a template, then you populate it with the help of our pre-written ( AI ) sentence. That is it 🥳. Easy, simple, and fun. Once you are finished you will give your own domain where your new web-resume will be hosted.',
 		new_list: {
 			1: 'Online creation.',
 			2: 'Update your resume in seconds.',
@@ -105,7 +111,7 @@ export default {
 			4: 'Add pre-written phrases.',
 			5: 'Export to anything.',
 			6: 'Share with everyone.',
-			7: 'Accesible by URL.',
+			7: 'Show your personality.',
 			8: 'Instantly accesible, just share the link.',
 		},
 	},
