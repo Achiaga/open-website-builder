@@ -45,21 +45,22 @@ const Features = () => {
 			alignItems='center'
 			width='100%'
 			marginTop='4rem'
-			marginBottom='6.5rem'>
+			marginBottom='6.5rem'
+			mx={['auto', 0]}>
 			<Box position='absolute' right='0' bottom='-30rem'>
 				<CircleBg />
 			</Box>
 			<Text
+				as='h1'
 				position='relative'
 				fontWeight='bold'
-				width='1053px'
 				textAlign='center'
 				color='black'
 				fontFamily='Montserrat'
-				fontSize='50px'
-				lineHeight='60px'
-				width='50rem'
-				lineHeight='4rem'>
+				fontSize={['2.5rem', '50px']}
+				lineHeight={['3rem', '4rem']}
+				width={['auto', '50rem']}
+				mx='auto'>
 				{t.features.title_1}
 				<Text as='span' color='primary.500'>
 					{t.features.title_color_2}
@@ -71,9 +72,11 @@ const Features = () => {
 				{t.features.title_5}
 			</Text>
 			<Text
+				as='h2'
+				textAlign='center'
 				position='relative'
 				fontSize='24px'
-				marginTop='1rem'
+				my={['2rem', '1rem']}
 				color='gray.600'>
 				{t.features.subtitle}
 			</Text>
@@ -83,13 +86,14 @@ const Features = () => {
 				justifyContent='center'
 				alignItems='center'
 				width='100%'
-				paddingTop='2rem'
-				paddingX='2rem'>
+				paddingTop={['0rem', '2rem']}
+				paddingX={['0.5rem', '2rem']}
+				flexDir={['column', 'row']}>
 				<Box
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
-					width='70%'>
+					width={['100%', '70%']}>
 					<Image
 						src={selectedImg}
 						alt='features_simple_image'
@@ -100,130 +104,142 @@ const Features = () => {
 				<Box
 					display='flex'
 					justifyContent='start'
-					flexDirection='column'
 					alignItems='baseline'
 					height='100%'
-					paddingBottom='3rem'
-					width='30%'>
-					<Text
-						onClick={handleTextIndex}
-						id='0'
-						cursor='pointer'
-						color={textIndex === 0 ? `primary.500` : `primary.300`}
-						fontFamily='Montserrat'
-						fontSize='25px'
-						fontStyle='normal'
-						fontWeight='700'
-						lineHeight='30px'
-						letterSpacing='0em'
-						textAlign='left'>
-						{t.features.feature_1}
-					</Text>
-					{textIndex === 0 && (
+					py={['2rem', '3rem']}
+					flexDir={'column'}
+					width={['100%', '30%']}>
+					<Box>
 						<Text
-							as='span'
-							width='350px'
-							color='gray.600'
+							width={'200px'}
+							onClick={handleTextIndex}
+							id='0'
+							cursor='pointer'
+							color={textIndex === 0 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
-							fontSize='22px'
+							fontSize='25px'
 							fontStyle='normal'
-							fontWeight='500'
-							lineHeight='28px'
+							fontWeight='700'
+							lineHeight='30px'
 							letterSpacing='0em'
 							textAlign='left'>
-							{t.features.feature_text_1}
+							{t.features.feature_1}
 						</Text>
-					)}
-					<Text
-						color={textIndex === 1 ? `primary.500` : `primary.300`}
-						fontFamily='Montserrat'
-						onClick={handleTextIndex}
-						id='1'
-						cursor='pointer'
-						fontSize='25px'
-						fontStyle='normal'
-						paddingTop='1rem'
-						fontWeight='700'
-						lineHeight='30px'
-						letterSpacing='0em'
-						textAlign='left'>
-						{t.features.feature_2}
-					</Text>
-					{textIndex === 1 && (
+						{textIndex === 0 && (
+							<Text
+								as='span'
+								width='350px'
+								color='gray.600'
+								fontFamily='Montserrat'
+								fontSize='22px'
+								fontStyle='normal'
+								fontWeight='500'
+								lineHeight='28px'
+								letterSpacing='0em'
+								textAlign='left'>
+								{t.features.feature_text_1}
+							</Text>
+						)}
+					</Box>
+					<Box>
 						<Text
-							as='span'
-							width='350px'
-							color='gray.600'
+							width={'200px'}
+							color={textIndex === 1 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
-							fontSize='22px'
+							onClick={handleTextIndex}
+							id='1'
+							cursor='pointer'
+							fontSize='25px'
 							fontStyle='normal'
-							fontWeight='500'
-							lineHeight='28px'
+							paddingTop='1rem'
+							fontWeight='700'
+							lineHeight='30px'
 							letterSpacing='0em'
 							textAlign='left'>
-							{t.features.feature_text_2}
+							{t.features.feature_2}
 						</Text>
-					)}
-					<Text
-						color={textIndex === 2 ? `primary.500` : `primary.300`}
-						fontFamily='Montserrat'
-						onClick={handleTextIndex}
-						id='2'
-						cursor='pointer'
-						fontSize='25px'
-						fontStyle='normal'
-						paddingTop='1rem'
-						fontWeight='700'
-						lineHeight='30px'
-						letterSpacing='0em'
-						textAlign='left'>
-						{t.features.feature_3}
-					</Text>
-					{textIndex === 2 && (
+						{textIndex === 1 && (
+							<Text
+								as='span'
+								width='350px'
+								color='gray.600'
+								fontFamily='Montserrat'
+								fontSize='22px'
+								fontStyle='normal'
+								fontWeight='500'
+								lineHeight='28px'
+								letterSpacing='0em'
+								textAlign='left'>
+								{t.features.feature_text_2}
+							</Text>
+						)}
+					</Box>
+					<Box>
 						<Text
-							as='span'
-							width='350px'
-							color='gray.600'
+							width={'200px'}
+							color={textIndex === 2 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
-							fontSize='22px'
+							onClick={handleTextIndex}
+							id='2'
+							cursor='pointer'
+							fontSize='25px'
 							fontStyle='normal'
-							fontWeight='500'
-							lineHeight='28px'
+							paddingTop='1rem'
+							fontWeight='700'
+							lineHeight='30px'
 							letterSpacing='0em'
 							textAlign='left'>
-							{t.features.feature_text_3}
+							{t.features.feature_3}
 						</Text>
-					)}
-					<Text
-						color={textIndex === 3 ? `primary.500` : `primary.300`}
-						fontFamily='Montserrat'
-						onClick={handleTextIndex}
-						id='3'
-						cursor='pointer'
-						fontSize='25px'
-						paddingTop='1rem'
-						fontStyle='normal'
-						fontWeight='700'
-						lineHeight='30px'
-						letterSpacing='0em'
-						textAlign='left'>
-						{t.features.feature_4}
-					</Text>
-					{textIndex === 3 && (
+						{textIndex === 2 && (
+							<Text
+								as='span'
+								width='350px'
+								color='gray.600'
+								fontFamily='Montserrat'
+								fontSize='22px'
+								fontStyle='normal'
+								fontWeight='500'
+								lineHeight='28px'
+								letterSpacing='0em'
+								textAlign='left'>
+								{t.features.feature_text_3}
+							</Text>
+						)}
+					</Box>
+					<Box>
 						<Text
-							as='span'
-							width='350px'
-							color='gray.600'
+							width={'210px'}
+							color={textIndex === 3 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
-							fontSize='22px'
+							onClick={handleTextIndex}
+							id='3'
+							cursor='pointer'
+							fontSize='25px'
+							paddingTop='1rem'
 							fontStyle='normal'
-							fontWeight='500'
-							lineHeight='28px'
+							fontWeight='700'
+							lineHeight='30px'
 							letterSpacing='0em'
 							textAlign='left'>
-							{t.features.feature_text_4}
+							{t.features.feature_4}
 						</Text>
-					)}
+						{textIndex === 3 && (
+							<Text
+								as='span'
+								width='350px'
+								color='gray.600'
+								fontFamily='Montserrat'
+								fontSize='22px'
+								fontStyle='normal'
+								fontWeight='500'
+								lineHeight='28px'
+								letterSpacing='0em'
+								textAlign='left'>
+								{t.features.feature_text_4}
+							</Text>
+						)}
+					</Box>
 					<Button padding='1.5rem' marginTop='2rem'>
 						{t.features.button}
 					</Button>
