@@ -1,8 +1,8 @@
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
 const Steps = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -13,7 +13,7 @@ const Steps = () => {
 			alignItems='center'
 			width='100%'
 			marginTop='3rem'
-			marginBottom='6.5rem'>
+			marginBottom={['2rem', '6.5rem']}>
 			<Text
 				position='relative'
 				fontWeight='bold'
@@ -21,10 +21,9 @@ const Steps = () => {
 				width='1053px'
 				textAlign='center'
 				fontFamily='Montserrat'
-				fontSize='50px'
-				lineHeight='60px'
-				width='50rem'
-				lineHeight='4rem'>
+				fontSize={['2.5rem', '50px']}
+				lineHeight={['3rem', '4rem']}
+				width={['auto', '50rem']}>
 				How does it works?
 			</Text>
 			<Box
@@ -34,10 +33,11 @@ const Steps = () => {
 				alignItems='center'
 				width='80%'
 				paddingTop='5rem'
-				paddingX='2rem'>
+				paddingX='2rem'
+				flexDir={['column', 'row']}>
 				<Box
 					w='300px'
-					h='440px'
+					h={['380px', '440px']}
 					display='flex'
 					flexDirection='column'
 					justifyContent='start'
@@ -46,26 +46,27 @@ const Steps = () => {
 					boxShadow='0px 12px 12px 12px rgba(0, 0, 0, 0.12)'
 					bg='white'
 					borderRadius='20px'
-					padding='1.5rem'>
-					<Text as='h1' fontSize='36px' fontWeight='400'>
+					padding='1.5rem'
+					mb={['4rem', 0]}>
+					<Text as='h1' fontSize={['20px', '36px']} fontWeight='400'>
 						Step 1
 					</Text>
 					<Text
 						as='h3'
-						fontSize='24px'
+						fontSize={'24px'}
 						color='primary.500'
 						fontWeight='700'
 						paddingBottom='1rem'>
 						Choose template
 					</Text>
-					<Text as='p' fontSize='18px' fontWeight='400'>
+					<Text as='p' fontSize={['16px', '18px']} fontWeight='400'>
 						We have dozens of templates with predefined senteces to make your
 						live easier. Just choose one you like and you are ready to go.
 					</Text>
 				</Box>
 				<Box
 					w='300px'
-					h='440px'
+					h={['380px', '440px']}
 					display='flex'
 					flexDirection='column'
 					justifyContent='start'
@@ -74,19 +75,20 @@ const Steps = () => {
 					boxShadow='0px 12px 12px 12px rgba(0, 0, 0, 0.12)'
 					bg='white'
 					borderRadius='20px'
-					padding='1.5rem'>
-					<Text as='h1' fontSize='36px' fontWeight='400'>
+					padding='1.5rem'
+					mb={['4rem', 0]}>
+					<Text as='h1' fontSize={['20px', '36px']} fontWeight='400'>
 						Step 2
 					</Text>
 					<Text
 						as='h3'
-						fontSize='24px'
+						fontSize={'24px'}
 						color='primary.500'
 						fontWeight='700'
 						paddingBottom='1rem'>
 						Populate
 					</Text>
-					<Text as='p' fontSize='18px' fontWeight='400'>
+					<Text as='p' fontSize={['16px', '18px']} fontWeight='400'>
 						Add your skills and experince to the resume, we will guide you
 						through out the process so dont worry, it will be fun.
 					</Text>
@@ -104,7 +106,7 @@ const Steps = () => {
 				</Box>
 				<Box
 					w='300px'
-					h='440px'
+					h={['380px', '440px']}
 					display='flex'
 					flexDirection='column'
 					justifyContent='start'
@@ -114,18 +116,18 @@ const Steps = () => {
 					bg='white'
 					borderRadius='20px'
 					padding='1.5rem'>
-					<Text as='h1' fontSize='36px' fontWeight='400'>
+					<Text as='h1' fontSize={['20px', '36px']} fontWeight='400'>
 						Step 3
 					</Text>
 					<Text
 						as='h3'
-						fontSize='24px'
+						fontSize={'24px'}
 						color='primary.500'
 						fontWeight='700'
 						paddingBottom='1rem'>
 						Publish
 					</Text>
-					<Text as='p' fontSize='18px' fontWeight='400'>
+					<Text as='p' fontSize={['16px', '18px']} fontWeight='400'>
 						Congrats, you have finished your web-resume. now you have your own
 						part of the internet. You can share the url and anyone you want will
 						be able to see your awesome resume.
@@ -133,7 +135,7 @@ const Steps = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Steps;
+export default Steps

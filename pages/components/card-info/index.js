@@ -1,12 +1,12 @@
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
-import { List, ListItem, ListIcon } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
+import { List, ListItem, ListIcon } from '@chakra-ui/react'
 
-import CheckList from '../../../assets/check-list';
-import HandDown from '../../../assets/hand-down';
+import CheckList from '../../../assets/check-list'
+import HandDown from '../../../assets/hand-down'
 
 const Steps = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -17,15 +17,16 @@ const Steps = () => {
 			alignItems='center'
 			width='100%'
 			marginTop='6rem'
-			marginBottom='4rem'>
+			marginBottom='4rem'
+			px={['1.5rem', 'auto']}
+			flexDir='column'>
 			<Text
 				position='relative'
 				fontWeight='bold'
 				textAlign='center'
 				fontFamily='Montserrat'
-				fontSize='50px'
-				lineHeight='60px'
-				lineHeight='4rem'>
+				fontSize={['2.5rem', '50px']}
+				lineHeight={['3rem', '4rem']}>
 				Creating resumes used to be a pain
 			</Text>
 			<Text
@@ -44,19 +45,20 @@ const Steps = () => {
 				paddingTop='3rem'>
 				<Box
 					w='1100px'
-					h='620px'
-					borderRadius='20px'
 					display='flex'
 					justifyContent='start'
 					alignItems='stretch'
 					fontFamily='Montserrat'
 					boxShadow='0px 12px 12px rgba(0, 0, 0, 0.12)'
-					bg='white'>
+					bg='transparent'
+					borderRadius={'20px'}
+					flexDir={['column', 'row']}>
 					<Box
-						borderRadius='20px 0px 0px 20px'
-						w='50%'
+						borderRadius={['20px 20px 0px 0px ', '0px 20px 20px 0px']}
+						w={['100%', '50%']}
 						bg='gray.200'
-						padding='3rem'>
+						px={['1rem', '3rem']}
+						py='3rem'>
 						<Text
 							as='h1'
 							fontFamily='Montserrat'
@@ -137,10 +139,11 @@ const Steps = () => {
 					</Box>
 
 					<Box
-						w='50%'
+						w={['100%', '50%']}
 						bg='primary.100'
-						padding='3rem'
-						borderRadius='0px 20px 20px 0px'>
+						px={['1rem', '3rem']}
+						py={'3rem'}
+						borderRadius={['0px 0px 20px 20px ', '0px 20px 20px 0px']}>
 						<Text
 							as='h1'
 							fontFamily='Montserrat'
@@ -224,7 +227,7 @@ const Steps = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Steps;
+export default Steps

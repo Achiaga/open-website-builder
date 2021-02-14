@@ -45,7 +45,7 @@ const Features = ({ handleFreeTrial }) => {
 			alignItems='center'
 			width='100%'
 			marginTop='4rem'
-			marginBottom='6.5rem'
+			marginBottom={['2rem', '6.5rem']}
 			mx={['auto', 0]}>
 			<Box position='absolute' right='0' bottom='-30rem'>
 				<CircleBg />
