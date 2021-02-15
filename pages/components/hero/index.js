@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import { Box, Text, useMediaQuery } from '@chakra-ui/react';
+import Image from 'next/image'
+import { Box, Text, useMediaQuery } from '@chakra-ui/react'
 
-import { useTranslation } from '../../../hooks/translation';
-import Button from '../../../Components/Button';
+import { useTranslation } from '../../../hooks/translation'
+import Button from '../../../Components/Button'
 
 const Hero = ({ handleFreeTrial }) => {
-	const [t] = useTranslation();
-	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)');
+	const [t] = useTranslation()
+	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
 
 	return (
 		<Box
@@ -34,7 +34,7 @@ const Hero = ({ handleFreeTrial }) => {
 					fontFamily='Montserrat'
 					fontSize={['2.5rem', '50px']}
 					lineHeight={['3rem', '60px']}
-					width={['auto', '426px']}
+					width={['auto', '425px']}
 					paddingBottom={['1rem', '0']}>
 					{t.hero.title_1}
 					<Text as='span' color='primary.500'>
@@ -91,7 +91,7 @@ const Hero = ({ handleFreeTrial }) => {
 				)}
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Hero;
+export default Hero

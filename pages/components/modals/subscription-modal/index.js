@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { Box, Text, Input, Button, Progress } from '@chakra-ui/react';
-import { useTranslation } from '../../../../hooks/translation';
-import { addUserToBetaList } from '../../../../helpers/transport';
+import { useState } from 'react'
+import { Box, Text, Input, Button, Progress } from '@chakra-ui/react'
+import { useTranslation } from '../../../../hooks/translation'
+import { addUserToBetaList } from '../../../../helpers/transport'
 import {
 	Modal,
 	ModalOverlay,
 	ModalContent,
-	ModalCloseButton,
-} from '@chakra-ui/react';
+	ModalCloseButton
+} from '@chakra-ui/react'
 
 const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
-	const [t] = useTranslation();
-	const [emailValue, setEmailValue] = useState('');
+	const [t] = useTranslation()
+	const [emailValue, setEmailValue] = useState('')
 
 	const handleSubmitEmail = (e) => {
-		e.preventDefault();
-		addUserToBetaList(emailValue);
-	};
+		e.preventDefault()
+		addUserToBetaList(emailValue)
+	}
 
 	const handleEmail = (e) => {
-		const { value } = e.target;
-		setEmailValue(value);
-	};
+		const { value } = e.target
+		setEmailValue(value)
+	}
 
 	return (
 		<Modal isOpen={isModalOpen} onClose={() => toggleModalOpen(false)}>
@@ -30,14 +30,14 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 				bg='white'
 				maxWidth='50rem'
 				margin='auto'
-				borderRadius='12px'
+				borderRadius={['0px', '12px']}
 				display='flex'
-				flexDirection='row'
+				flexDirection={['column', 'row']}
 				justifyContent='center'
 				alignItems='stretch'>
 				<Box
-					width='60%'
-					borderRadius='12px'
+					width={['100%', '60%']}
+					borderRadius={['0px', '12px']}
 					display='flex'
 					padding='1rem'
 					paddingX='2rem'
@@ -95,9 +95,9 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 					</Text>
 				</Box>
 				<Box
-					width='40%'
-					borderRadius='0 12px 12px 0'
-					padding='1rem'
+					width={['100%', '40%']}
+					borderRadius={['0px', '0 12px 12px 0']}
+					padding={'1rem'}
 					bg='primary.100'
 					fontSize='18px'
 					fontWeight='semibold'
@@ -106,7 +106,7 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 					flexDirection='column'
 					justifyContent='center'
 					alignItems='center'>
-					<Text textAlign='center' lineHeight='24px'>
+					<Text textAlign='center' lineHeight='24px' d={['none', 'block']}>
 						{t.subscription_modal.join}
 						<br />
 						<Text as='span' color='primary.500'>
@@ -118,12 +118,12 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'center',
-							width: '100%',
+							width: '100%'
 						}}
 						onSubmit={handleSubmitEmail}>
 						<Input
 							marginY='1.5rem'
-							marginTop='2rem'
+							marginTop={['0.5rem', '2rem']}
 							border='none'
 							bg='gray.100'
 							placeholder={t.subscription_modal.email_subscription}
@@ -145,11 +145,11 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							_active={{
 								bg: 'primary.500',
 								transform: 'scale(0.98)',
-								borderColor: '#bec3c9',
+								borderColor: '#bec3c9'
 							}}
 							_focus={{
 								boxShadow:
-									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
 							}}>
 							{t.subscription_modal.access}
 						</Button>
@@ -157,7 +157,7 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 				</Box>
 			</ModalContent>
 		</Modal>
-	);
-};
+	)
+}
 
-export default SubscriptionModal;
+export default SubscriptionModal

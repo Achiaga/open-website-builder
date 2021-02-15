@@ -1,14 +1,14 @@
 export default {
 	navbar: {
-		buttonTrial: 'Free Trial',
+		buttonTrial: 'Free Trial'
 	},
 	hero: {
-		title_1: 'Create your free   ',
+		title_1: 'Create your ',
 		title_color_2: 'web-resume ',
 		title_3: 'in 5 minutes',
 		subtitle:
 			"Free, simple, breath-taking web resumes. Your next resume won't be a document, it will be a website.",
-		button: 'Create Free Resume',
+		button: 'Create Free Resume'
 	},
 	comparison: {
 		title_1: 'Create a awe-inspiring ',
@@ -22,7 +22,7 @@ export default {
 		un_sexy_3: 'Resume',
 		sexy_1: 'Your new ',
 		sexy_color_2: 'sexy ',
-		sexy_3: 'Resume',
+		sexy_3: 'Resume'
 	},
 	features: {
 		title_1: 'Super ',
@@ -46,7 +46,7 @@ export default {
 		feature_5: 'PDF support',
 		feature_text_5:
 			'Dont worrry, we have you cover. Standout resume will create a pdf version just in case.',
-		button: 'Start Creating',
+		button: 'Start Creating'
 	},
 	subscription_modal: {
 		header: "Join our ealy adopters' List, and get the job of your dreams",
@@ -65,7 +65,7 @@ export default {
 		join: 'Join',
 		join_color: 'Standout Resume',
 		email_subscription: 'Type your email',
-		access: 'Get early access',
+		access: 'Get early access'
 	},
 	steps: {
 		title: 'How does it works?',
@@ -82,7 +82,7 @@ export default {
 		step_3: 'Step 3',
 		step_3_title: 'Publish',
 		step_3_body:
-			'Congrats, you have finished your web-resume. Now you have your own personalize space on the internet. Now is time to share your personalize link with your dream company and get hired. 😀',
+			'Congrats, you have finished your web-resume. Now you have your own personalize space on the internet. Now is time to share your personalize link with your dream company and get hired. 😀'
 	},
 	card_info: {
 		title: 'Creating resumes used to be a pain. ',
@@ -99,7 +99,7 @@ export default {
 			5: 'Similar to the rest of candidates resumes.',
 			6: 'Time consuming to update.',
 			7: "Companies don't empathize with you.",
-			8: 'Once you share it you can not update it.',
+			8: 'Once you share it you can not update it.'
 		},
 		new_title: 'The new way',
 		new_body:
@@ -112,10 +112,10 @@ export default {
 			5: 'Export to anything.',
 			6: 'Share with everyone.',
 			7: 'Show your personality.',
-			8: 'Instantly accesible, just share the link.',
-		},
+			8: 'Instantly accesible, just share the link.'
+		}
 	},
 	footer: {
-		button: 'Sign Up',
-	},
-};
+		button: 'Sign Up'
+	}
+}

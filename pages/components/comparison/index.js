@@ -1,46 +1,30 @@
-import Image from 'next/image';
+import Image from 'next/image'
 import {
 	Box,
 	Slider,
 	SliderFilledTrack,
 	SliderThumb,
 	SliderTrack,
-	Text,
-} from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+	Text
+} from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import CheckIcon from '../../../assets/check-icon';
-import CloseIcon from '../../../assets/close-icon';
-import UnsexyBg from '../../../assets/unsexy-circle';
-import SexyBg from '../../../assets/sexy-circle';
-import { useEffect, useState } from 'react';
-import SlideIcon from '../../../assets/slide-icon';
+import CheckIcon from '../../../assets/check-icon'
+import CloseIcon from '../../../assets/close-icon'
+import UnsexyBg from '../../../assets/unsexy-circle'
+import SexyBg from '../../../assets/sexy-circle'
+import { useEffect, useState } from 'react'
+import SlideIcon from '../../../assets/slide-icon'
 
-const INITIAL_SLIDE_VALUE = 50;
-
-const TextSlider = () => {
-	const [t] = useTranslation();
-	return (
-		<Box d={['none', 'flex']} mt='3rem' alignItems='center'>
-			<CheckIcon />
-			<Text fontSize='26px' textAlign='center' fontWeight='700'>
-				{t.comparison.sexy_1_mobile}
-				<Text as='span' color='green.400'>
-					{t.comparison.sexy_color_2}
-				</Text>
-				{t.comparison.sexy_3_mobile}
-			</Text>
-		</Box>
-	);
-};
+const INITIAL_SLIDE_VALUE = 50
 
 const ImageSlider = () => {
-	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE);
-	const [showHelper, setShowHelper] = useState(true);
+	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE)
+	const [showHelper, setShowHelper] = useState(true)
 
 	useEffect(() => {
-		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false);
-	}, [sliderValue, showHelper]);
+		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false)
+	}, [sliderValue, showHelper])
 
 	return (
 		<Box
@@ -92,11 +76,11 @@ const ImageSlider = () => {
 				)}
 			</Slider>
 		</Box>
-	);
-};
+	)
+}
 
 const Comparison = () => {
-	const [t] = useTranslation();
+	const [t] = useTranslation()
 
 	return (
 		<Box
@@ -162,7 +146,6 @@ const Comparison = () => {
 					{t.comparison.subtitle}
 				</Text>
 				<ImageSlider />
-				<TextSlider />
 				<Box
 					position='relative'
 					display={['none', 'flex']}
@@ -231,7 +214,7 @@ const Comparison = () => {
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Comparison;
+export default Comparison
