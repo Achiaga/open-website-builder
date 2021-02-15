@@ -37,6 +37,7 @@ export default function Home() {
 				<title>Standout Resume</title>
 				<link rel='icon' href='/favicon.ico' />
 				<script
+					defer
 					dangerouslySetInnerHTML={{
 						__html: initLiveChatScript
 					}}

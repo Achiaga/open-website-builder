@@ -57,13 +57,7 @@ const ImageSlider = () => {
 				pos='absolute'
 				left='0'
 				top='16px'>
-				<Image
-					loading='eager'
-					src={'/sexy.png'}
-					alt='sexy'
-					width={520}
-					height={735}
-				/>
+				<Image src={'/sexy.png'} alt='sexy' width={520} height={735} />
 			</Box>
 			<Box
 				style={{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }}
@@ -221,13 +215,7 @@ const Comparison = () => {
 								{t.comparison.sexy_3}
 							</Text>
 						</Box>
-						<Image
-							loading='eager'
-							src={'/sexy.png'}
-							alt='sexy'
-							width={520}
-							height={735}
-						/>
+						<Image src={'/sexy.png'} alt='sexy' width={520} height={735} />
 					</Box>
 				</Box>
 			</Box>
