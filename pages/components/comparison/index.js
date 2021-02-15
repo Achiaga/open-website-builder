@@ -1,25 +1,25 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import {
 	Box,
 	Slider,
 	SliderFilledTrack,
 	SliderThumb,
 	SliderTrack,
-	Text
-} from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+	Text,
+} from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
-import CheckIcon from '../../../assets/check-icon'
-import CloseIcon from '../../../assets/close-icon'
-import UnsexyBg from '../../../assets/unsexy-circle'
-import SexyBg from '../../../assets/sexy-circle'
-import { useEffect, useState } from 'react'
-import SlideIcon from '../../../assets/slide-icon'
+import CheckIcon from '../../../assets/check-icon';
+import CloseIcon from '../../../assets/close-icon';
+import UnsexyBg from '../../../assets/unsexy-circle';
+import SexyBg from '../../../assets/sexy-circle';
+import { useEffect, useState } from 'react';
+import SlideIcon from '../../../assets/slide-icon';
 
-const INITIAL_SLIDE_VALUE = 50
+const INITIAL_SLIDE_VALUE = 50;
 
 const TextSlider = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 	return (
 		<Box d={['flex', 'none']} mt='3rem' alignItems='center'>
 			<CheckIcon />
@@ -31,16 +31,16 @@ const TextSlider = () => {
 				{t.comparison.sexy_3_mobile}
 			</Text>
 		</Box>
-	)
-}
+	);
+};
 
 const ImageSlider = () => {
-	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE)
-	const [showHelper, setShowHelper] = useState(true)
+	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE);
+	const [showHelper, setShowHelper] = useState(true);
 
 	useEffect(() => {
-		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false)
-	}, [sliderValue, showHelper])
+		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false);
+	}, [sliderValue, showHelper]);
 
 	return (
 		<Box
@@ -98,11 +98,11 @@ const ImageSlider = () => {
 				)}
 			</Slider>
 		</Box>
-	)
-}
+	);
+};
 
 const Comparison = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 
 	return (
 		<Box
@@ -119,10 +119,19 @@ const Comparison = () => {
 				mx={['auto', 0]}
 				marginTop={['2rem', '6rem']}
 				marginBottom={['2rem', '6rem']}>
-				<Box position='absolute' left='0' top='1rem' d={['none', 'block']}>
+				<Box
+					display={['none', 'block']}
+					position='absolute'
+					left='0'
+					top='1rem'
+					d={['none', 'block']}>
 					<UnsexyBg />
 				</Box>
-				<Box position='absolute' right='0' top='12rem'>
+				<Box
+					display={['none', 'block']}
+					position='absolute'
+					right='0'
+					top='12rem'>
 					<SexyBg />
 				</Box>
 				<Text
@@ -134,7 +143,7 @@ const Comparison = () => {
 					fontFamily='Montserrat'
 					fontSize={['2.5rem', '50px']}
 					lineHeight={['3rem', '4rem']}
-					width={['auto', '50rem']}
+					width={['auto', '70rem']}
 					mx='auto'>
 					{t.comparison.title_1}
 					<Text as='span' color='primary.500'>
@@ -230,7 +239,7 @@ const Comparison = () => {
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Comparison
+export default Comparison;
