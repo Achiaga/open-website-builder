@@ -1,40 +1,41 @@
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import { useTranslation } from '../../../hooks/translation';
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { Box, Text } from '@chakra-ui/react'
+import { useTranslation } from '../../../hooks/translation'
 
-import Button from '../../../Components/Button';
-import CircleBg from '../../../assets/features-circle';
+import Button from '../../../Components/Button'
+import CircleBg from '../../../assets/features-circle'
 
 const Features = ({ handleFreeTrial }) => {
-	const [t] = useTranslation();
-	const [textIndex, setTextIndex] = useState(0);
-	const [stopInterval, setStopInterval] = useState(false);
+	const [t] = useTranslation()
+	const [textIndex, setTextIndex] = useState(0)
+	const [stopInterval, setStopInterval] = useState(false)
 
 	useEffect(() => {
 		if (!stopInterval) {
 			const intervalIndex = setInterval(() => {
 				setTextIndex((state) => {
-					if (state < 3) setTextIndex(state + 1);
-					else setTextIndex(0);
-				});
-			}, 3000);
-			return () => clearInterval(intervalIndex);
+					if (state < 4) setTextIndex(state + 1)
+					else setTextIndex(0)
+				})
+			}, 3000)
+			return () => clearInterval(intervalIndex)
 		}
-	}, [textIndex]);
+	}, [textIndex])
 
 	const selectedImg = {
 		0: '/features_simple.png',
 		1: '/features_template.png',
-		2: '/features_wow.png',
-		3: '/features_template.png',
-	}[textIndex];
+		2: '/wow-effect.mp4',
+		3: '/always-online.png',
+		4: '/pdf_feature.png'
+	}[textIndex]
 
 	const handleTextIndex = (e) => {
-		const { id } = e.currentTarget;
-		setStopInterval(true);
-		setTextIndex(Number(id));
-	};
+		const { id } = e.currentTarget
+		setStopInterval(true)
+		setTextIndex(Number(id))
+	}
 
 	return (
 		<Box
@@ -93,13 +94,21 @@ const Features = ({ handleFreeTrial }) => {
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
-					width={['100%', '70%']}>
-					<Image
-						src={selectedImg}
-						alt='features_simple_image'
-						width={700}
-						height={446}
-					/>
+					width={['100%', '60%']}
+					min-width={'700px'}>
+					{textIndex === 2 ? (
+						<video autoPlay muted width={500}>
+							<source src={selectedImg} type='video/mp4' />
+							Your browser does not support the video tag.
+						</video>
+					) : (
+						<Image
+							src={selectedImg}
+							alt='features_simple_image'
+							width={700}
+							height={446}
+						/>
+					)}
 				</Box>
 				<Box
 					display='flex'
@@ -111,7 +120,7 @@ const Features = ({ handleFreeTrial }) => {
 					width={['100%', '30%']}>
 					<Box>
 						<Text
-							width={'200px'}
+							width={['200px', '100%']}
 							onClick={handleTextIndex}
 							id='0'
 							cursor='pointer'
@@ -143,7 +152,7 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={'200px'}
+							width={['200px', '100%']}
 							color={textIndex === 1 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -176,7 +185,7 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={'200px'}
+							width={['200px', '100%']}
 							color={textIndex === 2 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -240,13 +249,46 @@ const Features = ({ handleFreeTrial }) => {
 							</Text>
 						)}
 					</Box>
+					<Box>
+						<Text
+							width={'210px'}
+							color={textIndex === 4 ? `primary.500` : `primary.300`}
+							fontFamily='Montserrat'
+							onClick={handleTextIndex}
+							id='4'
+							cursor='pointer'
+							fontSize='25px'
+							paddingTop='1rem'
+							fontStyle='normal'
+							fontWeight='700'
+							lineHeight='30px'
+							letterSpacing='0em'
+							textAlign='left'>
+							{t.features.feature_5}
+						</Text>
+						{textIndex === 4 && (
+							<Text
+								as='span'
+								width='350px'
+								color='gray.600'
+								fontFamily='Montserrat'
+								fontSize='22px'
+								fontStyle='normal'
+								fontWeight='500'
+								lineHeight='28px'
+								letterSpacing='0em'
+								textAlign='left'>
+								{t.features.feature_text_5}
+							</Text>
+						)}
+					</Box>
 					<Button onClick={handleFreeTrial} marginTop='2rem'>
 						{t.features.button}
 					</Button>
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Features;
+export default Features
