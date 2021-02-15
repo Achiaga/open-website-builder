@@ -4,9 +4,10 @@ export default {
 	},
 	hero: {
 		title_1: 'Crea tu ',
-		title_color_2: 'portfolio ',
-		title_3: 'en minutos',
-		subtitle: 'Un portfolio online gratis, simple y sorprendente',
+		title_color_2: 'curriculum ',
+		title_3: 'en 5 minutos',
+		subtitle:
+			'Un curriculum online gratis, simple e impresionante, tu proximo cv no sera pdf, sera una página web.',
 		button: 'Crea tu CV gratis'
 	},
 	comparison: {
@@ -40,9 +41,9 @@ export default {
 			'Neceistas inspiración? Escoge unas de nuestas plantillas y personalizala a tu estilo.',
 		feature_3: 'WOW Effect',
 		feature_text_3:
-			'Crea una impresion durarera immpresionando a cualquiera con tu nuevo cv',
+			'Crea una impresion durarera impresionando a cualquiera con tu nuevo cv',
 		feature_4: 'Siempre online',
-		feature_text_4: 'Commpartir tu web-cv es tan sencillo como mandar un link',
+		feature_text_4: 'Compartir tu web-cv es tan sencillo como mandar un link',
 		feature_5: 'Soporte para PDF',
 		feature_text_5:
 			'No te preocupes, hemos pensado en todo, Standout resume genera una version en pdf por si las moscas',
@@ -54,7 +55,7 @@ export default {
 		body_2:
 			'Desafortunadamente, la app aun no esta abierta al publico, solo se puede acceder por invitación. Si quieres empezar a usarlo, apuntate a la lista ',
 		body_3:
-			'Quermmos que disfrutes creando tu próximo currículim. Si quieres ayudarnos a mejorar el productor y cambiar la vida de la gente. Avisanos y te daremos una de nuestras',
+			'Quermos que disfrutes creando tu próximo currículim. Si quieres ayudarnos a mejorar el productor y cambiar la vida de la gente. Avisanos y te daremos una de nuestras',
 		body_color_1: '50 cuentas Pro gratiutas',
 		body_4: '',
 		progressLabel_color: '30 ',
@@ -112,7 +113,7 @@ export default {
 			5: 'Se puede exportar a lo que quieras ( incluso PDF ).',
 			6: 'Compartelo con quien quieras.',
 			7: 'Accesible desde el movil y el ordendor a traves de una URL.',
-			8: 'Accesible al instante.Solo commparte el link.'
+			8: 'Accesible al instante.Solo comparte el link.'
 		}
 	},
 	footer: {
