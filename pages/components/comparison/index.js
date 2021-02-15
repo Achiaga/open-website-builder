@@ -1,27 +1,27 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import {
 	Box,
 	Slider,
 	SliderFilledTrack,
 	SliderThumb,
 	SliderTrack,
-	Text
-} from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+	Text,
+} from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
-import CheckIcon from '../../../assets/check-icon'
-import CloseIcon from '../../../assets/close-icon'
-import UnsexyBg from '../../../assets/unsexy-circle'
-import SexyBg from '../../../assets/sexy-circle'
-import { useEffect, useState } from 'react'
-import SlideIcon from '../../../assets/slide-icon'
+import CheckIcon from '../../../assets/check-icon';
+import CloseIcon from '../../../assets/close-icon';
+import UnsexyBg from '../../../assets/unsexy-circle';
+import SexyBg from '../../../assets/sexy-circle';
+import { useEffect, useState } from 'react';
+import SlideIcon from '../../../assets/slide-icon';
 
-const INITIAL_SLIDE_VALUE = 50
+const INITIAL_SLIDE_VALUE = 50;
 
 const TextSlider = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 	return (
-		<Box d={['flex', 'none']} mt='3rem' alignItems='center'>
+		<Box d={['none', 'flex']} mt='3rem' alignItems='center'>
 			<CheckIcon />
 			<Text fontSize='26px' textAlign='center' fontWeight='700'>
 				{t.comparison.sexy_1_mobile}
@@ -31,16 +31,16 @@ const TextSlider = () => {
 				{t.comparison.sexy_3_mobile}
 			</Text>
 		</Box>
-	)
-}
+	);
+};
 
 const ImageSlider = () => {
-	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE)
-	const [showHelper, setShowHelper] = useState(true)
+	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE);
+	const [showHelper, setShowHelper] = useState(true);
 
 	useEffect(() => {
-		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false)
-	}, [sliderValue, showHelper])
+		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false);
+	}, [sliderValue, showHelper]);
 
 	return (
 		<Box
@@ -92,11 +92,11 @@ const ImageSlider = () => {
 				)}
 			</Slider>
 		</Box>
-	)
-}
+	);
+};
 
 const Comparison = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 
 	return (
 		<Box
@@ -107,16 +107,26 @@ const Comparison = () => {
 			justifyContent='center'
 			alignItems='center'
 			width={['100vw', '100%']}
+			paddingBottom={['1.5rem', '0']}
 			mx={['auto', 0]}>
 			<Box
 				width={['90vw', '100%']}
 				mx={['auto', 0]}
 				marginTop={['2rem', '6rem']}
 				marginBottom={['2rem', '6rem']}>
-				<Box position='absolute' left='0' top='1rem' d={['none', 'block']}>
+				<Box
+					display={['none', 'block']}
+					position='absolute'
+					left='0'
+					top='1rem'
+					d={['none', 'block']}>
 					<UnsexyBg />
 				</Box>
-				<Box position='absolute' right='0' top='12rem'>
+				<Box
+					display={['none', 'block']}
+					position='absolute'
+					right='0'
+					top='12rem'>
 					<SexyBg />
 				</Box>
 				<Text
@@ -128,7 +138,8 @@ const Comparison = () => {
 					fontFamily='Montserrat'
 					fontSize={['2.5rem', '50px']}
 					lineHeight={['3rem', '4rem']}
-					width={['auto', '50rem']}
+					width={['auto', '70rem']}
+					paddingBottom={['0.75rem', '0']}
 					mx='auto'>
 					{t.comparison.title_1}
 					<Text as='span' color='primary.500'>
@@ -143,9 +154,9 @@ const Comparison = () => {
 					as='h2'
 					textAlign='center'
 					position='relative'
-					fontSize='24px'
+					fontSize={['22px', '24px']}
 					my={['2rem', '1rem']}
-					width={['auto', '50rem']}
+					width={['auto', '60rem']}
 					m={['auto']}
 					color='gray.600'>
 					{t.comparison.subtitle}
@@ -161,7 +172,7 @@ const Comparison = () => {
 					paddingTop='5rem'
 					paddingX='2rem'>
 					<Box
-						display='flex'
+						display={['none', 'flex']}
 						flexDirection='column'
 						justifyContent='center'
 						alignItems='center'
@@ -193,14 +204,14 @@ const Comparison = () => {
 						/>
 					</Box>
 					<Box
-						display='flex'
+						display={['none', 'flex']}
 						flexDirection='column'
 						justifyContent='center'
 						alignItems='center'
 						width='100%'
 						height='100%'
 						ml='15px'>
-						<Box display='flex' paddingBottom='2rem'>
+						<Box display={['none', 'flex']} paddingBottom='2rem'>
 							<CheckIcon />
 							<Text
 								paddingLeft='1.5rem'
@@ -220,7 +231,7 @@ const Comparison = () => {
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Comparison
+export default Comparison;

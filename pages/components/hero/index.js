@@ -1,12 +1,12 @@
-import Image from 'next/image'
-import { Box, Text, useMediaQuery } from '@chakra-ui/react'
+import Image from 'next/image';
+import { Box, Text, useMediaQuery } from '@chakra-ui/react';
 
-import { useTranslation } from '../../../hooks/translation'
-import Button from '../../../Components/Button'
+import { useTranslation } from '../../../hooks/translation';
+import Button from '../../../Components/Button';
 
 const Hero = ({ handleFreeTrial }) => {
-	const [t] = useTranslation()
-	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
+	const [t] = useTranslation();
+	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)');
 
 	return (
 		<Box
@@ -17,8 +17,8 @@ const Hero = ({ handleFreeTrial }) => {
 			alignItems='center'
 			width={['90vw', '100%']}
 			marginTop={[0, '1.25rem']}
-			marginBottom={['3rem', '6.5rem']}
-			pl={['0', '6rem']}>
+			marginBottom={['2rem', '6.5rem']}
+			pl={['0.5rem', '6rem']}>
 			<Box
 				display='flex'
 				flexDirection='column'
@@ -29,12 +29,13 @@ const Hero = ({ handleFreeTrial }) => {
 				marginTop='2rem'>
 				<Text
 					as='h1'
-					width='426px'
 					fontWeight='bold'
 					color='black'
 					fontFamily='Montserrat'
-					fontSize='50px'
-					lineHeight='60px'>
+					fontSize={['2.5rem', '50px']}
+					lineHeight={['3rem', '60px']}
+					width={['auto', '426px']}
+					paddingBottom={['1rem', '0']}>
 					{t.hero.title_1}
 					<Text as='span' color='primary.500'>
 						{t.hero.title_color_2}
@@ -90,7 +91,7 @@ const Hero = ({ handleFreeTrial }) => {
 				)}
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Hero
+export default Hero;
