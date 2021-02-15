@@ -15,7 +15,7 @@ const Features = ({ handleFreeTrial }) => {
 		if (!stopInterval) {
 			const intervalIndex = setInterval(() => {
 				setTextIndex((state) => {
-					if (state < 3) setTextIndex(state + 1)
+					if (state < 4) setTextIndex(state + 1)
 					else setTextIndex(0)
 				})
 			}, 3000)
@@ -27,7 +27,8 @@ const Features = ({ handleFreeTrial }) => {
 		0: '/features_simple.png',
 		1: '/features_template.png',
 		2: '/wow-effect.mp4',
-		3: '/features_template.png'
+		3: '/features_template.png',
+		4: '/features_template.png'
 	}[textIndex]
 
 	const handleTextIndex = (e) => {
@@ -93,7 +94,7 @@ const Features = ({ handleFreeTrial }) => {
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
-					width={['100%', '70%']}
+					width={['100%', '60%']}
 					min-width={'700px'}>
 					{textIndex === 2 ? (
 						<video autoPlay muted width={500}>
@@ -119,7 +120,7 @@ const Features = ({ handleFreeTrial }) => {
 					width={['100%', '30%']}>
 					<Box>
 						<Text
-							width={'200px'}
+							width={['200px', '100%']}
 							onClick={handleTextIndex}
 							id='0'
 							cursor='pointer'
@@ -151,7 +152,7 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={'200px'}
+							width={['200px', '100%']}
 							color={textIndex === 1 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -184,7 +185,7 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={'200px'}
+							width={['200px', '100%']}
 							color={textIndex === 2 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -245,6 +246,39 @@ const Features = ({ handleFreeTrial }) => {
 								letterSpacing='0em'
 								textAlign='left'>
 								{t.features.feature_text_4}
+							</Text>
+						)}
+					</Box>
+					<Box>
+						<Text
+							width={'210px'}
+							color={textIndex === 4 ? `primary.500` : `primary.300`}
+							fontFamily='Montserrat'
+							onClick={handleTextIndex}
+							id='4'
+							cursor='pointer'
+							fontSize='25px'
+							paddingTop='1rem'
+							fontStyle='normal'
+							fontWeight='700'
+							lineHeight='30px'
+							letterSpacing='0em'
+							textAlign='left'>
+							{t.features.feature_5}
+						</Text>
+						{textIndex === 4 && (
+							<Text
+								as='span'
+								width='350px'
+								color='gray.600'
+								fontFamily='Montserrat'
+								fontSize='22px'
+								fontStyle='normal'
+								fontWeight='500'
+								lineHeight='28px'
+								letterSpacing='0em'
+								textAlign='left'>
+								{t.features.feature_text_5}
 							</Text>
 						)}
 					</Box>
