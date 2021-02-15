@@ -1,20 +1,21 @@
 export default {
 	navbar: {
-		buttonTrial: 'Prueba Gratis',
+		buttonTrial: 'Prueba Gratis'
 	},
 	hero: {
 		title_1: 'Crea tu ',
 		title_color_2: 'portfolio ',
 		title_3: 'en minutos',
 		subtitle: 'Un portfolio online gratis, simple y sorprendente',
-		button: 'Crea tu CV gratis',
+		button: 'Crea tu CV gratis'
 	},
 	comparison: {
-		title_1: 'Crea un cv ',
-		title_color_2: 'impresionante ',
-		title_3: 'y consigue tu trabajo ',
+		title_1: 'Crea un impresionante ',
+		title_color_2: 'web-cv ',
+		title_3: 'en 5 minutos',
 		title_color_4: 'ideal',
-		subtitle: '¡Vivimos en la era visual! Destaca tu currículum con imágenes',
+		subtitle:
+			'Standout Resume le permite tener un currículum completo en un sitio web online. Diferenciese del resto mostrando un currículum divertido, original y excepcional en lugar de un CV en papel. Siempre accesible - 100% personalizable',
 		un_sexy_1: 'Tu viejo ',
 		un_sexy_color_2: 'unsexy ',
 		un_sexy_3: 'Currículum',
@@ -22,96 +23,99 @@ export default {
 		sexy_1_mobile: 'Desliza para tu nuevo ',
 		sexy_color_2: 'sexy ',
 		sexy_3: 'Currículum',
-		sexy_3_mobile: 'CV',
+		sexy_3_mobile: 'CV'
 	},
 	features: {
 		title_1: 'Super ',
-		title_color_2: 'simple ',
-		title_3: 'diseño para ',
+		title_color_2: 'sencillo ',
+		title_3: 'Interfaz para ',
 		title_color_4: 'impresionar ',
-		title_5: 'a las empresa ',
-		subtitle: 'Empatiza con tu curriculum! Destaca entre la multitud',
-		feature_1: 'Simple',
+		title_5: 'a tu nueva empmresa ',
+		subtitle: 'Empatiza con tu cv, diferenciate del resto',
+		feature_1: 'Simple Resume Builder',
 		feature_text_1:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
+			'Construye tu CV arrastrando. Sencillo, rapido and customizable.',
 		feature_2: 'Plantillas',
 		feature_text_2:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		feature_3: 'WOW Efecto',
+			'Neceistas inspiración? Escoge unas de nuestas plantillas y personalizala a tu estilo.',
+		feature_3: 'WOW Effect',
 		feature_text_3:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		feature_4: 'Multi-lenguage',
-		feature_text_4:
-			'Reprehenderit esse labore id veniam ut veniam non ex adipisicing',
-		button: 'Empieza Ahora',
+			'Crea una impresion durarera immpresionando a cualquiera con tu nuevo cv',
+		feature_4: 'Siempre online',
+		feature_text_4: 'Commpartir tu web-cv es tan sencillo como mandar un link',
+		feature_5: 'Soporte para PDF',
+		feature_text_5:
+			'No te preocupes, hemos pensado en todo, Standout resume genera una version en pdf por si las moscas',
+		button: 'Empieza a crear'
 	},
 	subscription_modal: {
-		header: "Join our ealy adopters' List, and get the job of your dreams",
-		body_1: 'We are thrilled to see you here 😁!',
+		header: 'Unite y consigue el trabajo con el que siempre has soñado',
+		body_1: 'Estamos emocionados de verte aqui 😁!',
 		body_2:
-			'Unfortunately, the app is not open to the public yet, it works by invitation only. If you want to join us, ask for early access.',
+			'Desafortunadamente, la app aun no esta abierta al publico, solo se puede acceder por invitación. Si quieres empezar a usarlo, apuntate a la lista ',
 		body_3:
-			'We want people to enjoy making their resume as they have never done before. If you want to help us in this adventure and change how people present themself! Let us know, we have ',
-		body_color_1: '50 Free Pro accounts ',
-		body_4: 'for our beta testers.',
+			'Quermmos que disfrutes creando tu próximo currículim. Si quieres ayudarnos a mejorar el productor y cambiar la vida de la gente. Avisanos y te daremos una de nuestras',
+		body_color_1: '50 cuentas Pro gratiutas',
+		body_4: '',
 		progressLabel_color: '30 ',
-		progressLabel: 'spots left',
+		progressLabel: 'cuentas restantes',
 		footer_color_1: 'Standout Resume ',
-		footer: "is so fast and delightful — you'll feel like you have ",
-		footer_color_2: 'superpowers.',
-		join: 'Join',
+		footer: 'es tan rapido y divertido de usar que te sentiras con ',
+		footer_color_2: 'superpoders.',
+		join: 'Unete',
 		join_color: 'Standout Resume',
-		email_subscription: 'Type your email',
-		access: 'Get early access',
+		email_subscription: 'Escribe tu email',
+		access: 'Consigue acceso premiun'
 	},
 	steps: {
-		title: 'How does it works?',
-		step_1: 'Step 1',
-		step_1_title: 'Choose Template',
+		title: 'Como funciona?',
+		step_1: 'Paso 1',
+		step_1_title: 'Elige una plantilla',
 		step_1_body:
-			'We have dozens of templates with predefined senteces to make your live easier. Just choose one you like and you are ready to go.',
-		step_2: 'Step 2',
-		step_2_title: 'Populate',
+			'Tenemos docenas de plantillas con frases preseleccionas para hacerte la vida mas facil, Elige la que mas te guste y todo listo.',
+		step_2: 'Paso 2',
+		step_2_title: 'Rellenar',
 		step_2_body:
-			'Add your skills and experince to the resume, we will guide you through out the process so dont worry, it will be fun.',
+			'Añade tus experiencia y tus habilidades, te guiaremos durante todo el proceso, no te preocupes, será divertido',
 		step_2_body_2:
-			"You don't like this part, we don't either. That is why we have invested a lot of time to make it easy and fun. You will never want to go back to the old way of populating resumes.",
-		step_3: 'Step 3',
-		step_3_title: 'Publish',
+			'Se que no te gusta esta parte, a nosotros tampoco. Por eso hemos invertido una gran cantidad de tiempo enn hacerlo sencillo y divertido. Nunca querras volver a rellenar Cv en papel.',
+		step_3: 'Paso 3',
+		step_3_title: 'Publica',
 		step_3_body:
-			'Congrats, you have finished your web-resume. now you have your own part of the internet. You can share the url and anyone you want will be able to see your awesome resume.',
+			'Enhorabuena, has terminado tu web-cv. Ahora solo tines tu propia propiedad en internet. Puedes compartirlo con quien quieras, solo tienes que pasar el link. '
 	},
 	card_info: {
-		title: 'Creating resumes used to be a pain',
-		subtitle: 'The way we work has changed, but resumes haven’t. Until now.',
-		old_title: 'The old way',
+		title: 'Crear CV no tiene porque seguri siendo un quebradero de cabeza',
+		subtitle:
+			'La forma que trabajamos ha cambiado, pero los cv no. Hasta ahora 😀',
+		old_title: 'La antigua forma',
 		old_body:
-			'The old way is boring and time-consuming. You have to and design the resume in software like Word, then populate it and after that tedious task, you will need to export PDF to share it. The worst part being, you need to redo the whole process every time you update the resume 😢',
+			'La antigua forma es laboriosa y pesada. Tienes que diseñar el cv en word, luego rellenarlo y despues de todo esto, tienes que exportarlo a PDF para ver como queda. Lo peor de todo es que tiennes que volver a hacer todo cada vez que actualices tu cv 😢',
 		old_list: {
-			1: 'Word document.',
-			2: 'Only sharable via email.',
-			3: 'Difficulty to fit everything together.',
-			4: 'Time consuming to update.',
-			5: 'Similar to the rest of candidates resumes.',
-			6: 'Time consuming to update.',
-			7: 'Average first impression.',
-			8: 'Once you share it you can not update it.',
+			1: 'Documento Word.',
+			2: 'Solo se puede compartir por email.',
+			3: 'Imposible de cuadrar todo junto.',
+			4: 'Un infierno de actualizar.',
+			5: 'Igual que otros cientos de candidatos.',
+			6: 'No se puede personalizar',
+			7: 'Facil de olvidar por el entrevistador.',
+			8: 'Una vez lo hayas compartido no se puede actualizar.'
 		},
-		new_title: 'The new way',
+		new_title: 'La nueva forma',
 		new_body:
-			'The new way is more fun. Two steps. First, you select a template, then you populate it with the help of our pre-written ( by experts ) sentence. That is it 🥳. Easy, simple, and fun. Once you are finished you will give your own domain where your new web-resume will be hosted.',
+			'La nueva foram de crear Cv es divertida. Primero seleccionas una plantilla, la rellenas usando nuestas frases personalizadas ( por expertos ). Y eso es todo 🥳. Sencillo, rápido y divertido. Una vez publiques, te daremos tu propio dominio web para que puedas compartir tu web-cv',
 		new_list: {
-			1: 'Online creation.',
-			2: 'Update your resume in seconds.',
-			3: 'Dozends of templates, just one click away.',
-			4: 'Add pre-written phrases.',
-			5: 'Export to anything.',
-			6: 'Share with everyone.',
-			7: 'Accesible by URL.',
-			8: 'Instantly accesible, just share the link.',
-		},
+			1: 'Se crea online, desde cualquier dispositivo.',
+			2: 'Lo puedes actualizar en segundos.',
+			3: 'Docenas de plantillas a solo un click.',
+			4: 'Frases pre-hechas.',
+			5: 'Se puede exportar a lo que quieras ( incluso PDF ).',
+			6: 'Compartelo con quien quieras.',
+			7: 'Accesible desde el movil y el ordendor a traves de una URL.',
+			8: 'Accesible al instante.Solo commparte el link.'
+		}
 	},
 	footer: {
-		button: 'registrate',
-	},
-};
+		button: 'registrate'
+	}
+}

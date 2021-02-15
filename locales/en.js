@@ -33,7 +33,7 @@ export default {
 		subtitle: 'Empathize with your cv, standout from the crowd',
 		feature_1: 'Simple Resume Builder',
 		feature_text_1:
-			'Simple drag and drog builder. Simple, fast and fully customizable.',
+			'Simple drag and drop builder. Simple, fast and fully customizable.',
 		feature_2: 'Resume Templates',
 		feature_text_2:
 			'Need inspiration? Choose one of our beautiful templates and personalize it to your own style.',
