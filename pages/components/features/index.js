@@ -1,41 +1,41 @@
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
-import Button from '../../../Components/Button'
-import CircleBg from '../../../assets/features-circle'
+import Button from '../../../Components/Button';
+import CircleBg from '../../../assets/features-circle';
 
 const Features = ({ handleFreeTrial }) => {
-	const [t] = useTranslation()
-	const [textIndex, setTextIndex] = useState(0)
-	const [stopInterval, setStopInterval] = useState(false)
+	const [t] = useTranslation();
+	const [textIndex, setTextIndex] = useState(0);
+	const [stopInterval, setStopInterval] = useState(false);
 
 	useEffect(() => {
 		if (!stopInterval) {
 			const intervalIndex = setInterval(() => {
 				setTextIndex((state) => {
-					if (state < 4) setTextIndex(state + 1)
-					else setTextIndex(0)
-				})
-			}, 3000)
-			return () => clearInterval(intervalIndex)
+					if (state < 4) setTextIndex(state + 1);
+					else setTextIndex(0);
+				});
+			}, 3000);
+			return () => clearInterval(intervalIndex);
 		}
-	}, [textIndex])
+	}, [textIndex]);
 
 	const selectedImg = {
 		0: '/features_simple.png',
 		1: '/features_template.png',
 		2: '/wow-effect.mp4',
 		3: '/always-online.png',
-		4: '/pdf_feature.png'
-	}[textIndex]
+		4: '/pdf_feature.png',
+	}[textIndex];
 
 	const handleTextIndex = (e) => {
-		const { id } = e.currentTarget
-		setStopInterval(true)
-		setTextIndex(Number(id))
-	}
+		const { id } = e.currentTarget;
+		setStopInterval(true);
+		setTextIndex(Number(id));
+	};
 
 	return (
 		<Box
@@ -48,7 +48,11 @@ const Features = ({ handleFreeTrial }) => {
 			marginTop='4rem'
 			marginBottom={['2rem', '6.5rem']}
 			mx={['auto', 0]}>
-			<Box position='absolute' right='0' bottom='-30rem'>
+			<Box
+				display={['none', 'block']}
+				position='absolute'
+				right='0'
+				bottom='-30rem'>
 				<CircleBg />
 			</Box>
 			<Text
@@ -288,7 +292,7 @@ const Features = ({ handleFreeTrial }) => {
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Features
+export default Features;

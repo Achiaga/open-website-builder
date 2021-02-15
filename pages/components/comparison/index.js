@@ -160,7 +160,7 @@ const Comparison = () => {
 					position='relative'
 					fontSize='24px'
 					my={['2rem', '1rem']}
-					width={['auto', '50rem']}
+					width={['auto', '60rem']}
 					m={['auto']}
 					color='gray.600'>
 					{t.comparison.subtitle}
