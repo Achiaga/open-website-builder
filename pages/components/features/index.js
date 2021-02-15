@@ -27,8 +27,8 @@ const Features = ({ handleFreeTrial }) => {
 		0: '/features_simple.png',
 		1: '/features_template.png',
 		2: '/wow-effect.mp4',
-		3: '/features_template.png',
-		4: '/features_template.png'
+		3: '/always-online.png',
+		4: '/pdf_feature.png'
 	}[textIndex]
 
 	const handleTextIndex = (e) => {
