@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Text, Input, Button, Progress } from '@chakra-ui/react'
+import { Box, Text, Input, Button, Progress, Spinner } from '@chakra-ui/react'
 import { useTranslation } from '../../../../hooks/translation'
 import { addUserToBetaList } from '../../../../helpers/transport'
 import {
@@ -12,10 +12,17 @@ import {
 const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const [t] = useTranslation()
 	const [emailValue, setEmailValue] = useState('')
+	const [isSuccess, setIsSuccess] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 
 	const handleSubmitEmail = (e) => {
 		e.preventDefault()
+		setIsLoading(true)
 		addUserToBetaList(emailValue)
+			.then((value) => {
+				if (value === 'success') setIsSuccess(true)
+			})
+			.finally(() => setIsLoading(false))
 	}
 
 	const handleEmail = (e) => {
@@ -137,13 +144,13 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							fontSize='16px'
 							fontWeight='semibold'
 							color='white'
-							bg='primary.500'
+							bg={isSuccess ? 'green.500' : 'primary.500'}
 							borderRadius='5px'
 							minWidth='7.5rem'
 							height='2.5rem'
-							_hover={{ bg: 'primary.500' }}
+							_hover={{ bg: `${isSuccess ? 'green.500' : 'primary.500'}` }}
 							_active={{
-								bg: 'primary.500',
+								bg: `${isSuccess ? 'green.500' : 'primary.500'}`,
 								transform: 'scale(0.98)',
 								borderColor: '#bec3c9'
 							}}
@@ -151,7 +158,13 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 								boxShadow:
 									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
 							}}>
-							{t.subscription_modal.access}
+							{isLoading ? (
+								<Spinner />
+							) : isSuccess ? (
+								t.button_success
+							) : (
+								t.subscription_modal.access
+							)}
 						</Button>
 					</form>
 				</Box>

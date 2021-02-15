@@ -118,5 +118,6 @@ export default {
 	},
 	footer: {
 		button: 'registrate'
-	}
+	},
+	button_success: 'Bienvenido!!'
 }

@@ -40,7 +40,7 @@ export default function saveUser(req, res) {
 	const { email, metaData } = req.body
 	if (req.method === 'POST') {
 		addUser({ email, metaData }).then(() => {
-			respondAPIQuery(res, {})
+			respondAPIQuery(res, 'success')
 		})
 	} else {
 		// Handle any other HTTP method

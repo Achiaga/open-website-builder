@@ -117,5 +117,6 @@ export default {
 	},
 	footer: {
 		button: 'Sign Up'
-	}
+	},
+	button_success: 'Welcome!!'
 }
