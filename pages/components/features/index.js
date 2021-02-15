@@ -124,7 +124,8 @@ const Features = ({ handleFreeTrial }) => {
 					width={['100%', '30%']}>
 					<Box>
 						<Text
-							width={['200px', '100%']}
+							width={['auto', '100%']}
+							paddingLeft={['1rem', '0']}
 							onClick={handleTextIndex}
 							id='0'
 							cursor='pointer'
@@ -156,7 +157,8 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={['200px', '100%']}
+							width={['auto', '100%']}
+							paddingLeft={['1rem', '0']}
 							color={textIndex === 1 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -189,7 +191,8 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={['200px', '100%']}
+							width={['auto', '100%']}
+							paddingLeft={['1rem', '0']}
 							color={textIndex === 2 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -222,7 +225,8 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={'210px'}
+							width={['auto', '100%']}
+							paddingLeft={['1rem', '0']}
 							color={textIndex === 3 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -255,7 +259,8 @@ const Features = ({ handleFreeTrial }) => {
 					</Box>
 					<Box>
 						<Text
-							width={'210px'}
+							width={['auto', '100%']}
+							paddingLeft={['1rem', '0']}
 							color={textIndex === 4 ? `primary.500` : `primary.300`}
 							fontFamily='Montserrat'
 							onClick={handleTextIndex}
@@ -286,7 +291,10 @@ const Features = ({ handleFreeTrial }) => {
 							</Text>
 						)}
 					</Box>
-					<Button onClick={handleFreeTrial} marginTop='2rem'>
+					<Button
+						marginLeft={['1rem', '0']}
+						onClick={handleFreeTrial}
+						marginTop='2rem'>
 						{t.features.button}
 					</Button>
 				</Box>

@@ -21,7 +21,7 @@ const INITIAL_SLIDE_VALUE = 50;
 const TextSlider = () => {
 	const [t] = useTranslation();
 	return (
-		<Box d={['flex', 'none']} mt='3rem' alignItems='center'>
+		<Box d={['none', 'flex']} mt='3rem' alignItems='center'>
 			<CheckIcon />
 			<Text fontSize='26px' textAlign='center' fontWeight='700'>
 				{t.comparison.sexy_1_mobile}
@@ -113,6 +113,7 @@ const Comparison = () => {
 			justifyContent='center'
 			alignItems='center'
 			width={['100vw', '100%']}
+			paddingBottom={['1.5rem', '0']}
 			mx={['auto', 0]}>
 			<Box
 				width={['90vw', '100%']}
@@ -144,6 +145,7 @@ const Comparison = () => {
 					fontSize={['2.5rem', '50px']}
 					lineHeight={['3rem', '4rem']}
 					width={['auto', '70rem']}
+					paddingBottom={['0.75rem', '0']}
 					mx='auto'>
 					{t.comparison.title_1}
 					<Text as='span' color='primary.500'>
@@ -158,7 +160,7 @@ const Comparison = () => {
 					as='h2'
 					textAlign='center'
 					position='relative'
-					fontSize='24px'
+					fontSize={['22px', '24px']}
 					my={['2rem', '1rem']}
 					width={['auto', '60rem']}
 					m={['auto']}
@@ -176,7 +178,7 @@ const Comparison = () => {
 					paddingTop='5rem'
 					paddingX='2rem'>
 					<Box
-						display='flex'
+						display={['none', 'flex']}
 						flexDirection='column'
 						justifyContent='center'
 						alignItems='center'
@@ -208,14 +210,14 @@ const Comparison = () => {
 						/>
 					</Box>
 					<Box
-						display='flex'
+						display={['none', 'flex']}
 						flexDirection='column'
 						justifyContent='center'
 						alignItems='center'
 						width='100%'
 						height='100%'
 						ml='15px'>
-						<Box display='flex' paddingBottom='2rem'>
+						<Box display={['none', 'flex']} paddingBottom='2rem'>
 							<CheckIcon />
 							<Text
 								paddingLeft='1.5rem'

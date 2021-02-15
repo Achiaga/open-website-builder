@@ -23,6 +23,7 @@ const Steps = () => {
 				fontFamily='Montserrat'
 				fontSize={['2.5rem', '50px']}
 				lineHeight={['3rem', '4rem']}
+				paddingX={['0.75rem', '0']}
 				width={['auto', '50rem']}>
 				{t.steps.title}
 			</Text>
@@ -32,8 +33,8 @@ const Steps = () => {
 				justifyContent='space-between'
 				alignItems='center'
 				width='100%'
-				paddingTop='5rem'
-				paddingX='2rem'
+				paddingTop={['2rem', '5rem']}
+				paddingX={['1rem', '2rem']}
 				flexDir={['column', 'row']}>
 				<Box
 					w='300px'
