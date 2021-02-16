@@ -1,30 +1,30 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import {
 	Box,
 	Slider,
 	SliderFilledTrack,
 	SliderThumb,
 	SliderTrack,
-	Text
-} from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
+	Text,
+} from '@chakra-ui/react';
+import { useTranslation } from '../../../hooks/translation';
 
-import CheckIcon from '../../../assets/check-icon'
-import CloseIcon from '../../../assets/close-icon'
-import UnsexyBg from '../../../assets/unsexy-circle'
-import SexyBg from '../../../assets/sexy-circle'
-import { useEffect, useState } from 'react'
-import SlideIcon from '../../../assets/slide-icon'
+import CheckIcon from '../../../assets/check-icon';
+import CloseIcon from '../../../assets/close-icon';
+import UnsexyBg from '../../../assets/unsexy-circle';
+import SexyBg from '../../../assets/sexy-circle';
+import { useEffect, useState } from 'react';
+import SlideIcon from '../../../assets/slide-icon';
 
-const INITIAL_SLIDE_VALUE = 50
+const INITIAL_SLIDE_VALUE = 50;
 
 const ImageSlider = () => {
-	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE)
-	const [showHelper, setShowHelper] = useState(true)
+	const [sliderValue, setSliderValue] = useState(INITIAL_SLIDE_VALUE);
+	const [showHelper, setShowHelper] = useState(true);
 
 	useEffect(() => {
-		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false)
-	}, [sliderValue, showHelper])
+		showHelper && sliderValue !== INITIAL_SLIDE_VALUE && setShowHelper(false);
+	}, [sliderValue, showHelper]);
 
 	return (
 		<Box
@@ -76,11 +76,11 @@ const ImageSlider = () => {
 				)}
 			</Slider>
 		</Box>
-	)
-}
+	);
+};
 
 const Comparison = () => {
-	const [t] = useTranslation()
+	const [t] = useTranslation();
 
 	return (
 		<Box
@@ -122,7 +122,7 @@ const Comparison = () => {
 					fontFamily='Montserrat'
 					fontSize={['2.5rem', '50px']}
 					lineHeight={['3rem', '4rem']}
-					width={['auto', '70rem']}
+					width={['auto', '60rem']}
 					paddingBottom={['0.75rem', '0']}
 					mx='auto'>
 					{t.comparison.title_1}
@@ -214,7 +214,7 @@ const Comparison = () => {
 				</Box>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Comparison
+export default Comparison;
