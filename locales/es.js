@@ -3,8 +3,8 @@ export default {
 		buttonTrial: 'Prueba Gratis'
 	},
 	hero: {
-		title_1: 'Crea tu ',
-		title_color_2: 'curriculum ',
+		title_1: 'Convierte tu CV en ',
+		title_color_2: ' una web ',
 		title_3: 'en 5 minutos',
 		subtitle:
 			'Un curriculum online gratis, simple e impresionante, tu proximo cv no sera pdf, sera una página web.',
@@ -16,7 +16,7 @@ export default {
 		title_3: 'en 5 minutos',
 		title_color_4: 'ideal',
 		subtitle:
-			'Standout Resume le permite tener un currículum completo en un sitio web online. Diferenciese del resto mostrando un currículum divertido, original y excepcional en lugar de un CV en papel. Siempre accesible - 100% personalizable',
+			'Standout Resume te permite tener un currículum completo en una web online. Diferenciate del resto mostrando un currículum divertido, original y excepcional en lugar de un CV de papel. Siempre accesible - 100% personalizable',
 		un_sexy_1: 'Tu viejo ',
 		un_sexy_color_2: 'unsexy ',
 		un_sexy_3: 'Currículum',
@@ -119,5 +119,5 @@ export default {
 	footer: {
 		button: 'registrate'
 	},
-	button_success: 'Bienvenido!!'
+	button_success: 'Te contacteremos pronto'
 }

@@ -3,16 +3,16 @@ export default {
 		buttonTrial: 'Free Trial'
 	},
 	hero: {
-		title_1: 'Create your ',
-		title_color_2: 'web-resume ',
+		title_1: 'Convert your resume into a',
+		title_color_2: ' website ',
 		title_3: 'in 5 minutes',
 		subtitle:
 			"Free, simple, breath-taking web resumes. Your next resume won't be a document, it will be a website.",
-		button: 'Create Free Resume'
+		button: 'Create your Web-Resume'
 	},
 	comparison: {
 		title_1: 'Create a awe-inspiring ',
-		title_color_2: 'website-resume ',
+		title_color_2: 'websites ',
 		title_3: 'that gets you ',
 		title_color_4: 'hired ',
 		subtitle:
@@ -118,5 +118,5 @@ export default {
 	footer: {
 		button: 'Sign Up'
 	},
-	button_success: 'Welcome!!'
+	button_success: "We'll reach shortly"
 }
