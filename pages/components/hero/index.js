@@ -32,9 +32,8 @@ const Hero = ({ handleFreeTrial }) => {
 					fontWeight='bold'
 					color='black'
 					fontFamily='Montserrat'
-					fontSize={['2.5rem', '50px']}
-					lineHeight={['3rem', '60px']}
-					width={['auto', '425px']}
+					fontSize={['2.5rem', '40px']}
+					lineHeight={['3rem', '120%']}
 					paddingBottom={['1rem', '0']}>
 					{t.hero.title_1}
 					<Text as='span' color='primary.500'>

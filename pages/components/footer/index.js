@@ -16,10 +16,14 @@ const Features = () => {
 
 	const handleSubmitEmail = (e) => {
 		e.preventDefault()
+		if (isLoading || !emailValue) return
 		setIsLoading(true)
 		addUserToBetaList(emailValue)
 			.then((value) => {
-				if (value === 'success') setIsSuccess(true)
+				if (value === 'success') {
+					setIsSuccess(true)
+					setEmailValue('')
+				}
 			})
 			.finally(() => setIsLoading(false))
 	}
