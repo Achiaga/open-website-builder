@@ -18,6 +18,7 @@ const Features = () => {
 		e.preventDefault()
 		if (isLoading || !emailValue) return
 		setIsLoading(true)
+		AnalyticsEvent('signup', 'footer')
 		addUserToBetaList(emailValue)
 			.then((value) => {
 				if (value === 'success') {

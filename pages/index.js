@@ -18,7 +18,6 @@ export default function Home() {
 
 	const handleFreeTrial = () => {
 		toggleModalOpen(true)
-		AnalyticsEvent('Modal Opened', 'clicked')
 	}
 
 	return (

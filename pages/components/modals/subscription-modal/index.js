@@ -8,6 +8,7 @@ import {
 	ModalContent,
 	ModalCloseButton
 } from '@chakra-ui/react'
+import { AnalyticsEvent } from '../../../../utils/analytics'
 
 const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const [t] = useTranslation()
@@ -19,7 +20,7 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 		e.preventDefault()
 		if (isLoading || !emailValue) return
 		setIsLoading(true)
-
+		AnalyticsEvent('signup', 'modal')
 		addUserToBetaList(emailValue)
 			.then((value) => {
 				if (value === 'success') {

@@ -1,20 +1,26 @@
-import { Box, Select } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { useTranslation } from '../../../hooks/translation';
+import { Box, Select } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { useTranslation } from '../../../hooks/translation'
 
-import BgCircle from '../../../assets/navbar-circle';
-import Button from '../../../Components/Button';
-import LogoSvg from '../../../assets/logo';
+import BgCircle from '../../../assets/navbar-circle'
+import Button from '../../../Components/Button'
+import LogoSvg from '../../../assets/logo'
+import { AnalyticsEvent } from '../../../utils/analytics'
 
 const Navbar = ({ handleFreeTrial }) => {
-	const router = useRouter();
-	const { locale } = router;
-	const [t] = useTranslation();
+	const router = useRouter()
+	const { locale } = router
+	const [t] = useTranslation()
 
 	const changeLanguage = (e) => {
-		const locale = e.target.value;
-		router.push(router.pathname, router.asPath, { locale });
-	};
+		const locale = e.target.value
+		router.push(router.pathname, router.asPath, { locale })
+	}
+
+	const handleButton = (e) => {
+		AnalyticsEvent('modal_open', 'navbar')
+		handleFreeTrial(e)
+	}
 
 	return (
 		<Box
@@ -67,12 +73,12 @@ const Navbar = ({ handleFreeTrial }) => {
 						es
 					</option>
 				</Select>
-				<Button fontSize={['14px', 'md']} onClick={handleFreeTrial}>
+				<Button fontSize={['14px', 'md']} onClick={handleButton}>
 					{t.navbar.buttonTrial}
 				</Button>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default Navbar;
+export default Navbar

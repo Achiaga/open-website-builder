@@ -8,6 +8,11 @@ const Hero = ({ handleFreeTrial }) => {
 	const [t] = useTranslation()
 	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
 
+	const handleButton = (e) => {
+		AnalyticsEvent('modal_open', 'hero')
+		handleFreeTrial(e)
+	}
+
 	return (
 		<Box
 			position='relative'
@@ -59,7 +64,7 @@ const Hero = ({ handleFreeTrial }) => {
 					as='h2'>
 					{t.hero.subtitle}
 				</Text>
-				<Button onClick={handleFreeTrial} marginTop='1.5rem'>
+				<Button onClick={handleButton} marginTop='1.5rem'>
 					{t.hero.button}
 				</Button>
 			</Box>
