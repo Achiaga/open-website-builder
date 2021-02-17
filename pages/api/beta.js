@@ -1,5 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import Airtable from 'airtable'
+var base = new Airtable({ apiKey: 'keyGvLqwBkucMPxNr' }).base(
+	'appFVrwtZRrbfpqjY'
+)
 
 const AIRTABLE_KEY = process.env.AIRTABLE_KEY
 
@@ -24,25 +27,35 @@ const respondAPIQuery = (res, data = {}, status = 200) => {
 }
 
 const addUser = (payload) => {
-	Airtable.configure({
-		endpointUrl: 'https://api.airtable.com',
-		apiKey: 'keyGvLqwBkucMPxNr'
-	})
-	const base = Airtable.base('appFVrwtZRrbfpqjY')
 	return base('beta-users').create([
 		{
 			fields: { ...payload }
 		}
 	])
 }
-
-export default function saveUser(req, res) {
-	const { email, metaData } = req.body
-	if (req.method === 'POST') {
-		addUser({ email, metaData }).then(() => {
-			respondAPIQuery(res, 'success')
+const getAllUsers = (res) => {
+	return base('beta-users')
+		.select({
+			view: 'Grid view'
 		})
-	} else {
-		// Handle any other HTTP method
+		.firstPage(function (err, records) {
+			if (err) {
+				console.error(err)
+				return
+			}
+			return respondAPIQuery(res, { records: records.length })
+		})
+}
+
+export default function betaUsers(req, res) {
+	const { email, metaData, type } = req.body
+	switch (type) {
+		case 'save':
+			return addUser({ email, metaData }).then(() => {
+				respondAPIQuery(res, 'success')
+			})
+			break
+		case 'list':
+			return getAllUsers(res)
 	}
 }

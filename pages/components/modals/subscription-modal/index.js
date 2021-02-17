@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Text, Input, Button, Progress, Spinner } from '@chakra-ui/react'
 import { useTranslation } from '../../../../hooks/translation'
-import { addUserToBetaList } from '../../../../helpers/transport'
+import { addUserToBetaList, getAllUsers } from '../../../../helpers/transport'
 import {
 	Modal,
 	ModalOverlay,
@@ -15,6 +15,7 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const [emailValue, setEmailValue] = useState('')
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+	const [users, setUSers] = useState(null)
 
 	const handleSubmitEmail = (e) => {
 		e.preventDefault()
@@ -34,7 +35,12 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const handleEmail = (e) => {
 		const { value } = e.target
 		setEmailValue(value)
+		setIsSuccess(false)
 	}
+
+	useEffect(() => {
+		getAllUsers().then(({ records }) => setUSers(records + 10))
+	}, [isSuccess])
 
 	return (
 		<Modal isOpen={isModalOpen} onClose={() => toggleModalOpen(false)}>
@@ -88,11 +94,11 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							bg='primary.100'
 							// color='primary'
 							colorScheme='green'
-							value={40}
+							value={users}
 						/>
 						<Text fontWeight='500' as='p' paddingTop='1rem' textAlign='center'>
-							<Text fontWeight='600' as='span' color='green.400'>
-								{t.subscription_modal.progressLabel_color}
+							<Text fontWeight='600' as='span' color='green.400' mr='5px'>
+								{users}
 							</Text>
 							{t.subscription_modal.progressLabel}
 						</Text>
