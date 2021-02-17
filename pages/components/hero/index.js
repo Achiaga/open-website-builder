@@ -3,6 +3,7 @@ import { Box, Text, useMediaQuery } from '@chakra-ui/react'
 
 import { useTranslation } from '../../../hooks/translation'
 import Button from '../../../Components/Button'
+import { AnalyticsEvent } from '../../../utils/analytics'
 
 const Hero = ({ handleFreeTrial }) => {
 	const [t] = useTranslation()
