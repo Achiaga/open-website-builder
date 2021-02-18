@@ -30,10 +30,10 @@ export const addUserToBetaList = (email, metaData) => {
 		email,
 		metaData: {
 			...metaData,
-			origin: document.referrer,
-			browser: window.platform.name,
-			windowHeight: window.screen.height,
-			windowWidth: window.screen.width
+			origin: document?.referrer,
+			browser: window?.platform?.name,
+			windowHeight: window?.screen?.height,
+			windowWidth: window?.screen?.width
 		}
 	})
 }
