@@ -26,12 +26,23 @@ const respondAPIQuery = (res, data = {}, status = 200) => {
 	return
 }
 
-const addUser = (payload) => {
-	return base('beta-users').create([
-		{
-			fields: { ...payload }
-		}
-	])
+const addUser = async (payload) => {
+	try {
+		const response = await base('beta-users').create([
+			{
+				fields: { ...payload }
+			}
+		])
+		return response
+	} catch (err) {
+		console.log(err)
+		const response = await base('beta-users').create([
+			{
+				fields: { email: payload.email }
+			}
+		])
+		return response
+	}
 }
 const getAllUsers = (res) => {
 	return base('beta-users')
@@ -51,7 +62,7 @@ export default function betaUsers(req, res) {
 	const { email, metaData, type } = req.body
 	switch (type) {
 		case 'save':
-			return addUser({ email, metaData }).then(() => {
+			return addUser({ email, ...metaData }).then(() => {
 				respondAPIQuery(res, 'success')
 			})
 			break

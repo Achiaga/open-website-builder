@@ -7,6 +7,7 @@ import { addUserToBetaList } from '../../../helpers/transport'
 import LogoSvg from '../../../assets/logo'
 // import Button from '../../../Components/Button';
 import Twitter from '../../../assets/twitter'
+import { AnalyticsEvent } from '../../../utils/analytics'
 
 const Features = () => {
 	const [t] = useTranslation()
