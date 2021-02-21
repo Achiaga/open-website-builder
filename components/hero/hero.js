@@ -2,11 +2,17 @@ import Image from 'next/image';
 import { Box, Text, useMediaQuery } from '@chakra-ui/react';
 
 import { useTranslation } from '../../hooks/translation';
+import { AnalyticsEvent } from '../../utils/analytics';
 import Button from '../commun/button';
 
 const Hero = ({ handleFreeTrial }) => {
 	const [t] = useTranslation();
 	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)');
+
+	const handleButton = (e) => {
+		AnalyticsEvent('modal_open', 'hero');
+		handleFreeTrial(e);
+	};
 
 	return (
 		<Box
@@ -32,10 +38,9 @@ const Hero = ({ handleFreeTrial }) => {
 					fontWeight='bold'
 					color='black'
 					fontFamily='Montserrat'
-					fontSize={['2.5rem', '50px']}
-					lineHeight={['3rem', '60px']}
-					w={['auto', '425px']}
-					pb={['1rem', '0']}>
+					fontSize={['2.5rem', '40px']}
+					lineHeight={['3rem', '120%']}
+					paddingBottom={['1rem', '0']}>
 					{t.hero.title_1}
 					<Text as='span' color='primary.500'>
 						{t.hero.title_color_2}
@@ -65,7 +70,7 @@ const Hero = ({ handleFreeTrial }) => {
 					minW='7.5rem'
 					w='18rem'
 					h={14}
-					onClick={handleFreeTrial}
+					onClick={handleButton}
 					marginTop='1.5rem'>
 					{t.hero.button}
 				</Button>

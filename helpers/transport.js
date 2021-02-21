@@ -24,8 +24,20 @@ const apiCall = async (path, body) => {
 	return await JsonResponse
 }
 
-export const addUserToBetaList = (email, metaData) =>
-	apiCall('/api/beta', {
+export const addUserToBetaList = (email, metaData) => {
+	return apiCall('/api/beta', {
+		type: 'save',
 		email,
-		metaData
+		metaData: {
+			...metaData,
+			origin: document?.referrer,
+			browser: window?.platform?.name,
+			windowHeight: window?.screen?.height,
+			windowWidth: window?.screen?.width
+		}
+	})
+}
+export const getAllUsers = () =>
+	apiCall('/api/beta', {
+		type: 'list'
 	})

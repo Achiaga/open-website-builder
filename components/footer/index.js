@@ -6,7 +6,8 @@ import { addUserToBetaList } from '../../helpers/transport';
 
 import LogoSvg from '../../assets/logo';
 // import Button from '../../../Components/Button';
-import Twitter from '../../assets/twitter';
+import Twitter from '../../../assets/twitter';
+import { AnalyticsEvent } from '../../../utils/analytics';
 
 const Features = () => {
 	const [t] = useTranslation();
@@ -16,10 +17,15 @@ const Features = () => {
 
 	const handleSubmitEmail = (e) => {
 		e.preventDefault();
+		if (isLoading || !emailValue) return;
 		setIsLoading(true);
+		AnalyticsEvent('signup', 'footer');
 		addUserToBetaList(emailValue)
 			.then((value) => {
-				if (value === 'success') setIsSuccess(true);
+				if (value === 'success') {
+					setIsSuccess(true);
+					setEmailValue('');
+				}
 			})
 			.finally(() => setIsLoading(false));
 	};

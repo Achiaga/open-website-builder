@@ -31,7 +31,7 @@ window.smartsupp||(function(d) {
 })(document);`
 
 export const InitializeAnalytics = async () => {
-	if (!process.env.NEXT_PUBLIC_GA_TRACKING) return
+	if (process.env.NODE_ENV === 'development') return
 	ReactGA.initialize(process.env.NEXT_PUBLIC_GA_TRACKING)
 	initHorjar()
 	ReactGA.pageview('/')

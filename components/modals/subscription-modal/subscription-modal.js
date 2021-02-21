@@ -1,25 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Text, Input, Progress, Spinner } from '@chakra-ui/react';
 import { ModalContent, ModalCloseButton } from '@chakra-ui/react';
 
 import Modal from '../../modal';
 import Button from '../../commun/button';
 
+import { AnalyticsEvent } from '../../../utils/analytics';
 import { useTranslation } from '../../../hooks/translation';
-import { addUserToBetaList } from '../../../helpers/transport';
+import { addUserToBetaList, getAllUsers } from '../../../helpers/transport';
 
 const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const [t] = useTranslation();
 	const [emailValue, setEmailValue] = useState('');
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [users, setUSers] = useState(null);
 
 	const handleSubmitEmail = (e) => {
 		e.preventDefault();
+		if (isLoading || !emailValue) return;
 		setIsLoading(true);
+		AnalyticsEvent('signup', 'modal');
 		addUserToBetaList(emailValue)
 			.then((value) => {
-				if (value === 'success') setIsSuccess(true);
+				if (value === 'success') {
+					setIsSuccess(true);
+					setEmailValue('');
+				}
 			})
 			.finally(() => setIsLoading(false));
 	};
@@ -27,7 +34,12 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 	const handleEmail = (e) => {
 		const { value } = e.target;
 		setEmailValue(value);
+		setIsSuccess(false);
 	};
+
+	useEffect(() => {
+		getAllUsers().then(({ records }) => setUSers(records + 10));
+	}, [isSuccess]);
 
 	return (
 		<Modal isOpen={isModalOpen} onClose={toggleModalOpen}>
@@ -80,11 +92,11 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
 							borderRadius='10px'
 							bg='primary.100'
 							colorScheme='green'
-							value={40}
+							value={users}
 						/>
-						<Text fontWeight='medium' as='p' pt={4} textAlign='center'>
-							<Text fontWeight='semibold' as='span' color='green.400'>
-								{t.subscription_modal.progressLabel_color}
+						<Text fontWeight='500' as='p' paddingTop='1rem' textAlign='center'>
+							<Text fontWeight='600' as='span' color='green.400' mr='5px'>
+								{users}
 							</Text>
 							{t.subscription_modal.progressLabel}
 						</Text>
