@@ -2,6 +2,7 @@ import { Flex, Select } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { useTranslation } from '../../hooks/translation';
+import { AnalyticsEvent } from '../../utils/analytics';
 import Button from '../commun/button';
 
 import BackgroundCircles from './background';
@@ -14,6 +15,11 @@ const Navbar = ({ handleFreeTrial }) => {
 	const changeLanguage = (e) => {
 		const locale = e.target.value;
 		router.push(router.pathname, router.asPath, { locale });
+	};
+
+	const handleButton = (e) => {
+		AnalyticsEvent('modal_open', 'navbar');
+		handleFreeTrial(e);
 	};
 
 	return (
@@ -57,7 +63,7 @@ const Navbar = ({ handleFreeTrial }) => {
 						es
 					</option>
 				</Select>
-				<Button fontSize='lg' minW='7.5rem' h={12} onClick={handleFreeTrial}>
+				<Button fontSize='lg' minW='7.5rem' h={12} onClick={handleButton}>
 					{t.navbar.buttonTrial}
 				</Button>
 			</Flex>

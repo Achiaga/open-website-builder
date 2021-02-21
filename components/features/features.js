@@ -38,6 +38,11 @@ const Features = ({ handleFreeTrial }) => {
 		setTextIndex(Number(id));
 	};
 
+	const handleButton = (e) => {
+		handleFreeTrial(e);
+		AnalyticsEvent('modal_open', 'features');
+	};
+
 	return (
 		<Box
 			position='relative'
@@ -175,7 +180,7 @@ const Features = ({ handleFreeTrial }) => {
 						h={12}
 						ml={['1rem', '0']}
 						mt='2rem'
-						onClick={handleFreeTrial}>
+						onClick={handleButton}>
 						{t.features.button}
 					</Button>
 				</Box>

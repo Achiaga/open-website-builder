@@ -19,6 +19,7 @@ const LandingPage = () => {
 		toggleModalOpen(true);
 		AnalyticsEvent('Modal Opened', 'clicked');
 	};
+
 	return (
 		<Box
 			display='flex'

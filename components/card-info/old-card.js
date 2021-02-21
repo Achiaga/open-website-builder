@@ -33,9 +33,9 @@ const OldCard = ({ title, body, listCard }) => {
 				{body}
 			</Text>
 			<List paddingTop='2rem' spacing='2'>
-				{Object.keys(listCard).map((item) => {
+				{Object.keys(listCard).map((item, index) => {
 					return (
-						<ListItem display='flex' alignItems='center'>
+						<ListItem key={index} display='flex' alignItems='center'>
 							<Box marginRight='0.5rem'>
 								<HandDown />
 							</Box>
