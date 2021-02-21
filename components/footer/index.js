@@ -5,7 +5,7 @@ import { useTranslation } from '../../hooks/translation';
 import { addUserToBetaList } from '../../helpers/transport';
 
 import LogoSvg from '../../assets/logo';
-import Button from '../commun/Button';
+import Button from '../commun/button';
 import Twitter from '../../assets/twitter';
 import { AnalyticsEvent } from '../../utils/analytics';
 
