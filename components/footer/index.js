@@ -1,33 +1,33 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import { Box, Input, Button, FormControl, Spinner } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
-import { addUserToBetaList } from '../../../helpers/transport'
+import { useState } from 'react';
+import Link from 'next/link';
+import { Box, Input, Button, FormControl, Spinner } from '@chakra-ui/react';
+import { useTranslation } from '../../hooks/translation';
+import { addUserToBetaList } from '../../helpers/transport';
 
-import LogoSvg from '../../../assets/logo'
+import LogoSvg from '../../assets/logo';
 // import Button from '../../../Components/Button';
-import Twitter from '../../../assets/twitter'
+import Twitter from '../../assets/twitter';
 
 const Features = () => {
-	const [t] = useTranslation()
-	const [emailValue, setEmailValue] = useState('')
-	const [isSuccess, setIsSuccess] = useState(false)
-	const [isLoading, setIsLoading] = useState(false)
+	const [t] = useTranslation();
+	const [emailValue, setEmailValue] = useState('');
+	const [isSuccess, setIsSuccess] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSubmitEmail = (e) => {
-		e.preventDefault()
-		setIsLoading(true)
+		e.preventDefault();
+		setIsLoading(true);
 		addUserToBetaList(emailValue)
 			.then((value) => {
-				if (value === 'success') setIsSuccess(true)
+				if (value === 'success') setIsSuccess(true);
 			})
-			.finally(() => setIsLoading(false))
-	}
+			.finally(() => setIsLoading(false));
+	};
 
 	const handleEmail = (e) => {
-		const { value } = e.target
-		setEmailValue(value)
-	}
+		const { value } = e.target;
+		setEmailValue(value);
+	};
 
 	return (
 		<Box
@@ -73,11 +73,11 @@ const Features = () => {
 							_active={{
 								bg: `${isSuccess ? 'green.500' : 'primary.500'}`,
 								transform: 'scale(0.98)',
-								borderColor: '#bec3c9'
+								borderColor: '#bec3c9',
 							}}
 							_focus={{
 								boxShadow:
-									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
+									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
 							}}>
 							{}
 							{isLoading ? (
@@ -105,7 +105,7 @@ const Features = () => {
 				</Link>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Features
+export default Features;
