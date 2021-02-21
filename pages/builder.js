@@ -26,25 +26,25 @@ const WebBuilder = ({
 	isDroppable
 }) => {
 	return (
-		// <div
-		// 	style={{
-		// 		display: 'flex',
-		// 		width: '50vw',
-		// 		margin: 'auto',
-		// 		flexDirection: 'row'
-		// 	}}>
-		<ReactGridLayout
-			cols={10}
-			rowHeight={50}
-			onDrop={onDrop}
-			isDroppable={isDroppable}
-			style={{ width: '500px', height: '100vh' }}
-			className='layout'
-			layout={layout}
-			onLayoutChange={onLayoutChange}>
-			{Layouts}
-		</ReactGridLayout>
-		// </div>
+		<div
+			style={{
+				display: 'flex',
+				width: '50vw',
+				margin: 'auto',
+				flexDirection: 'row'
+			}}>
+			<ReactGridLayout
+				cols={10}
+				rowHeight={50}
+				onDrop={onDrop}
+				isDroppable={isDroppable}
+				style={{ width: '500px', height: '100vh' }}
+				className='layout'
+				layout={layout}
+				onLayoutChange={onLayoutChange}>
+				{Layouts}
+			</ReactGridLayout>
+		</div>
 	)
 }
 
