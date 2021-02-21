@@ -16,6 +16,12 @@
     "next": "10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-ga": "^3.3.0"
+    "react-ga": "^3.3.0",
+    "react-grid-layout": "^1.2.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-plugin-react": "^7.22.0"
   }
 }
