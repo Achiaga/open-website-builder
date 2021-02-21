@@ -1,18 +1,18 @@
-import Image from 'next/image'
-import { Box, Text, useMediaQuery } from '@chakra-ui/react'
+import Image from 'next/image';
+import { Box, Text, useMediaQuery } from '@chakra-ui/react';
 
-import { useTranslation } from '../../../hooks/translation'
-import Button from '../../../Components/Button'
-import { AnalyticsEvent } from '../../../utils/analytics'
+import { useTranslation } from '../../hooks/translation';
+import { AnalyticsEvent } from '../../utils/analytics';
+import Button from '../commun/button';
 
 const Hero = ({ handleFreeTrial }) => {
-	const [t] = useTranslation()
-	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
+	const [t] = useTranslation();
+	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)');
 
 	const handleButton = (e) => {
-		AnalyticsEvent('modal_open', 'hero')
-		handleFreeTrial(e)
-	}
+		AnalyticsEvent('modal_open', 'hero');
+		handleFreeTrial(e);
+	};
 
 	return (
 		<Box
@@ -21,18 +21,18 @@ const Hero = ({ handleFreeTrial }) => {
 			flexDir={['column', 'row']}
 			justifyContent='space-between'
 			alignItems='center'
-			width={['90vw', '100%']}
-			marginTop={[0, '1.25rem']}
-			marginBottom={['2rem', '6.5rem']}
+			w={['90vw', '100%']}
+			mt={[0, '1.25rem']}
+			mb={['2rem', '6.5rem']}
 			pl={['0.5rem', '6rem']}>
 			<Box
 				display='flex'
 				flexDirection='column'
 				alignItems='baseline'
 				justifyContent='center'
-				marginleft={[0, '6.5rem']}
-				width={['100%', '30%']}
-				marginTop='2rem'>
+				ml={[0, '6.5rem']}
+				w={['100%', '30%']}
+				mt={4}>
 				<Text
 					as='h1'
 					fontWeight='bold'
@@ -53,8 +53,8 @@ const Hero = ({ handleFreeTrial }) => {
 						marginleft={'-10rem'}
 						src={'/hero.png'}
 						alt='hero_image'
-						width={720}
-						height={458}
+						w={720}
+						h={458}
 					/>
 				)}
 				<Text
@@ -65,7 +65,13 @@ const Hero = ({ handleFreeTrial }) => {
 					as='h2'>
 					{t.hero.subtitle}
 				</Text>
-				<Button onClick={handleButton} marginTop='1.5rem'>
+				<Button
+					fontSize='xl'
+					minW='7.5rem'
+					w='18rem'
+					h={14}
+					onClick={handleButton}
+					marginTop='1.5rem'>
 					{t.hero.button}
 				</Button>
 			</Box>
@@ -96,7 +102,7 @@ const Hero = ({ handleFreeTrial }) => {
 				)}
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Hero
+export default Hero;

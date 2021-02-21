@@ -1,39 +1,39 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import { Box, Input, Button, FormControl, Spinner } from '@chakra-ui/react'
-import { useTranslation } from '../../../hooks/translation'
-import { addUserToBetaList } from '../../../helpers/transport'
+import { useState } from 'react';
+import Link from 'next/link';
+import { Box, Input, Spinner } from '@chakra-ui/react';
+import { useTranslation } from '../../hooks/translation';
+import { addUserToBetaList } from '../../helpers/transport';
 
-import LogoSvg from '../../../assets/logo'
-// import Button from '../../../Components/Button';
-import Twitter from '../../../assets/twitter'
-import { AnalyticsEvent } from '../../../utils/analytics'
+import LogoSvg from '../../assets/logo';
+import Button from '../commun/button';
+import Twitter from '../../assets/twitter';
+import { AnalyticsEvent } from '../../utils/analytics';
 
 const Features = () => {
-	const [t] = useTranslation()
-	const [emailValue, setEmailValue] = useState('')
-	const [isSuccess, setIsSuccess] = useState(false)
-	const [isLoading, setIsLoading] = useState(false)
+	const [t] = useTranslation();
+	const [emailValue, setEmailValue] = useState('');
+	const [isSuccess, setIsSuccess] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSubmitEmail = (e) => {
-		e.preventDefault()
-		if (isLoading || !emailValue) return
-		setIsLoading(true)
-		AnalyticsEvent('signup', 'footer')
+		e.preventDefault();
+		if (isLoading || !emailValue) return;
+		setIsLoading(true);
+		AnalyticsEvent('signup', 'footer');
 		addUserToBetaList(emailValue)
 			.then((value) => {
 				if (value === 'success') {
-					setIsSuccess(true)
-					setEmailValue('')
+					setIsSuccess(true);
+					setEmailValue('');
 				}
 			})
-			.finally(() => setIsLoading(false))
-	}
+			.finally(() => setIsLoading(false));
+	};
 
 	const handleEmail = (e) => {
-		const { value } = e.target
-		setEmailValue(value)
-	}
+		const { value } = e.target;
+		setEmailValue(value);
+	};
 
 	return (
 		<Box
@@ -48,7 +48,7 @@ const Features = () => {
 				<LogoSvg />
 			</Box>
 			<Box width={['200px', '537px']} d={['none', 'block']}>
-				<form onSubmit={handleSubmitEmail}>
+				<Box as='form' onSubmit={handleSubmitEmail}>
 					<Box
 						display='flex'
 						justifyContent='space-between'
@@ -68,24 +68,14 @@ const Features = () => {
 						<Button
 							type='submit'
 							w='212px'
-							color='white'
 							fontSize='18px'
-							fontWeight='bold'
 							bg={isSuccess ? 'green.500' : 'primary.500'}
-							borderRadius='5px'
-							minWidth='7.5rem'
-							height='2.5rem'
 							_hover={{ bg: `${isSuccess ? 'green.500' : 'primary.500'}` }}
 							_active={{
 								bg: `${isSuccess ? 'green.500' : 'primary.500'}`,
 								transform: 'scale(0.98)',
-								borderColor: '#bec3c9'
-							}}
-							_focus={{
-								boxShadow:
-									'0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)'
+								borderColor: '#bec3c9',
 							}}>
-							{}
 							{isLoading ? (
 								<Spinner />
 							) : isSuccess ? (
@@ -95,7 +85,7 @@ const Features = () => {
 							)}
 						</Button>
 					</Box>
-				</form>
+				</Box>
 			</Box>
 			<Box
 				pos='absolute'
@@ -111,7 +101,7 @@ const Features = () => {
 				</Link>
 			</Box>
 		</Box>
-	)
-}
+	);
+};
 
-export default Features
+export default Features;

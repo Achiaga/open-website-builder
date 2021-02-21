@@ -1,15 +1,12 @@
 import { Button } from '@chakra-ui/react';
 
-const DefaultButton = ({ children, ...props }) => {
+const ButtonComponent = ({ children, ...props }) => {
 	return (
 		<Button
-			fontSize='lg'
 			fontWeight='bold'
 			color='white'
 			bg='primary.500'
 			borderRadius='5px'
-			minWidth='7.5rem'
-			height='3rem'
 			_hover={{ bg: 'primary.500' }}
 			_active={{
 				bg: 'primary.500',
@@ -26,4 +23,4 @@ const DefaultButton = ({ children, ...props }) => {
 	);
 };
 
-export default DefaultButton;
+export default ButtonComponent;
