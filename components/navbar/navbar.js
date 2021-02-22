@@ -28,7 +28,7 @@ const Navbar = ({ handleFreeTrial }) => {
 			h={[70, 100]}
 			pr={[4, 28]}
 			pl={[4, 24]}
-			pt={[4, 0]}
+			pt={[8, 0]}
 			justify='space-between'
 			align='center'
 			fontFamily='Montserrat'>

@@ -22,7 +22,7 @@ const Hero = ({ handleFreeTrial }) => {
 			justifyContent='space-between'
 			alignItems='center'
 			w={['90vw', '100%']}
-			mt={[0, '1.25rem']}
+			mt={['1rem', '1.25rem']}
 			mb={['2rem', '6.5rem']}
 			pl={['0.5rem', '6rem']}>
 			<Box
@@ -53,8 +53,8 @@ const Hero = ({ handleFreeTrial }) => {
 						marginleft={'-10rem'}
 						src={'/hero.png'}
 						alt='hero_image'
-						w={720}
-						h={458}
+						width={720}
+						height={458}
 					/>
 				)}
 				<Text
