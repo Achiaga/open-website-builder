@@ -4,13 +4,16 @@ export const generateLayoutBlock = (blockKey, blockInfo) => {
 	if (!blockInfo) return null
 	const Block = blocks[blockInfo.type]
 	return (
-		<div key={blockKey} style={{ background: 'lightgray' }}>
+		<div
+			key={blockKey}
+			style={{ background: 'lightgray' }}
+			onClick={() => console.log('click')}>
 			<Block data={blockInfo.data} blockKey={blockKey} />
 		</div>
 	)
 }
 
-export const generateBlock = (blockInfo, layoutItemInfo) => {
+export const generatePreviewBlock = (blockInfo, layoutItemInfo) => {
 	if (!blockInfo?.type) return null
 	const { w, h, x, y, i } = layoutItemInfo || {}
 	const Block = blocks[blockInfo.type]
@@ -33,9 +36,8 @@ export const generateLayout = (layoutBlocks) => {
 }
 
 export const generatePageCode = (layout, layoutBlocks) => {
-	const page = layout.map((layoutItem) => {
+	return layout.map((layoutItem) => {
 		const BlockKey = layoutItem.i
-		return generateBlock(layoutBlocks[BlockKey], layoutItem)
+		return generatePreviewBlock(layoutBlocks[BlockKey], layoutItem)
 	})
-	return page
 }

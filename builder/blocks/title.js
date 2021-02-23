@@ -1,4 +1,4 @@
-import { useRef, useState, forwardRef, useEffect } from 'react'
+import { useRef, useState, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Text } from '@chakra-ui/react'
 
@@ -16,12 +16,6 @@ const Title = forwardRef((props, ref) => {
 	)
 })
 Title.displayName = 'Hello'
-
-Title.propTypes = {
-	onKeyUp: PropTypes.func,
-	text: PropTypes.string,
-	contentEditable: PropTypes.bool
-}
 
 function EditableTitle({ data, blockKey }) {
 	const [text] = useState(data?.text)
@@ -79,7 +73,10 @@ const SelectBlock = ({ isPreview, data, blockKey }) => {
 
 const DataPropTypes = PropTypes.shape({
 	text: PropTypes.string,
-	callback: PropTypes.func
+	callback: PropTypes.func,
+	fontSize: PropTypes.string,
+	textAlign: PropTypes.string,
+	color: PropTypes.string
 })
 
 SelectBlock.propTypes = {
@@ -96,5 +93,7 @@ EditableTitle.propTypes = {
 SimpleTitle.propTypes = {
 	data: DataPropTypes
 }
+
+Title.propTypes = { ...DataPropTypes }
 
 export default SelectBlock
