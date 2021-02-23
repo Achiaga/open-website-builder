@@ -10,18 +10,18 @@ export const generateLayoutBlock = (blockKey, blockInfo) => {
 	)
 }
 
-export const generateBlock = (blockKey, blockInfo, layoutItemInfo) => {
+export const generateBlock = (blockInfo, layoutItemInfo) => {
 	if (!blockInfo?.type) return null
-	const { w, h, x, y } = layoutItemInfo || {}
+	const { w, h, x, y, i } = layoutItemInfo || {}
 	const Block = blocks[blockInfo.type]
 	return (
 		<div
-			key={blockKey}
+			key={i}
 			style={{
 				gridColumn: `${x + 1} /  ${x + 1 + w}`,
 				gridRow: `${y + 1} /  ${y + 1 + h}`
 			}}>
-			<Block data={blockInfo.data} />
+			<Block data={blockInfo.data} isPreview />
 		</div>
 	)
 }
@@ -35,7 +35,7 @@ export const generateLayout = (layoutBlocks) => {
 export const generatePageCode = (layout, layoutBlocks) => {
 	const page = layout.map((layoutItem) => {
 		const BlockKey = layoutItem.i
-		return generateBlock(BlockKey, layoutBlocks[BlockKey], layoutItem)
+		return generateBlock(layoutBlocks[BlockKey], layoutItem)
 	})
 	return page
 }
