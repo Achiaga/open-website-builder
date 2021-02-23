@@ -36,10 +36,10 @@ const initialLB = {
 	}
 }
 
-const editTitleBlock = (blocks, id, value) => {
+const editTitleBlock = (blocks, id, data) => {
 	return {
 		...blocks,
-		[id]: { ...blocks[id], data: { ...blocks[id].data, text: value } }
+		[id]: { ...blocks[id], data }
 	}
 }
 
@@ -64,7 +64,13 @@ const addTextBlock = (newId, blocks, callback) => {
 		...blocks,
 		[newId]: {
 			type: 'title',
-			data: { text: 'Change the ext', callback }
+			data: {
+				text: 'Change the ext',
+				callback,
+				fontSize: '20px',
+				textAlign: 'center',
+				color: 'blue'
+			}
 		}
 	}
 }
@@ -120,11 +126,7 @@ const Builder = () => {
 	const [layout, setLayout] = useState(initialLayout)
 
 	const handleCallback = (value, blockId) => {
-		setLayoutBlocks((layoutBlocks) => {
-			const block = editBlock(layoutBlocks, blockId, value)
-			console.log({ block })
-			return block
-		})
+		setLayoutBlocks((layoutBlocks) => editBlock(layoutBlocks, blockId, value))
 	}
 
 	function handleAddItemText() {
