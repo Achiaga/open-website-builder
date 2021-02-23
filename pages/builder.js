@@ -37,6 +37,7 @@ const initialLB = {
 }
 
 const editTitleBlock = (blocks, id, data) => {
+	console.log(data)
 	return {
 		...blocks,
 		[id]: { ...blocks[id], data }

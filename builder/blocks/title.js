@@ -6,7 +6,8 @@ const Title = forwardRef((props, ref) => {
 	return (
 		<Text
 			fontSize={props?.fontSize}
-			textAlign='center'
+			textAlign={props?.textAlign}
+			color={props?.color}
 			onKeyUp={props?.onKeyUp}
 			contentEditable={props?.contentEditable}
 			ref={ref}>
@@ -34,10 +35,26 @@ function EditableTitle({ data, blockKey }) {
 		const newData = { ...data, fontSize: '30px' }
 		data.callback(newData, blockKey)
 	}
+	function changeAligment() {
+		const newData = { ...data, textAlign: 'left' }
+		data.callback(newData, blockKey)
+	}
+	function changeColor() {
+		const newData = { ...data, color: 'red' }
+		data.callback(newData, blockKey)
+	}
 	return (
 		<div>
-			<Box as='button' pos='absolute' top='-20px' onClick={changeFontSize}>
-				Up font
+			<Box pos='absolute' top='-20px' backgroundColor='black' color='white'>
+				<Box as='button' onClick={changeFontSize}>
+					Up font
+				</Box>
+				<Box as='button' onClick={changeAligment}>
+					textAlign
+				</Box>
+				<Box as='button' onClick={changeColor}>
+					change Color
+				</Box>
 			</Box>
 			<Title
 				onKeyUp={handleKeyDown}
@@ -45,6 +62,8 @@ function EditableTitle({ data, blockKey }) {
 				ref={titleRef}
 				text={text}
 				fontSize={data.fontSize}
+				textAlign={data.textAlign}
+				color={data.color}
 			/>
 		</div>
 	)
