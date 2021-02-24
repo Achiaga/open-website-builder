@@ -29,7 +29,7 @@ export const generatePreviewBlock = (blockInfo, layoutItemInfo) => {
 	)
 }
 
-export const generateLayout = (layoutBlocks) => {
+export const generateBuilderView = (layoutBlocks) => {
 	return Object.entries(layoutBlocks).map(([blockKey, blockInfo]) => {
 		return generateLayoutBlock(blockKey, blockInfo)
 	})

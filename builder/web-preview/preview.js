@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { generatePageCode } from '../helpers'
+import PropTypes from 'prop-types'
 
-const WebPreview = ({ layout, layoutBlocks }) => {
+const WebPreview = ({ layout, blocksConfig }) => {
 	const [pageDesign, setPageDesign] = useState(null)
 
 	useEffect(() => {
-		setPageDesign(generatePageCode(layout, layoutBlocks))
-	}, [layout, layoutBlocks])
+		setPageDesign(generatePageCode(layout, blocksConfig))
+	}, [layout, blocksConfig])
 
 	return (
 		<div
@@ -21,6 +22,11 @@ const WebPreview = ({ layout, layoutBlocks }) => {
 			{pageDesign}
 		</div>
 	)
+}
+
+WebPreview.propTypes = {
+	layout: PropTypes.any,
+	blocksConfig: PropTypes.any
 }
 
 export default WebPreview

@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { generateLayout } from '../builder/helpers'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import WebBuilder from '../builder/web-builder'
+import { WebBuilder } from '../builder/web-builder'
 import { WebPreview } from '../builder/web-preview'
 import { initialLayout, initialLB } from '../builder/initial-data'
+import { Box } from '@chakra-ui/react'
 
 const TitleBlock = ({ setNewBlock }) => {
 	return (
@@ -48,31 +48,23 @@ const BlocksSidebar = ({ setNewBlock }) => {
 }
 
 const Builder = () => {
-	const [layoutBlocks, setLayoutBlocks] = useState(initialLB)
+	const [blocksConfig, udpateBlocksConfig] = useState(initialLB)
 	const [newBlockType, setNewBlockType] = useState(null)
 	const [layout, setLayout] = useState(initialLayout)
 
 	return (
-		<>
-			<div
-				style={{
-					display: 'flex',
-					margin: 'auto',
-					flexDirection: 'row'
-				}}>
-				<BlocksSidebar setNewBlock={setNewBlockType} />
-				<WebBuilder
-					layout={layout}
-					isDroppable={true}
-					Blocks={generateLayout(layoutBlocks)}
-					newBlockType={newBlockType}
-					setLayoutBlocks={setLayoutBlocks}
-					setLayout={setLayout}
-					layoutBlocks={layoutBlocks}
-				/>
-				<WebPreview layout={layout} layoutBlocks={layoutBlocks} />
-			</div>
-		</>
+		<Box d='flex' m='auto' flexDir='row'>
+			<BlocksSidebar setNewBlock={setNewBlockType} />
+			<WebBuilder
+				layout={layout}
+				isDroppable={true}
+				newBlockType={newBlockType}
+				setLayoutBlocks={udpateBlocksConfig}
+				updateLayout={setLayout}
+				blocksConfig={blocksConfig}
+			/>
+			<WebPreview layout={layout} blocksConfig={blocksConfig} />
+		</Box>
 	)
 }
 

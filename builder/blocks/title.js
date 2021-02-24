@@ -2,7 +2,7 @@ import { useRef, useState, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Text } from '@chakra-ui/react'
 
-const Title = forwardRef((props, ref) => {
+const GenericTitle = forwardRef((props, ref) => {
 	return (
 		<Text
 			fontSize={props?.fontSize}
@@ -15,9 +15,9 @@ const Title = forwardRef((props, ref) => {
 		</Text>
 	)
 })
-Title.displayName = 'Hello'
+GenericTitle.displayName = 'Hello'
 
-function EditableTitle({ data, blockKey }) {
+function BuilderTitle({ data, blockKey }) {
 	const [text] = useState(data?.text)
 	const titleRef = useRef(null)
 	function handleKeyDown() {
@@ -50,7 +50,7 @@ function EditableTitle({ data, blockKey }) {
 					change Color
 				</Box>
 			</Box>
-			<Title
+			<GenericTitle
 				onKeyUp={handleKeyDown}
 				contentEditable
 				ref={titleRef}
@@ -62,13 +62,13 @@ function EditableTitle({ data, blockKey }) {
 		</div>
 	)
 }
-const SimpleTitle = ({ data }) => {
-	return <Title text={data?.text} {...data} />
+const PreviewTitle = ({ data }) => {
+	return <GenericTitle text={data?.text} {...data} />
 }
 
 const SelectBlock = ({ isPreview, data, blockKey }) => {
-	if (isPreview) return <SimpleTitle data={data} />
-	return <EditableTitle data={data} blockKey={blockKey} />
+	if (isPreview) return <PreviewTitle data={data} />
+	return <BuilderTitle data={data} blockKey={blockKey} />
 }
 
 const DataPropTypes = PropTypes.shape({
@@ -84,16 +84,16 @@ SelectBlock.propTypes = {
 	data: DataPropTypes,
 	blockKey: PropTypes.string
 }
-EditableTitle.propTypes = {
+BuilderTitle.propTypes = {
 	isPreview: PropTypes.bool,
 	data: DataPropTypes,
 	blockKey: PropTypes.string
 }
 
-SimpleTitle.propTypes = {
+PreviewTitle.propTypes = {
 	data: DataPropTypes
 }
 
-Title.propTypes = { ...DataPropTypes }
+GenericTitle.propTypes = { ...DataPropTypes }
 
 export default SelectBlock
