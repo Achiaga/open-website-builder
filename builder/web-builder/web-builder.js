@@ -47,9 +47,10 @@ const addTextBlock = (newId, blocks, editBlock) => {
 			data: {
 				text: 'Change the ext',
 				editBlock,
-				fontSize: '20px',
+				fontSize: '1rem',
 				textAlign: 'center',
-				color: 'blue'
+				fontColor: '#4a40ce',
+				bgColor: '#fff'
 			}
 		}
 	}
@@ -63,7 +64,7 @@ const editDraggableItemProperty = (layout, editableBlock) => {
 		if (layoutItem.i === editableBlock) {
 			return { ...layoutItem, isDraggable: !layoutItem.isDraggable }
 		}
-		return layoutItem
+		return { ...layoutItem, isDraggable: true }
 	})
 }
 
@@ -101,7 +102,7 @@ const WebBuilder = ({
 		updateLayout(layout)
 	}
 	return (
-		<Box d='flex' w='50vw' m='auto' flexDir='row'>
+		<Box d='flex' w='50vw' m='auto' flexDir='row' onClick={handleEditBlock}>
 			<ReactGridLayout
 				cols={GRID_COLUMNS}
 				rowHeight={ROW_HEIGHT}
