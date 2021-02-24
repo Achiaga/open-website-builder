@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { generatePageCode } from '../helpers'
 import PropTypes from 'prop-types'
+import { Box } from '@chakra-ui/react'
 
 const WebPreview = ({ layout, blocksConfig }) => {
 	const [pageDesign, setPageDesign] = useState(null)
@@ -10,17 +11,15 @@ const WebPreview = ({ layout, blocksConfig }) => {
 	}, [layout, blocksConfig])
 
 	return (
-		<div
-			style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(10, 1fr)',
-				gridTemplateRows: 'repeat(10, 1fr)',
-				width: '50vw',
-				height: '100vh',
-				borderLeft: '1px solid black'
-			}}>
+		<Box
+			d='grid'
+			gridTemplateColumns='repeat(10, 1fr)'
+			gridTemplateRows='repeat(10, 1fr)'
+			w='50vw'
+			h='100vh'
+			border='1px solid black'>
 			{pageDesign}
-		</div>
+		</Box>
 	)
 }
 
