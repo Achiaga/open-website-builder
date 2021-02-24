@@ -1,53 +1,58 @@
+import { Box } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const TitleBlock = ({ setNewBlock }) => {
+const TitleBlock = ({ setNewBlockType }) => {
 	return (
-		<div
-			style={{ height: '50px', width: '50px', border: '1px solid' }}
+		<Box
+			h='50px'
+			w='50px'
+			border='1px solid'
 			className='droppable-element'
 			draggable={true}
 			unselectable='on'
 			onDragStart={(e) => {
 				e.dataTransfer.setData('text/plain', '')
-				setNewBlock('title')
+				setNewBlockType('title')
 			}}>
 			Title
-		</div>
+		</Box>
 	)
 }
-const ImageBlock = ({ setNewBlock }) => {
+const ImageBlock = ({ setNewBlockType }) => {
 	return (
-		<div
-			style={{ height: '50px', width: '50px', border: '1px solid' }}
+		<Box
+			h='50px'
+			w='50px'
+			border='1px solid'
 			className='droppable-element'
 			draggable={true}
 			unselectable='on'
 			onDragStart={(e) => {
 				e.dataTransfer.setData('text/plain', '')
-				setNewBlock('image')
+				setNewBlockType('image')
 			}}>
 			Image
-		</div>
+		</Box>
 	)
 }
 
-const BuilderSidebar = ({ setNewBlock }) => {
+const BuilderSidebar = ({ setNewBlockType }) => {
 	return (
 		<>
-			<TitleBlock setNewBlock={setNewBlock} />
-			<ImageBlock setNewBlock={setNewBlock} />
+			<TitleBlock setNewBlockType={setNewBlockType} />
+			<ImageBlock setNewBlockType={setNewBlockType} />
 		</>
 	)
 }
 
 BuilderSidebar.propTypes = {
-	setNewBlock: PropTypes.any
+	setNewBlockType: PropTypes.any
 }
 ImageBlock.propTypes = {
-	setNewBlock: PropTypes.any
+	setNewBlockType: PropTypes.any
 }
 TitleBlock.propTypes = {
-	setNewBlock: PropTypes.any
+	setNewBlockType: PropTypes.any
 }
 
 export default BuilderSidebar

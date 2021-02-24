@@ -1,15 +1,27 @@
+import { Box } from '@chakra-ui/react'
 import blocks from './blocks'
 
-export const generateLayoutBlock = (blockKey, blockInfo) => {
+export const generateBuilderBlock = (
+	blockKey,
+	blockInfo,
+	setIsEditable,
+	layoutItemInfo
+) => {
 	if (!blockInfo) return null
 	const Block = blocks[blockInfo.type]
+	const isDraggable = layoutItemInfo.isDraggable || false
 	return (
-		<div
+		<Box
+			border='1px solid'
+			borderColor={isDraggable ? 'transparent' : 'blue'}
 			key={blockKey}
-			style={{ background: 'lightgray' }}
-			onClick={() => console.log('click')}>
-			<Block data={blockInfo.data} blockKey={blockKey} />
-		</div>
+			onDoubleClick={() => setIsEditable(blockKey)}>
+			<Block
+				data={blockInfo.data}
+				blockKey={blockKey}
+				isEditable={!isDraggable}
+			/>
+		</Box>
 	)
 }
 
@@ -17,6 +29,7 @@ export const generatePreviewBlock = (blockInfo, layoutItemInfo) => {
 	if (!blockInfo?.type) return null
 	const { w, h, x, y, i } = layoutItemInfo || {}
 	const Block = blocks[blockInfo.type]
+
 	return (
 		<div
 			key={i}
@@ -29,9 +42,10 @@ export const generatePreviewBlock = (blockInfo, layoutItemInfo) => {
 	)
 }
 
-export const generateBuilderView = (layoutBlocks) => {
-	return Object.entries(layoutBlocks).map(([blockKey, blockInfo]) => {
-		return generateLayoutBlock(blockKey, blockInfo)
+export const generateBuilderBlocks = (blocksConfig, setIsEditable, layout) => {
+	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
+		const layoutItem = layout.find((layoutItem) => layoutItem.i === blockKey)
+		return generateBuilderBlock(blockKey, blockInfo, setIsEditable, layoutItem)
 	})
 }
 

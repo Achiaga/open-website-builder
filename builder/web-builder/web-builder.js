@@ -7,7 +7,7 @@ import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 import { imageURL } from '../initial-data'
 import { Box } from '@chakra-ui/react'
-import { generateBuilderView } from '../helpers'
+import { generateBuilderBlocks } from '../helpers'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -25,9 +25,9 @@ const editBlock = (blocks, id, value) => {
 	}
 }
 
-const addBlock = (newId, blockType, blocks, callback) => {
-	if (blockType === 'title') return addTextBlock(newId, blocks, callback)
-	if (blockType === 'image') return addImageBlock(newId, blocks, callback)
+const addBlock = (newId, blockType, blocks, editBlock) => {
+	if (blockType === 'title') return addTextBlock(newId, blocks, editBlock)
+	if (blockType === 'image') return addImageBlock(newId, blocks, editBlock)
 }
 
 const addImageBlock = (newId, blocks) => {
@@ -39,14 +39,14 @@ const addImageBlock = (newId, blocks) => {
 		}
 	}
 }
-const addTextBlock = (newId, blocks, callback) => {
+const addTextBlock = (newId, blocks, editBlock) => {
 	return {
 		...blocks,
 		[newId]: {
 			type: 'title',
 			data: {
 				text: 'Change the ext',
-				callback,
+				editBlock,
 				fontSize: '20px',
 				textAlign: 'center',
 				color: 'blue'
@@ -58,6 +58,15 @@ const addTextBlock = (newId, blocks, callback) => {
 const GRID_COLUMNS = 10
 const ROW_HEIGHT = 50
 
+const editDraggableItemProperty = (layout, editableBlock) => {
+	return layout.map((layoutItem) => {
+		if (layoutItem.i === editableBlock) {
+			return { ...layoutItem, isDraggable: !layoutItem.isDraggable }
+		}
+		return layoutItem
+	})
+}
+
 const WebBuilder = ({
 	layout,
 	isDroppable,
@@ -66,7 +75,9 @@ const WebBuilder = ({
 	newBlockType,
 	blocksConfig
 }) => {
-	const BuilderBlocks = generateBuilderView(blocksConfig)
+	function handleEditBlock(editableBlock) {
+		updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
+	}
 
 	const editBlockCallback = (value, blockId) => {
 		udpateBlocksConfig((blocksConfig) =>
@@ -74,14 +85,14 @@ const WebBuilder = ({
 		)
 	}
 	function onDrop(layout, droppedBlockLayout) {
-		const blockID = uuid()
-		const newLayout = [
-			...layout,
-			{ ...droppedBlockLayout, i: blockID.toString() }
-		]
-		updateLayout(newLayout)
+		updateLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
-			addBlock(blockID, newBlockType, blocksConfig, editBlockCallback)
+			addBlock(
+				droppedBlockLayout.i,
+				newBlockType,
+				blocksConfig,
+				editBlockCallback
+			)
 		)
 	}
 
@@ -89,19 +100,19 @@ const WebBuilder = ({
 		if (layout.length !== Object.keys(blocksConfig).length) return
 		updateLayout(layout)
 	}
-
 	return (
 		<Box d='flex' w='50vw' m='auto' flexDir='row'>
 			<ReactGridLayout
 				cols={GRID_COLUMNS}
 				rowHeight={ROW_HEIGHT}
 				onDrop={onDrop}
+				droppingItem={{ i: uuid(), w: 4, h: 4 }}
 				isDroppable={isDroppable}
 				style={{ width: '500px', height: '100vh' }}
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
-				{BuilderBlocks}
+				{generateBuilderBlocks(blocksConfig, handleEditBlock, layout)}
 			</ReactGridLayout>
 		</Box>
 	)

@@ -12,10 +12,9 @@ const Builder = () => {
 	const [blocksConfig, udpateBlocksConfig] = useState(initialLB)
 	const [newBlockType, setNewBlockType] = useState(null)
 	const [layout, setLayout] = useState(initialLayout)
-
 	return (
 		<Box d='flex' m='auto' flexDir='row'>
-			<BuilderSidebar setNewBlock={setNewBlockType} />
+			<BuilderSidebar setNewBlockType={setNewBlockType} />
 			<WebBuilder
 				layout={layout}
 				isDroppable={true}

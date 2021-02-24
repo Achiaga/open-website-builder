@@ -5,6 +5,7 @@ import { Box, Text } from '@chakra-ui/react'
 const GenericTitle = forwardRef((props, ref) => {
 	return (
 		<Text
+			onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
 			fontSize={props?.fontSize}
 			textAlign={props?.textAlign}
 			color={props?.color}
@@ -17,47 +18,57 @@ const GenericTitle = forwardRef((props, ref) => {
 })
 GenericTitle.displayName = 'Hello'
 
-function BuilderTitle({ data, blockKey }) {
+function BuilderTitle({ data, blockKey, isEditable }) {
+	const { editBlock, fontSize, textAlign, color } = data
 	const [text] = useState(data?.text)
 	const titleRef = useRef(null)
 	function handleKeyDown() {
 		const value = titleRef.current?.innerText
-		const newData = { ...data, text: value }
-		data.callback(newData, blockKey)
+		const updatedBlock = { ...data, text: value }
+		editBlock(updatedBlock, blockKey)
 	}
 	function changeFontSize() {
-		const newData = { ...data, fontSize: '30px' }
-		data.callback(newData, blockKey)
+		const updatedBlock = { ...data, fontSize: '30px' }
+		editBlock(updatedBlock, blockKey)
 	}
 	function changeAligment() {
-		const newData = { ...data, textAlign: 'left' }
-		data.callback(newData, blockKey)
+		const updatedBlock = { ...data, textAlign: 'left' }
+		editBlock(updatedBlock, blockKey)
 	}
 	function changeColor() {
-		const newData = { ...data, color: 'red' }
-		data.callback(newData, blockKey)
+		const updatedBlock = { ...data, color: 'red' }
+		editBlock(updatedBlock, blockKey)
 	}
+
 	return (
 		<div>
-			<Box pos='absolute' top='-20px' backgroundColor='black' color='white'>
-				<Box as='button' onClick={changeFontSize}>
-					Up font
+			{isEditable && (
+				<Box
+					pos='absolute'
+					top='-20px'
+					backgroundColor='black'
+					color='white'
+					transform='translate(0px, -100%)'>
+					<Box as='button' onClick={changeFontSize}>
+						Up font
+					</Box>
+					<Box as='button' onClick={changeAligment}>
+						textAlign
+					</Box>
+					<Box as='button' onClick={changeColor}>
+						change Color
+					</Box>
 				</Box>
-				<Box as='button' onClick={changeAligment}>
-					textAlign
-				</Box>
-				<Box as='button' onClick={changeColor}>
-					change Color
-				</Box>
-			</Box>
+			)}
 			<GenericTitle
+				isEditable={isEditable}
 				onKeyUp={handleKeyDown}
-				contentEditable
+				contentEditable={isEditable}
 				ref={titleRef}
 				text={text}
-				fontSize={data.fontSize}
-				textAlign={data.textAlign}
-				color={data.color}
+				fontSize={fontSize}
+				textAlign={textAlign}
+				color={color}
 			/>
 		</div>
 	)
@@ -66,26 +77,30 @@ const PreviewTitle = ({ data }) => {
 	return <GenericTitle text={data?.text} {...data} />
 }
 
-const SelectBlock = ({ isPreview, data, blockKey }) => {
+const SelectTitleBlock = ({ isPreview, data, blockKey, isEditable }) => {
 	if (isPreview) return <PreviewTitle data={data} />
-	return <BuilderTitle data={data} blockKey={blockKey} />
+	return (
+		<BuilderTitle data={data} blockKey={blockKey} isEditable={isEditable} />
+	)
 }
 
 const DataPropTypes = PropTypes.shape({
 	text: PropTypes.string,
-	callback: PropTypes.func,
+	editBlock: PropTypes.func,
 	fontSize: PropTypes.string,
 	textAlign: PropTypes.string,
 	color: PropTypes.string
 })
 
-SelectBlock.propTypes = {
+SelectTitleBlock.propTypes = {
 	isPreview: PropTypes.bool,
+	isEditable: PropTypes.bool,
 	data: DataPropTypes,
 	blockKey: PropTypes.string
 }
 BuilderTitle.propTypes = {
 	isPreview: PropTypes.bool,
+	isEditable: PropTypes.bool,
 	data: DataPropTypes,
 	blockKey: PropTypes.string
 }
@@ -96,4 +111,4 @@ PreviewTitle.propTypes = {
 
 GenericTitle.propTypes = { ...DataPropTypes }
 
-export default SelectBlock
+export default SelectTitleBlock
