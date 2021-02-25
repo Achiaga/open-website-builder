@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
@@ -68,6 +68,33 @@ const editDraggableItemProperty = (layout, editableBlock) => {
 	})
 }
 
+const inceptionLayout = [
+	{ i: 'a1', x: 0, y: 0, w: 1, h: 2 },
+	{ i: 'b2', x: 1, y: 0, w: 3, h: 2 }
+]
+
+const Inception = () => {
+	const [layout, setLayout] = useState(inceptionLayout)
+	const onLayoutChange = (layout) => {
+		console.log(layout)
+		setLayout(layout)
+	}
+	return (
+		<ReactGridLayout
+			cols={GRID_COLUMNS}
+			rowHeight={ROW_HEIGHT}
+			className='layout'
+			width={600}
+			onLayoutChange={onLayoutChange}
+			layout={layout}>
+			<div key='a1'>Hola A</div>
+			<div key='b2'>
+				<img src={imageURL} />
+			</div>
+		</ReactGridLayout>
+	)
+}
+
 const WebBuilder = ({
 	layout,
 	isDroppable,
@@ -77,7 +104,7 @@ const WebBuilder = ({
 	blocksConfig
 }) => {
 	function handleEditBlock(editableBlock) {
-		updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
+		// updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
 	}
 
 	const editBlockCallback = (value, blockId) => {
@@ -98,6 +125,7 @@ const WebBuilder = ({
 	}
 
 	const onLayoutChange = (layout) => {
+		console.log('onLayoutChange')
 		if (layout.length !== Object.keys(blocksConfig).length) return
 		updateLayout(layout)
 	}
@@ -113,6 +141,9 @@ const WebBuilder = ({
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
+				<div key='e' style={{ border: '1px solid', background: 'lightgray' }}>
+					{Inception()}
+				</div>
 				{generateBuilderBlocks(blocksConfig, handleEditBlock, layout)}
 			</ReactGridLayout>
 		</Box>
