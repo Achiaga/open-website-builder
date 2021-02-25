@@ -5,8 +5,8 @@ export const initialLayout = [
 	{ i: 'a', x: 0, y: 0, w: 3, h: 2, isDraggable: true },
 	{ i: 'b', x: 3, y: 0, w: 3, h: 2, isDraggable: true },
 	{ i: 'c', x: 6, y: 0, w: 4, h: 2, isDraggable: true },
-	{ i: 'd', x: 0, y: 2, w: 3, h: 2, isDraggable: true },
-	{ i: 'e', x: 0, y: 4, w: 10, h: 4, isDraggable: false }
+	{ i: 'd', x: 0, y: 2, w: 3, h: 2, isDraggable: true }
+	// { i: 'e', x: 0, y: 4, w: 5, h: 4, isDraggable: false }
 ]
 
 export const initialLB = {

@@ -12,10 +12,11 @@ const WebPreview = ({ layout, blocksConfig }) => {
 
 	return (
 		<Box
+			p='10px'
 			d='grid'
 			gridTemplateColumns='repeat(10, 1fr)'
-			gridTemplateRows='repeat(10, 1fr)'
-			w='50vw'
+			gridTemplateRows='repeat(14, 1fr)'
+			w='500px'
 			h='100vh'
 			border='1px solid black'>
 			{pageDesign}

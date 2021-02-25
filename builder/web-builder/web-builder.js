@@ -69,27 +69,42 @@ const editDraggableItemProperty = (layout, editableBlock) => {
 }
 
 const inceptionLayout = [
-	{ i: 'a1', x: 0, y: 0, w: 1, h: 2 },
-	{ i: 'b2', x: 1, y: 0, w: 3, h: 2 }
+	{ i: 'a1', x: 0, y: 0, w: 1, h: 2, isBounded: true },
+	{ i: 'b2', x: 1, y: 0, w: 3, h: 2, isBounded: true }
 ]
 
-const Inception = () => {
+const Inception = (reRender) => {
 	const [layout, setLayout] = useState(inceptionLayout)
 	const onLayoutChange = (layout) => {
 		console.log(layout)
 		setLayout(layout)
 	}
+	console.log(reRender)
 	return (
 		<ReactGridLayout
-			cols={GRID_COLUMNS}
-			rowHeight={ROW_HEIGHT}
+			autoSize
+			useCSSTransforms={false}
+			key={reRender ? 'a' : 'b'}
+			cols={20}
+			rowHeight={10}
+			height={250}
 			className='layout'
-			width={600}
 			onLayoutChange={onLayoutChange}
 			layout={layout}>
-			<div key='a1'>Hola A</div>
+			<div key='a1'>
+				<div contentEditable> Hola A</div>
+			</div>
 			<div key='b2'>
-				<img src={imageURL} />
+				<div
+					style={{
+						backgroundImage: `url(${imageURL})`,
+						width: '100%',
+						height: '100%',
+						backgroundPosition: '50% 50%',
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: 'cover'
+					}}
+				/>
 			</div>
 		</ReactGridLayout>
 	)
@@ -103,8 +118,9 @@ const WebBuilder = ({
 	newBlockType,
 	blocksConfig
 }) => {
+	const [reRender, setReRender] = useState(false)
 	function handleEditBlock(editableBlock) {
-		// updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
+		updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
 	}
 
 	const editBlockCallback = (value, blockId) => {
@@ -125,9 +141,16 @@ const WebBuilder = ({
 	}
 
 	const onLayoutChange = (layout) => {
-		console.log('onLayoutChange')
 		if (layout.length !== Object.keys(blocksConfig).length) return
 		updateLayout(layout)
+	}
+	function handleResize(e) {
+		if (
+			e.find((item) => item.i === 'e').w !==
+			layout.find((item) => item.i === 'e').w
+		) {
+			setReRender((value) => !value)
+		}
 	}
 	return (
 		<Box d='flex' w='50vw' m='auto' flexDir='row' onClick={handleEditBlock}>
@@ -137,13 +160,14 @@ const WebBuilder = ({
 				onDrop={onDrop}
 				droppingItem={{ i: uuid(), w: 4, h: 4 }}
 				isDroppable={isDroppable}
-				style={{ width: '500px', height: '100vh' }}
+				style={{ width: '500px', background: 'lightblue', height: '100vh' }}
 				className='layout'
 				layout={layout}
+				// onResizeStop={handleResize}
 				onLayoutChange={onLayoutChange}>
-				<div key='e' style={{ border: '1px solid', background: 'lightgray' }}>
-					{Inception()}
-				</div>
+				{/* <div key='e' style={{ border: '1px solid', background: 'lightgray' }}>
+					{Inception(reRender)}
+				</div> */}
 				{generateBuilderBlocks(blocksConfig, handleEditBlock, layout)}
 			</ReactGridLayout>
 		</Box>

@@ -14,7 +14,7 @@ const Builder = () => {
 	const [layout, setLayout] = useState(initialLayout)
 	return (
 		<Box d='flex' m='auto' flexDir='row'>
-			<BuilderSidebar setNewBlockType={setNewBlockType} />
+			{/* <BuilderSidebar setNewBlockType={setNewBlockType} /> */}
 			<WebBuilder
 				layout={layout}
 				isDroppable={true}
