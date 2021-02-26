@@ -85,7 +85,7 @@ const BackgroundColorEditor = ({ changeBGColor, bgColor }) => {
 }
 
 function BuilderTitle({ data, blockKey, isEditable }) {
-	const { editBlock, fontSize, textAlign, fontColor, bgColor } = data
+	const { editBlock = () => {}, fontSize, textAlign, fontColor, bgColor } = data
 	const [text] = useState(data?.text)
 	const titleRef = useRef(null)
 	function handleKeyDown() {

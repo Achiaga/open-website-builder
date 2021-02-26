@@ -72,41 +72,43 @@ const inceptionLayout = [
 	{ i: 'a1', x: 0, y: 0, w: 1, h: 2, isBounded: true },
 	{ i: 'b2', x: 1, y: 0, w: 3, h: 2, isBounded: true }
 ]
+export const inceptionLB = {
+	a1: {
+		type: 'title',
+		data: {
+			text: 'Hola, soy Pedro'
+		}
+	},
+	b2: { type: 'img', data: imageURL }
+}
 
 const Inception = (reRender) => {
 	const [layout, setLayout] = useState(inceptionLayout)
+
+	function handleEditBlock(editableBlock) {
+		setLayout((layout) => editDraggableItemProperty(layout, editableBlock))
+	}
 	const onLayoutChange = (layout) => {
 		console.log(layout)
 		setLayout(layout)
 	}
-	console.log(reRender)
+
 	return (
-		<ReactGridLayout
-			autoSize
-			useCSSTransforms={false}
-			key={reRender ? 'a' : 'b'}
-			cols={20}
-			rowHeight={10}
-			height={250}
-			className='layout'
-			onLayoutChange={onLayoutChange}
-			layout={layout}>
-			<div key='a1'>
-				<div contentEditable> Hola A</div>
-			</div>
-			<div key='b2'>
-				<div
-					style={{
-						backgroundImage: `url(${imageURL})`,
-						width: '100%',
-						height: '100%',
-						backgroundPosition: '50% 50%',
-						backgroundRepeat: 'no-repeat',
-						backgroundSize: 'cover'
-					}}
-				/>
-			</div>
-		</ReactGridLayout>
+		<div onClick={handleEditBlock}>
+			<ReactGridLayout
+				autoSize
+				useCSSTransforms={false}
+				key={reRender ? 'a' : 'b'}
+				cols={20}
+				rowHeight={10}
+				height={250}
+				className='layout'
+				verticalCompact={false}
+				onLayoutChange={onLayoutChange}
+				layout={layout}>
+				{generateBuilderBlocks(inceptionLB, handleEditBlock, layout)}
+			</ReactGridLayout>
+		</div>
 	)
 }
 
@@ -118,7 +120,7 @@ const WebBuilder = ({
 	newBlockType,
 	blocksConfig
 }) => {
-	const [reRender, setReRender] = useState(false)
+	// const [reRender, setReRender] = useState(false)
 	function handleEditBlock(editableBlock) {
 		updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
 	}
@@ -144,16 +146,16 @@ const WebBuilder = ({
 		if (layout.length !== Object.keys(blocksConfig).length) return
 		updateLayout(layout)
 	}
-	function handleResize(e) {
-		if (
-			e.find((item) => item.i === 'e').w !==
-			layout.find((item) => item.i === 'e').w
-		) {
-			setReRender((value) => !value)
-		}
-	}
+	// function handleResize(e) {
+	// 	if (
+	// 		e.find((item) => item.i === 'e').w !==
+	// 		layout.find((item) => item.i === 'e').w
+	// 	) {
+	// 		setReRender((value) => !value)
+	// 	}
+	// }
 	return (
-		<Box d='flex' w='50vw' m='auto' flexDir='row' onClick={handleEditBlock}>
+		<Box d='flex' w='500px' flexDir='row' onClick={handleEditBlock}>
 			<ReactGridLayout
 				cols={GRID_COLUMNS}
 				rowHeight={ROW_HEIGHT}

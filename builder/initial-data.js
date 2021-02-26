@@ -5,8 +5,7 @@ export const initialLayout = [
 	{ i: 'a', x: 0, y: 0, w: 3, h: 2, isDraggable: true },
 	{ i: 'b', x: 3, y: 0, w: 3, h: 2, isDraggable: true },
 	{ i: 'c', x: 6, y: 0, w: 4, h: 2, isDraggable: true },
-	{ i: 'd', x: 0, y: 2, w: 3, h: 2, isDraggable: true }
-	// { i: 'e', x: 0, y: 4, w: 5, h: 4, isDraggable: false }
+	{ i: 'e', x: 0, y: 4, w: 5, h: 4, isDraggable: false }
 ]
 
 export const initialLB = {
@@ -18,11 +17,7 @@ export const initialLB = {
 	},
 	b: { type: 'img', data: imageURL },
 	c: {
-		type: 'list',
-		data: { title: 'My Skills', elements: ['Code', 'Money', 'Marketing'] }
-	},
-	d: {
-		type: 'list',
-		data: { title: 'Hoobies', elements: ['Code', 'Money', 'Marketing'] }
+		type: 'title',
+		data: { text: 'Hoobies' }
 	}
 }
