@@ -2,7 +2,7 @@ const Image = ({ data }) => {
 	return (
 		<div
 			style={{
-				backgroundImage: `url(${data})`,
+				backgroundImage: `url(${data?.imageUrl})`,
 				width: '100%',
 				height: '100%',
 				backgroundPosition: '50% 50%',

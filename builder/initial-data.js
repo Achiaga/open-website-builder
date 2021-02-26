@@ -15,7 +15,7 @@ export const initialLB = {
 			text: 'Hola, soy Pedro'
 		}
 	},
-	b: { type: 'img', data: imageURL },
+	b: { type: 'image', data: { imageUrl: imageURL } },
 	c: {
 		type: 'title',
 		data: { text: 'Hoobies' }

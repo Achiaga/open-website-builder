@@ -4,6 +4,6 @@ import Title from './title'
 
 export default {
 	list: List,
-	img: Image,
+	image: Image,
 	title: Title
 }
