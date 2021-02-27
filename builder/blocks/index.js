@@ -5,5 +5,5 @@ import Text from './text/text'
 export default {
 	list: List,
 	image: Image,
-	title: Text
+	text: Text
 }

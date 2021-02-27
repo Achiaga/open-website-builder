@@ -11,7 +11,7 @@ import {
 	addBlock,
 	addCallbackToBlock,
 	editBlock,
-	editDraggableItemProperty
+	editItemDraggableProperty
 } from './helpers'
 import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
 
@@ -25,12 +25,12 @@ const WebBuilder = ({
 	newBlockType
 }) => {
 	function handleEditBlock(editableBlock) {
-		updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
+		updateLayout((layout) => editItemDraggableProperty(layout, editableBlock))
 	}
 
-	const editBlockCallback = (value, blockId) => {
+	const editBlockCallback = (newData, blockId, operationType) => {
 		udpateBlocksConfig((blocksConfig) =>
-			editBlock(blocksConfig, blockId, value)
+			editBlock(blocksConfig, blockId, newData, operationType)
 		)
 	}
 
@@ -47,7 +47,7 @@ const WebBuilder = ({
 	}
 
 	const onLayoutChange = (layout) => {
-		if (layout.length !== Object.keys(blocksConfig).length) return
+		if (layout?.length !== Object.keys(blocksConfig)?.length) return
 		updateLayout(layout)
 	}
 
@@ -63,6 +63,7 @@ const WebBuilder = ({
 				cols={GRID_COLUMNS}
 				rowHeight={ROW_HEIGHT}
 				onDrop={onDrop}
+				isDroppable
 				droppingItem={{ i: uuid(), w: 4, h: 4 }}
 				style={{ width: '500px', background: 'lightblue', height: '100vh' }}
 				className='layout'

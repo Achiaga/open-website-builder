@@ -1,13 +1,14 @@
 import { Box } from '@chakra-ui/react'
 
 import blocks from '../blocks'
+import { DELETE, EDIT } from '../blocks/constants'
 
 import { imageURL } from '../initial-data'
 
 // Block Factory *********************************
 
 const blocksProperties = {
-	title: {
+	text: {
 		text: 'Change the ext',
 		fontSize: '1rem',
 		textAlign: 'center',
@@ -31,15 +32,22 @@ export function addBlock(newId, blockType, blocks, editBlockCallback) {
 	return {
 		...blocks,
 		[newId]: {
-			type: [blockType],
-			...loadBlockInitialData(blockType, editBlockCallback)
+			type: blockType,
+			...loadBlockInitialData(blockType, { editBlock: editBlockCallback })
 		}
 	}
 }
 
 // Block Edition *********************************
 
-export function editBlock(blocks, id, newData) {
+export function deleteBlock(blocks, deletedBlockId) {
+	const updatedBlocks = { ...blocks }
+	delete updatedBlocks[deletedBlockId]
+	return updatedBlocks
+}
+
+export function editBlock(blocks, id, newData, operationType = EDIT) {
+	if (operationType === DELETE) return deleteBlock(blocks, id)
 	return {
 		...blocks,
 		[id]: {
@@ -51,7 +59,7 @@ export function editBlock(blocks, id, newData) {
 
 // Edit block layout properties *********************************
 
-export const editDraggableItemProperty = (layout, editableBlockId) => {
+export const editItemDraggableProperty = (layout, editableBlockId) => {
 	return layout.map((layoutItem) => {
 		const isSelectedItem = layoutItem.i === editableBlockId
 		const isDraggable = isSelectedItem ? !layoutItem.isDraggable : true
@@ -62,7 +70,8 @@ export const editDraggableItemProperty = (layout, editableBlockId) => {
 // Add editior function to inital blocks *********************************
 
 export function addCallbackToBlock(blocksConfig, editBlockCallback) {
-	return Object.entries(blocksConfig).reduce((acc, [blockId, blockInfo]) => {
+	if (!blocksConfig) return
+	return Object.entries(blocksConfig)?.reduce((acc, [blockId, blockInfo]) => {
 		return {
 			...acc,
 			[blockId]: {
@@ -103,6 +112,7 @@ const generateBuilderBlock = (
 }
 
 export const generateBuilderBlocks = (blocksConfig, setIsEditable, layout) => {
+	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
 		const layoutItem = layout.find((layoutItem) => layoutItem.i === blockKey)
 		return generateBuilderBlock(blockKey, blockInfo, setIsEditable, layoutItem)

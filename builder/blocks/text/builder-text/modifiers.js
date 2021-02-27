@@ -1,6 +1,7 @@
-import { Box, Select } from '@chakra-ui/react'
+import { Box, Button, Select } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { TextPropTypes } from '..'
+import { DELETE } from '../../constants'
 
 const FontSizeEditor = ({ changeFontSize, fontSize }) => {
 	const handleChange = (e) => {
@@ -21,7 +22,7 @@ const FontSizeEditor = ({ changeFontSize, fontSize }) => {
 		</Box>
 	)
 }
-const TextAlignEditor = ({ changeTextAlign, fontSize }) => {
+const TextAlignEditor = ({ changeTextAlign, textAlign }) => {
 	const handleChange = (e) => {
 		const { value } = e.target
 		changeTextAlign(value)
@@ -30,7 +31,7 @@ const TextAlignEditor = ({ changeTextAlign, fontSize }) => {
 		<Box>
 			<Select
 				placeholder='Select option'
-				value={fontSize}
+				value={textAlign}
 				onChange={handleChange}>
 				<option value='center'>center</option>
 				<option value='left'>left</option>
@@ -46,7 +47,7 @@ const FontColorEditor = ({ changeFontColor, fontColor }) => {
 	}
 	return (
 		<Box>
-			<lable>Font Color</lable>
+			<label>Font Color</label>
 			<input type='color' onChange={handleChange} value={fontColor} />
 		</Box>
 	)
@@ -60,6 +61,15 @@ const BackgroundColorEditor = ({ changeBGColor, bgColor }) => {
 		<Box>
 			<label>Background Color</label>
 			<input type='color' onChange={handleChange} value={bgColor} />
+		</Box>
+	)
+}
+const DeleteBlock = ({ deleteBlock }) => {
+	return (
+		<Box>
+			<Button onClick={deleteBlock} bg='blackAlpha.400'>
+				Delete this block
+			</Button>
 		</Box>
 	)
 }
@@ -78,6 +88,9 @@ const Modifiers = ({ data, blockKey }) => {
 	function changeBGColor(bgColor) {
 		editBlock({ ...data, bgColor }, blockKey)
 	}
+	function deleteBlock() {
+		editBlock({}, blockKey, DELETE)
+	}
 	return (
 		<Box
 			onClick={(e) => e.stopPropagation()}
@@ -91,14 +104,12 @@ const Modifiers = ({ data, blockKey }) => {
 				changeFontColor={changeFontColor}
 				fontColor={fontColor}
 			/>
-			<BackgroundColorEditor
-				changeBGColor={changeBGColor}
-				fontColor={fontColor}
-			/>
+			<BackgroundColorEditor changeBGColor={changeBGColor} bgColor={bgColor} />
 			<TextAlignEditor
 				changeTextAlign={changeTextAlign}
-				fontColor={fontColor}
+				textAlign={textAlign}
 			/>
+			<DeleteBlock deleteBlock={deleteBlock} />
 		</Box>
 	)
 }

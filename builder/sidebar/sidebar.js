@@ -1,7 +1,7 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Spinner } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const TitleBlock = ({ setNewBlockType }) => {
+const TextBlock = ({ setNewBlockType }) => {
 	return (
 		<Box
 			h='50px'
@@ -12,9 +12,9 @@ const TitleBlock = ({ setNewBlockType }) => {
 			unselectable='on'
 			onDragStart={(e) => {
 				e.dataTransfer.setData('text/plain', '')
-				setNewBlockType('title')
+				setNewBlockType('text')
 			}}>
-			Title
+			Text
 		</Box>
 	)
 }
@@ -36,22 +36,24 @@ const ImageBlock = ({ setNewBlockType }) => {
 	)
 }
 
-const BuilderSidebar = ({ setNewBlockType }) => {
+const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 	return (
-		<>
-			<TitleBlock setNewBlockType={setNewBlockType} />
+		<Box d='flex' flexDir='column'>
+			<div>{isSaved ? 'saved' : <Spinner />}</div>
+			<TextBlock setNewBlockType={setNewBlockType} />
 			<ImageBlock setNewBlockType={setNewBlockType} />
-		</>
+		</Box>
 	)
 }
 
 BuilderSidebar.propTypes = {
-	setNewBlockType: PropTypes.any
+	setNewBlockType: PropTypes.any,
+	isSaved: PropTypes.any
 }
 ImageBlock.propTypes = {
 	setNewBlockType: PropTypes.any
 }
-TitleBlock.propTypes = {
+TextBlock.propTypes = {
 	setNewBlockType: PropTypes.any
 }
 

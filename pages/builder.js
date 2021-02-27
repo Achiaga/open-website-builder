@@ -1,6 +1,7 @@
 import { Builder } from '../builder'
 import localforage from 'localforage'
 import { useEffect, useState } from 'react'
+import { FallbackData } from '../builder/initial-data'
 
 async function getUserData() {
 	let value = null
@@ -16,10 +17,12 @@ const BuilderPage = () => {
 	const [data, setUserBlocksData] = useState()
 
 	useEffect(() => {
-		getUserData().then((userData) => setUserBlocksData(userData))
+		getUserData().then((userData) =>
+			setUserBlocksData(userData || FallbackData)
+		)
 	}, [])
 
-	if (!data) return null
+	if (!data) return <div>loading</div>
 
 	return <Builder userBlocksData={data} />
 }

@@ -1,7 +1,7 @@
 import blocks from '../blocks'
 
 export const generatePageCode = (layout, blocksConfig) => {
-	return layout.map((layoutItem) => {
+	return layout?.map((layoutItem) => {
 		const BlockKey = layoutItem.i
 		return generatePreviewBlock(blocksConfig[BlockKey], layoutItem)
 	})

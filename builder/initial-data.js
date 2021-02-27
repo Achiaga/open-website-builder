@@ -1,24 +1,29 @@
 export const imageURL =
 	'https://images.unsplash.com/photo-1542103749-8ef59b94f47e'
 
-export const initialLB = {
+export const FallbackData = {
 	a: {
-		type: 'title',
-		data: {
-			text: 'Hola, soy Pedro'
+		block: {
+			type: 'text',
+			data: {
+				text: 'Welcome'
+			}
+		},
+		layout: {
+			i: 'a',
+			x: 0,
+			y: 0,
+			w: 3,
+			h: 2,
+			isDraggable: true
 		}
-	},
-	b: { type: 'image', data: { imageUrl: imageURL } },
-	c: {
-		type: 'title',
-		data: { text: 'Hoobies' }
 	}
 }
 
 export const userBlocksData = {
 	a: {
 		block: {
-			type: 'title',
+			type: 'text',
 			data: {
 				text: 'Hola, soy Pedro'
 			}
@@ -41,7 +46,7 @@ export const userBlocksData = {
 	},
 	c: {
 		block: {
-			type: 'title',
+			type: 'text',
 			data: { text: 'Hoobies' }
 		},
 		layout: {
