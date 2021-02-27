@@ -6,7 +6,7 @@ import Modifiers from './modifiers'
 import { TextPropTypes } from '..'
 
 function BuilderText({ data, blockKey, isEditable }) {
-	const { editBlock = () => {}, fontSize, textAlign, fontColor, bgColor } = data
+	const { editBlock = () => {} } = data
 
 	const [text] = useState(data?.text)
 	const titleRef = useRef(null)
@@ -26,10 +26,7 @@ function BuilderText({ data, blockKey, isEditable }) {
 				contentEditable={isEditable}
 				ref={titleRef}
 				text={text}
-				fontSize={fontSize}
-				textAlign={textAlign}
-				fontColor={fontColor}
-				bgColor={bgColor}
+				{...data}
 			/>
 		</Box>
 	)

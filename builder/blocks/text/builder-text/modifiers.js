@@ -1,95 +1,136 @@
 import { Box, Button, Select } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { TextPropTypes } from '..'
-import { DELETE } from '../../constants'
+import { DELETE, EDIT } from '../../constants'
 
-const FontSizeEditor = ({ changeFontSize, fontSize }) => {
+const fontSize = {
+	type: 'dropdown',
+	placeholder: 'Select a FontSize',
+	property: 'fontSize',
+	options: [
+		{ value: '2rem', title: 'Title' },
+		{ value: '1.75rem', title: 'Subtitle 1' },
+		{ value: '1.5rem', title: 'Subtitle 2' },
+		{ value: '1rem', title: 'Text' }
+	]
+}
+const textAlign = {
+	type: 'dropdown',
+	placeholder: 'Align text',
+	property: 'textAlign',
+	options: [
+		{ value: 'center', title: 'center' },
+		{ value: 'left', title: 'left 1' },
+		{ value: 'right', title: 'right' }
+	]
+}
+const backgroundColor = {
+	type: 'color',
+	placeholder: 'Background color',
+	property: 'backgroundColor'
+}
+
+const fontColor = {
+	type: 'color',
+	placeholder: 'font color',
+	property: 'fontColor'
+}
+
+const deleteBlock = {
+	type: 'button',
+	placeholder: 'Delete block',
+	property: '',
+	operationType: DELETE
+}
+
+const Properties = [
+	fontSize,
+	textAlign,
+	backgroundColor,
+	deleteBlock,
+	fontColor
+]
+
+const PropertiesModifiers = {
+	dropdown: DropDownSelector,
+	color: ColorSelector,
+	button: ButtonSelector
+}
+
+function DropDownSelector({
+	handleEdit,
+	property,
+	value,
+	options,
+	placeholder
+}) {
 	const handleChange = (e) => {
 		const { value } = e.target
-		changeFontSize(value)
+		handleEdit(property, value)
 	}
 	return (
 		<Box>
-			<Select
-				placeholder='Select option'
-				value={fontSize}
-				onChange={handleChange}>
-				<option value='2rem'>Title</option>
-				<option value='1.75rem'>Subtitle 1</option>
-				<option value='1.5rem'>Subtitle 2</option>
-				<option value='1rem'>texto</option>
+			<Select placeholder={placeholder} value={value} onChange={handleChange}>
+				{options.map(({ value, title }, index) => {
+					return (
+						<option key={index} value={value}>
+							{title}
+						</option>
+					)
+				})}
 			</Select>
 		</Box>
 	)
 }
-const TextAlignEditor = ({ changeTextAlign, textAlign }) => {
+
+function ColorSelector({ handleEdit, property, value, placeholder }) {
 	const handleChange = (e) => {
 		const { value } = e.target
-		changeTextAlign(value)
+		handleEdit(property, value)
 	}
 	return (
 		<Box>
-			<Select
-				placeholder='Select option'
-				value={textAlign}
-				onChange={handleChange}>
-				<option value='center'>center</option>
-				<option value='left'>left</option>
-				<option value='right'>right</option>
-			</Select>
+			<label>{placeholder}</label>
+			<input type='color' onChange={handleChange} value={value} />
 		</Box>
 	)
 }
-const FontColorEditor = ({ changeFontColor, fontColor }) => {
-	const handleChange = (e) => {
-		const { value } = e.target
-		changeFontColor(value)
+
+function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
+	const handleClick = () => {
+		handleEdit(property, null, operationType)
 	}
 	return (
 		<Box>
-			<label>Font Color</label>
-			<input type='color' onChange={handleChange} value={fontColor} />
-		</Box>
-	)
-}
-const BackgroundColorEditor = ({ changeBGColor, bgColor }) => {
-	const handleChange = (e) => {
-		const { value } = e.target
-		changeBGColor(value)
-	}
-	return (
-		<Box>
-			<label>Background Color</label>
-			<input type='color' onChange={handleChange} value={bgColor} />
-		</Box>
-	)
-}
-const DeleteBlock = ({ deleteBlock }) => {
-	return (
-		<Box>
-			<Button onClick={deleteBlock} bg='blackAlpha.400'>
-				Delete this block
+			<Button onClick={handleClick} bg='blackAlpha.400'>
+				{placeholder}
 			</Button>
 		</Box>
 	)
 }
 
+const BlockProperties = ({ handleEdit, propertiesValues }) => {
+	console.log({ propertiesValues })
+	return Properties.map((propertyData, index) => {
+		const type = propertyData.type
+		const property = propertyData.property
+		const Modifier = PropertiesModifiers[type]
+		return (
+			<Modifier
+				handleEdit={handleEdit}
+				{...propertyData}
+				key={index}
+				value={propertiesValues[property]}
+			/>
+		)
+	})
+}
+
 const Modifiers = ({ data, blockKey }) => {
-	const { editBlock = () => {}, fontSize, textAlign, fontColor, bgColor } = data
-	function changeFontSize(fontSize) {
-		editBlock({ ...data, fontSize }, blockKey)
-	}
-	function changeTextAlign(textAlign) {
-		editBlock({ ...data, textAlign }, blockKey)
-	}
-	function changeFontColor(fontColor) {
-		editBlock({ ...data, fontColor }, blockKey)
-	}
-	function changeBGColor(bgColor) {
-		editBlock({ ...data, bgColor }, blockKey)
-	}
-	function deleteBlock() {
-		editBlock({}, blockKey, DELETE)
+	const { editBlock = () => {}, fontSize, textAlign, fontColor, bg } = data
+
+	function handleEdit(id, value, operationType = EDIT) {
+		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
 	return (
 		<Box
@@ -99,17 +140,12 @@ const Modifiers = ({ data, blockKey }) => {
 			backgroundColor='black'
 			color='white'
 			transform='translate(0px, -100%)'>
-			<FontSizeEditor changeFontSize={changeFontSize} fontSize={fontSize} />
-			<FontColorEditor
-				changeFontColor={changeFontColor}
-				fontColor={fontColor}
-			/>
-			<BackgroundColorEditor changeBGColor={changeBGColor} bgColor={bgColor} />
-			<TextAlignEditor
-				changeTextAlign={changeTextAlign}
-				textAlign={textAlign}
-			/>
-			<DeleteBlock deleteBlock={deleteBlock} />
+			<BlockProperties handleEdit={handleEdit} propertiesValues={data} />
+			{/* <FontSizeEditor changeFontSize={handleEdit} fontSize={fontSize} />
+			<FontColorEditor changeFontColor={handleEdit} fontColor={fontColor} />
+			<BackgroundColorEditor changeBGColor={handleEdit} bg={bg} />
+			<TextAlignEditor changeTextAlign={handleEdit} textAlign={textAlign} />
+			<DeleteBlock deleteBlock={handleEdit} /> */}
 		</Box>
 	)
 }

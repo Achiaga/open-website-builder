@@ -7,5 +7,5 @@ export const TextPropTypes = PropTypes.shape({
 	fontSize: PropTypes.string,
 	textAlign: PropTypes.string,
 	fontColor: PropTypes.string,
-	bgColor: PropTypes.string
+	bg: PropTypes.string
 })

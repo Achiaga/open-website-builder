@@ -17,7 +17,7 @@ export const GenericText = forwardRef((props, ref) => {
 			onKeyUp={props?.onKeyUp}
 			contentEditable={props?.contentEditable}
 			suppressContentEditableWarning={props?.contentEditable}
-			bg={props?.bgColor}
+			backgroundColor={props?.backgroundColor}
 			ref={ref}>
 			{props?.text}
 		</Text>
