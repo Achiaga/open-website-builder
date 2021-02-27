@@ -10,14 +10,13 @@ export const GenericText = forwardRef((props, ref) => {
 		<Text
 			w='100%'
 			h='100%'
+			d='grid'
 			onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
-			fontSize={props?.fontSize}
-			textAlign={props?.textAlign}
-			color={props?.fontColor}
 			onKeyUp={props?.onKeyUp}
 			contentEditable={props?.contentEditable}
 			suppressContentEditableWarning={props?.contentEditable}
-			backgroundColor={props?.backgroundColor}
+			{...props}
+			wordBreak='break-word'
 			ref={ref}>
 			{props?.text}
 		</Text>

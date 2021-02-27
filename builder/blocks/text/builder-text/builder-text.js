@@ -6,9 +6,9 @@ import Modifiers from './modifiers'
 import { TextPropTypes } from '..'
 
 function BuilderText({ data, blockKey, isEditable }) {
-	const { editBlock = () => {} } = data
+	const { editBlock = () => {}, text: dataText, ...extraProps } = data
 
-	const [text] = useState(data?.text)
+	const [text] = useState(dataText)
 	const titleRef = useRef(null)
 
 	function handleKeyDown() {
@@ -26,7 +26,7 @@ function BuilderText({ data, blockKey, isEditable }) {
 				contentEditable={isEditable}
 				ref={titleRef}
 				text={text}
-				{...data}
+				{...extraProps}
 			/>
 		</Box>
 	)

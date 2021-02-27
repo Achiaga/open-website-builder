@@ -1,5 +1,6 @@
 import { Box, Button, Select } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+
 import { TextPropTypes } from '..'
 import { DELETE, EDIT } from '../../constants'
 
@@ -20,8 +21,28 @@ const textAlign = {
 	property: 'textAlign',
 	options: [
 		{ value: 'center', title: 'center' },
-		{ value: 'left', title: 'left 1' },
+		{ value: 'left', title: 'left' },
 		{ value: 'right', title: 'right' }
+	]
+}
+const alignItems = {
+	type: 'dropdown',
+	placeholder: 'Vertical Align',
+	property: 'alignItems',
+	options: [
+		{ value: 'start', title: 'top' },
+		{ value: 'center', title: 'center' },
+		{ value: 'end', title: 'bottom' }
+	]
+}
+const fontWeight = {
+	type: 'dropdown',
+	placeholder: 'Font Bold',
+	property: 'fontWeight',
+	options: [
+		{ value: '400', title: 'normal' },
+		{ value: '700', title: 'bold' },
+		{ value: '900', title: 'super bold' }
 	]
 }
 const backgroundColor = {
@@ -33,7 +54,7 @@ const backgroundColor = {
 const fontColor = {
 	type: 'color',
 	placeholder: 'font color',
-	property: 'fontColor'
+	property: 'color'
 }
 
 const deleteBlock = {
@@ -44,11 +65,13 @@ const deleteBlock = {
 }
 
 const Properties = [
+	deleteBlock,
 	fontSize,
 	textAlign,
 	backgroundColor,
-	deleteBlock,
-	fontColor
+	fontColor,
+	alignItems,
+	fontWeight
 ]
 
 const PropertiesModifiers = {
@@ -71,7 +94,7 @@ function DropDownSelector({
 	return (
 		<Box>
 			<Select placeholder={placeholder} value={value} onChange={handleChange}>
-				{options.map(({ value, title }, index) => {
+				{options?.map(({ value, title }, index) => {
 					return (
 						<option key={index} value={value}>
 							{title}
@@ -81,6 +104,19 @@ function DropDownSelector({
 			</Select>
 		</Box>
 	)
+}
+
+DropDownSelector.propTypes = {
+	handleEdit: PropTypes.func.isRequired,
+	property: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	options: PropTypes.arrayOf(
+		PropTypes.shape({
+			value: PropTypes.string.isRequired,
+			title: PropTypes.string.isRequired
+		}).isRequired
+	).isRequired,
+	placeholder: PropTypes.string.isRequired
 }
 
 function ColorSelector({ handleEdit, property, value, placeholder }) {
@@ -95,6 +131,12 @@ function ColorSelector({ handleEdit, property, value, placeholder }) {
 		</Box>
 	)
 }
+ColorSelector.propTypes = {
+	handleEdit: PropTypes.func.isRequired,
+	property: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired
+}
 
 function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
 	const handleClick = () => {
@@ -107,6 +149,12 @@ function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
 			</Button>
 		</Box>
 	)
+}
+ButtonSelector.propTypes = {
+	handleEdit: PropTypes.func.isRequired,
+	property: PropTypes.string.isRequired,
+	operationType: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired
 }
 
 const BlockProperties = ({ handleEdit, propertiesValues }) => {
@@ -127,7 +175,7 @@ const BlockProperties = ({ handleEdit, propertiesValues }) => {
 }
 
 const Modifiers = ({ data, blockKey }) => {
-	const { editBlock = () => {}, fontSize, textAlign, fontColor, bg } = data
+	const { editBlock = () => {} } = data
 
 	function handleEdit(id, value, operationType = EDIT) {
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
@@ -141,18 +189,13 @@ const Modifiers = ({ data, blockKey }) => {
 			color='white'
 			transform='translate(0px, -100%)'>
 			<BlockProperties handleEdit={handleEdit} propertiesValues={data} />
-			{/* <FontSizeEditor changeFontSize={handleEdit} fontSize={fontSize} />
-			<FontColorEditor changeFontColor={handleEdit} fontColor={fontColor} />
-			<BackgroundColorEditor changeBGColor={handleEdit} bg={bg} />
-			<TextAlignEditor changeTextAlign={handleEdit} textAlign={textAlign} />
-			<DeleteBlock deleteBlock={handleEdit} /> */}
 		</Box>
 	)
 }
 
 Modifiers.propTypes = {
 	data: TextPropTypes,
-	blockKey: PropTypes.string
+	blockKey: PropTypes.string.isRequired
 }
 
 export default Modifiers
