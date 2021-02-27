@@ -19,11 +19,10 @@ const ReactGridLayout = WidthProvider(RGL)
 
 const WebBuilder = ({
 	layout,
-	isDroppable,
+	blocksConfig,
 	udpateBlocksConfig,
 	updateLayout,
-	newBlockType,
-	blocksConfig
+	newBlockType
 }) => {
 	function handleEditBlock(editableBlock) {
 		updateLayout((layout) => editDraggableItemProperty(layout, editableBlock))
@@ -65,7 +64,6 @@ const WebBuilder = ({
 				rowHeight={ROW_HEIGHT}
 				onDrop={onDrop}
 				droppingItem={{ i: uuid(), w: 4, h: 4 }}
-				isDroppable={isDroppable}
 				style={{ width: '500px', background: 'lightblue', height: '100vh' }}
 				className='layout'
 				layout={layout}
