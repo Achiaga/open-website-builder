@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 import { Box } from '@chakra-ui/react'
-import { generateBuilderBlocks } from '../helpers'
+import { generateBuilderBlocks } from './helpers'
 import {
 	addBlock,
 	addCallbackToBlock,

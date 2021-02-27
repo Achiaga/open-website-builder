@@ -1,9 +1,9 @@
 import Image from './image'
 import List from './list'
-import Title from './title'
+import Text from './text/text'
 
 export default {
 	list: List,
 	image: Image,
-	title: Title
+	title: Text
 }

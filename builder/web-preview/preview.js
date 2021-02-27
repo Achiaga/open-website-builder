@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { generatePageCode } from '../helpers'
+import { generatePageCode } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
