@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 
-import blocks from '../blocks'
+import { Block } from '../blocks'
 import { DELETE, EDIT } from '../blocks/constants'
 
 import { imageURL } from '../initial-data'
@@ -94,7 +94,6 @@ const generateBuilderBlock = (
 	layoutItemInfo
 ) => {
 	if (!blockInfo) return null
-	const Block = blocks[blockInfo.type]
 	const isDraggable = layoutItemInfo.isDraggable || false
 	return (
 		<Box
@@ -106,6 +105,7 @@ const generateBuilderBlock = (
 				data={blockInfo.data}
 				blockKey={blockKey}
 				isEditable={!isDraggable}
+				blockType={blockInfo.type}
 			/>
 		</Box>
 	)

@@ -1,9 +1,6 @@
 import { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '@chakra-ui/react'
-import PreviewText from './preview-text/preview-text'
-import BuilderText from './builder-text/builder-text'
-import { TextPropTypes } from '.'
 
 export const GenericText = forwardRef((props, ref) => {
 	return (
@@ -24,18 +21,14 @@ export const GenericText = forwardRef((props, ref) => {
 })
 GenericText.displayName = 'TextBlock'
 
-const SelectTextBlock = ({ isPreview, data, blockKey, isEditable }) => {
-	if (isPreview) return <PreviewText data={data} />
-	return <BuilderText data={data} blockKey={blockKey} isEditable={isEditable} />
-}
-
-SelectTextBlock.propTypes = {
-	isPreview: PropTypes.bool,
-	isEditable: PropTypes.bool,
-	data: TextPropTypes,
-	blockKey: PropTypes.string
-}
-
+const TextPropTypes = PropTypes.shape({
+	text: PropTypes.string,
+	editBlock: PropTypes.func,
+	fontSize: PropTypes.string,
+	textAlign: PropTypes.string,
+	fontColor: PropTypes.string,
+	bg: PropTypes.string
+})
 GenericText.propTypes = { ...TextPropTypes }
 
-export default SelectTextBlock
+export default GenericText

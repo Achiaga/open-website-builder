@@ -1,16 +1,30 @@
-const Image = ({ data }) => {
+import { forwardRef } from 'react'
+import PropTypes from 'prop-types'
+import { Box } from '@chakra-ui/react'
+
+export const GenericImage = forwardRef((props) => {
+	console.log(props)
 	return (
-		<div
-			style={{
-				backgroundImage: `url(${data?.imageUrl})`,
-				width: '100%',
-				height: '100%',
-				backgroundPosition: '50% 50%',
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover'
-			}}
+		<Box
+			contentEditable={props?.contentEditable}
+			onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
+			backgroundImage={`url(${props?.imageUrl})`}
+			width='100%'
+			height='100%'
+			backgroundPosition='50% 50%'
+			backgroundRepeat='no-repeat'
+			backgroundSize='cover'
+			{...props}
 		/>
 	)
-}
+})
+GenericImage.displayName = 'TextBlock'
 
-export default Image
+const ImagePropTypes = PropTypes.shape({
+	contentEditable: PropTypes.func,
+	isEditable: PropTypes.func,
+	imageUrl: PropTypes.string
+})
+GenericImage.propTypes = { ...ImagePropTypes, ref: PropTypes.any }
+
+export default GenericImage

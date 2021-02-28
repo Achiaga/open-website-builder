@@ -1,8 +1,13 @@
 import { Box, Button, Select } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import { TextPropTypes } from '..'
-import { DELETE, EDIT } from '../../constants'
+import { DELETE, EDIT } from './constants'
+
+// Text **********************************************************
+// ***************************************************************
+// ***************************************************************
+// ***************************************************************
+// ***************************************************************
 
 const fontSize = {
 	type: 'dropdown',
@@ -45,6 +50,18 @@ const fontWeight = {
 		{ value: '900', title: 'super bold' }
 	]
 }
+const fontColor = {
+	type: 'color',
+	placeholder: 'font color',
+	property: 'color'
+}
+
+// Block *********************************************************
+// ***************************************************************
+// ***************************************************************
+// ***************************************************************
+// ***************************************************************
+
 const borderRadius = {
 	type: 'dropdown',
 	placeholder: 'Border Radius',
@@ -63,7 +80,7 @@ const boxShadow = {
 	options: [
 		{
 			value:
-				'0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
+				'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;',
 			title: 'small'
 		},
 		{
@@ -72,21 +89,27 @@ const boxShadow = {
 			title: 'medium'
 		},
 		{
-			value: 'rgba(0, 0, 0, 0.35) 0px 5px 15px;',
+			value: 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;',
 			title: 'large'
+		},
+		{
+			value:
+				'rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;',
+			title: 'inside'
 		}
 	]
 }
+
+// Common ********************************************************
+// ***************************************************************
+// ***************************************************************
+// ***************************************************************
+// ***************************************************************
+
 const backgroundColor = {
 	type: 'color',
 	placeholder: 'Background color',
 	property: 'backgroundColor'
-}
-
-const fontColor = {
-	type: 'color',
-	placeholder: 'font color',
-	property: 'color'
 }
 
 const deleteBlock = {
@@ -95,18 +118,6 @@ const deleteBlock = {
 	property: '',
 	operationType: DELETE
 }
-
-const Properties = [
-	deleteBlock,
-	fontSize,
-	textAlign,
-	backgroundColor,
-	fontColor,
-	alignItems,
-	fontWeight,
-	boxShadow,
-	borderRadius
-]
 
 const PropertiesModifiers = {
 	dropdown: DropDownSelector,
@@ -191,23 +202,39 @@ ButtonSelector.propTypes = {
 	placeholder: PropTypes.string.isRequired
 }
 
-const BlockProperties = ({ handleEdit, propertiesValues }) => {
-	return Properties.map((propertyData, index) => {
-		const type = propertyData.type
-		const property = propertyData.property
-		const Modifier = PropertiesModifiers[type]
-		return (
-			<Modifier
-				handleEdit={handleEdit}
-				{...propertyData}
-				key={index}
-				value={propertiesValues[property]}
-			/>
-		)
-	})
+const Properties = {
+	text: [
+		deleteBlock,
+		fontSize,
+		textAlign,
+		backgroundColor,
+		fontColor,
+		alignItems,
+		fontWeight,
+		boxShadow,
+		borderRadius
+	]
 }
 
-const Modifiers = ({ data, blockKey }) => {
+export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
+	return (
+		properties?.map((propertyData, index) => {
+			const type = propertyData.type
+			const property = propertyData.property
+			const Modifier = PropertiesModifiers[type]
+			return (
+				<Modifier
+					handleEdit={handleEdit}
+					{...propertyData}
+					key={index}
+					value={propertiesValues[property]}
+				/>
+			)
+		}) ?? null
+	)
+}
+
+export const BlockModifiers = ({ data, blockKey, blockType }) => {
 	const { editBlock = () => {} } = data
 
 	function handleEdit(id, value, operationType = EDIT) {
@@ -222,14 +249,17 @@ const Modifiers = ({ data, blockKey }) => {
 			backgroundColor='black'
 			color='white'
 			transform='translate(0px, -100%)'>
-			<BlockProperties handleEdit={handleEdit} propertiesValues={data} />
+			<Modifier
+				handleEdit={handleEdit}
+				propertiesValues={data}
+				properties={Properties[blockType]}
+			/>
 		</Box>
 	)
 }
 
-Modifiers.propTypes = {
-	data: TextPropTypes,
-	blockKey: PropTypes.string.isRequired
+BlockModifiers.propTypes = {
+	data: PropTypes.any,
+	blockKey: PropTypes.string.isRequired,
+	blockType: PropTypes.string.isRequired
 }
-
-export default Modifiers
