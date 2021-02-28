@@ -28,7 +28,6 @@ const WebBuilder = ({
 		updateLayout((layout) => editItemDraggableProperty(layout, editableBlock))
 	}
 	const editBlockCallback = (newData, blockId, operationType) => {
-		console.log({ ...newData })
 		udpateBlocksConfig((blocksConfig) =>
 			editBlock(blocksConfig, blockId, newData, operationType)
 		)

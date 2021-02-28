@@ -25,7 +25,6 @@ function BuilderBlock({ data, blockKey, isEditable, blockType }) {
 		const updatedBlock = { ...data, text: value }
 		editBlock(updatedBlock, blockKey)
 	}
-
 	return (
 		<Box width='100%' h='100%' onClick={(e) => e.stopPropagation()}>
 			{isEditable && (
@@ -52,8 +51,12 @@ BuilderBlock.propTypes = {
 
 const PreviewBlock = ({ data, blockType }) => {
 	const GenericBlock = blocks[blockType]
+	return <GenericBlock {...data} />
+}
 
-	return <GenericBlock text={data?.text} {...data} />
+PreviewBlock.propTypes = {
+	blockType: PropTypes.string.isRequired,
+	data: PropTypes.any
 }
 
 export const Block = ({ isPreview, data, blockKey, isEditable, blockType }) => {

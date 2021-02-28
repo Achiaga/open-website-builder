@@ -213,10 +213,12 @@ const Properties = {
 		fontWeight,
 		boxShadow,
 		borderRadius
-	]
+	],
+	image: [deleteBlock, boxShadow, borderRadius]
 }
 
 export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
+	console.log({ properties })
 	return (
 		properties?.map((propertyData, index) => {
 			const type = propertyData.type
@@ -238,7 +240,6 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 	const { editBlock = () => {} } = data
 
 	function handleEdit(id, value, operationType = EDIT) {
-		console.log(id, value)
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
 	return (

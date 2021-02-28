@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
 export const GenericImage = forwardRef((props) => {
-	console.log(props)
 	return (
 		<Box
 			contentEditable={props?.contentEditable}
