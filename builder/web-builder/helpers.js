@@ -13,7 +13,7 @@ const blocksProperties = {
 		fontSize: '1rem',
 		textAlign: 'center',
 		fontColor: '#4a40ce',
-		bg: '#fff'
+		backgroundColor: '#ffffff'
 	},
 	image: {
 		imageUrl: imageURL

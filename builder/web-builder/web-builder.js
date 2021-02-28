@@ -27,8 +27,8 @@ const WebBuilder = ({
 	function handleEditBlock(editableBlock) {
 		updateLayout((layout) => editItemDraggableProperty(layout, editableBlock))
 	}
-
 	const editBlockCallback = (newData, blockId, operationType) => {
+		console.log({ ...newData })
 		udpateBlocksConfig((blocksConfig) =>
 			editBlock(blocksConfig, blockId, newData, operationType)
 		)
@@ -63,6 +63,7 @@ const WebBuilder = ({
 				cols={GRID_COLUMNS}
 				rowHeight={ROW_HEIGHT}
 				onDrop={onDrop}
+				autoSize
 				isDroppable
 				droppingItem={{ i: uuid(), w: 4, h: 4 }}
 				style={{ width: '500px', background: 'lightblue', height: '100vh' }}

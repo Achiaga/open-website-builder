@@ -45,6 +45,38 @@ const fontWeight = {
 		{ value: '900', title: 'super bold' }
 	]
 }
+const borderRadius = {
+	type: 'dropdown',
+	placeholder: 'Border Radius',
+	property: 'borderRadius',
+	options: [
+		{ value: '10px', title: 'small' },
+		{ value: '20px', title: 'medium' },
+		{ value: '100px', title: 'large' },
+		{ value: '100%', title: 'circle' }
+	]
+}
+const boxShadow = {
+	type: 'dropdown',
+	placeholder: 'Shadow',
+	property: 'boxShadow',
+	options: [
+		{
+			value:
+				'0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
+			title: 'small'
+		},
+		{
+			value:
+				'0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)',
+			title: 'medium'
+		},
+		{
+			value: 'rgba(0, 0, 0, 0.35) 0px 5px 15px;',
+			title: 'large'
+		}
+	]
+}
 const backgroundColor = {
 	type: 'color',
 	placeholder: 'Background color',
@@ -71,7 +103,9 @@ const Properties = [
 	backgroundColor,
 	fontColor,
 	alignItems,
-	fontWeight
+	fontWeight,
+	boxShadow,
+	borderRadius
 ]
 
 const PropertiesModifiers = {
@@ -158,7 +192,6 @@ ButtonSelector.propTypes = {
 }
 
 const BlockProperties = ({ handleEdit, propertiesValues }) => {
-	console.log({ propertiesValues })
 	return Properties.map((propertyData, index) => {
 		const type = propertyData.type
 		const property = propertyData.property
@@ -178,6 +211,7 @@ const Modifiers = ({ data, blockKey }) => {
 	const { editBlock = () => {} } = data
 
 	function handleEdit(id, value, operationType = EDIT) {
+		console.log(id, value)
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
 	return (

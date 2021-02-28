@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react'
 import localforage from 'localforage'
 import { Box } from '@chakra-ui/react'
 import debounce from 'lodash/debounce'
-import throttle from 'lodash/throttle'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
