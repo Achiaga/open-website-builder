@@ -1,0 +1,174 @@
+{
+	"42e12503-f6c2-4edf-a197-15a5d5f4f57f": {
+		"layout": {
+			"w": 6,
+			"h": 18,
+			"x": 4,
+			"y": 15,
+			"i": "42e12503-f6c2-4edf-a197-15a5d5f4f57f",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": ["image"],
+			"data": {
+				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
+			}
+		}
+	},
+	"c5d259d0-d252-4a69-9879-653d99b98cf3": {
+		"layout": {
+			"w": 4,
+			"h": 18,
+			"x": 0,
+			"y": 0,
+			"i": "c5d259d0-d252-4a69-9879-653d99b98cf3",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "image",
+			"data": {
+				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
+			}
+		}
+	},
+	"55e19c20-a78f-4784-9e98-0386b35190d0": {
+		"layout": {
+			"w": 2,
+			"h": 11,
+			"x": 4,
+			"y": 0,
+			"i": "55e19c20-a78f-4784-9e98-0386b35190d0",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "text",
+			"data": {
+				"text": "Change the ext",
+				"fontSize": "1rem",
+				"textAlign": "center",
+				"fontColor": "#4a40ce",
+				"backgroundColor": "#ffffff",
+				"boxShadow": "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;",
+				"borderRaidus": "20px",
+				"borderRadius": "100%",
+				"alignItems": "center",
+				"color": "#24947d"
+			}
+		}
+	},
+	"cb980873-c9f8-45d2-b0b4-f223a58c6760": {
+		"layout": {
+			"w": 4,
+			"h": 24,
+			"x": 0,
+			"y": 18,
+			"i": "cb980873-c9f8-45d2-b0b4-f223a58c6760",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "image",
+			"data": {
+				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e",
+				"borderRadius": "100%",
+				"boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;"
+			}
+		}
+	},
+	"0c05a36e-3d42-4161-b4f2-e7fc1ce17b68": {
+		"layout": {
+			"w": 2,
+			"h": 6,
+			"x": 8,
+			"y": 9,
+			"i": "0c05a36e-3d42-4161-b4f2-e7fc1ce17b68",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "text",
+			"data": {
+				"text": "Change the ext",
+				"fontSize": "1rem",
+				"textAlign": "center",
+				"fontColor": "#4a40ce",
+				"backgroundColor": "#ffffff"
+			}
+		}
+	},
+	"cc531c14-b38b-4921-b770-467750278947": {
+		"layout": {
+			"w": 4,
+			"h": 4,
+			"x": 4,
+			"y": 11,
+			"i": "cc531c14-b38b-4921-b770-467750278947",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "image",
+			"data": {
+				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
+			}
+		}
+	},
+	"bdfcf1af-3553-4f47-82cf-64e746c5739f": {
+		"layout": {
+			"w": 6,
+			"h": 20,
+			"x": 4,
+			"y": 33,
+			"i": "bdfcf1af-3553-4f47-82cf-64e746c5739f",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "text",
+			"data": {
+				"text": "It is time to start working out",
+				"fontSize": "1.5rem",
+				"textAlign": "center",
+				"fontColor": "#4a40ce",
+				"backgroundColor": "#63bfa1",
+				"boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;",
+				"fontWeight": "700",
+				"borderRadius": "20px",
+				"alignItems": "center",
+				"color": "#a41e1e"
+			}
+		}
+	},
+	"e773eaf4-65e2-4b24-b967-09ddf59ffccf": {
+		"layout": {
+			"w": 4,
+			"h": 9,
+			"x": 6,
+			"y": 0,
+			"i": "e773eaf4-65e2-4b24-b967-09ddf59ffccf",
+			"moved": false,
+			"static": false,
+			"isDraggable": true
+		},
+		"block": {
+			"type": "text",
+			"data": {
+				"text": "Change the ext",
+				"fontSize": "1rem",
+				"textAlign": "center",
+				"fontColor": "#4a40ce",
+				"backgroundColor": "#ffffff"
+			}
+		}
+	}
+}

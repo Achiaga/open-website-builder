@@ -57,7 +57,7 @@ const WebBuilder = ({
 	}, [])
 
 	return (
-		<Box d='flex' w='500px' flexDir='row' onClick={handleEditBlock}>
+		<Box d='flex' w='100%' flexDir='row' onClick={handleEditBlock}>
 			<ReactGridLayout
 				cols={GRID_COLUMNS}
 				rowHeight={ROW_HEIGHT}
@@ -65,7 +65,7 @@ const WebBuilder = ({
 				autoSize
 				isDroppable
 				droppingItem={{ i: uuid(), w: 4, h: 4 }}
-				style={{ width: '500px', background: 'lightblue', height: '100vh' }}
+				style={{ width: '100%', background: 'lightblue' }}
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>

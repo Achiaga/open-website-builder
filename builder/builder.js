@@ -10,13 +10,13 @@ import { WebBuilder } from '../builder/web-builder'
 import { WebPreview } from '../builder/web-preview'
 import { BuilderSidebar } from '../builder/sidebar'
 
-function normalizeLayout(userBlocksData) {
+export function normalizeLayout(userBlocksData) {
 	if (!userBlocksData) return []
 	return Object.values(userBlocksData).map((block) => {
 		return block.layout
 	})
 }
-function normalizeBlockStructure(userBlocksData) {
+export function normalizeBlockStructure(userBlocksData) {
 	if (!userBlocksData) return {}
 	return Object.entries(userBlocksData).reduce((acc, [blockId, value]) => {
 		return {
@@ -83,9 +83,11 @@ const Builder = ({ userBlocksData }) => {
 		debouncedSaved(layout, blocksConfig)
 	}, [layout, blocksConfig])
 
+	console.log(JSON.stringify(userBlocksData))
+
 	return (
 		<Box d='flex' m='auto' flexDir='row'>
-			<BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} />
+			{/* <BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} /> */}
 			<WebBuilder
 				layout={layout}
 				blocksConfig={blocksConfig}
@@ -93,7 +95,7 @@ const Builder = ({ userBlocksData }) => {
 				udpateBlocksConfig={udpateBlocksConfig}
 				updateLayout={setLayout}
 			/>
-			<WebPreview layout={layout} blocksConfig={blocksConfig} />
+			{/* <WebPreview layout={layout} blocksConfig={blocksConfig} /> */}
 		</Box>
 	)
 }

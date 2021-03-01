@@ -23,7 +23,6 @@ const BuilderPage = () => {
 	}, [])
 
 	if (!data) return <div>loading</div>
-
 	return <Builder userBlocksData={data} />
 }
 
