@@ -38,7 +38,15 @@ const ImageBlock = ({ setNewBlockType }) => {
 
 const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 	return (
-		<Box d='flex' flexDir='column'>
+		<Box
+			d='flex'
+			flexDir='column'
+			pos='fixed'
+			left='0'
+			zIndex='9999'
+			bg='white'
+			p='10px'
+			borderRadius='10px'>
 			<div>{isSaved ? 'saved' : <Spinner />}</div>
 			<TextBlock setNewBlockType={setNewBlockType} />
 			<ImageBlock setNewBlockType={setNewBlockType} />

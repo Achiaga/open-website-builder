@@ -38,7 +38,7 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 			p='10px'
 			d='grid'
 			gridTemplateColumns='repeat(10, 1fr)'
-			gridTemplateRows={`repeat( auto-fit, 1vw )`}
+			gridTemplateRows={`repeat( auto-fit, 0.75vw )`}
 			gridGap={'10px'}
 			w='100vw'
 			height='1500px'>

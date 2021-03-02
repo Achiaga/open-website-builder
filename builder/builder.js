@@ -87,7 +87,7 @@ const Builder = ({ userBlocksData }) => {
 
 	return (
 		<Box d='flex' m='auto' flexDir='row'>
-			{/* <BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} /> */}
+			<BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} />
 			<WebBuilder
 				layout={layout}
 				blocksConfig={blocksConfig}
