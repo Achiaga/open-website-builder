@@ -218,7 +218,6 @@ const Properties = {
 }
 
 export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
-	console.log({ properties })
 	return (
 		properties?.map((propertyData, index) => {
 			const type = propertyData.type

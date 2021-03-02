@@ -55,16 +55,7 @@ const WebBuilder = ({
 			addCallbackToBlock(blocksConfig, editBlockCallback)
 		)
 	}, [])
-	function calculateHeight(layout) {
-		const lastItem = layout.reduce((acc, curr) => {
-			console.log(curr.y, acc?.y)
-			if (!acc?.y) return curr
-			if (curr.y > acc?.y) return curr
-			return acc
-		}, {})
-		console.log((lastItem.y + lastItem.h) * 10)
-	}
-	calculateHeight(layout)
+
 	return (
 		<Box d='flex' w='100%' flexDir='row' onClick={handleEditBlock}>
 			<ReactGridLayout
