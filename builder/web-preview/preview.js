@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { generatePageCode } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
-import { ROW_HEIGHT } from '../web-builder/constants'
+import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
 import { normalizeLayout, normalizeBlockStructure } from '../builder'
 
 const WebPreview = ({ layout, blocksConfig }) => {
@@ -33,13 +33,24 @@ WebPreview.propTypes = {
 }
 
 export const ResumeWebsite = ({ userBlocksData }) => {
+	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
+
+	function handleWindowResize() {
+		setRowHeight(window?.innerWidth / GRID_COLUMNS)
+	}
+
+	useEffect(() => {
+		window.addEventListener('resize', handleWindowResize)
+		return () => window.removeEventListener('resize', handleWindowResize)
+	}, [])
+
 	return (
 		<Box
 			p='10px'
 			d='grid'
-			gridTemplateColumns='repeat(10, 1fr)'
-			gridTemplateRows={`repeat( auto-fit,  0.75vw )`}
-			gridGap={'10px'}
+			gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
+			gridTemplateRows={`repeat( auto-fit,  ${rowHeight}px )`}
+			// gridGap={'10px'}
 			w='100vw'
 			height='1500px'>
 			{generatePageCode(
@@ -48,6 +59,10 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 			)}
 		</Box>
 	)
+}
+
+ResumeWebsite.propTypes = {
+	userBlocksData: PropTypes.any
 }
 
 export default WebPreview

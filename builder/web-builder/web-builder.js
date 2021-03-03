@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
@@ -24,6 +24,7 @@ const WebBuilder = ({
 	updateLayout,
 	newBlockType
 }) => {
+	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
 	function handleEditBlock(editableBlock) {
 		updateLayout((layout) => editItemDraggableProperty(layout, editableBlock))
 	}
@@ -50,18 +51,26 @@ const WebBuilder = ({
 		updateLayout(layout)
 	}
 
+	function handleWindowResize() {
+		setRowHeight(window?.innerWidth / GRID_COLUMNS)
+	}
+
 	useEffect(() => {
 		udpateBlocksConfig((blocksConfig) =>
 			addCallbackToBlock(blocksConfig, editBlockCallback)
 		)
+		window.addEventListener('resize', handleWindowResize)
+		return () => window.removeEventListener('resize', handleWindowResize)
 	}, [])
 
+	console.log(rowHeight)
 	return (
 		<Box d='flex' w='100%' flexDir='row' onClick={handleEditBlock}>
 			<ReactGridLayout
 				cols={GRID_COLUMNS}
-				rowHeight={ROW_HEIGHT}
+				rowHeight={rowHeight}
 				onDrop={onDrop}
+				margin={[0, 0]}
 				autoSize
 				isDroppable
 				verticalCompact={false}
