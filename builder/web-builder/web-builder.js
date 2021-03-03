@@ -63,7 +63,6 @@ const WebBuilder = ({
 		return () => window.removeEventListener('resize', handleWindowResize)
 	}, [])
 
-	console.log(rowHeight)
 	return (
 		<Box d='flex' w='100%' flexDir='row' onClick={handleEditBlock}>
 			<ReactGridLayout

@@ -9,6 +9,7 @@ import 'react-resizable/css/styles.css'
 import { WebBuilder } from '../builder/web-builder'
 import { WebPreview } from '../builder/web-preview'
 import { BuilderSidebar } from '../builder/sidebar'
+// import bacgroundSVG from './bacground.svg'
 
 export function normalizeLayout(userBlocksData) {
 	if (!userBlocksData) return []
@@ -86,7 +87,15 @@ const Builder = ({ userBlocksData }) => {
 	console.log(JSON.stringify(userBlocksData))
 
 	return (
-		<Box d='flex' m='auto' flexDir='row'>
+		<Box
+			d='flex'
+			m='auto'
+			flexDir='row'
+			bg={`url("./background.svg")`}
+			backgroundRepeat='no-repeat'
+			backgroundSize='cover'
+			backgroundPosition='center center'
+			height='500vw'>
 			<BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} />
 			<WebBuilder
 				layout={layout}

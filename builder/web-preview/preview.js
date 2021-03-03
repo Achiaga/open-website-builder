@@ -50,7 +50,6 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 			d='grid'
 			gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
 			gridTemplateRows={`repeat( auto-fit,  ${rowHeight}px )`}
-			// gridGap={'10px'}
 			w='100vw'
 			height='1500px'>
 			{generatePageCode(
