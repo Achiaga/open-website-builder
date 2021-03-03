@@ -13,8 +13,24 @@ export const FallbackData = {
 			i: 'a',
 			x: 0,
 			y: 0,
-			w: 3,
-			h: 2,
+			w: 100,
+			h: 20,
+			isDraggable: true
+		}
+	},
+	b: {
+		block: {
+			type: 'text',
+			data: {
+				text: 'Welcome overlap'
+			}
+		},
+		layout: {
+			i: 'b',
+			x: 10,
+			y: 0,
+			w: 100,
+			h: 20,
 			isDraggable: true
 		}
 	}

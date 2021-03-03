@@ -1,2 +1,2 @@
-export const GRID_COLUMNS = 30
+export const GRID_COLUMNS = 200
 export const ROW_HEIGHT = 10

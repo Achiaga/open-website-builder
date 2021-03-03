@@ -7,7 +7,6 @@ import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
 import { WebBuilder } from '../builder/web-builder'
-import { WebPreview } from '../builder/web-preview'
 import { BuilderSidebar } from '../builder/sidebar'
 // import bacgroundSVG from './bacground.svg'
 
@@ -57,6 +56,7 @@ function saveOnLocal(userBlocksData, setIsSaved) {
 	if (!Object.keys(userBlocksData).length) return
 	localforage.setItem('userData', userBlocksData).then(() => {
 		setIsSaved(true)
+		console.log(JSON.stringify(userBlocksData))
 		console.log('succesfully saved')
 	})
 }
@@ -104,7 +104,6 @@ const Builder = ({ userBlocksData }) => {
 				udpateBlocksConfig={udpateBlocksConfig}
 				updateLayout={setLayout}
 			/>
-			{/* <WebPreview layout={layout} blocksConfig={blocksConfig} /> */}
 		</Box>
 	)
 }
