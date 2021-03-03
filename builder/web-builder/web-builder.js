@@ -64,8 +64,9 @@ const WebBuilder = ({
 				onDrop={onDrop}
 				autoSize
 				isDroppable
+				verticalCompact={false}
 				droppingItem={{ i: uuid(), w: 4, h: 4 }}
-				style={{ width: '100%' }}
+				style={{ width: '100%', minHeight: '100vh' }}
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
