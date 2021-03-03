@@ -97,8 +97,9 @@ const generateBuilderBlock = (
 	const isDraggable = layoutItemInfo.isDraggable || false
 	return (
 		<Box
-			border='1px solid'
-			borderColor={isDraggable ? 'transparent' : 'blue'}
+			outline='solid'
+			outlineWidth='1px'
+			outlineColor={isDraggable ? 'transparent' : 'blue'}
 			key={blockKey}
 			onDoubleClick={() => setIsEditable(blockKey)}>
 			<Block

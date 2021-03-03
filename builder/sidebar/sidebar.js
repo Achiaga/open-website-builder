@@ -48,7 +48,7 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 	if (!isOpen)
 		return (
 			<Box
-				pos='absolute'
+				pos='fixed'
 				top='10px'
 				right='10px'
 				zIndex='9999'
