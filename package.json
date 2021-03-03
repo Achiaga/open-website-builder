@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "next": "10.0.6",
     "react": "17.0.1",
+    "react-color": "^2.19.3",
     "react-dom": "17.0.1",
     "react-ga": "^3.3.0",
     "react-grid-layout": "^1.2.0",

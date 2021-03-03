@@ -1,5 +1,7 @@
 import { Box, Button, Select } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { ChromePicker } from 'react-color'
 
 import { DELETE, EDIT } from './constants'
 
@@ -164,15 +166,34 @@ DropDownSelector.propTypes = {
 	placeholder: PropTypes.string.isRequired
 }
 
+function RGBAToHexA({ r, g, b, a }) {
+	r = r.toString(16)
+	g = g.toString(16)
+	b = b.toString(16)
+	a = Math.round(a * 255).toString(16)
+
+	if (r.length == 1) r = '0' + r
+	if (g.length == 1) g = '0' + g
+	if (b.length == 1) b = '0' + b
+	if (a.length == 1) a = '0' + a
+
+	return '#' + r + g + b + a
+}
+
 function ColorSelector({ handleEdit, property, value, placeholder }) {
-	const handleChange = (e) => {
-		const { value } = e.target
-		handleEdit(property, value)
+	const [isOpen, setIsOpen] = useState(false)
+	const handleChange = ({ rgb }) => {
+		handleEdit(property, RGBAToHexA(rgb))
 	}
 	return (
 		<Box>
-			<label>{placeholder}</label>
-			<input type='color' onChange={handleChange} value={value} />
+			<label onClick={() => setIsOpen(true)}>{placeholder}</label>
+			{isOpen && (
+				<Box pos='absolute' zIndex='9999'>
+					<button onClick={() => setIsOpen(false)}>Close</button>
+					<ChromePicker color={value} onChange={handleChange} />
+				</Box>
+			)}
 		</Box>
 	)
 }

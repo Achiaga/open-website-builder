@@ -84,7 +84,7 @@ const Builder = ({ userBlocksData }) => {
 		debouncedSaved(layout, blocksConfig)
 	}, [layout, blocksConfig])
 
-	console.log(JSON.stringify(userBlocksData))
+	// console.log(JSON.stringify(userBlocksData))
 
 	return (
 		<Box
