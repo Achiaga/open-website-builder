@@ -26,8 +26,8 @@ const WebBuilder = ({
 }) => {
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
-	function handleEditBlock(editableBlock) {
-		updateLayout((layout) => editItemDraggableProperty(layout, editableBlock))
+	function handleEditBlock(editableBlockId) {
+		updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
 	}
 	const editBlockCallback = (newData, blockId, operationType) => {
 		udpateBlocksConfig((blocksConfig) =>
@@ -35,8 +35,12 @@ const WebBuilder = ({
 		)
 	}
 
+	function droppableCallback(e) {
+		console.log('droppableCallback', e)
+	}
+
 	function onDrop(layout, droppedBlockLayout) {
-		console.log(layout, droppedBlockLayout)
+		console.log('normal drop', layout, droppedBlockLayout)
 		updateLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
@@ -50,6 +54,7 @@ const WebBuilder = ({
 	}
 
 	const onLayoutChange = (layout) => {
+		console.log('onLayoutChange', layout)
 		if (layout?.length !== Object.keys(blocksConfig)?.length) return
 		updateLayout(layout)
 	}
@@ -75,7 +80,7 @@ const WebBuilder = ({
 				onDrop={onDrop}
 				margin={[0, 0]}
 				autoSize
-				isDroppable
+				isDroppable={false}
 				verticalCompact={false}
 				droppingItem={{ i: newBlockId, w: 50, h: 50 }}
 				style={{ width: '100%', minHeight: '100vh' }}

@@ -18,20 +18,20 @@ export const FallbackData = {
 			isDraggable: true
 		}
 	},
-	b: {
+	'inception-block': {
 		block: {
-			type: 'text',
+			type: 'inception',
 			data: {
 				text: 'Welcome overlap'
 			}
 		},
 		layout: {
-			i: 'b',
+			i: 'inception-block',
 			x: 10,
 			y: 0,
 			w: 100,
-			h: 20,
-			isDraggable: true
+			h: 50,
+			static: true
 		}
 	}
 }

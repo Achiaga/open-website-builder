@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import localforage from 'localforage'
 import { Box } from '@chakra-ui/react'
 import debounce from 'lodash/debounce'
+import PropTypes from 'prop-types'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
@@ -27,6 +28,7 @@ export function normalizeBlockStructure(userBlocksData) {
 }
 
 function removeEventListener(blockConfig) {
+	// eslint-disable-next-line no-unused-vars
 	const { editBlock, ...rest } = blockConfig.data
 	return {
 		...blockConfig,
@@ -54,6 +56,7 @@ function denormalizeBlockData(layout, blocksConfig) {
 
 function saveOnLocal(userBlocksData, setIsSaved) {
 	if (!Object.keys(userBlocksData).length) return
+	setIsSaved(false)
 	localforage.setItem('userData', userBlocksData).then(() => {
 		setIsSaved(true)
 		console.log(JSON.stringify(userBlocksData))
@@ -80,12 +83,9 @@ const Builder = ({ userBlocksData }) => {
 	)
 
 	useEffect(() => {
-		setIsSaved(false)
 		debouncedSaved(layout, blocksConfig)
 	}, [layout, blocksConfig])
-
-	// console.log(JSON.stringify(userBlocksData))
-
+	console.log(blocksConfig)
 	return (
 		<Box
 			d='flex'
@@ -106,6 +106,10 @@ const Builder = ({ userBlocksData }) => {
 			/>
 		</Box>
 	)
+}
+
+Builder.propTypes = {
+	userBlocksData: PropTypes.any
 }
 
 export default Builder

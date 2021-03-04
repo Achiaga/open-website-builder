@@ -6,11 +6,13 @@ import { BlockModifiers } from './block-modifiers'
 import Image from './image'
 import List from './list'
 import GenericText from './text'
+import BlockInception from './inception'
 
 const blocks = {
 	image: Image,
 	list: List,
-	text: GenericText
+	text: GenericText,
+	inception: BlockInception
 }
 
 function BuilderBlock({ data, blockKey, isEditable, blockType }) {

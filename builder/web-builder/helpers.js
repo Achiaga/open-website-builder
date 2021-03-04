@@ -62,7 +62,8 @@ export function editBlock(blocks, id, newData, operationType = EDIT) {
 export const editItemDraggableProperty = (layout, editableBlockId) => {
 	return layout.map((layoutItem) => {
 		const isSelectedItem = layoutItem.i === editableBlockId
-		const isDraggable = isSelectedItem ? !layoutItem.isDraggable : true
+		let isDraggable = isSelectedItem ? !layoutItem.isDraggable : true
+		if (layoutItem.static) isDraggable = false
 		return { ...layoutItem, isDraggable }
 	})
 }
@@ -94,7 +95,7 @@ const generateBuilderBlock = (
 	layoutItemInfo
 ) => {
 	if (!blockInfo) return null
-	const isDraggable = layoutItemInfo.isDraggable || false
+	const isDraggable = layoutItemInfo?.isDraggable || false
 	return (
 		<Box
 			outline='solid'
