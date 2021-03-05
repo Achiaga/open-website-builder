@@ -26,7 +26,9 @@ const WebBuilder = ({
 }) => {
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
-	function handleEditBlock(editableBlockId) {
+	const [selectedItemId, setSelectedItem] = useState(null)
+	function setBlockEditable(editableBlockId) {
+		setSelectedItem(editableBlockId)
 		updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
 	}
 	const editBlockCallback = (newData, blockId, operationType) => {
@@ -71,7 +73,7 @@ const WebBuilder = ({
 	}, [])
 
 	return (
-		<Box d='flex' w='100%' flexDir='row' onClick={handleEditBlock}>
+		<Box d='flex' w='100%' flexDir='row' onClick={setBlockEditable}>
 			<ReactGridLayout
 				cols={GRID_COLUMNS}
 				rowHeight={rowHeight}
@@ -85,7 +87,12 @@ const WebBuilder = ({
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
-				{generateBuilderBlocks(blocksConfig, handleEditBlock, layout)}
+				{generateBuilderBlocks(
+					blocksConfig,
+					setBlockEditable,
+					layout,
+					selectedItemId
+				)}
 			</ReactGridLayout>
 		</Box>
 	)

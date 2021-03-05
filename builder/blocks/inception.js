@@ -70,8 +70,6 @@ const BlockInception = ({ data }) => {
 		setNewBlockId(uuid())
 	}
 
-	console.log(layout)
-
 	return (
 		<ReactGridLayout
 			cols={10}

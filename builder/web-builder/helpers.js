@@ -102,9 +102,10 @@ const generateBuilderBlock = (
 			outlineWidth='1px'
 			outlineColor={isEditable ? 'blue' : 'transparent'}
 			key={blockKey}
-			onDoubleClick={() =>
+			onDoubleClick={(e) => {
+				e.stopPropagation()
 				setIsEditable(selectedItemId === blockKey ? null : blockKey)
-			}>
+			}}>
 			<Block
 				data={blockInfo.data}
 				blockKey={blockKey}
