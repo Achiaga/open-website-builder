@@ -63,7 +63,6 @@ export const editItemDraggableProperty = (layout, editableBlockId) => {
 	return layout.map((layoutItem) => {
 		const isSelectedItem = layoutItem.i === editableBlockId
 		let isDraggable = isSelectedItem ? !layoutItem.isDraggable : true
-		if (layoutItem.static) isDraggable = false
 		return { ...layoutItem, isDraggable }
 	})
 }
@@ -92,31 +91,45 @@ const generateBuilderBlock = (
 	blockKey,
 	blockInfo,
 	setIsEditable,
-	layoutItemInfo
+	layoutItemInfo,
+	selectedItemId
 ) => {
 	if (!blockInfo) return null
-	const isDraggable = layoutItemInfo?.isDraggable || false
+	const isEditable = selectedItemId === blockKey
 	return (
 		<Box
 			outline='solid'
 			outlineWidth='1px'
-			outlineColor={isDraggable ? 'transparent' : 'blue'}
+			outlineColor={isEditable ? 'blue' : 'transparent'}
 			key={blockKey}
-			onDoubleClick={() => setIsEditable(blockKey)}>
+			onDoubleClick={() =>
+				setIsEditable(selectedItemId === blockKey ? null : blockKey)
+			}>
 			<Block
 				data={blockInfo.data}
 				blockKey={blockKey}
-				isEditable={!isDraggable}
+				isEditable={isEditable}
 				blockType={blockInfo.type}
 			/>
 		</Box>
 	)
 }
 
-export const generateBuilderBlocks = (blocksConfig, setIsEditable, layout) => {
+export const generateBuilderBlocks = (
+	blocksConfig,
+	setIsEditable,
+	layout,
+	selectedItemId
+) => {
 	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
 		const layoutItem = layout.find((layoutItem) => layoutItem.i === blockKey)
-		return generateBuilderBlock(blockKey, blockInfo, setIsEditable, layoutItem)
+		return generateBuilderBlock(
+			blockKey,
+			blockInfo,
+			setIsEditable,
+			layoutItem,
+			selectedItemId
+		)
 	})
 }

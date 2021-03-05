@@ -85,7 +85,7 @@ const Builder = ({ userBlocksData }) => {
 	useEffect(() => {
 		debouncedSaved(layout, blocksConfig)
 	}, [layout, blocksConfig])
-	console.log(blocksConfig)
+
 	return (
 		<Box
 			d='flex'

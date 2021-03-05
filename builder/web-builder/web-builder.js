@@ -40,7 +40,6 @@ const WebBuilder = ({
 	}
 
 	function onDrop(layout, droppedBlockLayout) {
-		console.log('normal drop', layout, droppedBlockLayout)
 		updateLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
@@ -54,7 +53,6 @@ const WebBuilder = ({
 	}
 
 	const onLayoutChange = (layout) => {
-		console.log('onLayoutChange', layout)
 		if (layout?.length !== Object.keys(blocksConfig)?.length) return
 		updateLayout(layout)
 	}

@@ -39,6 +39,7 @@ const BlockInception = ({ data }) => {
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [blocksConfig, udpateBlocksConfig] = useState(initialBlockConfig)
 	const [layout, setLayout] = useState(initialLayout)
+	const [selectedItemId, setSelectedItem] = useState(null)
 
 	const editBlockCallback = (newData, blockId, operationType) => {
 		udpateBlocksConfig((blocksConfig) =>
@@ -46,12 +47,17 @@ const BlockInception = ({ data }) => {
 		)
 	}
 
-	function handleEditBlock(editableBlockId) {
+	function setItemEditable(editableBlockId) {
+		setSelectedItem(editableBlockId)
 		setLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
 	}
 
+	const onLayoutChange = (layout) => {
+		if (layout?.length !== Object.keys(blocksConfig)?.length) return
+		setLayout(layout)
+	}
+
 	function onDrop(layout, droppedBlockLayout) {
-		console.log('normal drop', layout, droppedBlockLayout)
 		setLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
@@ -64,27 +70,27 @@ const BlockInception = ({ data }) => {
 		setNewBlockId(uuid())
 	}
 
+	console.log(layout)
+
 	return (
 		<ReactGridLayout
 			cols={10}
 			rowHeight={10}
 			margin={[0, 0]}
 			style={{ backgroundColor: 'lightblue' }}
-			autoSize
 			isDroppable
-			onDrag={(e) => console.log('drag', e)}
 			onDrop={onDrop}
 			droppingItem={{ i: newBlockId, w: 5, h: 5 }}
 			verticalCompact={false}
 			layout={layout}
+			onLayoutChange={onLayoutChange}
 			className='layout'>
-			{generateBuilderBlocks(blocksConfig, handleEditBlock, layout)}
-			{/* <div key='inception-1'>
-				<span>A</span>
-			</div>
-			<div key='inception-2'>
-				<span>B</span>
-			</div> */}
+			{generateBuilderBlocks(
+				blocksConfig,
+				setItemEditable,
+				layout,
+				selectedItemId
+			)}
 		</ReactGridLayout>
 	)
 }

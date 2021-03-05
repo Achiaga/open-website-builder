@@ -33,7 +33,6 @@ function BuilderBlock({ data, blockKey, isEditable, blockType }) {
 				<BlockModifiers data={data} blockKey={blockKey} blockType={blockType} />
 			)}
 			<GenericBlock
-				isEditable={isEditable}
 				onKeyUp={handleKeyDown}
 				contentEditable={isEditable}
 				ref={titleRef}
