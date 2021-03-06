@@ -3,18 +3,17 @@ import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
+import { Box } from '@chakra-ui/react'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import { Box } from '@chakra-ui/react'
+
 import {
 	denormalizeBlockData,
 	generateBuilderBlocks,
 	normalizeBlockStructure,
 	normalizeLayout,
-	saveOnLocal
-} from './helpers'
-import {
+	saveOnLocal,
 	addBlock,
 	addCallbackToBlock,
 	editBlock,
@@ -51,8 +50,12 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 			addCallbackToBlock(blocksConfig, editBlockCallback)
 		)
 		window.addEventListener('resize', handleWindowResize)
+		window.addEventListener('keydown', handleKeyPress)
 		setRowHeight(window?.innerWidth / GRID_COLUMNS)
-		return () => window.removeEventListener('resize', handleWindowResize)
+		return () => {
+			window.removeEventListener('keydown', handleKeyPress)
+			window.removeEventListener('resize', handleWindowResize)
+		}
 	}, [])
 
 	function setBlockEditable(editableBlockId) {
@@ -93,11 +96,21 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		}
 	}
 
+	function handleKeyPress(e) {
+		if (e.key === 'Escape') {
+			setBlockEditable(null)
+		}
+	}
+
 	const isDroppable = selectedItemId?.includes('inception') ? false : true
 	return (
-		<Box d='flex' w='100%' flexDir='row' onClick={() => setBlockEditable(null)}>
+		<Box
+			d='flex'
+			w='100%'
+			flexDir='row'
+			onClick={() => setBlockEditable(null)}
+			id='main-builder'>
 			<ReactGridLayout
-				id='inception'
 				cols={GRID_COLUMNS}
 				rowHeight={rowHeight}
 				onDrop={onDrop}
@@ -126,12 +139,9 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 }
 
 WebBuilder.propTypes = {
-	layout: PropTypes.any,
-	isDroppable: PropTypes.any,
-	udpateBlocksConfig: PropTypes.any,
-	updateLayout: PropTypes.any,
+	userBlocksData: PropTypes.any,
 	newBlockType: PropTypes.any,
-	blocksConfig: PropTypes.any
+	setIsSaved: PropTypes.any
 }
 
 export default WebBuilder

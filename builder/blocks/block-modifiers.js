@@ -1,7 +1,8 @@
-import { Box, Button, Select } from '@chakra-ui/react'
+import { Box, Button, Input, Select } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { ChromePicker } from 'react-color'
+import { Portal } from '../usePortal'
 
 import { DELETE, EDIT } from './constants'
 
@@ -120,11 +121,33 @@ const deleteBlock = {
 	property: '',
 	operationType: DELETE
 }
+const imageInput = {
+	type: 'text',
+	placeholder: 'Enter image url',
+	property: 'imageUrl'
+}
+
+const Properties = {
+	text: [
+		deleteBlock,
+		fontSize,
+		textAlign,
+		backgroundColor,
+		fontColor,
+		alignItems,
+		fontWeight,
+		boxShadow,
+		borderRadius
+	],
+	image: [deleteBlock, boxShadow, borderRadius, imageInput],
+	inception: [deleteBlock, boxShadow, borderRadius, backgroundColor]
+}
 
 const PropertiesModifiers = {
 	dropdown: DropDownSelector,
 	color: ColorSelector,
-	button: ButtonSelector
+	button: ButtonSelector,
+	text: TextInput
 }
 
 function DropDownSelector({
@@ -203,6 +226,28 @@ ColorSelector.propTypes = {
 	value: PropTypes.string.isRequired,
 	placeholder: PropTypes.string.isRequired
 }
+function TextInput({ handleEdit, property, value, placeholder }) {
+	const handleChange = (e) => {
+		handleEdit(property, e.target.value)
+	}
+	return (
+		<Box onDoubleClick={(e) => e.stopPropagation()}>
+			<Input
+				fontColor='white'
+				placeholder={placeholder}
+				onChange={handleChange}
+				value={value}
+				color='white'
+			/>
+		</Box>
+	)
+}
+TextInput.propTypes = {
+	handleEdit: PropTypes.func.isRequired,
+	property: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired
+}
 
 function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
 	const handleClick = () => {
@@ -223,22 +268,6 @@ ButtonSelector.propTypes = {
 	placeholder: PropTypes.string.isRequired
 }
 
-const Properties = {
-	text: [
-		deleteBlock,
-		fontSize,
-		textAlign,
-		backgroundColor,
-		fontColor,
-		alignItems,
-		fontWeight,
-		boxShadow,
-		borderRadius
-	],
-	image: [deleteBlock, boxShadow, borderRadius],
-	inception: [deleteBlock, boxShadow, borderRadius, backgroundColor]
-}
-
 export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
 	return (
 		properties?.map((propertyData, index) => {
@@ -257,26 +286,39 @@ export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
 	)
 }
 
+function getTranslateX(blockKey) {
+	const myElement = document.getElementById(blockKey).parentElement
+	var style = window.getComputedStyle(myElement)
+	// eslint-disable-next-line no-undef
+	var matrix = new WebKitCSSMatrix(style.transform)
+
+	return { left: matrix.m41, top: matrix.m42 }
+}
+
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
 	const { editBlock = () => {} } = data
 
 	function handleEdit(id, value, operationType = EDIT) {
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
+
+	const dim = getTranslateX(blockKey)
 	return (
-		<Box
-			onClick={(e) => e.stopPropagation()}
-			pos='absolute'
-			top='-20px'
-			backgroundColor='black'
-			color='white'
-			transform='translate(0px, -100%)'>
-			<Modifier
-				handleEdit={handleEdit}
-				propertiesValues={data}
-				properties={Properties[blockType]}
-			/>
-		</Box>
+		<Portal id='main-builder'>
+			<Box
+				left={dim.left}
+				top={dim.top}
+				pos='absolute'
+				onClick={(e) => e.stopPropagation()}
+				backgroundColor='black'
+				color='white'>
+				<Modifier
+					handleEdit={handleEdit}
+					propertiesValues={data}
+					properties={Properties[blockType]}
+				/>
+			</Box>
+		</Portal>
 	)
 }
 

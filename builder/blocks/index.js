@@ -35,7 +35,11 @@ function BuilderBlock({
 		editBlock(updatedBlock, blockKey)
 	}
 	return (
-		<Box width='100%' h='100%' onClick={(e) => e.stopPropagation()}>
+		<Box
+			width='100%'
+			h='100%'
+			onClick={(e) => e.stopPropagation()}
+			id={blockKey}>
 			{isEditable && (
 				<BlockModifiers data={data} blockKey={blockKey} blockType={blockType} />
 			)}
