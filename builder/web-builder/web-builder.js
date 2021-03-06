@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
+import debounce from 'lodash/debounce'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 import { Box } from '@chakra-ui/react'
-import { generateBuilderBlocks } from './helpers'
+import {
+	denormalizeBlockData,
+	generateBuilderBlocks,
+	normalizeBlockStructure,
+	normalizeLayout,
+	saveOnLocal
+} from './helpers'
 import {
 	addBlock,
 	addCallbackToBlock,
@@ -16,17 +23,38 @@ import {
 import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
 
 const ReactGridLayout = WidthProvider(RGL)
+const SAVE_TIME = 5000
 
-const WebBuilder = ({
-	layout,
-	blocksConfig,
-	udpateBlocksConfig,
-	updateLayout,
-	newBlockType
-}) => {
+const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
+	const [reRender, setReRender] = useState(false)
 	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
 	const [selectedItemId, setSelectedItem] = useState(null)
+	const [blocksConfig, udpateBlocksConfig] = useState(() =>
+		normalizeBlockStructure(userBlocksData)
+	)
+	const [layout, updateLayout] = useState(() => normalizeLayout(userBlocksData))
+
+	const debouncedSaved = useCallback(
+		debounce((layout, blocksConfig) => {
+			saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }), setIsSaved)
+		}, SAVE_TIME),
+		[]
+	)
+
+	useEffect(() => {
+		debouncedSaved(layout, blocksConfig)
+	}, [layout, blocksConfig])
+
+	useEffect(() => {
+		udpateBlocksConfig((blocksConfig) =>
+			addCallbackToBlock(blocksConfig, editBlockCallback)
+		)
+		window.addEventListener('resize', handleWindowResize)
+		setRowHeight(window?.innerWidth / GRID_COLUMNS)
+		return () => window.removeEventListener('resize', handleWindowResize)
+	}, [])
+
 	function setBlockEditable(editableBlockId) {
 		setSelectedItem(editableBlockId)
 		updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
@@ -35,10 +63,6 @@ const WebBuilder = ({
 		udpateBlocksConfig((blocksConfig) =>
 			editBlock(blocksConfig, blockId, newData, operationType)
 		)
-	}
-
-	function droppableCallback(e) {
-		console.log('droppableCallback', e)
 	}
 
 	function onDrop(layout, droppedBlockLayout) {
@@ -63,25 +87,26 @@ const WebBuilder = ({
 		setRowHeight(window?.innerWidth / GRID_COLUMNS)
 	}
 
-	useEffect(() => {
-		udpateBlocksConfig((blocksConfig) =>
-			addCallbackToBlock(blocksConfig, editBlockCallback)
-		)
-		window.addEventListener('resize', handleWindowResize)
-		setRowHeight(window?.innerWidth / GRID_COLUMNS)
-		return () => window.removeEventListener('resize', handleWindowResize)
-	}, [])
+	function handleResize(_, oldItem, newItem) {
+		if (newItem.i.includes('inception') && newItem.w !== oldItem.w) {
+			setReRender((value) => !value)
+		}
+	}
 
+	const isDroppable = selectedItemId?.includes('inception') ? false : true
 	return (
-		<Box d='flex' w='100%' flexDir='row' onClick={setBlockEditable}>
+		<Box d='flex' w='100%' flexDir='row' onClick={() => setBlockEditable(null)}>
 			<ReactGridLayout
+				id='inception'
 				cols={GRID_COLUMNS}
 				rowHeight={rowHeight}
 				onDrop={onDrop}
 				margin={[0, 0]}
 				autoSize
-				isDroppable={false}
-				verticalCompact={false}
+				preventCollision={!isDroppable}
+				isDroppable={isDroppable}
+				onResizeStop={handleResize}
+				compactType='null'
 				droppingItem={{ i: newBlockId, w: 50, h: 50 }}
 				style={{ width: '100%', minHeight: '100vh' }}
 				className='layout'
@@ -91,7 +116,8 @@ const WebBuilder = ({
 					blocksConfig,
 					setBlockEditable,
 					layout,
-					selectedItemId
+					selectedItemId,
+					reRender
 				)}
 			</ReactGridLayout>
 		</Box>

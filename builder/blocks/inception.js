@@ -1,6 +1,5 @@
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
-import PropTypes from 'prop-types'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
@@ -11,6 +10,7 @@ import {
 	editItemDraggableProperty,
 	generateBuilderBlocks
 } from '../web-builder/helpers'
+import { Box } from '@chakra-ui/react'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -34,7 +34,11 @@ const initialLayout = [
 	{ i: 'inception-2', x: 10, y: 20, w: 10, h: 10 }
 ]
 
-const BlockInception = ({ data }) => {
+const BlockInception = ({
+	data,
+	reRender,
+	selectedItemId: parenSelectedItem
+}) => {
 	const [newBlockType, setNewBlockType] = useState('text')
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [blocksConfig, udpateBlocksConfig] = useState(initialBlockConfig)
@@ -57,7 +61,7 @@ const BlockInception = ({ data }) => {
 		setLayout(layout)
 	}
 
-	function onDrop(layout, droppedBlockLayout) {
+	function onDrop(layout, droppedBlockLayout, e) {
 		setLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
@@ -69,27 +73,32 @@ const BlockInception = ({ data }) => {
 		)
 		setNewBlockId(uuid())
 	}
-
+	const isDroppable = parenSelectedItem?.includes('inception')
 	return (
-		<ReactGridLayout
-			cols={10}
-			rowHeight={10}
-			margin={[0, 0]}
-			style={{ backgroundColor: 'lightblue' }}
-			isDroppable
-			onDrop={onDrop}
-			droppingItem={{ i: newBlockId, w: 5, h: 5 }}
-			verticalCompact={false}
-			layout={layout}
-			onLayoutChange={onLayoutChange}
-			className='layout'>
-			{generateBuilderBlocks(
-				blocksConfig,
-				setItemEditable,
-				layout,
-				selectedItemId
-			)}
-		</ReactGridLayout>
+		<Box bg='white' w='100%' h='100%' id='inception'>
+			<ReactGridLayout
+				useCSSTransforms={false}
+				key={reRender ? 'a' : 'b'}
+				cols={10}
+				rowHeight={10}
+				margin={[0, 0]}
+				height={100}
+				autoSize={false}
+				preventCollision={false}
+				isDroppable={isDroppable}
+				onDrop={onDrop}
+				droppingItem={{ i: newBlockId, w: 10, h: 10 }}
+				compactType='null'
+				layout={layout}
+				onLayoutChange={onLayoutChange}>
+				{generateBuilderBlocks(
+					blocksConfig,
+					setItemEditable,
+					layout,
+					selectedItemId
+				)}
+			</ReactGridLayout>
+		</Box>
 	)
 }
 

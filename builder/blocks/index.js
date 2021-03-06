@@ -15,7 +15,14 @@ const blocks = {
 	inception: BlockInception
 }
 
-function BuilderBlock({ data, blockKey, isEditable, blockType }) {
+function BuilderBlock({
+	data,
+	blockKey,
+	isEditable,
+	blockType,
+	reRender,
+	selectedItemId
+}) {
 	const GenericBlock = blocks[blockType]
 	const { editBlock = () => {}, text: dataText, ...extraProps } = data
 
@@ -37,6 +44,8 @@ function BuilderBlock({ data, blockKey, isEditable, blockType }) {
 				contentEditable={isEditable}
 				ref={titleRef}
 				text={text}
+				reRender={reRender}
+				selectedItemId={selectedItemId}
 				{...extraProps}
 			/>
 		</Box>
@@ -60,7 +69,15 @@ PreviewBlock.propTypes = {
 	data: PropTypes.any
 }
 
-export const Block = ({ isPreview, data, blockKey, isEditable, blockType }) => {
+export const Block = ({
+	isPreview,
+	data,
+	blockKey,
+	isEditable,
+	blockType,
+	selectedItemId,
+	reRender
+}) => {
 	if (isPreview) return <PreviewBlock data={data} blockType={blockType} />
 	return (
 		<BuilderBlock
@@ -68,6 +85,8 @@ export const Block = ({ isPreview, data, blockKey, isEditable, blockType }) => {
 			blockKey={blockKey}
 			isEditable={isEditable}
 			blockType={blockType}
+			reRender={reRender}
+			selectedItemId={selectedItemId}
 		/>
 	)
 }

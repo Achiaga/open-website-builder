@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react'
+import localforage from 'localforage'
 
 import { Block } from '../blocks'
 import { DELETE, EDIT } from '../blocks/constants'
@@ -92,7 +93,8 @@ const generateBuilderBlock = (
 	blockInfo,
 	setIsEditable,
 	layoutItemInfo,
-	selectedItemId
+	selectedItemId,
+	reRender
 ) => {
 	if (!blockInfo) return null
 	const isEditable = selectedItemId === blockKey
@@ -111,6 +113,8 @@ const generateBuilderBlock = (
 				blockKey={blockKey}
 				isEditable={isEditable}
 				blockType={blockInfo.type}
+				reRender={reRender}
+				selectedItemId={selectedItemId}
 			/>
 		</Box>
 	)
@@ -120,7 +124,8 @@ export const generateBuilderBlocks = (
 	blocksConfig,
 	setIsEditable,
 	layout,
-	selectedItemId
+	selectedItemId,
+	reRender
 ) => {
 	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
@@ -130,7 +135,62 @@ export const generateBuilderBlocks = (
 			blockInfo,
 			setIsEditable,
 			layoutItem,
-			selectedItemId
+			selectedItemId,
+			reRender
 		)
 	})
+}
+
+// Builder
+export function denormalizeBlockData(layout, blocksConfig) {
+	return Object.entries(blocksConfig).reduce((acc, [blockKey, blockConfig]) => {
+		return {
+			...acc,
+			[blockKey]: {
+				layout: {
+					...layout.find((layoutItem) => layoutItem.i === blockKey)
+				},
+				block: {
+					...removeEventListener(blockConfig)
+				}
+			}
+		}
+	}, {})
+}
+
+export function saveOnLocal(userBlocksData, setIsSaved) {
+	if (!Object.keys(userBlocksData).length) return
+	setIsSaved(false)
+	localforage.setItem('userData', userBlocksData).then(() => {
+		setIsSaved(true)
+		// console.log(JSON.stringify(userBlocksData))
+		// console.log('succesfully saved')
+	})
+}
+
+function removeEventListener(blockConfig) {
+	// eslint-disable-next-line no-unused-vars
+	const { editBlock, ...rest } = blockConfig.data
+	return {
+		...blockConfig,
+		data: {
+			...rest
+		}
+	}
+}
+
+export function normalizeLayout(userBlocksData) {
+	if (!userBlocksData) return []
+	return Object.values(userBlocksData).map((block) => {
+		return block.layout
+	})
+}
+export function normalizeBlockStructure(userBlocksData) {
+	if (!userBlocksData) return {}
+	return Object.entries(userBlocksData).reduce((acc, [blockId, value]) => {
+		return {
+			...acc,
+			[blockId]: value.block
+		}
+	}, {})
 }

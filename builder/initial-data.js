@@ -31,7 +31,7 @@ export const FallbackData = {
 			y: 0,
 			w: 100,
 			h: 50,
-			static: true
+			static: false
 		}
 	}
 }

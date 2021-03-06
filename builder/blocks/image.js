@@ -5,7 +5,6 @@ import { Box } from '@chakra-ui/react'
 export const GenericImage = forwardRef((props) => {
 	return (
 		<Box
-			contentEditable={props?.contentEditable}
 			onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
 			backgroundImage={`url(${props?.imageUrl})`}
 			width='100%'
