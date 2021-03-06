@@ -8,7 +8,6 @@ import 'react-resizable/css/styles.css'
 
 import { WebBuilder } from '../builder/web-builder'
 import { BuilderSidebar } from '../builder/sidebar'
-// import bacgroundSVG from './bacground.svg'
 
 const Builder = ({ userBlocksData }) => {
 	const [isSaved, setIsSaved] = useState(true)

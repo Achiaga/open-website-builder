@@ -117,7 +117,8 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 					setBlockEditable,
 					layout,
 					selectedItemId,
-					reRender
+					reRender,
+					newBlockType
 				)}
 			</ReactGridLayout>
 		</Box>

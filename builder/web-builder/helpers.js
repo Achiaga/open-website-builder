@@ -94,14 +94,14 @@ const generateBuilderBlock = (
 	setIsEditable,
 	layoutItemInfo,
 	selectedItemId,
-	reRender
+	reRender,
+	newBlockType
 ) => {
 	if (!blockInfo) return null
 	const isEditable = selectedItemId === blockKey
 	return (
 		<Box
-			outline='solid'
-			outlineWidth='1px'
+			outline='2px solid'
 			outlineColor={isEditable ? 'blue' : 'transparent'}
 			key={blockKey}
 			onDoubleClick={(e) => {
@@ -115,6 +115,7 @@ const generateBuilderBlock = (
 				blockType={blockInfo.type}
 				reRender={reRender}
 				selectedItemId={selectedItemId}
+				newBlockType={newBlockType}
 			/>
 		</Box>
 	)

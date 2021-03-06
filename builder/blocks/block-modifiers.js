@@ -235,7 +235,8 @@ const Properties = {
 		boxShadow,
 		borderRadius
 	],
-	image: [deleteBlock, boxShadow, borderRadius]
+	image: [deleteBlock, boxShadow, borderRadius],
+	inception: [deleteBlock, boxShadow, borderRadius, backgroundColor]
 }
 
 export const Modifier = ({ handleEdit, propertiesValues, properties }) => {

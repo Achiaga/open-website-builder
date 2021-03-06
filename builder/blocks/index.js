@@ -76,7 +76,8 @@ export const Block = ({
 	isEditable,
 	blockType,
 	selectedItemId,
-	reRender
+	reRender,
+	newBlockType
 }) => {
 	if (isPreview) return <PreviewBlock data={data} blockType={blockType} />
 	return (
@@ -87,6 +88,7 @@ export const Block = ({
 			blockType={blockType}
 			reRender={reRender}
 			selectedItemId={selectedItemId}
+			newBlockType={newBlockType}
 		/>
 	)
 }

@@ -35,11 +35,11 @@ const initialLayout = [
 ]
 
 const BlockInception = ({
-	data,
 	reRender,
-	selectedItemId: parenSelectedItem
+	selectedItemId: parenSelectedItem,
+	newBlockType = 'text',
+	...data
 }) => {
-	const [newBlockType, setNewBlockType] = useState('text')
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [blocksConfig, udpateBlocksConfig] = useState(initialBlockConfig)
 	const [layout, setLayout] = useState(initialLayout)
@@ -50,7 +50,6 @@ const BlockInception = ({
 			editBlock(blocksConfig, blockId, newData, operationType)
 		)
 	}
-
 	function setItemEditable(editableBlockId) {
 		setSelectedItem(editableBlockId)
 		setLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
@@ -61,7 +60,7 @@ const BlockInception = ({
 		setLayout(layout)
 	}
 
-	function onDrop(layout, droppedBlockLayout, e) {
+	function onDrop(layout, droppedBlockLayout) {
 		setLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
@@ -75,7 +74,7 @@ const BlockInception = ({
 	}
 	const isDroppable = parenSelectedItem?.includes('inception')
 	return (
-		<Box bg='white' w='100%' h='100%' id='inception'>
+		<Box {...data} w='100%' h='100%' id='inception'>
 			<ReactGridLayout
 				useCSSTransforms={false}
 				key={reRender ? 'a' : 'b'}
