@@ -12,6 +12,7 @@ import {
 	addCallbackToBlock
 } from '../web-builder/helpers'
 import { Box } from '@chakra-ui/react'
+import { BuilderSidebar } from '../sidebar'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -31,7 +32,7 @@ const initialBlockConfig = {
 }
 
 const initialLayout = [
-	{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10, static: true },
+	{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10 },
 	{ i: 'inception-2', x: 10, y: 20, w: 10, h: 10 }
 ]
 
@@ -68,6 +69,7 @@ const BlockInception = ({
 	}
 
 	function onDrop(layout, droppedBlockLayout) {
+		console.log('droppedBlockLayout', droppedBlockLayout)
 		setLayout(layout)
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
@@ -79,22 +81,25 @@ const BlockInception = ({
 		)
 		setNewBlockId(uuid())
 	}
+
 	const isDroppable = parenSelectedItem?.includes('inception')
+	console.log(newBlockType)
 	return (
 		<Box {...data} w='100%' h='100%' id='inception'>
 			<ReactGridLayout
-				useCSSTransforms={false}
 				key={reRender ? 'a' : 'b'}
 				cols={10}
 				rowHeight={10}
 				margin={[0, 0]}
 				height={100}
+				style={{ width: '100%', height: '100%' }}
 				autoSize={false}
 				preventCollision={false}
 				isDroppable={isDroppable}
 				onDrop={onDrop}
-				droppingItem={{ i: newBlockId, w: 10, h: 10 }}
+				droppingItem={{ i: newBlockId, w: 5, h: 5 }}
 				compactType='null'
+				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
 				{generateBuilderBlocks(

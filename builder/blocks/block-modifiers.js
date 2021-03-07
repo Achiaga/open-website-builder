@@ -286,13 +286,17 @@ export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
 	)
 }
 
-function getTranslateX(blockKey) {
-	const myElement = document.getElementById(blockKey).parentElement
-	var style = window.getComputedStyle(myElement)
-	// eslint-disable-next-line no-undef
-	var matrix = new WebKitCSSMatrix(style.transform)
-
-	return { left: matrix.m41, top: matrix.m42 }
+function getOffsetTop(elem) {
+	var offsetTop = 0
+	var offsetLeft = 0
+	do {
+		if (!isNaN(elem.offsetTop)) {
+			offsetTop += elem.offsetTop
+			offsetLeft += elem.offsetLeft
+		}
+		// eslint-disable-next-line no-cond-assign
+	} while ((elem = elem.offsetParent))
+	return { left: offsetLeft, top: offsetTop }
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
@@ -302,7 +306,8 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
 
-	const dim = getTranslateX(blockKey)
+	const dim = getOffsetTop(document.getElementById(blockKey))
+	console.log(dim)
 	return (
 		<Portal id='main-builder'>
 			<Box

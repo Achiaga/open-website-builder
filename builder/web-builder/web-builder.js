@@ -102,7 +102,7 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		}
 	}
 
-	const isDroppable = selectedItemId?.includes('inception') ? false : true
+	const isDroppable = !selectedItemId?.includes('inception')
 	return (
 		<Box
 			d='flex'
@@ -120,7 +120,9 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				isDroppable={isDroppable}
 				onResizeStop={handleResize}
 				compactType='null'
-				droppingItem={{ i: newBlockId, w: 50, h: 50 }}
+				// This makes everything go 6x slower
+				useCSSTransforms={false}
+				droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 50, h: 50 }}
 				style={{ width: '100%', minHeight: '100vh' }}
 				className='layout'
 				layout={layout}

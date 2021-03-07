@@ -21,6 +21,24 @@ const TextBlock = ({ setNewBlockType, handleDrop }) => {
 		</Box>
 	)
 }
+const InceptionBlock = ({ setNewBlockType, handleDrop }) => {
+	return (
+		<Box
+			h='50px'
+			w='50px'
+			border='1px solid'
+			className='droppable-element'
+			draggable={true}
+			unselectable='on'
+			onDragEnd={handleDrop}
+			onDragStart={(e) => {
+				e.dataTransfer.setData('text/plain', '')
+				setNewBlockType('inception')
+			}}>
+			Inception
+		</Box>
+	)
+}
 const ImageBlock = ({ setNewBlockType }) => {
 	return (
 		<Box
@@ -89,6 +107,7 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 			<div>{isSaved ? 'saved' : <Spinner />}</div>
 			<TextBlock setNewBlockType={setNewBlockType} handleDrop={handleDrop} />
 			<ImageBlock setNewBlockType={setNewBlockType} />
+			<InceptionBlock setNewBlockType={setNewBlockType} />
 		</Box>
 	)
 }
