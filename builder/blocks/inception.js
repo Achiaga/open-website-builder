@@ -3,12 +3,13 @@ import { v4 as uuid } from 'uuid'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	addBlock,
 	editBlock,
 	editItemDraggableProperty,
-	generateBuilderBlocks
+	generateBuilderBlocks,
+	addCallbackToBlock
 } from '../web-builder/helpers'
 import { Box } from '@chakra-ui/react'
 
@@ -30,7 +31,7 @@ const initialBlockConfig = {
 }
 
 const initialLayout = [
-	{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10 },
+	{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10, static: true },
 	{ i: 'inception-2', x: 10, y: 20, w: 10, h: 10 }
 ]
 
@@ -45,12 +46,18 @@ const BlockInception = ({
 	const [layout, setLayout] = useState(initialLayout)
 	const [selectedItemId, setSelectedItem] = useState(null)
 
+	useEffect(() => {
+		udpateBlocksConfig((blocksConfig) =>
+			addCallbackToBlock(blocksConfig, editBlockCallback)
+		)
+	}, [])
+
 	const editBlockCallback = (newData, blockId, operationType) => {
 		udpateBlocksConfig((blocksConfig) =>
 			editBlock(blocksConfig, blockId, newData, operationType)
 		)
 	}
-	function setItemEditable(editableBlockId) {
+	function setBlockEditable(editableBlockId) {
 		setSelectedItem(editableBlockId)
 		setLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
 	}
@@ -92,7 +99,7 @@ const BlockInception = ({
 				onLayoutChange={onLayoutChange}>
 				{generateBuilderBlocks(
 					blocksConfig,
-					setItemEditable,
+					setBlockEditable,
 					layout,
 					selectedItemId
 				)}

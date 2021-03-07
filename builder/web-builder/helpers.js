@@ -63,7 +63,7 @@ export function editBlock(blocks, id, newData, operationType = EDIT) {
 export const editItemDraggableProperty = (layout, editableBlockId) => {
 	return layout.map((layoutItem) => {
 		const isSelectedItem = layoutItem.i === editableBlockId
-		let isDraggable = isSelectedItem ? !layoutItem.isDraggable : true
+		let isDraggable = isSelectedItem ? false : true
 		return { ...layoutItem, isDraggable }
 	})
 }

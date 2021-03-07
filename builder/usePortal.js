@@ -8,12 +8,9 @@ function createRootElement(id) {
 }
 
 function addRootElement(rootElem) {
-	const gridElement = document.getElementById('main-builder')
-	console.log('gridElement', gridElement)
 	document.body.insertBefore(
 		rootElem,
-		gridElement
-		// document.body.lastElementChild.nextElementSibling
+		document.body.lastElementChild.nextElementSibling
 	)
 }
 
@@ -22,11 +19,7 @@ function usePortal(id) {
 
 	useEffect(
 		function setupElement() {
-			const existingParent = document.getElementById('main-builder')
-			// const existingParent = document.getElementById(
-			// 	'bac9475d-c98b-49bd-8599-7fd071cce106'
-			// )
-			console.log(existingParent)
+			const existingParent = document.getElementById(id)
 			const parentElem = existingParent || createRootElement(id)
 			if (!existingParent) {
 				addRootElement(parentElem)
