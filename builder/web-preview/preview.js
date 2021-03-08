@@ -3,7 +3,10 @@ import { generatePageCode } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
-import { normalizeLayout, normalizeBlockStructure } from '../builder'
+import {
+	normalizeBlockStructure,
+	normalizeLayout
+} from '../web-builder/helpers'
 
 const WebPreview = ({ layout, blocksConfig }) => {
 	const [pageDesign, setPageDesign] = useState(null)
