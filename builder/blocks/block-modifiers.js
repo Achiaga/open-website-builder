@@ -56,7 +56,7 @@ const fontWeight = {
 const fontColor = {
 	type: 'color',
 	placeholder: 'font color',
-	property: 'color'
+	property: 'fontColor'
 }
 
 // Block *********************************************************
