@@ -179,7 +179,7 @@ function DropDownSelector({
 DropDownSelector.propTypes = {
 	handleEdit: PropTypes.func.isRequired,
 	property: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
+	value: PropTypes.string,
 	options: PropTypes.arrayOf(
 		PropTypes.shape({
 			value: PropTypes.string.isRequired,
@@ -221,10 +221,10 @@ function ColorSelector({ handleEdit, property, value, placeholder }) {
 	)
 }
 ColorSelector.propTypes = {
-	handleEdit: PropTypes.func.isRequired,
-	property: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
-	placeholder: PropTypes.string.isRequired
+	handleEdit: PropTypes.func,
+	property: PropTypes.string,
+	value: PropTypes.string,
+	placeholder: PropTypes.string
 }
 function TextInput({ handleEdit, property, value, placeholder }) {
 	const handleChange = (e) => {
@@ -233,7 +233,6 @@ function TextInput({ handleEdit, property, value, placeholder }) {
 	return (
 		<Box onDoubleClick={(e) => e.stopPropagation()}>
 			<Input
-				fontColor='white'
 				placeholder={placeholder}
 				onChange={handleChange}
 				value={value}
@@ -307,7 +306,6 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 	}
 
 	const dim = getOffsetTop(document.getElementById(blockKey))
-	console.log(dim)
 	return (
 		<Portal id='main-builder'>
 			<Box

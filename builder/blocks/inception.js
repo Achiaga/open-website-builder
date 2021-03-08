@@ -1,50 +1,37 @@
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
+import PropTypes from 'prop-types'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import {
 	addBlock,
 	editBlock,
 	editItemDraggableProperty,
 	generateBuilderBlocks,
-	addCallbackToBlock
+	addCallbackToBlock,
+	normalizeLayout,
+	normalizeBlockStructure,
+	denormalizeInceptionBlock
 } from '../web-builder/helpers'
 import { Box } from '@chakra-ui/react'
-import { BuilderSidebar } from '../sidebar'
 
 const ReactGridLayout = WidthProvider(RGL)
 
-const initialBlockConfig = {
-	'inception-1': {
-		type: 'text',
-		data: {
-			text: 'Hola, soy Inception 1'
-		}
-	},
-	'inception-2': {
-		type: 'text',
-		data: {
-			text: 'Hola, soy Inception 2'
-		}
-	}
-}
-
-const initialLayout = [
-	{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10 },
-	{ i: 'inception-2', x: 10, y: 20, w: 10, h: 10 }
-]
-
-const BlockInception = ({
-	reRender,
-	selectedItemId: parenSelectedItem,
-	newBlockType = 'text',
-	...data
-}) => {
+const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
+	const {
+		reRender,
+		selectedItemId: parenSelectedItem,
+		newBlockType = 'text',
+		layoutCallback,
+		blockKey: parentBlockKey
+	} = extraProps
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
-	const [blocksConfig, udpateBlocksConfig] = useState(initialBlockConfig)
-	const [layout, setLayout] = useState(initialLayout)
+	const [blocksConfig, udpateBlocksConfig] = useState(() =>
+		normalizeBlockStructure(data.blocks)
+	)
+	const [layout, setLayout] = useState(() => normalizeLayout(data.blocks))
 	const [selectedItemId, setSelectedItem] = useState(null)
 
 	useEffect(() => {
@@ -54,10 +41,18 @@ const BlockInception = ({
 	}, [])
 
 	const editBlockCallback = (newData, blockId, operationType) => {
-		udpateBlocksConfig((blocksConfig) =>
-			editBlock(blocksConfig, blockId, newData, operationType)
-		)
+		udpateBlocksConfig((blocksConfig) => {
+			const newBlocksConfig = editBlock(
+				blocksConfig,
+				blockId,
+				newData,
+				operationType
+			)
+			layoutCallback(newBlocksConfig)
+			return newBlocksConfig
+		})
 	}
+
 	function setBlockEditable(editableBlockId) {
 		setSelectedItem(editableBlockId)
 		setLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
@@ -66,24 +61,31 @@ const BlockInception = ({
 	const onLayoutChange = (layout) => {
 		if (layout?.length !== Object.keys(blocksConfig)?.length) return
 		setLayout(layout)
+		layoutCallback(
+			denormalizeInceptionBlock(layout, blocksConfig),
+			parentBlockKey
+		)
 	}
 
 	function onDrop(layout, droppedBlockLayout) {
-		console.log('droppedBlockLayout', droppedBlockLayout)
 		setLayout(layout)
-		udpateBlocksConfig((blocksConfig) =>
-			addBlock(
+		udpateBlocksConfig((blocksConfig) => {
+			const newBlocksConfig = addBlock(
 				droppedBlockLayout?.i,
 				newBlockType,
 				blocksConfig,
 				editBlockCallback
 			)
-		)
+			layoutCallback(
+				denormalizeInceptionBlock(layout, newBlocksConfig),
+				parentBlockKey
+			)
+			return newBlocksConfig
+		})
 		setNewBlockId(uuid())
 	}
 
 	const isDroppable = parenSelectedItem?.includes('inception')
-	console.log(newBlockType)
 	return (
 		<Box {...data} w='100%' h='100%' id='inception'>
 			<ReactGridLayout
@@ -94,11 +96,12 @@ const BlockInception = ({
 				height={100}
 				style={{ width: '100%', height: '100%' }}
 				autoSize={false}
-				preventCollision={false}
+				preventCollision={isDroppable}
 				isDroppable={isDroppable}
+				useCSSTransforms={false}
 				onDrop={onDrop}
 				droppingItem={{ i: newBlockId, w: 5, h: 5 }}
-				compactType='null'
+				verticalCompact={false}
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
@@ -111,6 +114,18 @@ const BlockInception = ({
 			</ReactGridLayout>
 		</Box>
 	)
+})
+
+BlockInception.displayName = 'BlockInception'
+
+BlockInception.propTypes = {
+	extraProps: PropTypes.shape({
+		reRender: PropTypes.bool,
+		blockKey: PropTypes.string,
+		newBlockType: PropTypes.string,
+		selectedItemId: PropTypes.string,
+		layoutCallback: PropTypes.func
+	})
 }
 
 export default BlockInception

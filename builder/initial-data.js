@@ -18,59 +18,29 @@ export const FallbackData = {
 			isDraggable: true
 		}
 	},
-	'inception-block': {
+	b: {
 		block: {
 			type: 'inception',
 			data: {
-				text: 'Welcome overlap'
+				blocks: {
+					'inception-1': {
+						block: {
+							type: 'text',
+							data: {
+								text: 'Hello!!!! I am inception. I am a killer feature'
+							}
+						},
+						layout: { i: 'inception-1', x: 0, y: 0, w: 10, h: 10 }
+					}
+				}
 			}
 		},
 		layout: {
-			i: 'inception-block',
-			x: 10,
-			y: 0,
-			w: 100,
-			h: 50,
-			static: false
-		}
-	}
-}
-
-export const userBlocksData = {
-	a: {
-		block: {
-			type: 'text',
-			data: {
-				text: 'Hola, soy Pedro'
-			}
-		},
-		layout: {
-			i: 'a',
+			i: 'b',
 			x: 0,
-			y: 0,
-			w: 3,
-			h: 2,
-			isDraggable: true
-		}
-	},
-	b: {
-		block: {
-			type: 'image',
-			data: { imageUrl: imageURL }
-		},
-		layout: { i: 'b', x: 3, y: 0, w: 3, h: 2, isDraggable: true }
-	},
-	c: {
-		block: {
-			type: 'text',
-			data: { text: 'Hoobies' }
-		},
-		layout: {
-			i: 'c',
-			x: 6,
-			y: 0,
-			w: 4,
-			h: 2,
+			y: 20,
+			w: 100,
+			h: 30,
 			isDraggable: true
 		}
 	}

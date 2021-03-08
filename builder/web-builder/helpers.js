@@ -10,7 +10,7 @@ import { imageURL } from '../initial-data'
 
 const blocksProperties = {
 	text: {
-		text: 'Change the ext',
+		text: 'Test block text',
 		fontSize: '1rem',
 		textAlign: 'center',
 		fontColor: '#4a40ce',
@@ -95,7 +95,8 @@ const generateBuilderBlock = (
 	layoutItemInfo,
 	selectedItemId,
 	reRender,
-	newBlockType
+	newBlockType,
+	layoutCallback
 ) => {
 	if (!blockInfo) return null
 	const isEditable = selectedItemId === blockKey
@@ -116,6 +117,7 @@ const generateBuilderBlock = (
 				reRender={reRender}
 				selectedItemId={selectedItemId}
 				newBlockType={newBlockType}
+				layoutCallback={layoutCallback}
 			/>
 		</Box>
 	)
@@ -126,7 +128,9 @@ export const generateBuilderBlocks = (
 	setIsEditable,
 	layout,
 	selectedItemId,
-	reRender
+	reRender,
+	newBlockType,
+	layoutCallback
 ) => {
 	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
@@ -137,7 +141,9 @@ export const generateBuilderBlocks = (
 			setIsEditable,
 			layoutItem,
 			selectedItemId,
-			reRender
+			reRender,
+			newBlockType,
+			layoutCallback
 		)
 	})
 }
@@ -157,6 +163,24 @@ export function denormalizeBlockData(layout, blocksConfig) {
 			}
 		}
 	}, {})
+}
+// blocks: {
+// 	'inception-1': {
+// 		block: {
+// 			type: 'text',
+// 			data: {
+// 				text: 'Hello!!!! I am inception. I am a killer feature'
+// 			}
+// 		},
+// 		layout: [{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10 }]
+// 	}
+// }
+
+export function denormalizeInceptionBlock(layout, blockConfig) {
+	const blocks = {
+		...denormalizeBlockData(layout, blockConfig)
+	}
+	return { blocks }
 }
 
 export function saveOnLocal(userBlocksData, setIsSaved) {

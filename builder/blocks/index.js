@@ -21,10 +21,12 @@ function BuilderBlock({
 	isEditable,
 	blockType,
 	reRender,
-	selectedItemId
+	selectedItemId,
+	newBlockType,
+	layoutCallback
 }) {
 	const GenericBlock = blocks[blockType]
-	const { editBlock = () => {}, text: dataText, ...extraProps } = data
+	const { editBlock = () => {}, text: dataText, ...metaData } = data
 
 	const [text] = useState(dataText)
 	const titleRef = useRef(null)
@@ -46,11 +48,16 @@ function BuilderBlock({
 			<GenericBlock
 				onKeyUp={handleKeyDown}
 				contentEditable={isEditable}
-				ref={titleRef}
+				{...(blockType === 'text' ? { ref: titleRef } : {})}
 				text={text}
-				reRender={reRender}
-				selectedItemId={selectedItemId}
-				{...extraProps}
+				extraProps={{
+					reRender,
+					selectedItemId,
+					newBlockType,
+					layoutCallback,
+					blockKey
+				}}
+				{...metaData}
 			/>
 		</Box>
 	)
@@ -81,7 +88,8 @@ export const Block = ({
 	blockType,
 	selectedItemId,
 	reRender,
-	newBlockType
+	newBlockType,
+	layoutCallback
 }) => {
 	if (isPreview) return <PreviewBlock data={data} blockType={blockType} />
 	return (
@@ -93,6 +101,7 @@ export const Block = ({
 			reRender={reRender}
 			selectedItemId={selectedItemId}
 			newBlockType={newBlockType}
+			layoutCallback={layoutCallback}
 		/>
 	)
 }
@@ -102,5 +111,8 @@ Block.propTypes = {
 	blockKey: PropTypes.string.isRequired,
 	isEditable: PropTypes.bool,
 	blockType: PropTypes.string.isRequired,
-	data: PropTypes.any
+	data: PropTypes.any,
+	selectedItemId: PropTypes.string,
+	reRender: PropTypes.bool,
+	newBlockType: PropTypes.string
 }

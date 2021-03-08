@@ -29,10 +29,11 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 	const [reRender, setReRender] = useState(false)
 	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
 	const [selectedItemId, setSelectedItem] = useState(null)
+	const [realBlockDatta, setRealBlockData] = useState(userBlocksData)
 	const [blocksConfig, udpateBlocksConfig] = useState(() =>
-		normalizeBlockStructure(userBlocksData)
+		normalizeBlockStructure(realBlockDatta)
 	)
-	const [layout, updateLayout] = useState(() => normalizeLayout(userBlocksData))
+	const [layout, updateLayout] = useState(() => normalizeLayout(realBlockDatta))
 
 	const debouncedSaved = useCallback(
 		debounce((layout, blocksConfig) => {
@@ -40,7 +41,6 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		}, SAVE_TIME),
 		[]
 	)
-
 	useEffect(() => {
 		debouncedSaved(layout, blocksConfig)
 	}, [layout, blocksConfig])
@@ -102,6 +102,23 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		}
 	}
 
+	function layoutCallback(newBlocks, parentBlockKey) {
+		const newBlocksConfig = {
+			...blocksConfig,
+			[parentBlockKey]: {
+				...blocksConfig[parentBlockKey],
+				data: {
+					...blocksConfig[parentBlockKey].data,
+					...newBlocks
+				}
+			}
+		}
+		saveOnLocal(
+			denormalizeBlockData(layout, { ...newBlocksConfig }),
+			setIsSaved
+		)
+	}
+
 	const isDroppable = !selectedItemId?.includes('inception')
 	return (
 		<Box
@@ -116,10 +133,10 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				onDrop={onDrop}
 				margin={[0, 0]}
 				autoSize
-				preventCollision={!isDroppable}
+				preventCollision={false}
 				isDroppable={isDroppable}
 				onResizeStop={handleResize}
-				compactType='null'
+				verticalCompact={false}
 				// This makes everything go 6x slower
 				useCSSTransforms={false}
 				droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 50, h: 50 }}
@@ -133,7 +150,8 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 					layout,
 					selectedItemId,
 					reRender,
-					newBlockType
+					newBlockType,
+					layoutCallback
 				)}
 			</ReactGridLayout>
 		</Box>
