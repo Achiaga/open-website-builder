@@ -114,5 +114,6 @@ Block.propTypes = {
 	data: PropTypes.any,
 	selectedItemId: PropTypes.string,
 	reRender: PropTypes.bool,
-	newBlockType: PropTypes.string
+	newBlockType: PropTypes.string,
+	layoutCallback: PropTypes.any
 }

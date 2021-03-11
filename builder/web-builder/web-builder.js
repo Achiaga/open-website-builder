@@ -51,6 +51,7 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		)
 		window.addEventListener('resize', handleWindowResize)
 		window.addEventListener('keydown', handleKeyPress)
+		setRowHeight(10)
 		setRowHeight(window?.innerWidth / GRID_COLUMNS)
 		return () => {
 			window.removeEventListener('keydown', handleKeyPress)
@@ -108,7 +109,7 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 			[parentBlockKey]: {
 				...blocksConfig[parentBlockKey],
 				data: {
-					...blocksConfig[parentBlockKey].data,
+					...blocksConfig[parentBlockKey]?.data,
 					...newBlocks
 				}
 			}
@@ -138,10 +139,11 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				onResizeStop={handleResize}
 				verticalCompact={false}
 				// This makes everything go 6x slower
-				useCSSTransforms={false}
-				droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 50, h: 50 }}
-				style={{ width: '100%', minHeight: '100vh' }}
-				className='layout'
+				// This also makes the drop block go crazy while dragging
+				useCSSTransforms={isDroppable}
+				droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 30, h: 35 }}
+				style={{ width: '100%', minHeight: '100vh', height: '100%' }}
+				className={'layout'}
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
 				{generateBuilderBlocks(

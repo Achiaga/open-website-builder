@@ -98,9 +98,8 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				autoSize={false}
 				preventCollision={isDroppable}
 				isDroppable={isDroppable}
-				useCSSTransforms={false}
 				onDrop={onDrop}
-				droppingItem={{ i: newBlockId, w: 5, h: 5 }}
+				droppingItem={{ i: 'child-inception-' + newBlockId, w: 5, h: 5 }}
 				verticalCompact={false}
 				className='layout'
 				layout={layout}

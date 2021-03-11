@@ -3,16 +3,17 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FaPlus, FaRegTimesCircle } from 'react-icons/fa'
 
-const TextBlock = ({ setNewBlockType, handleDrop }) => {
+const TextBlock = ({ setNewBlockType }) => {
 	return (
 		<Box
+			as='div'
 			h='50px'
 			w='50px'
+			padding='20px'
 			border='1px solid'
 			className='droppable-element'
 			draggable={true}
 			unselectable='on'
-			onDragEnd={handleDrop}
 			onDragStart={(e) => {
 				e.dataTransfer.setData('text/plain', '')
 				setNewBlockType('text')
@@ -21,16 +22,15 @@ const TextBlock = ({ setNewBlockType, handleDrop }) => {
 		</Box>
 	)
 }
-const InceptionBlock = ({ setNewBlockType, handleDrop }) => {
+const InceptionBlock = ({ setNewBlockType }) => {
 	return (
 		<Box
-			h='50px'
-			w='50px'
+			h='100px'
+			w='100px'
 			border='1px solid'
 			className='droppable-element'
 			draggable={true}
 			unselectable='on'
-			onDragEnd={handleDrop}
 			onDragStart={(e) => {
 				e.dataTransfer.setData('text/plain', '')
 				setNewBlockType('inception')
@@ -60,9 +60,6 @@ const ImageBlock = ({ setNewBlockType }) => {
 const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
-	function handleDrop() {
-		setIsOpen(false)
-	}
 	if (!isOpen)
 		return (
 			<Box
@@ -105,7 +102,7 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				<FaRegTimesCircle size='1em' />
 			</Box>
 			<div>{isSaved ? 'saved' : <Spinner />}</div>
-			<TextBlock setNewBlockType={setNewBlockType} handleDrop={handleDrop} />
+			<TextBlock setNewBlockType={setNewBlockType} />
 			<ImageBlock setNewBlockType={setNewBlockType} />
 			<InceptionBlock setNewBlockType={setNewBlockType} />
 		</Box>

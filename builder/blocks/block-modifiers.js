@@ -295,7 +295,43 @@ function getOffsetTop(elem) {
 		}
 		// eslint-disable-next-line no-cond-assign
 	} while ((elem = elem.offsetParent))
-	return { left: offsetLeft, top: offsetTop }
+	return { left: +offsetLeft, top: +offsetTop }
+}
+
+function getTranslateValues(element) {
+	if (!element?.offsetParent)
+		return {
+			left: 0,
+			top: 0
+		}
+	const style = window.getComputedStyle(element?.offsetParent)
+	const matrix =
+		style['transform'] || style.webkitTransform || style.mozTransform
+	const matrixValues = matrix.match(/matrix.*\((.+)\)/)?.[1].split(', ') ?? null
+	if (!matrixValues)
+		return {
+			left: 0,
+			top: 0
+		}
+	return {
+		left: +matrixValues[4],
+		top: +matrixValues[5]
+	}
+}
+
+function getOffsets(blockKey) {
+	const mainParentStyles = document.getElementById(blockKey).offsetParent
+		.offsetParent
+	if (blockKey.includes('child-inception')) {
+		const v1 = getTranslateValues(mainParentStyles)
+		const v2 = getTranslateValues(document.getElementById(blockKey))
+		console.log(v1, v2)
+		return { top: v1.top + v2.top, left: v1.left + v2.left }
+	}
+	if (blockKey.includes('inception')) {
+		return getOffsetTop(document.getElementById(blockKey))
+	}
+	return getTranslateValues(document.getElementById(blockKey))
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
@@ -304,8 +340,9 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 	function handleEdit(id, value, operationType = EDIT) {
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
-
-	const dim = getOffsetTop(document.getElementById(blockKey))
+	console.log(blockKey, getOffsets(blockKey))
+	const dim = getOffsets(blockKey)
+	// const dim = getOffsetTop(document.getElementById(blockKey))
 	return (
 		<Portal id='main-builder'>
 			<Box
