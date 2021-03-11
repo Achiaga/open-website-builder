@@ -22,17 +22,18 @@ const ReactGridLayout = WidthProvider(RGL)
 const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 	const {
 		reRender,
-		selectedItemId: parenSelectedItem,
+		selectedItemId,
 		newBlockType = 'text',
 		layoutCallback,
-		blockKey: parentBlockKey
+		blockKey: parentBlockKey,
+		setSelectedItem
 	} = extraProps
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [blocksConfig, udpateBlocksConfig] = useState(() =>
 		normalizeBlockStructure(data.blocks)
 	)
 	const [layout, setLayout] = useState(() => normalizeLayout(data.blocks))
-	const [selectedItemId, setSelectedItem] = useState(null)
+	// const [selectedItemId, setSelectedItem] = useState(null)
 
 	useEffect(() => {
 		udpateBlocksConfig((blocksConfig) =>
@@ -85,7 +86,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 		setNewBlockId(uuid())
 	}
 
-	const isDroppable = parenSelectedItem?.includes('inception')
+	const isDroppable = selectedItemId?.includes('inception')
 	return (
 		<Box {...data} w='100%' h='100%' id='inception'>
 			<ReactGridLayout
@@ -96,7 +97,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				height={100}
 				style={{ width: '100%', height: '100%' }}
 				autoSize={false}
-				preventCollision={isDroppable}
+				preventCollision={!isDroppable}
 				isDroppable={isDroppable}
 				onDrop={onDrop}
 				droppingItem={{ i: 'child-inception-' + newBlockId, w: 5, h: 5 }}
@@ -123,7 +124,8 @@ BlockInception.propTypes = {
 		blockKey: PropTypes.string,
 		newBlockType: PropTypes.string,
 		selectedItemId: PropTypes.string,
-		layoutCallback: PropTypes.func
+		layoutCallback: PropTypes.func,
+		setSelectedItem: PropTypes.func
 	})
 }
 

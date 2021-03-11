@@ -321,11 +321,10 @@ function getTranslateValues(element) {
 
 function getOffsets(blockKey) {
 	const mainParentStyles = document.getElementById(blockKey).offsetParent
-		.offsetParent
+		.offsetParent.offsetParent
 	if (blockKey.includes('child-inception')) {
-		const v1 = getTranslateValues(mainParentStyles)
+		const v1 = getOffsetTop(mainParentStyles)
 		const v2 = getTranslateValues(document.getElementById(blockKey))
-		console.log(v1, v2)
 		return { top: v1.top + v2.top, left: v1.left + v2.left }
 	}
 	if (blockKey.includes('inception')) {
@@ -340,9 +339,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 	function handleEdit(id, value, operationType = EDIT) {
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
-	console.log(blockKey, getOffsets(blockKey))
 	const dim = getOffsets(blockKey)
-	// const dim = getOffsetTop(document.getElementById(blockKey))
 	return (
 		<Portal id='main-builder'>
 			<Box

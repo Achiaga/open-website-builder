@@ -96,7 +96,8 @@ const generateBuilderBlock = (
 	selectedItemId,
 	reRender,
 	newBlockType,
-	layoutCallback
+	layoutCallback,
+	setSelectedItem
 ) => {
 	if (!blockInfo) return null
 	const isEditable = selectedItemId === blockKey
@@ -118,6 +119,7 @@ const generateBuilderBlock = (
 				selectedItemId={selectedItemId}
 				newBlockType={newBlockType}
 				layoutCallback={layoutCallback}
+				setSelectedItem={setSelectedItem}
 			/>
 		</Box>
 	)
@@ -130,7 +132,8 @@ export const generateBuilderBlocks = (
 	selectedItemId,
 	reRender,
 	newBlockType,
-	layoutCallback
+	layoutCallback,
+	setSelectedItem
 ) => {
 	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
@@ -143,7 +146,8 @@ export const generateBuilderBlocks = (
 			selectedItemId,
 			reRender,
 			newBlockType,
-			layoutCallback
+			layoutCallback,
+			setSelectedItem
 		)
 	})
 }

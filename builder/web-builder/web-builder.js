@@ -153,7 +153,8 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 					selectedItemId,
 					reRender,
 					newBlockType,
-					layoutCallback
+					layoutCallback,
+					setSelectedItem
 				)}
 			</ReactGridLayout>
 		</Box>

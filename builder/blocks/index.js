@@ -23,7 +23,8 @@ function BuilderBlock({
 	reRender,
 	selectedItemId,
 	newBlockType,
-	layoutCallback
+	layoutCallback,
+	setSelectedItem
 }) {
 	const GenericBlock = blocks[blockType]
 	const { editBlock = () => {}, text: dataText, ...metaData } = data
@@ -55,7 +56,8 @@ function BuilderBlock({
 					selectedItemId,
 					newBlockType,
 					layoutCallback,
-					blockKey
+					blockKey,
+					setSelectedItem
 				}}
 				{...metaData}
 			/>
@@ -89,7 +91,8 @@ export const Block = ({
 	selectedItemId,
 	reRender,
 	newBlockType,
-	layoutCallback
+	layoutCallback,
+	setSelectedItem
 }) => {
 	if (isPreview) return <PreviewBlock data={data} blockType={blockType} />
 	return (
@@ -102,6 +105,7 @@ export const Block = ({
 			selectedItemId={selectedItemId}
 			newBlockType={newBlockType}
 			layoutCallback={layoutCallback}
+			setSelectedItem={setSelectedItem}
 		/>
 	)
 }
