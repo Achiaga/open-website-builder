@@ -1,26 +1,29 @@
-import { useEffect } from 'react'
-import { ThemeProvider, CSSReset } from '@chakra-ui/react'
-import { customTheme } from '../custom-theme'
-import { Fonts } from '../fonts'
-import '../styles/globals.css'
+import { useEffect } from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0';
+import { ThemeProvider, CSSReset } from '@chakra-ui/react';
+import { customTheme } from '../custom-theme';
+import { Fonts } from '../fonts';
+import '../styles/globals.css';
 
-import { InitializeAnalytics } from '../utils/analytics'
+import { InitializeAnalytics } from '../utils/analytics';
 
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {
 		try {
-			InitializeAnalytics()
+			InitializeAnalytics();
 		} catch (err) {
-			console.log(err)
+			console.log(err);
 		}
-	}, [])
+	}, []);
 	return (
 		<ThemeProvider theme={customTheme}>
-			<CSSReset />
-			<Fonts />
-			<Component {...pageProps} />
+			<UserProvider>
+				<CSSReset />
+				<Fonts />
+				<Component {...pageProps} />
+			</UserProvider>
 		</ThemeProvider>
-	)
+	);
 }
 
-export default MyApp
+export default MyApp;

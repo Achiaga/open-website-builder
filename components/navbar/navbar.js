@@ -63,7 +63,7 @@ const Navbar = ({ handleFreeTrial }) => {
 						es
 					</option>
 				</Select>
-				<Button fontSize='lg' minW='7.5rem' h={12} onClick={handleButton}>
+				<Button onClick={handleButton} fontSize='lg' minW='7.5rem' h={12}>
 					{t.navbar.buttonTrial}
 				</Button>
 			</Flex>
