@@ -2,7 +2,7 @@ import { Box, Spinner, Text } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
-import { GrAdd } from 'react-icons/gr';
+import { GrAdd, GrClose } from 'react-icons/gr';
 import {
 	BsTextCenter,
 	BsCardImage,
@@ -15,6 +15,7 @@ const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 			as='div'
 			h='40px'
 			w='full'
+			backgroundColor='transparent'
 			marginBottom='0.4rem'
 			display='flex'
 			alignItems='center'
@@ -86,11 +87,10 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				justifyContent='space-between'
 				alignItems='center'
 				w='full'
-				paddingX='5px'
-				paddingBottom='0.5rem'>
-				<Box fontSize='16px'>{isSaved ? 'Saved' : 'Not Saved'}</Box>
+				paddingBottom='0.9rem'>
+				<Box fontSize='16px'></Box>
 				<Box cursor='pointer' onClick={() => setIsOpen(false)}>
-					<FaRegTimesCircle size='1em' />
+					<GrClose size='1em' />
 				</Box>
 			</Box>
 			<ToolSection
