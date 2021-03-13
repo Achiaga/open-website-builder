@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react'
-import { DragControls } from 'framer-motion'
 import localforage from 'localforage'
 
 import { Block } from '../blocks'
@@ -62,11 +61,9 @@ export function editBlock(blocks, id, newData, operationType = EDIT) {
 // Edit block layout properties *********************************
 
 export const editItemDraggableProperty = (layout, editableBlockId) => {
-	console.log(layout)
 	return layout.map((layoutItem) => {
 		const isSelectedItem = layoutItem.i === editableBlockId
 		let isDraggable = isSelectedItem ? false : true
-		console.log(isDraggable)
 		return { ...layoutItem, isDraggable }
 	})
 }
@@ -171,17 +168,6 @@ export function denormalizeBlockData(layout, blocksConfig) {
 		}
 	}, {})
 }
-// blocks: {
-// 	'inception-1': {
-// 		block: {
-// 			type: 'text',
-// 			data: {
-// 				text: 'Hello!!!! I am inception. I am a killer feature'
-// 			}
-// 		},
-// 		layout: [{ i: 'inception-1', x: 0, y: 0, w: 10, h: 10 }]
-// 	}
-// }
 
 export function denormalizeInceptionBlock(layout, blockConfig) {
 	const blocks = {
@@ -193,7 +179,6 @@ export function denormalizeInceptionBlock(layout, blockConfig) {
 export function saveOnLocal(userBlocksData, setIsSaved) {
 	if (!Object.keys(userBlocksData).length) return
 	setIsSaved(false)
-	console.log('saveOnLocal', userBlocksData)
 	localforage.setItem('userData', JSON.stringify(userBlocksData)).then(() => {
 		setIsSaved(true)
 	})
