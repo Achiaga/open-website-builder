@@ -32,7 +32,8 @@ function BuilderBlock({
 	const [text] = useState(dataText)
 	const titleRef = useRef(null)
 
-	function handleKeyDown() {
+	function handleKeyUp(e) {
+		e.stopPropagation()
 		const value = titleRef.current?.innerText
 		const updatedBlock = { ...data, text: value }
 		editBlock(updatedBlock, blockKey)
@@ -47,7 +48,7 @@ function BuilderBlock({
 				<BlockModifiers data={data} blockKey={blockKey} blockType={blockType} />
 			)}
 			<GenericBlock
-				onKeyUp={handleKeyDown}
+				onKeyUp={handleKeyUp}
 				contentEditable={isEditable}
 				{...(blockType === 'text' ? { ref: titleRef } : {})}
 				text={text}

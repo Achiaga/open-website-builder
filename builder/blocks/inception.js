@@ -33,7 +33,6 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 		normalizeBlockStructure(data.blocks)
 	)
 	const [layout, setLayout] = useState(() => normalizeLayout(data.blocks))
-	// const [selectedItemId, setSelectedItem] = useState(null)
 
 	useEffect(() => {
 		udpateBlocksConfig((blocksConfig) =>
@@ -49,17 +48,20 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				newData,
 				operationType
 			)
-			layoutCallback(newBlocksConfig)
+			layoutCallback(
+				denormalizeInceptionBlock(layout, newBlocksConfig),
+				parentBlockKey
+			)
 			return newBlocksConfig
 		})
 	}
 
-	function setBlockEditable(editableBlockId) {
-		setSelectedItem(editableBlockId)
-		setLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
-	}
+	useEffect(() => {
+		setLayout((layout) => editItemDraggableProperty(layout, selectedItemId))
+	}, [selectedItemId])
 
 	const onLayoutChange = (layout) => {
+		console.log('layoutChange', layout)
 		if (layout?.length !== Object.keys(blocksConfig)?.length) return
 		setLayout(layout)
 		layoutCallback(
@@ -88,7 +90,12 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 
 	const isDroppable = selectedItemId?.includes('inception')
 	return (
-		<Box {...data} w='100%' h='100%' id='inception'>
+		<Box
+			{...data}
+			w='100%'
+			h='100%'
+			id='inception'
+			outline='1px dashed lightgray'>
 			<ReactGridLayout
 				key={reRender ? 'a' : 'b'}
 				cols={10}
@@ -100,14 +107,14 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				preventCollision={!isDroppable}
 				isDroppable={isDroppable}
 				onDrop={onDrop}
-				droppingItem={{ i: 'child-inception-' + newBlockId, w: 5, h: 5 }}
+				droppingItem={{ i: 'child-inception-' + newBlockId, w: 2, h: 2 }}
 				verticalCompact={false}
 				className='layout'
 				layout={layout}
 				onLayoutChange={onLayoutChange}>
 				{generateBuilderBlocks(
 					blocksConfig,
-					setBlockEditable,
+					setSelectedItem,
 					layout,
 					selectedItemId
 				)}

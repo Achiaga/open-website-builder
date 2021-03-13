@@ -10,7 +10,7 @@ async function getUserData() {
 		value = await localforage.getItem('userData')
 		return value
 	} catch (err) {
-		console.log(err)
+		console.error(err)
 	}
 }
 
@@ -19,7 +19,8 @@ const BuilderPage = () => {
 
 	useEffect(() => {
 		getUserData().then((userData) => {
-			setUserBlocksData(userData || FallbackData)
+			const parsedData = JSON.parse(userData)
+			setUserBlocksData(parsedData || FallbackData)
 		})
 	}, [])
 

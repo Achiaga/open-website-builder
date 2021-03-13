@@ -1,4 +1,5 @@
 import { Box, Button, Input, Select } from '@chakra-ui/react'
+import { DragControls } from 'framer-motion'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { ChromePicker } from 'react-color'
