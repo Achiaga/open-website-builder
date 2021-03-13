@@ -1,28 +1,30 @@
-import Head from 'next/head';
-import { useEffect } from 'react';
+import Head from 'next/head'
+import { useEffect } from 'react'
 
-import { useUser } from '@auth0/nextjs-auth0';
-import { request } from '../utils/user-data';
+import { useUser } from '@auth0/nextjs-auth0'
+import { request } from '../utils/user-data'
 
-import { Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react'
 
-const LandingPage = () => {
-	const { user, error, isLoading } = useUser();
+const SignupPage = () => {
+	const { user, error, isLoading } = useUser()
 
 	async function saveData(data) {
-		const savedData = await request('save', data);
-		setDataResume(savedData);
+		const savedData = await request('save', data)
+		setDataResume(savedData)
 	}
 
 	const defaultData = {
 		user_id: user?.sub,
 		user_email: user?.email,
-		resume_data: {},
-	};
+		resume_data: {}
+	}
 
 	useEffect(() => {
-		saveData(defaultData);
-	}, [user]);
+		saveData(defaultData)
+	}, [user])
+
+	console.log({ user })
 
 	return (
 		<Box
@@ -41,7 +43,7 @@ const LandingPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 		</Box>
-	);
-};
+	)
+}
 
-export default LandingPage;
+export default SignupPage
