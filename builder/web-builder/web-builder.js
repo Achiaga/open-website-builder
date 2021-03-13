@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import RGL, { WidthProvider } from 'react-grid-layout'
-import { v4 as uuid } from 'uuid'
-import PropTypes from 'prop-types'
-import debounce from 'lodash/debounce'
-import { Box } from '@chakra-ui/react'
+import React, { useCallback, useEffect, useState } from 'react';
+import RGL, { WidthProvider } from 'react-grid-layout';
+import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
+import { Box } from '@chakra-ui/react';
 
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
 import {
 	denormalizeBlockData,
@@ -17,60 +17,67 @@ import {
 	addBlock,
 	addCallbackToBlock,
 	editBlock,
-	editItemDraggableProperty
-} from './helpers'
-import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
+	editItemDraggableProperty,
+} from './helpers';
+import { GRID_COLUMNS, ROW_HEIGHT } from './constants';
 
-const ReactGridLayout = WidthProvider(RGL)
-const SAVE_TIME = 5000
+const ReactGridLayout = WidthProvider(RGL);
+const SAVE_TIME = 5000;
 
 const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
-	const [newBlockId, setNewBlockId] = useState(() => uuid())
-	const [reRender, setReRender] = useState(false)
-	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
-	const [selectedItemId, setSelectedItem] = useState(null)
-	const [realBlockDatta, setRealBlockData] = useState(userBlocksData)
+	const [newBlockId, setNewBlockId] = useState(() => uuid());
+	const [reRender, setReRender] = useState(false);
+	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT);
+	const [selectedItemId, setSelectedItem] = useState(null);
+	const [realBlockDatta, setRealBlockData] = useState(userBlocksData);
 	const [blocksConfig, udpateBlocksConfig] = useState(() =>
 		normalizeBlockStructure(realBlockDatta)
-	)
-	const [layout, updateLayout] = useState(() => normalizeLayout(realBlockDatta))
+	);
+	const [layout, updateLayout] = useState(() =>
+		normalizeLayout(realBlockDatta)
+	);
 
 	const debouncedSaved = useCallback(
 		debounce((layout, blocksConfig) => {
-			saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }), setIsSaved)
+			saveOnLocal(
+				denormalizeBlockData(layout, { ...blocksConfig }),
+				setIsSaved
+			);
 		}, SAVE_TIME),
 		[]
-	)
+	);
 	useEffect(() => {
-		debouncedSaved(layout, blocksConfig)
-	}, [layout, blocksConfig])
+		debouncedSaved(layout, blocksConfig);
+	}, [layout, blocksConfig]);
 
 	useEffect(() => {
 		udpateBlocksConfig((blocksConfig) =>
 			addCallbackToBlock(blocksConfig, editBlockCallback)
-		)
-		window.addEventListener('resize', handleWindowResize)
-		window.addEventListener('keydown', handleKeyPress)
-		setRowHeight(10)
-		setRowHeight(window?.innerWidth / GRID_COLUMNS)
+		);
+		window.addEventListener('resize', handleWindowResize);
+		window.addEventListener('keydown', handleKeyPress);
+		setRowHeight(10);
+		setRowHeight(window?.innerWidth / GRID_COLUMNS);
 		return () => {
-			window.removeEventListener('keydown', handleKeyPress)
-			window.removeEventListener('resize', handleWindowResize)
-		}
-	}, [])
+			window.removeEventListener('keydown', handleKeyPress);
+			window.removeEventListener('resize', handleWindowResize);
+		};
+	}, []);
 
 	function setBlockEditable(editableBlockId) {
-		setSelectedItem(editableBlockId)
-		updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
+		setSelectedItem(editableBlockId);
+		updateLayout((layout) =>
+			editItemDraggableProperty(layout, editableBlockId)
+		);
 	}
 	const editBlockCallback = (newData, blockId, operationType) => {
 		udpateBlocksConfig((blocksConfig) =>
 			editBlock(blocksConfig, blockId, newData, operationType)
-		)
-	}
+		);
+	};
 
 	function onDrop(layout, droppedBlockLayout) {
-		updateLayout(layout)
+		updateLayout(layout);
 		udpateBlocksConfig((blocksConfig) =>
 			addBlock(
 				droppedBlockLayout?.i,
@@ -78,28 +85,28 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				blocksConfig,
 				editBlockCallback
 			)
-		)
-		setNewBlockId(uuid())
+		);
+		setNewBlockId(uuid());
 	}
 
 	const onLayoutChange = (layout) => {
-		if (layout?.length !== Object.keys(blocksConfig)?.length) return
-		updateLayout(layout)
-	}
+		if (layout?.length !== Object.keys(blocksConfig)?.length) return;
+		updateLayout(layout);
+	};
 
 	function handleWindowResize() {
-		setRowHeight(window?.innerWidth / GRID_COLUMNS)
+		setRowHeight(window?.innerWidth / GRID_COLUMNS);
 	}
 
 	function handleResize(_, oldItem, newItem) {
 		if (newItem.i.includes('inception') && newItem.w !== oldItem.w) {
-			setReRender((value) => !value)
+			setReRender((value) => !value);
 		}
 	}
 
 	function handleKeyPress(e) {
 		if (e.key === 'Escape') {
-			setBlockEditable(null)
+			setBlockEditable(null);
 		}
 	}
 
@@ -110,17 +117,17 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				...blocksConfig[parentBlockKey],
 				data: {
 					...blocksConfig[parentBlockKey]?.data,
-					...newBlocks
-				}
-			}
-		}
+					...newBlocks,
+				},
+			},
+		};
 		saveOnLocal(
 			denormalizeBlockData(layout, { ...newBlocksConfig }),
 			setIsSaved
-		)
+		);
 	}
 
-	const isDroppable = !selectedItemId?.includes('inception')
+	const isDroppable = !selectedItemId?.includes('inception');
 	return (
 		<Box
 			d='flex'
@@ -158,13 +165,13 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				)}
 			</ReactGridLayout>
 		</Box>
-	)
-}
+	);
+};
 
 WebBuilder.propTypes = {
 	userBlocksData: PropTypes.any,
 	newBlockType: PropTypes.any,
-	setIsSaved: PropTypes.any
-}
+	setIsSaved: PropTypes.any,
+};
 
-export default WebBuilder
+export default WebBuilder;

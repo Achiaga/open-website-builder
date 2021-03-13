@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Box, Text, useMediaQuery } from '@chakra-ui/react';
 
 import { useTranslation } from '../../hooks/translation';
@@ -7,11 +8,13 @@ import Button from '../commun/button';
 
 const Hero = ({ handleFreeTrial }) => {
 	const [t] = useTranslation();
+	const router = useRouter();
 	const [isSmallerThan900] = useMediaQuery('(max-width: 900px)');
 
 	const handleButton = (e) => {
 		AnalyticsEvent('modal_open', 'hero');
-		handleFreeTrial(e);
+		// handleFreeTrial(e);
+		router.push('/builder');
 	};
 
 	return (

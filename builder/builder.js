@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { Box } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
+import { Box } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
-import { WebBuilder } from '../builder/web-builder'
-import { BuilderSidebar } from '../builder/sidebar'
+import { WebBuilder } from '../builder/web-builder';
+import { BuilderSidebar } from '../builder/sidebar';
 
 const Builder = ({ userBlocksData }) => {
-	const [isSaved, setIsSaved] = useState(true)
-	const [newBlockType, setNewBlockType] = useState(null)
+	const [isSaved, setIsSaved] = useState(true);
+	const [newBlockType, setNewBlockType] = useState(null);
 	return (
 		<Box
 			d='flex'
@@ -29,11 +29,11 @@ const Builder = ({ userBlocksData }) => {
 				userBlocksData={userBlocksData}
 			/>
 		</Box>
-	)
-}
+	);
+};
 
 Builder.propTypes = {
-	userBlocksData: PropTypes.any
-}
+	userBlocksData: PropTypes.any,
+};
 
-export default Builder
+export default Builder;

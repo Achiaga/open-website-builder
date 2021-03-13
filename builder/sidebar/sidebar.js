@@ -1,64 +1,47 @@
-import { Box, Spinner } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
-import { FaPlus, FaRegTimesCircle } from 'react-icons/fa'
+import { Box, Spinner, Text } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { FaRegTimesCircle } from 'react-icons/fa';
+import { GrAdd } from 'react-icons/gr';
+import {
+	BsTextCenter,
+	BsCardImage,
+	BsLayoutTextWindowReverse,
+} from 'react-icons/bs';
 
-const TextBlock = ({ setNewBlockType }) => {
+const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 	return (
 		<Box
 			as='div'
-			h='50px'
-			w='50px'
-			padding='20px'
+			h='40px'
+			w='full'
+			marginBottom='0.4rem'
+			display='flex'
+			alignItems='center'
+			justifyContent='left'
+			rounded='10px'
+			padding='5px'
+			paddingX='10px'
 			border='1px solid'
 			className='droppable-element'
 			draggable={true}
 			unselectable='on'
+			cursor='grab'
 			onDragStart={(e) => {
-				e.dataTransfer.setData('text/plain', '')
-				setNewBlockType('text')
-			}}>
-			Text
+				e.dataTransfer.setData('text/plain', '');
+				setNewBlockType(type);
+			}}
+			{...props}>
+			<Icon size='1.3rem' />
+			<Text as='span' fontSize='16px' paddingLeft='0.6rem'>
+				{text}
+			</Text>
 		</Box>
-	)
-}
-const InceptionBlock = ({ setNewBlockType }) => {
-	return (
-		<Box
-			h='100px'
-			w='100px'
-			border='1px solid'
-			className='droppable-element'
-			draggable={true}
-			unselectable='on'
-			onDragStart={(e) => {
-				e.dataTransfer.setData('text/plain', '')
-				setNewBlockType('inception')
-			}}>
-			Inception
-		</Box>
-	)
-}
-const ImageBlock = ({ setNewBlockType }) => {
-	return (
-		<Box
-			h='50px'
-			w='50px'
-			border='1px solid'
-			className='droppable-element'
-			draggable={true}
-			unselectable='on'
-			onDragStart={(e) => {
-				e.dataTransfer.setData('text/plain', '')
-				setNewBlockType('image')
-			}}>
-			Image
-		</Box>
-	)
-}
+	);
+};
 
 const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
 
 	if (!isOpen)
 		return (
@@ -68,7 +51,7 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				right='10px'
 				zIndex='9999'
 				border='1px solid transparent'
-				borderRadius='100%'
+				borderRadius='10px'
 				w='60px'
 				h='60px'
 				bg='white'
@@ -76,16 +59,16 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				d='flex'
 				alignItems='center'
 				cursor='pointer'
-				boxShadow='rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;'
+				boxShadow='0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)'
 				_hover={{
 					bg: 'primary.100',
 					border: '1px solid',
-					borderColor: 'primary.500'
+					borderColor: 'primary.500',
 				}}
 				onClick={() => setIsOpen(true)}>
-				<FaPlus size='2.5em' />
+				<GrAdd size='2.2em' />
 			</Box>
-		)
+		);
 	return (
 		<Box
 			d='flex'
@@ -96,29 +79,51 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 			zIndex='9999'
 			bg='white'
 			p='10px'
-			boxShadow='rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;'
+			boxShadow='0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)'
 			borderRadius='10px'>
-			<Box onClick={() => setIsOpen(false)}>
-				<FaRegTimesCircle size='1em' />
+			<Box
+				display='flex'
+				justifyContent='space-between'
+				alignItems='center'
+				w='full'
+				paddingX='5px'
+				paddingBottom='0.5rem'>
+				<Box fontSize='16px'>{isSaved ? 'Saved' : 'Not Saved'}</Box>
+				<Box cursor='pointer' onClick={() => setIsOpen(false)}>
+					<FaRegTimesCircle size='1em' />
+				</Box>
 			</Box>
-			<div>{isSaved ? 'saved' : <Spinner />}</div>
-			<TextBlock setNewBlockType={setNewBlockType} />
-			<ImageBlock setNewBlockType={setNewBlockType} />
-			<InceptionBlock setNewBlockType={setNewBlockType} />
+			<ToolSection
+				Icon={BsTextCenter}
+				text='Text'
+				type='text'
+				setNewBlockType={setNewBlockType}
+			/>
+			<ToolSection
+				Icon={BsCardImage}
+				text='Image'
+				type='image'
+				setNewBlockType={setNewBlockType}
+			/>
+			<ToolSection
+				Icon={BsLayoutTextWindowReverse}
+				text='Section'
+				type='inception'
+				setNewBlockType={setNewBlockType}
+			/>
 		</Box>
-	)
-}
+	);
+};
 
 BuilderSidebar.propTypes = {
 	setNewBlockType: PropTypes.any,
-	isSaved: PropTypes.any
-}
-ImageBlock.propTypes = {
-	setNewBlockType: PropTypes.any
-}
-TextBlock.propTypes = {
+	isSaved: PropTypes.any,
+};
+ToolSection.propTypes = {
 	setNewBlockType: PropTypes.func,
-	handleDrop: PropTypes.func
-}
+	Icon: PropTypes.any,
+	text: PropTypes.string,
+	type: PropTypes.string,
+};
 
-export default BuilderSidebar
+export default BuilderSidebar;
