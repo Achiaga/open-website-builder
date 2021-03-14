@@ -1,11 +1,11 @@
 import { Box, Button, Input } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { ChromePicker } from 'react-color';
+// import { ChromePicker } from 'react-color';
 import { Portal } from '../usePortal';
 
-import { MdDeleteForever } from 'react-icons/md';
 import { BiFontSize } from 'react-icons/bi';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi';
 import {
 	AiOutlineVerticalAlignBottom,
@@ -146,18 +146,22 @@ const backgroundColor = {
 
 const deleteBlock = {
 	type: 'button',
-	placeholder: <MdDeleteForever color='red' size='1.4rem' />,
+	placeholder: <RiDeleteBin6Line color='red' size='1rem' />,
 	property: '',
 	operationType: DELETE,
 };
+
 const imageInput = {
 	type: 'text',
-	placeholder: 'Enter image url',
+	placeholder: 'Img',
+	inputPlaceholder: 'Enter your link',
 	property: 'imageUrl',
 };
+
 const redirectInput = {
 	type: 'text',
-	placeholder: 'Redirect on click',
+	placeholder: 'Link',
+	inputPlaceholder: 'Add a link to redirect to when click',
 	property: 'redirect',
 };
 
@@ -179,7 +183,6 @@ const Properties = {
 
 const PropertiesModifiers = {
 	dropdown: DropDownSelector,
-	// color: DropDownColorSelector,
 	button: ButtonSelector,
 	text: TextInput,
 	redirect: TextInput,
@@ -208,8 +211,7 @@ function DropDownSelector({
 			justifyContent='center'
 			cursor='pointer'
 			height='20px'
-			borderRight={`${property !== 'backgroundColor' && '1px solid gray'}`}
-			borderLeft={`${property === 'fontSize' && '1px solid gray'}`}
+			borderLeft='1px solid gray'
 			paddingX='0.3rem'>
 			<Button
 				id={property}
@@ -267,18 +269,64 @@ DropDownSelector.propTypes = {
 	placeholder: PropTypes.string.isRequired,
 };
 
-function TextInput({ handleEdit, property, value, placeholder }) {
+function TextInput({
+	handleEdit,
+	isOpen,
+	handleOpenToolbar,
+	property,
+	value,
+	placeholder,
+	inputPlaceholder,
+}) {
 	const handleChange = (e) => {
 		handleEdit(property, e.target.value);
 	};
 	return (
-		<Box onDoubleClick={(e) => e.stopPropagation()}>
-			<Input
-				placeholder={placeholder}
-				onChange={handleChange}
-				value={value}
-				color='white'
-			/>
+		<Box
+			onDoubleClick={(e) => e.stopPropagation()}
+			position='relative'
+			display='flex'
+			alignItems='center'
+			justifyContent='center'
+			cursor='pointer'
+			height='20px'
+			borderLeft='1px solid gray'
+			paddingX='0.3rem'>
+			<Button
+				id={property}
+				size='sm'
+				padding='3px'
+				bg='transparent'
+				onClick={handleOpenToolbar}>
+				{placeholder}
+			</Button>
+			{isOpen === property && (
+				<Box
+					position='absolute'
+					bottom='-60px'
+					bg='white'
+					rounded='5px'
+					zIndex='999999'
+					padding='8px'
+					boxShadow='rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;'>
+					<Input
+						placeholder={inputPlaceholder}
+						onChange={handleChange}
+						value={value}
+						rounded='3px'
+						color='black'
+						paddingX='6px'
+						paddingY='3px'
+						paddingLeft='0.4rem'
+						boxShadow='rgb(15 15 15 / 10%) 0px 0px 0px 1px inset'
+						background='rgba(242, 241, 238, 0.6)'
+						w='15rem'
+						height='1.9rem'
+						fontSize='14px'
+						border='transparent'
+					/>
+				</Box>
+			)}
 		</Box>
 	);
 }
@@ -420,7 +468,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 				display='flex'
 				alignItems='center'
 				justifyContent='left'
-				paddingRight='10px'
+				paddingRight='3px'
 				{...xOffsetToolbar}
 				{...yOffsetToolbar}
 				rounded='5px'
