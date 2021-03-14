@@ -1,4 +1,4 @@
-import { Box, Button, Input, Select } from '@chakra-ui/react';
+import { Box, Button, Input } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ChromePicker } from 'react-color';
@@ -26,7 +26,9 @@ const fontSize = {
 	icon: <BiFontSize size='1.5rem' />,
 	property: 'fontSize',
 	options: [
-		{ value: '2rem', title: 'xxl' },
+		{ value: '4rem', title: '4xl' },
+		{ value: '3rem', title: '3xl' },
+		{ value: '2rem', title: '2xl' },
 		{ value: '1.75rem', title: 'xl' },
 		{ value: '1.5rem', title: 'lg' },
 		{ value: '1.25rem', title: 'md' },
@@ -38,24 +40,22 @@ const textAlign = {
 	type: 'dropdown',
 	property: 'textAlign',
 	options: [
-		{ value: 'center', title: 'center' },
-		{ value: 'left', title: 'left' },
-		{ value: 'right', title: 'right' },
+		{ value: 'left', title: <FiAlignLeft /> },
+		{ value: 'center', title: <FiAlignCenter /> },
+		{ value: 'right', title: <FiAlignRight /> },
 	],
 };
 const alignItems = {
 	type: 'dropdown',
-	placeholder: 'Vertical Align',
 	property: 'alignItems',
 	options: [
-		{ value: 'start', title: 'top' },
-		{ value: 'center', title: 'center' },
-		{ value: 'end', title: 'bottom' },
+		{ value: 'start', title: <AiOutlineVerticalAlignTop /> },
+		{ value: 'center', title: <AiOutlineVerticalAlignMiddle /> },
+		{ value: 'end', title: <AiOutlineVerticalAlignBottom /> },
 	],
 };
 const fontWeight = {
 	type: 'dropdown',
-	placeholder: 'Font Bold',
 	property: 'fontWeight',
 	options: [
 		{ value: '300', title: 'thin' },
@@ -65,16 +65,15 @@ const fontWeight = {
 		{ value: '900', title: 'super bold' },
 	],
 };
-const Color = {
-	type: 'dropdown',
-	placeholder: 'Color',
+const color = {
+	type: 'color',
 	property: 'color',
 	options: [
 		{ value: 'yellow', title: 'yellow' },
 		{ value: 'black', title: 'black' },
 		{ value: 'red', title: 'red' },
 		{ value: 'brown', title: 'brown' },
-		{ value: 'blue', title: 'blue' },
+		{ value: '#4a40ce', title: 'blue' },
 	],
 };
 
@@ -86,9 +85,9 @@ const Color = {
 
 const borderRadius = {
 	type: 'dropdown',
-	placeholder: 'Border Radius',
 	property: 'borderRadius',
 	options: [
+		{ value: '0px', title: 'none' },
 		{ value: '10px', title: 'sm' },
 		{ value: '20px', title: 'md' },
 		{ value: '100px', title: 'lg' },
@@ -97,9 +96,12 @@ const borderRadius = {
 };
 const boxShadow = {
 	type: 'dropdown',
-	placeholder: 'Shadow',
 	property: 'boxShadow',
 	options: [
+		{
+			value: 'none',
+			title: 'none',
+		},
 		{
 			value:
 				'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;',
@@ -155,7 +157,7 @@ const Properties = {
 		fontWeight,
 		borderRadius,
 		boxShadow,
-		Color,
+		color,
 		// backgroundColor,
 	],
 	image: [deleteBlock, boxShadow, borderRadius, imageInput],
@@ -164,55 +166,168 @@ const Properties = {
 
 const PropertiesModifiers = {
 	dropdown: DropDownSelector,
-	color: ColorSelector,
+	color: DropDownColorSelector,
 	button: ButtonSelector,
 	text: TextInput,
 };
 
-function DropDownSelector({ handleEdit, property, value, options, icon }) {
+function DropDownSelector({
+	handleEdit,
+	isOpen,
+	handleOpenToolbar,
+	property,
+	value,
+	options,
+}) {
 	const handleChange = (e) => {
-		const { value } = e.target;
+		const { value } = e.currentTarget;
 		handleEdit(property, value);
 	};
+
+	const result = options.find((option) => option.value === value)?.title || '';
+
 	return (
 		<Box
+			position='relative'
 			display='flex'
 			alignItems='center'
 			justifyContent='center'
-			paddingX='0.5rem'>
-			{icon}
-			<Select
+			cursor='pointer'
+			height='20px'
+			borderRight='1px solid gray'
+			borderLeft={`${property === 'fontSize' && '1px solid gray'}`}
+			paddingX='0.3rem'>
+			<Button
+				id={property}
 				size='sm'
-				cursor='pointer'
-				display='flex'
-				justifyContent='center'
-				variant='flushed'
-				border='none'
-				iconColor='blue'
-				icon='none'
-				value={value}
-				sx={{ padding: '0', textAlign: 'center' }}
-				onChange={handleChange}>
-				{options?.map(({ value, title }, index) => {
-					return (
-						<option key={index} value={value}>
-							{title}
-						</option>
-					);
-				})}
-			</Select>
+				padding='3px'
+				bg='transparent'
+				onClick={handleOpenToolbar}>
+				{result}
+			</Button>
+			<Box
+				position='absolute'
+				top='-50px'
+				bg='white'
+				rounded='5px'
+				zIndex='999999'
+				boxShadow='rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;'>
+				{isOpen === property &&
+					options?.map(({ value: optionValue, title }, index) => {
+						return (
+							<Button
+								bg='transparent'
+								onClick={handleChange}
+								key={index}
+								w='full'
+								size='sm'
+								background={`${optionValue === value && '#bdd4f95e'}`}
+								_hover={
+									optionValue === value
+										? { bg: '#bdd4f98a' }
+										: { bg: '#F2F2F2' }
+								}
+								value={optionValue}
+								paddingX='4px'>
+								{title}
+							</Button>
+						);
+					})}
+			</Box>
 		</Box>
 	);
 }
 
 DropDownSelector.propTypes = {
+	isOpen: PropTypes.string.isRequired,
+	handleOpenToolbar: PropTypes.func.isRequired,
 	handleEdit: PropTypes.func.isRequired,
 	property: PropTypes.string.isRequired,
 	value: PropTypes.string,
 	options: PropTypes.arrayOf(
 		PropTypes.shape({
 			value: PropTypes.string.isRequired,
-			title: PropTypes.string.isRequired,
+			title: PropTypes.any.isRequired,
+		}).isRequired
+	).isRequired,
+	placeholder: PropTypes.string.isRequired,
+};
+
+function DropDownColorSelector({
+	handleEdit,
+	isOpen,
+	handleOpenToolbar,
+	property,
+	value,
+	options,
+}) {
+	const handleChange = (e) => {
+		const { value } = e.currentTarget;
+		handleEdit(property, value);
+	};
+
+	const result = options.find((option) => option.value === value)?.title || '';
+
+	return (
+		<Box
+			position='relative'
+			display='flex'
+			alignItems='center'
+			justifyContent='center'
+			cursor='pointer'
+			height='20px'
+			paddingX='0.3rem'>
+			<Button
+				id={property}
+				size='sm'
+				padding='3px'
+				bg='transparent'
+				onClick={handleOpenToolbar}>
+				{result}
+			</Button>
+			<Box
+				position='absolute'
+				top='-50px'
+				bg='white'
+				rounded='5px'
+				zIndex='999999'
+				boxShadow='rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;'>
+				{isOpen === property &&
+					options?.map(({ value: optionValue, title }, index) => {
+						return (
+							<Button
+								bg='transparent'
+								onClick={handleChange}
+								key={index}
+								w='full'
+								size='sm'
+								background={`${optionValue === value && '#bdd4f95e'}`}
+								_hover={
+									optionValue === value
+										? { bg: '#bdd4f98a' }
+										: { bg: '#F2F2F2' }
+								}
+								value={optionValue}
+								paddingX='4px'>
+								{title}
+							</Button>
+						);
+					})}
+			</Box>
+		</Box>
+	);
+}
+
+DropDownColorSelector.propTypes = {
+	isOpen: PropTypes.string.isRequired,
+	handleOpenToolbar: PropTypes.func.isRequired,
+	handleEdit: PropTypes.func.isRequired,
+	property: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	options: PropTypes.arrayOf(
+		PropTypes.shape({
+			value: PropTypes.string.isRequired,
+			title: PropTypes.any.isRequired,
 		}).isRequired
 	).isRequired,
 	placeholder: PropTypes.string.isRequired,
@@ -296,7 +411,13 @@ ButtonSelector.propTypes = {
 	placeholder: PropTypes.string.isRequired,
 };
 
-export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
+export const Modifier = ({
+	isOpen,
+	handleOpenToolbar,
+	handleEdit,
+	propertiesValues,
+	properties,
+}) => {
 	return (
 		properties?.map((propertyData, index) => {
 			const type = propertyData.type;
@@ -304,6 +425,8 @@ export const Modifier = ({ handleEdit, propertiesValues, properties }) => {
 			const Modifier = PropertiesModifiers[type];
 			return (
 				<Modifier
+					isOpen={isOpen}
+					handleOpenToolbar={handleOpenToolbar}
 					handleEdit={handleEdit}
 					{...propertyData}
 					key={index}
@@ -364,9 +487,16 @@ function getOffsets(blockKey) {
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
+	const [isOpen, setIsOpen] = useState('');
 	const { editBlock = () => {} } = data;
 
+	const handleOpenToolbar = (e) => {
+		const { id } = e.currentTarget;
+		setIsOpen(id);
+	};
+
 	function handleEdit(id, value, operationType = EDIT) {
+		setIsOpen('');
 		editBlock({ ...data, [id]: value }, blockKey, operationType);
 	}
 	const dim = getOffsets(blockKey);
@@ -377,7 +507,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 				alignItems='center'
 				justifyContent='left'
 				paddingRight='10px'
-				left={dim.left - 150}
+				left={dim.left - 80}
 				top={dim.top - 50}
 				rounded='5px'
 				boxShadow='rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;'
@@ -386,6 +516,8 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 				backgroundColor='white'
 				color='black'>
 				<Modifier
+					handleOpenToolbar={handleOpenToolbar}
+					isOpen={isOpen}
 					handleEdit={handleEdit}
 					propertiesValues={data}
 					properties={Properties[blockType]}

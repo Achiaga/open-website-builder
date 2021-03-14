@@ -1,77 +1,65 @@
-import { Box } from '@chakra-ui/react'
-import localforage from 'localforage'
+import { Box } from '@chakra-ui/react';
+import localforage from 'localforage';
 
-import { Block } from '../blocks'
-import { DELETE, EDIT } from '../blocks/constants'
+import { Block } from '../blocks';
+import { DELETE, EDIT } from '../blocks/constants';
 
-import { imageURL } from '../initial-data'
+import { blocksProperties } from './default-data';
 
 // Block Factory *********************************
 
-const blocksProperties = {
-	text: {
-		text: 'Test block text',
-		fontSize: '1rem',
-		textAlign: 'center',
-		fontColor: '#4a40ce',
-		backgroundColor: '#ffffff'
-	},
-	image: {
-		imageUrl: imageURL
-	}
-}
 const loadBlockInitialData = (blockType, extraProps) => {
 	return {
 		data: {
 			...blocksProperties[blockType],
-			...extraProps
-		}
-	}
-}
+			...extraProps,
+		},
+	};
+};
 
 export function addBlock(newId, blockType, blocks, editBlockCallback) {
 	return {
 		...blocks,
 		[newId]: {
 			type: blockType,
-			...loadBlockInitialData(blockType, { editBlock: editBlockCallback })
-		}
-	}
+			...loadBlockInitialData(blockType, { editBlock: editBlockCallback }),
+		},
+	};
 }
 
 // Block Edition *********************************
 
 export function deleteBlock(blocks, deletedBlockId) {
-	const updatedBlocks = { ...blocks }
-	delete updatedBlocks[deletedBlockId]
-	return updatedBlocks
+	const updatedBlocks = { ...blocks };
+	delete updatedBlocks[deletedBlockId];
+	return updatedBlocks;
 }
 
 export function editBlock(blocks, id, newData, operationType = EDIT) {
-	if (operationType === DELETE) return deleteBlock(blocks, id)
+	if (operationType === DELETE) return deleteBlock(blocks, id);
 	return {
 		...blocks,
 		[id]: {
 			...blocks[id],
-			data: newData
-		}
-	}
+			data: newData,
+		},
+	};
 }
 
 // Edit block layout properties *********************************
 
 export const editItemDraggableProperty = (layout, editableBlockId) => {
 	return layout.map((layoutItem) => {
-		const isSelectedItem = layoutItem.i === editableBlockId
-		let isDraggable = isSelectedItem ? false : true
-		return { ...layoutItem, isDraggable }
-	})
-}
+		const isSelectedItem = layoutItem.i === editableBlockId;
+		let isDraggable = isSelectedItem ? false : true;
+		return { ...layoutItem, isDraggable };
+	});
+};
 
 // Add editior function to inital blocks *********************************
 
 export function addCallbackToBlock(blocksConfig, editBlockCallback) {
-	if (!blocksConfig) return
+	if (!blocksConfig) return;
 	return Object.entries(blocksConfig)?.reduce((acc, [blockId, blockInfo]) => {
 		return {
 			...acc,
@@ -79,11 +67,11 @@ export function addCallbackToBlock(blocksConfig, editBlockCallback) {
 				...blockInfo,
 				data: {
 					...blockInfo.data,
-					editBlock: editBlockCallback
-				}
-			}
-		}
-	}, {})
+					editBlock: editBlockCallback,
+				},
+			},
+		};
+	}, {});
 }
 
 // Block Builder
@@ -99,16 +87,16 @@ const generateBuilderBlock = (
 	layoutCallback,
 	setSelectedItem
 ) => {
-	if (!blockInfo) return null
-	const isEditable = selectedItemId === blockKey
+	if (!blockInfo) return null;
+	const isEditable = selectedItemId === blockKey;
 	return (
 		<Box
 			outline='2px solid'
 			outlineColor={isEditable ? 'blue' : 'transparent'}
 			key={blockKey}
 			onDoubleClick={(e) => {
-				e.stopPropagation()
-				setIsEditable(selectedItemId === blockKey ? null : blockKey)
+				e.stopPropagation();
+				setIsEditable(selectedItemId === blockKey ? null : blockKey);
 			}}>
 			<Block
 				data={blockInfo.data}
@@ -122,8 +110,8 @@ const generateBuilderBlock = (
 				setSelectedItem={setSelectedItem}
 			/>
 		</Box>
-	)
-}
+	);
+};
 
 export const generateBuilderBlocks = (
 	blocksConfig,
@@ -135,9 +123,9 @@ export const generateBuilderBlocks = (
 	layoutCallback,
 	setSelectedItem
 ) => {
-	if (!blocksConfig) return null
+	if (!blocksConfig) return null;
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
-		const layoutItem = layout.find((layoutItem) => layoutItem.i === blockKey)
+		const layoutItem = layout.find((layoutItem) => layoutItem.i === blockKey);
 		return generateBuilderBlock(
 			blockKey,
 			blockInfo,
@@ -148,9 +136,9 @@ export const generateBuilderBlocks = (
 			newBlockType,
 			layoutCallback,
 			setSelectedItem
-		)
-	})
-}
+		);
+	});
+};
 
 // Builder
 export function denormalizeBlockData(layout, blocksConfig) {
@@ -159,54 +147,54 @@ export function denormalizeBlockData(layout, blocksConfig) {
 			...acc,
 			[blockKey]: {
 				layout: {
-					...layout.find((layoutItem) => layoutItem.i === blockKey)
+					...layout.find((layoutItem) => layoutItem.i === blockKey),
 				},
 				block: {
-					...removeEventListener(blockConfig)
-				}
-			}
-		}
-	}, {})
+					...removeEventListener(blockConfig),
+				},
+			},
+		};
+	}, {});
 }
 
 export function denormalizeInceptionBlock(layout, blockConfig) {
 	const blocks = {
-		...denormalizeBlockData(layout, blockConfig)
-	}
-	return { blocks }
+		...denormalizeBlockData(layout, blockConfig),
+	};
+	return { blocks };
 }
 
 export function saveOnLocal(userBlocksData, setIsSaved) {
-	if (!Object.keys(userBlocksData).length) return
-	setIsSaved(false)
+	if (!Object.keys(userBlocksData).length) return;
+	setIsSaved(false);
 	localforage.setItem('userData', JSON.stringify(userBlocksData)).then(() => {
-		setIsSaved(true)
-	})
+		setIsSaved(true);
+	});
 }
 
 function removeEventListener(blockConfig) {
 	// eslint-disable-next-line no-unused-vars
-	const { editBlock, ...rest } = blockConfig.data
+	const { editBlock, ...rest } = blockConfig.data;
 	return {
 		...blockConfig,
 		data: {
-			...rest
-		}
-	}
+			...rest,
+		},
+	};
 }
 
 export function normalizeLayout(userBlocksData) {
-	if (!userBlocksData) return []
+	if (!userBlocksData) return [];
 	return Object.values(userBlocksData).map((block) => {
-		return block.layout
-	})
+		return block.layout;
+	});
 }
 export function normalizeBlockStructure(userBlocksData) {
-	if (!userBlocksData) return {}
+	if (!userBlocksData) return {};
 	return Object.entries(userBlocksData).reduce((acc, [blockId, value]) => {
 		return {
 			...acc,
-			[blockId]: value.block
-		}
-	}, {})
+			[blockId]: value.block,
+		};
+	}, {});
 }
