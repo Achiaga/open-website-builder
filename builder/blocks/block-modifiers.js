@@ -271,6 +271,7 @@ DropDownSelector.propTypes = {
 
 function TextInput({
 	handleEdit,
+	handleCloseInput,
 	isOpen,
 	handleOpenToolbar,
 	property,
@@ -312,6 +313,7 @@ function TextInput({
 					<Input
 						placeholder={inputPlaceholder}
 						onChange={handleChange}
+						onKeyDown={handleCloseInput}
 						value={value}
 						rounded='3px'
 						color='black'
@@ -334,6 +336,7 @@ TextInput.propTypes = {
 	handleEdit: PropTypes.func.isRequired,
 	property: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
+	handleCloseInput: PropTypes.func,
 	placeholder: PropTypes.string.isRequired,
 	inputPlaceholder: PropTypes.string,
 	isOpen: PropTypes.bool,
@@ -363,6 +366,7 @@ export const Modifiers = ({
 	isOpen,
 	handleOpenToolbar,
 	handleEdit,
+	handleCloseInput,
 	propertiesValues,
 	properties
 }) => {
@@ -376,6 +380,7 @@ export const Modifiers = ({
 					isOpen={isOpen}
 					handleOpenToolbar={handleOpenToolbar}
 					handleEdit={handleEdit}
+					handleCloseInput={handleCloseInput}
 					{...propertyData}
 					key={index}
 					value={propertiesValues[property]}
@@ -451,8 +456,14 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 		setIsOpen(id)
 	}
 
+	function handleCloseInput(e) {
+		if (e.key === 'Enter') {
+			setIsOpen('')
+		}
+	}
+
 	function handleEdit(id, value, operationType = EDIT) {
-		setIsOpen('')
+		if (id !== 'imageUrl' || id !== 'redirect') setIsOpen('')
 		editBlock({ ...data, [id]: value }, blockKey, operationType)
 	}
 	const dim = getOffsets(blockKey)
@@ -487,6 +498,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 					handleOpenToolbar={handleOpenToolbar}
 					isOpen={isOpen}
 					handleEdit={handleEdit}
+					handleCloseInput={handleCloseInput}
 					propertiesValues={data}
 					properties={Properties[blockType]}
 				/>
