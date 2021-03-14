@@ -7,12 +7,19 @@ import Image from './image'
 import List from './list'
 import GenericText from './text'
 import BlockInception from './inception'
+import { PrevInception } from './prevInception'
 
 const blocks = {
 	image: Image,
 	list: List,
 	text: GenericText,
 	inception: BlockInception
+}
+export const previewBlocks = {
+	image: Image,
+	list: List,
+	text: GenericText,
+	inception: PrevInception
 }
 
 function BuilderBlock({
@@ -24,7 +31,8 @@ function BuilderBlock({
 	selectedItemId,
 	newBlockType,
 	layoutCallback,
-	setSelectedItem
+	setSelectedItem,
+	rowHeight
 }) {
 	const GenericBlock = blocks[blockType]
 	const { editBlock = () => {}, text: dataText, ...metaData } = data
@@ -58,7 +66,8 @@ function BuilderBlock({
 					newBlockType,
 					layoutCallback,
 					blockKey,
-					setSelectedItem
+					setSelectedItem,
+					rowHeight
 				}}
 				{...metaData}
 			/>
@@ -74,7 +83,7 @@ BuilderBlock.propTypes = {
 }
 
 const PreviewBlock = ({ data, blockType }) => {
-	const GenericBlock = blocks[blockType]
+	const GenericBlock = previewBlocks[blockType]
 	return <GenericBlock {...data} />
 }
 
@@ -84,7 +93,6 @@ PreviewBlock.propTypes = {
 }
 
 export const Block = ({
-	isPreview,
 	data,
 	blockKey,
 	isEditable,
@@ -93,9 +101,9 @@ export const Block = ({
 	reRender,
 	newBlockType,
 	layoutCallback,
-	setSelectedItem
+	setSelectedItem,
+	rowHeight
 }) => {
-	if (isPreview) return <PreviewBlock data={data} blockType={blockType} />
 	return (
 		<BuilderBlock
 			data={data}
@@ -107,6 +115,7 @@ export const Block = ({
 			newBlockType={newBlockType}
 			layoutCallback={layoutCallback}
 			setSelectedItem={setSelectedItem}
+			rowHeight={rowHeight}
 		/>
 	)
 }

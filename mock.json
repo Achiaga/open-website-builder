@@ -1,134 +1,11 @@
 {
-	"42e12503-f6c2-4edf-a197-15a5d5f4f57f": {
+	"a": {
 		"layout": {
-			"w": 6,
-			"h": 18,
-			"x": 4,
-			"y": 47,
-			"i": "42e12503-f6c2-4edf-a197-15a5d5f4f57f",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": ["image"],
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-			}
-		}
-	},
-	"c5d259d0-d252-4a69-9879-653d99b98cf3": {
-		"layout": {
-			"w": 4,
-			"h": 18,
-			"x": 0,
-			"y": 0,
-			"i": "c5d259d0-d252-4a69-9879-653d99b98cf3",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-			}
-		}
-	},
-	"55e19c20-a78f-4784-9e98-0386b35190d0": {
-		"layout": {
-			"w": 6,
-			"h": 6,
-			"x": 12,
-			"y": 0,
-			"i": "55e19c20-a78f-4784-9e98-0386b35190d0",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Change thed ext",
-				"fontSize": "1rem",
-				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#ffffff",
-				"boxShadow": "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;",
-				"borderRaidus": "20px",
-				"borderRadius": "100%",
-				"alignItems": "center",
-				"color": "#24947d"
-			}
-		}
-	},
-	"cb980873-c9f8-45d2-b0b4-f223a58c6760": {
-		"layout": {
-			"w": 3,
-			"h": 24,
-			"x": 0,
-			"y": 54,
-			"i": "cb980873-c9f8-45d2-b0b4-f223a58c6760",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e",
-				"borderRadius": "100%",
-				"boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;"
-			}
-		}
-	},
-	"0c05a36e-3d42-4161-b4f2-e7fc1ce17b68": {
-		"layout": {
-			"w": 2,
-			"h": 6,
-			"x": 8,
-			"y": 32,
-			"i": "0c05a36e-3d42-4161-b4f2-e7fc1ce17b68",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Change the ext",
-				"fontSize": "1rem",
-				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#ffffff"
-			}
-		}
-	},
-	"cc531c14-b38b-4921-b770-467750278947": {
-		"layout": {
-			"w": 4,
-			"h": 4,
-			"x": 4,
-			"y": 43,
-			"i": "cc531c14-b38b-4921-b770-467750278947",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-			}
-		}
-	},
-	"bdfcf1af-3553-4f47-82cf-64e746c5739f": {
-		"layout": {
-			"w": 6,
+			"w": 100,
 			"h": 20,
-			"x": 4,
-			"y": 65,
-			"i": "bdfcf1af-3553-4f47-82cf-64e746c5739f",
+			"x": 23,
+			"y": 52,
+			"i": "a",
 			"moved": false,
 			"static": false,
 			"isDraggable": true
@@ -136,26 +13,81 @@
 		"block": {
 			"type": "text",
 			"data": {
-				"text": "It is time to start working out",
-				"fontSize": "1.5rem",
+				"text": "Welcome",
 				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#63bfa1",
-				"boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;",
-				"fontWeight": "700",
-				"borderRadius": "20px",
 				"alignItems": "center",
-				"color": "#a41e1e"
+				"fontWeight": "500",
+				"color": "black",
+				"boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
 			}
 		}
 	},
-	"e773eaf4-65e2-4b24-b967-09ddf59ffccf": {
+	"inception-b6cd9d43-e8a8-4b0a-a52f-0d8767d35899": {
 		"layout": {
-			"w": 7,
-			"h": 9,
-			"x": 14,
-			"y": 6,
-			"i": "e773eaf4-65e2-4b24-b967-09ddf59ffccf",
+			"w": 120,
+			"h": 35,
+			"x": 41,
+			"y": 169,
+			"i": "inception-b6cd9d43-e8a8-4b0a-a52f-0d8767d35899",
+			"moved": false,
+			"static": false,
+			"isDraggable": false
+		},
+		"block": {
+			"type": "inception",
+			"data": {
+				"blocks": {
+					"child-inception-301cbcb0-3adb-4acb-80b7-c9636c95940d": {
+						"layout": {
+							"w": 9,
+							"h": 14,
+							"x": 1,
+							"y": 4,
+							"i": "child-inception-301cbcb0-3adb-4acb-80b7-c9636c95940d",
+							"moved": false,
+							"static": false,
+							"isDraggable": true
+						},
+						"block": {
+							"type": "text",
+							"data": {
+								"text": "Test block text",
+								"fontSize": "1rem",
+								"textAlign": "center",
+								"fontColor": "#4a40ce",
+								"backgroundColor": "#ffffff"
+							}
+						}
+					},
+					"child-inception-a1012b8f-e170-4050-8b5a-9adac928b729": {
+						"layout": {
+							"w": 180,
+							"h": 22,
+							"x": 20,
+							"y": 1,
+							"i": "child-inception-a1012b8f-e170-4050-8b5a-9adac928b729",
+							"moved": false,
+							"static": false,
+							"isDraggable": true
+						},
+						"block": {
+							"type": "image",
+							"data": {
+								"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"text-c836d746-67b2-466c-86e3-6b066d1b194f": {
+		"layout": {
+			"w": 30,
+			"h": 35,
+			"x": 160,
+			"y": 52,
+			"i": "text-c836d746-67b2-466c-86e3-6b066d1b194f",
 			"moved": false,
 			"static": false,
 			"isDraggable": true
@@ -163,7 +95,7 @@
 		"block": {
 			"type": "text",
 			"data": {
-				"text": "Change the ext",
+				"text": "Test block text",
 				"fontSize": "1rem",
 				"textAlign": "center",
 				"fontColor": "#4a40ce",
@@ -171,115 +103,13 @@
 			}
 		}
 	},
-	"1343a1fb-902b-430d-985d-a9ee4b3cdd25": {
+	"image-8fddc2e6-f09b-4133-963f-d6fa5f4ed088": {
 		"layout": {
-			"w": 4,
-			"h": 4,
-			"x": 6,
-			"y": 28,
-			"i": "1343a1fb-902b-430d-985d-a9ee4b3cdd25",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Change the ext",
-				"fontSize": "1rem",
-				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#ffffff"
-			}
-		}
-	},
-	"1bca2be1-c454-40c1-a423-6a913f5607c8": {
-		"layout": {
-			"w": 4,
-			"h": 4,
-			"x": 6,
-			"y": 24,
-			"i": "1bca2be1-c454-40c1-a423-6a913f5607c8",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Change the ext",
-				"fontSize": "1rem",
-				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#ffffff"
-			}
-		}
-	},
-	"32477bf4-ec93-478a-89c6-c5855cc51db4": {
-		"layout": {
-			"w": 4,
-			"h": 4,
-			"x": 6,
-			"y": 16,
-			"i": "32477bf4-ec93-478a-89c6-c5855cc51db4",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-			}
-		}
-	},
-	"cc82754e-6bf4-4267-862e-a002f53ec63f": {
-		"layout": {
-			"w": 4,
-			"h": 4,
-			"x": 6,
-			"y": 20,
-			"i": "cc82754e-6bf4-4267-862e-a002f53ec63f",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Change the ext",
-				"fontSize": "1rem",
-				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#ffffff"
-			}
-		}
-	},
-	"89b66bbe-aa19-4813-b986-179e063d73dd": {
-		"layout": {
-			"w": 3,
-			"h": 15,
-			"x": 2,
-			"y": 28,
-			"i": "89b66bbe-aa19-4813-b986-179e063d73dd",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-			}
-		}
-	},
-	"dc18d0af-e390-4e59-ab00-6e9bd55c111c": {
-		"layout": {
-			"w": 2,
-			"h": 13,
-			"x": 0,
-			"y": 31,
-			"i": "dc18d0af-e390-4e59-ab00-6e9bd55c111c",
+			"w": 30,
+			"h": 35,
+			"x": 90,
+			"y": 15,
+			"i": "image-8fddc2e6-f09b-4133-963f-d6fa5f4ed088",
 			"moved": false,
 			"static": false,
 			"isDraggable": true
@@ -288,7 +118,7 @@
 			"type": "image",
 			"data": {
 				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e",
-				"borderRadius": "100%"
+				"redirect": "www.google.com"
 			}
 		}
 	}

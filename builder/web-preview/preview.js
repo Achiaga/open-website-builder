@@ -20,7 +20,7 @@ const WebPreview = ({ layout, blocksConfig }) => {
 			p='10px'
 			d='grid'
 			gridTemplateColumns='repeat(10, 1fr)'
-			gridTemplateRows={`repeat( auto-fit, ${ROW_HEIGHT}px )`}
+			gridTemplateRows={`repeat( auto-fill, ${ROW_HEIGHT}px )`}
 			gridGap={'10px'}
 			w='500px'
 			h='1500px'
@@ -36,10 +36,10 @@ WebPreview.propTypes = {
 }
 
 export const ResumeWebsite = ({ userBlocksData }) => {
-	const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
+	const [windowWidth, setWindowWidth] = useState(1440)
 
 	function handleWindowResize() {
-		setRowHeight(window?.innerWidth / GRID_COLUMNS)
+		setWindowWidth(window?.innerWidth)
 	}
 
 	useEffect(() => {
@@ -47,17 +47,20 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 		return () => window.removeEventListener('resize', handleWindowResize)
 	}, [])
 
+	const rowHeight = windowWidth / GRID_COLUMNS
+
 	return (
 		<Box
 			p='10px'
 			d='grid'
 			gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
-			gridTemplateRows={`repeat( auto-fit,  ${rowHeight}px )`}
+			gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
 			w='100vw'
-			height='1500px'>
+			height='7500px'>
 			{generatePageCode(
 				normalizeLayout(userBlocksData),
-				normalizeBlockStructure(userBlocksData)
+				normalizeBlockStructure(userBlocksData),
+				rowHeight
 			)}
 		</Box>
 	)

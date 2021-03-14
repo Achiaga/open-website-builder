@@ -119,13 +119,11 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				}
 			}
 		}
-		saveOnLocal(
-			denormalizeBlockData(layout, { ...newBlocksConfig }),
-			setIsSaved
-		)
+		saveOnLocal(denormalizeBlockData(layout, newBlocksConfig), setIsSaved)
 	}
 
 	const isDroppable = !selectedItemId?.includes('inception')
+
 	return (
 		<Box
 			d='flex'
@@ -159,7 +157,8 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 					reRender,
 					newBlockType,
 					layoutCallback,
-					setSelectedItem
+					setSelectedItem,
+					rowHeight
 				)}
 			</ReactGridLayout>
 		</Box>

@@ -1,26 +1,33 @@
 import { Box } from '@chakra-ui/react'
-import { Block } from '../blocks'
 
-export const generatePageCode = (layout, blocksConfig) => {
+import { previewBlocks } from '../blocks'
+
+export const generatePageCode = (layout, blocksConfig, rowHeight) => {
 	return layout?.map((layoutItem) => {
 		const BlockKey = layoutItem.i
-		return generatePreviewBlock(blocksConfig[BlockKey], layoutItem)
+		return generatePreviewBlock(blocksConfig[BlockKey], layoutItem, rowHeight)
 	})
 }
 
-function generatePreviewBlock(blockInfo, blockLayout) {
+export function generatePreviewBlock(blockInfo, blockLayout, rowHeight) {
 	if (!blockInfo?.type) return null
 	const { w, h, x, y, i } = blockLayout || {}
 	const { boxShadow, borderRadius } = blockInfo.data
+	const GenericBlock = previewBlocks[blockInfo.type]
 	return (
 		<Box
 			key={i}
-			gridColumn={`${x + 1} /  ${x + 1 + w}`}
-			gridRow={`${y + 1} /  ${y + 1 + h}`}
+			gridColumn={`${x + 1} /  span ${w}`}
+			gridRow={`${y + 1} / span ${h}`}
 			overflow='hidden'
+			outline='1px dashed lightgray'
 			boxShadow={boxShadow}
 			borderRadius={borderRadius}>
-			<Block data={blockInfo.data} isPreview blockType={blockInfo.type} />
+			<GenericBlock
+				{...blockInfo.data}
+				rowHeight={rowHeight}
+				parentHeight={h}
+			/>
 		</Box>
 	)
 }

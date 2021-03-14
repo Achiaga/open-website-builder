@@ -16,6 +16,7 @@ import {
 	denormalizeInceptionBlock
 } from '../web-builder/helpers'
 import { Box } from '@chakra-ui/react'
+import { GRID_COLUMNS } from '../web-builder/constants'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -28,7 +29,8 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 		newBlockType = 'text',
 		layoutCallback,
 		blockKey: parentBlockKey,
-		setSelectedItem
+		setSelectedItem,
+		rowHeight
 	} = extraProps
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
 	const [secondRender, setSecondRender] = useState(false)
@@ -98,11 +100,10 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 		return newItem.y + newItem.h > rowsNumber
 	}
 
-	function handleLayoutChange(layout, oldItem, newItem) {
+	function handleLayoutChange(layout, _, newItem) {
 		if (isObjectOutside(newItem)) {
 			return setSecondRender((x) => !x)
 		}
-
 		updateLayout(layout)
 	}
 
@@ -117,8 +118,8 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 			<ReactGridLayout
 				innerRef={gridRef}
 				key={reRender | secondRender ? 'a' : 'b'}
-				cols={50}
-				rowHeight={ROW_HEIGHT}
+				cols={GRID_COLUMNS}
+				rowHeight={rowHeight}
 				margin={[0, 0]}
 				style={{ width: '100%', height: '100%' }}
 				autoSize={false}

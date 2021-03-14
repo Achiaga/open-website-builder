@@ -97,7 +97,8 @@ const generateBuilderBlock = (
 	reRender,
 	newBlockType,
 	layoutCallback,
-	setSelectedItem
+	setSelectedItem,
+	rowHeight
 ) => {
 	if (!blockInfo) return null
 	const isEditable = selectedItemId === blockKey
@@ -120,6 +121,7 @@ const generateBuilderBlock = (
 				newBlockType={newBlockType}
 				layoutCallback={layoutCallback}
 				setSelectedItem={setSelectedItem}
+				rowHeight={rowHeight}
 			/>
 		</Box>
 	)
@@ -133,7 +135,8 @@ export const generateBuilderBlocks = (
 	reRender,
 	newBlockType,
 	layoutCallback,
-	setSelectedItem
+	setSelectedItem,
+	rowHeight
 ) => {
 	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
@@ -147,7 +150,8 @@ export const generateBuilderBlocks = (
 			reRender,
 			newBlockType,
 			layoutCallback,
-			setSelectedItem
+			setSelectedItem,
+			rowHeight
 		)
 	})
 }
