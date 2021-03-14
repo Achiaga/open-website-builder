@@ -82,16 +82,6 @@ BuilderBlock.propTypes = {
 	data: PropTypes.any
 }
 
-const PreviewBlock = ({ data, blockType }) => {
-	const GenericBlock = previewBlocks[blockType]
-	return <GenericBlock {...data} />
-}
-
-PreviewBlock.propTypes = {
-	blockType: PropTypes.string.isRequired,
-	data: PropTypes.any
-}
-
 export const Block = ({
 	data,
 	blockKey,
