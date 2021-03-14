@@ -134,6 +134,7 @@ const backgroundColor = {
 	type: 'dropdown',
 	property: 'backgroundColor',
 	options: [
+		{ value: 'trasnparent', title: 'none' },
 		{ value: '#ffffff', title: 'white' },
 		{ value: 'yellow', title: 'yellow' },
 		{ value: 'black', title: 'black' },
@@ -266,43 +267,6 @@ DropDownSelector.propTypes = {
 	placeholder: PropTypes.string.isRequired,
 };
 
-function RGBAToHexA({ r, g, b, a }) {
-	r = r.toString(16);
-	g = g.toString(16);
-	b = b.toString(16);
-	a = Math.round(a * 255).toString(16);
-
-	if (r.length == 1) r = '0' + r;
-	if (g.length == 1) g = '0' + g;
-	if (b.length == 1) b = '0' + b;
-	if (a.length == 1) a = '0' + a;
-
-	return '#' + r + g + b + a;
-}
-
-function ColorSelector({ handleEdit, property, value, placeholder }) {
-	const [isOpen, setIsOpen] = useState(false);
-	const handleChange = ({ rgb }) => {
-		handleEdit(property, RGBAToHexA(rgb));
-	};
-	return (
-		<Box>
-			<label onClick={() => setIsOpen(true)}>{placeholder}</label>
-			{isOpen && (
-				<Box pos='absolute' zIndex='9999'>
-					<button onClick={() => setIsOpen(false)}>Close</button>
-					<ChromePicker color={value} onChange={handleChange} />
-				</Box>
-			)}
-		</Box>
-	);
-}
-ColorSelector.propTypes = {
-	handleEdit: PropTypes.func,
-	property: PropTypes.string,
-	value: PropTypes.string,
-	placeholder: PropTypes.string,
-};
 function TextInput({ handleEdit, property, value, placeholder }) {
 	const handleChange = (e) => {
 		handleEdit(property, e.target.value);

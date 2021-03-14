@@ -13,6 +13,8 @@ export const blocksProperties = {
 		backgroundColor: '#ffffff',
 	},
 	image: {
+		boxShadow: 'none',
+		borderRadius: '0px',
 		imageUrl: imageURL,
 	},
 };

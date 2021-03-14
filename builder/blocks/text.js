@@ -1,9 +1,9 @@
-import { forwardRef } from 'react'
-import PropTypes from 'prop-types'
-import { Text } from '@chakra-ui/react'
+import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import { Text } from '@chakra-ui/react';
 
 export const GenericText = forwardRef((props, ref) => {
-	const { isEditable, onKeyUp, contentEditable, text } = props
+	const { isEditable, onKeyUp, contentEditable, text } = props;
 	const Textmodifiers = {
 		fontSize: props.fontSize,
 		textAlign: props.textAlign,
@@ -12,10 +12,11 @@ export const GenericText = forwardRef((props, ref) => {
 		alignItems: props.alignItems,
 		fontWeight: props.fontWeight,
 		boxShadow: props.boxShadow,
-		borderRadius: props.borderRadius
-	}
+		borderRadius: props.borderRadius,
+	};
 	return (
 		<Text
+			cursor='pointer'
 			w='100%'
 			h='100%'
 			d='grid'
@@ -28,9 +29,9 @@ export const GenericText = forwardRef((props, ref) => {
 			ref={ref}>
 			{text}
 		</Text>
-	)
-})
-GenericText.displayName = 'TextBlock'
+	);
+});
+GenericText.displayName = 'TextBlock';
 
 GenericText.propTypes = {
 	isEditable: PropTypes.bool,
@@ -46,7 +47,7 @@ GenericText.propTypes = {
 	boxShadow: PropTypes.string,
 	borderRadius: PropTypes.string,
 	bg: PropTypes.string,
-	onKeyUp: PropTypes.func
-}
+	onKeyUp: PropTypes.func,
+};
 
-export default GenericText
+export default GenericText;

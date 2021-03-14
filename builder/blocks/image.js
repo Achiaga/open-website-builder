@@ -1,14 +1,15 @@
-import { forwardRef } from 'react'
-import PropTypes from 'prop-types'
-import { Box } from '@chakra-ui/react'
+import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import { Box } from '@chakra-ui/react';
 
 export const GenericImage = forwardRef((props, ref) => {
 	const modifiers = {
 		boxShadow: props.boxShadow,
-		borderRadius: props.borderRadius
-	}
+		borderRadius: props.borderRadius,
+	};
 	return (
 		<Box
+			cursor='pointer'
 			onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
 			backgroundImage={`url(${props?.imageUrl})`}
 			width='100%'
@@ -18,9 +19,9 @@ export const GenericImage = forwardRef((props, ref) => {
 			backgroundSize='cover'
 			{...modifiers}
 		/>
-	)
-})
-GenericImage.displayName = 'TextBlock'
+	);
+});
+GenericImage.displayName = 'TextBlock';
 
 GenericImage.propTypes = {
 	contentEditable: PropTypes.bool,
@@ -28,7 +29,7 @@ GenericImage.propTypes = {
 	imageUrl: PropTypes.string,
 	boxShadow: PropTypes.string,
 	borderRadius: PropTypes.string,
-	ref: PropTypes.any
-}
+	ref: PropTypes.any,
+};
 
-export default GenericImage
+export default GenericImage;

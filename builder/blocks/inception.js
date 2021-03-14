@@ -1,10 +1,10 @@
-import RGL, { WidthProvider } from 'react-grid-layout'
-import { v4 as uuid } from 'uuid'
-import PropTypes from 'prop-types'
+import RGL, { WidthProvider } from 'react-grid-layout';
+import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
 
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import {
 	addBlock,
 	editBlock,
@@ -13,14 +13,14 @@ import {
 	addCallbackToBlock,
 	normalizeLayout,
 	normalizeBlockStructure,
-	denormalizeInceptionBlock
-} from '../web-builder/helpers'
-import { Box } from '@chakra-ui/react'
-import { GRID_COLUMNS } from '../web-builder/constants'
+	denormalizeInceptionBlock,
+} from '../web-builder/helpers';
+import { Box } from '@chakra-ui/react';
+import { GRID_COLUMNS } from '../web-builder/constants';
 
-const ReactGridLayout = WidthProvider(RGL)
+const ReactGridLayout = WidthProvider(RGL);
 
-const ROW_HEIGHT = 10
+const ROW_HEIGHT = 10;
 
 const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 	const {
@@ -30,21 +30,21 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 		layoutCallback,
 		blockKey: parentBlockKey,
 		setSelectedItem,
-		rowHeight
-	} = extraProps
-	const [newBlockId, setNewBlockId] = useState(() => uuid())
-	const [secondRender, setSecondRender] = useState(false)
-	const gridRef = useRef()
+		rowHeight,
+	} = extraProps;
+	const [newBlockId, setNewBlockId] = useState(() => uuid());
+	const [secondRender, setSecondRender] = useState(false);
+	const gridRef = useRef();
 	const [blocksConfig, udpateBlocksConfig] = useState(() =>
 		normalizeBlockStructure(data.blocks)
-	)
-	const [layout, setLayout] = useState(() => normalizeLayout(data.blocks))
+	);
+	const [layout, setLayout] = useState(() => normalizeLayout(data.blocks));
 
 	useEffect(() => {
 		udpateBlocksConfig((blocksConfig) =>
 			addCallbackToBlock(blocksConfig, editBlockCallback)
-		)
-	}, [])
+		);
+	}, []);
 
 	const editBlockCallback = (newData, blockId, operationType) => {
 		udpateBlocksConfig((blocksConfig) => {
@@ -53,67 +53,68 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				blockId,
 				newData,
 				operationType
-			)
+			);
 			layoutCallback(
 				denormalizeInceptionBlock(layout, newBlocksConfig),
 				parentBlockKey
-			)
-			return newBlocksConfig
-		})
-	}
+			);
+			return newBlocksConfig;
+		});
+	};
 
 	useEffect(() => {
-		setLayout((layout) => editItemDraggableProperty(layout, selectedItemId))
-	}, [selectedItemId])
+		setLayout((layout) => editItemDraggableProperty(layout, selectedItemId));
+	}, [selectedItemId]);
 
 	const updateLayout = (layout) => {
-		if (layout?.length !== Object.keys(blocksConfig)?.length) return
-		setLayout(layout)
+		if (layout?.length !== Object.keys(blocksConfig)?.length) return;
+		setLayout(layout);
 		layoutCallback(
 			denormalizeInceptionBlock(layout, blocksConfig),
 			parentBlockKey
-		)
-	}
+		);
+	};
 
 	function onDrop(layout, droppedBlockLayout) {
-		setLayout(layout)
+		setLayout(layout);
 		udpateBlocksConfig((blocksConfig) => {
 			const newBlocksConfig = addBlock(
 				droppedBlockLayout?.i,
 				newBlockType,
 				blocksConfig,
 				editBlockCallback
-			)
+			);
 			layoutCallback(
 				denormalizeInceptionBlock(layout, newBlocksConfig),
 				parentBlockKey
-			)
-			return newBlocksConfig
-		})
-		setNewBlockId(uuid())
+			);
+			return newBlocksConfig;
+		});
+		setNewBlockId(uuid());
 	}
 
 	function isObjectOutside(newItem) {
 		const parentHeight = gridRef.current.parentElement.getBoundingClientRect()
-			.height
-		const rowsNumber = Math.round(parentHeight / ROW_HEIGHT)
-		return newItem.y + newItem.h > rowsNumber
+			.height;
+		const rowsNumber = Math.round(parentHeight / ROW_HEIGHT);
+		return newItem.y + newItem.h > rowsNumber;
 	}
 
 	function handleLayoutChange(layout, _, newItem) {
 		if (isObjectOutside(newItem)) {
-			return setSecondRender((x) => !x)
+			return setSecondRender((x) => !x);
 		}
-		updateLayout(layout)
+		updateLayout(layout);
 	}
 
-	const isDroppable = selectedItemId?.includes('inception')
+	const isDroppable = selectedItemId?.includes('inception');
 	return (
 		<Box
 			{...data}
 			w='100%'
 			h='100%'
 			id='inception'
+			cursor='pointer'
 			outline='1px dashed lightgray'>
 			<ReactGridLayout
 				innerRef={gridRef}
@@ -142,10 +143,10 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				)}
 			</ReactGridLayout>
 		</Box>
-	)
-})
+	);
+});
 
-BlockInception.displayName = 'BlockInception'
+BlockInception.displayName = 'BlockInception';
 
 BlockInception.propTypes = {
 	extraProps: PropTypes.shape({
@@ -154,8 +155,8 @@ BlockInception.propTypes = {
 		newBlockType: PropTypes.string,
 		selectedItemId: PropTypes.string,
 		layoutCallback: PropTypes.func,
-		setSelectedItem: PropTypes.func
-	})
-}
+		setSelectedItem: PropTypes.func,
+	}),
+};
 
-export default BlockInception
+export default BlockInception;

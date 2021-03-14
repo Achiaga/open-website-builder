@@ -55,7 +55,7 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				borderRadius='10px'
 				w='60px'
 				h='60px'
-				bg='white'
+				backgroundColor='#ffffff42'
 				justifyContent='center'
 				d='flex'
 				alignItems='center'
