@@ -6,7 +6,7 @@ function validateUrl(string) {
 	try {
 		new URL(string)
 	} catch (err) {
-		console.log(err)
+		console.error(err)
 		if (string.includes('https://')) return 'upsy, something went wrong'
 		return `https://${string}`
 	}
