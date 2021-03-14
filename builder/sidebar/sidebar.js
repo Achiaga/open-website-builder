@@ -1,13 +1,13 @@
-import { Box, Spinner, Text } from '@chakra-ui/react';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { FaRegTimesCircle } from 'react-icons/fa';
-import { GrAdd, GrClose } from 'react-icons/gr';
+import { Box, Spinner, Text } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { FaRegTimesCircle } from 'react-icons/fa'
+import { GrAdd, GrClose } from 'react-icons/gr'
 import {
 	BsTextCenter,
 	BsCardImage,
-	BsLayoutTextWindowReverse,
-} from 'react-icons/bs';
+	BsLayoutTextWindowReverse
+} from 'react-icons/bs'
 
 const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 	return (
@@ -28,9 +28,10 @@ const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 			draggable={true}
 			unselectable='on'
 			cursor='grab'
+			opacity='0.999'
 			onDragStart={(e) => {
-				e.dataTransfer.setData('text/plain', '');
-				setNewBlockType(type);
+				e.dataTransfer.setData('text/plain', '')
+				setNewBlockType(type)
 			}}
 			{...props}>
 			<Icon size='1.3rem' />
@@ -38,11 +39,11 @@ const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 				{text}
 			</Text>
 		</Box>
-	);
-};
+	)
+}
 
 const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
 
 	if (!isOpen)
 		return (
@@ -64,12 +65,12 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				_hover={{
 					bg: 'primary.100',
 					border: '1px solid',
-					borderColor: 'primary.500',
+					borderColor: 'primary.500'
 				}}
 				onClick={() => setIsOpen(true)}>
 				<GrAdd size='2.2em' />
 			</Box>
-		);
+		)
 	return (
 		<Box
 			d='flex'
@@ -112,18 +113,18 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				setNewBlockType={setNewBlockType}
 			/>
 		</Box>
-	);
-};
+	)
+}
 
 BuilderSidebar.propTypes = {
 	setNewBlockType: PropTypes.any,
-	isSaved: PropTypes.any,
-};
+	isSaved: PropTypes.any
+}
 ToolSection.propTypes = {
 	setNewBlockType: PropTypes.func,
 	Icon: PropTypes.any,
 	text: PropTypes.string,
-	type: PropTypes.string,
-};
+	type: PropTypes.string
+}
 
-export default BuilderSidebar;
+export default BuilderSidebar
