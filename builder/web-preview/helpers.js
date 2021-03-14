@@ -27,6 +27,7 @@ export function generatePreviewBlock(blockInfo, blockLayout, rowHeight) {
 				{...blockInfo.data}
 				rowHeight={rowHeight}
 				parentHeight={h}
+				isPreview
 			/>
 		</Box>
 	)

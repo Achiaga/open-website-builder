@@ -3,7 +3,7 @@
 		"layout": {
 			"w": 100,
 			"h": 20,
-			"x": 23,
+			"x": 28,
 			"y": 52,
 			"i": "a",
 			"moved": false,
@@ -18,7 +18,11 @@
 				"alignItems": "center",
 				"fontWeight": "500",
 				"color": "black",
-				"boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
+				"boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;",
+				"fontSize": "1.75rem",
+				"borderRadius": "20px",
+				"fontColor": "brown",
+				"backgroundColor": "#4a40ce"
 			}
 		}
 	},
@@ -31,7 +35,7 @@
 			"i": "inception-b6cd9d43-e8a8-4b0a-a52f-0d8767d35899",
 			"moved": false,
 			"static": false,
-			"isDraggable": false
+			"isDraggable": true
 		},
 		"block": {
 			"type": "inception",
@@ -85,8 +89,8 @@
 		"layout": {
 			"w": 30,
 			"h": 35,
-			"x": 160,
-			"y": 52,
+			"x": 150,
+			"y": 53,
 			"i": "text-c836d746-67b2-466c-86e3-6b066d1b194f",
 			"moved": false,
 			"static": false,
@@ -108,8 +112,27 @@
 			"w": 30,
 			"h": 35,
 			"x": 90,
-			"y": 15,
+			"y": 73,
 			"i": "image-8fddc2e6-f09b-4133-963f-d6fa5f4ed088",
+			"moved": false,
+			"static": false,
+			"isDraggable": false
+		},
+		"block": {
+			"type": "image",
+			"data": {
+				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e",
+				"redirect": "www.google.com"
+			}
+		}
+	},
+	"image-cb896d34-5a43-4437-a732-94620c99b907": {
+		"layout": {
+			"w": 30,
+			"h": 35,
+			"x": 140,
+			"y": 105,
+			"i": "image-cb896d34-5a43-4437-a732-94620c99b907",
 			"moved": false,
 			"static": false,
 			"isDraggable": true
@@ -117,8 +140,9 @@
 		"block": {
 			"type": "image",
 			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e",
-				"redirect": "www.google.com"
+				"boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
+				"borderRadius": "20px",
+				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
 			}
 		}
 	}
