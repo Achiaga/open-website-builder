@@ -4,22 +4,10 @@ import localforage from 'localforage'
 import { Block } from '../blocks'
 import { DELETE, EDIT } from '../blocks/constants'
 
-import { imageURL } from '../initial-data'
+import { blocksProperties } from './default-data'
 
 // Block Factory *********************************
 
-const blocksProperties = {
-	text: {
-		text: 'Test block text',
-		fontSize: '1rem',
-		textAlign: 'center',
-		fontColor: '#4a40ce',
-		backgroundColor: '#ffffff'
-	},
-	image: {
-		imageUrl: imageURL
-	}
-}
 const loadBlockInitialData = (blockType, extraProps) => {
 	return {
 		data: {
