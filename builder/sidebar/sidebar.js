@@ -1,7 +1,6 @@
-import { Box, Spinner, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { FaRegTimesCircle } from 'react-icons/fa'
 import { GrAdd, GrClose } from 'react-icons/gr'
 import {
 	BsTextCenter,
@@ -33,6 +32,7 @@ const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 				e.dataTransfer.setData('text/plain', '')
 				setNewBlockType(type)
 			}}
+			_hover={{ background: '#F2F2F2;' }}
 			{...props}>
 			<Icon size='1.3rem' />
 			<Text as='span' fontSize='16px' paddingLeft='0.6rem'>
@@ -42,7 +42,7 @@ const ToolSection = ({ Icon, text, type, setNewBlockType, ...props }) => {
 	)
 }
 
-const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
+const BuilderSidebar = ({ setNewBlockType }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	if (!isOpen)
@@ -90,7 +90,12 @@ const BuilderSidebar = ({ setNewBlockType, isSaved }) => {
 				w='full'
 				paddingBottom='0.9rem'>
 				<Box fontSize='16px'></Box>
-				<Box cursor='pointer' onClick={() => setIsOpen(false)}>
+				<Box
+					cursor='pointer'
+					onClick={() => setIsOpen(false)}
+					p='0.25rem'
+					borderRadius='0.25rem'
+					_hover={{ background: '#F2F2F2;' }}>
 					<GrClose size='1em' />
 				</Box>
 			</Box>
