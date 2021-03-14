@@ -1,6 +1,6 @@
 export default {
 	navbar: {
-		buttonTrial: 'Prueba Gratis',
+		startNowButton: 'Empieza Ahora',
 	},
 	hero: {
 		title_1: 'Convierte tu CV en ',

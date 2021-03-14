@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
 		try {
 			InitializeAnalytics()
 		} catch (err) {
-			console.log(err)
+			console.error(err)
 		}
 	}, [])
 	return (

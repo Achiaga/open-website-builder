@@ -13,9 +13,21 @@
     "@emotion/styled": "^11.0.0",
     "airtable": "^0.10.1",
     "framer-motion": "^3.3.0",
+    "localforage": "^1.9.0",
+    "lodash": "^4.17.21",
     "next": "10.0.6",
     "react": "17.0.1",
+    "react-color": "^2.19.3",
     "react-dom": "17.0.1",
-    "react-ga": "^3.3.0"
+    "react-ga": "^3.3.0",
+    "react-grid-layout": "^1.2.0",
+    "react-icons": "^4.2.0",
+    "react-popper": "^2.2.4",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-plugin-react": "^7.22.0",
+    "prop-types": "^15.7.2"
   }
 }

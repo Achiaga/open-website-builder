@@ -35,7 +35,7 @@ const addUser = async (payload) => {
 		])
 		return response
 	} catch (err) {
-		console.log(err)
+		console.error(err)
 		const response = await base('beta-users').create([
 			{
 				fields: { email: payload.email }
