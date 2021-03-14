@@ -1,26 +1,33 @@
-import { Flex, Select } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Flex, Select } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
-import { useTranslation } from '../../hooks/translation';
-import { AnalyticsEvent } from '../../utils/analytics';
-import Button from '../commun/button';
+import { useTranslation } from '../../hooks/translation'
+import { AnalyticsEvent } from '../../utils/analytics'
+import Button from '../commun/button'
+import NavButton from './nav-button'
 
-import BackgroundCircles from './background';
+import BackgroundCircles from './background'
 
 const Navbar = ({ handleFreeTrial }) => {
-	const router = useRouter();
-	const { locale } = router;
-	const [t] = useTranslation();
+	const router = useRouter()
+	const { locale } = router
+	const [t] = useTranslation()
 
 	const changeLanguage = (e) => {
-		const locale = e.target.value;
-		router.push(router.pathname, router.asPath, { locale });
-	};
+		const locale = e.target.value
+		router.push(router.pathname, router.asPath, { locale })
+	}
 
-	const handleButton = (e) => {
-		AnalyticsEvent('modal_open', 'navbar');
-		handleFreeTrial(e);
-	};
+	const handleStartNow = (e) => {
+		AnalyticsEvent('modal_open', 'navbar')
+		// handleFreeTrial(e);
+		router.push(`/builder`)
+	}
+
+	const handleNavRouting = (e) => {
+		const { id } = e.target
+		router.push(`/${id}`)
+	}
 
 	return (
 		<Flex
@@ -37,16 +44,15 @@ const Navbar = ({ handleFreeTrial }) => {
 				pos='relative'
 				justify='space-between'
 				align='center'
+				color='black'
 				fontSize={['sm', 'md']}>
-				{/* <Button background='transparent' border='none'>
-					Templates
-				</Button>
-				<Button background='transparent' border='none'>
-					Pricing
-				</Button>
-				<Button background='transparent' border='none'>
-					Feaures
-				</Button> */}
+				<NavButton
+					onClick={handleNavRouting}
+					content='Templates'
+					id='templates'
+				/>
+				<NavButton onClick={handleNavRouting} content='Pricing' id='pricing' />
+				<NavButton onClick={handleNavRouting} content='About Us' id='about' />
 				<Select
 					border='none'
 					bg='none'
@@ -54,6 +60,7 @@ const Navbar = ({ handleFreeTrial }) => {
 					w='4.5rem'
 					fontSize='lg'
 					cursor='pointer'
+					fontWeight='500'
 					onChange={changeLanguage}
 					defaultValue={locale}>
 					<option color='black' value='en'>
@@ -63,12 +70,20 @@ const Navbar = ({ handleFreeTrial }) => {
 						es
 					</option>
 				</Select>
-				<Button onClick={handleButton} fontSize='lg' minW='7.5rem' h={12}>
-					{t.navbar.buttonTrial}
+				<Button
+					mr='1rem'
+					fontSize='lg'
+					minW='7.5rem'
+					h={12}
+					onClick={handleStartNow}>
+					Login
+				</Button>
+				<Button fontSize='lg' minW='7.5rem' h={12} onClick={handleStartNow}>
+					{t.navbar.startNowButton}
 				</Button>
 			</Flex>
 		</Flex>
-	);
-};
+	)
+}
 
-export default Navbar;
+export default Navbar

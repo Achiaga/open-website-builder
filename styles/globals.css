@@ -16,3 +16,7 @@ a {
 * {
 	box-sizing: border-box;
 }
+/* Do not remove this is for the builder */
+.react-grid-item.cssTransforms {
+	transition-property: none !important;
+}

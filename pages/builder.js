@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import { request } from '../utils/user-data'
 import Button from '../components/commun/button'
-import { initLiveChatScript } from '../utils/analytics'
+import localforage from 'localforage'
 
-export default function Builder() {
+import { FallbackData } from '../builder/initial-data'
+import { Builder } from '../builder'
+
+function BuilderPage() {
 	const { user, error, isLoading } = useUser()
 	const [dataResume, setDataResume] = useState()
 	const [readResume, setReadResume] = useState()
@@ -34,34 +37,53 @@ export default function Builder() {
 		setReadResume(readData)
 	}
 
-	// console.log(readResume)
-	// console.log(dataResume)
+	const [data, setUserBlocksData] = useState()
 
 	useEffect(() => {
-		// saveData(resume_json);
+		getUserData().then((userData) => {
+			const parsedData = JSON.parse(userData)
+			setUserBlocksData(parsedData || FallbackData)
+		})
 	}, [])
+
 	useEffect(() => {
 		if (user) readData(user.sub)
 	}, [user])
-	return (
-		<div>
-			<Head>
-				<meta
-					name='google-site-verification'
-					content='UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E'
-				/>
-				<title>Standout Resume</title>
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-			<h1>builder</h1>
-			<Button>
-				<a href='/api/auth/login'>login</a>
-			</Button>
-			<Button>
-				<a href='/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com'>
-					logout
-				</a>
-			</Button>
-		</div>
-	)
+
+	if (!data) return <div>loading</div>
+	return <Builder userBlocksData={data} />
+
+	// return (
+	// 	<div>
+	// 		<Head>
+	// 			<meta
+	// 				name='google-site-verification'
+	// 				content='UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E'
+	// 			/>
+	// 			<title>Standout Resume</title>
+	// 			<link rel='icon' href='/favicon.ico' />
+	// 		</Head>
+	// 		<h1>builder</h1>
+	// 		<Button>
+	// 			<a href='/api/auth/login'>login</a>
+	// 		</Button>
+	// 		<Button>
+	// 			<a href='/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com'>
+	// 				logout
+	// 			</a>
+	// 		</Button>
+	// 	</div>
+	// )
 }
+
+async function getUserData() {
+	let value = null
+	try {
+		value = await localforage.getItem('userData')
+		return value
+	} catch (err) {
+		console.error(err)
+	}
+}
+
+export default BuilderPage
