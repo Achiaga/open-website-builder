@@ -81,6 +81,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 	}
 
 	function onDrop(layout, droppedBlockLayout) {
+		if (newBlockType === 'inception') return null
 		setLayout(layout)
 		udpateBlocksConfig((blocksConfig) => {
 			const newBlocksConfig = addBlock(
