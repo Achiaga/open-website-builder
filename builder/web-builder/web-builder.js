@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
-import debounce from 'lodash/debounce'
 import { Box } from '@chakra-ui/react'
 
 import 'react-grid-layout/css/styles.css'
@@ -23,7 +22,6 @@ import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
 import { DELETE } from '../blocks/constants'
 
 const ReactGridLayout = WidthProvider(RGL)
-const SAVE_TIME = 0
 
 const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
