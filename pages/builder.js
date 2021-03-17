@@ -9,8 +9,7 @@ function BuilderPage() {
 
 	useEffect(() => {
 		getUserData().then((userData) => {
-			const parsedData = JSON.parse(userData)
-			setUserBlocksData(parsedData || FallbackData)
+			setUserBlocksData(userData || FallbackData)
 		})
 	}, [])
 
@@ -18,11 +17,11 @@ function BuilderPage() {
 	return <Builder userBlocksData={data} />
 }
 
-async function getUserData() {
-	let value = null
+export async function getUserData() {
 	try {
-		value = await localforage.getItem('userData')
-		return value
+		const value = await localforage.getItem('userData')
+		const parsedData = JSON.parse(value)
+		return parsedData
 	} catch (err) {
 		console.error(err)
 	}

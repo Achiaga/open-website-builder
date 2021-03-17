@@ -11,28 +11,29 @@ jexiaClient().init(
 	ds
 )
 
-const saveUserResume = (data, res) => {
-	const dataSaved = ds.dataset('user-resume').insert(data)
+const saveUserResume = async (data, res) => {
+	const dataSaved = await ds.dataset('user-resume').insert(data)
 
 	return dataSaved.subscribe(
 		(records) => {
 			respondAPIQuery(res, records)
 		},
 		(error) => {
-			return error
+			console.error(error)
+			respondAPIQuery(res, error, 500)
 		}
 	)
 }
 
 const getUserResumeData = (id, res) => {
+	console.log('getUserResumeData', id)
 	const searchData = ds
 		.dataset('user-resume')
 		.select()
-		.where((field) => field('user_id').isEqualTo(id))
+		.where((field) => field('id').isEqualTo(id))
 
 	return searchData.subscribe(
 		(records) => {
-			console.log({ records })
 			respondAPIQuery(res, records)
 		},
 		(error) => {
@@ -62,11 +63,10 @@ function respondAPIQuery(res, data = {}, status = 200) {
 }
 
 export default function betaUsers(req, res) {
-	const { email, metaData, type, data } = req.body
+	const { type, data } = req.body
 	switch (type) {
 		case 'save':
 			return saveUserResume(data, res)
-			break
 		case 'read':
 			return getUserResumeData(data, res)
 	}
