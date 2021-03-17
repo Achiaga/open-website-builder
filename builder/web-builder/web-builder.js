@@ -119,7 +119,8 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				}
 			}
 		}
-		saveOnLocal(denormalizeBlockData(layout, newBlocksConfig), setIsSaved)
+		udpateBlocksConfig(newBlocksConfig)
+		saveOnLocal(denormalizeBlockData(layout, newBlocksConfig))
 	}
 
 	const isDroppable = !selectedItemId?.includes('inception')

@@ -101,10 +101,14 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 
 	function handleLayoutChange(layout, _, newItem) {
 		if (isObjectOutside(newItem, rowHeight, gridRef)) {
-			return setSecondRender((x) => !x)
+			return setSecondRender(uuid())
 		}
 		updateLayout(layout)
 	}
+
+	useEffect(() => {
+		setSecondRender(uuid())
+	}, [reRender])
 
 	const isDroppable = selectedItemId?.includes('inception')
 	const { contentEditable, ...extraData } = data
@@ -118,7 +122,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 			outline='1px dashed lightgray'>
 			<ReactGridLayout
 				innerRef={gridRef}
-				key={reRender | secondRender ? 'a' : 'b'}
+				key={secondRender}
 				cols={GRID_COLUMNS}
 				rowHeight={rowHeight}
 				margin={[0, 0]}

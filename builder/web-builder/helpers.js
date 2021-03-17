@@ -168,12 +168,9 @@ export function denormalizeInceptionBlock(layout, blockConfig) {
 	return { blocks }
 }
 
-export function saveOnLocal(userBlocksData, setIsSaved) {
+export function saveOnLocal(userBlocksData) {
 	if (!Object.keys(userBlocksData).length) return
-	setIsSaved(false)
-	localforage.setItem('userData', JSON.stringify(userBlocksData)).then(() => {
-		setIsSaved(true)
-	})
+	localforage.setItem('userData', userBlocksData)
 }
 
 function removeEventListener(blockConfig) {
