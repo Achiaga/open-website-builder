@@ -9,7 +9,8 @@ function BuilderPage() {
 
 	useEffect(() => {
 		getUserData().then((userData) => {
-			setUserBlocksData(userData || FallbackData)
+			const parsedData = userData
+			setUserBlocksData(parsedData || FallbackData)
 		})
 	}, [])
 
