@@ -11,5 +11,8 @@ export const publishResume = (data) => {
 	return request('save', data)
 }
 export const getResumeById = (id) => {
-	return request('read', id)
+	return request('read-resume', id)
+}
+export const getUserDataById = (id) => {
+	return request('read-user', id)
 }

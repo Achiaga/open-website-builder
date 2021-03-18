@@ -11,7 +11,6 @@ const SignupPage = () => {
 
 	async function saveData(data) {
 		const savedData = await request('save', data)
-		setDataResume(savedData)
 	}
 
 	const defaultData = {
@@ -23,8 +22,6 @@ const SignupPage = () => {
 	useEffect(() => {
 		saveData(defaultData)
 	}, [user])
-
-	console.log({ user })
 
 	return (
 		<Box

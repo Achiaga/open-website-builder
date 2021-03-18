@@ -7,43 +7,31 @@ import Button from '../components/commun/button'
 import { getUserResumeData } from '../pages/builder'
 import { Box } from '@chakra-ui/layout'
 
-function Login() {
+function Login({ resumeId }) {
 	const { user, error, isLoading } = useUser()
 	const [dataResume, setDataResume] = useState()
 	const [readResume, setReadResume] = useState()
 	const router = useRouter()
 
 	async function saveData() {
-		console.log('Save data')
 		const resumeData = await getUserResumeData()
-		console.log(resumeData)
 		const userData = {
+			id: resumeId,
 			user_id: user.sub,
 			user_email: user.email,
 			resume_data: resumeData
 		}
-		console.log('userData', userData)
 		const savedData = await publishResume(userData)
 		setDataResume(savedData)
 	}
 
-	async function readData(id) {
-		const readData = await request('read', id).then((value) => {
-			console.log({ value })
-			if (value.length > 0) {
-				return value
-			}
-			// if (!value || value.length < 1) {
-			// 	saveData({
-			//
-			// 	})
-			// }
-		})
-		setReadResume(readData)
+	async function getUserData(id) {
+		const resumeData = await request('read', id)
+		console.log(resumeData)
 	}
 
 	useEffect(() => {
-		if (user) readData(user.sub)
+		if (user) getUserData(user.sub)
 	}, [user])
 
 	console.log(user)

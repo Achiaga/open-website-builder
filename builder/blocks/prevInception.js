@@ -4,7 +4,6 @@ import { GRID_COLUMNS } from '../web-builder/constants'
 import { generatePreviewBlock } from '../web-preview/helpers'
 
 export const PrevInception = (props) => {
-	console.log(props)
 	const blocks = props.blocks
 	return (
 		<Box

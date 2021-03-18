@@ -10,7 +10,7 @@ import { WebBuilder } from '../builder/web-builder'
 import { BuilderSidebar } from '../builder/sidebar'
 import Login from '../login'
 
-const Builder = ({ userBlocksData }) => {
+const Builder = ({ userBlocksData, resumeId }) => {
 	const [isSaved, setIsSaved] = useState(true)
 	const [newBlockType, setNewBlockType] = useState(null)
 	return (
@@ -23,7 +23,7 @@ const Builder = ({ userBlocksData }) => {
 			backgroundSize='cover'
 			backgroundPosition='center center'
 			height='500vw'>
-			<Login />
+			<Login resumeId={resumeId} />
 			<BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} />
 			<WebBuilder
 				setIsSaved={setIsSaved}
@@ -35,7 +35,8 @@ const Builder = ({ userBlocksData }) => {
 }
 
 Builder.propTypes = {
-	userBlocksData: PropTypes.any
+	userBlocksData: PropTypes.any,
+	resumeId: PropTypes.any
 }
 
 export default Builder
