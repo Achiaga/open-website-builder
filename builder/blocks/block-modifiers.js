@@ -69,7 +69,7 @@ const color = {
 	type: 'dropdown',
 	property: 'fontColor',
 	options: [
-		{ value: '#1F1F1F', title: 'black' },
+		{ value: '#000000', title: 'black' },
 		{ value: 'rgb(155,154,151)', title: 'gray' },
 		{ value: 'rgb(100,71,58)', title: 'brown' },
 		{ value: 'rgb(217,115,13)', title: 'orange' },
@@ -79,7 +79,7 @@ const color = {
 		{ value: 'rgb(105,64,165)', title: 'purple' },
 		{ value: 'rgb(173,26,114)', title: 'pink' },
 		{ value: 'rgb(224,62,62)', title: 'red' },
-		{ value: '#FAFAFA', title: 'white' },
+		{ value: '#FFFFFF', title: 'white' },
 	],
 };
 
@@ -141,8 +141,8 @@ const backgroundColor = {
 	property: 'backgroundColor',
 	options: [
 		{ value: 'trasnparent', title: 'none' },
-		{ value: '#FAFAFA', title: 'white' },
-		{ value: '#1F1F1F', title: 'black' },
+		{ value: '#FFFFFF', title: 'white' },
+		{ value: '#000000', title: 'black' },
 		{ value: 'rgb(235,236,237)', title: 'gray' },
 		{ value: 'rgb(233,229,227)', title: 'brown' },
 		{ value: 'rgb(250,235,221)', title: 'orange' },
