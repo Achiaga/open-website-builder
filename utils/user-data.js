@@ -11,6 +11,5 @@ export const publishResume = (data) => {
 	return request('save', data)
 }
 export const getResumeById = (id) => {
-	console.log('getResumeById', id)
 	return request('read', id)
 }

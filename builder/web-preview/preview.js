@@ -35,6 +35,10 @@ WebPreview.propTypes = {
 	blocksConfig: PropTypes.any
 }
 
+function isEmpty(obj) {
+	return Object.keys(obj).length === 0
+}
+
 export const ResumeWebsite = ({ userBlocksData }) => {
 	const [windowWidth, setWindowWidth] = useState(1440)
 
@@ -48,6 +52,19 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 	}, [])
 
 	const rowHeight = windowWidth / GRID_COLUMNS
+	if (!userBlocksData || isEmpty(userBlocksData))
+		return (
+			<Box
+				d='flex'
+				w='100vw'
+				h='100vh'
+				justifyContent='center'
+				alignItems='center'>
+				<Box as='h1' fontSize='3xl' color='primary.500' fontWeight='600'>
+					Nothing to see here
+				</Box>
+			</Box>
+		)
 
 	return (
 		<Box

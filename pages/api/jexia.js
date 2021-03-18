@@ -12,10 +12,13 @@ jexiaClient().init(
 )
 
 const saveUserResume = async (data, res) => {
-	const dataSaved = await ds.dataset('user-resume').insert(data)
+	const dataSaved = ds
+		.dataset('user-resume')
+		.update([{ user_id: data.user_id, ...data }])
 
 	return dataSaved.subscribe(
 		(records) => {
+			console.log(records)
 			respondAPIQuery(res, records)
 		},
 		(error) => {
@@ -26,24 +29,29 @@ const saveUserResume = async (data, res) => {
 }
 
 const getUserResumeData = (id, res) => {
+	respondAPIQuery(res, { error: { statusText: 'no resume found', code: 404 } })
 	console.log('getUserResumeData', id)
-	const searchData = ds
-		.dataset('user-resume')
-		.select()
-		.where((field) => field('id').isEqualTo(id))
+	// const searchData = ds
+	// 	.dataset('user-resume')
+	// 	.select()
+	// 	.where((field) => field('id').isEqualTo(id))
 
-	return searchData.subscribe(
-		(records) => {
-			respondAPIQuery(res, records)
-		},
-		(error) => {
-			return error
-		}
-	)
+	// return searchData.subscribe(
+	// 	(records) => {
+	// 		let resumeData =
+	// 		if (records && records[0] && records[0].resume_data) {
+	// 			resumeData = records[0].resume_data
+	// 		}
+	// 		respondAPIQuery(res, resumeData || {error:{message: "not found" code:404}})
+	// 	},
+	// 	(error) => {
+	// 		return error
+	// 	}
+	// )
 }
 
 function respondAPIQuery(res, data = {}, status = 200) {
-	const hasError = data.error
+	const hasError = data && data.error
 	if (hasError) {
 		res.statusCode = data.error.code
 		res.setHeader('Content-Type', 'application/json')

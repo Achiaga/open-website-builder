@@ -4,24 +4,26 @@ import localforage from 'localforage'
 import { FallbackData } from '../builder/initial-data'
 import { Builder } from '../builder'
 
+async function getUserData() {
+	const userData = await getUserResumeData()
+	return userData || FallbackData
+}
+
 function BuilderPage() {
 	const [data, setUserBlocksData] = useState()
 
 	useEffect(() => {
-		getUserData().then((userData) => {
-			const parsedData = userData
-			setUserBlocksData(parsedData || FallbackData)
-		})
+		getUserData().then(setUserBlocksData)
 	}, [])
 
 	if (!data) return <div>loading</div>
 	return <Builder userBlocksData={data} />
 }
 
-export async function getUserData() {
+export async function getUserResumeData() {
 	try {
 		const value = await localforage.getItem('userData')
-		const parsedData = JSON.parse(value)
+		const parsedData = value
 		return parsedData
 	} catch (err) {
 		console.error(err)

@@ -12,10 +12,11 @@ export const PrevInception = (props) => {
 			gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
 			gridTemplateRows={`repeat( auto-fill,  ${props.rowHeight}px )`}
 			height={props.parentHeight * props.rowHeight}>
-			{Object.keys(blocks).map((block) => {
-				const blockData = blocks[block]
-				return generatePreviewBlock(blockData.block, blockData.layout)
-			})}
+			{blocks &&
+				Object.keys(blocks).map((block) => {
+					const blockData = blocks[block]
+					return generatePreviewBlock(blockData.block, blockData.layout)
+				})}
 		</Box>
 	)
 }
