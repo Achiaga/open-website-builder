@@ -1,19 +1,19 @@
-import { Box, Button, Input } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { Box, Button, Input } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 // import { ChromePicker } from 'react-color';
-import { Portal } from '../usePortal'
+import { Portal } from '../usePortal';
 
-import { BiFontSize } from 'react-icons/bi'
-import { RiDeleteBin6Line } from 'react-icons/ri'
-import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi'
+import { BiFontSize } from 'react-icons/bi';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi';
 import {
 	AiOutlineVerticalAlignBottom,
 	AiOutlineVerticalAlignMiddle,
-	AiOutlineVerticalAlignTop
-} from 'react-icons/ai'
+	AiOutlineVerticalAlignTop,
+} from 'react-icons/ai';
 
-import { DELETE, EDIT } from './constants'
+import { DELETE, EDIT } from './constants';
 
 // Text **********************************************************
 // ***************************************************************
@@ -33,27 +33,27 @@ const fontSize = {
 		{ value: '1.5rem', title: 'lg' },
 		{ value: '1.25rem', title: 'md' },
 		{ value: '1rem', title: 'sm' },
-		{ value: '0.75rem', title: 'xs' }
-	]
-}
+		{ value: '0.75rem', title: 'xs' },
+	],
+};
 const textAlign = {
 	type: 'dropdown',
 	property: 'textAlign',
 	options: [
 		{ value: 'left', title: <FiAlignLeft /> },
 		{ value: 'center', title: <FiAlignCenter /> },
-		{ value: 'right', title: <FiAlignRight /> }
-	]
-}
+		{ value: 'right', title: <FiAlignRight /> },
+	],
+};
 const alignItems = {
 	type: 'dropdown',
 	property: 'alignItems',
 	options: [
 		{ value: 'start', title: <AiOutlineVerticalAlignTop /> },
 		{ value: 'center', title: <AiOutlineVerticalAlignMiddle /> },
-		{ value: 'end', title: <AiOutlineVerticalAlignBottom /> }
-	]
-}
+		{ value: 'end', title: <AiOutlineVerticalAlignBottom /> },
+	],
+};
 const fontWeight = {
 	type: 'dropdown',
 	property: 'fontWeight',
@@ -62,20 +62,26 @@ const fontWeight = {
 		{ value: '400', title: 'normal' },
 		{ value: '500', title: 'semibold' },
 		{ value: '700', title: 'bold' },
-		{ value: '900', title: 'super bold' }
-	]
-}
+		{ value: '900', title: 'super-bold' },
+	],
+};
 const color = {
 	type: 'dropdown',
 	property: 'fontColor',
 	options: [
-		{ value: 'yellow', title: 'yellow' },
-		{ value: 'black', title: 'black' },
-		{ value: 'red', title: 'red' },
-		{ value: 'brown', title: 'brown' },
-		{ value: '#4a40ce', title: 'blue' }
-	]
-}
+		{ value: '#1F1F1F', title: 'black' },
+		{ value: 'rgb(155,154,151)', title: 'gray' },
+		{ value: 'rgb(100,71,58)', title: 'brown' },
+		{ value: 'rgb(217,115,13)', title: 'orange' },
+		{ value: 'rgb(223,171,1)', title: 'yellow' },
+		{ value: 'rgb(15,123,108)', title: 'green' },
+		{ value: 'rgb(11,110,153)', title: 'blue' },
+		{ value: 'rgb(105,64,165)', title: 'purple' },
+		{ value: 'rgb(173,26,114)', title: 'pink' },
+		{ value: 'rgb(224,62,62)', title: 'red' },
+		{ value: '#FAFAFA', title: 'white' },
+	],
+};
 
 // Block *********************************************************
 // ***************************************************************
@@ -91,38 +97,38 @@ const borderRadius = {
 		{ value: '10px', title: 'sm' },
 		{ value: '20px', title: 'md' },
 		{ value: '100px', title: 'lg' },
-		{ value: '100%', title: 'circle' }
-	]
-}
+		{ value: '100%', title: 'circle' },
+	],
+};
 const boxShadow = {
 	type: 'dropdown',
 	property: 'boxShadow',
 	options: [
 		{
 			value: 'none',
-			title: 'none'
+			title: 'none',
 		},
 		{
 			value:
 				'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;',
-			title: 'sm'
+			title: 'sm',
 		},
 		{
 			value:
 				'0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)',
-			title: 'md'
+			title: 'md',
 		},
 		{
 			value: 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;',
-			title: 'lg'
+			title: 'lg',
 		},
 		{
 			value:
 				'rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;',
-			title: 'in'
-		}
-	]
-}
+			title: 'in',
+		},
+	],
+};
 
 // Common ********************************************************
 // ***************************************************************
@@ -135,35 +141,40 @@ const backgroundColor = {
 	property: 'backgroundColor',
 	options: [
 		{ value: 'trasnparent', title: 'none' },
-		{ value: '#ffffff', title: 'white' },
-		{ value: 'yellow', title: 'yellow' },
-		{ value: 'black', title: 'black' },
-		{ value: 'red', title: 'red' },
-		{ value: 'brown', title: 'brown' },
-		{ value: '#4a40ce', title: 'blue' }
-	]
-}
+		{ value: '#FAFAFA', title: 'white' },
+		{ value: '#1F1F1F', title: 'black' },
+		{ value: 'rgb(235,236,237)', title: 'gray' },
+		{ value: 'rgb(233,229,227)', title: 'brown' },
+		{ value: 'rgb(250,235,221)', title: 'orange' },
+		{ value: 'rgb(251,243,219)', title: 'yellow' },
+		{ value: 'rgb(221,237,234)', title: 'green' },
+		{ value: 'rgb(221,235,241)', title: 'blue' },
+		{ value: 'rgb(234,228,242)', title: 'purple' },
+		{ value: 'rgb(244,223,235)', title: 'pink' },
+		{ value: 'rgb(251,228,228)', title: 'red' },
+	],
+};
 
 const deleteBlock = {
 	type: 'button',
 	placeholder: <RiDeleteBin6Line color='red' size='1rem' />,
 	property: '',
-	operationType: DELETE
-}
+	operationType: DELETE,
+};
 
 const imageInput = {
 	type: 'text',
 	placeholder: 'Img',
 	inputPlaceholder: 'Enter your link',
-	property: 'imageUrl'
-}
+	property: 'imageUrl',
+};
 
 const redirectInput = {
 	type: 'text',
 	placeholder: 'Link',
 	inputPlaceholder: 'Add a link to redirect to when click',
-	property: 'redirect'
-}
+	property: 'redirect',
+};
 
 const Properties = {
 	text: [
@@ -175,33 +186,53 @@ const Properties = {
 		borderRadius,
 		boxShadow,
 		color,
-		backgroundColor
+		backgroundColor,
 	],
 	image: [deleteBlock, boxShadow, borderRadius, imageInput, redirectInput],
-	inception: [deleteBlock, boxShadow, borderRadius, backgroundColor]
-}
+	inception: [deleteBlock, boxShadow, borderRadius, backgroundColor],
+};
 
 const PropertiesModifiers = {
 	dropdown: DropDownSelector,
 	button: ButtonSelector,
 	text: TextInput,
-	redirect: TextInput
-}
+	redirect: TextInput,
+};
 
 function DropDownSelector({
 	handleEdit,
 	isOpen,
+	isBlockAtTop,
 	handleOpenToolbar,
 	property,
 	value,
-	options
+	options,
 }) {
 	const handleChange = (e) => {
-		const { value } = e.currentTarget
-		handleEdit(property, value)
-	}
+		const { value } = e.currentTarget;
+		handleEdit(property, value);
+	};
 
-	const result = options.find((option) => option.value === value)?.title || ''
+	const checkDisplayFlexProperty = () => {
+		if (property !== 'fontColor' && property !== 'backgroundColor') return true;
+		return false;
+	};
+
+	const checkDisplayTop = () => {
+		if (isBlockAtTop) return 'unset';
+		if (!isBlockAtTop && !checkDisplayFlexProperty()) return '-103px';
+		return '-45px';
+	};
+
+	const checkDisplayBottom = () => {
+		if (isBlockAtTop) {
+			if (!checkDisplayFlexProperty()) return '-294px';
+			return '-45px';
+		}
+		return 'unset';
+	};
+
+	const result = options.find((option) => option.value === value)?.title || '';
 
 	return (
 		<Box
@@ -223,7 +254,9 @@ function DropDownSelector({
 			</Button>
 			<Box
 				position='absolute'
-				top='-50px'
+				top={checkDisplayTop}
+				bottom={checkDisplayBottom}
+				display={checkDisplayFlexProperty() ? 'flex' : 'block'}
 				bg='white'
 				rounded='5px'
 				zIndex='999999'
@@ -235,8 +268,9 @@ function DropDownSelector({
 								bg='transparent'
 								onClick={handleChange}
 								key={index}
-								w='full'
-								size='sm'
+								w={!checkDisplayFlexProperty() && 'full'}
+								height='2rem'
+								fontSize='14px'
 								background={`${optionValue === value && '#bdd4f95e'}`}
 								_hover={
 									optionValue === value
@@ -247,15 +281,16 @@ function DropDownSelector({
 								paddingX='4px'>
 								{title}
 							</Button>
-						)
+						);
 					})}
 			</Box>
 		</Box>
-	)
+	);
 }
 
 DropDownSelector.propTypes = {
-	isOpen: PropTypes.string.isRequired,
+	isOpen: PropTypes.bool.isRequired,
+	isBlockAtTop: PropTypes.bool.isRequired,
 	handleOpenToolbar: PropTypes.func.isRequired,
 	handleEdit: PropTypes.func.isRequired,
 	property: PropTypes.string.isRequired,
@@ -263,25 +298,26 @@ DropDownSelector.propTypes = {
 	options: PropTypes.arrayOf(
 		PropTypes.shape({
 			value: PropTypes.string.isRequired,
-			title: PropTypes.any.isRequired
+			title: PropTypes.any.isRequired,
 		}).isRequired
 	).isRequired,
-	placeholder: PropTypes.string.isRequired
-}
+	placeholder: PropTypes.string.isRequired,
+};
 
 function TextInput({
 	handleEdit,
 	handleCloseInput,
 	isOpen,
+	isBlockAtTop,
 	handleOpenToolbar,
 	property,
 	value,
 	placeholder,
-	inputPlaceholder
+	inputPlaceholder,
 }) {
 	const handleChange = (e) => {
-		handleEdit(property, e.target.value)
-	}
+		handleEdit(property, e.target.value);
+	};
 	return (
 		<Box
 			onDoubleClick={(e) => e.stopPropagation()}
@@ -304,7 +340,8 @@ function TextInput({
 			{isOpen === property && (
 				<Box
 					position='absolute'
-					bottom='-60px'
+					top={isBlockAtTop ? 'unset' : '-60px'}
+					bottom={isBlockAtTop ? '-60px' : 'unset'}
 					bg='white'
 					rounded='5px'
 					zIndex='999999'
@@ -330,7 +367,7 @@ function TextInput({
 				</Box>
 			)}
 		</Box>
-	)
+	);
 }
 TextInput.propTypes = {
 	handleEdit: PropTypes.func.isRequired,
@@ -339,45 +376,48 @@ TextInput.propTypes = {
 	handleCloseInput: PropTypes.func,
 	placeholder: PropTypes.string.isRequired,
 	inputPlaceholder: PropTypes.string,
-	isOpen: PropTypes.bool,
-	handleOpenToolbar: PropTypes.func
-}
+	isOpen: PropTypes.bool.isRequired,
+	isBlockAtTop: PropTypes.bool.isRequired,
+	handleOpenToolbar: PropTypes.func,
+};
 
 function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
 	const handleClick = () => {
-		handleEdit(property, null, operationType)
-	}
+		handleEdit(property, null, operationType);
+	};
 	return (
 		<Box>
 			<Button padding='0' onClick={handleClick} bg=''>
 				{placeholder}
 			</Button>
 		</Box>
-	)
+	);
 }
 ButtonSelector.propTypes = {
 	handleEdit: PropTypes.func.isRequired,
 	property: PropTypes.string.isRequired,
 	operationType: PropTypes.string.isRequired,
-	placeholder: PropTypes.string.isRequired
-}
+	placeholder: PropTypes.string.isRequired,
+};
 
 export const Modifiers = ({
 	isOpen,
+	isBlockAtTop,
 	handleOpenToolbar,
 	handleEdit,
 	handleCloseInput,
 	propertiesValues,
-	properties
+	properties,
 }) => {
 	return (
 		properties?.map((propertyData, index) => {
-			const type = propertyData.type
-			const property = propertyData.property
-			const Modifier = PropertiesModifiers[type]
+			const type = propertyData.type;
+			const property = propertyData.property;
+			const Modifier = PropertiesModifiers[type];
 			return (
 				<Modifier
 					isOpen={isOpen}
+					isBlockAtTop={isBlockAtTop}
 					handleOpenToolbar={handleOpenToolbar}
 					handleEdit={handleEdit}
 					handleCloseInput={handleCloseInput}
@@ -385,99 +425,100 @@ export const Modifiers = ({
 					key={index}
 					value={propertiesValues[property]}
 				/>
-			)
+			);
 		}) ?? null
-	)
-}
+	);
+};
 
 function getBlockOffset(elem) {
-	let offsetTop = 0
-	let offsetLeft = 0
-	let elemWidth = 0
+	let offsetTop = 0;
+	let offsetLeft = 0;
+	let elemWidth = 0;
 	do {
 		if (!isNaN(elem.offsetTop)) {
 			if (elem.id.includes('inception')) {
-				elemWidth = elem.getBoundingClientRect()?.width
+				elemWidth = elem.getBoundingClientRect()?.width;
 			}
-			offsetTop += elem.offsetTop
-			offsetLeft += elem.offsetLeft
+			offsetTop += elem.offsetTop;
+			offsetLeft += elem.offsetLeft;
 		}
 		// eslint-disable-next-line no-cond-assign
-	} while ((elem = elem.offsetParent))
-	return { left: +offsetLeft, top: +offsetTop, width: elemWidth }
+	} while ((elem = elem.offsetParent));
+	return { left: +offsetLeft, top: +offsetTop, width: elemWidth };
 }
 
 function getTranslateValues(element) {
 	if (!element?.offsetParent)
 		return {
 			left: 0,
-			top: 0
-		}
-	const style = window.getComputedStyle(element?.offsetParent)
-	const widthBlock = style['width']?.replace('px', '') || 0
-	const heightBlock = style['height']?.replace('px', '') || 0
+			top: 0,
+		};
+	const style = window.getComputedStyle(element?.offsetParent);
+	const widthBlock = style['width']?.replace('px', '') || 0;
+	const heightBlock = style['height']?.replace('px', '') || 0;
 	const matrix =
-		style['transform'] || style.webkitTransform || style.mozTransform
-	const matrixValues = matrix.match(/matrix.*\((.+)\)/)?.[1].split(', ') ?? null
+		style['transform'] || style.webkitTransform || style.mozTransform;
+	const matrixValues =
+		matrix.match(/matrix.*\((.+)\)/)?.[1].split(', ') ?? null;
 	if (!matrixValues)
 		return {
 			left: 0,
-			top: 0
-		}
+			top: 0,
+		};
 	return {
 		right: +matrixValues[4],
 		left: +matrixValues[4],
 		top: +matrixValues[5],
 		width: +widthBlock,
-		height: +heightBlock
-	}
+		height: +heightBlock,
+	};
 }
 
 function getOffsets(blockKey) {
 	const mainParentStyles = document.getElementById(blockKey).offsetParent
-		.offsetParent.offsetParent
+		.offsetParent.offsetParent;
 	if (blockKey.includes('child-inception')) {
-		const v1 = getBlockOffset(mainParentStyles)
-		const v2 = getTranslateValues(document.getElementById(blockKey))
-		return { top: v1.top + v2.top, left: v1.left + v2.left }
+		const v1 = getBlockOffset(mainParentStyles);
+		const v2 = getTranslateValues(document.getElementById(blockKey));
+		return { top: v1.top + v2.top, left: v1.left + v2.left };
 	}
 	if (blockKey.includes('inception')) {
-		return getBlockOffset(document.getElementById(blockKey))
+		return getBlockOffset(document.getElementById(blockKey));
 	}
-	return getTranslateValues(document.getElementById(blockKey))
+	return getTranslateValues(document.getElementById(blockKey));
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
-	const [isOpen, setIsOpen] = useState('')
-	const { editBlock = () => {} } = data
+	const [isOpen, setIsOpen] = useState('');
+	const { editBlock = () => {} } = data;
 
 	const handleOpenToolbar = (e) => {
-		const { id } = e.currentTarget
-		setIsOpen(id)
-	}
+		const { id } = e.currentTarget;
+		setIsOpen(id);
+	};
 
 	function handleCloseInput(e) {
 		if (e.key === 'Enter') {
-			setIsOpen('')
+			setIsOpen('');
 		}
 	}
 
 	function handleEdit(id, value, operationType = EDIT) {
-		if (id !== 'imageUrl' || id !== 'redirect') setIsOpen('')
-		editBlock({ ...data, [id]: value }, blockKey, operationType)
+		if (id !== 'imageUrl' || id !== 'redirect') setIsOpen('');
+		editBlock({ ...data, [id]: value }, blockKey, operationType);
 	}
-	const dim = getOffsets(blockKey)
+	const dim = getOffsets(blockKey);
 
-	const isBlockAtRight = dim.left > window.innerWidth * 0.7
+	const isBlockAtRight = dim.left > window.innerWidth * 0.7;
 
 	const xOffsetToolbar = isBlockAtRight
 		? { right: window.innerWidth - (dim.left + dim.width) }
-		: { left: dim.left }
+		: { left: dim.left };
 
-	const isBlockAtTop = dim.top < 100
+	const isBlockAtTop = dim.top < 100;
 	const yOffsetToolbar = isBlockAtTop
-		? { top: dim.top + 'px' }
-		: { top: dim.top - 50 + 'px' }
+		? { top: dim.top + dim.height + 5 + 'px' }
+		: { top: dim.top - 50 + 'px' };
 
 	return (
 		<Portal id='main-builder'>
@@ -497,6 +538,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 				<Modifiers
 					handleOpenToolbar={handleOpenToolbar}
 					isOpen={isOpen}
+					isBlockAtTop={isBlockAtTop}
 					handleEdit={handleEdit}
 					handleCloseInput={handleCloseInput}
 					propertiesValues={data}
@@ -504,11 +546,11 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 				/>
 			</Box>
 		</Portal>
-	)
-}
+	);
+};
 
 BlockModifiers.propTypes = {
 	data: PropTypes.any,
 	blockKey: PropTypes.string.isRequired,
-	blockType: PropTypes.string.isRequired
-}
+	blockType: PropTypes.string.isRequired,
+};

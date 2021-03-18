@@ -9,8 +9,8 @@ export const blocksProperties = {
 		fontWeight: '400',
 		boxShadow: 'none',
 		borderRadius: '0px',
-		fontColor: 'black',
-		backgroundColor: '#ffffff',
+		fontColor: '#1F1F1F',
+		backgroundColor: '#FAFAFA',
 	},
 	image: {
 		boxShadow: 'none',
