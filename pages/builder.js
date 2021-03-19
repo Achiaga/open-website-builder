@@ -20,6 +20,7 @@ const BuilderPage = () => {
 	useEffect(() => {
 		getUserData().then((userData) => {
 			const parsedData = userData;
+			console.log(JSON.stringify(parsedData, null, 2));
 			setUserBlocksData(parsedData || FallbackData);
 		});
 	}, []);
