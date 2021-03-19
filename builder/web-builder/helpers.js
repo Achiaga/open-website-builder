@@ -96,7 +96,8 @@ const generateBuilderBlock = (
 			key={blockKey}
 			onDoubleClick={(e) => {
 				e.stopPropagation()
-				setBlockEditable(selectedItemId === blockKey ? null : blockKey)
+				if (isEditable) return null
+				setBlockEditable(blockKey)
 			}}>
 			<BuilderBlock
 				data={blockInfo.data}
