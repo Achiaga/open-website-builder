@@ -1,149 +1,44 @@
 {
-	"a": {
-		"layout": {
-			"w": 100,
-			"h": 20,
-			"x": 28,
-			"y": 52,
-			"i": "a",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Welcome",
-				"textAlign": "center",
-				"alignItems": "center",
-				"fontWeight": "500",
-				"color": "black",
-				"boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;",
-				"fontSize": "1.75rem",
-				"borderRadius": "20px",
-				"fontColor": "brown",
-				"backgroundColor": "#4a40ce"
-			}
-		}
-	},
-	"inception-b6cd9d43-e8a8-4b0a-a52f-0d8767d35899": {
-		"layout": {
-			"w": 120,
-			"h": 35,
-			"x": 41,
-			"y": 169,
-			"i": "inception-b6cd9d43-e8a8-4b0a-a52f-0d8767d35899",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "inception",
-			"data": {
-				"blocks": {
-					"child-inception-301cbcb0-3adb-4acb-80b7-c9636c95940d": {
-						"layout": {
-							"w": 9,
-							"h": 14,
-							"x": 1,
-							"y": 4,
-							"i": "child-inception-301cbcb0-3adb-4acb-80b7-c9636c95940d",
-							"moved": false,
-							"static": false,
-							"isDraggable": true
-						},
-						"block": {
-							"type": "text",
-							"data": {
-								"text": "Test block text",
-								"fontSize": "1rem",
-								"textAlign": "center",
-								"fontColor": "#4a40ce",
-								"backgroundColor": "#ffffff"
-							}
-						}
-					},
-					"child-inception-a1012b8f-e170-4050-8b5a-9adac928b729": {
-						"layout": {
-							"w": 180,
-							"h": 22,
-							"x": 20,
-							"y": 1,
-							"i": "child-inception-a1012b8f-e170-4050-8b5a-9adac928b729",
-							"moved": false,
-							"static": false,
-							"isDraggable": true
-						},
-						"block": {
-							"type": "image",
-							"data": {
-								"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"text-c836d746-67b2-466c-86e3-6b066d1b194f": {
-		"layout": {
-			"w": 30,
-			"h": 35,
-			"x": 150,
-			"y": 53,
-			"i": "text-c836d746-67b2-466c-86e3-6b066d1b194f",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "text",
-			"data": {
-				"text": "Test block text",
-				"fontSize": "1rem",
-				"textAlign": "center",
-				"fontColor": "#4a40ce",
-				"backgroundColor": "#ffffff"
-			}
-		}
-	},
-	"image-8fddc2e6-f09b-4133-963f-d6fa5f4ed088": {
-		"layout": {
-			"w": 30,
-			"h": 35,
-			"x": 90,
-			"y": 73,
-			"i": "image-8fddc2e6-f09b-4133-963f-d6fa5f4ed088",
-			"moved": false,
-			"static": false,
-			"isDraggable": false
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e",
-				"redirect": "www.google.com"
-			}
-		}
-	},
-	"image-cb896d34-5a43-4437-a732-94620c99b907": {
-		"layout": {
-			"w": 30,
-			"h": 35,
-			"x": 140,
-			"y": 105,
-			"i": "image-cb896d34-5a43-4437-a732-94620c99b907",
-			"moved": false,
-			"static": false,
-			"isDraggable": true
-		},
-		"block": {
-			"type": "image",
-			"data": {
-				"boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
-				"borderRadius": "20px",
-				"imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-			}
-		}
-	}
+  "inception-07ce3e3f-ef3d-40d4-a60d-de45e7c80a00": {
+    "layout": {
+      "w": 110,
+      "h": 36,
+      "x": 35,
+      "y": 22,
+      "i": "inception-07ce3e3f-ef3d-40d4-a60d-de45e7c80a00",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    "block": {
+      "type": "inception",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(221,235,241)",
+        "blocks": {
+          "child-inception-98eba782-8d68-4c93-abad-72e4e248525f": {
+            "layout": {
+              "w": 94,
+              "h": 18,
+              "x": 24,
+              "y": 9,
+              "i": "child-inception-98eba782-8d68-4c93-abad-72e4e248525f",
+              "moved": false,
+              "static": false,
+              "isDraggable": true
+            },
+            "block": {
+              "type": "image",
+              "data": {
+                "boxShadow": "none",
+                "borderRadius": "0px",
+                "imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
