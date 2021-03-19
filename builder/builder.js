@@ -17,7 +17,7 @@ const Builder = ({ userBlocksData }) => {
 			d='flex'
 			m='auto'
 			flexDir='row'
-			bg={`url("./background.svg")`}
+			// bg={`url("./background.svg")`}
 			backgroundRepeat='no-repeat'
 			backgroundSize='cover'
 			backgroundPosition='center center'
