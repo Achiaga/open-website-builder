@@ -23,7 +23,12 @@ import { DELETE } from '../blocks/constants'
 
 const ReactGridLayout = WidthProvider(RGL)
 
-const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
+const WebBuilder = ({
+  userBlocksData,
+  newBlockType,
+  setIsSaved,
+  setNewBlockType,
+}) => {
   const [newBlockId, setNewBlockId] = useState(() => uuid())
   const [reRender, setReRender] = useState(false)
   const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
@@ -77,6 +82,7 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
         editBlockCallback
       )
     )
+    setNewBlockType(null)
     setNewBlockId(uuid())
   }
 
@@ -133,7 +139,7 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
         onDrop={onDrop}
         margin={[0, 0]}
         autoSize
-        preventCollision={true}
+        preventCollision={!!newBlockType}
         isDroppable={isDroppable}
         onResizeStop={handleResize}
         verticalCompact={false}
@@ -166,6 +172,7 @@ WebBuilder.propTypes = {
   userBlocksData: PropTypes.any,
   newBlockType: PropTypes.any,
   setIsSaved: PropTypes.any,
+  setNewBlockType: PropTypes.any,
 }
 
 export default WebBuilder
