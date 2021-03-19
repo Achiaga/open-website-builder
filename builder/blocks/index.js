@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
@@ -46,6 +46,13 @@ export function BuilderBlock({
     const updatedBlock = { ...data, text: value }
     editBlock(updatedBlock, blockKey)
   }
+  useEffect(() => {
+    titleRef?.current?.addEventListener('paste', function (e) {
+      e.preventDefault()
+      var text = e.clipboardData.getData('text/plain')
+      document.execCommand('insertText', false, text)
+    })
+  }, [titleRef])
   return (
     <Box width="100%" h="100%" id={blockKey}>
       {isEditable && (
