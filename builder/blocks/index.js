@@ -22,7 +22,7 @@ export const previewBlocks = {
 	inception: PrevInception
 }
 
-function BuilderBlock({
+export function BuilderBlock({
 	data,
 	blockKey,
 	isEditable,
@@ -80,44 +80,4 @@ BuilderBlock.propTypes = {
 	isEditable: PropTypes.bool,
 	blockType: PropTypes.string.isRequired,
 	data: PropTypes.any
-}
-
-export const Block = ({
-	data,
-	blockKey,
-	isEditable,
-	blockType,
-	selectedItemId,
-	reRender,
-	newBlockType,
-	layoutCallback,
-	setSelectedItem,
-	rowHeight
-}) => {
-	return (
-		<BuilderBlock
-			data={data}
-			blockKey={blockKey}
-			isEditable={isEditable}
-			blockType={blockType}
-			reRender={reRender}
-			selectedItemId={selectedItemId}
-			newBlockType={newBlockType}
-			layoutCallback={layoutCallback}
-			setSelectedItem={setSelectedItem}
-			rowHeight={rowHeight}
-		/>
-	)
-}
-
-Block.propTypes = {
-	isPreview: PropTypes.bool,
-	blockKey: PropTypes.string.isRequired,
-	isEditable: PropTypes.bool,
-	blockType: PropTypes.string.isRequired,
-	data: PropTypes.any,
-	selectedItemId: PropTypes.string,
-	reRender: PropTypes.bool,
-	newBlockType: PropTypes.string,
-	layoutCallback: PropTypes.any
 }

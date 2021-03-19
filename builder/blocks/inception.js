@@ -131,7 +131,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
 				preventCollision={true}
 				isDroppable={isDroppable}
 				onDrop={onDrop}
-				droppingItem={{ i: 'child-inception-' + newBlockId, w: 50, h: 20 }}
+				droppingItem={{ i: 'child-inception-' + newBlockId, w: 20, h: 10 }}
 				verticalCompact={false}
 				className='layout'
 				onDragStop={handleLayoutChange}

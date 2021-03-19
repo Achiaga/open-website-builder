@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
-import debounce from 'lodash/debounce'
 import { Box } from '@chakra-ui/react'
 
 import 'react-grid-layout/css/styles.css'
@@ -23,7 +22,6 @@ import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
 import { DELETE } from '../blocks/constants'
 
 const ReactGridLayout = WidthProvider(RGL)
-const SAVE_TIME = 0
 
 const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 	const [newBlockId, setNewBlockId] = useState(() => uuid())
@@ -40,12 +38,6 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }), setIsSaved)
 	}
 
-	// const debouncedSaved = useCallback(
-	// 	debounce((layout, blocksConfig) => {
-	// 	saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }), setIsSaved),
-	// 	}, SAVE_TIME),
-	// 	[]
-	// )
 	useEffect(() => {
 		debouncedSaved(layout, blocksConfig)
 	}, [layout, blocksConfig])
@@ -67,6 +59,7 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 		setSelectedItem(editableBlockId)
 		updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
 	}
+
 	const editBlockCallback = (newData, blockId, operationType) => {
 		if (operationType === DELETE) setSelectedItem(null)
 		udpateBlocksConfig((blocksConfig) =>
@@ -138,14 +131,14 @@ const WebBuilder = ({ userBlocksData, newBlockType, setIsSaved }) => {
 				onDrop={onDrop}
 				margin={[0, 0]}
 				autoSize
-				preventCollision={false}
+				preventCollision={true}
 				isDroppable={isDroppable}
 				onResizeStop={handleResize}
 				verticalCompact={false}
 				// This makes everything go 6x slower
 				// This also makes the drop block go crazy while dragging
 				useCSSTransforms={isDroppable}
-				droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 30, h: 35 }}
+				droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
 				style={{ width: '100%', minHeight: '100vh', height: '100%' }}
 				className={'layout'}
 				layout={layout}
