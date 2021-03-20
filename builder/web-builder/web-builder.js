@@ -6,11 +6,7 @@ import { Box } from '@chakra-ui/react'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
-import {
-  denormalizeBlockData,
-  generateBuilderBlocks,
-  saveOnLocal,
-} from './helpers'
+import { saveOnLocal } from './helpers'
 import { GRID_COLUMNS } from './constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -19,11 +15,11 @@ import {
   getNewBlock,
   getSelectedBlockId,
   setGridRowHeight,
-  setNewBlock,
-  upadateLayout,
-  addBlockConfig,
   setBlockEditable,
+  setLayout,
+  addNewBlock,
 } from '../../features/builderSlice'
+import { BuilderBlock } from '../blocks'
 
 const reactGridLayoutProps = {
   cols: GRID_COLUMNS,
@@ -36,22 +32,36 @@ const reactGridLayoutProps = {
 
 const ReactGridLayout = WidthProvider(RGL)
 
+const GridLayoutWrapper = ({ children }) => {
+  const dispatch = useDispatch()
+  return (
+    <Box
+      d="flex"
+      w="100%"
+      flexDir="row"
+      onClick={() => dispatch(setBlockEditable(null))}
+      id="main-builder"
+    >
+      {children}
+    </Box>
+  )
+}
+GridLayoutWrapper.propTypes = {
+  children: PropTypes.any,
+}
+
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const { blocksConfig, layout } = useSelector(getBuilderData)
+  const { blocks, layouts, structure } = useSelector(getBuilderData)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
 
-  const saveData = () => {
-    saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }))
-  }
-
   const [reRender, setReRender] = useState(false)
 
   useEffect(() => {
-    saveData(layout, blocksConfig)
-  }, [layout, blocksConfig])
+    saveOnLocal({ blocks, layouts, structure })
+  }, [blocks, layouts, structure])
 
   useEffect(() => {
     handleWindowResize()
@@ -63,29 +73,16 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function onDrop(newLayout, droppedBlockLayout) {
-    dispatch(upadateLayout({ newLayout }))
-    dispatch(
-      addBlockConfig({
-        newBlockId: droppedBlockLayout?.i,
-      })
-    )
-    dispatch(setNewBlock({ type: null }))
-  }
-
-  const onLayoutChange = (newLayout) => {
-    if (newLayout?.length !== Object.keys(blocksConfig)?.length) return
-    dispatch(upadateLayout({ newLayout }))
+  function onDrop(_, droppedBlockLayout) {
+    dispatch(addNewBlock(droppedBlockLayout))
   }
 
   function handleWindowResize() {
     dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
   }
 
-  function handleResize(_, oldItem, newItem) {
-    if (newItem.i.includes('inception') && newItem.w !== oldItem.w) {
-      setReRender((value) => !value)
-    }
+  function handleLayoutChange(_, __, newItem) {
+    dispatch(setLayout({ ...newItem }))
   }
 
   function handleKeyPress(e) {
@@ -95,29 +92,30 @@ const WebBuilder = () => {
   }
 
   const isDroppable = !selectedBlockId?.includes('inception')
+
   return (
-    <Box
-      d="flex"
-      w="100%"
-      flexDir="row"
-      onClick={() => dispatch(setBlockEditable(null))}
-      id="main-builder"
-    >
+    <GridLayoutWrapper>
       <ReactGridLayout
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
         preventCollision={!!newBlockType}
         isDroppable={isDroppable}
-        onResizeStop={handleResize}
+        onResizeStop={handleLayoutChange}
+        onDragStop={handleLayoutChange}
         useCSSTransforms={isDroppable}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
-        layout={layout}
-        onLayoutChange={onLayoutChange}
       >
-        {generateBuilderBlocks(blocksConfig, reRender)}
+        {structure['main'].map((blockId) => {
+          const blockLayout = layouts[blockId]
+          return (
+            <Box key={blockId} data-grid={blockLayout}>
+              <BuilderBlock blockId={blockId} reRender={reRender} />
+            </Box>
+          )
+        })}
       </ReactGridLayout>
-    </Box>
+    </GridLayoutWrapper>
   )
 }
 

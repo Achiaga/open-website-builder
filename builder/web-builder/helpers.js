@@ -25,21 +25,11 @@ export function reconstructBlocksConfig(
 
 // Block Factory *********************************
 
-const loadBlockInitialData = (blockType, extraProps) => {
+export function addBlock(newId, blockType) {
   return {
+    type: blockType,
     data: {
       ...blocksProperties[blockType],
-      ...extraProps,
-    },
-  }
-}
-
-export function addBlock(newId, blockType, blocks, editBlockCallback) {
-  return {
-    ...blocks,
-    [newId]: {
-      type: blockType,
-      ...loadBlockInitialData(blockType, { editBlock: editBlockCallback }),
     },
   }
 }
@@ -95,21 +85,33 @@ export function addCallbackToBlock(blocksConfig, editBlockCallback) {
 
 // Block Builder
 
-export const generateBuilderBlocks = (blocksConfig, reRender) => {
-  if (!blocksConfig) return null
-  return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
-    return (
-      <Box key={blockKey}>
-        <BuilderBlock
-          data={blockInfo.data}
-          blockKey={blockKey}
-          blockType={blockInfo.type}
-          reRender={reRender}
-        />
-      </Box>
-    )
-  })
+export const findBlock = (blocksConfig, blockId, parentId) => {
+  let result
+  for (const id in blocksConfig) {
+    if (blockId === id) return { parentId, child: blocksConfig[id] }
+    if (blocksConfig[id]?.data?.blocks) {
+      result = findBlock(blocksConfig[id]?.data?.blocks, blockId, id)
+      if (result) return result
+    }
+  }
+  return result
 }
+export const getBlockById = (blocksConfig, blockId) => {
+  let result
+  for (const id in blocksConfig) {
+    if (blockId === id) return blocksConfig[id]
+    if (blocksConfig[id]?.data?.blocks) {
+      result = getBlockById(blocksConfig[id]?.data?.blocks, blockId)
+      if (result) return result
+    }
+  }
+  return result
+}
+
+// export const generateBuilderBlocks = (blocksConfig, reRender) => {
+//   if (!blocksConfig) return null
+
+// }
 
 // Builder
 export function denormalizeBlockData(layout, blocksConfig) {

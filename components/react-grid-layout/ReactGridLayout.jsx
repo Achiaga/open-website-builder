@@ -402,11 +402,11 @@ export default class ReactGridLayout extends React.Component {
     const { layout, activeResizeItem, oldResizeItem } = this.state
     const { cols } = this.props
     var l = getLayoutItem(layout, i)
-
-    this.props.onResizeStop(layout, oldResizeItem, l, null, e, node)
-
+    const newLayoutItem = { ...l, w, h }
+    this.props.onResizeStop(layout, oldResizeItem, newLayoutItem, null, e, node)
     // Set state
     const newLayout = compact(layout, compactType(this.props), cols)
+
     if (activeResizeItem) {
       const activeResizeItemIndex = getLayoutItemIndex(
         newLayout,

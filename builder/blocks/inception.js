@@ -4,13 +4,12 @@ import PropTypes from 'prop-types'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   addBlock,
   editBlock,
   editItemDraggableProperty,
   generateBuilderBlocks,
-  addCallbackToBlock,
   normalizeLayout,
   normalizeBlockStructure,
   denormalizeInceptionBlock,
@@ -19,12 +18,41 @@ import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS } from '../web-builder/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  addNewBlock,
+  getBuilderData,
   getGridRowHeight,
   getNewBlock,
   getSelectedBlockId,
+  setLayout,
   setNewBlock,
   udpateBlocksConfigInception,
 } from '../../features/builderSlice'
+import { BuilderBlock } from '.'
+
+const reactGridConfig = {
+  cols: GRID_COLUMNS,
+  margin: [0, 0],
+  style: { width: '100%', height: '100%' },
+  autoSize: false,
+  preventCollision: true,
+  verticalCompact: false,
+  className: 'layout',
+}
+
+const ReactGridLayoutWrapper = ({ extraData, children }) => {
+  return (
+    <Box
+      {...extraData}
+      w="100%"
+      h="100%"
+      id="inception"
+      cursor="pointer"
+      outline="1px dashed lightgray"
+    >
+      {children}
+    </Box>
+  )
+}
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -35,121 +63,74 @@ function isObjectOutside(newItem, rowHeight, gridRef) {
   return newItem.y + newItem.h > rowsNumber
 }
 
-const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
+const BlockInception = ({ extraProps, ...data }) => {
   const dispatch = useDispatch()
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
+  const gridRef = useRef()
+  const { layouts, structure } = useSelector(getBuilderData)
 
-  const { reRender, blockKey: parentBlockKey } = extraProps
+  const { reRender, blockId: parentBlockId } = extraProps
 
   const [secondRender, setSecondRender] = useState(false)
-  const gridRef = useRef()
-  const [blocksConfig, udpateBlocksConfig] = useState(() =>
-    normalizeBlockStructure(data.blocks)
-  )
-  const [layout, setLayout] = useState(() => normalizeLayout(data.blocks))
-
-  useEffect(() => {
-    udpateBlocksConfig((blocksConfig) =>
-      addCallbackToBlock(blocksConfig, editBlockCallback)
-    )
-  }, [])
 
   useEffect(() => {
     setSecondRender(uuid())
   }, [reRender])
 
-  useEffect(() => {
-    setLayout((layout) => editItemDraggableProperty(layout, selectedBlockId))
-  }, [selectedBlockId])
+  // useEffect(() => {
+  //   setLayout((layout) => editItemDraggableProperty(layout, selectedBlockId))
+  // }, [selectedBlockId])
 
-  const editBlockCallback = (newData, blockId, operationType) => {
-    udpateBlocksConfig((blocksConfig) => {
-      const newBlocksConfig = editBlock(
-        blocksConfig,
-        blockId,
-        newData,
-        operationType
-      )
-      updateBlockConfig(layout, newBlocksConfig)
-      return newBlocksConfig
-    })
-  }
+  // function updateBlockConfig(layout, newBlocksConfig) {
+  //   dispatch(
+  //     udpateBlocksConfigInception({
+  //       newBlocks: denormalizeInceptionBlock(layout, newBlocksConfig),
+  //       parentBlockId,
+  //     })
+  //   )
+  // }
 
-  function updateBlockConfig(layout, newBlocksConfig) {
-    dispatch(
-      udpateBlocksConfigInception({
-        newBlocks: denormalizeInceptionBlock(layout, newBlocksConfig),
-        parentBlockKey,
-      })
-    )
-  }
-
-  const updateLayout = (layout) => {
-    if (layout?.length !== Object.keys(blocksConfig)?.length) return
-    setLayout(layout)
-    updateBlockConfig(layout, blocksConfig)
-  }
-
-  function onDrop(layout, droppedBlockLayout) {
-    if (newBlockType === 'inception') return null
-    setLayout(layout)
-    udpateBlocksConfig((blocksConfig) => {
-      const newBlocksConfig = addBlock(
-        droppedBlockLayout?.i,
-        newBlockType,
-        blocksConfig,
-        editBlockCallback
-      )
-      updateBlockConfig(layout, newBlocksConfig)
-      return newBlocksConfig
-    })
-    dispatch(setNewBlock({ type: null }))
+  function onDrop(_, droppedBlockLayout) {
+    dispatch(addNewBlock(droppedBlockLayout, parentBlockId))
   }
 
   function handleLayoutChange(layout, _, newItem) {
+    dispatch(setLayout({ ...newItem }))
     if (isObjectOutside(newItem, gridRowHeight, gridRef)) {
       return setSecondRender(uuid())
     }
-    updateLayout(layout)
   }
 
   const isDroppable = selectedBlockId?.includes('inception')
   // eslint-disable-next-line no-unused-vars
   const { contentEditable, ...extraData } = data
   return (
-    <Box
-      {...extraData}
-      w="100%"
-      h="100%"
-      id="inception"
-      cursor="pointer"
-      outline="1px dashed lightgray"
-    >
+    <ReactGridLayoutWrapper extraData={extraData}>
       <ReactGridLayout
+        {...reactGridConfig}
         innerRef={gridRef}
         key={secondRender}
-        cols={GRID_COLUMNS}
         rowHeight={gridRowHeight}
-        margin={[0, 0]}
-        style={{ width: '100%', height: '100%' }}
-        autoSize={false}
-        preventCollision={true}
         isDroppable={isDroppable}
         onDrop={onDrop}
         droppingItem={{ i: 'child-inception-' + newBlockId, w: 20, h: 10 }}
-        verticalCompact={false}
-        className="layout"
         onDragStop={handleLayoutChange}
         onResizeStop={handleLayoutChange}
-        layout={layout}
       >
-        {generateBuilderBlocks(blocksConfig)}
+        {structure[parentBlockId]?.map((blockId) => {
+          const blockLayout = layouts[blockId]
+          return (
+            <Box key={blockId} data-grid={blockLayout}>
+              <BuilderBlock blockId={blockId} reRender={reRender} />
+            </Box>
+          )
+        })}
       </ReactGridLayout>
-    </Box>
+    </ReactGridLayoutWrapper>
   )
-})
+}
 
 BlockInception.displayName = 'BlockInception'
 

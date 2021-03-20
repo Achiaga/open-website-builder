@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
+import { batch } from 'react-redux'
+
 import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
 import {
   addBlock,
   denormalizeBlockData,
-  editBlock,
   editItemDraggableProperty,
-  normalizeBlockStructure,
-  normalizeLayout,
   saveOnLocal,
   reconstructBlocksConfig,
+  findBlock,
+  getBlockById,
 } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
 
@@ -48,40 +49,59 @@ export const builderSlice = createSlice({
     setBlocksConfig: (state, action) => {
       state.builderData.blocksConfig = action.payload
     },
+    setBlockConfig: (state, action) => {
+      const { newData, blockId } = action.payload
+      state.builderData.blocks[blockId].data = newData
+    },
     setLayout: (state, action) => {
-      state.builderData.layout = action.payload
+      const { i } = action.payload
+      state.builderData.layouts[i] = action.payload
+    },
+    setAddedBlock: (state, action) => {
+      const { blockID, newBlockStructure } = action.payload
+      state.builderData.blocks[blockID] = newBlockStructure
+    },
+    setStructure: (state, action) => {
+      const { structureId, structure } = action.payload
+      state.builderData.structure[structureId] = structure
+    },
+    setBlockDraggable: (state, action) => {
+      const { blockId, prevBlockId } = action.payload
+      if (prevBlockId)
+        state.builderData.layouts[prevBlockId].isDraggable = false
+      if (blockId) state.builderData.layouts[blockId].isDraggable = true
     },
   },
 })
 
 export const {
   loadInitialState,
+  setLayout,
+  setAddedBlock,
+  setStructure,
   setNewBlockType,
   setNewBlockId,
   setNewBlock,
   setSelectedBlockId,
   setGridRowHeight,
-  setLayout,
   setBlocksConfig,
+  setBlockConfig,
+  setBlockDraggable,
 } = builderSlice.actions
 
 export const loadInitialData = () => async (dispatch) => {
   const userData = await getUserDataFromLS()
-  const blocksConfig = normalizeBlockStructure(userData)
-  const layout = normalizeLayout(userData)
-  dispatch(loadInitialState({ blocksConfig, layout }))
+  console.log(JSON.stringify(userData, null, 2))
+  const { blocks, layouts, structure } = userData
+  dispatch(loadInitialState({ blocks, layouts, structure }))
 }
 export const upadateLayout = ({ newLayout, editableBlockId }) => (
   dispatch,
   getState
 ) => {
   const layout = getLayout(getState())
-  let updatedLayout = newLayout
-  if (editableBlockId || editableBlockId === null) {
-    updatedLayout = editItemDraggableProperty(layout, editableBlockId)
-  }
-  console.log('updatedLayout', updatedLayout)
-  dispatch(setLayout([...updatedLayout]))
+
+  dispatch(setLayout(updatedLayout))
 }
 
 export const udpateBlocksConfigInception = ({ newBlocks, parentBlockKey }) => (
@@ -103,13 +123,8 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
   dispatch,
   getState
 ) => {
-  const updatedBlocksConfig = editBlock(
-    getBlocksConfig(getState()),
-    blockId,
-    newData,
-    operationType
-  )
-  dispatch(setBlocksConfig(updatedBlocksConfig))
+  const blockInfo = findBlock(getBlocksConfig(getState()), blockId)
+  dispatch(setBlockConfig({ blockInfo, newData, blockId }))
 }
 
 export const addBlockConfig = ({ newBlockId }) => (dispatch, getState) => {
@@ -118,17 +133,42 @@ export const addBlockConfig = ({ newBlockId }) => (dispatch, getState) => {
   const updatedBlocksConfig = addBlock(newBlockId, newBlockType, blocksConfig)
   dispatch(setBlocksConfig(updatedBlocksConfig))
 }
-export const setBlockEditable = (editableBlockId) => (dispatch) => {
-  dispatch(setSelectedBlockId(editableBlockId))
-  dispatch(upadateLayout({ editableBlockId }))
+export const setBlockEditable = (blockId) => (dispatch, getState) => {
+  const prevBlockId = getSelectedBlockId(getState())
+  dispatch(setBlockDraggable({ prevBlockId, blockId }))
+  dispatch(setSelectedBlockId(blockId))
+}
+export const addNewBlock = (blockLayout, parentBlockId) => (
+  dispatch,
+  getState
+) => {
+  const state = getState()
+  const structure = getStructure(state)
+  const newBlockStructure = addBlock(blockLayout.i, getNewBlockType(state))
+  const structureId = parentBlockId || 'main'
+  batch(() => {
+    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockStructure }))
+    dispatch(setLayout(blockLayout))
+    dispatch(
+      setStructure({
+        structure: [...(structure[structureId] || []), blockLayout.i],
+        structureId,
+      })
+    )
+    dispatch(setNewBlock({ type: null }))
+  })
 }
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getBlockData = (id) => (state) =>
+  state.builder.builderData.blocks[id]
+
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
 export const getSelectedBlockId = (state) => state.builder.selectedBlockId
 export const getGridRowHeight = (state) => state.builder.gridRowHeight
 export const getLayout = (state) => state.builder.builderData.layout
+export const getStructure = (state) => state.builder.builderData.structure
 export const getBlocksConfig = (state) => state.builder.builderData.blocksConfig
 
 export default builderSlice.reducer

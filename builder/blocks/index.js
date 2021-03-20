@@ -10,7 +10,7 @@ import BlockInception from './inception'
 import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  editBlockConfig,
+  getBlockData,
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
@@ -28,66 +28,44 @@ export const previewBlocks = {
   inception: PrevInception,
 }
 
-export function BuilderBlock({ data, blockKey, blockType, reRender }) {
-  const selectedBlockId = useSelector(getSelectedBlockId)
+export function BuilderBlock({ blockId, reRender }) {
   const dispatch = useDispatch()
-  const GenericBlock = blocks[blockType]
-  const { text: dataText, ...metaData } = data
 
-  const [text] = useState(dataText)
-  const titleRef = useRef(null)
+  const { type, data } = useSelector(getBlockData(blockId))
+  const selectedBlockId = useSelector(getSelectedBlockId)
 
-  function handleKeyUp(e) {
-    e.stopPropagation()
-    const value = titleRef.current?.innerText
-    const updatedBlock = { ...data, text: value }
-    dispatch(editBlockConfig({ newData: updatedBlock, blockKey }))
-  }
-  useEffect(() => {
-    titleRef?.current?.addEventListener('paste', function (e) {
-      e.preventDefault()
-      var text = e.clipboardData.getData('text/plain')
-      document.execCommand('insertText', false, text)
-    })
-  }, [titleRef])
+  const GenericBlock = blocks[type]
 
-  const isEditable = selectedBlockId === blockKey
+  const isEditable = selectedBlockId === blockId
 
   return (
     <Box
       width="100%"
       h="100%"
-      id={blockKey}
+      id={blockId}
       onDoubleClick={(e) => {
         e.stopPropagation()
         if (isEditable) return null
-        dispatch(setBlockEditable(blockKey))
+        dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
       outlineColor={isEditable ? 'blue' : 'transparent'}
     >
       {isEditable && (
-        <BlockModifiers data={data} blockKey={blockKey} blockType={blockType} />
+        <BlockModifiers data={data} blockKey={blockId} blockType={type} />
       )}
       <GenericBlock
-        onKeyUp={handleKeyUp}
-        contentEditable={isEditable}
-        {...(blockType === 'text' ? { ref: titleRef } : {})}
-        text={text}
         extraProps={{
           reRender,
-          blockKey,
+          blockId,
         }}
-        {...metaData}
+        data={data}
+        {...data}
       />
     </Box>
   )
 }
 BuilderBlock.propTypes = {
-  isPreview: PropTypes.bool,
-  blockKey: PropTypes.string.isRequired,
-  isEditable: PropTypes.bool,
-  blockType: PropTypes.string.isRequired,
-  data: PropTypes.any,
+  blockId: PropTypes.bool,
   reRender: PropTypes.any,
 }
