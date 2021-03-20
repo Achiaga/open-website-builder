@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   editBlockConfig,
   getSelectedBlockId,
+  setBlockEditable,
 } from '../../features/builderSlice'
 
 const blocks = {
@@ -27,15 +28,7 @@ export const previewBlocks = {
   inception: PrevInception,
 }
 
-export function BuilderBlock({
-  data,
-  blockKey,
-  blockType,
-  reRender,
-  layoutCallback,
-  rowHeight,
-  setBlockEditable,
-}) {
+export function BuilderBlock({ data, blockKey, blockType, reRender }) {
   const selectedBlockId = useSelector(getSelectedBlockId)
   const dispatch = useDispatch()
   const GenericBlock = blocks[blockType]
@@ -68,7 +61,7 @@ export function BuilderBlock({
       onDoubleClick={(e) => {
         e.stopPropagation()
         if (isEditable) return null
-        setBlockEditable(blockKey)
+        dispatch(setBlockEditable(blockKey))
       }}
       outline="2px solid"
       outlineColor={isEditable ? 'blue' : 'transparent'}
@@ -81,12 +74,9 @@ export function BuilderBlock({
         contentEditable={isEditable}
         {...(blockType === 'text' ? { ref: titleRef } : {})}
         text={text}
-        setBlockEditable={setBlockEditable}
         extraProps={{
           reRender,
-          layoutCallback,
           blockKey,
-          rowHeight,
         }}
         {...metaData}
       />
@@ -100,6 +90,4 @@ BuilderBlock.propTypes = {
   blockType: PropTypes.string.isRequired,
   data: PropTypes.any,
   reRender: PropTypes.any,
-  layoutCallback: PropTypes.any,
-  rowHeight: PropTypes.any,
 }

@@ -95,23 +95,16 @@ export function addCallbackToBlock(blocksConfig, editBlockCallback) {
 
 // Block Builder
 
-export const generateBuilderBlocks = (
-  blocksConfig,
-  setBlockEditable,
-  reRender,
-  layoutCallback
-) => {
+export const generateBuilderBlocks = (blocksConfig, reRender) => {
   if (!blocksConfig) return null
   return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
     return (
       <Box key={blockKey}>
         <BuilderBlock
-          setBlockEditable={setBlockEditable}
           data={blockInfo.data}
           blockKey={blockKey}
           blockType={blockInfo.type}
           reRender={reRender}
-          layoutCallback={layoutCallback}
         />
       </Box>
     )

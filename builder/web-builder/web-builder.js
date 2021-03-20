@@ -20,10 +20,9 @@ import {
   getSelectedBlockId,
   setGridRowHeight,
   setNewBlock,
-  setSelectedBlockId,
   upadateLayout,
   addBlockConfig,
-  udpateBlocksConfigInception,
+  setBlockEditable,
 } from '../../features/builderSlice'
 
 const reactGridLayoutProps = {
@@ -64,11 +63,6 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function setBlockEditable(editableBlockId) {
-    dispatch(setSelectedBlockId(editableBlockId))
-    dispatch(upadateLayout({ editableBlockId }))
-  }
-
   function onDrop(newLayout, droppedBlockLayout) {
     dispatch(upadateLayout({ newLayout }))
     dispatch(
@@ -96,21 +90,17 @@ const WebBuilder = () => {
 
   function handleKeyPress(e) {
     if (e.key === 'Escape') {
-      setBlockEditable(null)
+      dispatch(setBlockEditable(null))
     }
   }
 
-  function layoutCallback(newBlocks, parentBlockKey) {
-    dispatch(udpateBlocksConfigInception({ newBlocks, parentBlockKey }))
-  }
-  console.log(layout)
   const isDroppable = !selectedBlockId?.includes('inception')
   return (
     <Box
       d="flex"
       w="100%"
       flexDir="row"
-      onClick={() => setBlockEditable(null)}
+      onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
     >
       <ReactGridLayout
@@ -122,17 +112,10 @@ const WebBuilder = () => {
         onResizeStop={handleResize}
         useCSSTransforms={isDroppable}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
-        layout={layout.reduce((acc, item) => {
-          return [...acc, { ...item }]
-        }, [])}
+        layout={layout}
         onLayoutChange={onLayoutChange}
       >
-        {generateBuilderBlocks(
-          blocksConfig,
-          setBlockEditable,
-          reRender,
-          layoutCallback
-        )}
+        {generateBuilderBlocks(blocksConfig, reRender)}
       </ReactGridLayout>
     </Box>
   )

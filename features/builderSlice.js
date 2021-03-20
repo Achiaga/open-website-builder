@@ -118,6 +118,10 @@ export const addBlockConfig = ({ newBlockId }) => (dispatch, getState) => {
   const updatedBlocksConfig = addBlock(newBlockId, newBlockType, blocksConfig)
   dispatch(setBlocksConfig(updatedBlocksConfig))
 }
+export const setBlockEditable = (editableBlockId) => (dispatch) => {
+  dispatch(setSelectedBlockId(editableBlockId))
+  dispatch(upadateLayout({ editableBlockId }))
+}
 
 export const getBuilderData = (state) => state.builder.builderData
 export const getNewBlock = (state) => state.builder.newBlock
