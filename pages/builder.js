@@ -1,32 +1,17 @@
-import { useEffect, useState } from 'react'
-import localforage from 'localforage'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-import { FallbackData } from '../builder/initial-data'
+import { loadInitialData } from '../features/builderSlice'
 import { Builder } from '../builder'
 
-async function getUserData() {
-  let value = null
-  try {
-    value = await localforage.getItem('userData')
-    return value
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 const BuilderPage = () => {
-  const [data, setUserBlocksData] = useState()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getUserData().then((userData) => {
-      const parsedData = userData
-      console.log(JSON.stringify(parsedData, null, 2))
-      setUserBlocksData(parsedData || FallbackData)
-    })
+    dispatch(loadInitialData())
   }, [])
 
-  if (!data) return <div>loading</div>
-  return <Builder userBlocksData={data} />
+  return <Builder />
 }
 
 export default BuilderPage

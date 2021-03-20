@@ -1,33 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getUserDataFromLS } from './helper'
 
 const initialState = {
-  value: 0,
+  builderData: null,
 }
 
 export const builderSlice = createSlice({
-  name: 'counter',
+  name: 'builder',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    loadInitialState: (state, action) => {
+      state.builderData = action.payload
     },
   },
 })
 
-export const { increment, decrement, incrementByAmount } = builderSlice.actions
+export const { loadInitialState } = builderSlice.actions
 
-export const incrementAsync = (amount) => (dispatch) => {
-  setTimeout(() => {
-    dispatch(incrementByAmount(amount))
-  }, 1000)
+export const loadInitialData = () => async (dispatch) => {
+  const userData = await getUserDataFromLS()
+  dispatch(loadInitialState(userData))
 }
 
-export const selectCount = (state) => state.counter.value
+export const getBuilderData = (state) => state.builder.builderData
 
-export default builderSlice
+export default builderSlice.reducer
