@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@babel/register": "^7.13.8",
     "@chakra-ui/react": "^1.2.1",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
+    "flow-remove-types": "^2.147.0",
     "prop-types": "^15.7.2"
   }
 }

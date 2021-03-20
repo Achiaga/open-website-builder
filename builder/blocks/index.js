@@ -8,8 +8,11 @@ import List from './list'
 import GenericText from './text'
 import BlockInception from './inception'
 import { PrevInception } from './prevInception'
-import { useSelector } from 'react-redux'
-import { getSelectedBlockId } from '../../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  editBlockConfig,
+  getSelectedBlockId,
+} from '../../features/builderSlice'
 
 const blocks = {
   image: Image,
@@ -29,14 +32,14 @@ export function BuilderBlock({
   blockKey,
   blockType,
   reRender,
-  newBlockType,
   layoutCallback,
   rowHeight,
   setBlockEditable,
 }) {
   const selectedBlockId = useSelector(getSelectedBlockId)
+  const dispatch = useDispatch()
   const GenericBlock = blocks[blockType]
-  const { editBlock = () => {}, text: dataText, ...metaData } = data
+  const { text: dataText, ...metaData } = data
 
   const [text] = useState(dataText)
   const titleRef = useRef(null)
@@ -45,7 +48,7 @@ export function BuilderBlock({
     e.stopPropagation()
     const value = titleRef.current?.innerText
     const updatedBlock = { ...data, text: value }
-    editBlock(updatedBlock, blockKey)
+    dispatch(editBlockConfig({ newData: updatedBlock, blockKey }))
   }
   useEffect(() => {
     titleRef?.current?.addEventListener('paste', function (e) {
@@ -81,7 +84,6 @@ export function BuilderBlock({
         setBlockEditable={setBlockEditable}
         extraProps={{
           reRender,
-          newBlockType,
           layoutCallback,
           blockKey,
           rowHeight,
@@ -98,7 +100,6 @@ BuilderBlock.propTypes = {
   blockType: PropTypes.string.isRequired,
   data: PropTypes.any,
   reRender: PropTypes.any,
-  newBlockType: PropTypes.any,
   layoutCallback: PropTypes.any,
   rowHeight: PropTypes.any,
 }

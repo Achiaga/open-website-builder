@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import RGL, { WidthProvider } from 'react-grid-layout'
+import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
@@ -9,16 +9,9 @@ import 'react-resizable/css/styles.css'
 import {
   denormalizeBlockData,
   generateBuilderBlocks,
-  normalizeBlockStructure,
-  normalizeLayout,
   saveOnLocal,
-  addBlock,
-  addCallbackToBlock,
-  editBlock,
-  editItemDraggableProperty,
 } from './helpers'
 import { GRID_COLUMNS } from './constants'
-import { DELETE } from '../blocks/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
@@ -28,49 +21,40 @@ import {
   setGridRowHeight,
   setNewBlock,
   setSelectedBlockId,
+  upadateLayout,
+  addBlockConfig,
+  udpateBlocksConfigInception,
 } from '../../features/builderSlice'
+
+const reactGridLayoutProps = {
+  cols: GRID_COLUMNS,
+  autoSize: true,
+  margin: [0, 0],
+  style: { width: '100%', minHeight: '100vh', height: '100%' },
+  className: 'layout',
+  verticalCompact: false,
+}
 
 const ReactGridLayout = WidthProvider(RGL)
 
-function reconstructBlocksConfig(blocksConfig, parentBlockKey, newBlocks) {
-  return {
-    ...blocksConfig,
-    [parentBlockKey]: {
-      ...blocksConfig[parentBlockKey],
-      data: {
-        ...blocksConfig[parentBlockKey]?.data,
-        ...newBlocks,
-      },
-    },
-  }
-}
-
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const userBlocksData = useSelector(getBuilderData)
+  const { blocksConfig, layout } = useSelector(getBuilderData)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
 
-  const [reRender, setReRender] = useState(false)
-  const [realBlockData] = useState(userBlocksData)
-  const [blocksConfig, udpateBlocksConfig] = useState(() =>
-    normalizeBlockStructure(realBlockData)
-  )
-  const [layout, updateLayout] = useState(() => normalizeLayout(realBlockData))
-
-  const debouncedSaved = () => {
+  const saveData = () => {
     saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }))
   }
 
+  const [reRender, setReRender] = useState(false)
+
   useEffect(() => {
-    debouncedSaved(layout, blocksConfig)
+    saveData(layout, blocksConfig)
   }, [layout, blocksConfig])
 
   useEffect(() => {
-    udpateBlocksConfig((blocksConfig) =>
-      addCallbackToBlock(blocksConfig, editBlockCallback)
-    )
     handleWindowResize()
     window.addEventListener('resize', handleWindowResize)
     window.addEventListener('keydown', handleKeyPress)
@@ -82,34 +66,22 @@ const WebBuilder = () => {
 
   function setBlockEditable(editableBlockId) {
     dispatch(setSelectedBlockId(editableBlockId))
-    updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
+    dispatch(upadateLayout({ editableBlockId }))
   }
 
-  const editBlockCallback = (newData, blockId, operationType) => {
-    if (operationType === DELETE) {
-      dispatch(setSelectedBlockId(null))
-    }
-    udpateBlocksConfig((blocksConfig) =>
-      editBlock(blocksConfig, blockId, newData, operationType)
-    )
-  }
-
-  function onDrop(layout, droppedBlockLayout) {
-    updateLayout(layout)
-    udpateBlocksConfig((blocksConfig) =>
-      addBlock(
-        droppedBlockLayout?.i,
-        newBlockType,
-        blocksConfig,
-        editBlockCallback
-      )
+  function onDrop(newLayout, droppedBlockLayout) {
+    dispatch(upadateLayout({ newLayout }))
+    dispatch(
+      addBlockConfig({
+        newBlockId: droppedBlockLayout?.i,
+      })
     )
     dispatch(setNewBlock({ type: null }))
   }
 
-  const onLayoutChange = (layout) => {
-    if (layout?.length !== Object.keys(blocksConfig)?.length) return
-    updateLayout(layout)
+  const onLayoutChange = (newLayout) => {
+    if (newLayout?.length !== Object.keys(blocksConfig)?.length) return
+    dispatch(upadateLayout({ newLayout }))
   }
 
   function handleWindowResize() {
@@ -129,18 +101,9 @@ const WebBuilder = () => {
   }
 
   function layoutCallback(newBlocks, parentBlockKey) {
-    udpateBlocksConfig((blocksConfig) => {
-      const newBlocksConfig = reconstructBlocksConfig(
-        blocksConfig,
-        parentBlockKey,
-        newBlocks
-      )
-      saveOnLocal(denormalizeBlockData(layout, newBlocksConfig))
-      return newBlocksConfig
-    })
+    dispatch(udpateBlocksConfigInception({ newBlocks, parentBlockKey }))
   }
   console.log(layout)
-
   const isDroppable = !selectedBlockId?.includes('inception')
   return (
     <Box
@@ -151,22 +114,17 @@ const WebBuilder = () => {
       id="main-builder"
     >
       <ReactGridLayout
-        cols={GRID_COLUMNS}
+        {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
-        margin={[0, 0]}
-        autoSize
         preventCollision={!!newBlockType}
         isDroppable={isDroppable}
         onResizeStop={handleResize}
-        verticalCompact={false}
-        // This makes everything go 6x slower
-        // This also makes the drop block go crazy while dragging
         useCSSTransforms={isDroppable}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
-        style={{ width: '100%', minHeight: '100vh', height: '100%' }}
-        className={'layout'}
-        layout={layout}
+        layout={layout.reduce((acc, item) => {
+          return [...acc, { ...item }]
+        }, [])}
         onLayoutChange={onLayoutChange}
       >
         {generateBuilderBlocks(

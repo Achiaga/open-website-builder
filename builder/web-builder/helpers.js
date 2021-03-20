@@ -6,6 +6,23 @@ import { DELETE, EDIT } from '../blocks/constants'
 
 import { blocksProperties } from './default-data'
 
+export function reconstructBlocksConfig(
+  blocksConfig,
+  parentBlockKey,
+  newBlocks
+) {
+  return {
+    ...blocksConfig,
+    [parentBlockKey]: {
+      ...blocksConfig[parentBlockKey],
+      data: {
+        ...blocksConfig[parentBlockKey]?.data,
+        ...newBlocks,
+      },
+    },
+  }
+}
+
 // Block Factory *********************************
 
 const loadBlockInitialData = (blockType, extraProps) => {
@@ -49,11 +66,13 @@ export function editBlock(blocks, id, newData, operationType = EDIT) {
 // Edit block layout properties *********************************
 
 export const editItemDraggableProperty = (layout, editableBlockId) => {
-  return layout.map((layoutItem) => {
-    const isSelectedItem = layoutItem.i === editableBlockId
-    let isDraggable = isSelectedItem ? false : true
-    return { ...layoutItem, isDraggable }
-  })
+  return [
+    ...layout.map((layoutItem) => {
+      const isSelectedItem = layoutItem.i === editableBlockId
+      let isDraggable = isSelectedItem ? false : true
+      return { ...layoutItem, isDraggable }
+    }),
+  ]
 }
 
 // Add editior function to inital blocks *********************************
