@@ -19,6 +19,7 @@ import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS } from '../web-builder/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  getGridRowHeight,
   getNewBlock,
   getSelectedBlockId,
   setNewBlock,
@@ -37,15 +38,10 @@ const BlockInception = forwardRef(
   ({ extraProps, setBlockEditable, ...data }, ref) => {
     const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
     const selectedBlockId = useSelector(getSelectedBlockId)
-
+    const gridRowHeight = useSelector(getGridRowHeight)
     const dispatch = useDispatch()
 
-    const {
-      reRender,
-      layoutCallback,
-      blockKey: parentBlockKey,
-      rowHeight,
-    } = extraProps
+    const { reRender, layoutCallback, blockKey: parentBlockKey } = extraProps
 
     const [secondRender, setSecondRender] = useState(false)
     const gridRef = useRef()
@@ -113,7 +109,7 @@ const BlockInception = forwardRef(
     }
 
     function handleLayoutChange(layout, _, newItem) {
-      if (isObjectOutside(newItem, rowHeight, gridRef)) {
+      if (isObjectOutside(newItem, gridRowHeight, gridRef)) {
         return setSecondRender(uuid())
       }
       updateLayout(layout)
@@ -135,7 +131,7 @@ const BlockInception = forwardRef(
           innerRef={gridRef}
           key={secondRender}
           cols={GRID_COLUMNS}
-          rowHeight={rowHeight}
+          rowHeight={gridRowHeight}
           margin={[0, 0]}
           style={{ width: '100%', height: '100%' }}
           autoSize={false}

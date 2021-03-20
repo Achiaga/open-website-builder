@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 import { FallbackData } from '../builder/initial-data'
+import { ROW_HEIGHT } from '../builder/web-builder/constants'
 import { getUserDataFromLS } from './helper'
 
 const initialState = {
@@ -8,6 +9,7 @@ const initialState = {
   newBlock: {
     id: uuid(),
   },
+  gridRowHeight: ROW_HEIGHT,
 }
 
 export const builderSlice = createSlice({
@@ -30,6 +32,9 @@ export const builderSlice = createSlice({
     setSelectedBlockId: (state, action) => {
       state.selectedBlockId = action.payload
     },
+    setGridRowHeight: (state, action) => {
+      state.gridRowHeight = action.payload
+    },
   },
 })
 
@@ -39,6 +44,7 @@ export const {
   setNewBlockId,
   setNewBlock,
   setSelectedBlockId,
+  setGridRowHeight,
 } = builderSlice.actions
 
 export const loadInitialData = () => async (dispatch) => {
@@ -49,5 +55,6 @@ export const loadInitialData = () => async (dispatch) => {
 export const getBuilderData = (state) => state.builder.builderData
 export const getNewBlock = (state) => state.builder.newBlock
 export const getSelectedBlockId = (state) => state.builder.selectedBlockId
+export const getGridRowHeight = (state) => state.builder.gridRowHeight
 
 export default builderSlice.reducer

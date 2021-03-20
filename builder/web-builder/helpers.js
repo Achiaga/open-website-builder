@@ -81,8 +81,7 @@ export const generateBuilderBlocks = (
   setBlockEditable,
   reRender,
   newBlockType,
-  layoutCallback,
-  rowHeight
+  layoutCallback
 ) => {
   if (!blocksConfig) return null
   return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
@@ -96,7 +95,6 @@ export const generateBuilderBlocks = (
           reRender={reRender}
           newBlockType={newBlockType}
           layoutCallback={layoutCallback}
-          rowHeight={rowHeight}
         />
       </Box>
     )

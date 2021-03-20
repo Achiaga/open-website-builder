@@ -17,13 +17,15 @@ import {
   editBlock,
   editItemDraggableProperty,
 } from './helpers'
-import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
+import { GRID_COLUMNS } from './constants'
 import { DELETE } from '../blocks/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
+  getGridRowHeight,
   getNewBlock,
   getSelectedBlockId,
+  setGridRowHeight,
   setNewBlock,
   setSelectedBlockId,
 } from '../../features/builderSlice'
@@ -48,9 +50,9 @@ const WebBuilder = () => {
   const userBlocksData = useSelector(getBuilderData)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
+  const gridRowHeight = useSelector(getGridRowHeight)
 
   const [reRender, setReRender] = useState(false)
-  const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
   const [realBlockData] = useState(userBlocksData)
   const [blocksConfig, udpateBlocksConfig] = useState(() =>
     normalizeBlockStructure(realBlockData)
@@ -69,9 +71,9 @@ const WebBuilder = () => {
     udpateBlocksConfig((blocksConfig) =>
       addCallbackToBlock(blocksConfig, editBlockCallback)
     )
+    handleWindowResize()
     window.addEventListener('resize', handleWindowResize)
     window.addEventListener('keydown', handleKeyPress)
-    setRowHeight(window?.innerWidth / GRID_COLUMNS)
     return () => {
       window.removeEventListener('keydown', handleKeyPress)
       window.removeEventListener('resize', handleWindowResize)
@@ -111,7 +113,7 @@ const WebBuilder = () => {
   }
 
   function handleWindowResize() {
-    setRowHeight(window?.innerWidth / GRID_COLUMNS)
+    dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
   }
 
   function handleResize(_, oldItem, newItem) {
@@ -150,7 +152,7 @@ const WebBuilder = () => {
     >
       <ReactGridLayout
         cols={GRID_COLUMNS}
-        rowHeight={rowHeight}
+        rowHeight={gridRowHeight}
         onDrop={onDrop}
         margin={[0, 0]}
         autoSize
@@ -172,8 +174,7 @@ const WebBuilder = () => {
           setBlockEditable,
           reRender,
           newBlockType,
-          layoutCallback,
-          rowHeight
+          layoutCallback
         )}
       </ReactGridLayout>
     </Box>
