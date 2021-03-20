@@ -12,10 +12,13 @@ export const builderSlice = createSlice({
     loadInitialState: (state, action) => {
       state.builderData = action.payload
     },
+    setNewBlockType: (state, action) => {
+      state.newBlockType = action.payload
+    },
   },
 })
 
-export const { loadInitialState } = builderSlice.actions
+export const { loadInitialState, setNewBlockType } = builderSlice.actions
 
 export const loadInitialData = () => async (dispatch) => {
   const userData = await getUserDataFromLS()
@@ -23,5 +26,6 @@ export const loadInitialData = () => async (dispatch) => {
 }
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getNewBlockType = (state) => state.builder.newBlockType
 
 export default builderSlice.reducer

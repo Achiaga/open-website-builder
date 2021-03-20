@@ -20,6 +20,12 @@ import {
 } from './helpers'
 import { GRID_COLUMNS, ROW_HEIGHT } from './constants'
 import { DELETE } from '../blocks/constants'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getBuilderData,
+  getNewBlockType,
+  setNewBlockType,
+} from '../../features/builderSlice'
 
 const ReactGridLayout = WidthProvider(RGL)
 
@@ -36,12 +42,13 @@ function reconstructBlocksConfig(blocksConfig, parentBlockKey, newBlocks) {
   }
 }
 
-const WebBuilder = ({
-  userBlocksData,
-  newBlockType,
-  setIsSaved,
-  setNewBlockType,
-}) => {
+const WebBuilder = () => {
+  const dispatch = useDispatch()
+  const userBlocksData = useSelector(getBuilderData)
+  const newBlockType = useSelector(getNewBlockType)
+
+  console.log(newBlockType)
+
   const [newBlockId, setNewBlockId] = useState(() => uuid())
   const [reRender, setReRender] = useState(false)
   const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
@@ -53,7 +60,7 @@ const WebBuilder = ({
   const [layout, updateLayout] = useState(() => normalizeLayout(realBlockData))
 
   const debouncedSaved = () => {
-    saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }), setIsSaved)
+    saveOnLocal(denormalizeBlockData(layout, { ...blocksConfig }))
   }
 
   useEffect(() => {
@@ -95,7 +102,7 @@ const WebBuilder = ({
         editBlockCallback
       )
     )
-    setNewBlockType(null)
+    dispatch(setNewBlockType(null))
     setNewBlockId(uuid())
   }
 

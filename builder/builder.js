@@ -13,12 +13,8 @@ import { getBuilderData } from '../features/builderSlice'
 
 const Builder = () => {
   const userBlocksData = useSelector(getBuilderData)
-  const [isSaved, setIsSaved] = useState(true)
-  const [newBlockType, setNewBlockType] = useState(null)
 
-  console.log('userBlocksData', userBlocksData)
-
-  if (!userBlocksData) return <div>Fuck me it is loading</div>
+  if (!userBlocksData) return <div>Loading...</div>
   return (
     <Box
       d="flex"
@@ -30,13 +26,8 @@ const Builder = () => {
       backgroundPosition="center center"
       height="500vw"
     >
-      <BuilderSidebar setNewBlockType={setNewBlockType} isSaved={isSaved} />
-      <WebBuilder
-        setIsSaved={setIsSaved}
-        newBlockType={newBlockType}
-        userBlocksData={userBlocksData}
-        setNewBlockType={setNewBlockType}
-      />
+      <BuilderSidebar />
+      <WebBuilder />
     </Box>
   )
 }
