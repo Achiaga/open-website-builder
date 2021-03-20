@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
-import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
@@ -23,8 +22,10 @@ import { DELETE } from '../blocks/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
-  getNewBlockType,
-  setNewBlockType,
+  getNewBlock,
+  getSelectedBlockId,
+  setNewBlock,
+  setSelectedBlockId,
 } from '../../features/builderSlice'
 
 const ReactGridLayout = WidthProvider(RGL)
@@ -45,14 +46,11 @@ function reconstructBlocksConfig(blocksConfig, parentBlockKey, newBlocks) {
 const WebBuilder = () => {
   const dispatch = useDispatch()
   const userBlocksData = useSelector(getBuilderData)
-  const newBlockType = useSelector(getNewBlockType)
+  const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
+  const selectedBlockId = useSelector(getSelectedBlockId)
 
-  console.log(newBlockType)
-
-  const [newBlockId, setNewBlockId] = useState(() => uuid())
   const [reRender, setReRender] = useState(false)
   const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
-  const [selectedItemId, setSelectedItem] = useState(null)
   const [realBlockData] = useState(userBlocksData)
   const [blocksConfig, udpateBlocksConfig] = useState(() =>
     normalizeBlockStructure(realBlockData)
@@ -81,12 +79,14 @@ const WebBuilder = () => {
   }, [])
 
   function setBlockEditable(editableBlockId) {
-    setSelectedItem(editableBlockId)
+    dispatch(setSelectedBlockId(editableBlockId))
     updateLayout((layout) => editItemDraggableProperty(layout, editableBlockId))
   }
 
   const editBlockCallback = (newData, blockId, operationType) => {
-    if (operationType === DELETE) setSelectedItem(null)
+    if (operationType === DELETE) {
+      dispatch(setSelectedBlockId(null))
+    }
     udpateBlocksConfig((blocksConfig) =>
       editBlock(blocksConfig, blockId, newData, operationType)
     )
@@ -102,8 +102,7 @@ const WebBuilder = () => {
         editBlockCallback
       )
     )
-    dispatch(setNewBlockType(null))
-    setNewBlockId(uuid())
+    dispatch(setNewBlock({ type: null }))
   }
 
   const onLayoutChange = (layout) => {
@@ -138,8 +137,9 @@ const WebBuilder = () => {
       return newBlocksConfig
     })
   }
+  console.log(layout)
 
-  const isDroppable = !selectedItemId?.includes('inception')
+  const isDroppable = !selectedBlockId?.includes('inception')
   return (
     <Box
       d="flex"
@@ -170,12 +170,9 @@ const WebBuilder = () => {
         {generateBuilderBlocks(
           blocksConfig,
           setBlockEditable,
-          layout,
-          selectedItemId,
           reRender,
           newBlockType,
           layoutCallback,
-          setSelectedItem,
           rowHeight
         )}
       </ReactGridLayout>

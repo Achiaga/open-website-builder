@@ -8,6 +8,8 @@ import List from './list'
 import GenericText from './text'
 import BlockInception from './inception'
 import { PrevInception } from './prevInception'
+import { useSelector } from 'react-redux'
+import { getSelectedBlockId } from '../../features/builderSlice'
 
 const blocks = {
   image: Image,
@@ -25,15 +27,14 @@ export const previewBlocks = {
 export function BuilderBlock({
   data,
   blockKey,
-  isEditable,
   blockType,
   reRender,
-  selectedItemId,
   newBlockType,
   layoutCallback,
-  setSelectedItem,
   rowHeight,
+  setBlockEditable,
 }) {
+  const selectedBlockId = useSelector(getSelectedBlockId)
   const GenericBlock = blocks[blockType]
   const { editBlock = () => {}, text: dataText, ...metaData } = data
 
@@ -53,8 +54,22 @@ export function BuilderBlock({
       document.execCommand('insertText', false, text)
     })
   }, [titleRef])
+
+  const isEditable = selectedBlockId === blockKey
+
   return (
-    <Box width="100%" h="100%" id={blockKey}>
+    <Box
+      width="100%"
+      h="100%"
+      id={blockKey}
+      onDoubleClick={(e) => {
+        e.stopPropagation()
+        if (isEditable) return null
+        setBlockEditable(blockKey)
+      }}
+      outline="2px solid"
+      outlineColor={isEditable ? 'blue' : 'transparent'}
+    >
       {isEditable && (
         <BlockModifiers data={data} blockKey={blockKey} blockType={blockType} />
       )}
@@ -63,13 +78,12 @@ export function BuilderBlock({
         contentEditable={isEditable}
         {...(blockType === 'text' ? { ref: titleRef } : {})}
         text={text}
+        setBlockEditable={setBlockEditable}
         extraProps={{
           reRender,
-          selectedItemId,
           newBlockType,
           layoutCallback,
           blockKey,
-          setSelectedItem,
           rowHeight,
         }}
         {...metaData}
@@ -84,9 +98,7 @@ BuilderBlock.propTypes = {
   blockType: PropTypes.string.isRequired,
   data: PropTypes.any,
   reRender: PropTypes.any,
-  selectedItemId: PropTypes.any,
   newBlockType: PropTypes.any,
   layoutCallback: PropTypes.any,
-  setSelectedItem: PropTypes.any,
   rowHeight: PropTypes.any,
 }
