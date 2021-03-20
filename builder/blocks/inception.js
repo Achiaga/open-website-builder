@@ -51,6 +51,10 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
     )
   }, [])
 
+  useEffect(() => {
+    setSecondRender(uuid())
+  }, [reRender])
+
   const editBlockCallback = (newData, blockId, operationType) => {
     udpateBlocksConfig((blocksConfig) => {
       const newBlocksConfig = editBlock(
@@ -105,10 +109,6 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
     }
     updateLayout(layout)
   }
-
-  useEffect(() => {
-    setSecondRender(uuid())
-  }, [reRender])
 
   const isDroppable = selectedItemId?.includes('inception')
   const { contentEditable, ...extraData } = data

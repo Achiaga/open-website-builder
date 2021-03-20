@@ -23,6 +23,19 @@ import { DELETE } from '../blocks/constants'
 
 const ReactGridLayout = WidthProvider(RGL)
 
+function reconstructBlocksConfig(blocksConfig, parentBlockKey, newBlocks) {
+  return {
+    ...blocksConfig,
+    [parentBlockKey]: {
+      ...blocksConfig[parentBlockKey],
+      data: {
+        ...blocksConfig[parentBlockKey]?.data,
+        ...newBlocks,
+      },
+    },
+  }
+}
+
 const WebBuilder = ({
   userBlocksData,
   newBlockType,
@@ -109,16 +122,11 @@ const WebBuilder = ({
 
   function layoutCallback(newBlocks, parentBlockKey) {
     udpateBlocksConfig((blocksConfig) => {
-      const newBlocksConfig = {
-        ...blocksConfig,
-        [parentBlockKey]: {
-          ...blocksConfig[parentBlockKey],
-          data: {
-            ...blocksConfig[parentBlockKey]?.data,
-            ...newBlocks,
-          },
-        },
-      }
+      const newBlocksConfig = reconstructBlocksConfig(
+        blocksConfig,
+        parentBlockKey,
+        newBlocks
+      )
       saveOnLocal(denormalizeBlockData(layout, newBlocksConfig))
       return newBlocksConfig
     })
