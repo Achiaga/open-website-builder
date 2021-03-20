@@ -111,6 +111,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
   }
 
   const isDroppable = selectedItemId?.includes('inception')
+  // eslint-disable-next-line no-unused-vars
   const { contentEditable, ...extraData } = data
   return (
     <Box

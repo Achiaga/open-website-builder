@@ -46,7 +46,7 @@ const WebBuilder = ({
   const [reRender, setReRender] = useState(false)
   const [rowHeight, setRowHeight] = useState(ROW_HEIGHT)
   const [selectedItemId, setSelectedItem] = useState(null)
-  const [realBlockData, setRealBlockData] = useState(userBlocksData)
+  const [realBlockData] = useState(userBlocksData)
   const [blocksConfig, udpateBlocksConfig] = useState(() =>
     normalizeBlockStructure(realBlockData)
   )
