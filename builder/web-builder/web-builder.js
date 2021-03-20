@@ -173,7 +173,6 @@ const WebBuilder = () => {
           blocksConfig,
           setBlockEditable,
           reRender,
-          newBlockType,
           layoutCallback
         )}
       </ReactGridLayout>

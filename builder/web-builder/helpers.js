@@ -80,7 +80,6 @@ export const generateBuilderBlocks = (
   blocksConfig,
   setBlockEditable,
   reRender,
-  newBlockType,
   layoutCallback
 ) => {
   if (!blocksConfig) return null
@@ -93,7 +92,6 @@ export const generateBuilderBlocks = (
           blockKey={blockKey}
           blockType={blockInfo.type}
           reRender={reRender}
-          newBlockType={newBlockType}
           layoutCallback={layoutCallback}
         />
       </Box>

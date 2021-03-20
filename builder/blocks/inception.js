@@ -36,10 +36,10 @@ function isObjectOutside(newItem, rowHeight, gridRef) {
 
 const BlockInception = forwardRef(
   ({ extraProps, setBlockEditable, ...data }, ref) => {
+    const dispatch = useDispatch()
     const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
     const selectedBlockId = useSelector(getSelectedBlockId)
     const gridRowHeight = useSelector(getGridRowHeight)
-    const dispatch = useDispatch()
 
     const { reRender, layoutCallback, blockKey: parentBlockKey } = extraProps
 
