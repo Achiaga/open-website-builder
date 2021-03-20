@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import localforage from 'localforage'
 
-import { Block } from '../blocks'
+import { BuilderBlock } from '../blocks'
 import { DELETE, EDIT } from '../blocks/constants'
 
 import { blocksProperties } from './default-data'
@@ -79,8 +79,7 @@ export function addCallbackToBlock(blocksConfig, editBlockCallback) {
 const generateBuilderBlock = (
 	blockKey,
 	blockInfo,
-	setIsEditable,
-	layoutItemInfo,
+	setBlockEditable,
 	selectedItemId,
 	reRender,
 	newBlockType,
@@ -97,9 +96,10 @@ const generateBuilderBlock = (
 			key={blockKey}
 			onDoubleClick={(e) => {
 				e.stopPropagation()
-				setIsEditable(selectedItemId === blockKey ? null : blockKey)
+				if (isEditable) return null
+				setBlockEditable(blockKey)
 			}}>
-			<Block
+			<BuilderBlock
 				data={blockInfo.data}
 				blockKey={blockKey}
 				isEditable={isEditable}
@@ -117,7 +117,7 @@ const generateBuilderBlock = (
 
 export const generateBuilderBlocks = (
 	blocksConfig,
-	setIsEditable,
+	setBlockEditable,
 	layout,
 	selectedItemId,
 	reRender,
@@ -128,12 +128,10 @@ export const generateBuilderBlocks = (
 ) => {
 	if (!blocksConfig) return null
 	return Object.entries(blocksConfig).map(([blockKey, blockInfo]) => {
-		const layoutItem = layout.find((layoutItem) => layoutItem.i === blockKey)
 		return generateBuilderBlock(
 			blockKey,
 			blockInfo,
-			setIsEditable,
-			layoutItem,
+			setBlockEditable,
 			selectedItemId,
 			reRender,
 			newBlockType,

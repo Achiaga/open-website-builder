@@ -1,36 +1,37 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { Box } from '@chakra-ui/react';
+import { forwardRef } from 'react'
+import PropTypes from 'prop-types'
+import { Box } from '@chakra-ui/react'
 
 function validateUrl(string) {
 	try {
-		new URL(string);
+		new URL(string)
 	} catch (err) {
-		console.error(err);
-		if (string.includes('https://')) return 'upsy, something went wrong';
-		return `https://${string}`;
+		console.error(err)
+		if (string.includes('https://')) return 'upsy, something went wrong'
+		return `https://${string}`
 	}
 
-	return string;
+	return string
 }
 
 export const GenericImage = forwardRef((props, ref) => {
 	const modifiers = {
 		boxShadow: props.boxShadow,
-		borderRadius: props.borderRadius,
-	};
-	const { isPreview, redirect } = props;
+		borderRadius: props.borderRadius
+	}
+	const { isPreview, redirect } = props
 
-	function handleClick() {
+	function handleClick(e) {
+		e.stopPropagation()
 		if (isPreview && redirect) {
-			window.open(validateUrl(redirect), '_blank');
+			window.open(validateUrl(redirect), '_blank')
 		}
 	}
 
 	return (
 		<Box
 			onClick={handleClick}
-			onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
+			// onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
 			backgroundImage={`url(${props?.imageUrl})`}
 			width='100%'
 			height='100%'
@@ -42,9 +43,9 @@ export const GenericImage = forwardRef((props, ref) => {
 			}
 			{...modifiers}
 		/>
-	);
-});
-GenericImage.displayName = 'TextBlock';
+	)
+})
+GenericImage.displayName = 'TextBlock'
 
 GenericImage.propTypes = {
 	contentEditable: PropTypes.bool,
@@ -52,7 +53,9 @@ GenericImage.propTypes = {
 	imageUrl: PropTypes.string,
 	boxShadow: PropTypes.string,
 	borderRadius: PropTypes.string,
+	redirect: PropTypes.string,
 	ref: PropTypes.any,
-};
+	isPreview: PropTypes.bool
+}
 
-export default GenericImage;
+export default GenericImage
