@@ -1,90 +1,71 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createContext } from 'react'
 import { generatePageCode } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
-import {
-	normalizeBlockStructure,
-	normalizeLayout
-} from '../web-builder/helpers'
 
 const WebPreview = ({ layout, blocksConfig }) => {
-	const [pageDesign, setPageDesign] = useState(null)
+  const [pageDesign, setPageDesign] = useState(null)
 
-	useEffect(() => {
-		setPageDesign(generatePageCode(layout, blocksConfig))
-	}, [layout, blocksConfig])
+  useEffect(() => {
+    setPageDesign(generatePageCode(layout, blocksConfig))
+  }, [layout, blocksConfig])
 
-	return (
-		<Box
-			p='10px'
-			d='grid'
-			gridTemplateColumns='repeat(10, 1fr)'
-			gridTemplateRows={`repeat( auto-fill, ${ROW_HEIGHT}px )`}
-			gridGap={'10px'}
-			w='500px'
-			h='1500px'
-			border='1px solid black'>
-			{pageDesign}
-		</Box>
-	)
+  return (
+    <Box
+      p="10px"
+      d="grid"
+      gridTemplateColumns="repeat(10, 1fr)"
+      gridTemplateRows={`repeat( auto-fill, ${ROW_HEIGHT}px )`}
+      gridGap={'10px'}
+      w="500px"
+      h="1500px"
+      border="1px solid black"
+    >
+      {pageDesign}
+    </Box>
+  )
 }
 
 WebPreview.propTypes = {
-	layout: PropTypes.any,
-	blocksConfig: PropTypes.any
+  layout: PropTypes.any,
+  blocksConfig: PropTypes.any,
 }
 
-function isEmpty(obj) {
-	return Object.keys(obj).length === 0
-}
+export const BlocksContext = createContext()
 
 export const ResumeWebsite = ({ userBlocksData }) => {
-	const [windowWidth, setWindowWidth] = useState(1440)
+  const [windowWidth, setWindowWidth] = useState(1440)
 
-	function handleWindowResize() {
-		setWindowWidth(window?.innerWidth)
-	}
+  function handleWindowResize() {
+    setWindowWidth(window?.innerWidth)
+  }
 
-	useEffect(() => {
-		window.addEventListener('resize', handleWindowResize)
-		return () => window.removeEventListener('resize', handleWindowResize)
-	}, [])
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize)
+    return () => window.removeEventListener('resize', handleWindowResize)
+  }, [])
 
-	const rowHeight = windowWidth / GRID_COLUMNS
-	if (!userBlocksData || isEmpty(userBlocksData))
-		return (
-			<Box
-				d='flex'
-				w='100vw'
-				h='100vh'
-				justifyContent='center'
-				alignItems='center'>
-				<Box as='h1' fontSize='3xl' color='primary.500' fontWeight='600'>
-					Nothing to see here
-				</Box>
-			</Box>
-		)
-
-	return (
-		<Box
-			p='10px'
-			d='grid'
-			gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
-			gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
-			w='100vw'
-			height='7500px'>
-			{generatePageCode(
-				normalizeLayout(userBlocksData),
-				normalizeBlockStructure(userBlocksData),
-				rowHeight
-			)}
-		</Box>
-	)
+  const rowHeight = windowWidth / GRID_COLUMNS
+  const childStructure = userBlocksData.structure['main']
+  return (
+    <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
+      <Box
+        p="10px"
+        d="grid"
+        gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
+        gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
+        w="100vw"
+        height="7500px"
+      >
+        {generatePageCode(childStructure)}
+      </Box>
+    </BlocksContext.Provider>
+  )
 }
 
 ResumeWebsite.propTypes = {
-	userBlocksData: PropTypes.any
+  userBlocksData: PropTypes.any,
 }
 
 export default WebPreview

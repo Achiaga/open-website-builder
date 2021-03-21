@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.1.0",
+    "@babel/register": "^7.13.8",
     "@chakra-ui/react": "^1.2.1",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
+    "@reduxjs/toolkit": "^1.5.0",
     "airtable": "^0.10.1",
     "faunadb": "^4.1.1",
     "framer-motion": "^3.3.0",
@@ -29,11 +31,13 @@
     "react-grid-layout": "^1.2.0",
     "react-icons": "^4.2.0",
     "react-popper": "^2.2.4",
+    "react-redux": "^7.2.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
+    "flow-remove-types": "^2.147.0",
     "prop-types": "^15.7.2"
   }
 }

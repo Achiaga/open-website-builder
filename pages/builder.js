@@ -1,50 +1,47 @@
 import { useState, useEffect } from 'react'
 import localforage from 'localforage'
 import { useUser } from '@auth0/nextjs-auth0'
+import { useDispatch } from 'react-redux'
 
-import { FallbackData } from '../builder/initial-data'
+import { loadInitialData } from '../features/builderSlice'
 import { Builder } from '../builder'
 import { getUserDataById } from '../utils/user-data'
 
-function BuilderPage() {
-	const { user, error, isLoading } = useUser()
-	const [data, setUserBlocksData] = useState()
-	useEffect(() => {
-		user && console.log('fetch data')
-		if (user) {
-			getUserData(user).then(setUserBlocksData)
-		}
-	}, [user])
+const BuilderPage = () => {
+  const { user, error, isLoading } = useUser()
+  const dispatch = useDispatch()
 
-	if (!data) return <div>loading</div>
-	return (
-		<Builder
-			userBlocksData={data.resume_data}
-			isPublish={data.is_publish}
-			userId={data.user_id}
-			resumeId={data.id}
-		/>
-	)
+  useEffect(() => {
+    dispatch(loadInitialData())
+  }, [])
+  useEffect(() => {
+    user && console.log('fetch data')
+    if (user) {
+      getUserData(user).then((value) => console.log(value))
+    }
+  }, [user])
+
+  return <Builder />
 }
 
 export async function getUserResumeData() {
-	try {
-		const value = await localforage.getItem('userData')
-		const parsedData = value
-		return parsedData
-	} catch (err) {
-		console.error(err)
-	}
+  try {
+    const value = await localforage.getItem('userData')
+    const parsedData = value
+    return parsedData
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 async function getUserData(user) {
-	console.log(user)
-	if (user) {
-		const userData = await getUserDataById(user.sub)
-		return userData
-	}
-	const userData = await getUserResumeData()
-	return userData || FallbackData
+  console.log(user)
+  if (user) {
+    const userData = await getUserDataById(user.sub)
+    return userData
+  }
+  const userData = await getUserResumeData()
+  return userData || FallbackData
 }
 
 export default BuilderPage
