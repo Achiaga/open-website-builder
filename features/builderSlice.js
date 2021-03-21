@@ -10,7 +10,7 @@ import { addBlock, removeblockFromState } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
 import { getUserDataById } from '../utils/user-data'
 import { saveData } from '../login/helpers'
-
+const AUTH0_CUSTOM_CLAIM_PATH = 'https://standout-resume.now.sh/extraData'
 const initialState = {
   builderData: null,
   newBlock: {
@@ -109,8 +109,12 @@ const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   })
 }
 
-const loadDataFromLSAndSave = (user) => async (dispatch) => {
-  console.log('loadDataFromLSAndSave')
+const isLogin = (accountCreatedTime) => {
+  return new Date() - new Date(accountCreatedTime) > 2 * 60 * 1000
+}
+
+const handleSingup = (user) => async (dispatch) => {
+  console.log('handleSingup')
   const builderData = await getUserDataFromLS()
   const { resume_data, id, user_id, is_publish } = await saveData({
     user,
@@ -125,10 +129,17 @@ const loadDataFromDB = (user) => async (dispatch) => {
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }
 
+const handleLoginCallback = (user) => async (dispatch) => {
+  if (isLogin(user[AUTH0_CUSTOM_CLAIM_PATH])) {
+    return dispatch(loadDataFromDB(user))
+  }
+  return dispatch(handleSingup(user))
+}
+
 export const loadInitialData = (user, origin) => async (dispatch) => {
   console.log('loadInitialData', user, origin)
   if (!user) return dispatch(loadInitialDataNoAccount())
-  if (user && origin === 'login') return dispatch(loadDataFromLSAndSave(user))
+  if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (user && origin !== 'login') return dispatch(loadDataFromDB(user))
 }
 

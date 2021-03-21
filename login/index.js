@@ -14,18 +14,18 @@ function Login() {
   const resumeId = useSelector(getResumeId)
   const router = useRouter()
 
-  function handlePublish() {
+  function handleSavePage() {
     if (user) return saveData({ user, resumeId, builderData })
     return router.push('/api/auth/custom-login')
   }
-  function handleSavePage() {
-    if (user) return saveData({ user, resumeId, builderData })
-    return window.alert('pay you fucking fuck')
+
+  function handleLogin() {
+    router.push('/api/auth/custom-login')
   }
 
   return (
     <Box pos="absolute" l="0" t="0" zIndex="9999">
-      <Button onClick={handlePublish}>Publish</Button>
+      <Button onClick={handleLogin}>Login</Button>
       <Button onClick={handleSavePage}>Save</Button>
       <Button>
         <a href="/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com">
