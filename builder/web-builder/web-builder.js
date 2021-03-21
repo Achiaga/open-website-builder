@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
@@ -57,8 +57,6 @@ const WebBuilder = () => {
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
 
-  const [reRender, setReRender] = useState(false)
-
   useEffect(() => {
     saveOnLocal({ blocks, layouts, structure })
   }, [blocks, layouts, structure])
@@ -92,10 +90,10 @@ const WebBuilder = () => {
   }
 
   const isDroppable = !selectedBlockId?.includes('inception')
-
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
+        key={JSON.stringify(layouts)}
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
@@ -106,14 +104,11 @@ const WebBuilder = () => {
         useCSSTransforms={isDroppable}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
       >
-        {structure['main'].map((blockId) => {
-          const blockLayout = layouts[blockId]
-          return (
-            <Box key={blockId} data-grid={blockLayout}>
-              <BuilderBlock blockId={blockId} reRender={reRender} />
-            </Box>
-          )
-        })}
+        {structure['main'].map((blockId) => (
+          <Box key={blockId} data-grid={layouts[blockId]}>
+            <BuilderBlock blockId={blockId} />
+          </Box>
+        ))}
       </ReactGridLayout>
     </GridLayoutWrapper>
   )
@@ -123,7 +118,7 @@ WebBuilder.propTypes = {
   userBlocksData: PropTypes.any,
   newBlockType: PropTypes.any,
   setIsSaved: PropTypes.any,
-  setNewBlockType: PropTypes.any,
+  setNewDropBlockType: PropTypes.any,
 }
 
 export default WebBuilder

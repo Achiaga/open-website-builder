@@ -9,7 +9,7 @@ import {
   BsLayoutTextWindowReverse,
 } from 'react-icons/bs'
 
-import { setNewBlockType } from '../../features/builderSlice'
+import { setNewDropBlockType } from '../../features/builderSlice'
 
 const ToolSection = ({ Icon, text, type, ...props }) => {
   const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const ToolSection = ({ Icon, text, type, ...props }) => {
       opacity="0.999"
       onDragStart={(e) => {
         e.dataTransfer.setData('text/plain', '')
-        dispatch(setNewBlockType(type))
+        dispatch(setNewDropBlockType(type))
       }}
       _hover={{ background: '#F2F2F2;' }}
       {...props}
@@ -120,7 +120,7 @@ const BuilderSidebar = () => {
 }
 
 ToolSection.propTypes = {
-  setNewBlockType: PropTypes.func,
+  setNewDropBlockType: PropTypes.func,
   Icon: PropTypes.any,
   text: PropTypes.string,
   type: PropTypes.string,

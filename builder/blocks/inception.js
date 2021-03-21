@@ -4,16 +4,7 @@ import PropTypes from 'prop-types'
 
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
-import { useEffect, useRef, useState } from 'react'
-import {
-  addBlock,
-  editBlock,
-  editItemDraggableProperty,
-  generateBuilderBlocks,
-  normalizeLayout,
-  normalizeBlockStructure,
-  denormalizeInceptionBlock,
-} from '../web-builder/helpers'
+import { useRef, useState } from 'react'
 import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS } from '../web-builder/constants'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,8 +15,6 @@ import {
   getNewBlock,
   getSelectedBlockId,
   setLayout,
-  setNewBlock,
-  udpateBlocksConfigInception,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '.'
 
@@ -53,57 +42,46 @@ const ReactGridLayoutWrapper = ({ extraData, children }) => {
     </Box>
   )
 }
+ReactGridLayoutWrapper.propTypes = {
+  extraData: PropTypes.any,
+  children: PropTypes.any,
+}
 
 const ReactGridLayout = WidthProvider(RGL)
 
 function isObjectOutside(newItem, rowHeight, gridRef) {
-  const parentHeight = gridRef.current.parentElement.getBoundingClientRect()
-    .height
+  const parentElemment = gridRef.current?.parentElement
+  const parentHeight = parentElemment.getBoundingClientRect().height
   const rowsNumber = Math.round(parentHeight / rowHeight)
   return newItem.y + newItem.h > rowsNumber
 }
 
-const BlockInception = ({ extraProps, ...data }) => {
+const BlockInception = ({ parentBlockId, ...data }) => {
   const dispatch = useDispatch()
-  const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
+
+  const { id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
-  const gridRef = useRef()
   const { layouts, structure } = useSelector(getBuilderData)
 
-  const { reRender, blockId: parentBlockId } = extraProps
+  const gridRef = useRef()
 
-  const [secondRender, setSecondRender] = useState(false)
-
-  useEffect(() => {
-    setSecondRender(uuid())
-  }, [reRender])
-
-  // useEffect(() => {
-  //   setLayout((layout) => editItemDraggableProperty(layout, selectedBlockId))
-  // }, [selectedBlockId])
-
-  // function updateBlockConfig(layout, newBlocksConfig) {
-  //   dispatch(
-  //     udpateBlocksConfigInception({
-  //       newBlocks: denormalizeInceptionBlock(layout, newBlocksConfig),
-  //       parentBlockId,
-  //     })
-  //   )
-  // }
+  const [forceRender, setForceRender] = useState(false)
 
   function onDrop(_, droppedBlockLayout) {
     dispatch(addNewBlock(droppedBlockLayout, parentBlockId))
   }
 
-  function handleLayoutChange(layout, _, newItem) {
-    dispatch(setLayout({ ...newItem }))
+  function handleLayoutChange(_, __, newItem) {
     if (isObjectOutside(newItem, gridRowHeight, gridRef)) {
-      return setSecondRender(uuid())
+      setForceRender(uuid())
+    } else {
+      dispatch(setLayout({ ...newItem }))
     }
   }
 
   const isDroppable = selectedBlockId?.includes('inception')
+
   // eslint-disable-next-line no-unused-vars
   const { contentEditable, ...extraData } = data
   return (
@@ -111,7 +89,7 @@ const BlockInception = ({ extraProps, ...data }) => {
       <ReactGridLayout
         {...reactGridConfig}
         innerRef={gridRef}
-        key={secondRender}
+        key={forceRender}
         rowHeight={gridRowHeight}
         isDroppable={isDroppable}
         onDrop={onDrop}
@@ -123,7 +101,7 @@ const BlockInception = ({ extraProps, ...data }) => {
           const blockLayout = layouts[blockId]
           return (
             <Box key={blockId} data-grid={blockLayout}>
-              <BuilderBlock blockId={blockId} reRender={reRender} />
+              <BuilderBlock blockId={blockId} />
             </Box>
           )
         })}
@@ -135,12 +113,7 @@ const BlockInception = ({ extraProps, ...data }) => {
 BlockInception.displayName = 'BlockInception'
 
 BlockInception.propTypes = {
-  extraProps: PropTypes.shape({
-    reRender: PropTypes.bool,
-    blockKey: PropTypes.string,
-    layoutCallback: PropTypes.func,
-    rowHeight: PropTypes.number,
-  }),
+  parentBlockId: PropTypes.string,
 }
 
 export default BlockInception

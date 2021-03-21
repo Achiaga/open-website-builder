@@ -54,7 +54,7 @@ export const FallbackData = {
       i: 'inception-01a194d6-4b21-4516-a307-41b9305e9be2',
       moved: false,
       static: false,
-      isDraggable: true,
+      isDraggable: false,
     },
     'child-inception-33bb7f62-3b9d-46bf-a605-4a2835cb003d': {
       w: 55,
@@ -65,6 +65,7 @@ export const FallbackData = {
       moved: false,
       static: false,
       isDraggable: true,
+      isBounded: true,
     },
   },
   structure: {

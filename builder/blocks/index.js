@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
@@ -28,7 +27,7 @@ export const previewBlocks = {
   inception: PrevInception,
 }
 
-export function BuilderBlock({ blockId, reRender }) {
+export function BuilderBlock({ blockId }) {
   const dispatch = useDispatch()
 
   const { type, data } = useSelector(getBlockData(blockId))
@@ -54,14 +53,7 @@ export function BuilderBlock({ blockId, reRender }) {
       {isEditable && (
         <BlockModifiers data={data} blockKey={blockId} blockType={type} />
       )}
-      <GenericBlock
-        extraProps={{
-          reRender,
-          blockId,
-        }}
-        data={data}
-        {...data}
-      />
+      <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
   )
 }

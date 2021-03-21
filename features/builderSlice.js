@@ -4,15 +4,7 @@ import { batch } from 'react-redux'
 
 import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
-import {
-  addBlock,
-  denormalizeBlockData,
-  editItemDraggableProperty,
-  saveOnLocal,
-  reconstructBlocksConfig,
-  findBlock,
-  getBlockById,
-} from '../builder/web-builder/helpers'
+import { addBlock, findBlock } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
 
 const initialState = {
@@ -30,13 +22,10 @@ export const builderSlice = createSlice({
     loadInitialState: (state, action) => {
       state.builderData = action.payload
     },
-    setNewBlockType: (state, action) => {
+    setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
     },
-    setNewBlockId: (state, action) => {
-      state.newBlock.id = action.payload
-    },
-    setNewBlock: (state, action) => {
+    setNewDropBlock: (state, action) => {
       state.newBlock.type = action.payload.type
       state.newBlock.id = uuid()
     },
@@ -45,9 +34,6 @@ export const builderSlice = createSlice({
     },
     setGridRowHeight: (state, action) => {
       state.gridRowHeight = action.payload
-    },
-    setBlocksConfig: (state, action) => {
-      state.builderData.blocksConfig = action.payload
     },
     setBlockConfig: (state, action) => {
       const { newData, blockId } = action.payload
@@ -67,9 +53,8 @@ export const builderSlice = createSlice({
     },
     setBlockDraggable: (state, action) => {
       const { blockId, prevBlockId } = action.payload
-      if (prevBlockId)
-        state.builderData.layouts[prevBlockId].isDraggable = false
-      if (blockId) state.builderData.layouts[blockId].isDraggable = true
+      if (prevBlockId) state.builderData.layouts[prevBlockId].isDraggable = true
+      if (blockId) state.builderData.layouts[blockId].isDraggable = false
     },
   },
 })
@@ -79,12 +64,10 @@ export const {
   setLayout,
   setAddedBlock,
   setStructure,
-  setNewBlockType,
-  setNewBlockId,
-  setNewBlock,
+  setNewDropBlockType,
+  setNewDropBlock,
   setSelectedBlockId,
   setGridRowHeight,
-  setBlocksConfig,
   setBlockConfig,
   setBlockDraggable,
 } = builderSlice.actions
@@ -95,48 +78,20 @@ export const loadInitialData = () => async (dispatch) => {
   const { blocks, layouts, structure } = userData
   dispatch(loadInitialState({ blocks, layouts, structure }))
 }
-export const upadateLayout = ({ newLayout, editableBlockId }) => (
-  dispatch,
-  getState
-) => {
-  const layout = getLayout(getState())
 
-  dispatch(setLayout(updatedLayout))
-}
-
-export const udpateBlocksConfigInception = ({ newBlocks, parentBlockKey }) => (
-  dispatch,
-  getState
-) => {
-  const blocksConfig = getBlocksConfig(getState())
-  const layout = getLayout(getState())
-  const newBlocksConfig = reconstructBlocksConfig(
-    blocksConfig,
-    parentBlockKey,
-    newBlocks
-  )
-  saveOnLocal(denormalizeBlockData(layout, newBlocksConfig))
-  dispatch(setBlocksConfig(newBlocksConfig))
-}
-
+// Delete not working
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
-  dispatch,
-  getState
+  dispatch
 ) => {
-  const blockInfo = findBlock(getBlocksConfig(getState()), blockId)
-  dispatch(setBlockConfig({ blockInfo, newData, blockId }))
+  dispatch(setBlockConfig({ newData, blockId }))
 }
 
-export const addBlockConfig = ({ newBlockId }) => (dispatch, getState) => {
-  const blocksConfig = getBlocksConfig(getState())
-  const newBlockType = getNewBlockType(getState())
-  const updatedBlocksConfig = addBlock(newBlockId, newBlockType, blocksConfig)
-  dispatch(setBlocksConfig(updatedBlocksConfig))
-}
 export const setBlockEditable = (blockId) => (dispatch, getState) => {
   const prevBlockId = getSelectedBlockId(getState())
-  dispatch(setBlockDraggable({ prevBlockId, blockId }))
-  dispatch(setSelectedBlockId(blockId))
+  batch(() => {
+    dispatch(setBlockDraggable({ prevBlockId, blockId }))
+    dispatch(setSelectedBlockId(blockId))
+  })
 }
 export const addNewBlock = (blockLayout, parentBlockId) => (
   dispatch,
@@ -155,7 +110,7 @@ export const addNewBlock = (blockLayout, parentBlockId) => (
         structureId,
       })
     )
-    dispatch(setNewBlock({ type: null }))
+    dispatch(setNewDropBlock({ type: null }))
   })
 }
 

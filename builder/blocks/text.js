@@ -1,11 +1,11 @@
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
 
-export const GenericText = forwardRef((props, ref) => {
-  const { text: rawText, data, extraProps } = props
+export const GenericText = (props) => {
+  const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
 
   const Textmodifiers = {
@@ -32,9 +32,7 @@ export const GenericText = forwardRef((props, ref) => {
     e.stopPropagation()
     const value = titleRef.current?.innerText
     const updatedBlock = { ...data, text: value }
-    dispatch(
-      editBlockConfig({ newData: updatedBlock, blockId: extraProps.blockId })
-    )
+    dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
 
   return (
@@ -54,14 +52,15 @@ export const GenericText = forwardRef((props, ref) => {
       {text}
     </Text>
   )
-})
+}
+
 GenericText.displayName = 'TextBlock'
 
 GenericText.propTypes = {
+  parentBlockId: PropTypes.string,
   isEditable: PropTypes.bool,
   contentEditable: PropTypes.bool,
   text: PropTypes.string,
-  editBlock: PropTypes.func,
   fontSize: PropTypes.string,
   textAlign: PropTypes.string,
   fontColor: PropTypes.string,
