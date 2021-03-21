@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
+import localforage from 'localforage'
 
 import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
@@ -8,6 +9,7 @@ import { DELETE } from '../builder/blocks/constants'
 
 import { addBlock, removeblockFromState } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
+import { getUserDataById } from '../utils/user-data'
 
 const initialState = {
   builderData: null,
@@ -23,6 +25,9 @@ export const builderSlice = createSlice({
   reducers: {
     setBuilderBlocksData: (state, action) => {
       state.builderData = action.payload
+    },
+    setUserData: (state, action) => {
+      state.user = action.payload
     },
     setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
@@ -55,7 +60,9 @@ export const builderSlice = createSlice({
     },
     setBlockDraggable: (state, action) => {
       const { blockId, prevBlockId } = action.payload
-      if (prevBlockId) state.builderData.layouts[prevBlockId].isDraggable = true
+      if (prevBlockId && state.builderData.layouts[prevBlockId]) {
+        state.builderData.layouts[prevBlockId].isDraggable = true
+      }
       if (blockId) state.builderData.layouts[blockId].isDraggable = false
     },
   },
@@ -63,6 +70,7 @@ export const builderSlice = createSlice({
 
 export const {
   setBuilderBlocksData,
+  setUserData,
   setLayout,
   setAddedBlock,
   setStructure,
@@ -74,11 +82,24 @@ export const {
   setBlockDraggable,
 } = builderSlice.actions
 
-export const loadInitialData = () => async (dispatch) => {
-  const userData = await getUserDataFromLS()
-  console.log(JSON.stringify(userData, null, 2))
-  const { blocks, layouts, structure } = userData || FallbackData
-  dispatch(setBuilderBlocksData({ blocks, layouts, structure }))
+async function getUserData(user) {
+  console.log(user)
+  if (user) {
+    const userData = await getUserDataById(user.sub)
+    return userData
+  }
+  // const userData = await getUserResumeData()
+  // return userData || FallbackData
+}
+
+export const loadInitialData = (user) => async (dispatch) => {
+  const { resume_data, id, user_id, is_publish } = await getUserData(user)
+  // const userData = await getUserDataFromLS()
+  // console.log(JSON.stringify(userData, null, 2))
+  dispatch(setBuilderBlocksData(resume_data))
+  dispatch(
+    setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
+  )
 }
 
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
@@ -130,6 +151,7 @@ export const addNewBlock = (blockLayout, parentBlockId) => (
 export const getBuilderData = (state) => state.builder.builderData
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
+export const getResumeId = (state) => state.builder?.user?.resumeId
 
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
