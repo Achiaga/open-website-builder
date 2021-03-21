@@ -53,6 +53,34 @@ export const GenericText = (props) => {
     </Text>
   )
 }
+export const PrevText = (props) => {
+  const { text, parentBlockId, ...data } = props
+  const Textmodifiers = {
+    fontSize: props.fontSize,
+    textAlign: props.textAlign,
+    backgroundColor: props.backgroundColor,
+    color: props.fontColor,
+    alignItems: props.alignItems,
+    fontWeight: props.fontWeight,
+    boxShadow: props.boxShadow,
+    borderRadius: props.borderRadius,
+  }
+
+  return (
+    <Text
+      cursor="pointer"
+      w="100%"
+      h="100%"
+      d="grid"
+      contentEditable={true}
+      suppressContentEditableWarning
+      {...Textmodifiers}
+      wordBreak="break-word"
+    >
+      {text}
+    </Text>
+  )
+}
 
 GenericText.displayName = 'TextBlock'
 

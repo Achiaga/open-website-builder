@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
 import Image from './image'
-import List from './list'
-import GenericText from './text'
+import GenericText, { PrevText } from './text'
 import BlockInception from './inception'
 import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,14 +15,12 @@ import {
 
 const blocks = {
   image: Image,
-  list: List,
   text: GenericText,
   inception: BlockInception,
 }
 export const previewBlocks = {
   image: Image,
-  list: List,
-  text: GenericText,
+  text: PrevText,
   inception: PrevInception,
 }
 

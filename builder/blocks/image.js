@@ -44,7 +44,7 @@ export const GenericImage = (props) => {
     />
   )
 }
-GenericImage.displayName = 'TextBlock'
+GenericImage.displayName = 'ImageBlock'
 
 GenericImage.propTypes = {
   contentEditable: PropTypes.bool,

@@ -1,21 +1,22 @@
 import { Box } from '@chakra-ui/layout'
+import { useContext } from 'react'
 import { GRID_COLUMNS } from '../web-builder/constants'
 
-import { generatePreviewBlock } from '../web-preview/helpers'
+import { generatePageCode } from '../web-preview/helpers'
 
-export const PrevInception = (props) => {
-  const blocks = props.blocks
+import { BlocksContext } from '../web-preview/preview'
+
+export const PrevInception = ({ parentHeight, blockId }) => {
+  const { builder, rowHeight } = useContext(BlocksContext)
+  console.log('PrevInception', builder)
   return (
     <Box
       d="grid"
       gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
-      gridTemplateRows={`repeat( auto-fill,  ${props.rowHeight}px )`}
-      height={props.parentHeight * props.rowHeight}
+      gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
+      height={parentHeight * rowHeight}
     >
-      {Object.keys(blocks).map((block) => {
-        const blockData = blocks[block]
-        return generatePreviewBlock(blockData.block, blockData.layout)
-      })}
+      {generatePageCode(builder.structure[blockId])}
     </Box>
   )
 }
