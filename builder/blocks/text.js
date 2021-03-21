@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '@chakra-ui/react'
-import { useDispatch } from 'react-redux'
-import { editBlockConfig } from '../../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  editBlockConfig,
+  getSelectedBlockId,
+} from '../../features/builderSlice'
 
 export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
+  const selectedId = useSelector(getSelectedBlockId)
 
   const Textmodifiers = {
     fontSize: props.fontSize,
@@ -43,7 +47,7 @@ export const GenericText = (props) => {
       d="grid"
       onClick={(e) => e.stopPropagation()}
       onKeyUp={handleKeyUp}
-      contentEditable={true}
+      contentEditable={selectedId === parentBlockId}
       suppressContentEditableWarning
       {...Textmodifiers}
       wordBreak="break-word"
