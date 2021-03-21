@@ -7,6 +7,7 @@ import {
   AiOutlineVerticalAlignBottom,
   AiOutlineVerticalAlignMiddle,
   AiOutlineVerticalAlignTop,
+  AiOutlineBorderRight,
 } from 'react-icons/ai'
 
 import { FontIcon, BgIcon } from '../../assets/fontIcon'
@@ -21,12 +22,12 @@ const fontSize = {
   options: [
     { value: '0.75rem', title: 'xs' },
     { value: '1rem', title: 'sm' },
-    { value: '1.25rem', title: 'md' },
-    { value: '1.5rem', title: 'lg' },
-    { value: '1.75rem', title: 'xl' },
-    { value: '2rem', title: '2xl' },
-    { value: '3rem', title: '3xl' },
-    { value: '4rem', title: '4xl' },
+    { value: '1.5rem', title: 'md' },
+    { value: '1.75rem', title: 'lg' },
+    { value: '2rem', title: 'xl' },
+    { value: '3rem', title: '2xl' },
+    { value: '4rem', title: '3xl' },
+    { value: '5rem', title: '4xl' },
   ],
 }
 const textAlign = {
@@ -122,6 +123,17 @@ const color = {
 
 // Block
 
+const border = {
+  type: 'dropdown',
+  property: 'border',
+  icon: <AiOutlineBorderRight />,
+  options: [
+    { value: '0px solid black', title: 'none' },
+    { value: '1px solid black', title: 'black' },
+    { value: '1px solid gray', title: 'gray' },
+  ],
+}
+
 const borderRadius = {
   type: 'dropdown',
   property: 'borderRadius',
@@ -134,6 +146,7 @@ const borderRadius = {
     { value: '100%', title: 'circle' },
   ],
 }
+
 const boxShadow = {
   type: 'dropdown',
   property: 'boxShadow',
@@ -234,19 +247,36 @@ const backgroundColor = {
   ],
 }
 
+const emoji = {
+  type: 'emojiDropdown',
+  property: 'emoji',
+  icon: '😋',
+  options: [
+    {
+      value: '&#128526',
+      title: '&#128526',
+    },
+    {
+      value: '&#10084',
+      title: '&#10084',
+    },
+    {
+      value: '🎉',
+      title: '🎉',
+    },
+    {
+      value: '🙌',
+      title: '🙌',
+    },
+  ],
+}
+
 const deleteBlock = {
   type: 'button',
   placeholder: <RiDeleteBin6Line color="black" size="1.1rem" />,
   property: '',
   operationType: DELETE,
 }
-
-// const optionsBlock = {
-//   type: 'button',
-//   placeholder: <BsThreeDotsVertical color="black" size="1.1rem" />,
-//   property: '',
-//   operationType: '',
-// }
 
 const imageInput = {
   type: 'text',
@@ -274,7 +304,8 @@ export const Properties = {
     redirectInput,
     color,
     backgroundColor,
+    emoji,
   ],
   image: [deleteBlock, boxShadow, borderRadius, imageInput, redirectInput],
-  inception: [deleteBlock, boxShadow, borderRadius, backgroundColor],
+  inception: [deleteBlock, border, borderRadius, boxShadow, backgroundColor],
 }

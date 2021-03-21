@@ -37,6 +37,7 @@ const BlockInception = forwardRef(({ extraProps, ...data }, ref) => {
     setSelectedItem,
     rowHeight,
   } = extraProps
+
   const [newBlockId, setNewBlockId] = useState(() => uuid())
   const [secondRender, setSecondRender] = useState(false)
   const gridRef = useRef()

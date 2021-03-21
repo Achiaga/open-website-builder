@@ -8,6 +8,7 @@ import { Properties } from './block-properties'
 const PropertiesModifiers = {
   dropdown: DropDownSelector,
   colorDropdown: ColorDropDownSelector,
+  emojiDropdown: EmojiDropDownSelector,
   button: ButtonSelector,
   text: TextInput,
   redirect: TextInput,
@@ -230,6 +231,117 @@ ColorDropDownSelector.propTypes = {
   placeholder: PropTypes.string.isRequired,
 }
 
+function EmojiDropDownSelector({
+  handleEdit,
+  isOpen,
+  isBlockAtTop,
+  isBlockAtLeft,
+  isBlockAtRight,
+  handleOpenToolbar,
+  property,
+  icon,
+  value,
+  options,
+}) {
+  const valueIcon = options.find((option) => option.value === value)?.icon || ''
+
+  const handleChange = (e) => {
+    const { value } = e.currentTarget
+    handleEdit(property, value)
+  }
+
+  const checkDisplayTop = () => {
+    if (isBlockAtTop) return 'unset'
+    return '-103px'
+  }
+
+  const checkDisplayBottom = () => {
+    if (isBlockAtTop) return '-294px'
+    return 'unset'
+  }
+
+  return (
+    <Box
+      position="relative"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      cursor="pointer"
+      height="20px"
+      borderLeft="1px solid gray"
+      paddingX="0.3rem"
+    >
+      <Button
+        id={property}
+        size="sm"
+        padding="3px"
+        bg="transparent"
+        onClick={handleOpenToolbar}
+      >
+        {icon}
+      </Button>
+      <Box
+        position="absolute"
+        top={checkDisplayTop}
+        bottom={checkDisplayBottom}
+        left={isBlockAtLeft ? '2px' : 'unset'}
+        right={isBlockAtRight ? '0px' : 'unset'}
+        bg="white"
+        rounded="5px"
+        zIndex="999999"
+        boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
+      >
+        {isOpen === property &&
+          options?.map(({ value: optionValue, title, icon }, index) => {
+            return (
+              <Button
+                bg="transparent"
+                onClick={handleChange}
+                key={index}
+                w="6rem"
+                display="flex"
+                justifyContent="space-between"
+                height="2rem"
+                fontSize="14px"
+                background={`${optionValue === value && '#bdd4f95e'}`}
+                _hover={
+                  optionValue === value
+                    ? { bg: '#bdd4f98a' }
+                    : { bg: '#F2F2F2' }
+                }
+                value={optionValue}
+                paddingX="4px"
+              >
+                {icon}
+                <Box width="60%" display="flex" justifyContent="flex-start">
+                  {title}
+                </Box>
+              </Button>
+            )
+          })}
+      </Box>
+    </Box>
+  )
+}
+
+EmojiDropDownSelector.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  isBlockAtTop: PropTypes.bool.isRequired,
+  isBlockAtLeft: PropTypes.bool.isRequired,
+  isBlockAtRight: PropTypes.bool.isRequired,
+  handleOpenToolbar: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  property: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      title: PropTypes.any.isRequired,
+    }).isRequired
+  ).isRequired,
+  placeholder: PropTypes.string.isRequired,
+}
+
 function TextInput({
   handleEdit,
   handleCloseInput,
@@ -243,7 +355,6 @@ function TextInput({
   placeholder,
   inputPlaceholder,
 }) {
-  console.log(isBlockAtRight)
   const handleChange = (e) => {
     handleEdit(property, e.target.value)
   }
