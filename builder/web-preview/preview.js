@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createContext } from 'react'
 import { generatePageCode } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
-import {
-  normalizeBlockStructure,
-  normalizeLayout,
-} from '../web-builder/helpers'
 
 const WebPreview = ({ layout, blocksConfig }) => {
   const [pageDesign, setPageDesign] = useState(null)
@@ -36,6 +32,8 @@ WebPreview.propTypes = {
   blocksConfig: PropTypes.any,
 }
 
+export const BlocksContext = createContext()
+
 export const ResumeWebsite = ({ userBlocksData }) => {
   const [windowWidth, setWindowWidth] = useState(1440)
 
@@ -49,21 +47,20 @@ export const ResumeWebsite = ({ userBlocksData }) => {
   }, [])
 
   const rowHeight = windowWidth / GRID_COLUMNS
-
+  const childStructure = userBlocksData.structure['main']
   return (
-    <Box
-      d="grid"
-      gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
-      gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
-      w="100vw"
-      height="7500px"
-    >
-      {generatePageCode(
-        normalizeLayout(userBlocksData),
-        normalizeBlockStructure(userBlocksData),
-        rowHeight
-      )}
-    </Box>
+    <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
+      <Box
+        p="10px"
+        d="grid"
+        gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
+        gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
+        w="100vw"
+        height="7500px"
+      >
+        {generatePageCode(childStructure)}
+      </Box>
+    </BlocksContext.Provider>
   )
 }
 

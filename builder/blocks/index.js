@@ -1,92 +1,60 @@
 import { Box } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
 import Image from './image'
-import List from './list'
-import GenericText from './text'
+import GenericText, { PrevText } from './text'
 import BlockInception from './inception'
 import { PrevInception } from './prevInception'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getBlockData,
+  getSelectedBlockId,
+  setBlockEditable,
+} from '../../features/builderSlice'
 
 const blocks = {
   image: Image,
-  list: List,
   text: GenericText,
   inception: BlockInception,
 }
 export const previewBlocks = {
   image: Image,
-  list: List,
-  text: GenericText,
+  text: PrevText,
   inception: PrevInception,
 }
 
-export function BuilderBlock({
-  data,
-  blockKey,
-  isEditable,
-  blockType,
-  reRender,
-  selectedItemId,
-  newBlockType,
-  layoutCallback,
-  setSelectedItem,
-  rowHeight,
-}) {
-  const GenericBlock = blocks[blockType]
-  const { editBlock = () => {}, text: dataText, ...metaData } = data
+export function BuilderBlock({ blockId }) {
+  const dispatch = useDispatch()
 
-  const [text] = useState(dataText)
-  const titleRef = useRef(null)
+  const { type, data } = useSelector(getBlockData(blockId))
+  const selectedBlockId = useSelector(getSelectedBlockId)
 
-  function handleKeyUp(e) {
-    e.stopPropagation()
-    const value = titleRef.current?.innerText
-    const updatedBlock = { ...data, text: value }
-    editBlock(updatedBlock, blockKey)
-  }
-  useEffect(() => {
-    titleRef?.current?.addEventListener('paste', function (e) {
-      e.preventDefault()
-      var text = e.clipboardData.getData('text/plain')
-      document.execCommand('insertText', false, text)
-    })
-  }, [titleRef])
+  const GenericBlock = blocks[type]
+
+  const isEditable = selectedBlockId === blockId
+
   return (
-    <Box width="100%" h="100%" id={blockKey}>
+    <Box
+      width="100%"
+      h="100%"
+      id={blockId}
+      onDoubleClick={(e) => {
+        e.stopPropagation()
+        if (isEditable) return null
+        dispatch(setBlockEditable(blockId))
+      }}
+      outline="2px solid"
+      outlineColor={isEditable ? 'blue' : 'transparent'}
+    >
       {isEditable && (
-        <BlockModifiers data={data} blockKey={blockKey} blockType={blockType} />
+        <BlockModifiers data={data} blockKey={blockId} blockType={type} />
       )}
-      <GenericBlock
-        onKeyUp={handleKeyUp}
-        contentEditable={isEditable}
-        {...(blockType === 'text' ? { ref: titleRef } : {})}
-        text={text}
-        extraProps={{
-          reRender,
-          selectedItemId,
-          newBlockType,
-          layoutCallback,
-          blockKey,
-          setSelectedItem,
-          rowHeight,
-        }}
-        {...metaData}
-      />
+      <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
   )
 }
 BuilderBlock.propTypes = {
-  isPreview: PropTypes.bool,
-  blockKey: PropTypes.string.isRequired,
-  isEditable: PropTypes.bool,
-  blockType: PropTypes.string.isRequired,
-  data: PropTypes.any,
+  blockId: PropTypes.bool,
   reRender: PropTypes.any,
-  selectedItemId: PropTypes.any,
-  newBlockType: PropTypes.any,
-  layoutCallback: PropTypes.any,
-  setSelectedItem: PropTypes.any,
-  rowHeight: PropTypes.any,
 }
