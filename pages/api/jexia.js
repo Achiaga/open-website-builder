@@ -1,4 +1,7 @@
-import { jexiaClient, dataOperations, field } from 'jexia-sdk-js/node'
+import { jexiaClient, dataOperations } from 'jexia-sdk-js/node'
+
+const RESUME_DB_NAME = 'resumes'
+
 const ds = dataOperations()
 
 jexiaClient().init(
@@ -11,8 +14,9 @@ jexiaClient().init(
   ds
 )
 
-const createResuemeData = async (data, res) => {
-  const dataSaved = ds.dataset('user-resume').insert(data)
+const createResuemeData = (data, res) => {
+  console.log('createResuemeData')
+  const dataSaved = ds.dataset(RESUME_DB_NAME).insert(data)
 
   return dataSaved.subscribe(
     (records) => {
@@ -24,32 +28,35 @@ const createResuemeData = async (data, res) => {
     }
   )
 }
-
-const updateResumeData = async (data, res) => {
+const updateResumeData = (data, res) => {
+  console.log('updateResumeData')
   const dataSaved = ds
-    .dataset('user-resume')
+    .dataset(RESUME_DB_NAME)
     .update([{ id: data.id, resume_data: data.resume_data }])
 
   return dataSaved.subscribe(
     (records) => {
-      console.log(records)
       respondAPIQuery(res, records)
     },
     (error) => {
-      console.error(error)
-      if (error.message === 'action "update" needs at least one condition') {
-        return createResuemeData(data, res)
-      }
       respondAPIQuery(res, error, 500)
     }
   )
+}
+
+const manipulateResumeData = (data, res) => {
+  console.log('manipulateResumeData')
+  if (data.id) {
+    return updateResumeData(data, res)
+  }
+  return createResuemeData(data, res)
 }
 
 const getUserResumeData = (id, res) => {
   const error = { error: { statusText: 'no resume found', code: 404 } }
 
   const searchData = ds
-    .dataset('user-resume')
+    .dataset(RESUME_DB_NAME)
     .select()
     .where((field) => field('id').isEqualTo(id))
 
@@ -62,15 +69,15 @@ const getUserResumeData = (id, res) => {
       respondAPIQuery(res, resumeData || error)
     },
     (error) => {
-      return error
+      return respondAPIQuery(res, error, 500)
     }
   )
 }
 const getUserData = (id, res) => {
   const error = { error: { statusText: 'no user data found', code: 404 } }
-
+  console.log('getUserData')
   const searchData = ds
-    .dataset('user-resume')
+    .dataset(RESUME_DB_NAME)
     .select()
     .where((field) => field('user_id').isEqualTo(id))
 
@@ -83,7 +90,7 @@ const getUserData = (id, res) => {
       respondAPIQuery(res, resumeData || error)
     },
     (error) => {
-      return error
+      return respondAPIQuery(res, error, 500)
     }
   )
 }
@@ -112,7 +119,7 @@ export default function betaUsers(req, res) {
   const { type, data } = req.body
   switch (type) {
     case 'save':
-      return updateResumeData(data, res)
+      return manipulateResumeData(data, res)
     case 'read-resume':
       return getUserResumeData(data, res)
     case 'read-user':

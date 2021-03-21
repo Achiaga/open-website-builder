@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
-import localforage from 'localforage'
 
 import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
@@ -10,6 +9,7 @@ import { DELETE } from '../builder/blocks/constants'
 import { addBlock, removeblockFromState } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
 import { getUserDataById } from '../utils/user-data'
+import { saveData } from '../login/helpers'
 
 const initialState = {
   builderData: null,
@@ -84,22 +84,50 @@ export const {
 
 async function getUserData(user) {
   console.log(user)
-  if (user) {
+  try {
     const userData = await getUserDataById(user.sub)
     return userData
+  } catch (err) {
+    console.log('error con getUserData', err)
+    return { resume_data: FallbackData }
   }
-  // const userData = await getUserResumeData()
-  // return userData || FallbackData
 }
 
-export const loadInitialData = (user) => async (dispatch) => {
+const loadInitialDataNoAccount = () => async (dispatch) => {
+  const blocksData = FallbackData
+  dispatch(setBuilderBlocksData(blocksData))
+}
+const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
+  dispatch
+) => {
+  console.log({ resume_data, id, user_id, is_publish })
+  batch(() => {
+    dispatch(setBuilderBlocksData(resume_data))
+    dispatch(
+      setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
+    )
+  })
+}
+
+const loadDataFromLSAndSave = (user) => async (dispatch) => {
+  const builderData = await getUserDataFromLS()
+  const { resume_data, id, user_id, is_publish } = await saveData({
+    user,
+    builderData,
+  })
+  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+}
+
+const loadDataFromDB = (user) => async (dispatch) => {
   const { resume_data, id, user_id, is_publish } = await getUserData(user)
-  // const userData = await getUserDataFromLS()
-  // console.log(JSON.stringify(userData, null, 2))
-  dispatch(setBuilderBlocksData(resume_data))
-  dispatch(
-    setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
-  )
+  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+}
+
+export const loadInitialData = (user, origin) => async (dispatch) => {
+  console.log('loadInitialData', user, origin)
+  if (!user) return dispatch(loadInitialDataNoAccount())
+  if (user && origin === 'login') return dispatch(loadDataFromLSAndSave(user))
+  if (user && origin !== 'login') return dispatch(loadDataFromDB(user))
 }
 
 export const editBlockConfig = ({ blockId, newData, operationType }) => (

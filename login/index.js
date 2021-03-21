@@ -6,6 +6,7 @@ import Button from '../components/commun/button'
 import { Box } from '@chakra-ui/layout'
 import { useSelector } from 'react-redux'
 import { getBuilderData, getResumeId } from '../features/builderSlice'
+import { saveData } from './helpers'
 
 function Login() {
   const { user, error, isLoading } = useUser()
@@ -13,22 +14,12 @@ function Login() {
   const resumeId = useSelector(getResumeId)
   const router = useRouter()
 
-  async function saveData() {
-    const userData = {
-      id: resumeId,
-      user_id: user.sub,
-      user_email: user.email,
-      resume_data: builderData,
-    }
-    await publishResume(userData)
-  }
-
   function handlePublish() {
-    if (user) return saveData()
+    if (user) return saveData({ user, resumeId, builderData })
     return router.push('/api/auth/custom-login')
   }
   function handleSavePage() {
-    if (user) return saveData()
+    if (user) return saveData({ user, resumeId, builderData })
     return window.alert('pay you fucking fuck')
   }
 
