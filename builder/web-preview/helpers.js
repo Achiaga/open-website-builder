@@ -1,35 +1,35 @@
 import { Box } from '@chakra-ui/react'
+import { useContext } from 'react'
 
 import { previewBlocks } from '../blocks'
+import { BlocksContext } from './preview'
 
-export const generatePageCode = (layout, blocksConfig, rowHeight) => {
-  return layout?.map((layoutItem) => {
-    const BlockKey = layoutItem.i
-    return generatePreviewBlock(blocksConfig[BlockKey], layoutItem, rowHeight)
+export const generatePageCode = (childStructure) => {
+  return childStructure?.map((structItem) => {
+    return <GeneratePreviewBlock key={structItem} structItem={structItem} />
   })
 }
 
-export function generatePreviewBlock(blockInfo, blockLayout, rowHeight) {
-  if (!blockInfo?.type) return null
-  const { w, h, x, y, i } = blockLayout || {}
-  const { boxShadow, borderRadius, backgroundColor } = blockInfo.data
-  const GenericBlock = previewBlocks[blockInfo.type]
+export function GeneratePreviewBlock({ structItem }) {
+  const {
+    builder: { blocks, layouts },
+  } = useContext(BlocksContext)
+
+  const { data, type } = blocks[structItem]
+  const { w, h, x, y, i } = layouts[structItem] || {}
+
+  const GenericBlock = previewBlocks[type]
   return (
     <Box
       key={i}
       gridColumn={`${x + 1} /  span ${w}`}
       gridRow={`${y + 1} / span ${h}`}
       overflow="hidden"
-      boxShadow={boxShadow}
-      borderRadius={borderRadius}
-      backgroundColor={backgroundColor}
+      boxShadow={data.boxShadow}
+      borderRadius={data.borderRadius}
+      backgroundColor={data.backgroundColor}
     >
-      <GenericBlock
-        {...blockInfo.data}
-        rowHeight={rowHeight}
-        parentHeight={h}
-        isPreview
-      />
+      <GenericBlock {...data} parentHeight={h} isPreview blockId={structItem} />
     </Box>
   )
 }
