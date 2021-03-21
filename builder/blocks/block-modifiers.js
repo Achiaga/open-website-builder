@@ -71,7 +71,7 @@ const color = {
   type: 'dropdown',
   property: 'fontColor',
   options: [
-    { value: '#1F1F1F', title: 'black' },
+    { value: '#000000', title: 'black' },
     { value: 'rgb(155,154,151)', title: 'gray' },
     { value: 'rgb(100,71,58)', title: 'brown' },
     { value: 'rgb(217,115,13)', title: 'orange' },
@@ -81,7 +81,7 @@ const color = {
     { value: 'rgb(105,64,165)', title: 'purple' },
     { value: 'rgb(173,26,114)', title: 'pink' },
     { value: 'rgb(224,62,62)', title: 'red' },
-    { value: '#FAFAFA', title: 'white' },
+    { value: '#FFFFFF', title: 'white' },
   ],
 }
 
@@ -143,8 +143,8 @@ const backgroundColor = {
   property: 'backgroundColor',
   options: [
     { value: 'trasnparent', title: 'none' },
-    { value: '#FAFAFA', title: 'white' },
-    { value: '#1F1F1F', title: 'black' },
+    { value: '#FFFFFF', title: 'white' },
+    { value: '#000000', title: 'black' },
     { value: 'rgb(235,236,237)', title: 'gray' },
     { value: 'rgb(233,229,227)', title: 'brown' },
     { value: 'rgb(250,235,221)', title: 'orange' },
@@ -159,7 +159,7 @@ const backgroundColor = {
 
 const deleteBlock = {
   type: 'button',
-  placeholder: <RiDeleteBin6Line color="red" size="1rem" />,
+  placeholder: <RiDeleteBin6Line color="black" size="1.1rem" />,
   property: '',
   operationType: DELETE,
 }
@@ -205,6 +205,7 @@ function DropDownSelector({
   handleEdit,
   isOpen,
   isBlockAtTop,
+  isBlockAtLeft,
   handleOpenToolbar,
   property,
   value,
@@ -261,6 +262,7 @@ function DropDownSelector({
         top={checkDisplayTop}
         bottom={checkDisplayBottom}
         display={checkDisplayFlexProperty() ? 'flex' : 'block'}
+        left={isBlockAtLeft ? '2px' : 'unset'}
         bg="white"
         rounded="5px"
         zIndex="999999"
@@ -297,6 +299,7 @@ function DropDownSelector({
 DropDownSelector.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   isBlockAtTop: PropTypes.bool.isRequired,
+  isBlockAtLeft: PropTypes.bool.isRequired,
   handleOpenToolbar: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
   property: PropTypes.string.isRequired,
@@ -315,6 +318,7 @@ function TextInput({
   handleCloseInput,
   isOpen,
   isBlockAtTop,
+  isBlockAtLeft,
   handleOpenToolbar,
   property,
   value,
@@ -350,6 +354,7 @@ function TextInput({
           position="absolute"
           top={isBlockAtTop ? 'unset' : '-60px'}
           bottom={isBlockAtTop ? '-60px' : 'unset'}
+          left={isBlockAtLeft ? '0' : 'unset'}
           bg="white"
           rounded="5px"
           zIndex="999999"
@@ -387,6 +392,7 @@ TextInput.propTypes = {
   inputPlaceholder: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   isBlockAtTop: PropTypes.bool.isRequired,
+  isBlockAtLeft: PropTypes.bool.isRequired,
   handleOpenToolbar: PropTypes.func,
 }
 
@@ -396,7 +402,15 @@ function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
   }
   return (
     <Box>
-      <Button padding="0" onClick={handleClick} bg="">
+      <Button
+        padding="0"
+        onClick={handleClick}
+        bg="transparent"
+        borderRadius="5px"
+        borderTopRightRadius="0px"
+        borderBottomRightRadius="0px"
+        _hover={{ bg: '#ff818180' }}
+      >
         {placeholder}
       </Button>
     </Box>
@@ -412,6 +426,7 @@ ButtonSelector.propTypes = {
 export const Modifiers = ({
   isOpen,
   isBlockAtTop,
+  isBlockAtLeft,
   handleOpenToolbar,
   handleEdit,
   handleCloseInput,
@@ -427,6 +442,7 @@ export const Modifiers = ({
         <Modifier
           isOpen={isOpen}
           isBlockAtTop={isBlockAtTop}
+          isBlockAtLeft={isBlockAtLeft}
           handleOpenToolbar={handleOpenToolbar}
           handleEdit={handleEdit}
           handleCloseInput={handleCloseInput}
@@ -497,8 +513,8 @@ function getOffsets(blockKey) {
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
-  const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState('')
+  const dispatch = useDispatch()
 
   const handleOpenToolbar = (e) => {
     const { id } = e.currentTarget
@@ -522,12 +538,13 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
   const dim = getOffsets(blockKey)
 
   const isBlockAtRight = dim.left > window.innerWidth * 0.7
+  const isBlockAtLeft = dim.left < window.innerWidth * 0.07
 
   const xOffsetToolbar = isBlockAtRight
     ? { right: window.innerWidth - (dim.left + dim.width) }
     : { left: dim.left }
 
-  const isBlockAtTop = dim.top < 100
+  const isBlockAtTop = dim.top < 150
   const yOffsetToolbar = isBlockAtTop
     ? { top: dim.top + dim.height + 5 + 'px' }
     : { top: dim.top - 50 + 'px' }
@@ -552,6 +569,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
           handleOpenToolbar={handleOpenToolbar}
           isOpen={isOpen}
           isBlockAtTop={isBlockAtTop}
+          isBlockAtLeft={isBlockAtLeft}
           handleEdit={handleEdit}
           handleCloseInput={handleCloseInput}
           propertiesValues={data}
