@@ -6,7 +6,7 @@ import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
 import { DELETE } from '../builder/blocks/constants'
 
-import { addBlock } from '../builder/web-builder/helpers'
+import { addBlock, removeblockFromState } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
 
 const initialState = {
@@ -90,7 +90,12 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
 
 export const removeblock = ({ blockId }) => (dispatch, getState) => {
   const { structure, layouts, blocks } = getBuilderData(getState())
-  const newBuilderData = removeblock(blockId, layouts, blocks, structure)
+  const newBuilderData = removeblockFromState(
+    blockId,
+    layouts,
+    blocks,
+    structure
+  )
   dispatch(setBuilderBlocksData(newBuilderData))
 }
 

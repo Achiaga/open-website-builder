@@ -24,7 +24,12 @@ export const findBlockParentId = (blocksConfig, blockId) => {
   }
 }
 
-export function removeBlock(blockId, oldLayout, oldBlocks, oldStructure) {
+export function removeblockFromState(
+  blockId,
+  oldLayout,
+  oldBlocks,
+  oldStructure
+) {
   const parentId = findBlockParentId(oldStructure, blockId)
   const blocks = { ...oldBlocks }
   delete blocks[blockId]
