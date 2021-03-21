@@ -4,7 +4,9 @@ import { batch } from 'react-redux'
 
 import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
-import { addBlock, findBlock } from '../builder/web-builder/helpers'
+import { DELETE } from '../builder/blocks/constants'
+
+import { addBlock } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
 
 const initialState = {
@@ -19,7 +21,7 @@ export const builderSlice = createSlice({
   name: 'builder',
   initialState,
   reducers: {
-    loadInitialState: (state, action) => {
+    setBuilderBlocksData: (state, action) => {
       state.builderData = action.payload
     },
     setNewDropBlockType: (state, action) => {
@@ -60,7 +62,7 @@ export const builderSlice = createSlice({
 })
 
 export const {
-  loadInitialState,
+  setBuilderBlocksData,
   setLayout,
   setAddedBlock,
   setStructure,
@@ -76,14 +78,20 @@ export const loadInitialData = () => async (dispatch) => {
   const userData = await getUserDataFromLS()
   console.log(JSON.stringify(userData, null, 2))
   const { blocks, layouts, structure } = userData
-  dispatch(loadInitialState({ blocks, layouts, structure }))
+  dispatch(setBuilderBlocksData({ blocks, layouts, structure }))
 }
 
-// Delete not working
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
   dispatch
 ) => {
-  dispatch(setBlockConfig({ newData, blockId }))
+  if (operationType === DELETE) dispatch(removeblock({ blockId, newData }))
+  else dispatch(setBlockConfig({ newData, blockId }))
+}
+
+export const removeblock = ({ blockId }) => (dispatch, getState) => {
+  const { structure, layouts, blocks } = getBuilderData(getState())
+  const newBuilderData = removeblock(blockId, layouts, blocks, structure)
+  dispatch(setBuilderBlocksData(newBuilderData))
 }
 
 export const setBlockEditable = (blockId) => (dispatch, getState) => {
