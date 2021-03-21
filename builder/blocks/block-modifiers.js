@@ -464,6 +464,9 @@ function getBlockOffset(elem) {
       if (elem.id.includes('inception')) {
         elemWidth = elem.getBoundingClientRect()?.width
       }
+      if (elem.hasAttribute('data-grid')) {
+        elemWidth += elem.getBoundingClientRect()?.width
+      }
       offsetTop += elem.offsetTop
       offsetLeft += elem.offsetLeft
     }
@@ -501,15 +504,25 @@ function getTranslateValues(element) {
 function getOffsets(blockKey) {
   const mainParentStyles = document.getElementById(blockKey).offsetParent
     .offsetParent.offsetParent
+
   if (blockKey.includes('child-inception')) {
-    const v1 = getBlockOffset(mainParentStyles)
+    let v1 = getTranslateValues(
+      document.getElementById(blockKey).offsetParent.offsetParent
+    )
+    if ((v1.top === 0, v1.left === 0)) {
+      v1 = getBlockOffset(mainParentStyles)
+    }
     const v2 = getTranslateValues(document.getElementById(blockKey))
     return { top: v1.top + v2.top, left: v1.left + v2.left }
   }
   if (blockKey.includes('inception')) {
-    return getBlockOffset(document.getElementById(blockKey))
+    return getTranslateValues(document.getElementById(blockKey))
   }
-  return getTranslateValues(document.getElementById(blockKey))
+  let dim = getTranslateValues(document.getElementById(blockKey))
+  if (dim.top === 0) {
+    dim = getBlockOffset(document.getElementById(blockKey))
+  }
+  return dim
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
