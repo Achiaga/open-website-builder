@@ -659,7 +659,6 @@ export function autoBindHandlers(el, fns) {
 function log(...args) {
   if (!DEBUG) return
   // eslint-disable-next-line no-console
-  console.log(...args)
 }
 
 export const noop = () => {}

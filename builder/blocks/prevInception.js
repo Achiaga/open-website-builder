@@ -8,7 +8,6 @@ import { BlocksContext } from '../web-preview/preview'
 
 export const PrevInception = ({ parentHeight, blockId }) => {
   const { builder, rowHeight } = useContext(BlocksContext)
-  console.log('PrevInception', builder)
   return (
     <Box
       d="grid"
