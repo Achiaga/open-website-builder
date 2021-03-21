@@ -110,6 +110,7 @@ const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
 }
 
 const loadDataFromLSAndSave = (user) => async (dispatch) => {
+  console.log('loadDataFromLSAndSave')
   const builderData = await getUserDataFromLS()
   const { resume_data, id, user_id, is_publish } = await saveData({
     user,
@@ -119,6 +120,7 @@ const loadDataFromLSAndSave = (user) => async (dispatch) => {
 }
 
 const loadDataFromDB = (user) => async (dispatch) => {
+  console.log('loadDataFromDB')
   const { resume_data, id, user_id, is_publish } = await getUserData(user)
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }

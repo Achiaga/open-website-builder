@@ -14,13 +14,13 @@ const BuilderPage = () => {
   useEffect(() => {
     const origin = router?.query?.origin
     !isLoading && dispatch(loadInitialData(user, origin))
-    router.push(
-      {
-        pathname: '/builder',
-      },
-      undefined,
-      { shallow: true }
-    )
+    // router.push(
+    //   {
+    //     pathname: '/builder',
+    //   },
+    //   undefined,
+    //   { shallow: true }
+    // )
   }, [isLoading])
 
   return <Builder />
