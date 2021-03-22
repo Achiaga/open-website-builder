@@ -83,12 +83,11 @@ export const {
 } = builderSlice.actions
 
 async function getUserData(user) {
-  console.log(user)
   try {
     const userData = await getUserDataById(user.sub)
     return userData
   } catch (err) {
-    console.log('error con getUserData', err)
+    console.error('error con getUserData', err)
     return { resume_data: FallbackData }
   }
 }
@@ -100,7 +99,6 @@ const loadInitialDataNoAccount = () => async (dispatch) => {
 const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   dispatch
 ) => {
-  console.log({ resume_data, id, user_id, is_publish })
   batch(() => {
     dispatch(setBuilderBlocksData(resume_data))
     dispatch(
@@ -109,12 +107,12 @@ const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   })
 }
 
-const isLogin = (accountCreatedTime) => {
-  return new Date() - new Date(accountCreatedTime) > 2 * 60 * 1000
+const isLogin = (userMetadata) => {
+  if (!userMetadata.logins_counts > 1) return true
+  return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }
 
 const handleSingup = (user) => async (dispatch) => {
-  console.log('handleSingup')
   const builderData = await getUserDataFromLS()
   const { resume_data, id, user_id, is_publish } = await saveData({
     user,
@@ -124,7 +122,6 @@ const handleSingup = (user) => async (dispatch) => {
 }
 
 const loadDataFromDB = (user) => async (dispatch) => {
-  console.log('loadDataFromDB')
   const { resume_data, id, user_id, is_publish } = await getUserData(user)
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }
@@ -137,7 +134,6 @@ const handleLoginCallback = (user) => async (dispatch) => {
 }
 
 export const loadInitialData = (user, origin) => async (dispatch) => {
-  console.log('loadInitialData', user, origin)
   if (!user) return dispatch(loadInitialDataNoAccount())
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (user && origin !== 'login') return dispatch(loadDataFromDB(user))

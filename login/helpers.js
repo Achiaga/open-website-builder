@@ -8,6 +8,5 @@ export async function saveData({ resumeId, user, builderData }) {
     resume_data: builderData,
   }
   const res = await publishResume(userData)
-  console.log('publishResume', res)
   return res[0]
 }

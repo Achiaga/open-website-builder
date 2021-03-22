@@ -15,7 +15,6 @@ jexiaClient().init(
 )
 
 const createResuemeData = (data, res) => {
-  console.log('createResuemeData')
   const dataSaved = ds.dataset(RESUME_DB_NAME).insert(data)
 
   return dataSaved.subscribe(
@@ -29,7 +28,6 @@ const createResuemeData = (data, res) => {
   )
 }
 const updateResumeData = (data, res) => {
-  console.log('updateResumeData')
   const dataSaved = ds
     .dataset(RESUME_DB_NAME)
     .update([{ id: data.id, resume_data: data.resume_data }])
@@ -45,7 +43,6 @@ const updateResumeData = (data, res) => {
 }
 
 const manipulateResumeData = (data, res) => {
-  console.log('manipulateResumeData')
   if (data.id) {
     return updateResumeData(data, res)
   }
@@ -75,7 +72,6 @@ const getUserResumeData = (id, res) => {
 }
 const getUserData = (id, res) => {
   const error = { error: { statusText: 'no user data found', code: 404 } }
-  console.log('getUserData')
   const searchData = ds
     .dataset(RESUME_DB_NAME)
     .select()
