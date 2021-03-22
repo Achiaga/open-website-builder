@@ -46,6 +46,9 @@ function Login() {
   function handleLogin() {
     router.push('/api/auth/custom-login')
   }
+  function handleLogout() {
+    router.push('/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com')
+  }
   function handlePublish() {}
 
   function handleMenuOption() {
@@ -81,7 +84,12 @@ function Login() {
             <Button variant="ghost" colorScheme="teal" fontSize="sm">
               Restart
             </Button>
-            <Button variant="ghost" colorScheme="teal" fontSize="sm">
+            <Button
+              variant="ghost"
+              colorScheme="teal"
+              fontSize="sm"
+              onClick={handleLogout}
+            >
               Logout
             </Button>
           </Box>

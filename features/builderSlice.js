@@ -11,6 +11,7 @@ import { getUserDataFromLS } from './helper'
 import { getUserDataById } from '../utils/user-data'
 import { saveData } from '../login/helpers'
 const AUTH0_CUSTOM_CLAIM_PATH = 'https://standout-resume.now.sh/extraData'
+
 const initialState = {
   builderData: null,
   newBlock: {
@@ -93,8 +94,8 @@ async function getUserData(user) {
 }
 
 const loadInitialDataNoAccount = () => async (dispatch) => {
-  const blocksData = FallbackData
-  dispatch(setBuilderBlocksData(blocksData))
+  const blocksData = await getUserDataFromLS()
+  dispatch(setBuilderBlocksData(blocksData || blocksData))
 }
 const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   dispatch
