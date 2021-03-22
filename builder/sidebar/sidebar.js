@@ -53,6 +53,7 @@ const BuilderSidebar = () => {
   if (!isOpen)
     return (
       <Box
+        as="button"
         pos="fixed"
         top="10px"
         right="10px"
@@ -78,44 +79,46 @@ const BuilderSidebar = () => {
       </Box>
     )
   return (
-    <Box
-      d="flex"
-      flexDir="column"
-      pos="fixed"
-      top="10px"
-      right="10px"
-      zIndex="9999"
-      bg="white"
-      p="10px"
-      boxShadow="0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
-      borderRadius="10px"
-    >
+    <>
       <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        w="full"
-        paddingBottom="0.9rem"
+        d="flex"
+        flexDir="column"
+        pos="fixed"
+        top="10px"
+        right="10px"
+        zIndex="9999"
+        bg="white"
+        p="10px"
+        boxShadow="0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
+        borderRadius="10px"
       >
-        <Box fontSize="16px"></Box>
         <Box
-          cursor="pointer"
-          onClick={() => setIsOpen(false)}
-          p="0.25rem"
-          borderRadius="0.25rem"
-          _hover={{ background: '#F2F2F2;' }}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          w="full"
+          paddingBottom="0.9rem"
         >
-          <GrClose size="1em" />
+          <Box fontSize="16px"></Box>
+          <Box
+            cursor="pointer"
+            onClick={() => setIsOpen(false)}
+            p="0.25rem"
+            borderRadius="0.25rem"
+            _hover={{ background: '#F2F2F2;' }}
+          >
+            <GrClose size="1em" />
+          </Box>
         </Box>
+        <ToolSection Icon={BsTextCenter} text="Text" type="text" />
+        <ToolSection Icon={BsCardImage} text="Image" type="image" />
+        <ToolSection
+          Icon={BsLayoutTextWindowReverse}
+          text="Section"
+          type="inception"
+        />
       </Box>
-      <ToolSection Icon={BsTextCenter} text="Text" type="text" />
-      <ToolSection Icon={BsCardImage} text="Image" type="image" />
-      <ToolSection
-        Icon={BsLayoutTextWindowReverse}
-        text="Section"
-        type="inception"
-      />
-    </Box>
+    </>
   )
 }
 

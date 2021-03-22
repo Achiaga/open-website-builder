@@ -1,15 +1,24 @@
 import { ResumeWebsite } from '../builder/web-preview/preview'
 
-import data from '../mock.json'
+import { getResumeById } from '../utils/user-data'
 
-function Resume({ data }) {
-	return <ResumeWebsite userBlocksData={data} />
+function Resume(resumeData) {
+	return <ResumeWebsite userBlocksData={resumeData} />
 }
 
 // This function gets called at build time
 // This gets called on every request
-export async function getServerSideProps() {
-	return { props: { data } }
+export async function getServerSideProps(context) {
+	const { resumeId } = context.query
+	let resumeData
+	try {
+		resumeData = await getResumeById(resumeId)
+	} catch (err) {
+		console.error(err)
+		return { props: {} }
+	}
+
+	return { props: resumeData }
 }
 
 export default Resume

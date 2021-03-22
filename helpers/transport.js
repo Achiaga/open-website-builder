@@ -5,12 +5,14 @@ const errorHandling = async (response) => {
 	switch (status) {
 		case 500:
 			throw { error: { status, statusText } }
+		case 404:
+			throw { error: { status, statusText } }
 		default:
 			return jsonResponse
 	}
 }
 
-const apiCall = async (path, body) => {
+export const apiCall = async (path, body) => {
 	const response = await fetch(path, {
 		method: 'POST',
 		headers: {

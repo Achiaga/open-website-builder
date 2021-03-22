@@ -1,33 +1,33 @@
-import { Flex, Select } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Flex, Select } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
-import { useTranslation } from '../../hooks/translation';
-import { AnalyticsEvent } from '../../utils/analytics';
-import Button from '../commun/button';
-import NavButton from './nav-button';
+import { useTranslation } from '../../hooks/translation'
+import { AnalyticsEvent } from '../../utils/analytics'
+import Button from '../commun/button'
+import NavButton from './nav-button'
 
-import BackgroundCircles from './background';
+import BackgroundCircles from './background'
 
 const Navbar = ({ handleFreeTrial }) => {
-	const router = useRouter();
-	const { locale } = router;
-	const [t] = useTranslation();
+	const router = useRouter()
+	const { locale } = router
+	const [t] = useTranslation()
 
 	const changeLanguage = (e) => {
-		const locale = e.target.value;
-		router.push(router.pathname, router.asPath, { locale });
-	};
+		const locale = e.target.value
+		router.push(router.pathname, router.asPath, { locale })
+	}
 
 	const handleStartNow = (e) => {
-		AnalyticsEvent('modal_open', 'navbar');
+		AnalyticsEvent('modal_open', 'navbar')
 		// handleFreeTrial(e);
-		router.push(`/builder`);
-	};
+		router.push(`/builder`)
+	}
 
 	const handleNavRouting = (e) => {
-		const { id } = e.target;
-		router.push(`/${id}`);
-	};
+		const { id } = e.target
+		router.push(`/${id}`)
+	}
 
 	return (
 		<Flex
@@ -83,7 +83,7 @@ const Navbar = ({ handleFreeTrial }) => {
 				</Button>
 			</Flex>
 		</Flex>
-	);
-};
+	)
+}
 
-export default Navbar;
+export default Navbar

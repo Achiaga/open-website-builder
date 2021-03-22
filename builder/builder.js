@@ -1,7 +1,4 @@
-import { useState } from 'react'
-
 import { Box } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
 import 'react-grid-layout/css/styles.css'
@@ -10,6 +7,7 @@ import 'react-resizable/css/styles.css'
 import { WebBuilder } from '../builder/web-builder'
 import { BuilderSidebar } from '../builder/sidebar'
 import { getBuilderData } from '../features/builderSlice'
+import { SettingsBar } from './sidebar/settingsBar'
 
 const Builder = () => {
   const userBlocksData = useSelector(getBuilderData)
@@ -26,14 +24,11 @@ const Builder = () => {
       backgroundPosition="center center"
       height="500vw"
     >
+      <SettingsBar />
       <BuilderSidebar />
       <WebBuilder />
     </Box>
   )
-}
-
-Builder.propTypes = {
-  userBlocksData: PropTypes.any,
 }
 
 export default Builder

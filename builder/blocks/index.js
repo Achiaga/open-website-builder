@@ -55,6 +55,5 @@ export function BuilderBlock({ blockId }) {
   )
 }
 BuilderBlock.propTypes = {
-  blockId: PropTypes.bool,
-  reRender: PropTypes.any,
+  blockId: PropTypes.string,
 }

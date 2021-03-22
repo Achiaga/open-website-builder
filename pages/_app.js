@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { UserProvider } from '@auth0/nextjs-auth0'
 import { ThemeProvider, CSSReset } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -21,14 +22,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ThemeProvider theme={customTheme}>
-        <CSSReset />
-        <Fonts />
-        <Component {...pageProps} />
+        <UserProvider>
+          <CSSReset />
+          <Fonts />
+          <Component {...pageProps} />
+        </UserProvider>
       </ThemeProvider>
     </Provider>
   )
 }
-
 MyApp.propTypes = {
   Component: PropTypes.any,
   pageProps: PropTypes.any,

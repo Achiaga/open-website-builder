@@ -8,7 +8,9 @@ import { DELETE } from '../builder/blocks/constants'
 
 import { addBlock, removeblockFromState } from '../builder/web-builder/helpers'
 import { getUserDataFromLS } from './helper'
-
+import { getUserDataById } from '../utils/user-data'
+import { saveData } from '../login/helpers'
+const AUTH0_CUSTOM_CLAIM_PATH = 'https://standout-resume.now.sh/extraData'
 const initialState = {
   builderData: null,
   newBlock: {
@@ -23,6 +25,9 @@ export const builderSlice = createSlice({
   reducers: {
     setBuilderBlocksData: (state, action) => {
       state.builderData = action.payload
+    },
+    setUserData: (state, action) => {
+      state.user = action.payload
     },
     setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
@@ -55,7 +60,9 @@ export const builderSlice = createSlice({
     },
     setBlockDraggable: (state, action) => {
       const { blockId, prevBlockId } = action.payload
-      if (prevBlockId) state.builderData.layouts[prevBlockId].isDraggable = true
+      if (prevBlockId && state.builderData.layouts[prevBlockId]) {
+        state.builderData.layouts[prevBlockId].isDraggable = true
+      }
       if (blockId) state.builderData.layouts[blockId].isDraggable = false
     },
   },
@@ -63,6 +70,7 @@ export const builderSlice = createSlice({
 
 export const {
   setBuilderBlocksData,
+  setUserData,
   setLayout,
   setAddedBlock,
   setStructure,
@@ -74,11 +82,61 @@ export const {
   setBlockDraggable,
 } = builderSlice.actions
 
-export const loadInitialData = () => async (dispatch) => {
-  const userData = await getUserDataFromLS()
-  console.log(JSON.stringify(userData, null, 2))
-  const { blocks, layouts, structure } = userData || FallbackData
-  dispatch(setBuilderBlocksData({ blocks, layouts, structure }))
+async function getUserData(user) {
+  try {
+    const userData = await getUserDataById(user.sub)
+    return userData
+  } catch (err) {
+    console.error('error con getUserData', err)
+    return { resume_data: FallbackData }
+  }
+}
+
+const loadInitialDataNoAccount = () => async (dispatch) => {
+  const blocksData = FallbackData
+  dispatch(setBuilderBlocksData(blocksData))
+}
+const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
+  dispatch
+) => {
+  batch(() => {
+    dispatch(setBuilderBlocksData(resume_data))
+    dispatch(
+      setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
+    )
+  })
+}
+
+const isLogin = (userMetadata) => {
+  if (!userMetadata.logins_counts > 1) return true
+  return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
+}
+
+const handleSingup = (user) => async (dispatch) => {
+  const builderData = await getUserDataFromLS()
+  const { resume_data, id, user_id, is_publish } = await saveData({
+    user,
+    builderData,
+  })
+  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+}
+
+const loadDataFromDB = (user) => async (dispatch) => {
+  const { resume_data, id, user_id, is_publish } = await getUserData(user)
+  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+}
+
+const handleLoginCallback = (user) => async (dispatch) => {
+  if (isLogin(user[AUTH0_CUSTOM_CLAIM_PATH])) {
+    return dispatch(loadDataFromDB(user))
+  }
+  return dispatch(handleSingup(user))
+}
+
+export const loadInitialData = (user, origin) => async (dispatch) => {
+  if (!user) return dispatch(loadInitialDataNoAccount())
+  if (user && origin === 'login') return dispatch(handleLoginCallback(user))
+  if (user && origin !== 'login') return dispatch(loadDataFromDB(user))
 }
 
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
@@ -130,6 +188,7 @@ export const addNewBlock = (blockLayout, parentBlockId) => (
 export const getBuilderData = (state) => state.builder.builderData
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
+export const getResumeId = (state) => state.builder?.user?.resumeId
 
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
