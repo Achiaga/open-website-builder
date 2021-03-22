@@ -8,19 +8,28 @@ import { useRouter } from 'next/router'
 
 const BuilderPage = () => {
   const router = useRouter()
-  const { user, isLoading } = useUser()
+  const { user, error, isLoading } = useUser()
   const dispatch = useDispatch()
+  const origin = router?.query?.origin
+
+  function loadData() {
+    dispatch(loadInitialData(user, origin))
+  }
+  function removeURLQuery() {
+    router.push(
+      {
+        pathname: '/builder',
+      },
+      undefined,
+      { shallow: true }
+    )
+  }
 
   useEffect(() => {
-    const origin = router?.query?.origin
-    !isLoading && dispatch(loadInitialData(user, origin))
-    // router.push(
-    //   {
-    //     pathname: '/builder',
-    //   },
-    //   undefined,
-    //   { shallow: true }
-    // )
+    if (!isLoading && (user || error)) {
+      loadData()
+      removeURLQuery()
+    }
   }, [isLoading])
 
   return <Builder />
