@@ -90,10 +90,11 @@ const WebBuilder = () => {
   }
 
   const isDroppable = !selectedBlockId?.includes('inception')
+
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
-        key={JSON.stringify(layouts)}
+        key={JSON.stringify({ layouts, selectedBlockId })}
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
@@ -101,7 +102,7 @@ const WebBuilder = () => {
         isDroppable={isDroppable}
         onResizeStop={handleLayoutChange}
         onDragStop={handleLayoutChange}
-        useCSSTransforms={isDroppable}
+        useCSSTransforms={!selectedBlockId}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
       >
         {structure['main'].map((blockId) => (

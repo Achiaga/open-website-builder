@@ -2,15 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
 
-import { FallbackData } from '../builder/initial-data'
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
 import { DELETE } from '../builder/blocks/constants'
 
-import { addBlock, removeblockFromState } from '../builder/web-builder/helpers'
-import { getUserDataFromLS } from './helper'
-import { getUserDataById } from '../utils/user-data'
-import { saveData } from '../login/helpers'
-const AUTH0_CUSTOM_CLAIM_PATH = 'https://standout-resume.now.sh/extraData'
+import {
+  addBlock,
+  removeblockFromState,
+  findBlockParentId,
+} from '../builder/web-builder/helpers'
+import {
+  handleLoginCallback,
+  loadInitialDataNoAccount,
+  loadDataFromDB,
+} from './login-helpers'
+
+export const AUTH0_CUSTOM_CLAIM_PATH =
+  'https://standout-resume.now.sh/extraData'
 
 const initialState = {
   builderData: null,
@@ -83,57 +90,6 @@ export const {
   setBlockDraggable,
 } = builderSlice.actions
 
-async function getUserData(user) {
-  try {
-    const userData = await getUserDataById(user.sub)
-    return userData
-  } catch (err) {
-    console.error('error con getUserData', err)
-    return { resume_data: FallbackData }
-  }
-}
-
-const loadInitialDataNoAccount = () => async (dispatch) => {
-  const blocksData = await getUserDataFromLS()
-  dispatch(setBuilderBlocksData(blocksData || blocksData))
-}
-const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
-  dispatch
-) => {
-  batch(() => {
-    dispatch(setBuilderBlocksData(resume_data))
-    dispatch(
-      setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
-    )
-  })
-}
-
-const isLogin = (userMetadata) => {
-  if (!userMetadata.logins_counts > 1) return true
-  return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
-}
-
-const handleSingup = (user) => async (dispatch) => {
-  const builderData = await getUserDataFromLS()
-  const { resume_data, id, user_id, is_publish } = await saveData({
-    user,
-    builderData,
-  })
-  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
-}
-
-const loadDataFromDB = (user) => async (dispatch) => {
-  const { resume_data, id, user_id, is_publish } = await getUserData(user)
-  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
-}
-
-const handleLoginCallback = (user) => async (dispatch) => {
-  if (isLogin(user[AUTH0_CUSTOM_CLAIM_PATH])) {
-    return dispatch(loadDataFromDB(user))
-  }
-  return dispatch(handleSingup(user))
-}
-
 export const loadInitialData = (user, origin) => async (dispatch) => {
   if (!user) return dispatch(loadInitialDataNoAccount())
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
@@ -198,5 +154,7 @@ export const getGridRowHeight = (state) => state.builder.gridRowHeight
 export const getLayout = (state) => state.builder.builderData.layout
 export const getStructure = (state) => state.builder.builderData.structure
 export const getBlocksConfig = (state) => state.builder.builderData.blocksConfig
-
+export const getBlockParentId = (id) => (state) => {
+  return findBlockParentId(getStructure(state), id)
+}
 export default builderSlice.reducer

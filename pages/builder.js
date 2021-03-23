@@ -26,7 +26,6 @@ const BuilderPage = () => {
   }
 
   useEffect(() => {
-    console.log(isLoading, user, error)
     if (!isLoading) {
       loadData()
       removeURLQuery()
