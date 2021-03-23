@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { Portal } from '../usePortal'
 import { EDIT } from './constants'
 import { Properties } from './block-properties'
-import { editBlockConfig } from '../../features/builderSlice'
-import { useDispatch } from 'react-redux'
+import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBlockOffsets } from './block-positionn-helpers'
 
 const PropertiesModifiers = {
   dropdown: DropDownSelector,
@@ -491,79 +492,10 @@ export const Modifiers = ({
   )
 }
 
-function getBlockOffset(elem) {
-  let offsetTop = 0
-  let offsetLeft = 0
-  let elemWidth = 0
-  do {
-    if (!isNaN(elem.offsetTop)) {
-      if (elem.id.includes('inception')) {
-        elemWidth = elem.getBoundingClientRect()?.width
-      }
-      if (elem.hasAttribute('data-grid')) {
-        elemWidth += elem.getBoundingClientRect()?.width
-      }
-      offsetTop += elem.offsetTop
-      offsetLeft += elem.offsetLeft
-    }
-    // eslint-disable-next-line no-cond-assign
-  } while ((elem = elem.offsetParent))
-  return { left: +offsetLeft, top: +offsetTop, width: elemWidth }
-}
-
-function getTranslateValues(element) {
-  if (!element?.offsetParent)
-    return {
-      left: 0,
-      top: 0,
-    }
-  const style = window.getComputedStyle(element?.offsetParent)
-  const widthBlock = style['width']?.replace('px', '') || 0
-  const heightBlock = style['height']?.replace('px', '') || 0
-  const matrix =
-    style['transform'] || style.webkitTransform || style.mozTransform
-  const matrixValues = matrix.match(/matrix.*\((.+)\)/)?.[1].split(', ') ?? null
-  if (!matrixValues)
-    return {
-      left: 0,
-      top: 0,
-    }
-  return {
-    right: +matrixValues[4],
-    left: +matrixValues[4],
-    top: +matrixValues[5],
-    width: +widthBlock,
-    height: +heightBlock,
-  }
-}
-
-function getOffsets(blockKey) {
-  const mainParentStyles = document.getElementById(blockKey).offsetParent
-    .offsetParent.offsetParent
-
-  if (blockKey.includes('child-inception')) {
-    let v1 = getTranslateValues(
-      document.getElementById(blockKey).offsetParent.offsetParent
-    )
-    if ((v1.top === 0, v1.left === 0)) {
-      v1 = getBlockOffset(mainParentStyles)
-    }
-    const v2 = getTranslateValues(document.getElementById(blockKey))
-    return { top: v1.top + v2.top, left: v1.left + v2.left }
-  }
-  if (blockKey.includes('inception')) {
-    return getTranslateValues(document.getElementById(blockKey))
-  }
-  let dim = getTranslateValues(document.getElementById(blockKey))
-  if (dim.top === 0) {
-    dim = getBlockOffset(document.getElementById(blockKey))
-  }
-  return dim
-}
-
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
   const [isOpen, setIsOpen] = useState('')
   const dispatch = useDispatch()
+  const blockParentId = useSelector(getBlockParentId(blockKey))
 
   const handleOpenToolbar = (e) => {
     const { id } = e.currentTarget
@@ -584,7 +516,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
     }
     dispatch(editBlockConfig({ newData, blockId: blockKey, operationType }))
   }
-  const dim = getOffsets(blockKey)
+  const dim = getBlockOffsets(blockKey, blockParentId)
 
   const isBlockAtRight = dim.left > window.innerWidth * 0.7
   const isBlockAtLeft = dim.left < window.innerWidth * 0.07
