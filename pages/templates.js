@@ -1,9 +1,5 @@
-const TemplatePage = () => {
-	return (
-		<div>
-			<h1>Templates</h1>
-		</div>
-	);
-};
+import DashboardPage from '../components/dashboard'
 
-export default TemplatePage;
+export default function Templates() {
+  return <DashboardPage />
+}
