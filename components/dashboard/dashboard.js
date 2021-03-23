@@ -1,35 +1,36 @@
-import { Box, Text, Grid } from '@chakra-ui/react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { Box, Text, Grid } from '@chakra-ui/react'
 
 import Template from './template'
 
 import LogoSvg from '../../assets/logo'
 
 const Dashboard = () => {
+  const router = useRouter()
+
+  const redirectLogo = () => {
+    router.push('/')
+  }
+
   return (
     <Box>
       <Box width="full" paddingX="20" paddingTop="0.5rem">
-        <Box pt={[0, 4]} w={[10, 20]}>
+        <Box onClick={redirectLogo} cursor="pointer" pt={[0, 4]} w={[10, 20]}>
           <LogoSvg width="3.5rem" />
         </Box>
       </Box>
       <Box w="full" display="flex" alignItems="center" justifyContent="center">
-        <Text as="h1" fontSize="5xl" fontWeight="500">
+        <Text
+          as="h1"
+          fontWeight="bold"
+          color="black"
+          fontFamily="Montserrat"
+          fontSize={['2.5rem', '5xl']}
+          lineHeight={['3rem', '120%']}
+          paddingBottom={['1rem', '0']}
+        >
           Choose your Template
-        </Text>
-      </Box>
-      <Box
-        w="full"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        paddingY="1"
-      >
-        <Text as="h4" fontSize="xl" pr="2">
-          We already design the template, so you dont have to.{' '}
-        </Text>
-        <Text as="h4" fontSize="xl">
-          {'  All of them are fully customizable.'}
         </Text>
       </Box>
       <Box
@@ -38,10 +39,42 @@ const Dashboard = () => {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
-        paddingY="7"
+        paddingY="1"
       >
-        <Text as="h4" fontWeight="semibold" fontSize="2xl" color="primary.500">
-          Choose One - Populate - Publish
+        <Text
+          mt="2"
+          color="gray.600"
+          fontFamily="Montserrat"
+          fontSize="xl"
+          as="h4"
+        >
+          We already design the template, so you dont have to.
+        </Text>
+        <Text
+          mt="1"
+          color="gray.600"
+          fontFamily="Montserrat"
+          fontSize="xl"
+          as="h4"
+        >
+          All of them are fully customizable.
+        </Text>
+      </Box>
+      <Box
+        w="full"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        pt="8"
+        pb="2"
+      >
+        <Text as="h4" fontWeight="bold" fontSize="2xl" color="primary.500">
+          Choose -{' '}
+          <Text as="span" color="green.400">
+            Populate
+          </Text>{' '}
+          - Publish
         </Text>
       </Box>
 
