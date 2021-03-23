@@ -359,6 +359,7 @@ function TextInput({
   inputPlaceholder,
 }) {
   const handleChange = (e) => {
+    e.stopPropagation()
     handleEdit(property, e.target.value)
   }
   return (
@@ -493,7 +494,7 @@ export const Modifiers = ({
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
-  const [isOpen, setIsOpen] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
   const blockParentId = useSelector(getBlockParentId(blockKey))
 
@@ -504,15 +505,17 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 
   function handleCloseInput(e) {
     if (e.key === 'Enter') {
-      setIsOpen('')
+      setIsOpen(false)
     }
   }
 
   function handleEdit(id, value, operationType = EDIT) {
-    if (id !== 'imageUrl' || id !== 'redirect') setIsOpen('')
-    const newData = {
-      ...data,
-      [id]: value,
+    if (id !== 'imageUrl' && id !== 'redirect') setIsOpen(false)
+    const newData = { ...data }
+    if (id === 'emoji') {
+      newData.text = `${data.text} ${value}`
+    } else {
+      newData[id] = value
     }
     dispatch(editBlockConfig({ newData, blockId: blockKey, operationType }))
   }
