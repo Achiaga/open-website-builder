@@ -32,13 +32,16 @@ export const GenericText = (props) => {
     })
   }, [titleRef])
 
+  useEffect(() => {
+    titleRef.current.textContent = rawText
+  }, [rawText])
+
   function handleKeyUp(e) {
     e.stopPropagation()
     const value = titleRef.current?.innerText
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
-
   return (
     <Text
       cursor="pointer"
@@ -58,7 +61,6 @@ export const GenericText = (props) => {
   )
 }
 export const PrevText = (props) => {
-  const { text, parentBlockId, ...data } = props
   const Textmodifiers = {
     fontSize: props.fontSize,
     textAlign: props.textAlign,
@@ -81,7 +83,7 @@ export const PrevText = (props) => {
       {...Textmodifiers}
       wordBreak="break-word"
     >
-      {text}
+      {props.text}
     </Text>
   )
 }
@@ -89,6 +91,22 @@ export const PrevText = (props) => {
 GenericText.displayName = 'TextBlock'
 
 GenericText.propTypes = {
+  parentBlockId: PropTypes.string,
+  isEditable: PropTypes.bool,
+  contentEditable: PropTypes.bool,
+  text: PropTypes.string,
+  fontSize: PropTypes.string,
+  textAlign: PropTypes.string,
+  fontColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  alignItems: PropTypes.string,
+  fontWeight: PropTypes.string,
+  boxShadow: PropTypes.string,
+  borderRadius: PropTypes.string,
+  bg: PropTypes.string,
+  onKeyUp: PropTypes.func,
+}
+PrevText.propTypes = {
   parentBlockId: PropTypes.string,
   isEditable: PropTypes.bool,
   contentEditable: PropTypes.bool,
