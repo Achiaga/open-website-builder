@@ -1,12 +1,16 @@
-import { Box, Text, Grid, GridItem } from '@chakra-ui/react'
+import { Box, Text, Grid } from '@chakra-ui/react'
+import Image from 'next/image'
+
+import Template from './template'
+
 import LogoSvg from '../../assets/logo'
 
 const Dashboard = () => {
   return (
     <Box>
-      <Box width="full" paddingX="20" paddingTop="5">
+      <Box width="full" paddingX="20" paddingTop="0.5rem">
         <Box pt={[0, 4]} w={[10, 20]}>
-          <LogoSvg width="5rem" />
+          <LogoSvg width="3.5rem" />
         </Box>
       </Box>
       <Box w="full" display="flex" alignItems="center" justifyContent="center">
@@ -21,7 +25,7 @@ const Dashboard = () => {
         justifyContent="center"
         paddingY="1"
       >
-        <Text as="h4" fontSize="xl">
+        <Text as="h4" fontSize="xl" pr="2">
           We already design the template, so you dont have to.{' '}
         </Text>
         <Text as="h4" fontSize="xl">
@@ -34,7 +38,7 @@ const Dashboard = () => {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
-        paddingY="5"
+        paddingY="7"
       >
         <Text as="h4" fontWeight="semibold" fontSize="2xl" color="primary.500">
           Choose One - Populate - Publish
@@ -47,22 +51,52 @@ const Dashboard = () => {
         gap={10}
         paddingX="16"
         mt="10"
+        mb="10"
       >
-        <Box w="100%" h="lg" bg="blue.500">
-          template1
-        </Box>
-        <Box w="100%" h="lg" bg="blue.500">
-          template2
-        </Box>
-        <Box w="100%" h="lg" bg="blue.500">
-          template3
-        </Box>
-        <Box w="100%" h="lg" bg="blue.500">
-          template4
-        </Box>
-        <Box w="100%" h="lg" bg="blue.500">
-          template5
-        </Box>
+        <Template>
+          <Image
+            style={{ clipPath: 'inset(0 0 0 50%)' }}
+            src={'/template1.png'}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="left top"
+            alt="template1"
+            borderRadius="100px "
+          />
+        </Template>
+        <Template>
+          <Image
+            style={{ clipPath: 'inset(0 0 0 50%)' }}
+            src={'/template2.png'}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="left top"
+            alt="template2"
+            borderRadius="100px "
+          />
+        </Template>
+        <Template>
+          <Image
+            style={{ clipPath: 'inset(0 0 0 50%)' }}
+            src={'/template3.png'}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="left top"
+            alt="template3"
+            borderRadius="100px "
+          />
+        </Template>
+        <Template>
+          <Image
+            style={{ clipPath: 'inset(0 0 0 50%)' }}
+            src={'/template4.png'}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="left top"
+            alt="template4"
+            borderRadius="100px "
+          />
+        </Template>
       </Grid>
     </Box>
   )
