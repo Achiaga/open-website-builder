@@ -1,14 +1,6 @@
 import { Box, Button } from '@chakra-ui/react'
-import { useState } from 'react'
 
-const Template = ({ children }) => {
-  const [isVisible, setVisible] = useState(false)
-  const showBackdrop = () => {
-    setVisible(true)
-  }
-  const hideBackdrop = () => {
-    setVisible(false)
-  }
+const Template = ({ handleEditTemplate, handlePreviewTemplate, children }) => {
   return (
     <Box w="100%" h="lg" pos="relative" borderRadius="10px">
       <Box
@@ -19,8 +11,6 @@ const Template = ({ children }) => {
         zIndex="10"
         borderRadius="10px"
         display="flex"
-        // onMouseEnter={showBackdrop}
-        // onMouseLeave={hideBackdrop}
         alignItems="center"
         justifyContent="center"
         bg="transparent"
@@ -28,7 +18,7 @@ const Template = ({ children }) => {
       >
         <Box
           w="full"
-          px="6rem"
+          px={['4rem', '6rem']}
           display="flex"
           alignContent="center"
           justifyContent="space-between"
@@ -43,6 +33,7 @@ const Template = ({ children }) => {
             fontWeight="bold"
             cursor="pointer"
             _hover={{ bg: '#5e76ef', color: 'white' }}
+            onClick={() => handleEditTemplate(children?.props?.id)}
           >
             Select
           </Button>
@@ -54,6 +45,7 @@ const Template = ({ children }) => {
             cursor="pointer"
             bg="#f3f3f3"
             _hover={{ bg: 'white', color: '#5956f5' }}
+            onClick={handlePreviewTemplate}
           >
             Preview
           </Button>

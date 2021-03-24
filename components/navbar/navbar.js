@@ -25,7 +25,6 @@ const Navbar = () => {
 
   const handleNavRouting = (e) => {
     const { id } = e.currentTarget
-    console.log(id)
     router.push(`/${id}`)
   }
 
