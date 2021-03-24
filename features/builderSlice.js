@@ -111,7 +111,10 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
     blocks,
     structure
   )
-  dispatch(setBuilderBlocksData(newBuilderData))
+  batch(() => {
+    dispatch(setSelectedBlockId(null))
+    dispatch(setBuilderBlocksData(newBuilderData))
+  })
 }
 
 export const setBlockEditable = (blockId) => (dispatch, getState) => {

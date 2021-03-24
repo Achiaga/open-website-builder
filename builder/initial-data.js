@@ -3,6 +3,42 @@ export const imageURL =
 
 export const FallbackData = {
   blocks: {
+    'text-520af5a8-d661-4487-bae9-cbc759bfdd51': {
+      type: 'text',
+      data: {
+        fontSize: '3rem',
+        textAlign: 'center',
+        alignItems: 'center',
+        fontWeight: '900',
+        boxShadow:
+          '0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)',
+        borderRadius: '20px',
+        fontColor: 'rgb(11,110,153)',
+        backgroundColor: 'rgb(221,235,241)',
+        redirect: 'aa',
+        text: 'Welcome, to Standout Resume',
+      },
+    },
+  },
+  layouts: {
+    'text-520af5a8-d661-4487-bae9-cbc759bfdd51': {
+      w: 113,
+      h: 42,
+      x: 45,
+      y: 20,
+      i: 'text-520af5a8-d661-4487-bae9-cbc759bfdd51',
+      moved: false,
+      static: false,
+      isDraggable: true,
+      isResizable: true,
+    },
+  },
+  structure: {
+    main: ['text-520af5a8-d661-4487-bae9-cbc759bfdd51'],
+  },
+}
+export const Template1 = {
+  blocks: {
     'child-inception-33bb7f62-3b9d-46bf-a605-4a2835cb003d': {
       type: 'image',
       data: {
