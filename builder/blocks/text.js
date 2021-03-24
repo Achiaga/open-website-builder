@@ -73,16 +73,7 @@ export const PrevText = (props) => {
   }
 
   return (
-    <Text
-      cursor="pointer"
-      w="100%"
-      h="100%"
-      d="grid"
-      contentEditable={true}
-      suppressContentEditableWarning
-      {...Textmodifiers}
-      wordBreak="break-word"
-    >
+    <Text w="100%" h="100%" d="grid" {...Textmodifiers} wordBreak="break-word">
       {props.text}
     </Text>
   )
@@ -107,9 +98,6 @@ GenericText.propTypes = {
   onKeyUp: PropTypes.func,
 }
 PrevText.propTypes = {
-  parentBlockId: PropTypes.string,
-  isEditable: PropTypes.bool,
-  contentEditable: PropTypes.bool,
   text: PropTypes.string,
   fontSize: PropTypes.string,
   textAlign: PropTypes.string,
@@ -120,7 +108,6 @@ PrevText.propTypes = {
   boxShadow: PropTypes.string,
   borderRadius: PropTypes.string,
   bg: PropTypes.string,
-  onKeyUp: PropTypes.func,
 }
 
 export default GenericText

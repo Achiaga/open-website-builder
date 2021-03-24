@@ -21,7 +21,7 @@ async function getUserData(user) {
 
 export const loadInitialDataNoAccount = () => async (dispatch) => {
   const blocksData = await getUserDataFromLS()
-  dispatch(setBuilderBlocksData(blocksData || blocksData))
+  dispatch(setBuilderBlocksData(blocksData || FallbackData))
 }
 const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   dispatch

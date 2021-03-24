@@ -9,6 +9,7 @@ import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
+import Link from 'next/link'
 
 const Card = ({ children }) => {
   return (
@@ -72,7 +73,19 @@ function Login() {
           <IoMenu size={24} />
         </Button>
         {isMenuOpen && (
-          <Box pos="absolute" mt="8px" d="flex" flexDir="column" top="30px">
+          <Box
+            pos="absolute"
+            mt="16px"
+            d="flex"
+            flexDir="column"
+            top="30px"
+            bg="white"
+          >
+            <a href="/preview" target="_blank">
+              <Button variant="ghost" colorScheme="teal" fontSize="sm">
+                Preview
+              </Button>
+            </a>
             <Button
               onClick={handlePublish}
               variant="ghost"
