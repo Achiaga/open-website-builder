@@ -285,6 +285,13 @@ const imageInput = {
   property: 'imageUrl',
 }
 
+const imageBgInput = {
+  type: 'text',
+  placeholder: 'Img',
+  inputPlaceholder: 'Enter your link',
+  property: 'imageUrl',
+}
+
 const redirectInput = {
   type: 'text',
   placeholder: 'Link',
@@ -307,5 +314,12 @@ export const Properties = {
     emoji,
   ],
   image: [deleteBlock, boxShadow, borderRadius, imageInput, redirectInput],
-  inception: [deleteBlock, border, borderRadius, boxShadow, backgroundColor],
+  inception: [
+    deleteBlock,
+    border,
+    borderRadius,
+    imageInput,
+    boxShadow,
+    backgroundColor,
+  ],
 }

@@ -25,6 +25,8 @@ export function GeneratePreviewBlock({ structItem }) {
       gridColumn={`${x + 1} /  span ${w}`}
       gridRow={`${y + 1} / span ${h}`}
       overflow="hidden"
+      border={data.border}
+      backgroundImage={`url(${data?.imageUrl})`}
       boxShadow={data.boxShadow}
       borderRadius={data.borderRadius}
       backgroundColor={data.backgroundColor}
