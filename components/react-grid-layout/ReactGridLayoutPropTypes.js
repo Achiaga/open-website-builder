@@ -44,18 +44,7 @@ export default {
   draggableHandle: PropTypes.string,
 
   // Deprecated
-  verticalCompact: function (props) {
-    if (
-      props.verticalCompact === false &&
-      process.env.NODE_ENV !== 'production'
-    ) {
-      console.warn(
-        // eslint-disable-line no-console
-        '`verticalCompact` on <ReactGridLayout> is deprecated and will be removed soon. ' +
-          'Use `compactType`: "horizontal" | "vertical" | null.'
-      )
-    }
-  },
+  verticalCompact: function (props) {},
   // Choose vertical or hotizontal compaction
   compactType: PropTypes.oneOf(['vertical', 'horizontal']),
 

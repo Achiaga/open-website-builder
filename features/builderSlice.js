@@ -47,6 +47,9 @@ export const builderSlice = createSlice({
     setSelectedBlockId: (state, action) => {
       state.selectedBlockId = action.payload
     },
+    setResizingBlockId: (state, action) => {
+      state.resizingBlockId = action.payload
+    },
     setGridRowHeight: (state, action) => {
       state.gridRowHeight = action.payload
     },
@@ -85,6 +88,7 @@ export const {
   setNewDropBlockType,
   setNewDropBlock,
   setSelectedBlockId,
+  setResizingBlockId,
   setGridRowHeight,
   setBlockConfig,
   setBlockDraggable,
@@ -154,11 +158,13 @@ export const getResumeId = (state) => state.builder?.user?.resumeId
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
 export const getSelectedBlockId = (state) => state.builder.selectedBlockId
-export const getGridRowHeight = (state) => state.builder.gridRowHeight
-export const getLayout = (state) => state.builder.builderData.layout
-export const getStructure = (state) => state.builder.builderData.structure
+export const getResizingBlock = (state) => state.builder.resizingBlockId
 export const getBlocksConfig = (state) => state.builder.builderData.blocksConfig
 export const getBlockParentId = (id) => (state) => {
   return findBlockParentId(getStructure(state), id)
 }
+
+export const getGridRowHeight = (state) => state.builder.gridRowHeight
+export const getLayout = (state) => state.builder.builderData.layout
+export const getStructure = (state) => state.builder.builderData.structure
 export default builderSlice.reducer

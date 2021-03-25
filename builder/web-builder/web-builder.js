@@ -14,6 +14,7 @@ import {
   getGridRowHeight,
   getNewBlock,
   getSelectedBlockId,
+  setResizingBlockId,
   setGridRowHeight,
   setBlockEditable,
   setLayout,
@@ -81,6 +82,9 @@ const WebBuilder = () => {
 
   function handleLayoutChange(_, __, newItem) {
     dispatch(setLayout({ ...newItem }))
+    setTimeout(() => {
+      dispatch(setResizingBlockId(null))
+    }, 1000)
   }
 
   function handleKeyPress(e) {
@@ -91,6 +95,10 @@ const WebBuilder = () => {
 
   const isDroppable = !selectedBlockId?.includes('inception')
 
+  function handleAddSize(_, __, resizingBlock) {
+    dispatch(setResizingBlockId(resizingBlock))
+  }
+
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
@@ -100,6 +108,7 @@ const WebBuilder = () => {
         onDrop={onDrop}
         preventCollision={!!newBlockType}
         isDroppable={isDroppable}
+        onResize={handleAddSize}
         onResizeStop={handleLayoutChange}
         onDragStop={handleLayoutChange}
         useCSSTransforms={!selectedBlockId}

@@ -3,6 +3,7 @@ import { generatePageCode } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
+import MadeWith from '../../components/made-with'
 
 const WebPreview = ({ layout, blocksConfig }) => {
   const [pageDesign, setPageDesign] = useState(null)
@@ -60,6 +61,7 @@ export const ResumeWebsite = ({ userBlocksData }) => {
       >
         {generatePageCode(childStructure)}
       </Box>
+      <MadeWith />
     </BlocksContext.Provider>
   )
 }

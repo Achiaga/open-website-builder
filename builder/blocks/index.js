@@ -9,6 +9,7 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlockData,
+  getResizingBlock,
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
@@ -29,10 +30,12 @@ export function BuilderBlock({ blockId }) {
 
   const { type, data } = useSelector(getBlockData(blockId))
   const selectedBlockId = useSelector(getSelectedBlockId)
+  const resizingBlock = useSelector(getResizingBlock)
 
   const GenericBlock = blocks[type]
 
   const isEditable = selectedBlockId === blockId
+  const isResizing = resizingBlock?.i === blockId
 
   return (
     <Box
@@ -45,10 +48,17 @@ export function BuilderBlock({ blockId }) {
         dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
-      outlineColor={isEditable ? 'blue' : 'transparent'}
+      outlineColor={isEditable ? 'primary.500' : 'transparent'}
+      transition="outline-color .3s"
     >
       {isEditable && (
         <BlockModifiers data={data} blockKey={blockId} blockType={type} />
+      )}
+      {isResizing && (
+        <Box pos="absolute" right="0" bottom="25px" bg="white" zIndex="99999">
+          <Box as="span">w: {resizingBlock?.w}</Box>
+          <Box as="span"> h: {resizingBlock?.h}</Box>
+        </Box>
       )}
       <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
