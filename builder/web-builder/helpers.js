@@ -24,6 +24,24 @@ export const findBlockParentId = (blocksConfig, blockId) => {
   }
 }
 
+function removeAllBlockChildren(
+  blockId,
+  oldLayout,
+  oldBlocks,
+  oldStructure,
+  childBlockIds
+) {
+  const blocks = { ...oldBlocks }
+  const layouts = { ...oldLayout }
+  const structure = { ...oldStructure }
+  for (const childId of childBlockIds) {
+    delete blocks[childId]
+    delete layouts[childId]
+  }
+  delete structure[blockId]
+  return { layouts, blocks, structure }
+}
+
 export function removeblockFromState(
   blockId,
   oldLayout,
@@ -31,18 +49,29 @@ export function removeblockFromState(
   oldStructure
 ) {
   const parentId = findBlockParentId(oldStructure, blockId)
+
   const blocks = { ...oldBlocks }
-  delete blocks[blockId]
   const layouts = { ...oldLayout }
+  delete blocks[blockId]
   delete layouts[blockId]
   const structure = {
     ...oldStructure,
     [parentId]: oldStructure[parentId].filter((sI) => sI !== blockId),
   }
+  if (oldStructure[blockId]) {
+    return removeAllBlockChildren(
+      blockId,
+      layouts,
+      blocks,
+      structure,
+      oldStructure[blockId]
+    )
+  }
   return { layouts, blocks, structure }
 }
 
 export function saveOnLocal(userBlocksData) {
+  console.log(JSON.stringify(userBlocksData, null, 2))
   if (!Object.keys(userBlocksData).length) return
   localforage.setItem('userData', userBlocksData)
 }

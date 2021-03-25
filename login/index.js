@@ -1,7 +1,6 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 import { publishResume } from '../utils/user-data'
-// import { getUserResumeData } from '../pages/builder'
 import { Box, Text } from '@chakra-ui/layout'
 import { useSelector } from 'react-redux'
 import { getBuilderData, getResumeId } from '../features/builderSlice'
@@ -9,7 +8,6 @@ import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
-import Link from 'next/link'
 import Fireworks from '../components/fireworks'
 
 const PublishSuccessModal = ({ setPublish }) => {

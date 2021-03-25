@@ -1,10 +1,11 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Box, Text, Grid } from '@chakra-ui/react'
 
 import Template from './template'
 
 import LogoSvg from '../../assets/logo'
+
+const TEMPLATES = ['template1', 'template2', 'template3', 'template4']
 
 const Dashboard = () => {
   const router = useRouter()
@@ -14,7 +15,7 @@ const Dashboard = () => {
   }
 
   const handleEditTemplate = (id) => {
-    router.push(`/builder/${id}`)
+    router.push(`/builder?template=${id}`)
   }
 
   const handlePreviewTemplate = () => {
@@ -106,66 +107,14 @@ const Dashboard = () => {
         mt={[6, 10]}
         mb="10"
       >
-        <Template
-          handleEditTemplate={handleEditTemplate}
-          handlePreviewTemplate={handlePreviewTemplate}
-        >
-          <Image
-            style={{ clipPath: 'inset(0 0 0 50%)' }}
-            src={'/template1.png'}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="left top"
-            alt="template1"
-            id="template1"
-            borderRadius="100px "
+        {TEMPLATES.map((templateId) => (
+          <Template
+            key={templateId}
+            handleEditTemplate={handleEditTemplate}
+            handlePreviewTemplate={handlePreviewTemplate}
+            templateId={templateId}
           />
-        </Template>
-        <Template
-          handleEditTemplate={handleEditTemplate}
-          handlePreviewTemplate={handlePreviewTemplate}
-        >
-          <Image
-            style={{ clipPath: 'inset(0 0 0 50%)' }}
-            src={'/template2.png'}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="left top"
-            alt="template2"
-            id="template2"
-            borderRadius="100px "
-          />
-        </Template>
-        <Template
-          handleEditTemplate={handleEditTemplate}
-          handlePreviewTemplate={handlePreviewTemplate}
-        >
-          <Image
-            style={{ clipPath: 'inset(0 0 0 50%)' }}
-            src={'/template3.png'}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="left top"
-            alt="template3"
-            id="template3"
-            borderRadius="100px "
-          />
-        </Template>
-        <Template
-          handleEditTemplate={handleEditTemplate}
-          handlePreviewTemplate={handlePreviewTemplate}
-        >
-          <Image
-            style={{ clipPath: 'inset(0 0 0 50%)' }}
-            src={'/template4.png'}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="left top"
-            alt="template4"
-            id="template4"
-            borderRadius="100px "
-          />
-        </Template>
+        ))}
       </Grid>
     </Box>
   )
