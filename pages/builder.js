@@ -6,14 +6,21 @@ import { loadInitialData } from '../features/builderSlice'
 import { Builder } from '../builder'
 import { useRouter } from 'next/router'
 
+function getParams() {
+  const urlParams = new URLSearchParams(window.location.search)
+  const template = urlParams.get('template')
+  const origin = urlParams.get('origin')
+  return { template, origin }
+}
+
 const BuilderPage = () => {
   const router = useRouter()
-  const { user, error, isLoading } = useUser()
+  const { user, isLoading } = useUser()
   const dispatch = useDispatch()
-  const origin = router?.query?.origin
 
   function loadData() {
-    dispatch(loadInitialData(user, origin))
+    const params = getParams()
+    dispatch(loadInitialData(user, params))
   }
   function removeURLQuery() {
     router.push(

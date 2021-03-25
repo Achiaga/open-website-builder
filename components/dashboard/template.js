@@ -1,6 +1,12 @@
 import { Box, Button } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
+import Image from 'next/image'
 
-const Template = ({ handleEditTemplate, handlePreviewTemplate, children }) => {
+const Template = ({
+  handleEditTemplate,
+  handlePreviewTemplate,
+  templateId,
+}) => {
   return (
     <Box w="100%" h="lg" pos="relative" borderRadius="10px">
       <Box
@@ -33,7 +39,7 @@ const Template = ({ handleEditTemplate, handlePreviewTemplate, children }) => {
             fontWeight="bold"
             cursor="pointer"
             _hover={{ bg: '#5e76ef', color: 'white' }}
-            onClick={() => handleEditTemplate(children?.props?.id)}
+            onClick={() => handleEditTemplate(templateId)}
           >
             Select
           </Button>
@@ -62,10 +68,24 @@ const Template = ({ handleEditTemplate, handlePreviewTemplate, children }) => {
             '0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
         }}
       >
-        {children}
+        <Image
+          style={{ clipPath: 'inset(0 0 0 50%)' }}
+          src={`/${templateId}.png`}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="left top"
+          alt="template1"
+          borderRadius="100px "
+        />
       </div>
     </Box>
   )
+}
+
+Template.propTypes = {
+  handleEditTemplate: PropTypes.func.isRequired,
+  handlePreviewTemplate: PropTypes.func.isRequired,
+  templateId: PropTypes.string.isRequired,
 }
 
 export default Template

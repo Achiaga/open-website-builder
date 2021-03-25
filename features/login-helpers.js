@@ -1,5 +1,5 @@
 import { batch } from 'react-redux'
-import { FallbackData } from '../builder/initial-data'
+import * as templates from '../builder/initial-data'
 import {
   setBuilderBlocksData,
   setUserData,
@@ -15,13 +15,17 @@ async function getUserData(user) {
     return userData
   } catch (err) {
     console.error('error con getUserData', err)
-    return { resume_data: FallbackData }
+    return { resume_data: templates.Fallback }
   }
 }
 
-export const loadInitialDataNoAccount = () => async (dispatch) => {
+export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const blocksData = await getUserDataFromLS()
-  dispatch(setBuilderBlocksData(blocksData || FallbackData))
+  dispatch(
+    setBuilderBlocksData(
+      templates[template] || blocksData || templates.Fallback
+    )
+  )
 }
 const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   dispatch

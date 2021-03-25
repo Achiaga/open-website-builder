@@ -1,7 +1,7 @@
 export const imageURL =
   'https://images.unsplash.com/photo-1542103749-8ef59b94f47e'
 
-export const FallbackData = {
+export const Fallback = {
   blocks: {
     'text-520af5a8-d661-4487-bae9-cbc759bfdd51': {
       type: 'text',
@@ -37,7 +37,7 @@ export const FallbackData = {
     main: ['text-520af5a8-d661-4487-bae9-cbc759bfdd51'],
   },
 }
-export const Template1 = {
+export const template1 = {
   blocks: {
     'child-inception-33bb7f62-3b9d-46bf-a605-4a2835cb003d': {
       type: 'image',

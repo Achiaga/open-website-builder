@@ -90,8 +90,9 @@ export const {
   setBlockDraggable,
 } = builderSlice.actions
 
-export const loadInitialData = (user, origin) => async (dispatch) => {
-  if (!user) return dispatch(loadInitialDataNoAccount())
+export const loadInitialData = (user, params) => async (dispatch) => {
+  const { origin, template } = params
+  if (!user) return dispatch(loadInitialDataNoAccount(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (user && origin !== 'login') return dispatch(loadDataFromDB(user))
 }
