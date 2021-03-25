@@ -72,9 +72,9 @@ const PublishSuccessModal = ({ setPublish }) => {
   )
 }
 
-const Card = ({ children }) => {
+const Card = ({ children, ...props }) => {
   return (
-    <Box
+    <Button
       d="flex"
       w="fit-content"
       flexDir="column"
@@ -87,9 +87,15 @@ const Card = ({ children }) => {
       cursor="pointer"
       mb="0.5rem"
       pos="relative"
+      width="4.35rem"
+      _hover={{
+        bg: 'white',
+        border: '1px solid black',
+      }}
+      {...props}
     >
       {children}
-    </Box>
+    </Button>
   )
 }
 
@@ -124,20 +130,13 @@ function Login() {
   return (
     <Box d="flex" cursor="pointer" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
-      <Card>
-        <Button onClick={handleSavePage} fontSize="md">
-          Save
-        </Button>
+      <Card onClick={handleSavePage} fontSize="md">
+        Save
       </Card>
-      <Card>
-        <Button
-          onClick={handleMenuOption}
-          variant="ghost"
-          colorScheme="teal"
-          _focus={{ outline: 'none' }}
-        >
+      <Box w="full">
+        <Card onClick={handleMenuOption}>
           <IoMenu size={24} />
-        </Button>
+        </Card>
         {isMenuOpen && (
           <Box
             pos="absolute"
@@ -173,7 +172,7 @@ function Login() {
             </Button>
           </Box>
         )}
-      </Card>
+      </Box>
 
       {/* <Button>
         <a href="/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com">

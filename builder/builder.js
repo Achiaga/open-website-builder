@@ -10,12 +10,18 @@ import { getBuilderData } from '../features/builderSlice'
 import { SettingsBar } from './sidebar/settingsBar'
 import { useEffect } from 'react'
 import MobileVersion from './web-builder/mobile-version'
+import { useRouter } from 'next/router'
 
 const Builder = () => {
   const userBlocksData = useSelector(getBuilderData)
+  const router = useRouter()
 
   function confirmExit() {
     return ''
+  }
+
+  const redirectLogo = () => {
+    router.push('/')
   }
 
   useEffect(() => {

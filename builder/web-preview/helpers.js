@@ -27,6 +27,8 @@ export function GeneratePreviewBlock({ structItem }) {
       overflow="hidden"
       border={data.border}
       backgroundImage={`url(${data?.imageUrl})`}
+      backgroundPosition="center"
+      backgroundRepeat="no-repeat"
       boxShadow={data.boxShadow}
       borderRadius={data.borderRadius}
       backgroundColor={data.backgroundColor}

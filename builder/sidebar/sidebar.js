@@ -69,9 +69,8 @@ const BuilderSidebar = () => {
         cursor="pointer"
         boxShadow="0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
         _hover={{
-          bg: 'primary.100',
+          bg: 'white',
           border: '1px solid',
-          borderColor: 'primary.500',
         }}
         onClick={() => setIsOpen(true)}
       >
