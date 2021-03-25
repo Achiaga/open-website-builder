@@ -15,7 +15,7 @@ const Builder = () => {
   const router = useRouter()
 
   const userBlocksData = useSelector(getBuilderData)
-
+  console.log(userBlocksData)
   const redirectLogo = () => {
     router.push('/')
   }

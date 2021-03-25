@@ -33,6 +33,8 @@ const ReactGridLayoutWrapper = ({ extraData, children }) => {
     <Box
       {...extraData}
       backgroundImage={`url(${extraData?.imageUrl})`}
+      backgroundPosition="center"
+      backgroundRepeat="no-repeat"
       w="100%"
       h="100%"
       id="inception"

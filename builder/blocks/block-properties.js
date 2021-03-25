@@ -20,8 +20,8 @@ const fontSize = {
   type: 'dropdown',
   property: 'fontSize',
   options: [
-    { value: '0.75rem', title: 'xs' },
-    { value: '1rem', title: 'sm' },
+    { value: '1rem', title: 'xs' },
+    { value: '1.25rem', title: 'sm' },
     { value: '1.5rem', title: 'md' },
     { value: '1.75rem', title: 'lg' },
     { value: '2rem', title: 'xl' },
@@ -130,7 +130,7 @@ const border = {
   options: [
     { value: '0px solid black', title: 'none' },
     { value: '1px solid black', title: 'black' },
-    { value: '1px solid gray', title: 'gray' },
+    { value: '1px solid rgb(205, 211, 216)', title: 'gray' },
   ],
 }
 
