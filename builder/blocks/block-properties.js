@@ -185,9 +185,9 @@ const backgroundColor = {
   property: 'backgroundColor',
   options: [
     {
-      value: 'trasnparent',
+      value: 'transparent',
       title: 'none',
-      icon: <BgIcon bgColor="trasnparent" />,
+      icon: <BgIcon bgColor="transparent" />,
     },
     {
       value: 'rgb(235,236,237)',

@@ -60,9 +60,13 @@ export const GenericText = (props) => {
     </Text>
   )
 }
+function getNumbers(fontSize) {
+  const mainValue = parseInt(fontSize)
+  console.log(mainValue)
+  return [`${mainValue / 2}rem`, `${mainValue}rem`]
+}
 export const PrevText = (props) => {
   const Textmodifiers = {
-    fontSize: props.fontSize,
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
     color: props.fontColor,
@@ -72,8 +76,17 @@ export const PrevText = (props) => {
     borderRadius: props.borderRadius,
   }
 
+  console.log(props.fontSize, getNumbers(props.fontSize))
+
   return (
-    <Text w="100%" h="100%" d="grid" {...Textmodifiers} wordBreak="break-word">
+    <Text
+      w="100%"
+      h="100%"
+      d="grid"
+      {...Textmodifiers}
+      fontSize={props.fontSize.replace('rem', 'vw')}
+      wordBreak="break-word"
+    >
       {props.text}
     </Text>
   )

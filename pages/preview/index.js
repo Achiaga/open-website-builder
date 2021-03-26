@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { ResumeWebsite } from '../builder/web-preview/preview'
-import { getUserDataFromLS } from '../features/helper'
+import { ResumeWebsite } from '../../builder/web-preview/preview'
+import { getUserDataFromLS } from '../../features/helper'
 
 function ResumePreview() {
   const [blocksData, setBlocksData] = useState(null)

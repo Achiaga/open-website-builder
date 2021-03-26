@@ -2,7 +2,7 @@ import { useEffect, useState, createContext } from 'react'
 import { GeneratePreviewBlock } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
-import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
+import { GRID_COLUMNS } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
 
 export const BlocksContext = createContext()

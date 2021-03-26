@@ -39,7 +39,7 @@
                 "boxShadow": "none",
                 "borderRadius": "0px",
                 "fontColor": "rgb(105,64,165)",
-                "backgroundColor": "trasnparent"
+                "backgroundColor": "transparent"
               }
             }
           },
@@ -185,7 +185,7 @@
                 "boxShadow": "none",
                 "borderRadius": "0px",
                 "fontColor": "rgb(105,64,165)",
-                "backgroundColor": "trasnparent"
+                "backgroundColor": "transparent"
               }
             }
           },
@@ -211,7 +211,7 @@
                 "boxShadow": "none",
                 "borderRadius": "0px",
                 "fontColor": "#000000",
-                "backgroundColor": "trasnparent"
+                "backgroundColor": "transparent"
               }
             }
           },
@@ -237,7 +237,7 @@
                 "boxShadow": "none",
                 "borderRadius": "0px",
                 "fontColor": "#000000",
-                "backgroundColor": "trasnparent"
+                "backgroundColor": "transparent"
               }
             }
           }
@@ -261,7 +261,7 @@
       "data": {
         "boxShadow": "none",
         "borderRadius": "0px",
-        "backgroundColor": "trasnparent",
+        "backgroundColor": "transparent",
         "blocks": {
           "child-inception-59ca5534-dd73-4ead-9e4b-c4533f0186b5": {
             "layout": {
@@ -285,7 +285,7 @@
                 "boxShadow": "rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;",
                 "borderRadius": "10px",
                 "fontColor": "#000000",
-                "backgroundColor": "trasnparent"
+                "backgroundColor": "transparent"
               }
             }
           },

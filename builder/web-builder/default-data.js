@@ -21,6 +21,6 @@ export const blocksProperties = {
     border: '0px solid black',
     boxShadow: 'none',
     borderRadius: '0px',
-    backgroundColor: 'trasnparent',
+    backgroundColor: 'transparent',
   },
 }
