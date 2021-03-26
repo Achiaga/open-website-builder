@@ -1,37 +1,9 @@
 import { useEffect, useState, createContext } from 'react'
-import { generatePageCode } from './helpers'
+import { GeneratePreviewBlock } from './helpers'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import { GRID_COLUMNS, ROW_HEIGHT } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
-
-const WebPreview = ({ layout, blocksConfig }) => {
-  const [pageDesign, setPageDesign] = useState(null)
-
-  useEffect(() => {
-    setPageDesign(generatePageCode(layout, blocksConfig))
-  }, [layout, blocksConfig])
-
-  return (
-    <Box
-      p="10px"
-      d="grid"
-      gridTemplateColumns="repeat(10, 1fr)"
-      gridTemplateRows={`repeat( auto-fill, ${ROW_HEIGHT}px )`}
-      gridGap={'10px'}
-      w="500px"
-      h="1500px"
-      border="1px solid black"
-    >
-      {pageDesign}
-    </Box>
-  )
-}
-
-WebPreview.propTypes = {
-  layout: PropTypes.any,
-  blocksConfig: PropTypes.any,
-}
 
 export const BlocksContext = createContext()
 
@@ -59,7 +31,11 @@ export const ResumeWebsite = ({ userBlocksData }) => {
         w="100vw"
         height="7500px"
       >
-        {generatePageCode(childStructure)}
+        {childStructure?.map((structItem) => {
+          return (
+            <GeneratePreviewBlock key={structItem} structItem={structItem} />
+          )
+        })}
       </Box>
       <MadeWith />
     </BlocksContext.Provider>
@@ -69,5 +45,3 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 ResumeWebsite.propTypes = {
   userBlocksData: PropTypes.any,
 }
-
-export default WebPreview

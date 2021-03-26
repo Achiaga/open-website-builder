@@ -4,12 +4,6 @@ import { useContext } from 'react'
 import { previewBlocks } from '../blocks'
 import { BlocksContext } from './preview'
 
-export const generatePageCode = (childStructure) => {
-  return childStructure?.map((structItem) => {
-    return <GeneratePreviewBlock key={structItem} structItem={structItem} />
-  })
-}
-
 export function GeneratePreviewBlock({ structItem }) {
   const {
     builder: { blocks, layouts },

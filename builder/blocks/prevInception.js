@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/layout'
 import { useContext } from 'react'
 import { GRID_COLUMNS } from '../web-builder/constants'
 
-import { generatePageCode } from '../web-preview/helpers'
+import { GeneratePreviewBlock } from '../web-preview/helpers'
 
 import { BlocksContext } from '../web-preview/preview'
 
@@ -15,7 +15,9 @@ export const PrevInception = ({ parentHeight, blockId }) => {
       gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
       height={parentHeight * rowHeight}
     >
-      {generatePageCode(builder.structure[blockId])}
+      {builder.structure[blockId]?.map((structItem) => {
+        return <GeneratePreviewBlock key={structItem} structItem={structItem} />
+      })}
     </Box>
   )
 }

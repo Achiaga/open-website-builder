@@ -51,7 +51,7 @@ const Template = ({
             cursor="pointer"
             bg="#f3f3f3"
             _hover={{ bg: 'white', color: '#5956f5' }}
-            onClick={handlePreviewTemplate}
+            onClick={() => handlePreviewTemplate(templateId)}
           >
             Preview
           </Button>

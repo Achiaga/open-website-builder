@@ -18,8 +18,8 @@ const Dashboard = () => {
     router.push(`/builder?template=${id}`)
   }
 
-  const handlePreviewTemplate = () => {
-    console.log('preview')
+  const handlePreviewTemplate = (id) => {
+    router.push(`/preview/template/${id}`)
   }
 
   return (
