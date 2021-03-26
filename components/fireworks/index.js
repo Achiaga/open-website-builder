@@ -20,7 +20,7 @@ export default class Realistic extends React.Component {
     this.animationInstance &&
       this.animationInstance({
         ...opts,
-        origin: { y: 0.7 },
+        origin: { y: 0.4 },
         particleCount: Math.floor(300 * particleRatio),
       })
   }

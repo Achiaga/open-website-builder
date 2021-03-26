@@ -1,5 +1,6 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { publishResume } from '../utils/user-data'
 import { Box, Text } from '@chakra-ui/layout'
 import { useSelector } from 'react-redux'
@@ -27,44 +28,93 @@ const PublishSuccessModal = ({ setPublish }) => {
     >
       <Box
         maxWidth="60vw"
-        maxHeight="400px"
-        bg="#e9ebf7"
+        bg="white"
         p="4rem"
+        px="6.5rem"
         borderRadius="10px"
         box-shadow="0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%), inset 0 -2px 6px 0 rgb(10 37 64 / 35%)"
         onClick={(e) => e.stopPropagation()}
       >
-        <Text
-          as="h1"
-          fontWeight="bold"
+        <Box
           color="primary.500"
           fontFamily="Montserrat"
-          fontSize={'36px'}
-          lineHeight={'180%'}
-          paddingBottom={'0'}
+          paddingBottom={'2'}
           mb="1rem"
           textAlign="center"
           d="flex"
           flexDir="column"
+          justifyContent="center"
+          alignItems="center"
         >
-          Congratulations!🎉
-          <Text color="primary.500" d="flex">
-            Your Resume is now{' '}
-            <Text color="green.500" ml="1rem">
+          <Text as="h1" fontWeight="bold" fontSize={'40px'}>
+            Congratulations! 🎉
+          </Text>
+          <Text
+            as="span"
+            fontSize={'35px'}
+            textAlign="center"
+            pt="6"
+            color="black"
+            d="flex"
+            fontWeight="semibold"
+          >
+            Your Portfolio/Resume is now
+          </Text>
+          <Text
+            as="span"
+            fontSize={'35px'}
+            textAlign="center"
+            color="black"
+            d="flex"
+            pb="3"
+            fontWeight="bold"
+          >
+            <Text color="green.500" ml="0.75rem">
               Published
             </Text>
           </Text>
-          🥳
-        </Text>
+          <Text as="span" fontSize={'35px'}>
+            🥳 🚀 ✨
+          </Text>
+        </Box>
         <Text
           as="h3"
           color="black"
           fontFamily="Montserrat"
           fontSize={'24px'}
-          lineHeight={'120%'}
+          paddingBottom={'3'}
+          fontWeight="semibold"
+        >
+          This is your resume Url:
+        </Text>
+        <Text
+          as="h3"
+          color="black"
+          fontFamily="Montserrat"
+          fontSize={'20px'}
+          cursor="pointer"
+          paddingBottom={'4'}
+        >
+          - https://www.yourUrl.standout-resume.now.sh
+        </Text>
+        <Text
+          as="h3"
+          color="black"
+          fontFamily="Montserrat"
+          fontSize={'20px'}
           paddingBottom={'0'}
         >
-          This is your resume Url, change it on your settings
+          - Change it on your settings{' '}
+          <Link href="/">
+            <Text
+              as="u"
+              cursor="pointer"
+              color="primary.500"
+              fontWeight="semibold"
+            >
+              here
+            </Text>
+          </Link>
         </Text>
       </Box>
       <Fireworks />
@@ -128,7 +178,7 @@ function Login() {
   }
 
   return (
-    <Box d="flex" cursor="pointer" flexDir="column">
+    <Box d="flex" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
       <Card onClick={handleSavePage} fontSize="md">
         Save
