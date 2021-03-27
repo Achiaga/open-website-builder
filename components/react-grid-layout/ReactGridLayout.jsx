@@ -239,7 +239,7 @@ export default class ReactGridLayout extends React.Component {
   onDrag(i, x, y, { e, node }) {
     const { oldDragItem } = this.state
     let { layout } = this.state
-    const { cols } = this.props
+    const { cols, hierarchy } = this.props
     var l = getLayoutItem(layout, i)
     if (!l) return
 
@@ -263,7 +263,8 @@ export default class ReactGridLayout extends React.Component {
       isUserAction,
       this.props.preventCollision,
       compactType(this.props),
-      cols
+      cols,
+      hierarchy
     )
 
     this.props.onDrag(layout, oldDragItem, l, placeholder, e, node)

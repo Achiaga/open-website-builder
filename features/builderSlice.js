@@ -59,7 +59,11 @@ export const builderSlice = createSlice({
     },
     setLayout: (state, action) => {
       const { i } = action.payload
-      state.builderData.layouts[i] = action.payload
+      console.log('setLayout', i)
+      state.builderData.layouts = [...state.builderData.layouts, action.payload]
+    },
+    setLayouts: (state, action) => {
+      state.builderData.layouts = action.payload
     },
     setAddedBlock: (state, action) => {
       const { blockID, newBlockStructure } = action.payload
@@ -68,6 +72,9 @@ export const builderSlice = createSlice({
     setStructure: (state, action) => {
       const { structureId, structure } = action.payload
       state.builderData.structure[structureId] = structure
+    },
+    setHierarchy: (state, action) => {
+      state.builderData.hierarchy = action.payload
     },
     setBlockDraggable: (state, action) => {
       const { blockId, prevBlockId } = action.payload
@@ -83,6 +90,7 @@ export const {
   setBuilderBlocksData,
   setUserData,
   setLayout,
+  setLayouts,
   setAddedBlock,
   setStructure,
   setNewDropBlockType,
@@ -92,6 +100,7 @@ export const {
   setGridRowHeight,
   setBlockConfig,
   setBlockDraggable,
+  setHierarchy,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -137,20 +146,23 @@ export const addNewBlock = (blockLayout, parentBlockId) => (
   const structure = getStructure(state)
   const newBlockStructure = addBlock(blockLayout.i, getNewBlockType(state))
   const structureId = parentBlockId || 'main'
+  console.log('blockLayout', blockLayout)
   batch(() => {
     dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockStructure }))
     dispatch(setLayout(blockLayout))
-    dispatch(
-      setStructure({
-        structure: [...(structure[structureId] || []), blockLayout.i],
-        structureId,
-      })
-    )
+    // dispatch(
+    //   setStructure({
+    //     structure: [...(structure[structureId] || []), blockLayout.i],
+    //     structureId,
+    //   })
+    // )
     dispatch(setNewDropBlock({ type: null }))
   })
 }
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getBlocks = (state) => state.builder.builderData.blocks
+export const getHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
 export const getResumeId = (state) => state.builder?.user?.resumeId
