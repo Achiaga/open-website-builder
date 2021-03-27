@@ -13,7 +13,6 @@ export const GenericText = (props) => {
   const selectedId = useSelector(getSelectedBlockId)
 
   const Textmodifiers = {
-    fontSize: props.fontSize,
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
     color: props.fontColor,
@@ -53,6 +52,7 @@ export const GenericText = (props) => {
       contentEditable={selectedId === parentBlockId}
       suppressContentEditableWarning
       {...Textmodifiers}
+      fontSize={props.fontSize.replace('rem', 'vw')}
       wordBreak="break-word"
       ref={titleRef}
     >
@@ -60,11 +60,7 @@ export const GenericText = (props) => {
     </Text>
   )
 }
-function getNumbers(fontSize) {
-  const mainValue = parseInt(fontSize)
-  console.log(mainValue)
-  return [`${mainValue / 2}rem`, `${mainValue}rem`]
-}
+
 export const PrevText = (props) => {
   const Textmodifiers = {
     textAlign: props.textAlign,
@@ -75,8 +71,6 @@ export const PrevText = (props) => {
     boxShadow: props.boxShadow,
     borderRadius: props.borderRadius,
   }
-
-  console.log(props.fontSize, getNumbers(props.fontSize))
 
   return (
     <Text

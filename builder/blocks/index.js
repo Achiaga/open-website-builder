@@ -25,17 +25,25 @@ export const previewBlocks = {
   inception: PrevInception,
 }
 
+const ResizingCounter = ({ blockId }) => {
+  const resizingBlock = useSelector(getResizingBlock)
+  const isResizing = resizingBlock?.i === blockId
+  if (!isResizing) return null
+  return (
+    <Box pos="absolute" right="0" bottom="25px" bg="white" zIndex="99999">
+      <Box as="span">w: {resizingBlock?.w}</Box>
+      <Box as="span"> h: {resizingBlock?.h}</Box>
+    </Box>
+  )
+}
+
 export function BuilderBlock({ blockId }) {
   const dispatch = useDispatch()
-
   const { type, data } = useSelector(getBlockData(blockId))
-  const selectedBlockId = useSelector(getSelectedBlockId)
-  const resizingBlock = useSelector(getResizingBlock)
-
   const GenericBlock = blocks[type]
+  const selectedBlockId = useSelector(getSelectedBlockId)
 
   const isEditable = selectedBlockId === blockId
-  const isResizing = resizingBlock?.i === blockId
 
   return (
     <Box
@@ -54,12 +62,7 @@ export function BuilderBlock({ blockId }) {
       {isEditable && (
         <BlockModifiers data={data} blockKey={blockId} blockType={type} />
       )}
-      {isResizing && (
-        <Box pos="absolute" right="0" bottom="25px" bg="white" zIndex="99999">
-          <Box as="span">w: {resizingBlock?.w}</Box>
-          <Box as="span"> h: {resizingBlock?.h}</Box>
-        </Box>
-      )}
+      <ResizingCounter blockId={blockId} />
       <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
   )

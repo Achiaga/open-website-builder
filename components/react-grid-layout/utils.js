@@ -89,6 +89,7 @@ export function fastPositionEqual(a, b) {
  * Given two layoutitems, check if they collide.
  */
 export function collides(l1, l2) {
+  return false
   if (l1.i === l2.i) return false // same element
   if (l1.x + l1.w <= l2.x) return false // l1 is left of l2
   if (l1.x >= l2.x + l2.w) return false // l1 is right of l2

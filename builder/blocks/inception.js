@@ -90,9 +90,10 @@ const BlockInception = ({ parentBlockId, ...data }) => {
   return (
     <ReactGridLayoutWrapper extraData={extraData}>
       <ReactGridLayout
+        key={JSON.stringify(layouts[parentBlockId].w, layouts[parentBlockId].h)}
         {...reactGridConfig}
         innerRef={gridRef}
-        key={forceRender}
+        // key={forceRender}
         rowHeight={gridRowHeight}
         isDroppable={isDroppable}
         onDrop={onDrop}

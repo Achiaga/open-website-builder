@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
@@ -19,8 +19,10 @@ import {
   setBlockEditable,
   setLayout,
   addNewBlock,
+  getResizingBlock,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
+import { v4 } from 'uuid'
 
 const reactGridLayoutProps = {
   cols: GRID_COLUMNS,
@@ -57,6 +59,7 @@ const WebBuilder = () => {
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
+  const [reRender, setReRender] = useState(null)
 
   useEffect(() => {
     saveOnLocal({ blocks, layouts, structure })
@@ -82,6 +85,7 @@ const WebBuilder = () => {
 
   function handleLayoutChange(_, __, newItem) {
     dispatch(setLayout({ ...newItem }))
+    // setReRender((render) => !render)
     setTimeout(() => {
       dispatch(setResizingBlockId(null))
     }, 1000)
@@ -99,10 +103,16 @@ const WebBuilder = () => {
     dispatch(setResizingBlockId(resizingBlock))
   }
 
+  function geLayout(parent = 'main') {
+    return Object.values(layouts).filter((layout) =>
+      structure[parent].includes(layout.i)
+    )
+  }
+  console.log('render', reRender ? v4() : '')
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
-        key={JSON.stringify({ layouts, selectedBlockId })}
+        key={reRender ? v4() : ''}
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
@@ -113,9 +123,10 @@ const WebBuilder = () => {
         onDragStop={handleLayoutChange}
         useCSSTransforms={!selectedBlockId}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
+        layout={geLayout()}
       >
         {structure['main'].map((blockId) => (
-          <Box key={blockId} data-grid={layouts[blockId]}>
+          <Box key={blockId}>
             <BuilderBlock blockId={blockId} />
           </Box>
         ))}
