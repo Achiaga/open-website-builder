@@ -91,13 +91,17 @@ const WebBuilder = () => {
     dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
   }
 
-  function isNewItemInsideInception(l1, l2) {
-    if (l1.i === l2.i) return false // same element
-    if (l1.x + l1.w <= l2.x) return false // l1 is left of l2
-    if (l1.x >= l2.x + l2.w) return false // l1 is right of l2
-    if (l1.y + l1.h <= l2.y) return false // l1 is above l2
-    if (l1.y >= l2.y + l2.h) return false // l1 is below l2
-    return true // boxes overlap
+  function containsInX(parent, child) {
+    return child.x >= parent.x && child.x <= parent.x + parent.w
+  }
+  function containsInY(parent, child) {
+    return child.y >= parent.y && child.y <= parent.y + parent.h
+  }
+
+  function isNewItemInsideInception(parent, child) {
+    if (parent.i === child.i) return false
+    if (containsInX(parent, child) && containsInY(parent, child)) return true
+    return false
   }
 
   function findItemParent(item, parents) {
@@ -120,23 +124,87 @@ const WebBuilder = () => {
     return newLayout.filter(({ i }) => i.includes('inception'))
   }
 
-  function handleLayoutChange(newLayout, __, newItem) {
-    const parents = getAllParents(newLayout)
-    const updatedHierarchy = { ...(hierarchy || {}) }
-    const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem)
+  function getIsGammaInception(hierarchy, parentId, parents) {
+    const parentsIds = parents.map((parent) => parent.i)
+    const childsId = hierarchy?.[parentId]
+    const inceptionChilds = childsId?.filter((childId) =>
+      parentsIds.includes(childId)
+    )
+    const isGammaInception = !inceptionChilds || inceptionChilds?.length < 1
+    return isGammaInception
+  }
 
-    const parentList = findItemParent(newItem, parents)
-    const newParent = parentList?.[0]
-    if (oldParentId && !newParent) {
-      updatedHierarchy[oldParentId] = updatedHierarchy[oldParentId].filter(
-        (child) => child !== newItem.i
-      )
+  function solveParentConflict(parents, hierarchy) {
+    if (parents.length < 2) return parents[0]
+    for (let parent of parents) {
+      const isGammaInception = getIsGammaInception(hierarchy, parent.i, parents)
+      if (isGammaInception) return parent
     }
-    if (!!newParent && newParent?.i !== oldParentId) {
-      updatedHierarchy[newParent.i] = [
-        ...(updatedHierarchy[newParent.i] || []),
-        newItem.i,
-      ]
+    return parents[0]
+  }
+
+  function removeChildFromOldParent(hierarchy, oldParentId, newItemId) {
+    let updatedHierarchy = { ...(hierarchy || {}) }
+    updatedHierarchy[oldParentId] = updatedHierarchy[oldParentId].filter(
+      (child) => child !== newItemId
+    )
+
+    return updatedHierarchy
+  }
+  function addChildToNewParent(hierarchy, newParentId, newItemId) {
+    let updatedHierarchy = { ...(hierarchy || {}) }
+    updatedHierarchy[newParentId] = [
+      ...(updatedHierarchy[newParentId] || []),
+      newItemId,
+    ]
+    return updatedHierarchy
+  }
+
+  function shoudlRemoveChildFromOldParent(oldParentId, newParent) {
+    return (
+      (oldParentId && newParent?.i !== oldParentId) ||
+      (oldParentId && !newParent?.i)
+    )
+  }
+
+  function shouldAddChildToNewParent(newParent, oldParentId) {
+    return !!newParent && newParent?.i !== oldParentId
+  }
+
+  function getParentBlock(newLayout, updatedHierarchy, newItem) {
+    const allInceptions = getAllParents(newLayout)
+    const parentList = findItemParent(newItem, allInceptions)
+
+    const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem)
+    const newParent = solveParentConflict(parentList, hierarchy)
+    return { oldParentId, newParent }
+  }
+
+  function handleLayoutChange(newLayout, __, newItem) {
+    let updatedHierarchy = { ...(hierarchy || {}) }
+    if (updatedHierarchy) {
+      const { newParent, oldParentId } = getParentBlock(
+        newLayout,
+        updatedHierarchy,
+        newItem
+      )
+      if (shoudlRemoveChildFromOldParent(oldParentId, newParent)) {
+        updatedHierarchy = removeChildFromOldParent(
+          updatedHierarchy,
+          oldParentId,
+          newItem.i
+        )
+      }
+
+      if (shouldAddChildToNewParent(newParent, oldParentId)) {
+        updatedHierarchy = addChildToNewParent(
+          updatedHierarchy,
+          newParent.i,
+          newItem.i
+        )
+      }
+
+      console.log('updatedHierarchy', updatedHierarchy)
     }
 
     dispatch(setHierarchy(updatedHierarchy))
@@ -145,6 +213,15 @@ const WebBuilder = () => {
     setTimeout(() => {
       dispatch(setResizingBlockId(null))
     }, 1000)
+  }
+
+  function handleDrag(layout, _, newItem) {
+    const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
+    if (newParent?.i) {
+      const elem = document.getElementById(newParent.i)
+      // elem.style.backgroundColor = 'green'
+      console.log(elem)
+    }
   }
 
   function handleKeyPress(e) {
@@ -170,9 +247,10 @@ const WebBuilder = () => {
         preventCollision={!!newBlockType}
         isDroppable={true}
         onResize={handleAddSize}
+        onDrag={handleDrag}
         onResizeStop={handleLayoutChange}
         onDragStop={handleLayoutChange}
-        useCSSTransforms={!selectedBlockId}
+        useCSSTransforms={true}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
         layout={getLayout()}
         hierarchy={hierarchy}

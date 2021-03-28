@@ -324,6 +324,19 @@ export function getStatics(layout) {
  * @param  {Number}     [x]               X position in grid units.
  * @param  {Number}     [y]               Y position in grid units.
  */
+
+function findAllChildren(hierarchy, elementDragginId) {
+  let values = []
+  if (!hierarchy?.[elementDragginId]) return [elementDragginId]
+  for (let elemId of hierarchy[elementDragginId]) {
+    values = [
+      ...hierarchy[elementDragginId],
+      ...(findAllChildren(hierarchy, elemId) || []),
+    ]
+  }
+  return values
+}
+
 export function moveElement(
   layout,
   l,
@@ -342,9 +355,6 @@ export function moveElement(
   // Short-circuit if nothing to do.
   if (l.y === y && l.x === x) return layout
 
-  log(
-    `Moving element ${l.i} to [${String(x)},${String(y)}] from [${l.x},${l.y}]`
-  )
   const oldX = l.x
   const oldY = l.y
 
@@ -357,17 +367,17 @@ export function moveElement(
   // When doing this comparison, we have to sort the items we compare with
   // to ensure, in the case of multiple collisions, that we're getting the
   // nearest collision.
-  let sorted = sortLayoutItems(layout, compactType)
+  // let sorted = sortLayoutItems(layout, compactType)
 
   const newY = y - oldY
   const newX = x - oldX
   // $FlowIgnore acceptable modification of read-only array as it was recently cloned
   // if (movingUp) sorted = sorted.reverse()
-  if (!l.i.includes('inception')) {
-    return layout
-  }
+  // if (!l.i.includes('inception')) {
+  //   return layout
+  // }
   // const collisions = getAllCollisions(sorted, l)
-  const children = getAllChildren(sorted, l)
+  // const children = getAllChildren(sorted, l)
 
   // There was a collision; abort
   // if (preventCollision && collisions.length) {
@@ -380,16 +390,20 @@ export function moveElement(
 
   // Move each item that collides away from this element.
 
-  for (let i = 0, len = children.length; i < len; i++) {
-    const child = children[i]
-    let layoutCopy = [...layout]
-    if (hierarchy && hierarchy?.[l.i]?.includes(child.i)) {
-      const index = layout.findIndex((item) => item.i === child.i)
-      layoutCopy[index] = { ...child, y: child.y + newY, x: child.x + newX }
-      layout = layoutCopy
+  const allChilds = findAllChildren(hierarchy, l.i)
+  const newLayout = [...layout]
+  for (let i = 0, len = allChilds.length; i < len; i++) {
+    if (hierarchy) {
+      const index = layout.findIndex((item) => item.i === allChilds[i])
+      const child = layout[index]
+      newLayout[index] = {
+        ...layout[index],
+        y: child.y + newY,
+        x: child.x + newX,
+      }
     }
   }
-
+  layout = newLayout
   return layout
 }
 
