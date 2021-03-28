@@ -17,6 +17,7 @@ import {
   compactType,
   noop,
   fastRGLPropsEqual,
+  withLayoutItem,
 } from './utils'
 
 import { calcXY } from './calculateUtils'
@@ -322,7 +323,6 @@ export default class ReactGridLayout extends React.Component {
 
   onLayoutMaybeChanged(newLayout, oldLayout) {
     if (!oldLayout) oldLayout = this.state.layout
-
     if (!isEqual(oldLayout, newLayout)) {
       this.props.onLayoutChange(newLayout)
     }
@@ -344,42 +344,46 @@ export default class ReactGridLayout extends React.Component {
   onResize(i, w, h, { e, node }) {
     const { layout, oldResizeItem } = this.state
     const { cols, preventCollision } = this.props
-    const layoutItem = getLayoutItem(layout, i)
-    if (!layoutItem) return
 
-    const l = cloneLayoutItem(layoutItem)
-    // Something like quad tree should be used
-    // to find collisions faster
-    let hasCollisions
-    if (preventCollision) {
-      const collisions = getAllCollisions(layout, { ...l, w, h }).filter(
-        (layoutItem) => layoutItem.i !== l.i
-      )
-      hasCollisions = collisions.length > 0
+    const [newLayout, l] = withLayoutItem(layout, i, (l) => {
+      // Something like quad tree should be used
+      // to find collisions faster
+      let hasCollisions
+      if (preventCollision) {
+        const collisions = getAllCollisions(layout, { ...l, w, h }).filter(
+          (layoutItem) => layoutItem.i !== l.i
+        )
+        hasCollisions = collisions.length > 0
 
-      // If we're colliding, we need adjust the placeholder.
-      if (hasCollisions) {
-        // adjust w && h to maximum allowed space
-        let leastX = Infinity,
-          leastY = Infinity
-        collisions.forEach((layoutItem) => {
-          if (layoutItem.x > l.x) leastX = Math.min(leastX, layoutItem.x)
-          if (layoutItem.y > l.y) leastY = Math.min(leastY, layoutItem.y)
-        })
+        // If we're colliding, we need adjust the placeholder.
+        if (hasCollisions) {
+          // adjust w && h to maximum allowed space
+          let leastX = Infinity,
+            leastY = Infinity
+          collisions.forEach((layoutItem) => {
+            if (layoutItem.x > l.x) leastX = Math.min(leastX, layoutItem.x)
+            if (layoutItem.y > l.y) leastY = Math.min(leastY, layoutItem.y)
+          })
 
-        if (Number.isFinite(leastX)) l.w = leastX - l.x
-        if (Number.isFinite(leastY)) l.h = leastY - l.y
+          if (Number.isFinite(leastX)) l.w = leastX - l.x
+          if (Number.isFinite(leastY)) l.h = leastY - l.y
+        }
       }
-    }
 
-    if (!hasCollisions) {
-      // Set new width and height.
-      l.w = w
-      l.h = h
-    }
+      if (!hasCollisions) {
+        // Set new width and height.
+        l.w = w
+        l.h = h
+      }
+
+      return l
+    })
+
+    // Shouldn't ever happen, but typechecking makes it necessary
+    if (!l) return
 
     // Create placeholder element (display only)
-    var placeholder = {
+    const placeholder = {
       w: l.w,
       h: l.h,
       x: l.x,
@@ -388,36 +392,24 @@ export default class ReactGridLayout extends React.Component {
       i: i,
     }
 
-    this.props.onResize(layout, oldResizeItem, l, placeholder, e, node)
+    this.props.onResize(newLayout, oldResizeItem, l, placeholder, e, node)
 
-    // Re-compact the layout and set the drag placeholder.
+    // Re-compact the newLayout and set the drag placeholder.
     this.setState({
-      layout: compact(layout, compactType(this.props), cols),
-      // The item was cloned to prevent prop mutation. The layout will be updated in onResizeStop.
-      activeResizeItem: l,
+      layout: compact(newLayout, compactType(this.props), cols),
       activeDrag: placeholder,
     })
   }
 
   onResizeStop(i, w, h, { e, node }) {
-    const { layout, activeResizeItem, oldResizeItem } = this.state
+    const { layout, oldResizeItem } = this.state
     const { cols } = this.props
-    var l = getLayoutItem(layout, i)
-    const newLayoutItem = { ...l, w, h }
-    this.props.onResizeStop(layout, oldResizeItem, newLayoutItem, null, e, node)
+    const l = getLayoutItem(layout, i)
+
+    this.props.onResizeStop(layout, oldResizeItem, l, null, e, node)
+
     // Set state
     const newLayout = compact(layout, compactType(this.props), cols)
-
-    if (activeResizeItem) {
-      const activeResizeItemIndex = getLayoutItemIndex(
-        newLayout,
-        activeResizeItem.i
-      )
-      if (activeResizeItemIndex >= 0) {
-        // Update the active item
-        newLayout[activeResizeItemIndex] = activeResizeItem
-      }
-    }
     const { oldLayout } = this.state
     this.setState({
       activeDrag: null,

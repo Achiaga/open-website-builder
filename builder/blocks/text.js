@@ -33,8 +33,8 @@ export const GenericText = (props) => {
   }, [titleRef])
 
   function handleFocus(e) {
-    console.log('foucus')
-    console.log(e)
+    // console.log('foucus')
+    // console.log(e)
     // selectElementContents(titleRef.current)
   }
 
