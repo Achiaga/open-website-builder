@@ -58,8 +58,6 @@ export const builderSlice = createSlice({
       state.builderData.blocks[blockId].data = newData
     },
     setLayout: (state, action) => {
-      const { i } = action.payload
-      console.log('setLayout', i)
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
     },
     setLayouts: (state, action) => {
@@ -77,11 +75,11 @@ export const builderSlice = createSlice({
       state.builderData.hierarchy = action.payload
     },
     setBlockDraggable: (state, action) => {
-      const { blockId, prevBlockId } = action.payload
-      if (prevBlockId && state.builderData.layouts[prevBlockId]) {
-        state.builderData.layouts[prevBlockId].isDraggable = true
-      }
-      if (blockId) state.builderData.layouts[blockId].isDraggable = false
+      // const { blockId, prevBlockId } = action.payload
+      // if (prevBlockId && state.builderData.layouts[prevBlockId]) {
+      //   state.builderData.layouts[prevBlockId].isDraggable = true
+      // }
+      // if (blockId) state.builderData.layouts[blockId].isDraggable = false
     },
   },
 })
