@@ -30,8 +30,8 @@ export const Fallback = {
       },
     },
   },
-  layouts: {
-    'text-520af5a8-d661-4487-bae9-cbc759bfdd51': {
+  layouts: [
+    {
       w: 113,
       h: 42,
       x: 45,
@@ -42,7 +42,7 @@ export const Fallback = {
       isDraggable: true,
       isResizable: true,
     },
-    'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': {
+    {
       w: 303,
       h: 42,
       x: 105,
@@ -53,7 +53,7 @@ export const Fallback = {
       isDraggable: true,
       isResizable: true,
     },
-  },
+  ],
   structure: {
     'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': [],
   },

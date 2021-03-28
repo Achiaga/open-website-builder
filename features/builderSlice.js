@@ -116,13 +116,14 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
 }
 
 export const removeblock = ({ blockId }) => (dispatch, getState) => {
-  const { structure, layouts, blocks } = getBuilderData(getState())
+  const { hierarchy, layouts, blocks } = getBuilderData(getState())
   const newBuilderData = removeblockFromState(
     blockId,
     layouts,
     blocks,
-    structure
+    hierarchy
   )
+  console.log(newBuilderData)
   batch(() => {
     dispatch(setSelectedBlockId(null))
     dispatch(setBuilderBlocksData(newBuilderData))
@@ -144,7 +145,6 @@ export const addNewBlock = (blockLayout, parentBlockId) => (
   const structure = getStructure(state)
   const newBlockStructure = addBlock(blockLayout.i, getNewBlockType(state))
   const structureId = parentBlockId || 'main'
-  console.log('blockLayout', blockLayout)
   batch(() => {
     dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockStructure }))
     dispatch(setLayout(blockLayout))

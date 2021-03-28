@@ -325,14 +325,15 @@ export function getStatics(layout) {
  * @param  {Number}     [y]               Y position in grid units.
  */
 
-function findAllChildren(hierarchy, elementDragginId) {
+export function findAllChildren(hierarchy, elementDragginId) {
   let values = []
-  if (!hierarchy?.[elementDragginId]) return [elementDragginId]
-  for (let elemId of hierarchy[elementDragginId]) {
-    values = [
-      ...hierarchy[elementDragginId],
-      ...(findAllChildren(hierarchy, elemId) || []),
-    ]
+  if (hierarchy?.[elementDragginId]) {
+    for (let elemId of hierarchy[elementDragginId]) {
+      values = [
+        ...hierarchy[elementDragginId],
+        ...(findAllChildren(hierarchy, elemId) || []),
+      ]
+    }
   }
   return values
 }
@@ -363,30 +364,8 @@ export function moveElement(
   if (typeof y === 'number') l.y = y
   l.moved = true
 
-  // If this collides with anything, move it.
-  // When doing this comparison, we have to sort the items we compare with
-  // to ensure, in the case of multiple collisions, that we're getting the
-  // nearest collision.
-  // let sorted = sortLayoutItems(layout, compactType)
-
   const newY = y - oldY
   const newX = x - oldX
-  // $FlowIgnore acceptable modification of read-only array as it was recently cloned
-  // if (movingUp) sorted = sorted.reverse()
-  // if (!l.i.includes('inception')) {
-  //   return layout
-  // }
-  // const collisions = getAllCollisions(sorted, l)
-  // const children = getAllChildren(sorted, l)
-
-  // There was a collision; abort
-  // if (preventCollision && collisions.length) {
-  //   log(`Collision prevented on ${l.i}, reverting.`)
-  //   l.x = oldX
-  //   l.y = oldY
-  //   l.moved = false
-  //   return layout
-  // }
 
   // Move each item that collides away from this element.
 
@@ -489,25 +468,7 @@ export function moveElementWithParent(
   compactType,
   cols
 ) {
-  const fakeItem = {
-    x: itemToMove.x,
-    y: itemToMove.y,
-    w: itemToMove.w,
-    h: itemToMove.h,
-    i: '-1',
-  }
-
   return layout
-  // return moveElement(
-  //   layout,
-  //   itemToMove,
-  //   itemToMove.x + 1,
-  //   itemToMove.y + 1,
-  //   isUserAction,
-  //   true,
-  //   compactType,
-  //   cols
-  // )
 }
 
 /**
