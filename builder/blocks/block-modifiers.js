@@ -548,6 +548,7 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
         onClick={(e) => e.stopPropagation()}
         backgroundColor="white"
         color="black"
+        zIndex="9999"
       >
         <Modifiers
           handleOpenToolbar={handleOpenToolbar}

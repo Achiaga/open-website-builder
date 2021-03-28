@@ -3,12 +3,9 @@ import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
-
 import { saveOnLocal, getUpdatedHierarchy } from './helpers'
 import { GRID_COLUMNS } from './constants'
-import { useDispatch, useSelector } from 'react-redux'
+import { batch, useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
   getGridRowHeight,
@@ -93,11 +90,13 @@ const WebBuilder = () => {
 
   function handleLayoutChange(newLayout, __, newItem) {
     const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
-    dispatch(setHierarchy(updatedHierarchy))
-    dispatch(setLayouts(newLayout))
-    setTimeout(() => {
-      dispatch(setResizingBlockId(null))
-    }, 1000)
+    batch(() => {
+      dispatch(setLayouts(newLayout))
+      dispatch(setHierarchy(updatedHierarchy))
+      setTimeout(() => {
+        dispatch(setResizingBlockId(null))
+      }, 1000)
+    })
   }
 
   function handleDrag(layout, _, newItem) {

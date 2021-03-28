@@ -23,6 +23,7 @@ export const GenericText = (props) => {
   }
   const [text] = useState(rawText)
   const titleRef = useRef(null)
+
   useEffect(() => {
     titleRef?.current?.addEventListener('paste', function (e) {
       e.preventDefault()
@@ -30,6 +31,12 @@ export const GenericText = (props) => {
       document.execCommand('insertText', false, text)
     })
   }, [titleRef])
+
+  function handleFocus(e) {
+    console.log('foucus')
+    console.log(e)
+    // selectElementContents(titleRef.current)
+  }
 
   useEffect(() => {
     titleRef.current.textContent = rawText
@@ -43,11 +50,12 @@ export const GenericText = (props) => {
   }
   return (
     <Text
+      onFocus={handleFocus}
       cursor="pointer"
       w="100%"
       h="100%"
       d="grid"
-      onClick={(e) => e.stopPropagation()}
+      onDoubleClick={(e) => e.stopPropagation()}
       onKeyUp={handleKeyUp}
       contentEditable={selectedId === parentBlockId}
       suppressContentEditableWarning

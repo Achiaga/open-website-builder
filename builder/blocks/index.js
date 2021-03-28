@@ -50,7 +50,7 @@ export function BuilderBlock({ blockId }) {
       width="100%"
       h="100%"
       id={blockId}
-      onDoubleClick={(e) => {
+      onClick={(e) => {
         e.stopPropagation()
         if (isEditable) return null
         dispatch(setBlockEditable(blockId))
