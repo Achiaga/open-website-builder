@@ -230,9 +230,9 @@ const backgroundColor = {
       icon: <BgIcon bgColor="rgb(244,223,235)" />,
     },
     {
-      value: 'rgb(251,228,228)',
+      value: '#f7484e',
       title: 'red',
-      icon: <BgIcon bgColor="rgb(251,228,228)" />,
+      icon: <BgIcon bgColor="#f7484e" />,
     },
     {
       value: '#000000',
