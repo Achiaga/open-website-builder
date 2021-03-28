@@ -169,7 +169,12 @@ function shouldAddChildToNewParent(newParent, oldParentId) {
   return !!newParent && newParent?.i !== oldParentId
 }
 
-function getParentBlock(newLayout, updatedHierarchy, newItem, hierarchy) {
+export function getParentBlock(
+  newLayout,
+  updatedHierarchy,
+  newItem,
+  hierarchy
+) {
   const allInceptions = getAllParents(newLayout)
   const parentList = findItemParent(newItem, allInceptions)
 

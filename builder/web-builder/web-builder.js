@@ -83,8 +83,8 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function onDrop(_, droppedBlockLayout) {
-    dispatch(addNewBlock(droppedBlockLayout))
+  function onDrop(newLayout, droppedBlockLayout) {
+    dispatch(addNewBlock(newLayout, droppedBlockLayout))
   }
 
   function handleWindowResize() {
@@ -119,9 +119,6 @@ const WebBuilder = () => {
     dispatch(setResizingBlockId(resizingBlock))
   }
 
-  function getLayout() {
-    return Object.values(layouts).filter((layout) => layout)
-  }
   return (
     <GridLayoutWrapper>
       <ReactGridLayout

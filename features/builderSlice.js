@@ -9,6 +9,7 @@ import {
   addBlock,
   removeblockFromState,
   findBlockParentId,
+  getParentBlock,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -64,8 +65,8 @@ export const builderSlice = createSlice({
       state.builderData.layouts = action.payload
     },
     setAddedBlock: (state, action) => {
-      const { blockID, newBlockStructure } = action.payload
-      state.builderData.blocks[blockID] = newBlockStructure
+      const { blockID, newBlockData } = action.payload
+      state.builderData.blocks[blockID] = newBlockData
     },
     setStructure: (state, action) => {
       const { structureId, structure } = action.payload
@@ -123,7 +124,6 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
     blocks,
     hierarchy
   )
-  console.log(newBuilderData)
   batch(() => {
     dispatch(setSelectedBlockId(null))
     dispatch(setBuilderBlocksData(newBuilderData))
@@ -137,23 +137,23 @@ export const setBlockEditable = (blockId) => (dispatch, getState) => {
     dispatch(setSelectedBlockId(blockId))
   })
 }
-export const addNewBlock = (blockLayout, parentBlockId) => (
-  dispatch,
-  getState
-) => {
+
+export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
   const state = getState()
-  const structure = getStructure(state)
-  const newBlockStructure = addBlock(blockLayout.i, getNewBlockType(state))
-  const structureId = parentBlockId || 'main'
+  const hierarchy = getHierarchy(state)
+  const newBlockData = addBlock(blockLayout.i, getNewBlockType(state))
+  const { newParent } = getParentBlock(newLayout, hierarchy || {}, blockLayout)
   batch(() => {
-    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockStructure }))
+    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
     dispatch(setLayout(blockLayout))
-    // dispatch(
-    //   setStructure({
-    //     structure: [...(structure[structureId] || []), blockLayout.i],
-    //     structureId,
-    //   })
-    // )
+    if (newParent) {
+      dispatch(
+        setHierarchy({
+          ...hierarchy,
+          [newParent.i]: [...(hierarchy[newParent.i] || []), blockLayout.i],
+        })
+      )
+    }
     dispatch(setNewDropBlock({ type: null }))
   })
 }
