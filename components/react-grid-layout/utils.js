@@ -31,6 +31,29 @@ export function cloneLayout(layout) {
   return newLayout
 }
 
+// Modify a layoutItem inside a layout. Returns a new Layout,
+// does not mutate. Carries over all other LayoutItems unmodified.
+export function modifyLayout(layout, layoutItem) {
+  const newLayout = Array(layout.length)
+  for (let i = 0, len = layout.length; i < len; i++) {
+    if (layoutItem.i === layout[i].i) {
+      newLayout[i] = layoutItem
+    } else {
+      newLayout[i] = layout[i]
+    }
+  }
+  return newLayout
+}
+
+export function withLayoutItem(layout, itemKey, cb) {
+  let item = getLayoutItem(layout, itemKey)
+  if (!item) return [layout, null]
+  item = cb(cloneLayoutItem(item)) // defensive clone then modify
+  // FIXME could do this faster if we already knew the index
+  layout = modifyLayout(layout, item)
+  return [layout, item]
+}
+
 // Fast path to cloning, since this is monomorphic
 export function cloneLayoutItem(layoutItem) {
   return {
