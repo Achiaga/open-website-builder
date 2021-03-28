@@ -104,7 +104,6 @@ const WebBuilder = () => {
     // if (newParent?.i) {
     //   const elem = document.getElementById(newParent.i)
     //   // elem.style.backgroundColor = 'green'
-    //   console.log(elem)
     // }
   }
 

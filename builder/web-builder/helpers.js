@@ -164,8 +164,17 @@ function shoudlRemoveChildFromOldParent(oldParentId, newParent) {
   )
 }
 
-function shouldAddChildToNewParent(newParent, oldParentId) {
-  return !!newParent && newParent?.i !== oldParentId
+function shouldAddChildToNewParent(
+  newParent,
+  oldParentId,
+  newItemId,
+  hierarchy
+) {
+  return (
+    !!newParent &&
+    newParent?.i !== oldParentId &&
+    !breaksSpaceTime(hierarchy, newItemId, newParent.i)
+  )
 }
 
 export function getParentBlock(
@@ -182,30 +191,36 @@ export function getParentBlock(
   return { oldParentId, newParent }
 }
 
+// this function protects us from infinity loops that break space & time
+// this functions checks if the item you are goint to add to the new parent already has
+// the parent inside their childre
+// If this happens it will create an infinite loop of who owns who
+function breaksSpaceTime(hierarchy, newItemId, newParentId) {
+  const newItemChildrens = hierarchy?.[newItemId] || []
+  return newItemChildrens.includes(newParentId)
+}
+
 export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
   let updatedHierarchy = { ...(hierarchy || {}) }
-  if (updatedHierarchy) {
-    const { newParent, oldParentId } = getParentBlock(
-      newLayout,
+  const { newParent, oldParentId } = getParentBlock(
+    newLayout,
+    updatedHierarchy,
+    newItem,
+    hierarchy
+  )
+  if (shoudlRemoveChildFromOldParent(oldParentId, newParent)) {
+    updatedHierarchy = removeChildFromOldParent(
       updatedHierarchy,
-      newItem,
-      hierarchy
+      oldParentId,
+      newItem.i
     )
-    if (shoudlRemoveChildFromOldParent(oldParentId, newParent)) {
-      updatedHierarchy = removeChildFromOldParent(
-        updatedHierarchy,
-        oldParentId,
-        newItem.i
-      )
-    }
-
-    if (shouldAddChildToNewParent(newParent, oldParentId)) {
-      updatedHierarchy = addChildToNewParent(
-        updatedHierarchy,
-        newParent.i,
-        newItem.i
-      )
-    }
+  }
+  if (shouldAddChildToNewParent(newParent, oldParentId, newItem.i, hierarchy)) {
+    updatedHierarchy = addChildToNewParent(
+      updatedHierarchy,
+      newParent.i,
+      newItem.i
+    )
   }
   return updatedHierarchy
 }

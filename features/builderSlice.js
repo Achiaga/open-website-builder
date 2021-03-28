@@ -150,7 +150,7 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
       dispatch(
         setHierarchy({
           ...hierarchy,
-          [newParent.i]: [...(hierarchy[newParent.i] || []), blockLayout.i],
+          [newParent.i]: [...(hierarchy?.[newParent?.i] || []), blockLayout.i],
         })
       )
     }
