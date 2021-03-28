@@ -17,7 +17,7 @@ const SignupPage = () => {
           name="google-site-verification"
           content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
         />
-        <title>Standout Resume</title>
+        <title>Antfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
     </Box>

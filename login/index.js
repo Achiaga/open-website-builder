@@ -95,7 +95,7 @@ const PublishSuccessModal = ({ setPublish }) => {
           cursor="pointer"
           paddingBottom={'4'}
         >
-          - https://www.yourUrl.standout-resume.now.sh
+          - https://www.yourUrl.antfolio.app
         </Text>
         <Text
           as="h3"

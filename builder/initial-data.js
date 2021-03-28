@@ -16,7 +16,7 @@ export const Fallback = {
         fontColor: 'rgb(11,110,153)',
         backgroundColor: 'rgb(221,235,241)',
         redirect: 'aa',
-        text: 'Welcome, to Standout Resume',
+        text: 'Welcome, to Antfolio',
       },
     },
   },

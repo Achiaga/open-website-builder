@@ -4,7 +4,7 @@ import LogoSvg from '../../assets/logo'
 const MadeWith = () => {
   return (
     <Box>
-      <a target="_blank" href="https://standout-resume.now.sh" rel="noreferrer">
+      <a target="_blank" href="https://antfolio.app" rel="noreferrer">
         <Box
           d="flex"
           pos="fixed"
@@ -25,7 +25,7 @@ const MadeWith = () => {
           </Box>
           Made with
           <Text ml="4px" color="primary.500" fontWeight="700">
-            Standout
+            Antfolio
           </Text>
         </Box>
       </a>

@@ -65,7 +65,7 @@ const Features = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Link href="https://twitter.com/ResumesStandout" passHref={true}>
+        <Link href="https://twitter.com/antfolio_app" passHref={true}>
           <Button padding="0" border="none" bg="transparent">
             <Twitter />
           </Button>
