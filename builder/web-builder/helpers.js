@@ -224,3 +224,13 @@ export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
   }
   return updatedHierarchy
 }
+
+export function highlightFutureParentBlock(newParentId, lastHoveredEl) {
+  if (newParentId) {
+    const elem = document.getElementById(newParentId)?.children?.[0]
+    elem.style.backgroundColor = 'green'
+    lastHoveredEl.current = elem
+  } else if (lastHoveredEl.current) {
+    lastHoveredEl.current.style.backgroundColor = null
+  }
+}
