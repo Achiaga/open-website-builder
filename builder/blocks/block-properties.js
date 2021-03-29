@@ -178,6 +178,30 @@ const boxShadow = {
   ],
 }
 
+const textShadow = {
+  type: 'dropdown',
+  property: 'textShadow',
+  icon: <GiTwoShadows />,
+  options: [
+    {
+      value: 'none',
+      title: 'none',
+    },
+    {
+      value: '2px 2px #565656',
+      title: 'sm',
+    },
+    {
+      value: '6px 4px #0000009e',
+      title: 'md',
+    },
+    {
+      value: '7px 2px #000000',
+      title: 'lg',
+    },
+  ],
+}
+
 // Common
 
 const backgroundColor = {
@@ -327,7 +351,7 @@ export const Properties = {
     alignItems,
     fontWeight,
     borderRadius,
-    boxShadow,
+    textShadow,
     redirectInput,
     color,
     backgroundColor,

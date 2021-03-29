@@ -18,7 +18,7 @@ export const GenericText = (props) => {
     color: props.fontColor,
     alignItems: props.alignItems,
     fontWeight: props.fontWeight,
-    boxShadow: props.boxShadow,
+    textShadow: props.textShadow,
     borderRadius: props.borderRadius,
   }
   const [text] = useState(rawText)
@@ -77,7 +77,7 @@ export const PrevText = (props) => {
     color: props.fontColor,
     alignItems: props.alignItems,
     fontWeight: props.fontWeight,
-    boxShadow: props.boxShadow,
+    textShadow: props.textShadow,
     borderRadius: props.borderRadius,
   }
 
@@ -108,7 +108,7 @@ GenericText.propTypes = {
   backgroundColor: PropTypes.string,
   alignItems: PropTypes.string,
   fontWeight: PropTypes.string,
-  boxShadow: PropTypes.string,
+  textShadow: PropTypes.string,
   borderRadius: PropTypes.string,
   bg: PropTypes.string,
   onKeyUp: PropTypes.func,
@@ -121,7 +121,7 @@ PrevText.propTypes = {
   backgroundColor: PropTypes.string,
   alignItems: PropTypes.string,
   fontWeight: PropTypes.string,
-  boxShadow: PropTypes.string,
+  textShadow: PropTypes.string,
   borderRadius: PropTypes.string,
   bg: PropTypes.string,
 }
