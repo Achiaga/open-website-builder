@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
-
-import { saveOnLocal } from './helpers'
+import {
+  saveOnLocal,
+  getUpdatedHierarchy,
+  getParentBlock,
+  highlightFutureParentBlock,
+} from './helpers'
 import { GRID_COLUMNS } from './constants'
-import { useDispatch, useSelector } from 'react-redux'
+import { batch, useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
   getGridRowHeight,
@@ -17,10 +19,13 @@ import {
   setResizingBlockId,
   setGridRowHeight,
   setBlockEditable,
-  setLayout,
   addNewBlock,
+  setLayouts,
+  setHierarchy,
+  getHierarchy,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
+import { v4 } from 'uuid'
 
 const reactGridLayoutProps = {
   cols: GRID_COLUMNS,
@@ -51,16 +56,23 @@ GridLayoutWrapper.propTypes = {
   children: PropTypes.any,
 }
 
+const blocksZIndex = {
+  inception: 0,
+  image: 1,
+  text: 2,
+}
+
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const { blocks, layouts, structure } = useSelector(getBuilderData)
+  const { blocks, layouts, hierarchy } = useSelector(getBuilderData)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
+  const lastHoveredEl = useRef()
 
   useEffect(() => {
-    saveOnLocal({ blocks, layouts, structure })
-  }, [blocks, layouts, structure])
+    saveOnLocal({ blocks, layouts, hierarchy })
+  }, [blocks, layouts, hierarchy])
 
   useEffect(() => {
     handleWindowResize()
@@ -72,19 +84,31 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function onDrop(_, droppedBlockLayout) {
-    dispatch(addNewBlock(droppedBlockLayout))
+  function onDrop(newLayout, droppedBlockLayout) {
+    dispatch(addNewBlock(newLayout, droppedBlockLayout))
   }
 
   function handleWindowResize() {
     dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
   }
 
-  function handleLayoutChange(_, __, newItem) {
-    dispatch(setLayout({ ...newItem }))
-    setTimeout(() => {
-      dispatch(setResizingBlockId(null))
-    }, 1000)
+  function handleLayoutChange(newLayout, __, newItem) {
+    const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
+    batch(() => {
+      dispatch(setLayouts(newLayout))
+      dispatch(setHierarchy(updatedHierarchy))
+      setTimeout(() => {
+        dispatch(setResizingBlockId(null))
+      }, 1000)
+    })
+    if (lastHoveredEl.current?.style) {
+      lastHoveredEl.current.style.backgroundColor = null
+    }
+  }
+
+  function handleDrag(layout, _, newItem) {
+    const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
+    highlightFutureParentBlock(newParent?.i, lastHoveredEl)
   }
 
   function handleKeyPress(e) {
@@ -93,8 +117,6 @@ const WebBuilder = () => {
     }
   }
 
-  const isDroppable = !selectedBlockId?.includes('inception')
-
   function handleAddSize(_, __, resizingBlock) {
     dispatch(setResizingBlockId(resizingBlock))
   }
@@ -102,23 +124,28 @@ const WebBuilder = () => {
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
-        key={JSON.stringify({ layouts, selectedBlockId })}
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
         preventCollision={!!newBlockType}
-        isDroppable={isDroppable}
+        isDroppable={true}
         onResize={handleAddSize}
+        onDrag={handleDrag}
         onResizeStop={handleLayoutChange}
         onDragStop={handleLayoutChange}
-        useCSSTransforms={!selectedBlockId}
+        useCSSTransforms={true}
         droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
+        layout={layouts}
+        hierarchy={hierarchy}
       >
-        {structure['main'].map((blockId) => (
-          <Box key={blockId} data-grid={layouts[blockId]}>
-            <BuilderBlock blockId={blockId} />
-          </Box>
-        ))}
+        {layouts.map(({ i }) => {
+          const { type } = blocks[i]
+          return (
+            <Box key={i} zIndex={blocksZIndex[type]}>
+              <BuilderBlock blockId={i} />
+            </Box>
+          )
+        })}
       </ReactGridLayout>
     </GridLayoutWrapper>
   )

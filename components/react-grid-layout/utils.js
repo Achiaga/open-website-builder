@@ -31,6 +31,29 @@ export function cloneLayout(layout) {
   return newLayout
 }
 
+// Modify a layoutItem inside a layout. Returns a new Layout,
+// does not mutate. Carries over all other LayoutItems unmodified.
+export function modifyLayout(layout, layoutItem) {
+  const newLayout = Array(layout.length)
+  for (let i = 0, len = layout.length; i < len; i++) {
+    if (layoutItem.i === layout[i].i) {
+      newLayout[i] = layoutItem
+    } else {
+      newLayout[i] = layout[i]
+    }
+  }
+  return newLayout
+}
+
+export function withLayoutItem(layout, itemKey, cb) {
+  let item = getLayoutItem(layout, itemKey)
+  if (!item) return [layout, null]
+  item = cb(cloneLayoutItem(item)) // defensive clone then modify
+  // FIXME could do this faster if we already knew the index
+  layout = modifyLayout(layout, item)
+  return [layout, item]
+}
+
 // Fast path to cloning, since this is monomorphic
 export function cloneLayoutItem(layoutItem) {
   return {
@@ -89,6 +112,16 @@ export function fastPositionEqual(a, b) {
  * Given two layoutitems, check if they collide.
  */
 export function collides(l1, l2) {
+  return false
+  // if (l1.i === l2.i) return false // same element
+  // if (l1.x + l1.w <= l2.x) return false // l1 is left of l2
+  // if (l1.x >= l2.x + l2.w) return false // l1 is right of l2
+  // if (l1.y + l1.h <= l2.y) return false // l1 is above l2
+  // if (l1.y >= l2.y + l2.h) return false // l1 is below l2
+  // return true // boxes overlap
+}
+
+export function isInside(l1, l2) {
   if (l1.i === l2.i) return false // same element
   if (l1.x + l1.w <= l2.x) return false // l1 is left of l2
   if (l1.x >= l2.x + l2.w) return false // l1 is right of l2
@@ -291,6 +324,9 @@ export function getFirstCollision(layout, layoutItem) {
 export function getAllCollisions(layout, layoutItem) {
   return layout.filter((l) => collides(l, layoutItem))
 }
+export function getAllChildren(layout, layoutItem) {
+  return layout.filter((l) => isInside(l, layoutItem))
+}
 
 /**
  * Get all static elements.
@@ -311,6 +347,22 @@ export function getStatics(layout) {
  * @param  {Number}     [x]               X position in grid units.
  * @param  {Number}     [y]               Y position in grid units.
  */
+
+export function findAllChildren(hierarchy, elementDragginId) {
+  let values = []
+  if (!hierarchy) return null
+  if (!hierarchy?.[elementDragginId]) return null
+  if (hierarchy[elementDragginId]) {
+    for (let elemId of hierarchy[elementDragginId]) {
+      values = [
+        ...hierarchy[elementDragginId],
+        ...(findAllChildren(hierarchy, elemId) || []),
+      ]
+    }
+  }
+  return values
+}
+
 export function moveElement(
   layout,
   l,
@@ -319,7 +371,8 @@ export function moveElement(
   isUserAction,
   preventCollision,
   compactType,
-  cols
+  cols,
+  hierarchy
 ) {
   // If this is static and not explicitly enabled as draggable,
   // no move is possible, so we can short-circuit this immediately.
@@ -328,9 +381,6 @@ export function moveElement(
   // Short-circuit if nothing to do.
   if (l.y === y && l.x === x) return layout
 
-  log(
-    `Moving element ${l.i} to [${String(x)},${String(y)}] from [${l.x},${l.y}]`
-  )
   const oldX = l.x
   const oldY = l.y
 
@@ -339,62 +389,25 @@ export function moveElement(
   if (typeof y === 'number') l.y = y
   l.moved = true
 
-  // If this collides with anything, move it.
-  // When doing this comparison, we have to sort the items we compare with
-  // to ensure, in the case of multiple collisions, that we're getting the
-  // nearest collision.
-  let sorted = sortLayoutItems(layout, compactType)
-  const movingUp =
-    compactType === 'vertical' && typeof y === 'number'
-      ? oldY >= y
-      : compactType === 'horizontal' && typeof x === 'number'
-      ? oldX >= x
-      : false
-  // $FlowIgnore acceptable modification of read-only array as it was recently cloned
-  if (movingUp) sorted = sorted.reverse()
-  const collisions = getAllCollisions(sorted, l)
-
-  // There was a collision; abort
-  if (preventCollision && collisions.length) {
-    log(`Collision prevented on ${l.i}, reverting.`)
-    l.x = oldX
-    l.y = oldY
-    l.moved = false
-    return layout
-  }
+  const newY = y - oldY
+  const newX = x - oldX
 
   // Move each item that collides away from this element.
-  for (let i = 0, len = collisions.length; i < len; i++) {
-    const collision = collisions[i]
-    log(
-      `Resolving collision between ${l.i} at [${l.x},${l.y}] and ${collision.i} at [${collision.x},${collision.y}]`
-    )
-
-    // Short circuit so we can't infinite loop
-    if (collision.moved) continue
-
-    // Don't move static items - we have to move *this* element away
-    if (collision.static) {
-      layout = moveElementAwayFromCollision(
-        layout,
-        collision,
-        l,
-        isUserAction,
-        compactType,
-        cols
-      )
-    } else {
-      layout = moveElementAwayFromCollision(
-        layout,
-        l,
-        collision,
-        isUserAction,
-        compactType,
-        cols
-      )
+  const allChilds = findAllChildren(hierarchy, l.i)
+  const newLayout = [...layout]
+  if (!allChilds) return layout
+  for (let i = 0, len = allChilds.length; i < len; i++) {
+    if (hierarchy) {
+      const index = layout.findIndex((item) => item.i === allChilds[i])
+      const child = layout[index]
+      newLayout[index] = {
+        ...layout[index],
+        y: child.y + newY,
+        x: child.x + newX,
+      }
     }
   }
-
+  layout = newLayout
   return layout
 }
 
@@ -463,6 +476,24 @@ export function moveElementAwayFromCollision(
     compactType,
     cols
   )
+}
+/**
+ * This is where the magic needs to happen - given a collision, move an element away from the collision.
+ * We attempt to move it up if there's room, otherwise it goes below.
+ *
+ * @param  {Array} layout            Full layout to modify.
+ * @param  {LayoutItem} collidesWith Layout item we're colliding with.
+ * @param  {LayoutItem} itemToMove   Layout item we're moving.
+ */
+export function moveElementWithParent(
+  layout,
+  collidesWith,
+  itemToMove,
+  isUserAction,
+  compactType,
+  cols
+) {
+  return layout
 }
 
 /**

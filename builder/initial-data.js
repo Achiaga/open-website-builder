@@ -19,9 +19,19 @@ export const Fallback = {
         text: 'Welcome, to Standout Resume',
       },
     },
+    'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': {
+      type: 'inception',
+      data: {
+        border: '1px solid rgb(205, 211, 216)',
+        boxShadow: 'none',
+        borderRadius: '20px',
+        backgroundColor: 'transparent',
+        imageUrl: '',
+      },
+    },
   },
-  layouts: {
-    'text-520af5a8-d661-4487-bae9-cbc759bfdd51': {
+  layouts: [
+    {
       w: 113,
       h: 42,
       x: 45,
@@ -32,9 +42,20 @@ export const Fallback = {
       isDraggable: true,
       isResizable: true,
     },
-  },
+    {
+      w: 303,
+      h: 42,
+      x: 105,
+      y: 120,
+      i: 'inception-08b007e3-1549-4e10-bb25-fae15a6e7829',
+      moved: false,
+      static: false,
+      isDraggable: true,
+      isResizable: true,
+    },
+  ],
   structure: {
-    main: ['text-520af5a8-d661-4487-bae9-cbc759bfdd51'],
+    'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': [],
   },
 }
 export const template1 = {

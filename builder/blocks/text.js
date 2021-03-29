@@ -13,7 +13,6 @@ export const GenericText = (props) => {
   const selectedId = useSelector(getSelectedBlockId)
 
   const Textmodifiers = {
-    fontSize: props.fontSize,
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
     color: props.fontColor,
@@ -24,6 +23,7 @@ export const GenericText = (props) => {
   }
   const [text] = useState(rawText)
   const titleRef = useRef(null)
+
   useEffect(() => {
     titleRef?.current?.addEventListener('paste', function (e) {
       e.preventDefault()
@@ -31,6 +31,12 @@ export const GenericText = (props) => {
       document.execCommand('insertText', false, text)
     })
   }, [titleRef])
+
+  function handleDoubleClick() {
+    titleRef.current.blur()
+    titleRef.current.focus()
+    document.execCommand('selectAll', false, null)
+  }
 
   useEffect(() => {
     titleRef.current.textContent = rawText
@@ -42,17 +48,20 @@ export const GenericText = (props) => {
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
+
   return (
     <Text
+      as="span"
+      onDoubleClick={handleDoubleClick}
       cursor="pointer"
       w="100%"
       h="100%"
       d="grid"
-      onClick={(e) => e.stopPropagation()}
       onKeyUp={handleKeyUp}
       contentEditable={selectedId === parentBlockId}
       suppressContentEditableWarning
       {...Textmodifiers}
+      fontSize={props.fontSize.replace('rem', 'vw')}
       wordBreak="break-word"
       ref={titleRef}
     >
@@ -60,11 +69,7 @@ export const GenericText = (props) => {
     </Text>
   )
 }
-function getNumbers(fontSize) {
-  const mainValue = parseInt(fontSize)
-  console.log(mainValue)
-  return [`${mainValue / 2}rem`, `${mainValue}rem`]
-}
+
 export const PrevText = (props) => {
   const Textmodifiers = {
     textAlign: props.textAlign,
@@ -75,8 +80,6 @@ export const PrevText = (props) => {
     boxShadow: props.boxShadow,
     borderRadius: props.borderRadius,
   }
-
-  console.log(props.fontSize, getNumbers(props.fontSize))
 
   return (
     <Text

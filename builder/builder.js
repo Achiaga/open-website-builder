@@ -1,9 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Box, Spinner } from '@chakra-ui/react'
 
-import 'react-grid-layout/css/styles.css'
-import 'react-resizable/css/styles.css'
-
 import { WebBuilder } from '../builder/web-builder'
 import { BuilderSidebar } from '../builder/sidebar'
 import { getBuilderData } from '../features/builderSlice'

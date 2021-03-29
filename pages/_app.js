@@ -10,6 +10,7 @@ import { store } from '../app/store'
 import { InitializeAnalytics } from '../utils/analytics'
 
 import '../styles/globals.css'
+import '../builder/web-builder/styles.css'
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
