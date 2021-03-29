@@ -32,10 +32,10 @@ export const GenericText = (props) => {
     })
   }, [titleRef])
 
-  function handleFocus(e) {
-    // console.log('foucus')
-    // console.log(e)
-    // selectElementContents(titleRef.current)
+  function handleDoubleClick() {
+    titleRef.current.blur()
+    titleRef.current.focus()
+    document.execCommand('selectAll', false, null)
   }
 
   useEffect(() => {
@@ -48,14 +48,15 @@ export const GenericText = (props) => {
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
+
   return (
     <Text
-      onFocus={handleFocus}
+      as="span"
+      onDoubleClick={handleDoubleClick}
       cursor="pointer"
       w="100%"
       h="100%"
       d="grid"
-      onDoubleClick={(e) => e.stopPropagation()}
       onKeyUp={handleKeyUp}
       contentEditable={selectedId === parentBlockId}
       suppressContentEditableWarning

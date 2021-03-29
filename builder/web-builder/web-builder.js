@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
-import { saveOnLocal, getUpdatedHierarchy } from './helpers'
+import {
+  saveOnLocal,
+  getUpdatedHierarchy,
+  getParentBlock,
+  highlightFutureParentBlock,
+} from './helpers'
 import { GRID_COLUMNS } from './constants'
 import { batch, useDispatch, useSelector } from 'react-redux'
 import {
@@ -63,8 +68,7 @@ const WebBuilder = () => {
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
-  // const hierarchy = useSelector(getHierarchy)
-  const [reRender, setReRender] = useState(null)
+  const lastHoveredEl = useRef()
 
   useEffect(() => {
     saveOnLocal({ blocks, layouts, hierarchy })
@@ -97,15 +101,14 @@ const WebBuilder = () => {
         dispatch(setResizingBlockId(null))
       }, 1000)
     })
+    if (lastHoveredEl.current?.style) {
+      lastHoveredEl.current.style.backgroundColor = null
+    }
   }
 
   function handleDrag(layout, _, newItem) {
-    // const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
-    // if (newParent?.i) {
-    //   const elem = document.getElementById(newParent.i)
-    //   // elem.style.backgroundColor = 'green'
-    //   console.log(elem)
-    // }
+    const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
+    highlightFutureParentBlock(newParent?.i, lastHoveredEl)
   }
 
   function handleKeyPress(e) {
@@ -121,7 +124,6 @@ const WebBuilder = () => {
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
-        key={reRender ? v4() : ''}
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
