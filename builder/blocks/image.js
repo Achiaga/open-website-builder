@@ -29,7 +29,7 @@ export const GenericImage = (props) => {
 
   return (
     <Box
-      onClick={handleClick}
+      // onClick={handleClick}
       // onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
       backgroundImage={`url(${props?.imageUrl})`}
       width="100%"

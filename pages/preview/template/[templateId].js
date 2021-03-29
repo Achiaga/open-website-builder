@@ -10,7 +10,6 @@ function TemplatePreview(blocksData) {
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { templateId } = context.query
-  console.log(templateId)
   return { props: templates[templateId] }
 }
 

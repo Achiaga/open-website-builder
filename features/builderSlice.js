@@ -9,6 +9,7 @@ import {
   addBlock,
   removeblockFromState,
   findBlockParentId,
+  getParentBlock,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -58,23 +59,28 @@ export const builderSlice = createSlice({
       state.builderData.blocks[blockId].data = newData
     },
     setLayout: (state, action) => {
-      const { i } = action.payload
-      state.builderData.layouts[i] = action.payload
+      state.builderData.layouts = [...state.builderData.layouts, action.payload]
+    },
+    setLayouts: (state, action) => {
+      state.builderData.layouts = action.payload
     },
     setAddedBlock: (state, action) => {
-      const { blockID, newBlockStructure } = action.payload
-      state.builderData.blocks[blockID] = newBlockStructure
+      const { blockID, newBlockData } = action.payload
+      state.builderData.blocks[blockID] = newBlockData
     },
     setStructure: (state, action) => {
       const { structureId, structure } = action.payload
       state.builderData.structure[structureId] = structure
     },
+    setHierarchy: (state, action) => {
+      state.builderData.hierarchy = action.payload
+    },
     setBlockDraggable: (state, action) => {
-      const { blockId, prevBlockId } = action.payload
-      if (prevBlockId && state.builderData.layouts[prevBlockId]) {
-        state.builderData.layouts[prevBlockId].isDraggable = true
-      }
-      if (blockId) state.builderData.layouts[blockId].isDraggable = false
+      // const { blockId, prevBlockId } = action.payload
+      // if (prevBlockId && state.builderData.layouts[prevBlockId]) {
+      //   state.builderData.layouts[prevBlockId].isDraggable = true
+      // }
+      // if (blockId) state.builderData.layouts[blockId].isDraggable = false
     },
   },
 })
@@ -83,6 +89,7 @@ export const {
   setBuilderBlocksData,
   setUserData,
   setLayout,
+  setLayouts,
   setAddedBlock,
   setStructure,
   setNewDropBlockType,
@@ -92,6 +99,7 @@ export const {
   setGridRowHeight,
   setBlockConfig,
   setBlockDraggable,
+  setHierarchy,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -109,12 +117,12 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
 }
 
 export const removeblock = ({ blockId }) => (dispatch, getState) => {
-  const { structure, layouts, blocks } = getBuilderData(getState())
+  const { hierarchy, layouts, blocks } = getBuilderData(getState())
   const newBuilderData = removeblockFromState(
     blockId,
     layouts,
     blocks,
-    structure
+    hierarchy
   )
   batch(() => {
     dispatch(setSelectedBlockId(null))
@@ -129,28 +137,30 @@ export const setBlockEditable = (blockId) => (dispatch, getState) => {
     dispatch(setSelectedBlockId(blockId))
   })
 }
-export const addNewBlock = (blockLayout, parentBlockId) => (
-  dispatch,
-  getState
-) => {
+
+export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
   const state = getState()
-  const structure = getStructure(state)
-  const newBlockStructure = addBlock(blockLayout.i, getNewBlockType(state))
-  const structureId = parentBlockId || 'main'
+  const hierarchy = getHierarchy(state)
+  const newBlockData = addBlock(blockLayout.i, getNewBlockType(state))
+  const { newParent } = getParentBlock(newLayout, hierarchy || {}, blockLayout)
   batch(() => {
-    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockStructure }))
+    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
     dispatch(setLayout(blockLayout))
-    dispatch(
-      setStructure({
-        structure: [...(structure[structureId] || []), blockLayout.i],
-        structureId,
-      })
-    )
+    if (newParent) {
+      dispatch(
+        setHierarchy({
+          ...hierarchy,
+          [newParent.i]: [...(hierarchy?.[newParent?.i] || []), blockLayout.i],
+        })
+      )
+    }
     dispatch(setNewDropBlock({ type: null }))
   })
 }
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getBlocks = (state) => state.builder.builderData.blocks
+export const getHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
 export const getResumeId = (state) => state.builder?.user?.resumeId
