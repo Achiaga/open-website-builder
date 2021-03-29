@@ -3,7 +3,7 @@ import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
-import { saveOnLocal, getUpdatedHierarchy } from './helpers'
+import { saveOnLocal, getUpdatedHierarchy, getParentBlock } from './helpers'
 import { GRID_COLUMNS } from './constants'
 import { batch, useDispatch, useSelector } from 'react-redux'
 import {
@@ -64,7 +64,6 @@ const WebBuilder = () => {
   const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
   // const hierarchy = useSelector(getHierarchy)
-  const [reRender, setReRender] = useState(null)
 
   useEffect(() => {
     saveOnLocal({ blocks, layouts, hierarchy })
@@ -100,11 +99,11 @@ const WebBuilder = () => {
   }
 
   function handleDrag(layout, _, newItem) {
-    // const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
-    // if (newParent?.i) {
-    //   const elem = document.getElementById(newParent.i)
-    //   // elem.style.backgroundColor = 'green'
-    // }
+    const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
+    if (newParent?.i) {
+      const elem = document.getElementById(newParent.i)
+      // elem.style.backgroundColor = 'green'
+    }
   }
 
   function handleKeyPress(e) {
@@ -120,7 +119,6 @@ const WebBuilder = () => {
   return (
     <GridLayoutWrapper>
       <ReactGridLayout
-        key={reRender ? v4() : ''}
         {...reactGridLayoutProps}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
