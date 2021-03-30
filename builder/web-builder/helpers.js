@@ -52,7 +52,7 @@ export function removeblockFromState(
   const findAllChild = findAllChildren(oldHierarchy, blockId)
   const blocks = { ...oldBlocks }
   let layouts = [...oldLayout]
-  if (!findAllChild.length) {
+  if (!findAllChild?.length) {
     delete blocks[blockId]
     layouts = layouts.filter((layout) => layout.i !== blockId)
     return { layouts, blocks, hierarchy: oldHierarchy }
@@ -116,7 +116,7 @@ function isBlockInHierarchy(hierarchy, item) {
   }, null)
 }
 
-function getAllParents(newLayout) {
+function getAllInceptions(newLayout) {
   return newLayout.filter(({ i }) => i.includes('inception'))
 }
 
@@ -126,15 +126,18 @@ function getIsGammaInception(hierarchy, parentId, parents) {
   const inceptionChilds = childsId?.filter((childId) =>
     parentsIds.includes(childId)
   )
+  console.log('parentsIds', parentsIds)
   const isGammaInception = !inceptionChilds || inceptionChilds?.length < 1
   return isGammaInception
 }
 
-function solveParentConflict(parents, hierarchy) {
+function getClosetParent(parents, hierarchy) {
   if (parents.length < 2) return parents[0]
   for (let parent of parents) {
     const isGammaInception = getIsGammaInception(hierarchy, parent.i, parents)
-    if (isGammaInception) return parent
+    if (isGammaInception) {
+      return parent
+    }
   }
   return parents[0]
 }
@@ -177,18 +180,11 @@ function shouldAddChildToNewParent(
   )
 }
 
-export function getParentBlock(
-  newLayout,
-  updatedHierarchy,
-  newItem,
-  hierarchy
-) {
-  const allInceptions = getAllParents(newLayout)
-  const parentList = findItemParent(newItem, allInceptions)
-
-  const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem)
-  const newParent = solveParentConflict(parentList, hierarchy)
-  return { oldParentId, newParent }
+export function getParentBlock(newLayout, newItem, hierarchy) {
+  const allInceptions = getAllInceptions(newLayout)
+  const blockParentCandidates = findItemParent(newItem, allInceptions)
+  const newParent = getClosetParent(blockParentCandidates, hierarchy)
+  return newParent
 }
 
 // this function protects us from infinity loops that break space & time
@@ -202,12 +198,8 @@ function breaksSpaceTime(hierarchy, newItemId, newParentId) {
 
 export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
   let updatedHierarchy = { ...(hierarchy || {}) }
-  const { newParent, oldParentId } = getParentBlock(
-    newLayout,
-    updatedHierarchy,
-    newItem,
-    hierarchy
-  )
+  const newParent = getParentBlock(newLayout, newItem, hierarchy)
+  const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem)
   if (shoudlRemoveChildFromOldParent(oldParentId, newParent)) {
     updatedHierarchy = removeChildFromOldParent(
       updatedHierarchy,
@@ -226,11 +218,12 @@ export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
 }
 
 export function highlightFutureParentBlock(newParentId, lastHoveredEl) {
+  if (lastHoveredEl.current) {
+    lastHoveredEl.current.style.backgroundColor = 'transparent'
+  }
   if (newParentId) {
     const elem = document.getElementById(newParentId)?.children?.[0]
-    elem.style.backgroundColor = 'green'
+    elem.style.backgroundColor = '#27b36647'
     lastHoveredEl.current = elem
-  } else if (lastHoveredEl.current) {
-    lastHoveredEl.current.style.backgroundColor = null
   }
 }

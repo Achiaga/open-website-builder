@@ -142,7 +142,7 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
   const state = getState()
   const hierarchy = getHierarchy(state)
   const newBlockData = addBlock(blockLayout.i, getNewBlockType(state))
-  const { newParent } = getParentBlock(newLayout, hierarchy || {}, blockLayout)
+  const newParent = getParentBlock(newLayout, blockLayout, hierarchy)
   batch(() => {
     dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
     dispatch(setLayout(blockLayout))

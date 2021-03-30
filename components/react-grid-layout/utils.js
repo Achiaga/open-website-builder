@@ -350,11 +350,11 @@ export function getStatics(layout) {
 
 export function findAllChildren(hierarchy, elementDragginId) {
   let values = []
-  if (!hierarchy) return null
   if (!hierarchy?.[elementDragginId]) return null
   if (hierarchy[elementDragginId]) {
     for (let elemId of hierarchy[elementDragginId]) {
       values = [
+        ...values,
         ...hierarchy[elementDragginId],
         ...(findAllChildren(hierarchy, elemId) || []),
       ]
@@ -392,7 +392,6 @@ export function moveElement(
   const newY = y - oldY
   const newX = x - oldX
 
-  // Move each item that collides away from this element.
   const allChilds = findAllChildren(hierarchy, l.i)
   const newLayout = [...layout]
   if (!allChilds) return layout

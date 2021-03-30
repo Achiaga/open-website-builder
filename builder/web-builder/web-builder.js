@@ -107,7 +107,7 @@ const WebBuilder = () => {
   }
 
   function handleDrag(layout, _, newItem) {
-    const { newParent } = getParentBlock(layout, hierarchy || {}, newItem)
+    const newParent = getParentBlock(layout, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)
   }
 
