@@ -54,13 +54,25 @@ const Navbar = () => {
         fontSize={['sm', 'md']}
       >
         <NavButton
+          display={['none', 'block']}
           onClick={handleNavRouting}
           content="Templates"
           id="templates"
         />
-        <NavButton onClick={handleNavRouting} content="Pricing" id="pricing" />
-        <NavButton onClick={handleNavRouting} content="About Us" id="about" />
         <NavButton
+          display={['none', 'block']}
+          onClick={handleNavRouting}
+          content="Pricing"
+          id="pricing"
+        />
+        <NavButton
+          display={['none', 'block']}
+          onClick={handleNavRouting}
+          content="About Us"
+          id="about"
+        />
+        <NavButton
+          display={['none', 'block']}
           onClick={handleLogin}
           content="Login"
           id="login"
