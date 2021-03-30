@@ -126,7 +126,6 @@ function getIsGammaInception(hierarchy, parentId, parents) {
   const inceptionChilds = childsId?.filter((childId) =>
     parentsIds.includes(childId)
   )
-  console.log('parentsIds', parentsIds)
   const isGammaInception = !inceptionChilds || inceptionChilds?.length < 1
   return isGammaInception
 }

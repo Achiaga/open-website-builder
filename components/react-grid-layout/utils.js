@@ -399,10 +399,12 @@ export function moveElement(
     if (hierarchy) {
       const index = layout.findIndex((item) => item.i === allChilds[i])
       const child = layout[index]
-      newLayout[index] = {
-        ...layout[index],
-        y: child.y + newY,
-        x: child.x + newX,
+      if (child) {
+        newLayout[index] = {
+          ...layout[index],
+          y: child.y + newY,
+          x: child.x + newX,
+        }
       }
     }
   }

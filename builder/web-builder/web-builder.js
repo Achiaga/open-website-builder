@@ -134,7 +134,11 @@ const WebBuilder = () => {
         onResizeStop={handleLayoutChange}
         onDragStop={handleLayoutChange}
         useCSSTransforms={true}
-        droppingItem={{ i: `${newBlockType}-${newBlockId}`, w: 15, h: 10 }}
+        droppingItem={{
+          i: newBlockType ? `${newBlockType}-${newBlockId}` : '',
+          w: 15,
+          h: 10,
+        }}
         layout={layouts}
         hierarchy={hierarchy}
       >
