@@ -3,60 +3,74 @@ export const imageURL =
 
 export const Fallback = {
   blocks: {
-    'text-520af5a8-d661-4487-bae9-cbc759bfdd51': {
+    'text-664e08d1-3e6a-4c49-99aa-8d876f699425': {
       type: 'text',
       data: {
-        fontSize: '3rem',
+        text: 'Test block text 🎉',
+        fontSize: '1rem',
         textAlign: 'center',
         alignItems: 'center',
-        fontWeight: '900',
-        boxShadow:
-          '0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)',
-        borderRadius: '20px',
-        fontColor: 'rgb(11,110,153)',
-        backgroundColor: 'rgb(221,235,241)',
-        redirect: 'aa',
-        text: 'Welcome, to Antfolio',
+        fontWeight: '400',
+        boxShadow: 'none',
+        borderRadius: '0px',
+        fontColor: '#000000',
+        backgroundColor: '#FFFFFF',
       },
     },
-    'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': {
-      type: 'inception',
+    'image-025c673b-d62c-4606-8171-dc8937f29390': {
+      type: 'image',
       data: {
-        border: '1px solid rgb(205, 211, 216)',
         boxShadow: 'none',
-        borderRadius: '20px',
-        backgroundColor: 'transparent',
-        imageUrl: '',
+        borderRadius: '0px',
+        imageUrl: 'https://images.unsplash.com/photo-1542103749-8ef59b94f47e',
       },
     },
   },
   layouts: [
     {
-      w: 113,
-      h: 42,
-      x: 45,
-      y: 20,
-      i: 'text-520af5a8-d661-4487-bae9-cbc759bfdd51',
+      w: 96,
+      h: 43,
+      x: 0,
+      y: 21,
+      i: 'text-664e08d1-3e6a-4c49-99aa-8d876f699425',
       moved: false,
       static: false,
       isDraggable: true,
-      isResizable: true,
     },
     {
-      w: 303,
-      h: 42,
-      x: 105,
-      y: 120,
-      i: 'inception-08b007e3-1549-4e10-bb25-fae15a6e7829',
+      w: 103,
+      h: 43,
+      x: 97,
+      y: 21,
+      i: 'image-025c673b-d62c-4606-8171-dc8937f29390',
       moved: false,
       static: false,
       isDraggable: true,
-      isResizable: true,
     },
   ],
-  structure: {
-    'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': [],
-  },
+  mobileLayout: [
+    {
+      w: 50,
+      h: 43,
+      x: 0,
+      y: 21,
+      i: 'text-664e08d1-3e6a-4c49-99aa-8d876f699425',
+      moved: false,
+      static: false,
+      isDraggable: true,
+    },
+    {
+      w: 50,
+      h: 43,
+      x: 50,
+      y: 21,
+      i: 'image-025c673b-d62c-4606-8171-dc8937f29390',
+      moved: false,
+      static: false,
+      isDraggable: true,
+    },
+  ],
+  hierarchy: { 'inception-08b007e3-1549-4e10-bb25-fae15a6e7829': [] },
 }
 export const template1 = {
   blocks: {

@@ -3,22 +3,40 @@ import { Box, Spinner } from '@chakra-ui/react'
 
 import { WebBuilder } from '../builder/web-builder'
 import { BuilderSidebar } from '../builder/sidebar'
-import { getBuilderData } from '../features/builderSlice'
+import { getBuilderData, getBuilderDevice } from '../features/builderSlice'
 import { SettingsBar } from './sidebar/settingsBar'
 import { useEffect } from 'react'
 import MobileVersion from './web-builder/mobile-version'
-import { useRouter } from 'next/router'
+
+const MobileWrapper = ({ children }) => {
+  const builderDevice = useSelector(getBuilderDevice)
+  if (builderDevice !== 'mobile') return children
+  return (
+    <Box w="100%" height="100%" bg="#dbe5f0" py="1rem" overflow="scroll">
+      <Box
+        width="50%"
+        m="auto"
+        boxShadow="lg"
+        height="100%"
+        overflow="hidden"
+        border="1px solid"
+        borderColor="gray.700"
+        borderRadius="5rem"
+      >
+        <Box h="50px" bg="gray.200" textAlign="center" fontSize="xl">
+          Navbar
+        </Box>
+        {children}
+      </Box>
+    </Box>
+  )
+}
 
 const Builder = () => {
   const userBlocksData = useSelector(getBuilderData)
-  const router = useRouter()
 
   function confirmExit() {
     return ''
-  }
-
-  const redirectLogo = () => {
-    router.push('/')
   }
 
   useEffect(() => {
@@ -50,7 +68,9 @@ const Builder = () => {
       >
         <SettingsBar />
         <BuilderSidebar />
-        <WebBuilder />
+        <MobileWrapper>
+          <WebBuilder />
+        </MobileWrapper>
       </Box>
       <MobileVersion />
     </>

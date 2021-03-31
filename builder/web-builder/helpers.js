@@ -69,6 +69,7 @@ export function removeblockFromState(
 }
 
 export function saveOnLocal(userBlocksData) {
+  // console.log(JSON.stringify(userBlocksData))
   if (!Object.keys(userBlocksData).length) return
   localforage.setItem('userData', userBlocksData)
 }

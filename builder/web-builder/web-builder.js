@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
@@ -15,23 +15,19 @@ import {
   getBuilderData,
   getGridRowHeight,
   getNewBlock,
-  getSelectedBlockId,
   setResizingBlockId,
   setGridRowHeight,
   setBlockEditable,
   addNewBlock,
   setLayouts,
   setHierarchy,
-  getHierarchy,
+  getBuilderDevice,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
-import { v4 } from 'uuid'
 
 const reactGridLayoutProps = {
-  cols: GRID_COLUMNS,
   autoSize: true,
   margin: [0, 0],
-  style: { width: '100%', minHeight: '100vh', height: '100%' },
   className: 'layout',
   verticalCompact: false,
 }
@@ -44,6 +40,7 @@ const GridLayoutWrapper = ({ children }) => {
     <Box
       d="flex"
       w="100%"
+      height="100%"
       flexDir="row"
       onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
@@ -64,10 +61,12 @@ const blocksZIndex = {
 
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const { blocks, layouts, hierarchy } = useSelector(getBuilderData)
+  const { blocks, layouts, hierarchy, mobileLayout } = useSelector(
+    getBuilderData
+  )
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
-  const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
+  const builderDevice = useSelector(getBuilderDevice)
   const lastHoveredEl = useRef()
 
   useEffect(() => {
@@ -120,11 +119,26 @@ const WebBuilder = () => {
   function handleAddSize(_, __, resizingBlock) {
     dispatch(setResizingBlockId(resizingBlock))
   }
-
+  const isMobile = builderDevice === 'mobile'
+  console.log('builderDevice', builderDevice)
+  console.log('mobileLayout', mobileLayout)
   return (
-    <GridLayoutWrapper>
+    <GridLayoutWrapper
+      style={{
+        minHeight: '100vh',
+        height: '100%',
+      }}
+    >
       <ReactGridLayout
         {...reactGridLayoutProps}
+        key={builderDevice}
+        cols={isMobile ? 100 : GRID_COLUMNS}
+        style={{
+          width: '100%',
+          minHeight: '100vh',
+          height: '100%',
+          backgroundColor: '#f4f5f6',
+        }}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
         preventCollision={!!newBlockType}
@@ -139,7 +153,7 @@ const WebBuilder = () => {
           w: 15,
           h: 10,
         }}
-        layout={layouts}
+        layout={isMobile ? mobileLayout : layouts}
         hierarchy={hierarchy}
       >
         {layouts.map(({ i }) => {

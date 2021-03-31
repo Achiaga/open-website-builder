@@ -75,6 +75,9 @@ export const builderSlice = createSlice({
     setHierarchy: (state, action) => {
       state.builderData.hierarchy = action.payload
     },
+    setBuilderDevice: (state, action) => {
+      state.device = action.payload
+    },
     setBlockDraggable: (state, action) => {
       // const { blockId, prevBlockId } = action.payload
       // if (prevBlockId && state.builderData.layouts[prevBlockId]) {
@@ -100,6 +103,7 @@ export const {
   setBlockConfig,
   setBlockDraggable,
   setHierarchy,
+  setBuilderDevice,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -164,6 +168,7 @@ export const getHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
 export const getResumeId = (state) => state.builder?.user?.resumeId
+export const getBuilderDevice = (state) => state.builder?.device
 
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type

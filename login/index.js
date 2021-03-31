@@ -3,8 +3,13 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { publishResume } from '../utils/user-data'
 import { Box, Text } from '@chakra-ui/layout'
-import { useSelector } from 'react-redux'
-import { getBuilderData, getResumeId } from '../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getBuilderData,
+  getBuilderDevice,
+  getResumeId,
+  setBuilderDevice,
+} from '../features/builderSlice'
 import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
@@ -151,8 +156,10 @@ const Card = ({ children, ...props }) => {
 
 function Login() {
   const { user, error, isLoading } = useUser()
+  const dispatch = useDispatch()
   const builderData = useSelector(getBuilderData)
   const resumeId = useSelector(getResumeId)
+  const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
   const [isPublish, setPublish] = useState(false)
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -175,6 +182,11 @@ function Login() {
 
   function handleMenuOption() {
     setMenuOpen((open) => !open)
+  }
+  function handleMobileVersion() {
+    dispatch(
+      setBuilderDevice(builderDevice === 'mobile' ? 'desktop' : 'mobile')
+    )
   }
 
   return (
@@ -208,6 +220,14 @@ function Login() {
               fontSize="sm"
             >
               Publish
+            </Button>
+            <Button
+              onClick={handleMobileVersion}
+              variant="ghost"
+              colorScheme="teal"
+              fontSize="sm"
+            >
+              {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
             </Button>
             <Button variant="ghost" colorScheme="teal" fontSize="sm">
               Settings

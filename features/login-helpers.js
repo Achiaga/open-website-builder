@@ -21,6 +21,7 @@ async function getUserData(user) {
 
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const blocksData = await getUserDataFromLS()
+  console.log(JSON.stringify(blocksData))
   dispatch(
     setBuilderBlocksData(
       templates[template] || blocksData || templates.Fallback
