@@ -70,7 +70,7 @@ const WebBuilder = () => {
   const lastHoveredEl = useRef()
 
   useEffect(() => {
-    saveOnLocal({ blocks, layouts, hierarchy })
+    saveOnLocal({ blocks, layouts, hierarchy, mobileLayout })
   }, [blocks, layouts, hierarchy])
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const WebBuilder = () => {
   function handleLayoutChange(newLayout, __, newItem) {
     const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
     batch(() => {
-      dispatch(setLayouts(newLayout))
+      dispatch(setLayouts({ newLayout, builderDevice }))
       dispatch(setHierarchy(updatedHierarchy))
       setTimeout(() => {
         dispatch(setResizingBlockId(null))
@@ -117,7 +117,7 @@ const WebBuilder = () => {
   }
 
   function handleAddSize(_, __, resizingBlock) {
-    dispatch(setResizingBlockId(resizingBlock))
+    dispatch(setResizingBlockId({ resizingBlock, builderDevice }))
   }
   const isMobile = builderDevice === 'mobile'
   console.log('builderDevice', builderDevice)

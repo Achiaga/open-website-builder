@@ -62,7 +62,13 @@ export const builderSlice = createSlice({
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
     },
     setLayouts: (state, action) => {
-      state.builderData.layouts = action.payload
+      const { builderDevice, newLayout } = action.payload
+      const isMobile = builderDevice === 'mobile'
+      if (isMobile) {
+        state.builderData.mobileLayout = newLayout
+      } else {
+        state.builderData.layouts = newLayout
+      }
     },
     setAddedBlock: (state, action) => {
       const { blockID, newBlockData } = action.payload
