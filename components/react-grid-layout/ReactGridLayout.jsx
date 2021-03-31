@@ -220,7 +220,6 @@ export default class ReactGridLayout extends React.Component {
     const { layout } = this.state
     var l = getLayoutItem(layout, i)
     if (!l) return
-    console.log('drag')
 
     this.setState({
       oldDragItem: cloneLayoutItem(l),
