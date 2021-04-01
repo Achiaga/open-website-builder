@@ -438,31 +438,31 @@ export default class ReactGridLayout extends React.Component {
       useCSSTransforms,
       transformScale,
     } = this.props
-
+    if (!this.props.droppingItem.i) return null
     // {...this.state.activeDrag} is pretty slow, actually
-    //  return (
-    // <GridItem
-    //   w={activeDrag.w}
-    //   h={activeDrag.h}
-    //   x={activeDrag.x}
-    //   y={activeDrag.y}
-    //   i={activeDrag.i}
-    //   // className="react-grid-placeholder"
-    //   containerWidth={width}
-    //   cols={cols}
-    //   margin={margin}
-    //   containerPadding={containerPadding || margin}
-    //   maxRows={maxRows}
-    //   rowHeight={rowHeight}
-    //   isDraggable={false}
-    //   isResizable={false}
-    //   isBounded={false}
-    //   useCSSTransforms={useCSSTransforms}
-    //   transformScale={transformScale}
-    // >
-    //   <div />
-    // </GridItem>
-    // )
+    return (
+      <GridItem
+        w={activeDrag.w}
+        h={activeDrag.h}
+        x={activeDrag.x}
+        y={activeDrag.y}
+        i={activeDrag.i}
+        className="react-grid-placeholder"
+        containerWidth={width}
+        cols={cols}
+        margin={margin}
+        containerPadding={containerPadding || margin}
+        maxRows={maxRows}
+        rowHeight={rowHeight}
+        isDraggable={false}
+        isResizable={false}
+        isBounded={false}
+        useCSSTransforms={useCSSTransforms}
+        transformScale={transformScale}
+      >
+        <div />
+      </GridItem>
+    )
   }
 
   /**
@@ -695,7 +695,7 @@ export default class ReactGridLayout extends React.Component {
         {isDroppable &&
           this.state.droppingDOMNode &&
           this.processGridItem(this.state.droppingDOMNode, true)}
-        {/* {this.placeholder()} */}
+        {this.placeholder()}
       </div>
     )
   }
