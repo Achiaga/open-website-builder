@@ -22,6 +22,7 @@ import {
   getBuilderDevice,
   updateLayouts,
   updateHierarchy,
+  getLayout,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -61,16 +62,20 @@ const blocksZIndex = {
 
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const { blocks, layouts, hierarchy, mobileLayout } = useSelector(
-    getBuilderData
-  )
+  const {
+    blocks,
+    hierarchy,
+    mobileLayout,
+    layouts: desktopLayout,
+  } = useSelector(getBuilderData)
+  const layouts = useSelector(getLayout)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const gridRowHeight = useSelector(getGridRowHeight)
   const builderDevice = useSelector(getBuilderDevice)
   const lastHoveredEl = useRef()
 
   useEffect(() => {
-    saveOnLocal({ blocks, layouts, hierarchy, mobileLayout })
+    saveOnLocal({ blocks, hierarchy, layouts: desktopLayout, mobileLayout })
   }, [blocks, layouts, hierarchy])
 
   useEffect(() => {
@@ -121,6 +126,7 @@ const WebBuilder = () => {
     dispatch(setResizingBlockId({ resizingBlock, builderDevice }))
   }
   const isMobile = builderDevice === 'mobile'
+  console.log('mobileLayout', isMobile, layouts)
   return (
     <GridLayoutWrapper
       style={{
@@ -152,7 +158,7 @@ const WebBuilder = () => {
           w: 15,
           h: 10,
         }}
-        layout={isMobile ? mobileLayout : layouts}
+        layout={layouts}
         hierarchy={hierarchy}
       >
         {layouts.map(({ i }) => {
