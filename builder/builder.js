@@ -123,7 +123,13 @@ const MobileWrapper = ({ children }) => {
           alignItems="center"
           borderBottom="1px solid #e6e6e6"
         >
-          <Box d="flex" justifyContent="space-between" pos="absolute" w="80%">
+          <Box
+            d="flex"
+            justifyContent="space-between"
+            pos="absolute"
+            w="80%"
+            top="1rem"
+          >
             <Box fontWeight="600" fontSize="xl">
               11:11
             </Box>
