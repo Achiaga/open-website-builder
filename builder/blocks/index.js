@@ -36,6 +36,9 @@ const ResizingCounter = ({ blockId }) => {
     </Box>
   )
 }
+ResizingCounter.propTypes = {
+  blockId: PropTypes.string,
+}
 
 export function BuilderBlock({ blockId }) {
   const dispatch = useDispatch()

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Box, Spinner } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 import { WebBuilder } from '../builder/web-builder'
 import { BuilderSidebar } from '../builder/sidebar'
@@ -93,7 +94,6 @@ const MobileWrapper = ({ children }) => {
         width="50%"
         m="auto"
         pos="relative"
-        // boxShadow="lg"
         height="100%"
         overflow="hidden"
         borderRadius="5rem"
@@ -140,6 +140,9 @@ const MobileWrapper = ({ children }) => {
       </Box>
     </Box>
   )
+}
+MobileWrapper.propTypes = {
+  children: PropTypes.any,
 }
 
 const Builder = () => {
