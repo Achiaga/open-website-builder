@@ -3,12 +3,13 @@ export default {
     startNowButton: 'Empieza Ahora',
   },
   hero: {
-    title_1: 'Convierte tu CV en ',
-    title_color_2: ' una web ',
-    title_3: 'en 5 minutos',
+    title_1: 'Crea tu ',
+    title_color_2: 'Portfolio ',
+    title_color_3: 'Online ',
+    title_4: 'en 5 mins',
     subtitle:
       'Un curriculum online gratis, simple e impresionante, tu proximo cv no sera pdf, sera una página web.',
-    button: 'Crea tu CV gratis',
+    button: 'Crea tu Protfolio gratis',
   },
   comparison: {
     title_1: 'Crea un impresionante ',

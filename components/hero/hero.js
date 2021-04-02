@@ -30,7 +30,16 @@ const Hero = ({ handleFreeTrial }) => {
       mb={['2rem', '6.5rem']}
       pl={['0.5rem', '0rem']}
     >
-      <Box position="absolute" left="28rem" top="2rem" zIndex="9999">
+      <Box
+        position="absolute"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        left="28rem"
+        top="2rem"
+        zIndex="9999"
+      >
         <Text
           as="h1"
           fontWeight="extrabold"
@@ -42,15 +51,25 @@ const Hero = ({ handleFreeTrial }) => {
           alignItems="center"
           lineHeight="7rem"
         >
-          Build your
+          {t.hero.title_1}
           <Text as="h1" color="primary.500">
-            Online
+            {t.hero.title_color_2}
           </Text>
           <Text as="h1" color="primary.500">
-            Portfolio
+            {t.hero.title_color_3}
           </Text>
-          in 5 mins
+          {t.hero.title_4}
         </Text>
+        <Button
+          fontSize="xl"
+          minW="7.5rem"
+          w="18rem"
+          h={14}
+          onClick={handleButton}
+          marginTop="2.5rem"
+        >
+          {t.hero.button}
+        </Button>
       </Box>
       {/* <Box
         display="flex"
