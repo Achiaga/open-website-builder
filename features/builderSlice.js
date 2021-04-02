@@ -143,7 +143,6 @@ const removeMobileblock = (blockId) => (dispatch, getState) => {
     blocks,
     hierarchy
   )
-  console.log('removeMobileblock', newBuilderData.layouts)
   batch(() => {
     dispatch(setSelectedBlockId(null))
     dispatch(setMobileHierarchy(newBuilderData.hierarchy))

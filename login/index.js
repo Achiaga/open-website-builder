@@ -1,7 +1,7 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { publishResume } from '../utils/user-data'
+// import { publishResume } from '../utils/user-data'
 import { Box, Text } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -229,8 +229,17 @@ function Login() {
             >
               {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
             </Button>
+
             <Button variant="ghost" colorScheme="teal" fontSize="sm">
               Settings
+            </Button>
+            <Button
+              variant="ghost"
+              colorScheme="teal"
+              fontSize="sm"
+              onClick={handleLogin}
+            >
+              Login
             </Button>
             <Button
               variant="ghost"

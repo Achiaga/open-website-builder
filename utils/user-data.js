@@ -1,13 +1,13 @@
 import { apiCall } from '../helpers/transport'
 
 export const request = (type, data) => {
-  return apiCall('http://localhost:3000/api/jexia', {
+  return apiCall('http://localhost:3000/api/db', {
     type: type,
     data,
   })
 }
 
-export const publishResume = (data) => {
+export const saveWebsite = (data) => {
   try {
     return request('save', data)
   } catch (err) {
