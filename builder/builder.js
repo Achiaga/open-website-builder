@@ -8,23 +8,25 @@ import { SettingsBar } from './sidebar/settingsBar'
 import { useEffect } from 'react'
 import MobileVersion from './web-builder/mobile-version'
 import { HiMenu } from 'react-icons/hi'
-import { AiOutlineReload } from 'react-icons/ai'
+import { AiOutlineReload, AiFillSignal } from 'react-icons/ai'
+import { IoBatteryDead } from 'react-icons/io5'
 
 const SerachBar = () => {
   return (
     <Box
-      bg="white"
+      bg="#e4e5e7"
       w="90%"
       h="50px"
       d="flex"
       borderRadius="10px"
       alignItems="center"
       justifyContent="space-between"
+      mt="3rem"
     >
       <Box p="1rem">
         <HiMenu size="30px" />
       </Box>
-      <Box as="span">www.antfolio.com</Box>
+      <Box as="span">www.antfolio.app</Box>
       <Box p="1rem">
         <AiOutlineReload size="30px" />
       </Box>
@@ -79,7 +81,14 @@ const MobileWrapper = ({ children }) => {
   const builderDevice = useSelector(getBuilderDevice)
   if (builderDevice !== 'mobile') return children
   return (
-    <Box w="100%" height="100%" bg="#dbe5f0" py="1rem" overflow="scroll">
+    <Box
+      w="100%"
+      height="100%"
+      bg="#dbe5f0"
+      py="2rem"
+      overflow="scroll"
+      overflowY="hidden"
+    >
       <Box
         width="50%"
         m="auto"
@@ -87,14 +96,12 @@ const MobileWrapper = ({ children }) => {
         // boxShadow="lg"
         height="100%"
         overflow="hidden"
-        border="1px solid"
-        borderColor="gray.700"
         borderRadius="5rem"
         boxShadow="0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111"
         _before={{
           top: '0px',
           width: '56%',
-          height: '30px',
+          height: '50px',
           backgroundColor: ' #1f1f1f',
           borderRadius: '0px 0px 40px 40px',
           content: "''",
@@ -105,15 +112,28 @@ const MobileWrapper = ({ children }) => {
       >
         <Speaker />
         <Camera />
+
         <Box
-          h="100px"
-          bg="gray.200"
+          h="140px"
+          bg="#f7f7f7"
           textAlign="center"
           fontSize="xl"
           d="flex"
           justifyContent="center"
           alignItems="center"
+          borderBottom="1px solid #e6e6e6"
         >
+          <Box d="flex" justifyContent="space-between" pos="absolute" w="80%">
+            <Box fontWeight="600" fontSize="xl">
+              11:11
+            </Box>
+            <Box d="flex">
+              <Box mr="0.5rem">
+                <IoBatteryDead size="30px" />
+              </Box>
+              <AiFillSignal size="25px" />
+            </Box>
+          </Box>
           <SerachBar />
         </Box>
         {children}
