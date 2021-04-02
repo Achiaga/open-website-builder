@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -7,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
   getBuilderDevice,
-  getResumeId,
   setBuilderDevice,
 } from '../features/builderSlice'
 import { saveData } from './helpers'
@@ -155,17 +155,16 @@ const Card = ({ children, ...props }) => {
 }
 
 function Login() {
-  const { user, error, isLoading } = useUser()
+  const { user } = useUser()
   const dispatch = useDispatch()
   const builderData = useSelector(getBuilderData)
-  const resumeId = useSelector(getResumeId)
   const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
   const [isPublish, setPublish] = useState(false)
   const [isMenuOpen, setMenuOpen] = useState(false)
 
   function handleSavePage() {
-    if (user) return saveData({ user, resumeId, builderData })
+    if (user) return saveData({ user, builderData })
     return router.push('/api/auth/custom-login')
   }
 
@@ -175,9 +174,14 @@ function Login() {
   function handleLogout() {
     router.push('/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com')
   }
-  function handlePublish() {
-    setPublish(true)
-    setMenuOpen(false)
+  async function handlePublish() {
+    if (user) {
+      await saveData({ user, builderData, publish: true })
+      setPublish(true)
+      setMenuOpen(false)
+      return
+    }
+    return router.push('/api/auth/custom-login')
   }
 
   function handleMenuOption() {
@@ -202,11 +206,10 @@ function Login() {
         {isMenuOpen && (
           <Box
             pos="absolute"
-            mt="16px"
             d="flex"
             flexDir="column"
-            top="30px"
             bg="white"
+            borderRadius="10px"
           >
             <a href="/preview" target="_blank">
               <Button variant="ghost" colorScheme="teal" fontSize="sm" w="100%">

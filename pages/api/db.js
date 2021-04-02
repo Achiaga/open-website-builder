@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { MongoClient } from 'mongodb'
 
 const uri = `mongodb+srv://${process?.env?.DB_USER}:${process?.env?.DB_PASSWORD}@${process?.env?.DB_URL}/${process?.env?.DB_NAME}?retryWrites=true&writeConcern=majority`
@@ -8,10 +9,15 @@ const client = new MongoClient(uri, {
 
 async function updateWebsiteData(data, res) {
   try {
+    const options = {
+      // create a document if no documents match the query
+      upsert: true,
+    }
+    const query = { user_id: data.user_id }
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    const result = await websiteCollection.insertOne(data)
+    const result = await websiteCollection.replaceOne(query, data, options)
     await client.close()
     respondAPIQuery(res, result)
   } catch (error) {

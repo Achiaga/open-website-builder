@@ -1,11 +1,11 @@
 import { saveWebsite } from '../utils/user-data'
 
-export async function saveData({ resumeId, user, builderData }) {
+export async function saveData({ user, builderData, publish = false }) {
   const userData = {
-    id: resumeId,
     user_id: user?.sub,
     user_email: user?.email,
     resume_data: builderData,
+    publish: publish,
   }
   const res = await saveWebsite(userData)
   return res[0]
