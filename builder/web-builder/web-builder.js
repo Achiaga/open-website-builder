@@ -19,9 +19,9 @@ import {
   setGridRowHeight,
   setBlockEditable,
   addNewBlock,
-  setLayouts,
-  setHierarchy,
   getBuilderDevice,
+  updateLayouts,
+  updateHierarchy,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -92,10 +92,11 @@ const WebBuilder = () => {
   }
 
   function handleLayoutChange(newLayout, __, newItem) {
+    console.log('handleLayoutChange', newLayout)
     const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
     batch(() => {
-      dispatch(setLayouts({ newLayout, builderDevice }))
-      dispatch(setHierarchy(updatedHierarchy))
+      dispatch(updateLayouts(newLayout))
+      dispatch(updateHierarchy(updatedHierarchy))
       setTimeout(() => {
         dispatch(setResizingBlockId(null))
       }, 1000)
@@ -120,8 +121,6 @@ const WebBuilder = () => {
     dispatch(setResizingBlockId({ resizingBlock, builderDevice }))
   }
   const isMobile = builderDevice === 'mobile'
-  console.log('builderDevice', builderDevice)
-  console.log('mobileLayout', mobileLayout)
   return (
     <GridLayoutWrapper
       style={{
