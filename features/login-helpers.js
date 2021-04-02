@@ -1,7 +1,7 @@
 import { batch } from 'react-redux'
 import * as templates from '../builder/initial-data'
 import {
-  setBuilderBlocksData,
+  setInitialBuilderData,
   setUserData,
   AUTH0_CUSTOM_CLAIM_PATH,
 } from './builderSlice'
@@ -22,7 +22,7 @@ async function getUserData(user) {
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const blocksData = await getUserDataFromLS()
   dispatch(
-    setBuilderBlocksData(
+    setInitialBuilderData(
       templates[template] || blocksData || templates.Fallback
     )
   )
@@ -31,7 +31,7 @@ const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   dispatch
 ) => {
   batch(() => {
-    dispatch(setBuilderBlocksData(resume_data))
+    dispatch(setInitialBuilderData(resume_data))
     dispatch(
       setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
     )

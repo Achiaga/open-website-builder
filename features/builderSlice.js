@@ -33,6 +33,9 @@ export const builderSlice = createSlice({
   initialState,
   reducers: {
     setBuilderBlocksData: (state, action) => {
+      state.builderData.blocks = action.payload
+    },
+    setInitialBuilderData: (state, action) => {
       state.builderData = action.payload
     },
     setUserData: (state, action) => {
@@ -96,6 +99,7 @@ export const builderSlice = createSlice({
 
 export const {
   setBuilderBlocksData,
+  setInitialBuilderData,
   setUserData,
   setLayout,
   setLayouts,
@@ -128,8 +132,31 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
   else dispatch(setBlockConfig({ newData, blockId }))
 }
 
+const removeMobileblock = (blockId) => (dispatch, getState) => {
+  const state = getState()
+  const { blocks } = getBuilderData(getState())
+  const layouts = getMobileLayout(state)
+  const hierarchy = getMobileHierarchy(state)
+  const newBuilderData = removeblockFromState(
+    blockId,
+    layouts,
+    blocks,
+    hierarchy
+  )
+  batch(() => {
+    dispatch(setSelectedBlockId(null))
+    dispatch(setMobileHierarchy(newBuilderData.hierarchy))
+    dispatch(setMobileLayout(newBuilderData.layouts))
+  })
+}
+
 export const removeblock = ({ blockId }) => (dispatch, getState) => {
   const state = getState()
+  const builderDevice = getBuilderDevice(state)
+  if (builderDevice === 'mobile') {
+    removeMobileblock(blockId)
+    return
+  }
   const { blocks } = getBuilderData(getState())
   const layouts = getLayout(state)
   const hierarchy = getHierarchy(state)
@@ -139,10 +166,12 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
     blocks,
     hierarchy
   )
-  console.log(newBuilderData)
   batch(() => {
     dispatch(setSelectedBlockId(null))
-    dispatch(setBuilderBlocksData(newBuilderData))
+    dispatch(removeMobileblock(blockId))
+    dispatch(setBuilderBlocksData(newBuilderData.blocks))
+    dispatch(updateHierarchy(newBuilderData.hierarchy))
+    dispatch(updateLayouts(newBuilderData.layouts))
   })
 }
 
@@ -167,7 +196,6 @@ export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
   const builderDevice = getBuilderDevice(getState())
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  console.log(layouts)
   if (builderDevice === 'mobile') {
     dispatch(setMobileLayout([...mobileLayout, newLayout]))
   } else {
@@ -219,10 +247,12 @@ export const getBuilderData = (state) => state.builder.builderData
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   if (getBuilderDevice(state) === 'mobile') {
-    return state.builder.builderData.mobileHierarchy
+    return getMobileHierarchy(state)
   }
-  return state.builder.builderData.hierarchy
+  return getDesktopHierarchy(state)
 }
+const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy
+const getDesktopHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
 export const getResumeId = (state) => state.builder?.user?.resumeId

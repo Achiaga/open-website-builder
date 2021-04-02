@@ -49,6 +49,7 @@ export function removeblockFromState(
   oldBlocks,
   oldHierarchy
 ) {
+  console.log('oldLayout', oldLayout)
   const findAllChild = findAllChildren(oldHierarchy, blockId)
   const blocks = { ...oldBlocks }
   let layouts = [...oldLayout]

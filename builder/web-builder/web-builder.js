@@ -97,7 +97,6 @@ const WebBuilder = () => {
   }
 
   function handleLayoutChange(newLayout, __, newItem) {
-    console.log('handleLayoutChange', newLayout)
     const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
     batch(() => {
       dispatch(updateLayouts(newLayout))
@@ -126,7 +125,6 @@ const WebBuilder = () => {
     dispatch(setResizingBlockId({ resizingBlock, builderDevice }))
   }
   const isMobile = builderDevice === 'mobile'
-  console.log('mobileLayout', isMobile, layouts)
   return (
     <GridLayoutWrapper
       style={{

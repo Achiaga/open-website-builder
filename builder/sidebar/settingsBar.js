@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/button'
 import { Box } from '@chakra-ui/layout'
 import Login from '../../login'
 
