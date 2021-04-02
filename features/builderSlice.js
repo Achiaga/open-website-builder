@@ -143,6 +143,7 @@ const removeMobileblock = (blockId) => (dispatch, getState) => {
     blocks,
     hierarchy
   )
+  console.log('removeMobileblock', newBuilderData.layouts)
   batch(() => {
     dispatch(setSelectedBlockId(null))
     dispatch(setMobileHierarchy(newBuilderData.hierarchy))
@@ -152,9 +153,8 @@ const removeMobileblock = (blockId) => (dispatch, getState) => {
 
 export const removeblock = ({ blockId }) => (dispatch, getState) => {
   const state = getState()
-  const builderDevice = getBuilderDevice(state)
-  if (builderDevice === 'mobile') {
-    removeMobileblock(blockId)
+  if (getIsMobileBuilder(state)) {
+    dispatch(removeMobileblock(blockId))
     return
   }
   const { blocks } = getBuilderData(getState())
@@ -257,6 +257,7 @@ export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
 export const getResumeId = (state) => state.builder?.user?.resumeId
 export const getBuilderDevice = (state) => state.builder?.device
+export const getIsMobileBuilder = (state) => state.builder?.device === 'mobile'
 
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
