@@ -20,12 +20,12 @@ export const GenericImage = (props) => {
   }
   const { isPreview, redirect } = props
 
-  function handleClick(e) {
-    e.stopPropagation()
-    if (isPreview && redirect) {
-      window.open(validateUrl(redirect), '_blank')
-    }
-  }
+  // function handleClick(e) {
+  //   e.stopPropagation()
+  //   if (isPreview && redirect) {
+  //     window.open(validateUrl(redirect), '_blank')
+  //   }
+  // }
 
   return (
     <Box

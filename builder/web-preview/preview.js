@@ -23,12 +23,12 @@ export const ResumeWebsite = ({ userBlocksData }) => {
   return (
     <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
       <Box
-        p="10px"
         d="grid"
         gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
         gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
-        w="100vw"
+        w="101vw"
         height="7500px"
+        overflowX="hidden"
       >
         {userBlocksData.layouts?.map((layoutItem) => {
           return (

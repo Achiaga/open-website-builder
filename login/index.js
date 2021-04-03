@@ -252,15 +252,14 @@ function Login() {
             >
               Resume Url
             </Button>
+            <Button>
+              <a href="/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com">
+                logout
+              </a>
+            </Button>
           </Box>
         )}
       </Box>
-
-      {/* <Button>
-        <a href="/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com">
-          logout
-        </a>
-      </Button> */}
     </Box>
   )
 }

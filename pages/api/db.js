@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 
 const uri = `mongodb+srv://${process?.env?.DB_USER}:${process?.env?.DB_PASSWORD}@${process?.env?.DB_URL}/${process?.env?.DB_NAME}?retryWrites=true&writeConcern=majority`
 const client = new MongoClient(uri, {
@@ -41,6 +41,23 @@ async function getUserData(userId, res) {
     respondAPIQuery(res, { error })
   }
 }
+async function getWebsiteData(websiteId, res) {
+  try {
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const userData = await websiteCollection.findOne({
+      _id: ObjectId(websiteId),
+    })
+    const websiteData = userData.resume_data
+    await client.close()
+    respondAPIQuery(res, websiteData)
+  } catch (error) {
+    console.error(error)
+    await client.close()
+    respondAPIQuery(res, { error })
+  }
+}
 
 function respondAPIQuery(res, data = {}, status = 200) {
   const hasError = data && data.error
@@ -69,6 +86,9 @@ export default function betaUsers(req, res) {
       updateWebsiteData(data, res)
       break
     case 'read-user':
-      return getUserData(data, res)
+      getUserData(data, res)
+      break
+    case 'read-website':
+      return getWebsiteData(data, res)
   }
 }

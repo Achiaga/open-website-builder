@@ -15,15 +15,13 @@ function Resume(resumeData) {
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
-  let resumeData
   try {
-    resumeData = await getResumeById(resumeId)
+    const websiteData = await getResumeById(resumeId)
+    console.log({ websiteData })
+    return { props: websiteData }
   } catch (err) {
     console.error(err)
     return { props: {} }
   }
-
-  return { props: resumeData }
 }
-
 export default Resume

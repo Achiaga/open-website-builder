@@ -15,7 +15,7 @@ export const saveWebsite = (data) => {
   }
 }
 export const getResumeById = (id) => {
-  return request('read-resume', id)
+  return request('read-website', id)
 }
 export const getUserDataById = (id) => {
   try {
