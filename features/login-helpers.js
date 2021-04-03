@@ -15,7 +15,8 @@ async function getUserData(user) {
     return userData
   } catch (err) {
     console.error('error con getUserData', err)
-    return { resume_data: templates.Fallback }
+    const blocksData = await getUserDataFromLS()
+    return { resume_data: blocksData || templates.Fallback }
   }
 }
 

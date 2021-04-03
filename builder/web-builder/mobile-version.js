@@ -31,7 +31,7 @@ const MobileVersion = () => {
           <Text>Sorry,</Text>
           <Text>the builder is not avialable for mobile</Text>
         </Text>
-        <Text as="p" textAlign="center" fontSize="lg">
+        <Text as="span" textAlign="center" fontSize="lg">
           <Text>Please, access the builder</Text>
           <Text>from your computer</Text>
         </Text>
