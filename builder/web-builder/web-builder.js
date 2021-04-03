@@ -45,6 +45,7 @@ const GridLayoutWrapper = ({ children }) => {
       flexDir="row"
       onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
+      pos="relative"
     >
       {children}
     </Box>

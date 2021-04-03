@@ -87,7 +87,7 @@ export const builderSlice = createSlice({
     setBuilderDevice: (state, action) => {
       state.device = action.payload
     },
-    setBlockDraggable: (state, action) => {
+    setBlockDraggable: () => {
       // const { blockId, prevBlockId } = action.payload
       // if (prevBlockId && state.builderData.layouts[prevBlockId]) {
       //   state.builderData.layouts[prevBlockId].isDraggable = true
