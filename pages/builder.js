@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useDispatch } from 'react-redux'
+import { UserProvider } from '@auth0/nextjs-auth0'
 
 import { loadInitialData } from '../features/builderSlice'
 import { Builder } from '../builder'
@@ -39,7 +40,11 @@ const BuilderPage = () => {
     }
   }, [isLoading])
 
-  return <Builder />
+  return (
+    <UserProvider>
+      <Builder />
+    </UserProvider>
+  )
 }
 
 export default BuilderPage
