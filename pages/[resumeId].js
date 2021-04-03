@@ -1,6 +1,6 @@
 import { ResumeWebsite } from '../builder/web-preview/preview'
 
-import { getResumeById } from '../utils/user-data'
+import { getWebsiteData } from './api/db'
 
 function isEmpty(obj) {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
@@ -14,7 +14,7 @@ function Resume(resumeData) {
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
   try {
-    const websiteData = await getResumeById(resumeId)
+    const websiteData = await getWebsiteData(resumeId)
     console.log({ websiteData })
     return { props: websiteData }
   } catch (err) {

@@ -41,26 +41,33 @@ async function getUserData(userId, res) {
     respondAPIQuery(res, { error })
   }
 }
-async function getWebsiteData(websiteId, res) {
+export async function requestWebsiteData(websiteId, res) {
   console.log('websiteId', websiteId)
+  try {
+    await getWebsiteData(websiteId)
+
+    respondAPIQuery(res, websiteData)
+  } catch (error) {
+    console.error(error)
+
+    respondAPIQuery(res, { error })
+  }
+}
+
+export async function getWebsiteData(websiteId) {
   try {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    console.log('process?.env?.DB_NAME', process?.env?.DB_NAME)
-    console.log('process.env.DB_COLLECTION', process.env.DB_COLLECTION)
     const userData = await websiteCollection.findOne({
       _id: ObjectId(websiteId),
     })
-    console.log('userData', userData)
     const websiteData = userData.resume_data
-    console.log('websiteData', websiteData)
     await client.close()
-    respondAPIQuery(res, websiteData)
-  } catch (error) {
-    console.error(error)
+    return websiteData
+  } catch (err) {
+    console.error('get website data error', err)
     await client.close()
-    respondAPIQuery(res, { error })
   }
 }
 
@@ -94,7 +101,7 @@ export default function betaUsers(req, res) {
       getUserData(data, res)
       break
     case 'read-website':
-      getWebsiteData(data, res)
+      requestWebsiteData(data, res)
       break
   }
 }
