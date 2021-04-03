@@ -42,14 +42,19 @@ async function getUserData(userId, res) {
   }
 }
 async function getWebsiteData(websiteId, res) {
+  console.log('websiteId', websiteId)
   try {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    console.log('process?.env?.DB_NAME', process?.env?.DB_NAME)
+    console.log('process.env.DB_COLLECTION', process.env.DB_COLLECTION)
     const userData = await websiteCollection.findOne({
       _id: ObjectId(websiteId),
     })
+    console.log('userData', userData)
     const websiteData = userData.resume_data
+    console.log('websiteData', websiteData)
     await client.close()
     respondAPIQuery(res, websiteData)
   } catch (error) {
@@ -89,6 +94,7 @@ export default function betaUsers(req, res) {
       getUserData(data, res)
       break
     case 'read-website':
-      return getWebsiteData(data, res)
+      getWebsiteData(data, res)
+      break
   }
 }
