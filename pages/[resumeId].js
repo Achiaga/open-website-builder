@@ -2,11 +2,16 @@ import { ResumeWebsite } from '../builder/web-preview/preview'
 
 import { getWebsiteData } from './api/db'
 
+function isFalshy(resumeId) {
+  return !resumeId || resumeId === 'undefined' || resumeId === 'null'
+}
+
 function isEmpty(obj) {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
 function Resume(resumeData) {
+  console.log('resumeData')
   if (isEmpty(resumeData)) return <div>upsy nothing to see here</div>
   return <ResumeWebsite userBlocksData={resumeData} />
 }
@@ -14,6 +19,7 @@ function Resume(resumeData) {
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
   try {
+    if (isFalshy(resumeId)) return { props: {} }
     const websiteData = await getWebsiteData(resumeId)
     return { props: websiteData }
   } catch (err) {

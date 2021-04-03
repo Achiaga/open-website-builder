@@ -47,9 +47,8 @@ async function getUserData(userId, res) {
   }
 }
 export async function requestWebsiteData(websiteId, res) {
-  console.log('websiteId', websiteId)
   try {
-    await getWebsiteData(websiteId)
+    const websiteData = await getWebsiteData(websiteId)
     respondAPIQuery(res, websiteData)
   } catch (error) {
     console.error(error)
@@ -59,6 +58,7 @@ export async function requestWebsiteData(websiteId, res) {
 }
 
 export async function getWebsiteData(websiteId) {
+  if (!websiteId) return {}
   const client = await getDBCredentials()
   try {
     await client.connect()
