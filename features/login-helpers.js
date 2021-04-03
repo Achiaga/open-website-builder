@@ -9,14 +9,16 @@ import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
 import { getUserDataById } from '../utils/user-data'
 
-async function getUserData(user) {
+async function getUserData(user, template) {
   try {
     const userData = await getUserDataById(user.sub)
     return userData
   } catch (err) {
     console.error('error con getUserData', err)
     const blocksData = await getUserDataFromLS()
-    return { resume_data: blocksData || templates.Fallback }
+    return {
+      resume_data: templates[template] || blocksData || templates.Fallback,
+    }
   }
 }
 
@@ -53,8 +55,11 @@ const handleSingup = (user) => async (dispatch) => {
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }
 
-export const loadDataFromDB = (user) => async (dispatch) => {
-  const { resume_data, id, user_id, is_publish } = await getUserData(user)
+export const loadDataFromDB = (user, template) => async (dispatch) => {
+  const { resume_data, id, user_id, is_publish } = await getUserData(
+    user,
+    template
+  )
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }
 

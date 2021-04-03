@@ -81,7 +81,7 @@ export const PrevText = (props) => {
     textShadow: props.textShadow,
     borderRadius: props.borderRadius,
   }
-
+  console.log(props.text)
   return (
     <Text
       w="100%"
