@@ -132,7 +132,7 @@ const WebBuilder = () => {
   }
 
   function handleAddSize(_, __, resizingBlock) {
-    dispatch(setResizingBlockId({ resizingBlock, builderDevice }))
+    dispatch(setResizingBlockId(resizingBlock))
   }
   const isMobile = builderDevice === 'mobile'
   return (
