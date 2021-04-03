@@ -18,7 +18,6 @@ import Fireworks from '../components/fireworks'
 
 const PublishSuccessModal = ({ setPublish }) => {
   const userData = useSelector(getUserData)
-  console.log('PublishSuccessModal', userData)
   const { websiteId } = userData
   return (
     <Box
