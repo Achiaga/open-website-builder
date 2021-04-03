@@ -33,8 +33,8 @@ export const GenericText = (props) => {
   }, [titleRef])
 
   function handleDoubleClick() {
-    titleRef.current.blur()
-    titleRef.current.focus()
+    titleRef.current?.blur()
+    titleRef.current?.focus()
     document.execCommand('selectAll', false, null)
   }
 
@@ -53,6 +53,7 @@ export const GenericText = (props) => {
     <Text
       as="span"
       onDoubleClick={handleDoubleClick}
+      onClick={() => titleRef.current?.blur()}
       cursor="pointer"
       w="100%"
       h="100%"
