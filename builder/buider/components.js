@@ -1,16 +1,10 @@
 import { useSelector } from 'react-redux'
-import { Box, Spinner } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-
-import { WebBuilder } from '../builder/web-builder'
-import { BuilderSidebar } from '../builder/sidebar'
-import { getBuilderData, getBuilderDevice } from '../features/builderSlice'
-import { SettingsBar } from './sidebar/settingsBar'
-import { useEffect } from 'react'
-import MobileVersion from './web-builder/mobile-version'
 import { HiMenu } from 'react-icons/hi'
 import { AiOutlineReload, AiFillSignal } from 'react-icons/ai'
 import { IoBatteryDead } from 'react-icons/io5'
+import { getBuilderDevice } from '../../features/builderSlice'
 
 const SerachBar = () => {
   return (
@@ -78,7 +72,7 @@ const Camera = () => {
   )
 }
 
-const MobileWrapper = ({ children }) => {
+export const MobileWrapper = ({ children }) => {
   const builderDevice = useSelector(getBuilderDevice)
   if (builderDevice !== 'mobile') return children
   return (
@@ -150,50 +144,3 @@ const MobileWrapper = ({ children }) => {
 MobileWrapper.propTypes = {
   children: PropTypes.any,
 }
-
-const Builder = () => {
-  const userBlocksData = useSelector(getBuilderData)
-
-  function confirmExit() {
-    return ''
-  }
-
-  useEffect(() => {
-    window.onbeforeunload = confirmExit
-  }, [])
-
-  if (!userBlocksData)
-    return (
-      <Box
-        w="100%"
-        h="100%"
-        d="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
-      </Box>
-    )
-  return (
-    <>
-      <Box
-        d={['none', 'flex']}
-        m="auto"
-        flexDir="row"
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
-        backgroundPosition="center center"
-        height="500vw"
-      >
-        <SettingsBar />
-        <BuilderSidebar />
-        <MobileWrapper>
-          <WebBuilder />
-        </MobileWrapper>
-      </Box>
-      <MobileVersion />
-    </>
-  )
-}
-
-export default Builder
