@@ -2,13 +2,13 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-// import { publishResume } from '../utils/user-data'
 import { Box, Text } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
   getBuilderDevice,
   setBuilderDevice,
+  getUserData,
 } from '../features/builderSlice'
 import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
@@ -17,6 +17,9 @@ import { Button } from '@chakra-ui/button'
 import Fireworks from '../components/fireworks'
 
 const PublishSuccessModal = ({ setPublish }) => {
+  const userData = useSelector(getUserData)
+  console.log('PublishSuccessModal', userData)
+  const { websiteId } = userData
   return (
     <Box
       left="0"
@@ -86,27 +89,32 @@ const PublishSuccessModal = ({ setPublish }) => {
           as="h3"
           color="black"
           fontFamily="Montserrat"
-          fontSize={'24px'}
-          paddingBottom={'3'}
+          fontSize={'md'}
           fontWeight="semibold"
         >
-          This is your resume Url:
+          This is your website Url:
         </Text>
-        <Text
-          as="h3"
-          color="black"
-          fontFamily="Montserrat"
-          fontSize={'20px'}
-          cursor="pointer"
-          paddingBottom={'4'}
+        <a
+          target="_blank"
+          href={`https://www.antfolio.app/${websiteId}`}
+          rel="noreferrer"
         >
-          - https://www.yourUrl.antfolio.app
-        </Text>
+          <Text
+            fontFamily="Montserrat"
+            fontSize={'xl'}
+            cursor="pointer"
+            pb="2rem"
+            textDecoration="underline"
+            color="primary.500"
+          >
+            https://antfolio.app/{websiteId}
+          </Text>
+        </a>
         <Text
           as="h3"
           color="black"
           fontFamily="Montserrat"
-          fontSize={'20px'}
+          fontSize={'md'}
           paddingBottom={'0'}
         >
           - Change it on your settings{' '}
@@ -196,6 +204,7 @@ function Login() {
   return (
     <Box d="flex" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
+      {/* <PublishSuccessModal setPublish={setPublish} /> */}
       <Card onClick={handleSavePage} fontSize="md">
         Save
       </Card>

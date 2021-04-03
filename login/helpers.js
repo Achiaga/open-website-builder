@@ -8,6 +8,9 @@ export async function saveData({ user, builderData, publish = false }) {
     publish: publish,
   }
   const res = await saveWebsite(userData)
-  const data = res?.ops?.[0] ?? {}
+  const data = {
+    ...(res?.ops?.[0] ?? {}),
+    _id: res?.upsertedId?._id,
+  }
   return data
 }

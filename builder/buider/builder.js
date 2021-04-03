@@ -48,6 +48,7 @@ const Builder = () => {
   useEffect(() => {
     window.onbeforeunload = confirmExit
   }, [])
+
   useEffect(() => {
     if (!isLoading) {
       loadData()

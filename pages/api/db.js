@@ -12,7 +12,7 @@ function getDBCredentials() {
 
 async function updateWebsiteData(data, res) {
   try {
-    const client = getDBCredentials()
+    const client = await getDBCredentials()
     const options = {
       // create a document if no documents match the query
       upsert: true,
@@ -69,7 +69,7 @@ export async function getWebsiteData(websiteId) {
     })
     const websiteData = userData.resume_data
     await client.close()
-    return websiteData
+    return { websiteData, isPublish: userData.publish }
   } catch (err) {
     console.error('getWebsiteData error', err)
     await client.close()
