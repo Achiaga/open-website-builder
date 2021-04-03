@@ -20,7 +20,6 @@ export const ResumeWebsite = ({ userBlocksData }) => {
   }, [])
 
   const rowHeight = windowWidth / GRID_COLUMNS
-  const childStructure = userBlocksData.structure['main']
   return (
     <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
       <Box
@@ -31,9 +30,9 @@ export const ResumeWebsite = ({ userBlocksData }) => {
         w="100vw"
         height="7500px"
       >
-        {childStructure?.map((structItem) => {
+        {userBlocksData.layouts?.map((layoutItem) => {
           return (
-            <GeneratePreviewBlock key={structItem} structItem={structItem} />
+            <GeneratePreviewBlock key={layoutItem.i} layoutItem={layoutItem} />
           )
         })}
       </Box>

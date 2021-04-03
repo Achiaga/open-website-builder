@@ -1,7 +1,7 @@
 import { batch } from 'react-redux'
 import * as templates from '../builder/initial-data'
 import {
-  setBuilderBlocksData,
+  setInitialBuilderData,
   setUserData,
   AUTH0_CUSTOM_CLAIM_PATH,
 } from './builderSlice'
@@ -9,20 +9,23 @@ import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
 import { getUserDataById } from '../utils/user-data'
 
-async function getUserData(user) {
+async function getUserData(user, template) {
   try {
     const userData = await getUserDataById(user.sub)
     return userData
   } catch (err) {
     console.error('error con getUserData', err)
-    return { resume_data: templates.Fallback }
+    const blocksData = await getUserDataFromLS()
+    return {
+      resume_data: templates[template] || blocksData || templates.Fallback,
+    }
   }
 }
 
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const blocksData = await getUserDataFromLS()
   dispatch(
-    setBuilderBlocksData(
+    setInitialBuilderData(
       templates[template] || blocksData || templates.Fallback
     )
   )
@@ -31,7 +34,7 @@ const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
   dispatch
 ) => {
   batch(() => {
-    dispatch(setBuilderBlocksData(resume_data))
+    dispatch(setInitialBuilderData(resume_data))
     dispatch(
       setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
     )
@@ -52,8 +55,11 @@ const handleSingup = (user) => async (dispatch) => {
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }
 
-export const loadDataFromDB = (user) => async (dispatch) => {
-  const { resume_data, id, user_id, is_publish } = await getUserData(user)
+export const loadDataFromDB = (user, template) => async (dispatch) => {
+  const { resume_data, id, user_id, is_publish } = await getUserData(
+    user,
+    template
+  )
   dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
 }
 

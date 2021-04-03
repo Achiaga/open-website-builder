@@ -33,6 +33,9 @@ export const builderSlice = createSlice({
   initialState,
   reducers: {
     setBuilderBlocksData: (state, action) => {
+      state.builderData.blocks = action.payload
+    },
+    setInitialBuilderData: (state, action) => {
       state.builderData = action.payload
     },
     setUserData: (state, action) => {
@@ -61,8 +64,17 @@ export const builderSlice = createSlice({
     setLayout: (state, action) => {
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
     },
+    setMobileLayout: (state, action) => {
+      state.builderData.mobileLayout = action.payload
+    },
     setLayouts: (state, action) => {
       state.builderData.layouts = action.payload
+    },
+    setHierarchy: (state, action) => {
+      state.builderData.hierarchy = action.payload
+    },
+    setMobileHierarchy: (state, action) => {
+      state.builderData.mobileHierarchy = action.payload
     },
     setAddedBlock: (state, action) => {
       const { blockID, newBlockData } = action.payload
@@ -72,10 +84,10 @@ export const builderSlice = createSlice({
       const { structureId, structure } = action.payload
       state.builderData.structure[structureId] = structure
     },
-    setHierarchy: (state, action) => {
-      state.builderData.hierarchy = action.payload
+    setBuilderDevice: (state, action) => {
+      state.device = action.payload
     },
-    setBlockDraggable: (state, action) => {
+    setBlockDraggable: () => {
       // const { blockId, prevBlockId } = action.payload
       // if (prevBlockId && state.builderData.layouts[prevBlockId]) {
       //   state.builderData.layouts[prevBlockId].isDraggable = true
@@ -87,9 +99,11 @@ export const builderSlice = createSlice({
 
 export const {
   setBuilderBlocksData,
+  setInitialBuilderData,
   setUserData,
   setLayout,
   setLayouts,
+  setMobileLayout,
   setAddedBlock,
   setStructure,
   setNewDropBlockType,
@@ -100,13 +114,16 @@ export const {
   setBlockConfig,
   setBlockDraggable,
   setHierarchy,
+  setMobileHierarchy,
+  setBuilderDevice,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
   const { origin, template } = params
   if (!user) return dispatch(loadInitialDataNoAccount(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
-  if (user && origin !== 'login') return dispatch(loadDataFromDB(user))
+  if (user && origin !== 'login')
+    return dispatch(loadDataFromDB(user, template))
 }
 
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
@@ -116,8 +133,11 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
   else dispatch(setBlockConfig({ newData, blockId }))
 }
 
-export const removeblock = ({ blockId }) => (dispatch, getState) => {
-  const { hierarchy, layouts, blocks } = getBuilderData(getState())
+const removeMobileblock = (blockId) => (dispatch, getState) => {
+  const state = getState()
+  const { blocks } = getBuilderData(getState())
+  const layouts = getMobileLayout(state)
+  const hierarchy = getMobileHierarchy(state)
   const newBuilderData = removeblockFromState(
     blockId,
     layouts,
@@ -126,7 +146,32 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
   )
   batch(() => {
     dispatch(setSelectedBlockId(null))
-    dispatch(setBuilderBlocksData(newBuilderData))
+    dispatch(setMobileHierarchy(newBuilderData.hierarchy))
+    dispatch(setMobileLayout(newBuilderData.layouts))
+  })
+}
+
+export const removeblock = ({ blockId }) => (dispatch, getState) => {
+  const state = getState()
+  if (getIsMobileBuilder(state)) {
+    dispatch(removeMobileblock(blockId))
+    return
+  }
+  const { blocks } = getBuilderData(getState())
+  const layouts = getLayout(state)
+  const hierarchy = getHierarchy(state)
+  const newBuilderData = removeblockFromState(
+    blockId,
+    layouts,
+    blocks,
+    hierarchy
+  )
+  batch(() => {
+    dispatch(setSelectedBlockId(null))
+    dispatch(removeMobileblock(blockId))
+    dispatch(setBuilderBlocksData(newBuilderData.blocks))
+    dispatch(updateHierarchy(newBuilderData.hierarchy))
+    dispatch(updateLayouts(newBuilderData.layouts))
   })
 }
 
@@ -138,6 +183,51 @@ export const setBlockEditable = (blockId) => (dispatch, getState) => {
   })
 }
 
+export const updateLayouts = (updatedLayout) => (dispatch, getState) => {
+  const builderDevice = getBuilderDevice(getState())
+
+  if (builderDevice === 'mobile') {
+    dispatch(setMobileLayout(updatedLayout))
+  } else {
+    dispatch(setLayouts(updatedLayout))
+  }
+}
+export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
+  const builderDevice = getBuilderDevice(getState())
+  const layouts = getLayout(getState())
+  const mobileLayout = getMobileLayout(getState())
+  if (builderDevice === 'mobile') {
+    dispatch(setMobileLayout([...mobileLayout, newLayout]))
+  } else {
+    dispatch(setMobileLayout([...mobileLayout, newLayout]))
+    dispatch(setLayouts([...layouts, newLayout]))
+  }
+}
+export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
+  const builderDevice = getBuilderDevice(getState())
+  if (builderDevice === 'mobile') {
+    dispatch(setMobileHierarchy(newHierarchy))
+  } else {
+    dispatch(setHierarchy(newHierarchy))
+  }
+}
+export const addNewHierachyItem = (blockLayoutId, newParentId) => (
+  dispatch,
+  getState
+) => {
+  const builderDevice = getBuilderDevice(getState())
+  const hierarchy = getHierarchy(getState())
+  const newHierarchy = {
+    ...hierarchy,
+    [newParentId]: [...(hierarchy?.[newParentId] || []), blockLayoutId],
+  }
+  if (builderDevice === 'mobile') {
+    dispatch(setMobileHierarchy(newHierarchy))
+  } else {
+    dispatch(setHierarchy(newHierarchy))
+  }
+}
+
 export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
   const state = getState()
   const hierarchy = getHierarchy(state)
@@ -145,14 +235,9 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
   const newParent = getParentBlock(newLayout, blockLayout, hierarchy)
   batch(() => {
     dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
-    dispatch(setLayout(blockLayout))
+    dispatch(addNewLayoutItem(blockLayout))
     if (newParent) {
-      dispatch(
-        setHierarchy({
-          ...hierarchy,
-          [newParent.i]: [...(hierarchy?.[newParent?.i] || []), blockLayout.i],
-        })
-      )
+      dispatch(addNewHierachyItem(blockLayout.i, newParent.i))
     }
     dispatch(setNewDropBlock({ type: null }))
   })
@@ -160,10 +245,19 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
 
 export const getBuilderData = (state) => state.builder.builderData
 export const getBlocks = (state) => state.builder.builderData.blocks
-export const getHierarchy = (state) => state.builder.builderData.hierarchy
+export const getHierarchy = (state) => {
+  if (getBuilderDevice(state) === 'mobile') {
+    return getMobileHierarchy(state)
+  }
+  return getDesktopHierarchy(state)
+}
+const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy
+const getDesktopHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>
   state.builder.builderData.blocks[id]
 export const getResumeId = (state) => state.builder?.user?.resumeId
+export const getBuilderDevice = (state) => state.builder?.device
+export const getIsMobileBuilder = (state) => state.builder?.device === 'mobile'
 
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
@@ -175,6 +269,13 @@ export const getBlockParentId = (id) => (state) => {
 }
 
 export const getGridRowHeight = (state) => state.builder.gridRowHeight
-export const getLayout = (state) => state.builder.builderData.layout
+export const getLayout = (state) => {
+  if (getBuilderDevice(state) === 'mobile') {
+    return getMobileLayout(state)
+  }
+  return getDesktopLayout(state)
+}
+const getMobileLayout = (state) => state.builder.builderData.mobileLayout
+const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
 export default builderSlice.reducer

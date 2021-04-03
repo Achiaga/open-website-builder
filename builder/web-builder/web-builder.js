@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
@@ -15,23 +15,20 @@ import {
   getBuilderData,
   getGridRowHeight,
   getNewBlock,
-  getSelectedBlockId,
   setResizingBlockId,
   setGridRowHeight,
   setBlockEditable,
   addNewBlock,
-  setLayouts,
-  setHierarchy,
-  getHierarchy,
+  getBuilderDevice,
+  updateLayouts,
+  updateHierarchy,
+  getLayout,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
-import { v4 } from 'uuid'
 
 const reactGridLayoutProps = {
-  cols: GRID_COLUMNS,
   autoSize: true,
   margin: [0, 0],
-  style: { width: '100%', minHeight: '100vh', height: '100%' },
   className: 'layout',
   verticalCompact: false,
 }
@@ -44,9 +41,11 @@ const GridLayoutWrapper = ({ children }) => {
     <Box
       d="flex"
       w="100%"
+      height="100%"
       flexDir="row"
       onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
+      pos="relative"
     >
       {children}
     </Box>
@@ -64,14 +63,20 @@ const blocksZIndex = {
 
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const { blocks, layouts, hierarchy } = useSelector(getBuilderData)
+  const {
+    blocks,
+    hierarchy,
+    mobileLayout,
+    layouts: desktopLayout,
+  } = useSelector(getBuilderData)
+  const layouts = useSelector(getLayout)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
-  const selectedBlockId = useSelector(getSelectedBlockId)
   const gridRowHeight = useSelector(getGridRowHeight)
+  const builderDevice = useSelector(getBuilderDevice)
   const lastHoveredEl = useRef()
 
   useEffect(() => {
-    saveOnLocal({ blocks, layouts, hierarchy })
+    saveOnLocal({ blocks, hierarchy, layouts: desktopLayout, mobileLayout })
   }, [blocks, layouts, hierarchy])
 
   useEffect(() => {
@@ -86,24 +91,33 @@ const WebBuilder = () => {
 
   function onDrop(newLayout, droppedBlockLayout) {
     dispatch(addNewBlock(newLayout, droppedBlockLayout))
+    removeHighlightedElem()
   }
 
   function handleWindowResize() {
     dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
   }
 
+  function removeHighlightedElem() {
+    if (lastHoveredEl.current?.style) {
+      lastHoveredEl.current.style.backgroundColor = null
+    }
+  }
+
   function handleLayoutChange(newLayout, __, newItem) {
     const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
     batch(() => {
-      dispatch(setLayouts(newLayout))
-      dispatch(setHierarchy(updatedHierarchy))
+      dispatch(updateLayouts(newLayout))
+      dispatch(updateHierarchy(updatedHierarchy))
       setTimeout(() => {
         dispatch(setResizingBlockId(null))
       }, 1000)
     })
-    if (lastHoveredEl.current?.style) {
-      lastHoveredEl.current.style.backgroundColor = null
-    }
+    removeHighlightedElem()
+  }
+
+  function handleDragStop(newLayout, __, newItem) {
+    handleLayoutChange(newLayout, __, newItem)
   }
 
   function handleDrag(layout, _, newItem) {
@@ -120,11 +134,24 @@ const WebBuilder = () => {
   function handleAddSize(_, __, resizingBlock) {
     dispatch(setResizingBlockId(resizingBlock))
   }
-
+  const isMobile = builderDevice === 'mobile'
   return (
-    <GridLayoutWrapper>
+    <GridLayoutWrapper
+      style={{
+        minHeight: '100vh',
+        height: '100%',
+      }}
+    >
       <ReactGridLayout
         {...reactGridLayoutProps}
+        key={builderDevice}
+        cols={isMobile ? 100 : GRID_COLUMNS}
+        style={{
+          width: '100%',
+          minHeight: '100vh',
+          height: '100%',
+          backgroundColor: '#f4f5f6',
+        }}
         rowHeight={gridRowHeight}
         onDrop={onDrop}
         preventCollision={!!newBlockType}
@@ -132,7 +159,7 @@ const WebBuilder = () => {
         onResize={handleAddSize}
         onDrag={handleDrag}
         onResizeStop={handleLayoutChange}
-        onDragStop={handleLayoutChange}
+        onDragStop={handleDragStop}
         useCSSTransforms={true}
         droppingItem={{
           i: newBlockType ? `${newBlockType}-${newBlockId}` : '',

@@ -4,13 +4,12 @@ import { useContext } from 'react'
 import { previewBlocks } from '../blocks'
 import { BlocksContext } from './preview'
 
-export function GeneratePreviewBlock({ structItem }) {
+export function GeneratePreviewBlock({ layoutItem }) {
   const {
-    builder: { blocks, layouts },
+    builder: { blocks },
   } = useContext(BlocksContext)
-
-  const { data, type } = blocks[structItem]
-  const { w, h, x, y, i } = layouts[structItem] || {}
+  const { data, type } = blocks[layoutItem.i]
+  const { w, h, x, y, i } = layoutItem || {}
 
   const GenericBlock = previewBlocks[type]
   return (
@@ -20,14 +19,19 @@ export function GeneratePreviewBlock({ structItem }) {
       gridRow={`${y + 1} / span ${h}`}
       overflow="hidden"
       border={data.border}
-      backgroundImage={`url(${data?.imageUrl})`}
+      {...(type !== 'image' && { backgroundImage: `url(${data?.imageUrl})` })}
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       boxShadow={data.boxShadow}
       borderRadius={data.borderRadius}
       backgroundColor={data.backgroundColor}
     >
-      <GenericBlock {...data} parentHeight={h} isPreview blockId={structItem} />
+      <GenericBlock
+        {...data}
+        parentHeight={h}
+        isPreview
+        blockId={layoutItem.i}
+      />
     </Box>
   )
 }
