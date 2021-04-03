@@ -3,12 +3,13 @@ export default {
     startNowButton: 'Start Now',
   },
   hero: {
-    title_1: 'Transform your resume ',
-    title_color_2: 'into a website ',
-    title_3: 'in 5 minutes',
+    title_1: 'Build your ',
+    title_color_2: 'Online ',
+    title_color_3: 'Portfolio ',
+    title_4: 'in 5 mins',
     subtitle:
       "Your next resume won't be a document, it will be a website. Free, simple, breath-taking web resume. ",
-    button: 'Create your Web-Resume',
+    button: 'Create your Portfolio',
   },
   comparison: {
     title_1: 'Create an awe-inspiring ',

@@ -11,11 +11,9 @@ import Twitter from '../../assets/twitter'
 const Features = () => {
   const router = useRouter()
   const [t] = useTranslation()
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmitEmail = () => {
-    router.push('/api/auth/custom-login')
+  const handleStartNow = () => {
+    router.push(`/templates`)
   }
 
   return (
@@ -32,29 +30,21 @@ const Features = () => {
         <LogoSvg />
       </Box>
       <Box width={['200px', '537px']} d={['none', 'block']}>
-        <Box as="form" onSubmit={handleSubmitEmail}>
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <Button
-              type="submit"
-              w="212px"
-              fontSize="18px"
-              bg={isSuccess ? 'green.500' : 'primary.500'}
-              _hover={{ bg: `${isSuccess ? 'green.500' : 'primary.500'}` }}
-              _active={{
-                bg: `${isSuccess ? 'green.500' : 'primary.500'}`,
-                transform: 'scale(0.98)',
-                borderColor: '#bec3c9',
-              }}
-            >
-              {isLoading ? (
-                <Spinner />
-              ) : isSuccess ? (
-                t.button_success
-              ) : (
-                t.footer.button
-              )}
-            </Button>
-          </Box>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Button
+            w="212px"
+            fontSize="18px"
+            bg={'primary.500'}
+            _hover={{ bg: `${'primary.500'}` }}
+            _active={{
+              bg: `${'primary.500'}`,
+              transform: 'scale(0.98)',
+              borderColor: '#bec3c9',
+            }}
+            onClick={handleStartNow}
+          >
+            {t.navbar.startNowButton}
+          </Button>
         </Box>
       </Box>
       <Box

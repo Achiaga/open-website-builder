@@ -49,7 +49,6 @@ export function removeblockFromState(
   oldBlocks,
   oldHierarchy
 ) {
-  console.log('oldLayout', oldLayout)
   const findAllChild = findAllChildren(oldHierarchy, blockId)
   const blocks = { ...oldBlocks }
   let layouts = [...oldLayout]
@@ -70,6 +69,7 @@ export function removeblockFromState(
 }
 
 export function saveOnLocal(userBlocksData) {
+  // console.log(JSON.stringify(userBlocksData))
   if (!Object.keys(userBlocksData).length) return
   localforage.setItem('userData', userBlocksData)
 }
@@ -219,7 +219,7 @@ export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
 
 export function highlightFutureParentBlock(newParentId, lastHoveredEl) {
   if (lastHoveredEl.current) {
-    lastHoveredEl.current.style.backgroundColor = 'transparent'
+    lastHoveredEl.current.style.backgroundColor = null
   }
   if (newParentId) {
     const elem = document.getElementById(newParentId)?.children?.[0]

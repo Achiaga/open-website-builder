@@ -25,11 +25,53 @@ const Hero = ({ handleFreeTrial }) => {
       justifyContent="space-between"
       alignItems="center"
       w={['90vw', '100%']}
-      mt={['1rem', '1.25rem']}
+      mt={['1rem', '2rem']}
+      pt={['1rem', '3rem']}
       mb={['2rem', '6.5rem']}
-      pl={['0.5rem', '6rem']}
+      pl={['0.5rem', '0rem']}
     >
       <Box
+        position="absolute"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        left="28rem"
+        top="2rem"
+        zIndex="9999"
+      >
+        <Text
+          as="h1"
+          fontWeight="extrabold"
+          fontFamily="Montserrat"
+          fontSize="6rem"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          lineHeight="7rem"
+        >
+          {t.hero.title_1}
+          <Text as="h1" color="primary.500">
+            {t.hero.title_color_2}
+          </Text>
+          <Text as="h1" color="primary.500">
+            {t.hero.title_color_3}
+          </Text>
+          {t.hero.title_4}
+        </Text>
+        <Button
+          fontSize="xl"
+          minW="7.5rem"
+          w="18rem"
+          h={14}
+          onClick={handleButton}
+          marginTop="2.5rem"
+        >
+          {t.hero.button}
+        </Button>
+      </Box>
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="baseline"
@@ -82,24 +124,25 @@ const Hero = ({ handleFreeTrial }) => {
         >
           {t.hero.button}
         </Button>
-      </Box>
+      </Box> */}
       <Box
         position="relative"
-        width="60%"
+        width="100%"
+        height="500px"
         display="flex"
         alignItems="center"
         justifyContent="center"
+        mt={['0rem', '3rem']}
       >
         {!isSmallerThan900 && (
-          <Image
-            src={'/hero.png'}
+          <img
+            src={'/heroArt.png'}
             alt="hero_image"
-            width={720}
-            height={458}
+            layout="fill"
             loading="eager"
           />
         )}
-        {!isSmallerThan900 && (
+        {/* {!isSmallerThan900 && (
           <Box position="absolute" left="-0.5rem" bottom="-6.5rem">
             <Image
               src={'/hero_2.png'}
@@ -108,7 +151,7 @@ const Hero = ({ handleFreeTrial }) => {
               height={345}
             />
           </Box>
-        )}
+        )} */}
       </Box>
     </Box>
   )

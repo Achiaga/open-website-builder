@@ -6,7 +6,6 @@ const BlockInception = (props) => {
   const inceptionModifiers = {
     backgroundColor: props.backgroundColor,
     boxShadow: props.boxShadow,
-    imageUrl: props.imageUrl,
   }
   return (
     <Box
@@ -14,7 +13,7 @@ const BlockInception = (props) => {
       height="100%"
       border="1px dashed"
       borderColor="gray.500"
-      backgroundImage={`url(${inceptionModifiers.imageUrl})`}
+      backgroundImage={`url(${props.imageUrl})`}
       backgroundPosition="50% 50%"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"

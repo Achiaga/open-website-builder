@@ -45,6 +45,7 @@ const GridLayoutWrapper = ({ children }) => {
       flexDir="row"
       onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
+      pos="relative"
     >
       {children}
     </Box>
@@ -90,10 +91,17 @@ const WebBuilder = () => {
 
   function onDrop(newLayout, droppedBlockLayout) {
     dispatch(addNewBlock(newLayout, droppedBlockLayout))
+    removeHighlightedElem()
   }
 
   function handleWindowResize() {
     dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
+  }
+
+  function removeHighlightedElem() {
+    if (lastHoveredEl.current?.style) {
+      lastHoveredEl.current.style.backgroundColor = null
+    }
   }
 
   function handleLayoutChange(newLayout, __, newItem) {
@@ -105,9 +113,11 @@ const WebBuilder = () => {
         dispatch(setResizingBlockId(null))
       }, 1000)
     })
-    if (lastHoveredEl.current?.style) {
-      lastHoveredEl.current.style.backgroundColor = null
-    }
+    removeHighlightedElem()
+  }
+
+  function handleDragStop(newLayout, __, newItem) {
+    handleLayoutChange(newLayout, __, newItem)
   }
 
   function handleDrag(layout, _, newItem) {
@@ -122,7 +132,7 @@ const WebBuilder = () => {
   }
 
   function handleAddSize(_, __, resizingBlock) {
-    dispatch(setResizingBlockId({ resizingBlock, builderDevice }))
+    dispatch(setResizingBlockId(resizingBlock))
   }
   const isMobile = builderDevice === 'mobile'
   return (
@@ -149,7 +159,7 @@ const WebBuilder = () => {
         onResize={handleAddSize}
         onDrag={handleDrag}
         onResizeStop={handleLayoutChange}
-        onDragStop={handleLayoutChange}
+        onDragStop={handleDragStop}
         useCSSTransforms={true}
         droppingItem={{
           i: newBlockType ? `${newBlockType}-${newBlockId}` : '',

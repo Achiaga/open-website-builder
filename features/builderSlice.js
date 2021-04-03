@@ -122,7 +122,8 @@ export const loadInitialData = (user, params) => async (dispatch) => {
   const { origin, template } = params
   if (!user) return dispatch(loadInitialDataNoAccount(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
-  if (user && origin !== 'login') return dispatch(loadDataFromDB(user))
+  if (user && origin !== 'login')
+    return dispatch(loadDataFromDB(user, template))
 }
 
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
