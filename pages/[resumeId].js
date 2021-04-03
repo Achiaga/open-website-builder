@@ -15,7 +15,6 @@ export async function getServerSideProps(context) {
   const { resumeId } = context.query
   try {
     const websiteData = await getWebsiteData(resumeId)
-    console.log({ websiteData })
     return { props: websiteData }
   } catch (err) {
     console.error(err)

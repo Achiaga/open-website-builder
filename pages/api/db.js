@@ -1,14 +1,18 @@
 /* eslint-disable no-undef */
 import { MongoClient, ObjectId } from 'mongodb'
 
-const uri = `mongodb+srv://${process?.env?.DB_USER}:${process?.env?.DB_PASSWORD}@${process?.env?.DB_URL}/${process?.env?.DB_NAME}?retryWrites=true&writeConcern=majority`
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+function getDBCredentials() {
+  const uri = `mongodb+srv://${process?.env?.DB_USER}:${process?.env?.DB_PASSWORD}@${process?.env?.DB_URL}/${process?.env?.DB_NAME}?retryWrites=true&writeConcern=majority`
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  return client
+}
 
 async function updateWebsiteData(data, res) {
   try {
+    const client = getDBCredentials()
     const options = {
       // create a document if no documents match the query
       upsert: true,
@@ -26,6 +30,7 @@ async function updateWebsiteData(data, res) {
   }
 }
 async function getUserData(userId, res) {
+  const client = await getDBCredentials()
   try {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
@@ -45,7 +50,6 @@ export async function requestWebsiteData(websiteId, res) {
   console.log('websiteId', websiteId)
   try {
     await getWebsiteData(websiteId)
-
     respondAPIQuery(res, websiteData)
   } catch (error) {
     console.error(error)
@@ -55,6 +59,7 @@ export async function requestWebsiteData(websiteId, res) {
 }
 
 export async function getWebsiteData(websiteId) {
+  const client = await getDBCredentials()
   try {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
@@ -66,7 +71,7 @@ export async function getWebsiteData(websiteId) {
     await client.close()
     return websiteData
   } catch (err) {
-    console.error('get website data error', err)
+    console.error('getWebsiteData error', err)
     await client.close()
   }
 }
