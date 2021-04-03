@@ -30,14 +30,12 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
     )
   )
 }
-const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
+const updateInitialState = ({ resume_data, publish, userData }) => async (
   dispatch
 ) => {
   batch(() => {
     dispatch(setInitialBuilderData(resume_data))
-    dispatch(
-      setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
-    )
+    dispatch(setUserData({ isPublish: publish, ...userData }))
   })
 }
 
@@ -56,11 +54,12 @@ const handleSingup = (user) => async (dispatch) => {
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {
-  const { resume_data, id, user_id, is_publish } = await getUserData(
+  const { resume_data, user_id, user_email, publish, _id } = await getUserData(
     user,
     template
   )
-  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+  const userData = { user_email, user_id, websiteId: _id }
+  dispatch(updateInitialState({ resume_data, publish, userData }))
 }
 
 export const handleLoginCallback = (user) => async (dispatch) => {
