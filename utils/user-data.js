@@ -1,7 +1,7 @@
 import { apiCall } from '../helpers/transport'
 
 export const request = (type, data) => {
-  return apiCall('http://localhost:3000/api/db', {
+  return apiCall('/api/db', {
     type: type,
     data,
   })
