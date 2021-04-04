@@ -23,6 +23,21 @@ const logoutUrl =
     ? 'http://localhost:300'
     : 'https://antfolio.app'
 
+const MenuItem = ({ children, onClick = () => {} }) => {
+  return (
+    <Button
+      variant="ghost"
+      colorScheme="teal"
+      fontSize="sm"
+      width="100%"
+      justifyContent="start"
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  )
+}
+
 export function Login() {
   const { user } = useUser()
   const dispatch = useDispatch()
@@ -58,7 +73,7 @@ export function Login() {
       setBuilderDevice(builderDevice === 'mobile' ? 'desktop' : 'mobile')
     )
   }
-
+  console.log(user)
   return (
     <Box d="flex" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
@@ -76,52 +91,26 @@ export function Login() {
             bg="white"
             borderRadius="10px"
           >
-            <a href="/preview" target="_blank">
-              <Button variant="ghost" colorScheme="teal" fontSize="sm" w="100%">
-                Preview
-              </Button>
-            </a>
-            <Button
-              onClick={handlePublish}
-              variant="ghost"
-              colorScheme="teal"
-              fontSize="sm"
-            >
-              Publish
-            </Button>
-            <Button
-              onClick={handleMobileVersion}
-              variant="ghost"
-              colorScheme="teal"
-              fontSize="sm"
-            >
-              {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
-            </Button>
+            <Box>
+              <MenuItem>
+                <a href="/preview" target="_blank">
+                  Preview
+                </a>
+              </MenuItem>
 
-            <Button variant="ghost" colorScheme="teal" fontSize="sm">
-              Settings
-            </Button>
-            <Button
-              variant="ghost"
-              colorScheme="teal"
-              fontSize="sm"
-              onClick={handleLogin}
-            >
-              Login
-            </Button>
-            <Button
-              variant="ghost"
-              colorScheme="teal"
-              fontSize="sm"
-              onClick={handleLogout}
-            >
-              Resume Url
-            </Button>
-            <Button>
-              <a href="/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com">
-                logout
-              </a>
-            </Button>
+              <MenuItem onClick={handleMobileVersion}>
+                {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
+              </MenuItem>
+            </Box>
+            {user ? (
+              <Box>
+                <MenuItem onClick={handlePublish}>Publish</MenuItem>
+                <MenuItem>Dashboard</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Box>
+            ) : (
+              <MenuItem onClick={handleLogin}>Login</MenuItem>
+            )}
           </Box>
         )}
       </Box>
