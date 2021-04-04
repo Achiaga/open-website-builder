@@ -9,6 +9,14 @@ import { GeneratePreviewBlock } from './helpers'
 
 export const BlocksContext = createContext()
 
+function getPageColumns(layouts) {
+  return layouts.reduce((max, item) => {
+    const heightSum = item.y + item.h
+    if (heightSum > max) return heightSum
+    return max
+  }, 0)
+}
+
 export const ResumeWebsite = ({ userBlocksData }) => {
   const [windowWidth, setWindowWidth] = useState(1440)
 
@@ -18,6 +26,8 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize)
+    getPageColumns(userBlocksData.layouts)
+    handleWindowResize()
     return () => window.removeEventListener('resize', handleWindowResize)
   }, [])
 
@@ -29,7 +39,7 @@ export const ResumeWebsite = ({ userBlocksData }) => {
         gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
         gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
         w="101vw"
-        height="7500px"
+        height={(getPageColumns(userBlocksData.layouts) - 1) * rowHeight}
         overflowX="hidden"
       >
         {userBlocksData.layouts?.map((layoutItem) => {

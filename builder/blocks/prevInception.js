@@ -1,17 +1,20 @@
 import { Box } from '@chakra-ui/layout'
-import { useContext } from 'react'
-import { GRID_COLUMNS } from '../web-builder/constants'
 
-import { BlocksContext } from '../web-preview/preview'
+export const PrevInception = (props) => {
+  const inceptionModifiers = {
+    backgroundColor: props.backgroundColor,
+    boxShadow: props.boxShadow,
+  }
 
-export const PrevInception = ({ parentHeight }) => {
-  const { rowHeight } = useContext(BlocksContext)
   return (
     <Box
-      d="grid"
-      gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
-      gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
-      height={parentHeight * rowHeight}
+      w="100%"
+      h="100%"
+      backgroundImage={`url(${props.imageUrl})`}
+      backgroundPosition="50% 50%"
+      backgroundRepeat="no-repeat"
+      backgroundSize="cover"
+      {...inceptionModifiers}
     ></Box>
   )
 }
