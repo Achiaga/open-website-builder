@@ -1,12 +1,16 @@
-import { publishResume } from '../utils/user-data'
+import { saveWebsite } from '../utils/user-data'
 
-export async function saveData({ resumeId, user, builderData }) {
+export async function saveData({ user, builderData, publish = false }) {
   const userData = {
-    id: resumeId,
-    user_id: user.sub,
-    user_email: user.email,
+    user_id: user?.sub,
+    user_email: user?.email,
     resume_data: builderData,
+    publish: publish,
   }
-  const res = await publishResume(userData)
-  return res[0]
+  const res = await saveWebsite(userData)
+  const data = {
+    ...(res?.ops?.[0] ?? {}),
+    _id: res?.upsertedId?._id,
+  }
+  return data
 }

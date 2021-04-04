@@ -4,6 +4,7 @@ import {
   setInitialBuilderData,
   setUserData,
   AUTH0_CUSTOM_CLAIM_PATH,
+  setAccountCreated,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
@@ -30,42 +31,45 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
     )
   )
 }
-const updateInitialState = ({ resume_data, id, user_id, is_publish }) => async (
+const updateInitialState = ({ resume_data, publish, userData }) => async (
   dispatch
 ) => {
   batch(() => {
     dispatch(setInitialBuilderData(resume_data))
-    dispatch(
-      setUserData({ resumeId: id, userId: user_id, isPublish: is_publish })
-    )
+    dispatch(setUserData({ isPublish: publish, ...userData }))
   })
 }
 
-const isLogin = (userMetadata) => {
+const isLogin = (user) => {
+  const userMetadata = user[AUTH0_CUSTOM_CLAIM_PATH]
   if (!userMetadata.logins_counts > 1) return true
   return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }
 
 const handleSingup = (user) => async (dispatch) => {
   const builderData = await getUserDataFromLS()
-  const { resume_data, id, user_id, is_publish } = await saveData({
+  const { resume_data, user_id, user_email, publish, _id } = await saveData({
     user,
     builderData,
   })
-  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+  const userData = { user_email, user_id, websiteId: _id }
+  dispatch(updateInitialState({ resume_data, publish, userData }))
+  dispatch(setAccountCreated(true))
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {
-  const { resume_data, id, user_id, is_publish } = await getUserData(
+  const { resume_data, user_id, user_email, publish, _id } = await getUserData(
     user,
     template
   )
-  dispatch(updateInitialState({ resume_data, id, user_id, is_publish }))
+  const userData = { user_email, user_id, websiteId: _id }
+  dispatch(updateInitialState({ resume_data, publish, userData }))
 }
 
 export const handleLoginCallback = (user) => async (dispatch) => {
-  if (isLogin(user[AUTH0_CUSTOM_CLAIM_PATH])) {
+  if (isLogin(user)) {
     return dispatch(loadDataFromDB(user))
   }
+  //If the it is not login is singup and we handle thate here
   return dispatch(handleSingup(user))
 }
