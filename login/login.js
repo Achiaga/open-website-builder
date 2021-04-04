@@ -73,7 +73,6 @@ export function Login() {
       setBuilderDevice(builderDevice === 'mobile' ? 'desktop' : 'mobile')
     )
   }
-  console.log(user)
   return (
     <Box d="flex" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
