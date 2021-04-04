@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Box, Text, Button } from '@chakra-ui/react'
 
 import LogoSvg from '../../assets/logo'
@@ -24,8 +25,14 @@ const ButtonSidebar = ({ children, ...props }) => {
       marginY="0.25rem"
       _hover={{
         borderRadius: '3px',
-        background: 'primary.300',
+        background: 'primary.200',
       }}
+      _active={{
+        borderColor: 'primary.500',
+        background: 'primary.100',
+        fontWeight: '600',
+      }}
+      _focus={{}}
       {...props}
     >
       {children}
@@ -33,7 +40,7 @@ const ButtonSidebar = ({ children, ...props }) => {
   )
 }
 
-const Sidebar = () => {
+const Sidebar = ({ dashboardType = 'projects' }) => {
   return (
     <Box
       display="flex"
@@ -64,46 +71,57 @@ const Sidebar = () => {
         </Text>
       </Box>
       <Box w="full" px="1rem" pt="0.5rem">
-        <ButtonSidebar
-          borderColor="primary.500"
-          background="primary.100"
-          fontWeight="600"
-        >
-          <RiDashboardLine fontSize="1rem" />
-          <Text as="h4" fontSize="1rem" pl="0.75em">
-            Projects
-          </Text>
-        </ButtonSidebar>
-        <ButtonSidebar>
-          <RiDashboardLine fontSize="1rem" />
-          <Text as="h4" fontSize="1rem" pl="0.75em">
-            Statics
-          </Text>
-        </ButtonSidebar>
-        <ButtonSidebar>
-          <RiDashboardLine fontSize="1rem" />
-          <Text as="h4" fontSize="1rem" pl="0.75em">
-            Documentation
-          </Text>
-        </ButtonSidebar>
-        <ButtonSidebar>
-          <RiDashboardLine fontSize="1rem" />
-          <Text as="h4" fontSize="1rem" pl="0.75em">
-            Your Plan
-          </Text>
-        </ButtonSidebar>
-        <ButtonSidebar>
-          <RiDashboardLine fontSize="1rem" />
-          <Text as="h4" fontSize="1rem" pl="0.75em">
-            Referral Program
-          </Text>
-        </ButtonSidebar>
-        <ButtonSidebar>
-          <GrUserSettings fontSize="1rem" />
-          <Text as="h4" fontSize="1rem" pl="0.75rem">
-            Settings
-          </Text>
-        </ButtonSidebar>
+        <Link href="/dashboard/projects">
+          <ButtonSidebar id="projects" isActive={dashboardType === 'projects'}>
+            <RiDashboardLine fontSize="1rem" />
+            <Text as="h4" fontSize="1rem" pl="0.75em">
+              Projects
+            </Text>
+          </ButtonSidebar>
+        </Link>
+        <Link href="/dashboard/statics">
+          <ButtonSidebar id="statics" isActive={dashboardType === 'statics'}>
+            <RiDashboardLine fontSize="1rem" />
+            <Text as="h4" fontSize="1rem" pl="0.75em">
+              Statics
+            </Text>
+          </ButtonSidebar>
+        </Link>
+        <Link href="/dashboard/documentation">
+          <ButtonSidebar
+            id="documentation"
+            isActive={dashboardType === 'documentation'}
+          >
+            <RiDashboardLine fontSize="1rem" />
+            <Text as="h4" fontSize="1rem" pl="0.75em">
+              Documentation
+            </Text>
+          </ButtonSidebar>
+        </Link>
+        <Link href="/dashboard/plan">
+          <ButtonSidebar id="plan" isActive={dashboardType === 'plan'}>
+            <RiDashboardLine fontSize="1rem" />
+            <Text as="h4" fontSize="1rem" pl="0.75em">
+              Your Plan
+            </Text>
+          </ButtonSidebar>
+        </Link>
+        <Link href="/dashboard/referral">
+          <ButtonSidebar id="referral" isActive={dashboardType === 'referral'}>
+            <RiDashboardLine fontSize="1rem" />
+            <Text as="h4" fontSize="1rem" pl="0.75em">
+              Referral Program
+            </Text>
+          </ButtonSidebar>
+        </Link>
+        <Link href="/dashboard/settings">
+          <ButtonSidebar id="settings" isActive={dashboardType === 'settings'}>
+            <GrUserSettings fontSize="1rem" />
+            <Text as="h4" fontSize="1rem" pl="0.75rem">
+              Settings
+            </Text>
+          </ButtonSidebar>
+        </Link>
       </Box>
     </Box>
   )

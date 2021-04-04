@@ -1,11 +1,10 @@
-import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
 import Sidebar from './sidebar'
 import Projects from './projects'
+import Settings from './settings'
+import { defaultRoute, projects, settings } from './routesVariables'
 
-const Dashboard = () => {
-  const router = useRouter()
-
+const Dashboard = ({ dashboardType }) => {
   // const redirectLogo = () => {
   //   router.push('/')
   // }
@@ -17,6 +16,18 @@ const Dashboard = () => {
   // const handlePreviewTemplate = (id) => {
   //   router.push(`/preview/template/${id}`)
   // }
+  function DashboardSelection() {
+    switch (dashboardType) {
+      case defaultRoute:
+        return <Projects />
+      case projects:
+        return <Projects />
+      case settings:
+        return <Settings />
+      default:
+        return <Projects />
+    }
+  }
 
   return (
     <Box
@@ -27,7 +38,7 @@ const Dashboard = () => {
       height="full"
       minHeight="100vh"
     >
-      <Sidebar />
+      <Sidebar dashboardType={dashboardType} />
       <Box
         width="full"
         display="flex"
@@ -37,7 +48,7 @@ const Dashboard = () => {
         minHeight="100vh"
         height="full"
       >
-        <Projects />
+        <DashboardSelection />
       </Box>
     </Box>
   )
