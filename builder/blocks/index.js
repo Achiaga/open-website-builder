@@ -9,7 +9,6 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlockData,
-  getBuilderDevice,
   getIsMobileBuilder,
   getResizingBlock,
   getSelectedBlockId,

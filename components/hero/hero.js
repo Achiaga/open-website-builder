@@ -10,7 +10,7 @@ const Hero = () => {
   const [t] = useTranslation()
   const router = useRouter()
 
-  const handleButton = (e) => {
+  const handleButton = () => {
     AnalyticsEvent('modal_open', 'hero')
     // handleFreeTrial(e);
     router.push('/templates')
