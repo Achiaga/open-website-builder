@@ -27,7 +27,7 @@ const MenuItem = ({ children, onClick = () => {} }) => {
   return (
     <Button
       variant="ghost"
-      colorScheme="teal"
+      colorScheme="primary"
       fontSize="sm"
       width="100%"
       justifyContent="start"
