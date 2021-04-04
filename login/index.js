@@ -14,6 +14,12 @@ import { Button } from '@chakra-ui/button'
 import PublishSuccessModal from './publishModal'
 import Card from './card'
 
+const logoutUrl =
+  // eslint-disable-next-line no-undef
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:300'
+    : 'https://antfolio.app'
+
 function Login() {
   const { user } = useUser()
   const dispatch = useDispatch()
@@ -34,7 +40,7 @@ function Login() {
     router.push('/api/auth/custom-login')
   }
   function handleLogout() {
-    router.push('/api/auth/logout?returnTo=http%3A%2F%2Flocalhost:3000.com')
+    router.push(`/api/auth/logout?returnTo=${encodeURIComponent(logoutUrl)}`)
   }
   async function handlePublish() {
     if (user) {
