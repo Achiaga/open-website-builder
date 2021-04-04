@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
 import { Box, Text, Grid } from '@chakra-ui/react'
 
-import Template from './template'
+import Template from './template-layout'
 
 import LogoSvg from '../../assets/logo'
 
 const TEMPLATES = ['template1', 'template2', 'template3', 'template4']
 
-const Dashboard = () => {
+const TemplatePage = () => {
   const router = useRouter()
 
   const redirectLogo = () => {
@@ -120,4 +120,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default TemplatePage
