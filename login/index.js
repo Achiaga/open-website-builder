@@ -6,6 +6,8 @@ import {
   getBuilderData,
   getBuilderDevice,
   setBuilderDevice,
+  setSaveStatus,
+  getSaveStatus,
 } from '../features/builderSlice'
 import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
@@ -13,6 +15,43 @@ import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
 import PublishSuccessModal from './publishModal'
 import Card from './card'
+import { Spinner } from '@chakra-ui/spinner'
+
+const SaveButton = () => {
+  const dispatch = useDispatch()
+  const saveStatus = useSelector(getSaveStatus)
+  const builderData = useSelector(getBuilderData)
+
+  const { user } = useUser()
+  const router = useRouter()
+
+  async function handleSavePage() {
+    if (user) {
+      dispatch(setSaveStatus('loading'))
+      await saveData({ user, builderData })
+      dispatch(setSaveStatus('success'))
+      return
+    }
+    return router.push('/api/auth/custom-login')
+  }
+  const isSaved = saveStatus === 'success'
+  if (saveStatus === 'loading')
+    return (
+      <Card onClick={handleSavePage} fontSize="md">
+        <Spinner />
+      </Card>
+    )
+
+  return (
+    <Card
+      onClick={handleSavePage}
+      fontSize="md"
+      {...(isSaved && { backgroundColor: 'green.500' })}
+    >
+      {isSaved ? 'Saved' : 'Save'}
+    </Card>
+  )
+}
 
 const logoutUrl =
   // eslint-disable-next-line no-undef
@@ -24,17 +63,11 @@ function Login() {
   const { user } = useUser()
   const dispatch = useDispatch()
   const builderData = useSelector(getBuilderData)
+
   const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
   const [isPublish, setPublish] = useState(false)
   const [isMenuOpen, setMenuOpen] = useState(false)
-
-  function handleSavePage() {
-    if (user) {
-      return saveData({ user, builderData })
-    }
-    return router.push('/api/auth/custom-login')
-  }
 
   function handleLogin() {
     router.push('/api/auth/custom-login')
@@ -64,9 +97,7 @@ function Login() {
   return (
     <Box d="flex" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
-      <Card onClick={handleSavePage} fontSize="md">
-        Save
-      </Card>
+      <SaveButton />
       <Box w="full">
         <Card onClick={handleMenuOption}>
           <IoMenu size={24} />

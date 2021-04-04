@@ -23,6 +23,7 @@ import {
   updateLayouts,
   updateHierarchy,
   getLayout,
+  setSaveStatus,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -77,6 +78,7 @@ const WebBuilder = () => {
 
   useEffect(() => {
     saveOnLocal({ blocks, hierarchy, layouts: desktopLayout, mobileLayout })
+    dispatch(setSaveStatus('null'))
   }, [blocks, layouts, hierarchy])
 
   useEffect(() => {
@@ -134,7 +136,9 @@ const WebBuilder = () => {
   function handleAddSize(_, __, resizingBlock) {
     dispatch(setResizingBlockId(resizingBlock))
   }
+
   const isMobile = builderDevice === 'mobile'
+
   return (
     <GridLayoutWrapper
       style={{
