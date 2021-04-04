@@ -4,16 +4,15 @@ import { Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   editBlockConfig,
-  getGridRowHeight,
   getSelectedBlockId,
 } from '../../features/builderSlice'
 import { BlocksContext } from '../web-preview/preview'
+import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
 
 export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
-  const gridRowHeight = useSelector(getGridRowHeight)
 
   const Textmodifiers = {
     textAlign: props.textAlign,
@@ -51,7 +50,8 @@ export const GenericText = (props) => {
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
-  const fontSize = parseInt(props.fontSize) * (375 / 200) * 2 * 3
+  const fontSize =
+    parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 2 * 3
 
   return (
     <Text
