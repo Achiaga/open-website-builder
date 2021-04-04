@@ -4,7 +4,7 @@ import {
   setInitialBuilderData,
   setUserData,
   AUTH0_CUSTOM_CLAIM_PATH,
-  setSaveStatus,
+  setAccountCreated,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
@@ -47,7 +47,6 @@ const isLogin = (user) => {
 }
 
 const handleSingup = (user) => async (dispatch) => {
-  dispatch(setSaveStatus('loading'))
   const builderData = await getUserDataFromLS()
   const { resume_data, user_id, user_email, publish, _id } = await saveData({
     user,
@@ -55,7 +54,7 @@ const handleSingup = (user) => async (dispatch) => {
   })
   const userData = { user_email, user_id, websiteId: _id }
   dispatch(updateInitialState({ resume_data, publish, userData }))
-  dispatch(setSaveStatus('success'))
+  dispatch(setAccountCreated(true))
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {

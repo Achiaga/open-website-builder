@@ -90,6 +90,9 @@ export const builderSlice = createSlice({
     setSaveStatus: (state, action) => {
       state.saveStatus = action.payload
     },
+    setAccountCreated: (state, action) => {
+      state.accountCreated = action.payload
+    },
   },
 })
 
@@ -112,6 +115,7 @@ export const {
   setMobileHierarchy,
   setBuilderDevice,
   setSaveStatus,
+  setAccountCreated,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -274,5 +278,6 @@ const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
 export const getSaveStatus = (state) => state.builder.saveStatus
+export const getAccountCreated = (state) => state.builder.accountCreated
 
 export default builderSlice.reducer
