@@ -45,6 +45,7 @@ const Sidebar = () => {
       minHeight="100vh"
       width="25%"
       borderRight="1px solid gray"
+      borderColor="gray.100"
       bg="white"
     >
       <Box
@@ -55,6 +56,7 @@ const Sidebar = () => {
         alignItems="center"
         paddingBottom="1.5rem"
         borderBottom="1px solid gray"
+        borderColor="gray.50"
       >
         <LogoSvg width="3.5rem" />
         <Text as="h1" fontWeight="600" fontSize="2rem" fontFamily="Montserrat">
