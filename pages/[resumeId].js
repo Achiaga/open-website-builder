@@ -1,5 +1,6 @@
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import ErrorPage from '../components/error-page'
+import NewPage from '../components/not-deploy-page'
 
 import { getWebsiteData } from './api/db'
 
@@ -13,7 +14,7 @@ function isEmpty(obj) {
 
 function Resume({ websiteData, isPublish }) {
   if (isEmpty(websiteData)) return <ErrorPage />
-  if (!isPublish) return <div>Something is comming</div>
+  if (!isPublish) return <NewPage />
   return <ResumeWebsite userBlocksData={websiteData} />
 }
 

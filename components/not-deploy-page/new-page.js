@@ -20,6 +20,7 @@ const ErrorPage = () => {
         left="1rem"
         top="1rem"
         display="flex"
+        flexDirection={['column', 'row']}
         justifyContent="center"
         alignItems="center"
         borderBottom="1px solid gray"
@@ -44,17 +45,25 @@ const ErrorPage = () => {
         <ErrorIcon />
       </Box>
       <Box w="full">
-        <Text as="h1" fontSize="3rem">
+        <Text as="h1" fontSize="3rem" p={['1rem', '0']}>
           Something is coming!
         </Text>
-        <Text as="p" fontSize="1.25rem" mt="1rem" mb="2rem" pr="10rem">
-          The page you are looking at is being created right now. It will be
-          ready in a few minutes. You can click the button below to go back to
-          the homepage.
+        <Text
+          as="p"
+          fontSize="1.25rem"
+          mt="1rem"
+          mb={['1rem', '2rem']}
+          p={['1rem', '0']}
+          pr={['1rem', '10rem']}
+        >
+          The page you are looking for has not being created yet. Try again
+          later. You can click the button below to see the tool used to build
+          this website.
         </Text>
         <Link href="/">
           <Button
             size="lg"
+            m={['1rem', '0']}
             background="primary.600"
             color="white"
             fontWeight="bold"
