@@ -3,10 +3,14 @@ import { Box, Text } from '@chakra-ui/layout'
 import { useSelector } from 'react-redux'
 import { getUserData } from '../features/builderSlice'
 import Fireworks from '../components/fireworks'
+import { IoClose } from 'react-icons/io5'
 
 const PublishSuccessModal = ({ setPublish }) => {
   const userData = useSelector(getUserData)
   const { websiteId } = userData
+  function handleClose() {
+    setPublish(false)
+  }
   return (
     <Box
       left="0"
@@ -19,7 +23,7 @@ const PublishSuccessModal = ({ setPublish }) => {
       alignItems="center"
       justifyContent="center"
       bg="#0000001f"
-      onClick={() => setPublish(false)}
+      onClick={handleClose}
     >
       <Box
         maxWidth="60vw"
@@ -29,7 +33,21 @@ const PublishSuccessModal = ({ setPublish }) => {
         borderRadius="10px"
         box-shadow="0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%), inset 0 -2px 6px 0 rgb(10 37 64 / 35%)"
         onClick={(e) => e.stopPropagation()}
+        pos="relative"
       >
+        <Box
+          pos="absolute"
+          top="1rem"
+          right="1rem"
+          _hover={{
+            background: 'gray.100',
+            borderRadius: '6px',
+            cursor: 'pointer',
+          }}
+          onClick={handleClose}
+        >
+          <IoClose size="30px" />
+        </Box>
         <Box
           color="primary.500"
           fontFamily="Montserrat"

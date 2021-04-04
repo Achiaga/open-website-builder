@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,6 +6,8 @@ import {
   editBlockConfig,
   getSelectedBlockId,
 } from '../../features/builderSlice'
+import { BlocksContext } from '../web-preview/preview'
+import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
 
 export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
@@ -48,12 +50,13 @@ export const GenericText = (props) => {
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
+  const fontSize =
+    parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 2 * 3
 
   return (
     <Text
       as="span"
       onDoubleClick={handleDoubleClick}
-      onClick={() => titleRef.current?.blur()}
       cursor="pointer"
       w="100%"
       h="100%"
@@ -62,9 +65,10 @@ export const GenericText = (props) => {
       contentEditable={selectedId === parentBlockId}
       suppressContentEditableWarning
       {...Textmodifiers}
-      fontSize={props.fontSize.replace('rem', 'vw')}
+      fontSize={fontSize}
       wordBreak="break-word"
       ref={titleRef}
+      outline="none"
     >
       {text}
     </Text>
@@ -72,6 +76,8 @@ export const GenericText = (props) => {
 }
 
 export const PrevText = (props) => {
+  // we need to activate this for the mobile responsive
+  const { rowHeight } = useContext(BlocksContext)
   const Textmodifiers = {
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
@@ -81,13 +87,14 @@ export const PrevText = (props) => {
     textShadow: props.textShadow,
     borderRadius: props.borderRadius,
   }
+  const fontSize = parseInt(props.fontSize) * rowHeight * 2
   return (
     <Text
       w="100%"
       h="100%"
       d="grid"
       {...Textmodifiers}
-      fontSize={props.fontSize.replace('rem', 'vw')}
+      fontSize={fontSize}
       wordBreak="break-word"
     >
       {props.text}

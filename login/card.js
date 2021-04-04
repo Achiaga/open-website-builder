@@ -11,7 +11,7 @@ const Card = ({ children, ...props }) => {
       boxShadow="0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
       border="1px solid transparent"
       borderRadius="10px"
-      backgroundColor="#ffffff42"
+      backgroundColor={props.backgroundColor || '#ffffff42'}
       cursor="pointer"
       mb="0.5rem"
       pos="relative"

@@ -87,12 +87,11 @@ export const builderSlice = createSlice({
     setBuilderDevice: (state, action) => {
       state.device = action.payload
     },
-    setBlockDraggable: () => {
-      // const { blockId, prevBlockId } = action.payload
-      // if (prevBlockId && state.builderData.layouts[prevBlockId]) {
-      //   state.builderData.layouts[prevBlockId].isDraggable = true
-      // }
-      // if (blockId) state.builderData.layouts[blockId].isDraggable = false
+    setSaveStatus: (state, action) => {
+      state.saveStatus = action.payload
+    },
+    setAccountCreated: (state, action) => {
+      state.accountCreated = action.payload
     },
   },
 })
@@ -112,10 +111,11 @@ export const {
   setResizingBlockId,
   setGridRowHeight,
   setBlockConfig,
-  setBlockDraggable,
   setHierarchy,
   setMobileHierarchy,
   setBuilderDevice,
+  setSaveStatus,
+  setAccountCreated,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -175,10 +175,8 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
   })
 }
 
-export const setBlockEditable = (blockId) => (dispatch, getState) => {
-  const prevBlockId = getSelectedBlockId(getState())
+export const setBlockEditable = (blockId) => (dispatch) => {
   batch(() => {
-    dispatch(setBlockDraggable({ prevBlockId, blockId }))
     dispatch(setSelectedBlockId(blockId))
   })
 }
@@ -279,5 +277,7 @@ export const getLayout = (state) => {
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
+export const getSaveStatus = (state) => state.builder.saveStatus
+export const getAccountCreated = (state) => state.builder.accountCreated
 
 export default builderSlice.reducer

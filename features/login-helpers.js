@@ -4,6 +4,7 @@ import {
   setInitialBuilderData,
   setUserData,
   AUTH0_CUSTOM_CLAIM_PATH,
+  setAccountCreated,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
@@ -53,6 +54,7 @@ const handleSingup = (user) => async (dispatch) => {
   })
   const userData = { user_email, user_id, websiteId: _id }
   dispatch(updateInitialState({ resume_data, publish, userData }))
+  dispatch(setAccountCreated(true))
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {
