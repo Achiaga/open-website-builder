@@ -279,4 +279,5 @@ export const getLayout = (state) => {
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
+
 export default builderSlice.reducer

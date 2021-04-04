@@ -46,8 +46,10 @@ const Builder = () => {
   }
 
   useEffect(() => {
-    window.onbeforeunload = confirmExit
-  }, [])
+    if (user) {
+      window.onbeforeunload = confirmExit
+    }
+  }, [user])
 
   useEffect(() => {
     if (!isLoading) {
