@@ -244,6 +244,7 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
 }
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getUserData = (state) => state.builder.user
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   if (getBuilderDevice(state) === 'mobile') {
@@ -278,4 +279,5 @@ export const getLayout = (state) => {
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
+
 export default builderSlice.reducer

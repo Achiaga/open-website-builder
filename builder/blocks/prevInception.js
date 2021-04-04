@@ -4,7 +4,7 @@ import { GRID_COLUMNS } from '../web-builder/constants'
 
 import { BlocksContext } from '../web-preview/preview'
 
-export const PrevInception = ({ parentHeight, blockId }) => {
+export const PrevInception = ({ parentHeight }) => {
   const { rowHeight } = useContext(BlocksContext)
   return (
     <Box

@@ -18,6 +18,7 @@
     "framer-motion": "^3.3.0",
     "localforage": "^1.9.0",
     "lodash": "^4.17.21",
+    "mongodb": "^3.6.5",
     "next": "10.0.6",
     "react": "17.0.1",
     "react-canvas-confetti": "^1.2.0",
