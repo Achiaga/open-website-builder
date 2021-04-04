@@ -19,7 +19,7 @@ export function GeneratePreviewBlock({ layoutItem }) {
       gridRow={`${y + 1} / span ${h}`}
       overflow="hidden"
       border={data.border}
-      {...(type !== 'image' && { backgroundImage: `url(${data?.imageUrl})` })}
+      // {...(type !== 'image' && { backgroundImage: `url(${data?.imageUrl})` })}
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       boxShadow={data.boxShadow}

@@ -1,5 +1,4 @@
 import { BiBorderRadius } from 'react-icons/bi'
-import { BsThreeDotsVertical } from 'react-icons/bs'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { GiTwoShadows } from 'react-icons/gi'
 import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi'
@@ -20,14 +19,14 @@ const fontSize = {
   type: 'dropdown',
   property: 'fontSize',
   options: [
-    { value: '1rem', title: 'xs' },
-    { value: '1.25rem', title: 'sm' },
-    { value: '1.5rem', title: 'md' },
-    { value: '1.75rem', title: 'lg' },
-    { value: '2rem', title: 'xl' },
-    { value: '3rem', title: '2xl' },
-    { value: '4rem', title: '3xl' },
-    { value: '5rem', title: '4xl' },
+    { value: '12', title: 'xs' },
+    { value: '18', title: 'sm' },
+    { value: '24', title: 'md' },
+    { value: '30', title: 'lg' },
+    { value: '36', title: 'xl' },
+    { value: '42', title: '2xl' },
+    { value: '46', title: '3xl' },
+    { value: '52', title: '4xl' },
   ],
 }
 const textAlign = {

@@ -51,7 +51,8 @@ export const GenericText = (props) => {
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
   const fontSize =
-    parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 2 * 3
+    parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 0.5
+  console.log(fontSize)
 
   return (
     <Text
@@ -87,7 +88,7 @@ export const PrevText = (props) => {
     textShadow: props.textShadow,
     borderRadius: props.borderRadius,
   }
-  const fontSize = parseInt(props.fontSize) * rowHeight * 2
+  const fontSize = Math.round(parseInt(props.fontSize) * rowHeight * 0.13)
   return (
     <Text
       w="100%"

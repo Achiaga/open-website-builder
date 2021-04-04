@@ -27,13 +27,12 @@ export const GenericImage = (props) => {
   //   }
   // }
 
+  console.log(`url(${props.imageUrl})`)
   return (
     <Box
-      // onClick={handleClick}
-      // onDoubleClick={(e) => props.isEditable && e.stopPropagation()}
-      backgroundImage={`url(${props?.imageUrl})`}
-      width="100%"
-      height="100%"
+      w="100%"
+      h="100%"
+      backgroundImage={`url(${props.imageUrl})`}
       backgroundPosition="50% 50%"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
@@ -41,7 +40,7 @@ export const GenericImage = (props) => {
         isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto'
       }
       {...modifiers}
-    />
+    ></Box>
   )
 }
 GenericImage.displayName = 'ImageBlock'
