@@ -1,5 +1,5 @@
-import DashboardPage from '../components/dashboard'
+import TemplatePage from '../components/template-page'
 
 export default function Templates() {
-  return <DashboardPage />
+  return <TemplatePage />
 }

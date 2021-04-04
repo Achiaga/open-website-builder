@@ -31,6 +31,7 @@ export const customTheme = {
     },
     red: {
       400: '#FB1164',
+      700: '#FF0101',
     },
     green: {
       400: '#43E28E',
