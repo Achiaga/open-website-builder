@@ -1,5 +1,5 @@
 import { ResumeWebsite } from '../../../builder/web-preview/preview'
-import * as templates from '../../../builder/initial-data'
+import templates from '../../../templates'
 
 function TemplatePreview(blocksData) {
   if (!blocksData) return <div>Looks like this template does not exists</div>
