@@ -1,4 +1,5 @@
-import { Box, Text, Button, background } from '@chakra-ui/react'
+import Link from 'next/link'
+import { Box, Text, Button } from '@chakra-ui/react'
 
 const Projects = () => {
   return (
@@ -33,18 +34,20 @@ const Projects = () => {
       >
         <Text as="p">Project 1</Text>
         <Box>
-          <Button
-            marginRight="1rem"
-            variant="outline"
-            borderColor="primary.700"
-            color="primary.700"
-            _hover={{
-              background: 'primary.700',
-              color: 'white',
-            }}
-          >
-            Edit
-          </Button>
+          <Link href="/builder">
+            <Button
+              marginRight="1rem"
+              variant="outline"
+              borderColor="primary.700"
+              color="primary.700"
+              _hover={{
+                background: 'primary.700',
+                color: 'white',
+              }}
+            >
+              Edit
+            </Button>
+          </Link>
           <Button
             marginRight="1rem"
             variant="outline"
