@@ -59,14 +59,24 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
         w="full"
         px="2.5rem"
         display="flex"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
         paddingBottom="1.5rem"
         borderBottom="1px solid gray"
         borderColor="gray.50"
       >
-        <LogoSvg width="3.5rem" />
-        <Text as="h1" fontWeight="600" fontSize="2rem" fontFamily="Montserrat">
+        <Link href="/">
+          <Button bg="transparent" _hover={{ bg: 'trasnparent' }}>
+            <LogoSvg width="2.5rem" />
+          </Button>
+        </Link>
+        <Text
+          as="h1"
+          pl="1rem"
+          fontWeight="600"
+          fontSize="1.25rem"
+          fontFamily="Montserrat"
+        >
           Antfolio
         </Text>
       </Box>
@@ -79,7 +89,7 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
             </Text>
           </ButtonSidebar>
         </Link>
-        <Link href="/dashboard/statics">
+        {/* <Link href="/dashboard/statics">
           <ButtonSidebar id="statics" isActive={dashboardType === 'statics'}>
             <RiDashboardLine fontSize="1rem" />
             <Text as="h4" fontSize="1rem" pl="0.75em">
@@ -113,7 +123,7 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
               Referral Program
             </Text>
           </ButtonSidebar>
-        </Link>
+        </Link> */}
         <Link href="/dashboard/settings">
           <ButtonSidebar id="settings" isActive={dashboardType === 'settings'}>
             <GrUserSettings fontSize="1rem" />

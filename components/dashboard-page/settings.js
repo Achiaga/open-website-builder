@@ -19,40 +19,57 @@ const Settings = () => {
       </Box>
       <Box
         display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        background="white"
-        boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-        height="5rem"
-        borderRadius="5px"
-        padding="1rem"
+        justifyContent="center"
+        alignItems="flex-start"
+        flexDirection="column"
       >
-        <Text as="p">Project 1</Text>
-        <Box>
+        <Text mb="1rem">
+          Your account:{' '}
+          <Text as="span" fontWeight="semibold">
+            test@gmail.com
+          </Text>
+        </Text>
+        <Box mt="1rem">
           <Button
             marginRight="1rem"
             variant="outline"
             borderColor="primary.700"
             color="primary.700"
+            mb="1.5rem"
             _hover={{
               background: 'primary.700',
               color: 'white',
             }}
           >
-            Edit
+            Change Email
           </Button>
+          <Button
+            marginRight="1rem"
+            variant="outline"
+            borderColor="primary.700"
+            color="primary.700"
+            mb="1.5rem"
+            _hover={{
+              background: 'primary.700',
+              color: 'white',
+            }}
+          >
+            Change Password
+          </Button>
+
           <Button
             marginRight="1rem"
             variant="outline"
             borderColor="black"
             color="black"
+            mb="1.5rem"
             _hover={{
               borderColor: 'red.700',
               background: 'red.700',
               color: 'white',
             }}
           >
-            Delete
+            Delete Account
           </Button>
         </Box>
       </Box>
