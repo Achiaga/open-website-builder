@@ -52,7 +52,6 @@ export const GenericText = (props) => {
   }
   const fontSize =
     parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 0.5
-  console.log(fontSize)
 
   return (
     <Text

@@ -1,7 +1,6 @@
 import DashboardPage from '../../components/dashboard-page'
 
 function Dashboard({ dashboardType }) {
-  console.log(dashboardType)
   return <DashboardPage dashboardType={dashboardType} />
 }
 

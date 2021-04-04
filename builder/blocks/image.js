@@ -27,7 +27,6 @@ export const GenericImage = (props) => {
   //   }
   // }
 
-  console.log(`url(${props.imageUrl})`)
   return (
     <Box
       w="100%"
