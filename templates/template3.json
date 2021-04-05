@@ -1,53 +1,456 @@
 {
   "blocks": {
-    "text-27a20aed-a6c1-45e6-ad75-4daf5bf4040b": {
+    "text-664e08d1-3e6a-4c49-99aa-8d876f699425": {
       "type": "text",
       "data": {
-        "fontSize": "4rem",
+        "fontSize": "52",
         "textAlign": "center",
         "alignItems": "center",
-        "fontWeight": "500",
+        "fontWeight": "700",
         "boxShadow": "none",
         "borderRadius": "0px",
-        "fontColor": "#000000",
+        "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": "3",
-        "textShadow": "none"
+        "text": "I’m Sascha — I elevate products through human-centered design & storytelling."
       }
     },
-    "text-4748966c-2b06-4e3f-8627-0a487fed8c33": {
-      "type": "text",
+    "image-025c673b-d62c-4606-8171-dc8937f29390": {
+      "type": "image",
       "data": {
-        "fontSize": "5rem",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "900",
         "boxShadow": "none",
         "borderRadius": "0px",
-        "fontColor": "#000000",
+        "imageUrl": "https://images.unsplash.com/photo-1594289765464-d4d8b4dcf42d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+      }
+    },
+    "image-7e98a8c3-6f55-42a1-a1d5-93bf5624be31": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://lh3.googleusercontent.com/proxy/kXsH-QVYZ006H87qvc_APKPov1CcWSld0E1XcNfaSkbHDvqAbLLePpXBxupIRZA-8r5vhZapAY8v3q0Dlj858P7Jsj0rOgJQ8TJOLyEMii6-qK72pqmleKafRHHKUNw"
+      }
+    },
+    "text-b78eaa98-da27-4180-b1a2-541d9dff89fe": {
+      "type": "text",
+      "data": {
+        "fontSize": "42",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": "TEMPLATE 3 "
+        "text": "Promo — Video Maker App"
+      }
+    },
+    "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#000000"
+      }
+    },
+    "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#000000"
+      }
+    },
+    "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "text-deed8c0d-d4ca-4e19-b0ad-395854f00462": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "300",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Promo Video Maker is an app focused on creating high-quality marketing video ads, promotional videos, and captivating visual content that bring measurable results.﻿\n\n\n\n"
+      }
+    },
+    "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(224,62,62)",
+        "backgroundColor": "transparent",
+        "text": "Case study ⟶\n\n"
+      }
+    },
+    "image-1b7069f4-7259-4529-a8c1-7910866d9bba": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://saschas.ai/wp-content/uploads/2020/04/Cover_PRM-Web-x2.png"
+      }
+    },
+    "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920": {
+      "type": "text",
+      "data": {
+        "fontSize": "42",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Promo.com Web Editor & Pricing"
+      }
+    },
+    "text-09bb58e2-019f-4956-a954-f2474f49ccec": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "300",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Social and video ad creation platform with ready-made video templates, high-quality footage and music, eye catching customizable text and an award-winning editor."
+      }
+    },
+    "text-2c6671a0-1a61-4c3a-88d4-71db8612892f": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(224,62,62)",
+        "backgroundColor": "transparent",
+        "text": "Case study ⟶"
+      }
+    },
+    "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#000000"
+      }
+    },
+    "image-ca764269-60c5-48b9-888c-24379b8a5643": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://saschas.ai/wp-content/uploads/2020/04/Preview-Slidely-VR-2x.png"
+      }
+    },
+    "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b": {
+      "type": "text",
+      "data": {
+        "fontSize": "42",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Slidely VR Gallery"
+      }
+    },
+    "text-42dc5655-9917-485b-be80-fe2ba6526917": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "300",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Daydream app for sharing favorite photos, exploring your exhibition in different gallery areas and then posting a high resolution social panoramas to your Facebook.\n\n\n\n"
+      }
+    },
+    "text-7e511817-b106-46b6-9361-52f5f1093eb1": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(224,62,62)",
+        "backgroundColor": "transparent",
+        "text": "Case study ⟶"
+      }
+    },
+    "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://saschas.ai/wp-content/uploads/2020/04/Cover-PRM-Mobile-2x.png"
+      }
+    },
+    "inception-e0436da4-ee93-44dd-aa73-713684b3284a": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#000000"
       }
     }
   },
-  "hierarchy": {},
+  "hierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e": [
+      "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6",
+      "image-b056a324-fdb5-42b3-a3c3-596dc58138a4",
+      "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc",
+      "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+      "inception-e0436da4-ee93-44dd-aa73-713684b3284a"
+    ],
+    "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6": [
+      "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
+      "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
+      "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345"
+    ],
+    "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc": [
+      "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+      "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+      "text-09bb58e2-019f-4956-a954-f2474f49ccec",
+      "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
+      "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc"
+    ],
+    "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc": [
+      "image-ca764269-60c5-48b9-888c-24379b8a5643",
+      "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
+      "text-42dc5655-9917-485b-be80-fe2ba6526917",
+      "text-7e511817-b106-46b6-9361-52f5f1093eb1"
+    ]
+  },
   "layouts": [
     {
-      "w": 15,
-      "h": 10,
-      "x": 4,
-      "y": 2,
-      "i": "text-27a20aed-a6c1-45e6-ad75-4daf5bf4040b",
+      "w": 146,
+      "h": 44,
+      "x": 30,
+      "y": 25,
+      "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 134,
-      "h": 20,
-      "x": 13,
-      "y": 27,
-      "i": "text-4748966c-2b06-4e3f-8627-0a487fed8c33",
+      "w": 200,
+      "h": 115,
+      "x": 0,
+      "y": 0,
+      "i": "image-025c673b-d62c-4606-8171-dc8937f29390",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 12,
+      "h": 7,
+      "x": 94,
+      "y": 104,
+      "i": "image-7e98a8c3-6f55-42a1-a1d5-93bf5624be31",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 41,
+      "h": 16,
+      "x": 10,
+      "y": 127,
+      "i": "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 200,
+      "h": 93,
+      "x": 0,
+      "y": 114,
+      "i": "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 200,
+      "h": 100,
+      "x": 0,
+      "y": 207,
+      "i": "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 92,
+      "x": 0,
+      "y": 114,
+      "i": "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 59,
+      "h": 24,
+      "x": 10,
+      "y": 148,
+      "i": "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 39,
+      "h": 10,
+      "x": 10,
+      "y": 173,
+      "i": "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 89,
+      "h": 75,
+      "x": 1,
+      "y": 219,
+      "i": "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 47,
+      "h": 17,
+      "x": 112,
+      "y": 221,
+      "i": "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 54,
+      "h": 24,
+      "x": 112,
+      "y": 242,
+      "i": "text-09bb58e2-019f-4956-a954-f2474f49ccec",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 27,
+      "h": 9,
+      "x": 112,
+      "y": 270,
+      "i": "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 200,
+      "h": 91,
+      "x": 0,
+      "y": 307,
+      "i": "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 93,
+      "h": 76,
+      "x": 101,
+      "y": 315,
+      "i": "image-ca764269-60c5-48b9-888c-24379b8a5643",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 63,
+      "h": 8,
+      "x": 11,
+      "y": 325,
+      "i": "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 53,
+      "h": 23,
+      "x": 12,
+      "y": 337,
+      "i": "text-42dc5655-9917-485b-be80-fe2ba6526917",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 25,
+      "h": 10,
+      "x": 12,
+      "y": 362,
+      "i": "text-7e511817-b106-46b6-9361-52f5f1093eb1",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 88,
+      "h": 77,
+      "x": 107,
+      "y": 121,
+      "i": "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 15,
+      "h": 10,
+      "x": 165,
+      "y": 191,
+      "i": "inception-e0436da4-ee93-44dd-aa73-713684b3284a",
       "moved": false,
       "static": false,
       "isDraggable": true
@@ -55,24 +458,206 @@
   ],
   "mobileLayout": [
     {
-      "w": 15,
-      "h": 10,
-      "x": 0,
-      "y": 5,
-      "i": "text-27a20aed-a6c1-45e6-ad75-4daf5bf4040b",
+      "w": 82,
+      "h": 51,
+      "x": 9,
+      "y": 28,
+      "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 94,
-      "h": 32,
-      "x": 6,
-      "y": 16,
-      "i": "text-4748966c-2b06-4e3f-8627-0a487fed8c33",
+      "w": 100,
+      "h": 115,
+      "x": 0,
+      "y": 0,
+      "i": "image-025c673b-d62c-4606-8171-dc8937f29390",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 8,
+      "h": 5,
+      "x": 46,
+      "y": 107,
+      "i": "image-7e98a8c3-6f55-42a1-a1d5-93bf5624be31",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 41,
+      "h": 16,
+      "x": 10,
+      "y": 130,
+      "i": "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 151,
+      "x": 0,
+      "y": 268,
+      "i": "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 59,
+      "h": 24,
+      "x": 10,
+      "y": 149,
+      "i": "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 39,
+      "h": 10,
+      "x": 10,
+      "y": 174,
+      "i": "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 78,
+      "x": 0,
+      "y": 340,
+      "i": "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 47,
+      "h": 17,
+      "x": 10,
+      "y": 280,
+      "i": "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 54,
+      "h": 24,
+      "x": 10,
+      "y": 299,
+      "i": "text-09bb58e2-019f-4956-a954-f2474f49ccec",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 27,
+      "h": 9,
+      "x": 10,
+      "y": 328,
+      "i": "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 177,
+      "x": 0,
+      "y": 419,
+      "i": "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 93,
+      "h": 76,
+      "x": 4,
+      "y": 493,
+      "i": "image-ca764269-60c5-48b9-888c-24379b8a5643",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 63,
+      "h": 8,
+      "x": 10,
+      "y": 433,
+      "i": "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 53,
+      "h": 23,
+      "x": 10,
+      "y": 445,
+      "i": "text-42dc5655-9917-485b-be80-fe2ba6526917",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 25,
+      "h": 10,
+      "x": 10,
+      "y": 470,
+      "i": "text-7e511817-b106-46b6-9361-52f5f1093eb1",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 80,
+      "h": 70,
+      "x": 9,
+      "y": 188,
+      "i": "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 153,
+      "x": 0,
+      "y": 115,
+      "i": "inception-e0436da4-ee93-44dd-aa73-713684b3284a",
       "moved": false,
       "static": false,
       "isDraggable": true
     }
-  ]
+  ],
+  "mobileHierarchy": {
+    "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc": [
+      "image-ca764269-60c5-48b9-888c-24379b8a5643",
+      "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
+      "text-42dc5655-9917-485b-be80-fe2ba6526917",
+      "text-7e511817-b106-46b6-9361-52f5f1093eb1"
+    ],
+    "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc": [
+      "text-09bb58e2-019f-4956-a954-f2474f49ccec",
+      "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+      "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
+      "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+      "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc"
+    ],
+    "inception-e0436da4-ee93-44dd-aa73-713684b3284a": [
+      "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+      "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345",
+      "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
+      "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
+      "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc"
+    ]
+  }
 }

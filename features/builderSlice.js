@@ -67,6 +67,9 @@ export const builderSlice = createSlice({
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = action.payload
     },
+    setHasMobileBeenEdited: (state) => {
+      state.builderData.hasMobileBeenEdited = true
+    },
     setLayouts: (state, action) => {
       state.builderData.layouts = action.payload
     },
@@ -102,6 +105,7 @@ export const {
   setUserData,
   setLayout,
   setLayouts,
+  setHasMobileBeenEdited,
   setMobileLayout,
   setAddedBlock,
   setStructure,
@@ -183,10 +187,17 @@ export const setBlockEditable = (blockId) => (dispatch) => {
 
 export const updateLayouts = (updatedLayout) => (dispatch, getState) => {
   const builderDevice = getBuilderDevice(getState())
+  const hasMobileBeenEdited = getHasMobileBeenEdited(getState())
 
   if (builderDevice === 'mobile') {
     dispatch(setMobileLayout(updatedLayout))
+    if (!hasMobileBeenEdited) {
+      dispatch(setHasMobileBeenEdited())
+    }
   } else {
+    if (!hasMobileBeenEdited) {
+      dispatch(setMobileLayout(updatedLayout))
+    }
     dispatch(setLayouts(updatedLayout))
   }
 }
@@ -277,6 +288,8 @@ export const getLayout = (state) => {
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
+export const getHasMobileBeenEdited = (state) =>
+  state.builder.builderData.hasMobileBeenEdited
 export const getSaveStatus = (state) => state.builder.saveStatus
 export const getAccountCreated = (state) => state.builder.accountCreated
 

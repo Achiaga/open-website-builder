@@ -24,6 +24,7 @@ import {
   updateHierarchy,
   getLayout,
   setSaveStatus,
+  getHierarchy,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -66,18 +67,27 @@ const WebBuilder = () => {
   const dispatch = useDispatch()
   const {
     blocks,
-    hierarchy,
+    hierarchy: desktopHierarchy,
+    mobileHierarchy,
     mobileLayout,
     layouts: desktopLayout,
   } = useSelector(getBuilderData)
+
   const layouts = useSelector(getLayout)
+  const hierarchy = useSelector(getHierarchy)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const gridRowHeight = useSelector(getGridRowHeight)
   const builderDevice = useSelector(getBuilderDevice)
   const lastHoveredEl = useRef()
 
   useEffect(() => {
-    saveOnLocal({ blocks, hierarchy, layouts: desktopLayout, mobileLayout })
+    saveOnLocal({
+      blocks,
+      hierarchy: desktopHierarchy,
+      layouts: desktopLayout,
+      mobileLayout,
+      mobileHierarchy,
+    })
     dispatch(setSaveStatus('null'))
   }, [blocks, layouts, hierarchy])
 
@@ -183,6 +193,7 @@ const WebBuilder = () => {
               </Box>
             )
           })
+          //this is use to remove undefines in case of error when deleting
           .filter((item) => item)}
       </ReactGridLayout>
     </GridLayoutWrapper>
