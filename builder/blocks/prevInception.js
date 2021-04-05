@@ -14,6 +14,7 @@ export const PrevInception = (props) => {
       backgroundPosition="50% 50%"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
+      margin="auto"
       {...inceptionModifiers}
     ></Box>
   )

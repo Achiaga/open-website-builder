@@ -22,11 +22,11 @@ export function GeneratePreviewBlock({ layoutItem }) {
   const { w, h, x, y, i } = layoutItem || {}
 
   const GenericBlock = previewBlocks[type]
-  const backgroundImamgeProps = {
-    backgroundImage: `url(${data?.imageUrl})`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }
+  // const backgroundImamgeProps = {
+  //   backgroundImage: `url(${data?.imageUrl})`,
+  //   backgroundPosition: 'center',
+  //   backgroundRepeat: 'no-repeat',
+  // }
   const zIndex = getBlockZIndex(type)
   return (
     <Box
@@ -35,7 +35,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
       gridRow={`${y + 1} / span ${h}`}
       overflow="hidden"
       border={data.border}
-      {...(type !== 'image' && data?.imageUrl && backgroundImamgeProps)}
       boxShadow={data.boxShadow}
       borderRadius={data.borderRadius}
       backgroundColor={data.backgroundColor}

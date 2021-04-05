@@ -8,7 +8,7 @@ import {
 } from '../../features/builderSlice'
 import { BlocksContext } from '../web-preview/preview'
 import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
-
+import { MediaContextProvider, Media } from '../web-preview/preview'
 export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
@@ -89,16 +89,28 @@ export const PrevText = (props) => {
   }
   const fontSize = Math.round(parseInt(props.fontSize) * rowHeight * 0.13)
   return (
-    <Text
-      w="100%"
-      h="100%"
-      d="grid"
-      {...Textmodifiers}
-      fontSize={fontSize}
-      wordBreak="break-word"
-    >
-      {props.text}
-    </Text>
+    <>
+      <Text
+        w="100%"
+        h="100%"
+        d={['grid', 'grid', 'none']}
+        {...Textmodifiers}
+        fontSize={fontSize * 2}
+        wordBreak="break-word"
+      >
+        {props.text}
+      </Text>
+      <Text
+        w="100%"
+        h="100%"
+        d={['none', 'none', 'grid']}
+        {...Textmodifiers}
+        fontSize={fontSize}
+        wordBreak="break-word"
+      >
+        {props.text}
+      </Text>
+    </>
   )
 }
 
