@@ -24,11 +24,10 @@ async function getUserData(user, template) {
 }
 
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
-  console.log(templates, template)
   const blocksData = await getUserDataFromLS()
   dispatch(
     setInitialBuilderData(
-      templates[template] || blocksData || templates.Fallback
+      templates[template] || blocksData || templates.fallback
     )
   )
 }
