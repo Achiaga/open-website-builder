@@ -3,7 +3,7 @@ import LogoSvg from '../../assets/logo'
 
 const MadeWith = () => {
   return (
-    <Box>
+    <Box zIndex="9999">
       <a target="_blank" href="https://antfolio.app" rel="noreferrer">
         <Box
           d="flex"
