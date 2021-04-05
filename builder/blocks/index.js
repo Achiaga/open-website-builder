@@ -9,6 +9,7 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlockData,
+  getIsMobileBuilder,
   getResizingBlock,
   getSelectedBlockId,
   setBlockEditable,
@@ -45,6 +46,7 @@ export function BuilderBlock({ blockId }) {
   const { type, data } = useSelector(getBlockData(blockId))
   const GenericBlock = blocks[type]
   const selectedBlockId = useSelector(getSelectedBlockId)
+  const isMobileBuilder = useSelector(getIsMobileBuilder)
 
   const isEditable = selectedBlockId === blockId
 
@@ -62,7 +64,7 @@ export function BuilderBlock({ blockId }) {
       outlineColor={isEditable ? 'primary.500' : 'transparent'}
       transition="outline-color .3s"
     >
-      {isEditable && (
+      {isEditable && !isMobileBuilder && (
         <BlockModifiers data={data} blockKey={blockId} blockType={type} />
       )}
       <ResizingCounter blockId={blockId} />

@@ -475,23 +475,6 @@ export const Modifiers = ({
   propertiesValues,
   properties,
 }) => {
-  const isMobileBuilder = useSelector(getIsMobileBuilder)
-  if (isMobileBuilder) {
-    const Modifier = PropertiesModifiers[deleteProperty.type]
-    return (
-      <Modifier
-        isOpen={isOpen}
-        isBlockAtTop={isBlockAtTop}
-        isBlockAtLeft={isBlockAtLeft}
-        isBlockAtRight={isBlockAtRight}
-        handleOpenToolbar={handleOpenToolbar}
-        handleEdit={handleEdit}
-        handleCloseInput={handleCloseInput}
-        {...deleteProperty}
-      />
-    )
-  }
-
   return (
     properties?.map((propertyData, index) => {
       const type = propertyData.type
