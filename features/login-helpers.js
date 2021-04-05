@@ -1,5 +1,5 @@
 import { batch } from 'react-redux'
-import * as templates from '../builder/initial-data'
+import templates from '../templates'
 import {
   setInitialBuilderData,
   setUserData,
@@ -24,6 +24,7 @@ async function getUserData(user, template) {
 }
 
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
+  console.log(templates, template)
   const blocksData = await getUserDataFromLS()
   dispatch(
     setInitialBuilderData(
