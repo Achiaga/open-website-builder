@@ -319,7 +319,7 @@ const emoji = {
   ],
 }
 
-const deleteBlock = {
+export const deleteProperty = {
   type: 'button',
   placeholder: <RiDeleteBin6Line color="black" size="1.1rem" />,
   property: '',
@@ -349,7 +349,7 @@ const redirectInput = {
 
 export const Properties = {
   text: [
-    deleteBlock,
+    deleteProperty,
     fontSize,
     textAlign,
     alignItems,
@@ -361,9 +361,9 @@ export const Properties = {
     backgroundColor,
     emoji,
   ],
-  image: [deleteBlock, boxShadow, borderRadius, imageInput, redirectInput],
+  image: [deleteProperty, boxShadow, borderRadius, imageInput, redirectInput],
   inception: [
-    deleteBlock,
+    deleteProperty,
     border,
     borderRadius,
     imageInput,

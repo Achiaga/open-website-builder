@@ -4,9 +4,14 @@ import { useState } from 'react'
 import { Portal } from '../usePortal'
 import { EDIT } from './constants'
 import { Properties } from './block-properties'
-import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
+import {
+  editBlockConfig,
+  getBlockParentId,
+  getIsMobileBuilder,
+} from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
+import { deleteProperty } from './block-properties'
 
 const PropertiesModifiers = {
   dropdown: DropDownSelector,
@@ -470,6 +475,23 @@ export const Modifiers = ({
   propertiesValues,
   properties,
 }) => {
+  const isMobileBuilder = useSelector(getIsMobileBuilder)
+  if (isMobileBuilder) {
+    const Modifier = PropertiesModifiers[deleteProperty.type]
+    return (
+      <Modifier
+        isOpen={isOpen}
+        isBlockAtTop={isBlockAtTop}
+        isBlockAtLeft={isBlockAtLeft}
+        isBlockAtRight={isBlockAtRight}
+        handleOpenToolbar={handleOpenToolbar}
+        handleEdit={handleEdit}
+        handleCloseInput={handleCloseInput}
+        {...deleteProperty}
+      />
+    )
+  }
+
   return (
     properties?.map((propertyData, index) => {
       const type = propertyData.type
