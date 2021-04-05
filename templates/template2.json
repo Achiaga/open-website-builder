@@ -171,7 +171,7 @@
         "boxShadow": "none",
         "borderRadius": "0px",
         "backgroundColor": "transparent",
-        "imageUrl": "https://icons-for-free.com/iconfiles/png/512/color+code+editor-131983707594807873.png"
+        "imageUrl": "https://ouch-cdn.icons8.com/preview/407/b8b99a42-fbbf-46c9-82b7-2b5b7916832b.png"
       }
     },
     "image-15da3b16-d2c0-40fd-b897-bdda3fb4c538": {
@@ -179,7 +179,7 @@
       "data": {
         "boxShadow": "none",
         "borderRadius": "0px",
-        "imageUrl": "https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg"
+        "imageUrl": "https://ouch-cdn.icons8.com/preview/833/6545bcff-6117-44ea-83f6-d27d0d5dd49f.png"
       }
     },
     "inception-5c457777-f014-492d-bf4d-b89c1554c2ed": {
@@ -203,7 +203,7 @@
         "borderRadius": "0px",
         "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": " I highly recommend Jonathan! He's been able to update my Shopify store and improved it. I will definitely contact him again for any future work."
+        "text": " I highly recommend Jon Doe! He's been able to update my Shopify store and improved it. I will definitely contact him again for any future work."
       }
     },
     "text-1f231412-b78f-4269-8d8c-0163b9953a69": {
@@ -358,6 +358,447 @@
         "backgroundColor": "transparent",
         "text": "Keep it simple, stupid is my motto. "
       }
+    },
+    "inception-1aa5b3e8-b145-400f-b63d-fc50097f8c8a": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(255, 195, 0)"
+      }
+    },
+    "text-9f95a337-7e5d-497a-bbc3-c55e9800c301": {
+      "type": "text",
+      "data": {
+        "fontSize": "36",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(223,171,1)",
+        "backgroundColor": "transparent",
+        "text": "Frontend"
+      }
+    },
+    "inception-961993e3-fc7c-43a6-b731-21d35e50fa0b": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#292929"
+      }
+    },
+    "text-22ece8e0-4ca0-403f-9617-15c3c7b0ce47": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "500",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "HTML"
+      }
+    },
+    "text-b89c02fc-d7ba-47be-928b-957e912e4ff9": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "500",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "CSS"
+      }
+    },
+    "text-98553f17-c2e6-4ff6-820b-8c12a070c5ba": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "JS"
+      }
+    },
+    "inception-dca30a4b-24f6-493a-b691-146222d3d05e": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#4CB0EA"
+      }
+    },
+    "inception-9768b473-0f6a-405a-af2d-7463ceeb4a3a": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#292929"
+      }
+    },
+    "text-923ecdf0-08d6-45cd-a20d-987de87346ca": {
+      "type": "text",
+      "data": {
+        "fontSize": "36",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "900",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(11,110,153)",
+        "backgroundColor": "transparent",
+        "text": "Backend"
+      }
+    },
+    "text-ac99eab7-4b4f-4ca0-baf1-343320d34c7d": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "500",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Go"
+      }
+    },
+    "text-c8e9a216-90f8-4431-ba7b-d5f0ba99a6bc": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "500",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "JavaScript"
+      }
+    },
+    "inception-f930f0e2-7ab2-4025-9c35-52e1d9bdd74f": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "text-de744199-5f44-4b9b-9e9b-11a4702f6a6e": {
+      "type": "text",
+      "data": {
+        "fontSize": "30",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "My Skills"
+      }
+    },
+    "inception-048332ce-a197-4db5-a6bb-489807197339": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(255, 195, 0)"
+      }
+    },
+    "text-88e1b2de-81d2-4c8c-8444-aa4dbf0e0b31": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "500",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "I'm comfortable working with both front-end and back-end technologies."
+      }
+    },
+    "text-25bba160-24b1-4ce6-9da5-1e9f7f6ccba7": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "left",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "As a Full-Stack Developer, I can do the front and back end code, work with databases and everything in between, also, venturing as far as doing the design."
+      }
+    },
+    "text-793b394d-eeb9-4f57-8f81-8c710c3250ca": {
+      "type": "text",
+      "data": {
+        "fontSize": "42",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "500",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "Portfolio"
+      }
+    },
+    "inception-ff534655-e945-4c59-b1b4-91bb406dc2a4": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(255, 195, 0)"
+      }
+    },
+    "inception-0e4affb9-9343-4b28-8864-ca5665397538": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "inception-3ebe3d45-52b4-4e6e-9b28-520ede9902a9": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "inception-a0a74d67-59be-4eeb-aa26-256c8e304173": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "image-3dc8bda8-dc54-4a07-bdf3-9f4bd5457e48": {
+      "type": "image",
+      "data": {
+        "boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)",
+        "borderRadius": "10px",
+        "imageUrl": "https://images.unsplash.com/photo-1448932284983-0c7b152eba33?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+      }
+    },
+    "image-6534824f-8d4d-444e-9d9a-b69689daaff3": {
+      "type": "image",
+      "data": {
+        "boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)",
+        "borderRadius": "10px",
+        "imageUrl": "https://images.unsplash.com/photo-1524230616393-d6229fcd2eff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"
+      }
+    },
+    "image-1db96685-2b68-4f13-85c3-ce8f412052db": {
+      "type": "image",
+      "data": {
+        "boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)",
+        "borderRadius": "10px",
+        "imageUrl": "https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1087&q=80"
+      }
+    },
+    "text-af6243fd-a3c9-4bf1-944d-c41c78e7d2bd": {
+      "type": "text",
+      "data": {
+        "fontSize": "36",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "NY central Coffe Shop"
+      }
+    },
+    "text-27d742a5-b23e-4158-923f-347fc6a422b1": {
+      "type": "text",
+      "data": {
+        "fontSize": "36",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "London Blvd. Babershop"
+      }
+    },
+    "text-9e9b1ca8-667c-43b1-9ca1-959d9d978d52": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(223,171,1)",
+        "backgroundColor": "transparent",
+        "text": "Website"
+      }
+    },
+    "text-9b1c3969-8cfa-4d21-a750-b6964dfbb71c": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(223,171,1)",
+        "backgroundColor": "transparent",
+        "text": "Website"
+      }
+    },
+    "text-802eef29-26eb-447e-a6e2-ab1f4c439d45": {
+      "type": "text",
+      "data": {
+        "fontSize": "36",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "Willy Fog Travel"
+      }
+    },
+    "text-1e558c87-e011-4d1d-98a4-ba5976d0e566": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(223,171,1)",
+        "backgroundColor": "transparent",
+        "text": "Website"
+      }
+    },
+    "text-05c75eeb-d396-482d-bb70-f67932e8647c": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "700",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "transparent",
+        "text": "More coming soon..."
+      }
+    },
+    "inception-cf7a86c2-3a04-40c5-b6b8-d3caa70438ea": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(255, 195, 0)"
+      }
+    },
+    "inception-98f2bfbf-3972-4f30-8bc7-eab19fd6d9d9": {
+      "type": "inception",
+      "data": {
+        "border": "0px solid black",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent",
+        "imageUrl": "https://www.jonathandion.com/assets/img/bg-contact.jpg"
+      }
+    },
+    "text-88223e22-985e-46b6-abc6-ab844dee144c": {
+      "type": "text",
+      "data": {
+        "fontSize": "30",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Get in touch."
+      }
+    },
+    "text-944d2fcb-cbc4-4e54-8559-5cf0d99ee8c3": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Don’t hesitate to drop me an email or contact me via my social profiles."
+      }
+    },
+    "text-1c7cdacf-bd34-41a9-91a5-9ca574550e1c": {
+      "type": "text",
+      "data": {
+        "fontSize": "52",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "rgb(223,171,1)",
+        "backgroundColor": "transparent",
+        "text": "antfolio.app"
+      }
+    },
+    "text-0571bfc0-2146-4b1e-95a8-4daa1d158539": {
+      "type": "text",
+      "data": {
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "text": "Made by:"
+      }
     }
   },
   "hierarchy": {
@@ -399,6 +840,48 @@
       "text-7c1eb40d-669a-4c97-833f-8129f9ac25d9",
       "text-a8088520-982f-4a08-9caf-0a7abe3d72ce",
       "text-75a9af07-a601-4811-ad43-7348f19774b1"
+    ],
+    "inception-1aa5b3e8-b145-400f-b63d-fc50097f8c8a": [
+      "text-22ece8e0-4ca0-403f-9617-15c3c7b0ce47",
+      "text-b89c02fc-d7ba-47be-928b-957e912e4ff9",
+      "text-98553f17-c2e6-4ff6-820b-8c12a070c5ba"
+    ],
+    "inception-961993e3-fc7c-43a6-b731-21d35e50fa0b": [
+      "text-9f95a337-7e5d-497a-bbc3-c55e9800c301"
+    ],
+    "inception-9768b473-0f6a-405a-af2d-7463ceeb4a3a": [
+      "text-923ecdf0-08d6-45cd-a20d-987de87346ca"
+    ],
+    "inception-dca30a4b-24f6-493a-b691-146222d3d05e": [
+      "text-ac99eab7-4b4f-4ca0-baf1-343320d34c7d",
+      "text-c8e9a216-90f8-4431-ba7b-d5f0ba99a6bc"
+    ],
+    "inception-f930f0e2-7ab2-4025-9c35-52e1d9bdd74f": [
+      "text-de744199-5f44-4b9b-9e9b-11a4702f6a6e",
+      "inception-048332ce-a197-4db5-a6bb-489807197339",
+      "text-88e1b2de-81d2-4c8c-8444-aa4dbf0e0b31",
+      "text-25bba160-24b1-4ce6-9da5-1e9f7f6ccba7"
+    ],
+    "inception-0e4affb9-9343-4b28-8864-ca5665397538": [
+      "image-3dc8bda8-dc54-4a07-bdf3-9f4bd5457e48",
+      "text-af6243fd-a3c9-4bf1-944d-c41c78e7d2bd",
+      "text-9b1c3969-8cfa-4d21-a750-b6964dfbb71c"
+    ],
+    "inception-3ebe3d45-52b4-4e6e-9b28-520ede9902a9": [
+      "image-6534824f-8d4d-444e-9d9a-b69689daaff3",
+      "text-27d742a5-b23e-4158-923f-347fc6a422b1",
+      "text-9e9b1ca8-667c-43b1-9ca1-959d9d978d52"
+    ],
+    "inception-a0a74d67-59be-4eeb-aa26-256c8e304173": [
+      "image-1db96685-2b68-4f13-85c3-ce8f412052db",
+      "text-802eef29-26eb-447e-a6e2-ab1f4c439d45",
+      "text-1e558c87-e011-4d1d-98a4-ba5976d0e566"
+    ],
+    "inception-98f2bfbf-3972-4f30-8bc7-eab19fd6d9d9": [
+      "text-88223e22-985e-46b6-abc6-ab844dee144c",
+      "text-944d2fcb-cbc4-4e54-8559-5cf0d99ee8c3",
+      "text-1c7cdacf-bd34-41a9-91a5-9ca574550e1c",
+      "text-0571bfc0-2146-4b1e-95a8-4daa1d158539"
     ]
   },
   "layouts": [
@@ -435,7 +918,7 @@
     {
       "w": 75,
       "h": 19,
-      "x": 71,
+      "x": 72,
       "y": 37,
       "i": "text-94004dfa-3c8c-4c43-981b-a46c435a7959",
       "moved": false,
@@ -533,20 +1016,20 @@
       "isDraggable": true
     },
     {
-      "w": 63,
-      "h": 55,
-      "x": 120,
-      "y": 298,
+      "w": 80,
+      "h": 69,
+      "x": 107,
+      "y": 287,
       "i": "inception-1831c2d0-0ce4-42e6-9f6b-a20f883b89c6",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 79,
-      "h": 39,
-      "x": 9,
-      "y": 121,
+      "w": 108,
+      "h": 46,
+      "x": 0,
+      "y": 116,
       "i": "image-15da3b16-d2c0-40fd-b897-bdda3fb4c538",
       "moved": false,
       "static": false,
@@ -575,8 +1058,8 @@
     {
       "w": 44,
       "h": 3,
-      "x": 82,
-      "y": 215,
+      "x": 81,
+      "y": 217,
       "i": "text-1f231412-b78f-4269-8d8c-0163b9953a69",
       "moved": false,
       "static": false,
@@ -585,7 +1068,7 @@
     {
       "w": 19,
       "h": 5,
-      "x": 29,
+      "x": 28,
       "y": 299,
       "i": "text-e4bb5c9c-8b3e-41ae-826d-7231bf29b804",
       "moved": false,
@@ -691,315 +1174,1025 @@
       "moved": false,
       "static": false,
       "isDraggable": true
+    },
+    {
+      "w": 30,
+      "h": 30,
+      "x": 104,
+      "y": 393,
+      "i": "inception-1aa5b3e8-b145-400f-b63d-fc50097f8c8a",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 26,
+      "h": 10,
+      "x": 109,
+      "y": 393,
+      "i": "text-9f95a337-7e5d-497a-bbc3-c55e9800c301",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 30,
+      "h": 30,
+      "x": 106,
+      "y": 391,
+      "i": "inception-961993e3-fc7c-43a6-b731-21d35e50fa0b",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 17,
+      "h": 6,
+      "x": 110,
+      "y": 401,
+      "i": "text-22ece8e0-4ca0-403f-9617-15c3c7b0ce47",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 19,
+      "h": 5,
+      "x": 110,
+      "y": 408,
+      "i": "text-b89c02fc-d7ba-47be-928b-957e912e4ff9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 20,
+      "h": 5,
+      "x": 110,
+      "y": 414,
+      "i": "text-98553f17-c2e6-4ff6-820b-8c12a070c5ba",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 30,
+      "h": 30,
+      "x": 142,
+      "y": 372,
+      "i": "inception-dca30a4b-24f6-493a-b691-146222d3d05e",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 30,
+      "h": 30,
+      "x": 145,
+      "y": 370,
+      "i": "inception-9768b473-0f6a-405a-af2d-7463ceeb4a3a",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 22,
+      "h": 9,
+      "x": 149,
+      "y": 371,
+      "i": "text-923ecdf0-08d6-45cd-a20d-987de87346ca",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 15,
+      "h": 6,
+      "x": 150,
+      "y": 382,
+      "i": "text-ac99eab7-4b4f-4ca0-baf1-343320d34c7d",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 16,
+      "h": 6,
+      "x": 150,
+      "y": 389,
+      "i": "text-c8e9a216-90f8-4431-ba7b-d5f0ba99a6bc",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 68,
+      "x": 0,
+      "y": 366,
+      "i": "inception-f930f0e2-7ab2-4025-9c35-52e1d9bdd74f",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 28,
+      "h": 5,
+      "x": 26,
+      "y": 381,
+      "i": "text-de744199-5f44-4b9b-9e9b-11a4702f6a6e",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 13,
+      "h": 1,
+      "x": 26,
+      "y": 387,
+      "i": "inception-048332ce-a197-4db5-a6bb-489807197339",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 46,
+      "h": 13,
+      "x": 26,
+      "y": 390,
+      "i": "text-88e1b2de-81d2-4c8c-8444-aa4dbf0e0b31",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 55,
+      "h": 23,
+      "x": 26,
+      "y": 405,
+      "i": "text-25bba160-24b1-4ce6-9da5-1e9f7f6ccba7",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 56,
+      "h": 7,
+      "x": 73,
+      "y": 445,
+      "i": "text-793b394d-eeb9-4f57-8f81-8c710c3250ca",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 24,
+      "h": 1,
+      "x": 88,
+      "y": 453,
+      "i": "inception-ff534655-e945-4c59-b1b4-91bb406dc2a4",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 50,
+      "x": 0,
+      "y": 457,
+      "i": "inception-0e4affb9-9343-4b28-8864-ca5665397538",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 99,
+      "h": 50,
+      "x": 101,
+      "y": 457,
+      "i": "inception-3ebe3d45-52b4-4e6e-9b28-520ede9902a9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 61,
+      "x": 0,
+      "y": 517,
+      "i": "inception-a0a74d67-59be-4eeb-aa26-256c8e304173",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 65,
+      "h": 41,
+      "x": 25,
+      "y": 461,
+      "i": "image-3dc8bda8-dc54-4a07-bdf3-9f4bd5457e48",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 65,
+      "h": 41,
+      "x": 117,
+      "y": 461,
+      "i": "image-6534824f-8d4d-444e-9d9a-b69689daaff3",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 65,
+      "h": 41,
+      "x": 23,
+      "y": 525,
+      "i": "image-1db96685-2b68-4f13-85c3-ce8f412052db",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 26,
+      "h": 14,
+      "x": 14,
+      "y": 485,
+      "i": "text-af6243fd-a3c9-4bf1-944d-c41c78e7d2bd",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 30,
+      "h": 13,
+      "x": 106,
+      "y": 485,
+      "i": "text-27d742a5-b23e-4158-923f-347fc6a422b1",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 25,
+      "h": 4,
+      "x": 104,
+      "y": 498,
+      "i": "text-9e9b1ca8-667c-43b1-9ca1-959d9d978d52",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 24,
+      "h": 5,
+      "x": 12,
+      "y": 499,
+      "i": "text-9b1c3969-8cfa-4d21-a750-b6964dfbb71c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 27,
+      "h": 14,
+      "x": 9,
+      "y": 551,
+      "i": "text-802eef29-26eb-447e-a6e2-ab1f4c439d45",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 25,
+      "h": 6,
+      "x": 11,
+      "y": 563,
+      "i": "text-1e558c87-e011-4d1d-98a4-ba5976d0e566",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 53,
+      "h": 6,
+      "x": 123,
+      "y": 536,
+      "i": "text-05c75eeb-d396-482d-bb70-f67932e8647c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 31,
+      "h": 1,
+      "x": 135,
+      "y": 542,
+      "i": "inception-cf7a86c2-3a04-40c5-b6b8-d3caa70438ea",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 200,
+      "h": 80,
+      "x": 0,
+      "y": 582,
+      "i": "inception-98f2bfbf-3972-4f30-8bc7-eab19fd6d9d9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 73,
+      "h": 9,
+      "x": 68,
+      "y": 596,
+      "i": "text-88223e22-985e-46b6-abc6-ab844dee144c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 71,
+      "h": 9,
+      "x": 68,
+      "y": 606,
+      "i": "text-944d2fcb-cbc4-4e54-8559-5cf0d99ee8c3",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 44,
+      "h": 9,
+      "x": 87,
+      "y": 621,
+      "i": "text-1c7cdacf-bd34-41a9-91a5-9ca574550e1c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 21,
+      "h": 8,
+      "x": 70,
+      "y": 623,
+      "i": "text-0571bfc0-2146-4b1e-95a8-4daa1d158539",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
     }
   ],
   "mobileLayout": [
     {
-      "w": 15,
-      "h": 10,
-      "x": 80,
-      "y": 31,
+      "w": 100,
+      "h": 109,
+      "x": 0,
+      "y": 0,
       "i": "inception-ee1af758-c431-4554-a76b-cf8adef39159",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 105,
-      "y": 10,
+      "w": 100,
+      "h": 13,
+      "x": 0,
+      "y": 96,
       "i": "inception-b4805620-dd27-41b1-9726-246fd81b42fb",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 80,
-      "y": 21,
+      "w": 75,
+      "h": 21,
+      "x": 4,
+      "y": 23,
       "i": "text-7b502fa7-6a39-47fd-87d4-94d59335beca",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 86,
-      "y": 37,
+      "w": 75,
+      "h": 24,
+      "x": 4,
+      "y": 41,
       "i": "text-94004dfa-3c8c-4c43-981b-a46c435a7959",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 71,
-      "y": 58,
+      "w": 40,
+      "h": 8,
+      "x": 3,
+      "y": 69,
       "i": "text-fcc5b44d-8da6-4416-823a-b678be4bba2f",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 106,
-      "y": 107,
+      "w": 21,
+      "h": 9,
+      "x": 37,
+      "y": 109,
       "i": "text-48595dd7-2e15-476e-bbed-54a515326998",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 100,
-      "y": 98,
+      "w": 99,
+      "h": 66,
+      "x": 0,
+      "y": 153,
       "i": "inception-0921c696-518f-4f99-9df9-ac6898caa90f",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 113,
-      "y": 123,
+      "w": 21,
+      "h": 1,
+      "x": 38,
+      "y": 558,
       "i": "inception-d5624527-b8e3-445f-b003-073c74eb86cd",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 100,
-      "y": 118,
+      "w": 64,
+      "h": 12,
+      "x": 3,
+      "y": 155,
       "i": "text-aeeda195-1e22-4dc7-8d35-f8396afa3150",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 100,
-      "y": 129,
+      "w": 88,
+      "h": 14,
+      "x": 3,
+      "y": 168,
       "i": "text-2e547849-9241-49f5-9336-157b6d4a7524",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 103,
-      "y": 146,
+      "w": 88,
+      "h": 11,
+      "x": 3,
+      "y": 182,
       "i": "text-4d0449ab-9bf1-452e-8ec0-a63ebe118c02",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
+      "w": 88,
       "h": 10,
-      "x": 101,
-      "y": 171,
+      "x": 3,
+      "y": 206,
       "i": "text-cf34a160-4a26-42f0-a746-f9a392dd0f61",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 100,
-      "y": 162,
+      "w": 88,
+      "h": 13,
+      "x": 3,
+      "y": 193,
       "i": "text-77d4582d-ee5e-4b23-a03c-0ac628a8d9b2",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 28,
-      "y": 125,
-      "i": "image-b39b11b3-8007-4d73-8294-2e0e0ae1ffda",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 39,
-      "y": 208,
-      "i": "inception-e0c3f9fb-b55a-406a-87d6-ffa79868834e",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 86,
-      "y": 206,
-      "i": "text-84922163-1159-42fd-a281-c4558c0366d2",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 75,
-      "y": 220,
-      "i": "text-f91d77ea-c81f-4762-8853-fa26a7f4ab38",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 154,
-      "y": 237,
-      "i": "text-32b28a58-ea8e-4754-bcc5-cb84d7e946ac",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 79,
-      "y": 243,
-      "i": "text-669831d4-35e8-47a3-a4ec-a7cde513f1dd",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 25,
-      "y": 284,
-      "i": "inception-4acdee30-b6fa-4795-87eb-0730ff8881e2",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 73,
-      "y": 279,
-      "i": "text-6f940069-6edf-4fd0-8468-9ff31573fa08",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 79,
-      "y": 298,
-      "i": "text-73b22bee-00c5-4d5f-be7e-578bec55d60c",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 131,
-      "y": 343,
+      "w": 53,
+      "h": 57,
+      "x": 22,
+      "y": 379,
       "i": "inception-1831c2d0-0ce4-42e6-9f6b-a20f883b89c6",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 38,
-      "y": 133,
+      "w": 79,
+      "h": 29,
+      "x": 9,
+      "y": 123,
       "i": "image-15da3b16-d2c0-40fd-b897-bdda3fb4c538",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 61,
-      "y": 190,
+      "w": 100,
+      "h": 44,
+      "x": 0,
+      "y": 274,
       "i": "inception-5c457777-f014-492d-bf4d-b89c1554c2ed",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 68,
-      "y": 188,
+      "w": 75,
+      "h": 21,
+      "x": 12,
+      "y": 234,
       "i": "text-75a9af07-a601-4811-ad43-7348f19774b1",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 82,
-      "y": 207,
+      "w": 29,
+      "h": 6,
+      "x": 32,
+      "y": 257,
       "i": "text-1f231412-b78f-4269-8d8c-0163b9953a69",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 20,
-      "y": 231,
+      "w": 18,
+      "h": 11,
+      "x": 39,
+      "y": 322,
       "i": "text-e4bb5c9c-8b3e-41ae-826d-7231bf29b804",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 41,
-      "y": 246,
+      "w": 62,
+      "h": 9,
+      "x": 4,
+      "y": 336,
       "i": "text-255edd8f-18fa-4569-bb2f-9304bd4fe4af",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 32,
-      "y": 268,
+      "w": 64,
+      "h": 13,
+      "x": 3,
+      "y": 359,
       "i": "text-616fd162-15d1-4cdf-85ad-7d1dfed0e2ca",
       "moved": false,
       "static": false,
       "isDraggable": true
     },
     {
-      "w": 15,
-      "h": 10,
-      "x": 37,
-      "y": 246,
+      "w": 16,
+      "h": 1,
+      "x": 39,
+      "y": 330,
       "i": "inception-fbbc81b7-d726-491c-8067-ca7121141fca",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 54,
+      "x": 0,
+      "y": 324,
+      "i": "inception-ab8fda23-d0e2-469e-8876-e3ebc834015b",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 54,
+      "x": 0,
+      "y": 220,
+      "i": "inception-f081196b-e4be-41f0-b97b-bb469fab32de",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 8,
+      "h": 8,
+      "x": 83,
+      "y": 244,
+      "i": "text-7c1eb40d-669a-4c97-833f-8129f9ac25d9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 8,
+      "h": 7,
+      "x": 8,
+      "y": 233,
+      "i": "text-a8088520-982f-4a08-9caf-0a7abe3d72ce",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 69,
+      "h": 14,
+      "x": 14,
+      "y": 278,
+      "i": "text-961f26c6-add0-48eb-b687-8bd90b87d6f6",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 81,
+      "h": 11,
+      "x": 10,
+      "y": 295,
+      "i": "text-d598e742-31c1-46b5-a695-305093b8a595",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 52,
+      "h": 12,
+      "x": 3,
+      "y": 346,
+      "i": "text-009925e4-65ef-4116-854b-13a37c13204f",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 34,
+      "h": 34,
+      "x": 53,
+      "y": 509,
+      "i": "inception-1aa5b3e8-b145-400f-b63d-fc50097f8c8a",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 23,
+      "h": 6,
+      "x": 59,
+      "y": 507,
+      "i": "text-9f95a337-7e5d-497a-bbc3-c55e9800c301",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 35,
+      "h": 34,
+      "x": 56,
+      "y": 507,
+      "i": "inception-961993e3-fc7c-43a6-b731-21d35e50fa0b",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 15,
+      "h": 5,
+      "x": 61,
+      "y": 516,
+      "i": "text-22ece8e0-4ca0-403f-9617-15c3c7b0ce47",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 15,
+      "h": 6,
+      "x": 61,
+      "y": 522,
+      "i": "text-b89c02fc-d7ba-47be-928b-957e912e4ff9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 11,
+      "h": 4,
+      "x": 61,
+      "y": 528,
+      "i": "text-98553f17-c2e6-4ff6-820b-8c12a070c5ba",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 33,
+      "h": 34,
+      "x": 7,
+      "y": 509,
+      "i": "inception-dca30a4b-24f6-493a-b691-146222d3d05e",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 36,
+      "h": 34,
+      "x": 9,
+      "y": 507,
+      "i": "inception-9768b473-0f6a-405a-af2d-7463ceeb4a3a",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 26,
+      "h": 7,
+      "x": 12,
+      "y": 508,
+      "i": "text-923ecdf0-08d6-45cd-a20d-987de87346ca",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 15,
+      "h": 6,
+      "x": 13,
+      "y": 525,
+      "i": "text-ac99eab7-4b4f-4ca0-baf1-343320d34c7d",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 15,
+      "h": 5,
+      "x": 13,
+      "y": 519,
+      "i": "text-c8e9a216-90f8-4431-ba7b-d5f0ba99a6bc",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 63,
+      "x": 0,
+      "y": 438,
+      "i": "inception-f930f0e2-7ab2-4025-9c35-52e1d9bdd74f",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 21,
+      "h": 6,
+      "x": 33,
+      "y": 443,
+      "i": "text-de744199-5f44-4b9b-9e9b-11a4702f6a6e",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 24,
+      "h": 1,
+      "x": 33,
+      "y": 449,
+      "i": "inception-048332ce-a197-4db5-a6bb-489807197339",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 64,
+      "h": 12,
+      "x": 8,
+      "y": 459,
+      "i": "text-88e1b2de-81d2-4c8c-8444-aa4dbf0e0b31",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 69,
+      "h": 21,
+      "x": 8,
+      "y": 471,
+      "i": "text-25bba160-24b1-4ce6-9da5-1e9f7f6ccba7",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 24,
+      "h": 7,
+      "x": 38,
+      "y": 550,
+      "i": "text-793b394d-eeb9-4f57-8f81-8c710c3250ca",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 13,
+      "h": 1,
+      "x": 37,
+      "y": 116,
+      "i": "inception-ff534655-e945-4c59-b1b4-91bb406dc2a4",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 70,
+      "x": 0,
+      "y": 634,
+      "i": "inception-0e4affb9-9343-4b28-8864-ca5665397538",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 70,
+      "x": 0,
+      "y": 706,
+      "i": "inception-3ebe3d45-52b4-4e6e-9b28-520ede9902a9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 70,
+      "x": 0,
+      "y": 563,
+      "i": "inception-a0a74d67-59be-4eeb-aa26-256c8e304173",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 81,
+      "h": 40,
+      "x": 10,
+      "y": 656,
+      "i": "image-3dc8bda8-dc54-4a07-bdf3-9f4bd5457e48",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 81,
+      "h": 40,
+      "x": 10,
+      "y": 730,
+      "i": "image-6534824f-8d4d-444e-9d9a-b69689daaff3",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 81,
+      "h": 40,
+      "x": 10,
+      "y": 579,
+      "i": "image-1db96685-2b68-4f13-85c3-ce8f412052db",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 53,
+      "h": 7,
+      "x": 24,
+      "y": 648,
+      "i": "text-af6243fd-a3c9-4bf1-944d-c41c78e7d2bd",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 56,
+      "h": 12,
+      "x": 23,
+      "y": 716,
+      "i": "text-27d742a5-b23e-4158-923f-347fc6a422b1",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 28,
+      "h": 6,
+      "x": 34,
+      "y": 712,
+      "i": "text-9e9b1ca8-667c-43b1-9ca1-959d9d978d52",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 25,
+      "h": 5,
+      "x": 37,
+      "y": 644,
+      "i": "text-9b1c3969-8cfa-4d21-a750-b6964dfbb71c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 38,
+      "h": 7,
+      "x": 33,
+      "y": 572,
+      "i": "text-802eef29-26eb-447e-a6e2-ab1f4c439d45",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 21,
+      "h": 6,
+      "x": 41,
+      "y": 566,
+      "i": "text-1e558c87-e011-4d1d-98a4-ba5976d0e566",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 42,
+      "h": 7,
+      "x": 27,
+      "y": 801,
+      "i": "text-05c75eeb-d396-482d-bb70-f67932e8647c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 31,
+      "h": 1,
+      "x": 33,
+      "y": 807,
+      "i": "inception-cf7a86c2-3a04-40c5-b6b8-d3caa70438ea",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 100,
+      "h": 57,
+      "x": 0,
+      "y": 834,
+      "i": "inception-98f2bfbf-3972-4f30-8bc7-eab19fd6d9d9",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 26,
+      "h": 8,
+      "x": 37,
+      "y": 837,
+      "i": "text-88223e22-985e-46b6-abc6-ab844dee144c",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 61,
+      "h": 11,
+      "x": 23,
+      "y": 848,
+      "i": "text-944d2fcb-cbc4-4e54-8559-5cf0d99ee8c3",
+      "moved": false,
+      "static": false,
+      "isDraggable": true
+    },
+    {
+      "w": 41,
+      "h": 11,
+      "x": 37,
+      "y": 866,
+      "i": "text-1c7cdacf-bd34-41a9-91a5-9ca574550e1c",
       "moved": false,
       "static": false,
       "isDraggable": true
@@ -1008,68 +2201,8 @@
       "w": 15,
       "h": 10,
       "x": 22,
-      "y": 238,
-      "i": "inception-ab8fda23-d0e2-469e-8876-e3ebc834015b",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 92,
-      "y": 198,
-      "i": "inception-f081196b-e4be-41f0-b97b-bb469fab32de",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 35,
-      "y": 188,
-      "i": "text-7c1eb40d-669a-4c97-833f-8129f9ac25d9",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 157,
-      "y": 201,
-      "i": "text-a8088520-982f-4a08-9caf-0a7abe3d72ce",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 63,
-      "y": 233,
-      "i": "text-961f26c6-add0-48eb-b687-8bd90b87d6f6",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 68,
-      "y": 241,
-      "i": "text-d598e742-31c1-46b5-a695-305093b8a595",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 30,
-      "y": 330,
-      "i": "text-009925e4-65ef-4116-854b-13a37c13204f",
+      "y": 865,
+      "i": "text-0571bfc0-2146-4b1e-95a8-4daa1d158539",
       "moved": false,
       "static": false,
       "isDraggable": true

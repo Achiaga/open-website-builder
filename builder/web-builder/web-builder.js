@@ -173,14 +173,17 @@ const WebBuilder = () => {
         layout={layouts}
         hierarchy={hierarchy}
       >
-        {layouts.map(({ i }) => {
-          const { type } = blocks[i]
-          return (
-            <Box key={i} zIndex={blocksZIndex[type]}>
-              <BuilderBlock blockId={i} />
-            </Box>
-          )
-        })}
+        {layouts
+          .map(({ i }) => {
+            const { type } = blocks[i] || {}
+            if (!type) return null
+            return (
+              <Box key={i} zIndex={blocksZIndex[type]}>
+                <BuilderBlock blockId={i} />
+              </Box>
+            )
+          })
+          .filter((item) => item)}
       </ReactGridLayout>
     </GridLayoutWrapper>
   )
