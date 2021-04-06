@@ -75,7 +75,6 @@ export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
   ])
   const { resume_data, user_id, user_email, publish, _id } = dbData
   const userData = { user_email, user_id, websiteId: _id }
-  console.log('isEqual', _.isEqual(LSData, resume_data))
   if (!_.isEqual(LSData, resume_data)) {
     dispatch(setTempDBData({ resume_data, publish, userData }))
     dispatch(loadInitialDataNoAccount())

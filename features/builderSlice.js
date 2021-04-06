@@ -49,6 +49,9 @@ export const builderSlice = createSlice({
     setUserData: (state, action) => {
       state.user = action.payload
     },
+    setWebsiteId: (state, action) => {
+      state.user.websiteId = action.payload
+    },
     setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
     },
@@ -101,6 +104,9 @@ export const builderSlice = createSlice({
     setSaveStatus: (state, action) => {
       state.saveStatus = action.payload
     },
+    setPublishStatus: (state, action) => {
+      state.publishStatus = action.payload
+    },
     setAccountCreated: (state, action) => {
       state.accountCreated = action.payload
     },
@@ -112,6 +118,7 @@ export const {
   setInitialBuilderData,
   setTempDBData,
   setUserData,
+  setWebsiteId,
   setLayout,
   setLayouts,
   setHasMobileBeenEdited,
@@ -128,6 +135,7 @@ export const {
   setMobileHierarchy,
   setBuilderDevice,
   setSaveStatus,
+  setPublishStatus,
   setAccountCreated,
 } = builderSlice.actions
 
@@ -260,6 +268,16 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
     dispatch(setNewDropBlock({ type: null }))
   })
 }
+export const publishWebsite = (user) => async (dispatch, getState) => {
+  dispatch(setPublishStatus('loading'))
+  const builderData = getBuilderData(getState())
+  const websiteId = getWebsiteId(getState())
+  const res = await saveData({ user, builderData, publish: true })
+  batch(() => {
+    !websiteId && dispatch(setWebsiteId(res._id))
+    dispatch(setPublishStatus('success'))
+  })
+}
 export const overwriteDBData = () => async (dispatch, getState) => {
   const builderData = getBuilderData(getState())
   const { publish, userData } = getTempDBData(getState())
@@ -285,6 +303,7 @@ export const denyOverwriteData = () => (dispatch, getState) => {
 
 export const getBuilderData = (state) => state.builder.builderData
 export const getUserData = (state) => state.builder.user
+export const getWebsiteId = (state) => state.builder.user.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   if (getBuilderDevice(state) === 'mobile') {
@@ -322,6 +341,7 @@ export const getStructure = (state) => state.builder.builderData.structure
 export const getHasMobileBeenEdited = (state) =>
   state.builder.builderData.hasMobileBeenEdited
 export const getSaveStatus = (state) => state.builder.saveStatus
+export const getPublishStatus = (state) => state.builder.publishStatus
 export const getAccountCreated = (state) => state.builder.accountCreated
 export const getTempDBData = (state) => state.builder.tempDBData
 

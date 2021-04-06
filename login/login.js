@@ -4,12 +4,12 @@ import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getAccountCreated,
-  getBuilderData,
   getBuilderDevice,
   setBuilderDevice,
   getTempDBData,
+  publishWebsite,
+  getPublishStatus,
 } from '../features/builderSlice'
-import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
@@ -18,6 +18,7 @@ import Card from './card'
 import SaveButton from './saveButton'
 import AccountCreatedModal from './accountCreatedModal'
 import OverwriteDBWarning from './overwriteDBWarning'
+import { Spinner } from '@chakra-ui/spinner'
 
 const logoutUrl =
   // eslint-disable-next-line no-undef
@@ -43,13 +44,12 @@ const MenuItem = ({ children, onClick = () => {} }) => {
 export function Login() {
   const { user } = useUser()
   const dispatch = useDispatch()
-  const builderData = useSelector(getBuilderData)
   const accountCreated = useSelector(getAccountCreated)
   const tempData = useSelector(getTempDBData)
+  const publishStatus = useSelector(getPublishStatus)
 
   const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
-  const [isPublish, setPublish] = useState(false)
   const [isMenuOpen, setMenuOpen] = useState(false)
 
   function handleLogin() {
@@ -60,9 +60,7 @@ export function Login() {
   }
   async function handlePublish() {
     if (user) {
-      await saveData({ user, builderData, publish: true })
-      setPublish(true)
-      setMenuOpen(false)
+      await dispatch(publishWebsite(user))
       return
     }
     return router.push('/api/auth/custom-login')
@@ -78,7 +76,7 @@ export function Login() {
   }
   return (
     <Box d="flex" flexDir="column">
-      {isPublish && <PublishSuccessModal setPublish={setPublish} />}
+      {publishStatus === 'success' && <PublishSuccessModal />}
       {accountCreated && <AccountCreatedModal />}
       {tempData && <OverwriteDBWarning />}
       <SaveButton />
@@ -107,7 +105,9 @@ export function Login() {
             </Box>
             {user ? (
               <Box>
-                <MenuItem onClick={handlePublish}>Publish</MenuItem>
+                <MenuItem onClick={handlePublish}>
+                  {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
+                </MenuItem>
                 <MenuItem>Dashboard</MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Box>
