@@ -19,6 +19,7 @@ const MadeWith = () => {
           fontWeight="600"
           boxShadow="3px 3px 10px 3px rgba(56,28,100,0.1)"
           alignItems="center"
+          zIndex="9999"
         >
           <Box mr="6px">
             <LogoSvg width="14px" />

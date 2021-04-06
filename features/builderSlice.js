@@ -15,7 +15,9 @@ import {
   handleLoginCallback,
   loadInitialDataNoAccount,
   loadDataFromDB,
+  updateInitialState,
 } from './login-helpers'
+import { saveData } from '../login/helpers'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -37,6 +39,12 @@ export const builderSlice = createSlice({
     },
     setInitialBuilderData: (state, action) => {
       state.builderData = action.payload
+    },
+    //This functions are to let the user overwrite DB data
+    setTempDBData: (state, action) => {
+      //We store here the DB data while the user decides
+      // if he wants to overwrite it or keep it.
+      state.tempDBData = action.payload
     },
     setUserData: (state, action) => {
       state.user = action.payload
@@ -102,6 +110,7 @@ export const builderSlice = createSlice({
 export const {
   setBuilderBlocksData,
   setInitialBuilderData,
+  setTempDBData,
   setUserData,
   setLayout,
   setLayouts,
@@ -251,6 +260,28 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
     dispatch(setNewDropBlock({ type: null }))
   })
 }
+export const overwriteDBData = () => async (dispatch, getState) => {
+  const builderData = getBuilderData(getState())
+  const { publish, userData } = getTempDBData(getState())
+  await saveData({
+    builderData,
+    user: { sub: userData.user_id, email: userData.user_email, publish },
+  })
+  dispatch(setSaveStatus('null'))
+  dispatch(setTempDBData(null))
+}
+export const denyOverwriteData = () => (dispatch, getState) => {
+  const tempInitialData = getTempDBData(getState())
+  dispatch(updateInitialState(tempInitialData))
+  dispatch(setTempDBData(null))
+}
+
+// SELECTORS ****************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
 
 export const getBuilderData = (state) => state.builder.builderData
 export const getUserData = (state) => state.builder.user
@@ -292,5 +323,6 @@ export const getHasMobileBeenEdited = (state) =>
   state.builder.builderData.hasMobileBeenEdited
 export const getSaveStatus = (state) => state.builder.saveStatus
 export const getAccountCreated = (state) => state.builder.accountCreated
+export const getTempDBData = (state) => state.builder.tempDBData
 
 export default builderSlice.reducer

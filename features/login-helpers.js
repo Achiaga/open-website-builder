@@ -1,10 +1,12 @@
 import { batch } from 'react-redux'
+import _ from 'lodash'
 import templates from '../templates'
 import {
   setInitialBuilderData,
   setUserData,
   AUTH0_CUSTOM_CLAIM_PATH,
   setAccountCreated,
+  setTempDBData,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
@@ -18,7 +20,7 @@ async function getUserData(user, template) {
     console.error('error con getUserData', err)
     const blocksData = await getUserDataFromLS()
     return {
-      resume_data: templates[template] || blocksData || templates.Fallback,
+      resume_data: blocksData || templates[template] || templates.fallback,
     }
   }
 }
@@ -31,9 +33,11 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
     )
   )
 }
-const updateInitialState = ({ resume_data, publish, userData }) => async (
-  dispatch
-) => {
+export const updateInitialState = ({
+  resume_data,
+  publish,
+  userData,
+}) => async (dispatch) => {
   batch(() => {
     dispatch(setInitialBuilderData(resume_data))
     dispatch(setUserData({ isPublish: publish, ...userData }))
@@ -58,17 +62,31 @@ const handleSingup = (user) => async (dispatch) => {
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {
-  const { resume_data, user_id, user_email, publish, _id } = await getUserData(
-    user,
-    template
-  )
+  const dbData = await getUserData(user, template)
+  const { resume_data, user_id, user_email, publish, _id } = dbData
   const userData = { user_email, user_id, websiteId: _id }
+  dispatch(updateInitialState({ resume_data, publish, userData }))
+}
+
+export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
+  const [dbData, LSData] = await Promise.all([
+    getUserData(user),
+    getUserDataFromLS(),
+  ])
+  const { resume_data, user_id, user_email, publish, _id } = dbData
+  const userData = { user_email, user_id, websiteId: _id }
+  console.log('isEqual', _.isEqual(LSData, resume_data))
+  if (!_.isEqual(LSData, resume_data)) {
+    dispatch(setTempDBData({ resume_data, publish, userData }))
+    dispatch(loadInitialDataNoAccount())
+    return
+  }
   dispatch(updateInitialState({ resume_data, publish, userData }))
 }
 
 export const handleLoginCallback = (user) => async (dispatch) => {
   if (isLogin(user)) {
-    return dispatch(loadDataFromDB(user))
+    return dispatch(handleLoginCallbackLoadData(user))
   }
   //If the it is not login is singup and we handle thate here
   return dispatch(handleSingup(user))

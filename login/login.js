@@ -7,6 +7,7 @@ import {
   getBuilderData,
   getBuilderDevice,
   setBuilderDevice,
+  getTempDBData,
 } from '../features/builderSlice'
 import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
@@ -16,6 +17,7 @@ import PublishSuccessModal from './publishModal'
 import Card from './card'
 import SaveButton from './saveButton'
 import AccountCreatedModal from './accountCreatedModal'
+import OverwriteDBWarning from './overwriteDBWarning'
 
 const logoutUrl =
   // eslint-disable-next-line no-undef
@@ -43,6 +45,7 @@ export function Login() {
   const dispatch = useDispatch()
   const builderData = useSelector(getBuilderData)
   const accountCreated = useSelector(getAccountCreated)
+  const tempData = useSelector(getTempDBData)
 
   const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
@@ -77,6 +80,7 @@ export function Login() {
     <Box d="flex" flexDir="column">
       {isPublish && <PublishSuccessModal setPublish={setPublish} />}
       {accountCreated && <AccountCreatedModal />}
+      {tempData && <OverwriteDBWarning />}
       <SaveButton />
       <Box w="full">
         <Card onClick={handleMenuOption}>
