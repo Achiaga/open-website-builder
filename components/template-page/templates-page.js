@@ -5,7 +5,12 @@ import Template from './template-layout'
 
 import LogoSvg from '../../assets/logo'
 
-const TEMPLATES = ['template1', 'template2', 'template3', 'template4']
+const TEMPLATES = [
+  { id: 'template1', imageUrl: '/template1.png', tags: [] },
+  { id: 'template2', imageUrl: '/template2.jpg', tags: [] },
+  { id: 'template3', imageUrl: '/template3.jpg', tags: [] },
+  { id: 'template4', imageUrl: '/template4.png', tags: [] },
+]
 
 const TemplatePage = () => {
   const router = useRouter()
@@ -107,12 +112,12 @@ const TemplatePage = () => {
         mt={[6, 10]}
         mb="10"
       >
-        {TEMPLATES.map((templateId) => (
+        {TEMPLATES.map((templateInfo) => (
           <Template
-            key={templateId}
+            key={templateInfo.id}
             handleEditTemplate={handleEditTemplate}
             handlePreviewTemplate={handlePreviewTemplate}
-            templateId={templateId}
+            templateInfo={templateInfo}
           />
         ))}
       </Grid>
