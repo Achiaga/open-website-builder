@@ -1,13 +1,61 @@
 import Link from 'next/link'
 import { Box, Text, Button } from '@chakra-ui/react'
 
-const Projects = () => {
+const ProjectCard = ({ project }) => {
+  return (
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      background="white"
+      boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+      height="5rem"
+      borderRadius="5px"
+      padding="1rem"
+    >
+      <Text as="p">{project._id}</Text>
+      <Box>
+        <Link href="/builder" passHref>
+          <a>
+            <Button
+              marginRight="1rem"
+              variant="outline"
+              borderColor="primary.700"
+              color="primary.700"
+              _hover={{
+                background: 'primary.700',
+                color: 'white',
+              }}
+            >
+              Edit
+            </Button>
+          </a>
+        </Link>
+        <Button
+          marginRight="1rem"
+          variant="outline"
+          borderColor="black"
+          color="black"
+          _hover={{
+            borderColor: 'red.700',
+            background: 'red.700',
+            color: 'white',
+          }}
+        >
+          Delete
+        </Button>
+      </Box>
+    </Box>
+  )
+}
+
+const Projects = ({ userWebsites }) => {
   return (
     <Box marginLeft="7rem" marginTop="5rem">
       <Text as="h1" fontSize="2.3rem" fontWeight="400" fontFamily="Montserrat">
         Welcome{' '}
         <Text as="span" fontWeight="500" pl="0.5rem">
-          first_user@gmail.com
+          {userWebsites?.[0].user_email}
         </Text>
         !
       </Text>
@@ -21,47 +69,9 @@ const Projects = () => {
         >
           Projects
         </Text>
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        background="white"
-        boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-        height="5rem"
-        borderRadius="5px"
-        padding="1rem"
-      >
-        <Text as="p">Project 1</Text>
-        <Box>
-          <Link href="/builder">
-            <Button
-              marginRight="1rem"
-              variant="outline"
-              borderColor="primary.700"
-              color="primary.700"
-              _hover={{
-                background: 'primary.700',
-                color: 'white',
-              }}
-            >
-              Edit
-            </Button>
-          </Link>
-          <Button
-            marginRight="1rem"
-            variant="outline"
-            borderColor="black"
-            color="black"
-            _hover={{
-              borderColor: 'red.700',
-              background: 'red.700',
-              color: 'white',
-            }}
-          >
-            Delete
-          </Button>
-        </Box>
+        {userWebsites?.map((website) => {
+          return <ProjectCard project={website} key={website._id} />
+        })}
       </Box>
     </Box>
   )

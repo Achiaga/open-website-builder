@@ -24,3 +24,10 @@ export const getUserDataById = (id) => {
     console.error('getUserDataById', err)
   }
 }
+export const requestUser = (id) => {
+  try {
+    return request('read-user-websites', id)
+  } catch (err) {
+    console.error('getUserDataById', err)
+  }
+}

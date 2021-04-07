@@ -219,15 +219,10 @@ export const updateLayouts = (updatedLayout) => (dispatch, getState) => {
   }
 }
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
-  const builderDevice = getBuilderDevice(getState())
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  if (builderDevice === 'mobile') {
-    dispatch(setMobileLayout([...mobileLayout, newLayout]))
-  } else {
-    dispatch(setMobileLayout([...mobileLayout, newLayout]))
-    dispatch(setLayouts([...layouts, newLayout]))
-  }
+  dispatch(setMobileLayout([...mobileLayout, newLayout]))
+  dispatch(setLayouts([...layouts, newLayout]))
 }
 export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
   const builderDevice = getBuilderDevice(getState())
@@ -278,6 +273,7 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
     dispatch(setPublishStatus('success'))
   })
 }
+
 export const overwriteDBData = () => async (dispatch, getState) => {
   const builderData = getBuilderData(getState())
   const { publish, userData } = getTempDBData(getState())

@@ -1,9 +1,7 @@
 import DashboardPage from '../../components/dashboard-page'
 
-const defaultRoute = 'projects'
-
 function Dashboard() {
-  return <DashboardPage dashboardType={defaultRoute} />
+  return <DashboardPage />
 }
 
 export default Dashboard

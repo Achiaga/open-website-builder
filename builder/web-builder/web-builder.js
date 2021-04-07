@@ -123,7 +123,7 @@ const WebBuilder = () => {
       dispatch(updateHierarchy(updatedHierarchy))
       setTimeout(() => {
         dispatch(setResizingBlockId(null))
-      }, 1000)
+      }, 600)
     })
     removeHighlightedElem()
   }

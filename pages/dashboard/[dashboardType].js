@@ -1,7 +1,12 @@
+import { UserProvider } from '@auth0/nextjs-auth0'
 import DashboardPage from '../../components/dashboard-page'
 
 function Dashboard({ dashboardType }) {
-  return <DashboardPage dashboardType={dashboardType} />
+  return (
+    <UserProvider>
+      <DashboardPage dashboardType={dashboardType} />
+    </UserProvider>
+  )
 }
 
 // // This function gets called at build time

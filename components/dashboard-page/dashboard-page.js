@@ -2,9 +2,20 @@ import { Box } from '@chakra-ui/react'
 import Sidebar from './sidebar'
 import Projects from './projects'
 import Settings from './settings'
-import { defaultRoute, projects, settings } from './routesVariables'
+import { settings } from './routesVariables'
+import { useUser } from '@auth0/nextjs-auth0'
+import { useEffect, useState } from 'react'
+import { requestUser } from '../../utils/user-data'
+
+const SelectedDashboard = ({ dashboardType, ...props }) => {
+  if (dashboardType === settings) return <Settings />
+  return <Projects {...props} />
+}
 
 const Dashboard = ({ dashboardType }) => {
+  const { user, isLoading } = useUser()
+
+  const [userWebsites, setUserWebsites] = useState()
   // const redirectLogo = () => {
   //   router.push('/')
   // }
@@ -16,18 +27,16 @@ const Dashboard = ({ dashboardType }) => {
   // const handlePreviewTemplate = (id) => {
   //   router.push(`/preview/template/${id}`)
   // }
-  function DashboardSelection() {
-    switch (dashboardType) {
-      case defaultRoute:
-        return <Projects />
-      case projects:
-        return <Projects />
-      case settings:
-        return <Settings />
-      default:
-        return <Projects />
-    }
+
+  async function getUser() {
+    const { websitesData } = await requestUser(user.sub)
+    console.log(websitesData)
+    setUserWebsites(websitesData)
   }
+
+  useEffect(() => {
+    user && getUser()
+  }, [user])
 
   return (
     <Box
@@ -48,7 +57,10 @@ const Dashboard = ({ dashboardType }) => {
         minHeight="100vh"
         height="full"
       >
-        <DashboardSelection />
+        <SelectedDashboard
+          dashboardType={dashboardType}
+          userWebsites={userWebsites}
+        />
       </Box>
     </Box>
   )

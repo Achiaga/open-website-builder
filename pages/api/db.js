@@ -75,6 +75,34 @@ export async function getWebsiteData(websiteId) {
     await client.close()
   }
 }
+export async function requestUserData(userId, res) {
+  try {
+    const websiteData = await getAllUserData(userId)
+    respondAPIQuery(res, websiteData)
+  } catch (error) {
+    console.error(error)
+    respondAPIQuery(res, { error })
+  }
+}
+export async function getAllUserData(userId) {
+  if (!userId) return {}
+  const client = await getDBCredentials()
+  try {
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const cusrosUserData = await websiteCollection.find({
+      user_id: userId,
+    })
+    const data = await cusrosUserData.toArray()
+    await client.close()
+    return { websitesData: data }
+  } catch (err) {
+    console.error('getWebsiteData error', err)
+    await client.close()
+    throw err
+  }
+}
 
 function respondAPIQuery(res, data = {}, status = 200) {
   const hasError = data && data.error
@@ -100,13 +128,12 @@ export default function betaUsers(req, res) {
   const { type, data } = req.body
   switch (type) {
     case 'save':
-      updateWebsiteData(data, res)
-      break
+      return updateWebsiteData(data, res)
     case 'read-user':
-      getUserData(data, res)
-      break
+      return getUserData(data, res)
     case 'read-website':
-      requestWebsiteData(data, res)
-      break
+      return requestWebsiteData(data, res)
+    case 'read-user-websites':
+      return requestUserData(data, res)
   }
 }
