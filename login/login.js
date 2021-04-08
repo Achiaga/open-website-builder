@@ -1,7 +1,9 @@
 import { useUser } from '@auth0/nextjs-auth0'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
+
 import {
   getAccountCreated,
   getBuilderDevice,
@@ -108,7 +110,11 @@ export function Login() {
                 <MenuItem onClick={handlePublish}>
                   {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
                 </MenuItem>
-                <MenuItem>Dashboard</MenuItem>
+                <MenuItem>
+                  <Link href="/dashboard" passHref>
+                    <a>Dashboard</a>
+                  </Link>
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Box>
             ) : (

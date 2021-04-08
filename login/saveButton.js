@@ -49,6 +49,7 @@ const SaveButton = () => {
     <Card
       onClick={handleSavePage}
       fontSize="md"
+      alignItems="center"
       {...(isSaved && { backgroundColor: 'primary.500', color: 'white' })}
       _hover={
         isSaved

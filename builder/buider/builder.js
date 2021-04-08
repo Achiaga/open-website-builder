@@ -58,11 +58,11 @@ const Builder = () => {
     }
   }, [isLoading])
 
-  if (!userBlocksData)
+  if (!userBlocksData) {
     return (
       <Box
         w="100%"
-        h="100%"
+        h="100vh"
         d="flex"
         justifyContent="center"
         alignItems="center"
@@ -70,6 +70,7 @@ const Builder = () => {
         <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
       </Box>
     )
+  }
   return (
     <>
       <Box

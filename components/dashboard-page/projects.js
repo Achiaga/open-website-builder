@@ -69,9 +69,11 @@ const Projects = ({ userWebsites }) => {
         >
           Projects
         </Text>
-        {userWebsites?.map((website) => {
-          return <ProjectCard project={website} key={website._id} />
-        })}
+        <Box mt="1rem">
+          {userWebsites?.map((website) => {
+            return <ProjectCard project={website} key={website._id} />
+          })}
+        </Box>
       </Box>
     </Box>
   )
