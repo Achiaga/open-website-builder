@@ -81,6 +81,9 @@ export const builderSlice = createSlice({
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = action.payload
     },
+    setMobileEditedBlocks: (state, action) => {
+      state.builderData.mobileEditedBlocks = action.payload
+    },
     setHasMobileBeenEdited: (state) => {
       state.builderData.hasMobileBeenEdited = true
     },
@@ -125,6 +128,7 @@ export const {
   setLayout,
   setLayouts,
   setHasMobileBeenEdited,
+  setMobileEditedBlocks,
   setMobileLayout,
   setAddedBlock,
   setStructure,
@@ -206,18 +210,39 @@ export const setBlockEditable = (blockId) => (dispatch) => {
   })
 }
 
-export const updateLayouts = (updatedLayout) => (dispatch, getState) => {
-  const builderDevice = getBuilderDevice(getState())
-  const hasMobileBeenEdited = getHasMobileBeenEdited(getState())
+function applyAutoMobileLayout(mobileLayout, blockId, updatedLayout) {
+  const blockLayoutIndex = mobileLayout.findIndex(
+    (layout) => layout.i === blockId
+  )
+  const mobileLayoutUpdated = [...mobileLayout]
+  mobileLayoutUpdated[blockLayoutIndex] = updatedLayout.find(
+    (layout) => layout.i === blockId
+  )
+  return mobileLayoutUpdated
+}
 
+export const updateLayouts = (updatedLayout, blockId) => (
+  dispatch,
+  getState
+) => {
+  const builderDevice = getBuilderDevice(getState())
+  const mobileEditedBlocks = getMobileEditedBlocks(getState())
+  const mobileLayout = getMobileLayout(getState())
+  const isBlockMobileEdited = mobileEditedBlocks.includes(blockId)
   if (builderDevice === 'mobile') {
-    dispatch(setMobileLayout(updatedLayout))
-    if (!hasMobileBeenEdited) {
-      dispatch(setHasMobileBeenEdited())
-    }
-  } else {
-    if (!hasMobileBeenEdited) {
+    batch(() => {
       dispatch(setMobileLayout(updatedLayout))
+      if (!isBlockMobileEdited) {
+        dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
+      }
+    })
+  } else {
+    if (!isBlockMobileEdited) {
+      dispatch(
+        setMobileLayout(
+          applyAutoMobileLayout(mobileLayout, blockId, updatedLayout)
+        )
+      )
     }
     dispatch(setLayouts(updatedLayout))
   }
@@ -341,6 +366,8 @@ const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
 export const getHasMobileBeenEdited = (state) =>
   state.builder.builderData.hasMobileBeenEdited
+export const getMobileEditedBlocks = (state) =>
+  state.builder.builderData.mobileEditedBlocks || []
 export const getSaveStatus = (state) => state.builder.saveStatus
 export const getPublishStatus = (state) => state.builder.publishStatus
 export const getAccountCreated = (state) => state.builder.accountCreated
