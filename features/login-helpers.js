@@ -7,6 +7,7 @@ import {
   AUTH0_CUSTOM_CLAIM_PATH,
   setAccountCreated,
   setTempDBData,
+  setLoadingData,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
@@ -15,6 +16,7 @@ import { getUserDataById } from '../utils/user-data'
 async function getUserData(user, template) {
   try {
     const userData = await getUserDataById(user.sub)
+    if (!Object.keys(userData).length) return null
     return userData
   } catch (err) {
     console.error('error con getUserData', err)
@@ -62,10 +64,19 @@ const handleSingup = (user) => async (dispatch) => {
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {
+  dispatch(setLoadingData(true))
   const dbData = await getUserData(user, template)
-  const { resume_data, user_id, user_email, publish, _id } = dbData
-  const userData = { user_email, user_id, websiteId: _id }
-  dispatch(updateInitialState({ resume_data, publish, userData }))
+  const userData = { user_email: user.email, user_id: user.sub }
+  console.log(dbData)
+  if (!dbData) {
+    const resume_data = templates[template]
+    dispatch(updateInitialState({ resume_data, userData }))
+  } else {
+    const { resume_data, publish, _id } = dbData
+    userData['websiteId'] = _id
+    dispatch(updateInitialState({ resume_data, publish, userData }))
+  }
+  dispatch(setLoadingData(false))
 }
 
 export const handleLoginCallbackLoadData = (user) => async (dispatch) => {

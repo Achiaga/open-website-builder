@@ -1,12 +1,12 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Spinner } from '@chakra-ui/react'
 import Sidebar from './sidebar'
 import Projects from './projects'
 import Settings from './settings'
 import { settings } from './routesVariables'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useEffect } from 'react'
-import { loadUserInitialData, getUserProjects } from '../../features/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { loadUserInitialData } from '../../features/userSlice'
+import { useDispatch } from 'react-redux'
 
 const SelectedDashboard = ({ dashboardType, ...props }) => {
   if (dashboardType === settings) return <Settings />
@@ -16,11 +16,24 @@ const SelectedDashboard = ({ dashboardType, ...props }) => {
 const Dashboard = ({ dashboardType }) => {
   const { user } = useUser()
   const dispatch = useDispatch()
-  const userProjects = useSelector(getUserProjects)
 
   useEffect(() => {
     user && dispatch(loadUserInitialData(user.sub))
   }, [user])
+
+  if (!user) {
+    return (
+      <Box
+        w="100%"
+        h="100vh"
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
+      </Box>
+    )
+  }
 
   return (
     <Box
@@ -38,13 +51,9 @@ const Dashboard = ({ dashboardType }) => {
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="flex-start"
-        minHeight="100vh"
-        height="full"
+        height="100vh"
       >
-        <SelectedDashboard
-          dashboardType={dashboardType}
-          userWebsites={userProjects}
-        />
+        <SelectedDashboard dashboardType={dashboardType} user={user} />
       </Box>
     </Box>
   )

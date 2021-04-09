@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { WebBuilder } from '../web-builder'
 import { BuilderSidebar } from '../sidebar'
-import { getBuilderData } from '../../features/builderSlice'
+import { getBuilderData, getIsLoadingData } from '../../features/builderSlice'
 import { SettingsBar } from '../sidebar/settingsBar'
 import MobileVersion from '../web-builder/mobile-version'
 import { loadInitialData } from '../../features/builderSlice'
@@ -23,6 +23,7 @@ function getParams() {
 
 const Builder = () => {
   const userBlocksData = useSelector(getBuilderData)
+  const isLoadingData = useSelector(getIsLoadingData)
   const router = useRouter()
   const { user, isLoading } = useUser()
   const dispatch = useDispatch()
@@ -57,8 +58,8 @@ const Builder = () => {
       removeURLQuery()
     }
   }, [isLoading])
-
-  if (!userBlocksData) {
+  console.log(user)
+  if (!userBlocksData || isLoadingData) {
     return (
       <Box
         w="100%"

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { requestUser } from '../utils/user-data'
+import { requestUser, requestRemoveProject } from '../utils/user-data'
 
 const initialState = {
   projects: null,
@@ -15,10 +15,14 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setUserProjects } = userSlice.actions
+export const { setUserProjects, setRemoveProjectStatus } = userSlice.actions
 
 export const loadUserInitialData = (userId) => async (dispatch) => {
   const { websitesData } = await requestUser(userId)
+  dispatch(setUserProjects(websitesData))
+}
+export const removeProject = (projectId, userId) => async (dispatch) => {
+  const { websitesData } = await requestRemoveProject({ projectId, userId })
   dispatch(setUserProjects(websitesData))
 }
 

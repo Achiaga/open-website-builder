@@ -19,14 +19,6 @@ const TemplatePage = () => {
     router.push('/')
   }
 
-  const handleEditTemplate = (id) => {
-    router.push(`/builder?template=${id}`)
-  }
-
-  const handlePreviewTemplate = (id) => {
-    router.push(`/preview/template/${id}`)
-  }
-
   return (
     <Box>
       <Box
@@ -113,12 +105,7 @@ const TemplatePage = () => {
         mb="10"
       >
         {TEMPLATES.map((templateInfo) => (
-          <Template
-            key={templateInfo.id}
-            handleEditTemplate={handleEditTemplate}
-            handlePreviewTemplate={handlePreviewTemplate}
-            templateInfo={templateInfo}
-          />
+          <Template key={templateInfo.id} templateInfo={templateInfo} />
         ))}
       </Grid>
     </Box>

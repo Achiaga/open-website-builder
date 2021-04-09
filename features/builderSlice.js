@@ -40,6 +40,9 @@ export const builderSlice = createSlice({
     setInitialBuilderData: (state, action) => {
       state.builderData = action.payload
     },
+    setLoadingData: (state, action) => {
+      state.loadingData = action.payload
+    },
     //This functions are to let the user overwrite DB data
     setTempDBData: (state, action) => {
       //We store here the DB data while the user decides
@@ -137,6 +140,7 @@ export const {
   setSaveStatus,
   setPublishStatus,
   setAccountCreated,
+  setLoadingData,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -298,6 +302,7 @@ export const denyOverwriteData = () => (dispatch, getState) => {
 //***************************************************************
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
 export const getWebsiteId = (state) => state.builder.user.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
