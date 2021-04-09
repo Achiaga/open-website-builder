@@ -58,7 +58,9 @@ const Builder = () => {
       removeURLQuery()
     }
   }, [isLoading])
+
   console.log(user)
+
   if (!userBlocksData || isLoadingData) {
     return (
       <Box

@@ -3,7 +3,7 @@ import Sidebar from './sidebar'
 import Projects from './projects'
 import Settings from './settings'
 import { settings } from './routesVariables'
-import { useUser } from '@auth0/nextjs-auth0'
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { useEffect } from 'react'
 import { loadUserInitialData } from '../../features/userSlice'
 import { useDispatch } from 'react-redux'
@@ -59,4 +59,4 @@ const Dashboard = ({ dashboardType }) => {
   )
 }
 
-export default Dashboard
+export default withPageAuthRequired(Dashboard)

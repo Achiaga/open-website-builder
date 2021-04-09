@@ -69,8 +69,7 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
   const userData = { user_email: user.email, user_id: user.sub }
   console.log(dbData)
   if (!dbData) {
-    const resume_data = templates[template]
-    dispatch(updateInitialState({ resume_data, userData }))
+    dispatch(loadInitialDataNoAccount(template))
   } else {
     const { resume_data, publish, _id } = dbData
     userData['websiteId'] = _id
