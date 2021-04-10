@@ -364,6 +364,8 @@ const bulkDuplicate = (allChilds) => (dispatch, getState) => {
         ...oldLayouts.find((layoutItem) => layoutItem.i === childId),
       }
       layoutItem.i = `${blockData.type}-${uuid()}`
+      layoutItem.x = layoutItem.x + 10
+      layoutItem.y = layoutItem.y + 10
       newLayoutItems.push(layoutItem)
       newBlocks[layoutItem.i] = blockData
     }
@@ -384,6 +386,8 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
     ...oldLayouts.find((layoutItem) => layoutItem.i === blockId),
   }
   duplicatedBlockLayout.i = `${blockType}-${uuid()}`
+  duplicatedBlockLayout.x = duplicatedBlockLayout.x + 10
+  duplicatedBlockLayout.y = duplicatedBlockLayout.y + 10
   batch(() => {
     dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
     dispatch(setBulkAddItems({ layouts: newLayoutItems, blocks: newBlocks }))
