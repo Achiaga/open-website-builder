@@ -20,6 +20,7 @@ const Card = ({ children, ...props }) => {
         bg: 'white',
         border: '1px solid black',
       }}
+      {...(props.active && { backgroundColor: 'white' })}
       {...props}
     >
       {children}

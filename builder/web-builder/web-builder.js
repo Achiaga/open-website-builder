@@ -65,13 +65,8 @@ const blocksZIndex = {
 
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const {
-    blocks,
-    hierarchy: desktopHierarchy,
-    mobileHierarchy,
-    mobileLayout,
-    layouts: desktopLayout,
-  } = useSelector(getBuilderData)
+  const builderData = useSelector(getBuilderData)
+  const { blocks } = builderData
 
   const layouts = useSelector(getLayout)
   const hierarchy = useSelector(getHierarchy)
@@ -81,13 +76,7 @@ const WebBuilder = () => {
   const lastHoveredEl = useRef()
 
   useEffect(() => {
-    saveOnLocal({
-      blocks,
-      hierarchy: desktopHierarchy,
-      layouts: desktopLayout,
-      mobileLayout,
-      mobileHierarchy,
-    })
+    saveOnLocal(builderData)
     dispatch(setSaveStatus('null'))
   }, [blocks, layouts, hierarchy])
 
@@ -119,11 +108,11 @@ const WebBuilder = () => {
   function handleLayoutChange(newLayout, __, newItem) {
     const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
     batch(() => {
-      dispatch(updateLayouts(newLayout))
+      dispatch(updateLayouts(newLayout, newItem.i))
       dispatch(updateHierarchy(updatedHierarchy))
       setTimeout(() => {
         dispatch(setResizingBlockId(null))
-      }, 1000)
+      }, 600)
     })
     removeHighlightedElem()
   }
