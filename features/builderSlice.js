@@ -10,6 +10,7 @@ import {
   removeblockFromState,
   findBlockParentId,
   getParentBlock,
+  isBlockInHierarchy,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -80,9 +81,13 @@ export const builderSlice = createSlice({
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
     },
     setBulkAddItems: (state, action) => {
-      const { blocks, layouts } = action.payload
+      const { blocks, layouts, hierarchy } = action.payload
       state.builderData.layouts = [...state.builderData.layouts, ...layouts]
       state.builderData.blocks = { ...state.builderData.blocks, ...blocks }
+      state.builderData.hierarchy = {
+        ...state.builderData.hierarchy,
+        ...hierarchy,
+      }
     },
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = action.payload
@@ -104,7 +109,6 @@ export const builderSlice = createSlice({
     },
     setAddedBlock: (state, action) => {
       const { blockID, newBlockData } = action.payload
-      console.log({ blockID, newBlockData })
       state.builderData.blocks[blockID] = newBlockData
     },
     setStructure: (state, action) => {
@@ -345,33 +349,59 @@ export const denyOverwriteData = () => (dispatch, getState) => {
   dispatch(setTempDBData(null))
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
-  console.log(blockLayout, newBlockData)
   batch(() => {
     dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
     dispatch(addNewLayoutItem(blockLayout))
     dispatch(setNewDropBlock({ type: null }))
   })
 }
-const bulkDuplicate = (allChilds) => (dispatch, getState) => {
-  const oldLayouts = getLayout(getState())
+
+const addDuplicatedToHierarchy = (
+  newHierarchy,
+  childId,
+  oldHierarchy,
+  relationsTable
+) => {
+  const updatedHierarchy = { ...newHierarchy }
+  const parent = isBlockInHierarchy(oldHierarchy, childId)
+  updatedHierarchy[relationsTable[parent]] = [
+    ...(updatedHierarchy[relationsTable[parent]] || []),
+    relationsTable[childId],
+  ]
+  return updatedHierarchy
+}
+const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
+  const oldLayouts = getLayout(state)
+  const oldHierarchy = getHierarchy(state)
+  let newHierarchy = { [newBlockId]: [] }
   const newLayoutItems = []
   const newBlocks = {}
+  const relationsTable = { [blockId]: newBlockId }
   for (let childId of allChilds) {
-    const blockData = getBlockData(childId)(getState())
+    const blockData = getBlockData(childId)(state)
     if (blockData) {
-      console.log('blockData', blockData)
       const layoutItem = {
         ...oldLayouts.find((layoutItem) => layoutItem.i === childId),
       }
-      layoutItem.i = `${blockData.type}-${uuid()}`
+      const newBlockId = `${blockData.type}-${uuid()}`
+      layoutItem.i = newBlockId
       layoutItem.x = layoutItem.x + 10
       layoutItem.y = layoutItem.y + 10
       newLayoutItems.push(layoutItem)
       newBlocks[layoutItem.i] = blockData
+      relationsTable[childId] = newBlockId
+      newHierarchy = addDuplicatedToHierarchy(
+        newHierarchy,
+        childId,
+        oldHierarchy,
+        relationsTable
+      )
     }
   }
-  return { newLayoutItems, newBlocks }
+
+  return { newLayoutItems, newBlocks, newHierarchy }
 }
+
 // This is only for internal use
 export const duplicateBlock = (blockId) => (dispatch, getState) => {
   const blockData = getBlockData(blockId)(getState())
@@ -380,17 +410,31 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
 
   const oldHierarchy = getHierarchy(getState())
   const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
-  const { newLayoutItems, newBlocks } = dispatch(bulkDuplicate(allChilds))
 
   const duplicatedBlockLayout = {
     ...oldLayouts.find((layoutItem) => layoutItem.i === blockId),
   }
-  duplicatedBlockLayout.i = `${blockType}-${uuid()}`
+  const newBlockId = `${blockType}-${uuid()}`
+  duplicatedBlockLayout.i = newBlockId
   duplicatedBlockLayout.x = duplicatedBlockLayout.x + 10
   duplicatedBlockLayout.y = duplicatedBlockLayout.y + 10
+
+  const { newLayoutItems, newBlocks, newHierarchy } = bulkDuplicate(
+    allChilds,
+    blockId,
+    newBlockId,
+    getState()
+  )
+
   batch(() => {
     dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
-    dispatch(setBulkAddItems({ layouts: newLayoutItems, blocks: newBlocks }))
+    dispatch(
+      setBulkAddItems({
+        layouts: newLayoutItems,
+        blocks: newBlocks,
+        hierarchy: newHierarchy,
+      })
+    )
   })
 }
 

@@ -109,9 +109,9 @@ function findItemParent(item, parents) {
   )
 }
 
-function isBlockInHierarchy(hierarchy, item) {
+export function isBlockInHierarchy(hierarchy, itemId) {
   return Object.keys(hierarchy).reduce((acc, parentId) => {
-    const isParentsChild = hierarchy[parentId].find((child) => child === item.i)
+    const isParentsChild = hierarchy[parentId].find((child) => child === itemId)
     if (isParentsChild) return parentId
     return acc
   }, null)
@@ -199,7 +199,7 @@ function breaksSpaceTime(hierarchy, newItemId, newParentId) {
 export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
   let updatedHierarchy = { ...(hierarchy || {}) }
   const newParent = getParentBlock(newLayout, newItem, hierarchy)
-  const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem)
+  const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem?.i)
   if (shoudlRemoveChildFromOldParent(oldParentId, newParent)) {
     updatedHierarchy = removeChildFromOldParent(
       updatedHierarchy,
