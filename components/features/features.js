@@ -41,7 +41,7 @@ const Features = () => {
     setTextIndex(Number(id))
   }
 
-  const handleButton = (e) => {
+  const handleButton = () => {
     AnalyticsEvent('modal_open', 'features')
     router.push('/templates')
   }
@@ -86,7 +86,9 @@ const Features = () => {
         <Text as="span" color="primary.500">
           {t.features.title_color_4}
         </Text>
-        {t.features.title_5}
+        <Text as="span" d={['none', 'block']} justifyContent="center">
+          {t.features.title_5}
+        </Text>
       </Text>
       <Text
         as="h2"
@@ -113,8 +115,9 @@ const Features = () => {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          w={['100%', '60%']}
-          minW={'700px'}
+          w={['100%', '100%']}
+          height={['60vw', '40vw']}
+          pos="relative"
         >
           {textIndex === 2 ? (
             <video autoPlay muted width={500}>
@@ -125,8 +128,8 @@ const Features = () => {
             <Image
               src={selectedImg}
               alt="features_simple_image"
-              width={700}
-              height={446}
+              layout="fill"
+              objectFit="contain"
             />
           )}
         </Box>
