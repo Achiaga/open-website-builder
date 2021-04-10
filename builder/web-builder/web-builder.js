@@ -171,6 +171,7 @@ const WebBuilder = () => {
         }}
         layout={layouts}
         hierarchy={hierarchy}
+        draggableHandle=".draggHandle"
       >
         {layouts
           .map(({ i }) => {
