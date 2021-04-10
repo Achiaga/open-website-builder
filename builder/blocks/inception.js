@@ -3,10 +3,14 @@ import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 
 const BlockInception = (props) => {
+  const border = props.border === 'none' ? '1px dashed black' : props.border
   const inceptionModifiers = {
     backgroundColor: props.backgroundColor,
     boxShadow: props.boxShadow,
+    border: border,
+    borderRadius: props.borderRadius,
   }
+  console.log(props.border)
   return (
     <Box
       width="100%"

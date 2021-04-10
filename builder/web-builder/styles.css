@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   background-origin: content-box;
   box-sizing: border-box;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+');
+  /* background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWAgMAAAC52oSoAAAACVBMVEUAAAAkMUH///+gCSacAAAAAXRSTlMAQObYZgAAABdJREFUCNdjAAGugIGiVoEAnAoFARgFAOeDEYv7AULEAAAAAElFTkSuQmCC'); */
   background-position: bottom right;
   padding: 0 3px 3px 0;
 }
@@ -38,7 +38,6 @@
 .react-resizable-handle-w,
 .react-resizable-handle-e {
   top: 50%;
-  margin-top: -10px;
   cursor: ew-resize;
 }
 .react-resizable-handle-w {
@@ -118,8 +117,8 @@
   bottom: 3px;
   width: 5px;
   height: 5px;
-  border-right: 2px solid rgba(0, 0, 0, 0.4);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  /* border-right: 2px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4); */
 }
 
 .react-resizable-hide > .react-resizable-handle {
@@ -152,28 +151,32 @@
 .react-grid-item > .react-resizable-handle.react-resizable-handle-w,
 .react-grid-item > .react-resizable-handle.react-resizable-handle-e {
   top: 50%;
-  margin-top: -10px;
   cursor: ew-resize;
 }
 .react-grid-item > .react-resizable-handle.react-resizable-handle-w {
   left: 0;
-  transform: rotate(135deg);
+  transform: translate(0%, -50%);
+  height: 50%;
 }
 .react-grid-item > .react-resizable-handle.react-resizable-handle-e {
   right: 0;
-  transform: rotate(315deg);
+  transform: translate(0%, -50%);
+  height: 50%;
 }
 .react-grid-item > .react-resizable-handle.react-resizable-handle-n,
 .react-grid-item > .react-resizable-handle.react-resizable-handle-s {
   left: 50%;
-  margin-left: -10px;
   cursor: ns-resize;
 }
 .react-grid-item > .react-resizable-handle.react-resizable-handle-n {
   top: 0;
-  transform: rotate(225deg);
+  right: 0;
+  width: 50%;
+  transform: translate(-50%, 0px);
 }
 .react-grid-item > .react-resizable-handle.react-resizable-handle-s {
   bottom: 0;
-  transform: rotate(45deg);
+  width: 50%;
+  transform: rotate(0deg);
+  transform: translate(-50%, 0px);
 }

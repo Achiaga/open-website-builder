@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
 import Image from './image'
+import { RiDragMove2Fill } from 'react-icons/ri'
 import GenericText, { PrevText } from './text'
 import BlockInception from './inception'
 import { PrevInception } from './prevInception'
@@ -41,6 +42,21 @@ ResizingCounter.propTypes = {
   blockId: PropTypes.string,
 }
 
+const DragHandle = () => {
+  return (
+    <Box
+      rounded="5px"
+      boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
+      className="draggHandle"
+      pos="absolute"
+      left="0px"
+      bg="white"
+    >
+      <RiDragMove2Fill size="34px" />
+    </Box>
+  )
+}
+
 export function BuilderBlock({ blockId }) {
   const dispatch = useDispatch()
   const { type, data } = useSelector(getBlockData(blockId))
@@ -49,6 +65,8 @@ export function BuilderBlock({ blockId }) {
   const isMobileBuilder = useSelector(getIsMobileBuilder)
 
   const isEditable = selectedBlockId === blockId
+
+  const dragHandle = isEditable && type === 'text' && !isMobileBuilder
 
   return (
     <Box
@@ -63,10 +81,12 @@ export function BuilderBlock({ blockId }) {
       outline="2px solid"
       outlineColor={isEditable ? 'primary.500' : 'transparent'}
       transition="outline-color .3s"
+      className={!dragHandle && 'draggHandle'}
     >
       {isEditable && !isMobileBuilder && (
         <BlockModifiers data={data} blockKey={blockId} blockType={type} />
       )}
+      {dragHandle && <DragHandle />}
       <ResizingCounter blockId={blockId} />
       <GenericBlock parentBlockId={blockId} {...data} />
     </Box>

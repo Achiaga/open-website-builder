@@ -75,7 +75,7 @@ export default class ReactGridLayout extends React.Component {
       h: 1,
       w: 1,
     },
-    resizeHandles: ['se'],
+    resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'],
     onLayoutChange: noop,
     onDragStart: noop,
     onDrag: noop,

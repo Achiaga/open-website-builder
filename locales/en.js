@@ -6,7 +6,7 @@ export default {
     title_1: 'Build your ',
     title_color_2: 'Online ',
     title_color_3: 'Portfolio ',
-    title_4: 'in 5 mins',
+    title_4: 'in 15 mins',
     subtitle:
       "Your next resume won't be a document, it will be a website. Free, simple, breath-taking web resume. ",
     button: 'Create your Portfolio',
