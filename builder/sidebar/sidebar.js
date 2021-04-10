@@ -73,7 +73,7 @@ const BuilderSidebar = () => {
         d="flex"
         alignItems="center"
         cursor="pointer"
-        boxShadow="0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
+        boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
         _hover={{
           bg: !isMobile && 'white',
           border: !isMobile && '1px solid',

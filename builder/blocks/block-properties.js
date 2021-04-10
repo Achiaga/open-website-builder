@@ -360,7 +360,7 @@ const imageInput = {
   placeholder: 'Img',
   icon: <ImageIcon />,
   tooltip:
-    'Copy the "Image Adress" of the Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
+    'Copy the "Image Adress" of your Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
   inputPlaceholder: 'Enter your link',
   property: 'imageUrl',
 }

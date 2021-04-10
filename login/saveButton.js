@@ -29,7 +29,7 @@ const SaveButton = () => {
         onClick={handleSavePage}
         fontSize="md"
         active={true}
-        w="100px"
+        w="4.3rem"
         d="flex"
         alignItems="center"
       >
@@ -49,9 +49,9 @@ const SaveButton = () => {
               backgroundColor: 'primary.700',
               color: 'white',
             }
-          : { backgroundColor: 'white' }
+          : { backgroundColor: 'white', border: '1px solid black' }
       }
-      w="100px"
+      w="4.3rem"
     >
       {isSaved ? (
         <Box d="flex">

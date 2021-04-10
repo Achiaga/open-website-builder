@@ -83,7 +83,7 @@ export function Login() {
       {tempData && <OverwriteDBWarning />}
       <SaveButton />
       <Box w="full">
-        <Card onClick={handleMenuOption}>
+        <Card alignItems="center" onClick={handleMenuOption}>
           <IoMenu size={24} />
         </Card>
         {isMenuOpen && (
@@ -93,6 +93,7 @@ export function Login() {
             flexDir="column"
             bg="white"
             borderRadius="10px"
+            boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
           >
             <Box>
               <MenuItem>
