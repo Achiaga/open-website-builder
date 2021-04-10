@@ -5,7 +5,76 @@ import { useTranslation } from '../../hooks/translation'
 import CheckIcon from '../../assets/check-icon'
 import CloseIcon from '../../assets/close-icon'
 import BackgroundCircles from './background'
-import ImageSlider from './img-slider'
+import ImageMobileSlider from './img-slider'
+
+const Item2 = {
+  title: 'sexy_1',
+  colorTitle: 'sexy_color_2',
+  title2: 'sexy_3',
+  imageUrl: '/sexy.png',
+  alt: 'sexy',
+  color: 'green.400',
+  icon: CheckIcon,
+}
+const Item1 = {
+  title: 'un_sexy_1',
+  colorTitle: 'un_sexy_color_2',
+  title2: 'un_sexy_3',
+  imageUrl: '/unsexy.png',
+  alt: 'unsexy_image',
+  color: 'red.400',
+  icon: CloseIcon,
+}
+
+const ComparisionItem = ({ item }) => {
+  const [t] = useTranslation()
+  return (
+    <Box
+      display={['none', 'flex']}
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      w="100%"
+      h="100%"
+      ml="15px"
+    >
+      <Box display={['none', 'flex']} pb={8}>
+        {item.icon()}
+        <Text
+          as="p"
+          pl="1.5rem"
+          fontSize="36px"
+          lineHeight="43.2px"
+          textAlign="center"
+          fontWeight="700"
+        >
+          {t.comparison[item.title]}
+          <Text as="span" color={item.color}>
+            {t.comparison[item.colorTitle]}
+          </Text>
+          {t.comparison[item.title2]}
+        </Text>
+      </Box>
+      <Box
+        width="40vw"
+        height="50vw"
+        boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+        borderRadius="5px"
+        overflow="hidden"
+        pos="relative"
+      >
+        <Image
+          src={item.imageUrl}
+          alt={item.alt}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="left top"
+          boxShadow="rgba(0, 0, 0, 0.56) 0px 22px 70px 4px"
+        />
+      </Box>
+    </Box>
+  )
+}
 
 const Comparison = () => {
   const [t] = useTranslation()
@@ -63,7 +132,7 @@ const Comparison = () => {
         >
           {t.comparison.subtitle}
         </Text>
-        <ImageSlider />
+        <ImageMobileSlider />
         <Box
           position="relative"
           display={['none', 'flex']}
@@ -73,100 +142,8 @@ const Comparison = () => {
           pt="5rem"
           px="2rem"
         >
-          <Box
-            display={['none', 'flex']}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            w="100%"
-            h="100%"
-            mr="15px"
-          >
-            <Box display="flex" pb={8}>
-              <CloseIcon />
-              <Text
-                as="p"
-                pl="1.5rem"
-                fontSize="36px"
-                lineHeight="43.2px"
-                textAlign="center"
-                fontWeight="700"
-              >
-                {t.comparison.un_sexy_1}
-                <Text as="span" color="red.400">
-                  {t.comparison.un_sexy_color_2}
-                </Text>
-                {t.comparison.un_sexy_3}
-              </Text>
-            </Box>
-            <div
-              style={{
-                position: 'relative',
-                width: '520px',
-                height: '735px',
-                borderRadius: '5px',
-                overflow: 'hidden',
-                boxShadow:
-                  '0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
-              }}
-            >
-              <Image
-                style={{
-                  clipPath: 'inset(0 0 0 50%)',
-                }}
-                src={'/unsexy.png'}
-                alt="unsexy_image"
-                width={520}
-                height={735}
-              />
-            </div>
-          </Box>
-          <Box
-            display={['none', 'flex']}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            w="100%"
-            h="100%"
-            ml="15px"
-          >
-            <Box display={['none', 'flex']} pb={8}>
-              <CheckIcon />
-              <Text
-                as="p"
-                pl="1.5rem"
-                fontSize="36px"
-                lineHeight="43.2px"
-                textAlign="center"
-                fontWeight="700"
-              >
-                {t.comparison.sexy_1}
-                <Text as="span" color="green.400">
-                  {t.comparison.sexy_color_2}
-                </Text>
-                {t.comparison.sexy_3}
-              </Text>
-            </Box>
-            <div
-              style={{
-                position: 'relative',
-                width: '520px',
-                height: '735px',
-                borderRadius: '5px',
-                overflow: 'hidden',
-                boxShadow:
-                  '0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
-              }}
-            >
-              <Image
-                src={'/sexy.png'}
-                alt="sexy"
-                width={520}
-                height={735}
-                boxShadow="rgba(0, 0, 0, 0.56) 0px 22px 70px 4px"
-              />
-            </div>
-          </Box>
+          <ComparisionItem item={Item1} />
+          <ComparisionItem item={Item2} />
         </Box>
       </Box>
     </Box>

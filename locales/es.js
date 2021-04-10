@@ -19,11 +19,11 @@ export default {
     subtitle:
       'Antfolio te permite tener un currículum completo en una web online. Diferenciarse del resto mostrando un currículum divertido, original y excepcional en lugar de un CV de papel. Siempre accesible - 100% personalizable',
     un_sexy_1: 'Tu viejo ',
-    un_sexy_color_2: 'unsexy ',
+    un_sexy_color_2: 'aburrido ',
     un_sexy_3: 'Currículum',
     sexy_1: 'Tu nuevo ',
     sexy_1_mobile: 'Desliza para tu nuevo ',
-    sexy_color_2: 'sexy ',
+    sexy_color_2: 'exitoso ',
     sexy_3: 'Currículum',
     sexy_3_mobile: 'CV',
   },

@@ -18,11 +18,11 @@ export default {
     title_color_4: 'hired ',
     subtitle:
       'Antfolio allows you to have a full resume on an online website. Differentiate yourself from the rest by showing a fun, original, outstanding resume instead of a piece of paper. Always accessible - 100% customizable',
-    un_sexy_1: 'Your old ',
-    un_sexy_color_2: 'unsexy ',
+    un_sexy_1: 'Old ',
+    un_sexy_color_2: 'Boring ',
     un_sexy_3: 'Resume',
-    sexy_1: 'Your new ',
-    sexy_color_2: 'sexy ',
+    sexy_1: 'New ',
+    sexy_color_2: 'Engaging ',
     sexy_3: 'Resume',
   },
   features: {
