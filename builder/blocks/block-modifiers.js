@@ -1,4 +1,4 @@
-import { Box, Text, Button, Input } from '@chakra-ui/react'
+import { Box, Text, Button, Input, Tooltip, Grid } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Portal } from '../usePortal'
@@ -12,7 +12,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
 import { deleteProperty } from './block-properties'
-import { Tooltip } from '@chakra-ui/react'
 
 const CustomToolTip = ({ label, children }) => {
   return (
@@ -315,7 +314,9 @@ function EmojiDropDownSelector({
           {icon}
         </Button>
       </CustomToolTip>
-      <Box
+      <Grid
+        templateColumns="repeat(5, 1fr)"
+        gap={1}
         position="absolute"
         top={checkDisplayTop}
         bottom={checkDisplayBottom}
@@ -323,6 +324,8 @@ function EmojiDropDownSelector({
         right={isBlockAtRight ? '0px' : 'unset'}
         bg="white"
         rounded="5px"
+        height={isOpen && '5.5rem'}
+        overflow="scroll"
         zIndex="999999"
         boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
       >
@@ -333,11 +336,11 @@ function EmojiDropDownSelector({
                 bg="transparent"
                 onClick={handleChange}
                 key={index}
-                w="6rem"
+                w="1rem"
                 display="flex"
-                justifyContent="space-between"
+                justifyContent="center"
                 height="2rem"
-                fontSize="14px"
+                fontSize="18px"
                 background={`${optionValue === value && '#bdd4f95e'}`}
                 _hover={
                   optionValue === value
@@ -354,7 +357,7 @@ function EmojiDropDownSelector({
               </Button>
             )
           })}
-      </Box>
+      </Grid>
     </Box>
   )
 }
