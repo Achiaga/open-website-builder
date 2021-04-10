@@ -14,6 +14,7 @@ import {
   getResizingBlock,
   getSelectedBlockId,
   setBlockEditable,
+  duplicateBlock,
 } from '../../features/builderSlice'
 
 const blocks = {
@@ -68,6 +69,10 @@ export function BuilderBlock({ blockId }) {
 
   const dragHandle = isEditable && type === 'text' && !isMobileBuilder
 
+  function handleClick() {
+    dispatch(duplicateBlock(blockId))
+  }
+
   return (
     <Box
       width="100%"
@@ -84,7 +89,20 @@ export function BuilderBlock({ blockId }) {
       className={!dragHandle && 'draggHandle'}
     >
       {isEditable && !isMobileBuilder && (
-        <BlockModifiers data={data} blockKey={blockId} blockType={type} />
+        <>
+          <BlockModifiers data={data} blockKey={blockId} blockType={type} />
+          {/* This is only for internal use */}
+          <Box
+            onClick={handleClick}
+            pos="absolute"
+            top="0"
+            bg="white"
+            zIndex="9999"
+            cursor="pointer"
+          >
+            Duplicate
+          </Box>
+        </>
       )}
       {dragHandle && <DragHandle />}
       <ResizingCounter blockId={blockId} />

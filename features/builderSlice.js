@@ -18,6 +18,7 @@ import {
   updateInitialState,
 } from './login-helpers'
 import { saveData } from '../login/helpers'
+import { findAllChildren } from '../components/react-grid-layout/utils'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -78,6 +79,11 @@ export const builderSlice = createSlice({
     setLayout: (state, action) => {
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
     },
+    setBulkAddItems: (state, action) => {
+      const { blocks, layouts } = action.payload
+      state.builderData.layouts = [...state.builderData.layouts, ...layouts]
+      state.builderData.blocks = { ...state.builderData.blocks, ...blocks }
+    },
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = action.payload
     },
@@ -98,6 +104,7 @@ export const builderSlice = createSlice({
     },
     setAddedBlock: (state, action) => {
       const { blockID, newBlockData } = action.payload
+      console.log({ blockID, newBlockData })
       state.builderData.blocks[blockID] = newBlockData
     },
     setStructure: (state, action) => {
@@ -145,6 +152,7 @@ export const {
   setPublishStatus,
   setAccountCreated,
   setLoadingData,
+  setBulkAddItems,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -292,6 +300,7 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
     dispatch(setNewDropBlock({ type: null }))
   })
 }
+
 export const publishWebsite = (user) => async (dispatch, getState) => {
   dispatch(setPublishStatus('loading'))
   const builderData = getBuilderData(getState())
@@ -334,6 +343,51 @@ export const denyOverwriteData = () => (dispatch, getState) => {
   const tempInitialData = getTempDBData(getState())
   dispatch(updateInitialState(tempInitialData))
   dispatch(setTempDBData(null))
+}
+export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
+  console.log(blockLayout, newBlockData)
+  batch(() => {
+    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
+    dispatch(addNewLayoutItem(blockLayout))
+    dispatch(setNewDropBlock({ type: null }))
+  })
+}
+const bulkDuplicate = (allChilds) => (dispatch, getState) => {
+  const oldLayouts = getLayout(getState())
+  const newLayoutItems = []
+  const newBlocks = {}
+  for (let childId of allChilds) {
+    const blockData = getBlockData(childId)(getState())
+    if (blockData) {
+      console.log('blockData', blockData)
+      const layoutItem = {
+        ...oldLayouts.find((layoutItem) => layoutItem.i === childId),
+      }
+      layoutItem.i = `${blockData.type}-${uuid()}`
+      newLayoutItems.push(layoutItem)
+      newBlocks[layoutItem.i] = blockData
+    }
+  }
+  return { newLayoutItems, newBlocks }
+}
+// This is only for internal use
+export const duplicateBlock = (blockId) => (dispatch, getState) => {
+  const blockData = getBlockData(blockId)(getState())
+  const blockType = blockData.type
+  const oldLayouts = getLayout(getState())
+
+  const oldHierarchy = getHierarchy(getState())
+  const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
+  const { newLayoutItems, newBlocks } = dispatch(bulkDuplicate(allChilds))
+
+  const duplicatedBlockLayout = {
+    ...oldLayouts.find((layoutItem) => layoutItem.i === blockId),
+  }
+  duplicatedBlockLayout.i = `${blockType}-${uuid()}`
+  batch(() => {
+    dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
+    dispatch(setBulkAddItems({ layouts: newLayoutItems, blocks: newBlocks }))
+  })
 }
 
 // SELECTORS ****************************************************
