@@ -67,9 +67,11 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
   dispatch(setLoadingData(true))
   const dbData = await getUserData(user, template)
   const userData = { user_email: user.email, user_id: user.sub }
-  console.log(dbData)
   if (!dbData) {
-    dispatch(loadInitialDataNoAccount(template))
+    batch(() => {
+      dispatch(loadInitialDataNoAccount(template))
+      dispatch(setUserData({ user_email: user.email, user_id: user.sub }))
+    })
   } else {
     const { resume_data, publish, _id } = dbData
     userData['websiteId'] = _id

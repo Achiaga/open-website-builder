@@ -46,13 +46,7 @@ const ProjectCard = ({ project }) => {
         <Button
           marginRight="1rem"
           variant="outline"
-          borderColor="black"
-          color="black"
-          _hover={{
-            borderColor: 'red.700',
-            background: 'red.700',
-            color: 'white',
-          }}
+          colorScheme="red"
           onClick={handleRemoveProject}
         >
           {isRemoving ? <Spinner color="red" /> : 'Delete'}
@@ -62,6 +56,26 @@ const ProjectCard = ({ project }) => {
   )
 }
 
+const ProjectsCards = ({ userProjects }) => {
+  if (!userProjects) return <Spinner />
+  return (
+    <Box mt="1rem" mb="1rem">
+      {userProjects?.length ? (
+        userProjects?.map((website) => {
+          return <ProjectCard project={website} key={website._id} />
+        })
+      ) : (
+        <Link href="/templates" passHref>
+          <a>
+            <Button marginRight="1rem" colorScheme="primary">
+              Create New Project
+            </Button>
+          </a>
+        </Link>
+      )}
+    </Box>
+  )
+}
 const Projects = ({ user }) => {
   const userProjects = useSelector(getUserProjects)
   return (
@@ -83,21 +97,7 @@ const Projects = ({ user }) => {
         >
           Projects
         </Text>
-        <Box mt="1rem" mb="1rem">
-          {userProjects?.length ? (
-            userProjects?.map((website) => {
-              return <ProjectCard project={website} key={website._id} />
-            })
-          ) : (
-            <Link href="/templates" passHref>
-              <a>
-                <Button marginRight="1rem" colorScheme="primary">
-                  Create New Project
-                </Button>
-              </a>
-            </Link>
-          )}
-        </Box>
+        <ProjectsCards userProjects={userProjects} />
       </Box>
     </Box>
   )

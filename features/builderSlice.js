@@ -303,6 +303,23 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
   })
 }
 
+export const saveWebsite = (user) => async (dispatch, getState) => {
+  dispatch(setSaveStatus('loading'))
+  const builderData = getBuilderData(getState())
+  const userData = getUserData(getState())
+  const res = await saveData({ user, builderData })
+  const updatedUserData = {
+    isPublish: res.publish,
+    user_email: res.user_email,
+    user_id: res.user_id,
+    websiteId: res._id || userData?.websiteId,
+  }
+  batch(() => {
+    dispatch(setUserData(updatedUserData))
+    dispatch(setSaveStatus('success'))
+  })
+}
+
 export const overwriteDBData = () => async (dispatch, getState) => {
   const builderData = getBuilderData(getState())
   const { publish, userData } = getTempDBData(getState())
@@ -329,7 +346,7 @@ export const denyOverwriteData = () => (dispatch, getState) => {
 export const getBuilderData = (state) => state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
-export const getWebsiteId = (state) => state.builder.user.websiteId
+export const getWebsiteId = (state) => state.builder.user?.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   if (getBuilderDevice(state) === 'mobile') {

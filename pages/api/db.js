@@ -38,7 +38,6 @@ async function getUserData(userId, res) {
     const userData = await websiteCollection.findOne({
       user_id: userId,
     })
-    console.log(userData)
     await client.close()
     respondAPIQuery(res, userData || {})
   } catch (error) {

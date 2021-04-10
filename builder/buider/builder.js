@@ -59,8 +59,6 @@ const Builder = () => {
     }
   }, [isLoading])
 
-  console.log(user)
-
   if (!userBlocksData || isLoadingData) {
     return (
       <Box

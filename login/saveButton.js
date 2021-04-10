@@ -1,12 +1,7 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getBuilderData,
-  setSaveStatus,
-  getSaveStatus,
-} from '../features/builderSlice'
-import { saveData } from './helpers'
+import { getSaveStatus, saveWebsite } from '../features/builderSlice'
 import { IoCheckmark } from 'react-icons/io5'
 
 import Card from './card'
@@ -16,16 +11,13 @@ import { Box } from '@chakra-ui/layout'
 const SaveButton = () => {
   const dispatch = useDispatch()
   const saveStatus = useSelector(getSaveStatus)
-  const builderData = useSelector(getBuilderData)
 
   const { user } = useUser()
   const router = useRouter()
 
   async function handleSavePage() {
     if (user) {
-      dispatch(setSaveStatus('loading'))
-      await saveData({ user, builderData })
-      dispatch(setSaveStatus('success'))
+      dispatch(saveWebsite(user))
       return
     }
     return router.push('/api/auth/custom-login')

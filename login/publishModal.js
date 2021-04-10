@@ -123,7 +123,7 @@ const PublishSuccessModal = () => {
           paddingBottom={'0'}
         >
           - Change it on your settings{' '}
-          <Link href="/">
+          <Link href="/dashboard">
             <Text
               as="u"
               cursor="pointer"
