@@ -1,14 +1,17 @@
 import { useUser } from '@auth0/nextjs-auth0'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
+
 import {
   getAccountCreated,
-  getBuilderData,
   getBuilderDevice,
   setBuilderDevice,
+  getTempDBData,
+  publishWebsite,
+  getPublishStatus,
 } from '../features/builderSlice'
-import { saveData } from './helpers'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
@@ -16,6 +19,8 @@ import PublishSuccessModal from './publishModal'
 import Card from './card'
 import SaveButton from './saveButton'
 import AccountCreatedModal from './accountCreatedModal'
+import OverwriteDBWarning from './overwriteDBWarning'
+import { Spinner } from '@chakra-ui/spinner'
 
 const logoutUrl =
   // eslint-disable-next-line no-undef
@@ -41,12 +46,12 @@ const MenuItem = ({ children, onClick = () => {} }) => {
 export function Login() {
   const { user } = useUser()
   const dispatch = useDispatch()
-  const builderData = useSelector(getBuilderData)
   const accountCreated = useSelector(getAccountCreated)
+  const tempData = useSelector(getTempDBData)
+  const publishStatus = useSelector(getPublishStatus)
 
   const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
-  const [isPublish, setPublish] = useState(false)
   const [isMenuOpen, setMenuOpen] = useState(false)
 
   function handleLogin() {
@@ -57,9 +62,7 @@ export function Login() {
   }
   async function handlePublish() {
     if (user) {
-      await saveData({ user, builderData, publish: true })
-      setPublish(true)
-      setMenuOpen(false)
+      await dispatch(publishWebsite(user))
       return
     }
     return router.push('/api/auth/custom-login')
@@ -75,11 +78,12 @@ export function Login() {
   }
   return (
     <Box d="flex" flexDir="column">
-      {isPublish && <PublishSuccessModal setPublish={setPublish} />}
+      {publishStatus === 'success' && <PublishSuccessModal />}
       {accountCreated && <AccountCreatedModal />}
+      {tempData && <OverwriteDBWarning />}
       <SaveButton />
       <Box w="full">
-        <Card onClick={handleMenuOption}>
+        <Card alignItems="center" onClick={handleMenuOption}>
           <IoMenu size={24} />
         </Card>
         {isMenuOpen && (
@@ -89,6 +93,7 @@ export function Login() {
             flexDir="column"
             bg="white"
             borderRadius="10px"
+            boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
           >
             <Box>
               <MenuItem>
@@ -103,8 +108,14 @@ export function Login() {
             </Box>
             {user ? (
               <Box>
-                <MenuItem onClick={handlePublish}>Publish</MenuItem>
-                <MenuItem>Dashboard</MenuItem>
+                <MenuItem onClick={handlePublish}>
+                  {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
+                </MenuItem>
+                <MenuItem>
+                  <Link href="/dashboard" passHref>
+                    <a>Dashboard</a>
+                  </Link>
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Box>
             ) : (

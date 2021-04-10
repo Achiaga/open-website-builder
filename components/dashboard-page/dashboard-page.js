@@ -1,32 +1,38 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Spinner } from '@chakra-ui/react'
 import Sidebar from './sidebar'
 import Projects from './projects'
 import Settings from './settings'
-import { defaultRoute, projects, settings } from './routesVariables'
+import { settings } from './routesVariables'
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
+import { useEffect } from 'react'
+import { loadUserInitialData } from '../../features/userSlice'
+import { useDispatch } from 'react-redux'
+
+const SelectedDashboard = ({ dashboardType, ...props }) => {
+  if (dashboardType === settings) return <Settings />
+  return <Projects {...props} />
+}
 
 const Dashboard = ({ dashboardType }) => {
-  // const redirectLogo = () => {
-  //   router.push('/')
-  // }
+  const { user } = useUser()
+  const dispatch = useDispatch()
 
-  // const handleEditTemplate = (id) => {
-  //   router.push(`/builder?template=${id}`)
-  // }
+  useEffect(() => {
+    user && dispatch(loadUserInitialData(user.sub))
+  }, [user])
 
-  // const handlePreviewTemplate = (id) => {
-  //   router.push(`/preview/template/${id}`)
-  // }
-  function DashboardSelection() {
-    switch (dashboardType) {
-      case defaultRoute:
-        return <Projects />
-      case projects:
-        return <Projects />
-      case settings:
-        return <Settings />
-      default:
-        return <Projects />
-    }
+  if (!user) {
+    return (
+      <Box
+        w="100%"
+        h="100vh"
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
+      </Box>
+    )
   }
 
   return (
@@ -45,13 +51,12 @@ const Dashboard = ({ dashboardType }) => {
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="flex-start"
-        minHeight="100vh"
-        height="full"
+        height="100vh"
       >
-        <DashboardSelection />
+        <SelectedDashboard dashboardType={dashboardType} user={user} />
       </Box>
     </Box>
   )
 }
 
-export default Dashboard
+export default withPageAuthRequired(Dashboard)

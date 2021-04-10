@@ -1,4 +1,4 @@
-import { Box, Text, Button, background } from '@chakra-ui/react'
+import { Box, Text, Button } from '@chakra-ui/react'
 
 const Settings = () => {
   return (

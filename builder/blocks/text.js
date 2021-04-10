@@ -4,15 +4,17 @@ import { Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   editBlockConfig,
+  getIsMobileBuilder,
   getSelectedBlockId,
 } from '../../features/builderSlice'
 import { BlocksContext } from '../web-preview/preview'
 import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
-import { MediaContextProvider, Media } from '../web-preview/preview'
+
 export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
+  const isMobileBuilder = useSelector(getIsMobileBuilder)
 
   const Textmodifiers = {
     textAlign: props.textAlign,
@@ -62,7 +64,7 @@ export const GenericText = (props) => {
       h="100%"
       d="grid"
       onKeyUp={handleKeyUp}
-      contentEditable={selectedId === parentBlockId}
+      contentEditable={selectedId === parentBlockId && !isMobileBuilder}
       suppressContentEditableWarning
       {...Textmodifiers}
       fontSize={fontSize}
@@ -76,7 +78,6 @@ export const GenericText = (props) => {
 }
 
 export const PrevText = (props) => {
-  // we need to activate this for the mobile responsive
   const { rowHeight } = useContext(BlocksContext)
   const Textmodifiers = {
     textAlign: props.textAlign,
@@ -88,24 +89,15 @@ export const PrevText = (props) => {
     borderRadius: props.borderRadius,
   }
   const fontSize = Math.round(parseInt(props.fontSize) * rowHeight * 0.13)
+  const mobileFontSize = fontSize * 2
   return (
     <>
       <Text
         w="100%"
         h="100%"
-        d={['grid', 'grid', 'none']}
+        d={'grid'}
         {...Textmodifiers}
-        fontSize={fontSize * 2}
-        wordBreak="break-word"
-      >
-        {props.text}
-      </Text>
-      <Text
-        w="100%"
-        h="100%"
-        d={['none', 'none', 'grid']}
-        {...Textmodifiers}
-        fontSize={fontSize}
+        fontSize={[mobileFontSize, mobileFontSize, fontSize]}
         wordBreak="break-word"
       >
         {props.text}

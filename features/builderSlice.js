@@ -15,7 +15,9 @@ import {
   handleLoginCallback,
   loadInitialDataNoAccount,
   loadDataFromDB,
+  updateInitialState,
 } from './login-helpers'
+import { saveData } from '../login/helpers'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -38,8 +40,20 @@ export const builderSlice = createSlice({
     setInitialBuilderData: (state, action) => {
       state.builderData = action.payload
     },
+    setLoadingData: (state, action) => {
+      state.loadingData = action.payload
+    },
+    //This functions are to let the user overwrite DB data
+    setTempDBData: (state, action) => {
+      //We store here the DB data while the user decides
+      // if he wants to overwrite it or keep it.
+      state.tempDBData = action.payload
+    },
     setUserData: (state, action) => {
       state.user = action.payload
+    },
+    setWebsiteId: (state, action) => {
+      state.user.websiteId = action.payload
     },
     setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
@@ -67,6 +81,12 @@ export const builderSlice = createSlice({
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = action.payload
     },
+    setMobileEditedBlocks: (state, action) => {
+      state.builderData.mobileEditedBlocks = action.payload
+    },
+    setHasMobileBeenEdited: (state) => {
+      state.builderData.hasMobileBeenEdited = true
+    },
     setLayouts: (state, action) => {
       state.builderData.layouts = action.payload
     },
@@ -90,6 +110,9 @@ export const builderSlice = createSlice({
     setSaveStatus: (state, action) => {
       state.saveStatus = action.payload
     },
+    setPublishStatus: (state, action) => {
+      state.publishStatus = action.payload
+    },
     setAccountCreated: (state, action) => {
       state.accountCreated = action.payload
     },
@@ -99,9 +122,13 @@ export const builderSlice = createSlice({
 export const {
   setBuilderBlocksData,
   setInitialBuilderData,
+  setTempDBData,
   setUserData,
+  setWebsiteId,
   setLayout,
   setLayouts,
+  setHasMobileBeenEdited,
+  setMobileEditedBlocks,
   setMobileLayout,
   setAddedBlock,
   setStructure,
@@ -115,7 +142,9 @@ export const {
   setMobileHierarchy,
   setBuilderDevice,
   setSaveStatus,
+  setPublishStatus,
   setAccountCreated,
+  setLoadingData,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -181,25 +210,48 @@ export const setBlockEditable = (blockId) => (dispatch) => {
   })
 }
 
-export const updateLayouts = (updatedLayout) => (dispatch, getState) => {
-  const builderDevice = getBuilderDevice(getState())
+function applyAutoMobileLayout(mobileLayout, blockId, updatedLayout) {
+  const blockLayoutIndex = mobileLayout.findIndex(
+    (layout) => layout.i === blockId
+  )
+  const mobileLayoutUpdated = [...mobileLayout]
+  mobileLayoutUpdated[blockLayoutIndex] = updatedLayout.find(
+    (layout) => layout.i === blockId
+  )
+  return mobileLayoutUpdated
+}
 
+export const updateLayouts = (updatedLayout, blockId) => (
+  dispatch,
+  getState
+) => {
+  const builderDevice = getBuilderDevice(getState())
+  const mobileEditedBlocks = getMobileEditedBlocks(getState())
+  const mobileLayout = getMobileLayout(getState())
+  const isBlockMobileEdited = mobileEditedBlocks.includes(blockId)
   if (builderDevice === 'mobile') {
-    dispatch(setMobileLayout(updatedLayout))
+    batch(() => {
+      dispatch(setMobileLayout(updatedLayout))
+      if (!isBlockMobileEdited) {
+        dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
+      }
+    })
   } else {
+    if (!isBlockMobileEdited) {
+      dispatch(
+        setMobileLayout(
+          applyAutoMobileLayout(mobileLayout, blockId, updatedLayout)
+        )
+      )
+    }
     dispatch(setLayouts(updatedLayout))
   }
 }
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
-  const builderDevice = getBuilderDevice(getState())
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  if (builderDevice === 'mobile') {
-    dispatch(setMobileLayout([...mobileLayout, newLayout]))
-  } else {
-    dispatch(setMobileLayout([...mobileLayout, newLayout]))
-    dispatch(setLayouts([...layouts, newLayout]))
-  }
+  dispatch(setMobileLayout([...mobileLayout, newLayout]))
+  dispatch(setLayouts([...layouts, newLayout]))
 }
 export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
   const builderDevice = getBuilderDevice(getState())
@@ -240,9 +292,61 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
     dispatch(setNewDropBlock({ type: null }))
   })
 }
+export const publishWebsite = (user) => async (dispatch, getState) => {
+  dispatch(setPublishStatus('loading'))
+  const builderData = getBuilderData(getState())
+  const websiteId = getWebsiteId(getState())
+  const res = await saveData({ user, builderData, publish: true })
+  batch(() => {
+    !websiteId && dispatch(setWebsiteId(res._id))
+    dispatch(setPublishStatus('success'))
+  })
+}
+
+export const saveWebsite = (user) => async (dispatch, getState) => {
+  dispatch(setSaveStatus('loading'))
+  const builderData = getBuilderData(getState())
+  const userData = getUserData(getState())
+  const res = await saveData({ user, builderData })
+  const updatedUserData = {
+    isPublish: res.publish,
+    user_email: res.user_email,
+    user_id: res.user_id,
+    websiteId: res._id || userData?.websiteId,
+  }
+  batch(() => {
+    dispatch(setUserData(updatedUserData))
+    dispatch(setSaveStatus('success'))
+  })
+}
+
+export const overwriteDBData = () => async (dispatch, getState) => {
+  const builderData = getBuilderData(getState())
+  const { publish, userData } = getTempDBData(getState())
+  await saveData({
+    builderData,
+    user: { sub: userData.user_id, email: userData.user_email, publish },
+  })
+  dispatch(setSaveStatus('null'))
+  dispatch(setTempDBData(null))
+}
+export const denyOverwriteData = () => (dispatch, getState) => {
+  const tempInitialData = getTempDBData(getState())
+  dispatch(updateInitialState(tempInitialData))
+  dispatch(setTempDBData(null))
+}
+
+// SELECTORS ****************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
+export const getWebsiteId = (state) => state.builder.user?.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   if (getBuilderDevice(state) === 'mobile') {
@@ -277,7 +381,13 @@ export const getLayout = (state) => {
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts
 export const getStructure = (state) => state.builder.builderData.structure
+export const getHasMobileBeenEdited = (state) =>
+  state.builder.builderData.hasMobileBeenEdited
+export const getMobileEditedBlocks = (state) =>
+  state.builder.builderData.mobileEditedBlocks || []
 export const getSaveStatus = (state) => state.builder.saveStatus
+export const getPublishStatus = (state) => state.builder.publishStatus
 export const getAccountCreated = (state) => state.builder.accountCreated
+export const getTempDBData = (state) => state.builder.tempDBData
 
 export default builderSlice.reducer

@@ -4,9 +4,32 @@ import { useState } from 'react'
 import { Portal } from '../usePortal'
 import { EDIT } from './constants'
 import { Properties } from './block-properties'
-import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
+import {
+  editBlockConfig,
+  getBlockParentId,
+  getIsMobileBuilder,
+} from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
+import { deleteProperty } from './block-properties'
+import { Tooltip } from '@chakra-ui/react'
+
+const CustomToolTip = ({ label, children }) => {
+  return (
+    <Tooltip
+      hasArrow
+      placement="top"
+      label={label}
+      bg="white"
+      color="black"
+      closeOnClick
+      gutter={12}
+      openDelay={500}
+    >
+      {children}
+    </Tooltip>
+  )
+}
 
 const PropertiesModifiers = {
   dropdown: DropDownSelector,
@@ -26,6 +49,7 @@ function DropDownSelector({
   handleOpenToolbar,
   property,
   value,
+  tooltip,
   options,
 }) {
   const result = options.find((option) => option.value === value)?.title || ''
@@ -56,18 +80,20 @@ function DropDownSelector({
       borderLeft="1px solid gray"
       paddingX="0.3rem"
     >
-      <Button
-        id={property}
-        size="sm"
-        padding="3px"
-        bg="transparent"
-        onClick={handleOpenToolbar}
-      >
-        {icon}
-        <Text as="span" pl={icon && `0.25rem`}>
-          {result}
-        </Text>
-      </Button>
+      <CustomToolTip label={tooltip}>
+        <Button
+          id={property}
+          size="sm"
+          padding="3px"
+          bg="transparent"
+          onClick={handleOpenToolbar}
+        >
+          {icon}
+          <Text as="span" pl={icon && `0.45rem`}>
+            {result}
+          </Text>
+        </Button>
+      </CustomToolTip>
       <Box
         position="absolute"
         top={checkDisplayTop}
@@ -133,6 +159,7 @@ function ColorDropDownSelector({
   handleOpenToolbar,
   property,
   value,
+  tooltip,
   options,
 }) {
   const valueIcon = options.find((option) => option.value === value)?.icon || ''
@@ -163,15 +190,17 @@ function ColorDropDownSelector({
       borderLeft="1px solid gray"
       paddingX="0.3rem"
     >
-      <Button
-        id={property}
-        size="sm"
-        padding="3px"
-        bg="transparent"
-        onClick={handleOpenToolbar}
-      >
-        {valueIcon}
-      </Button>
+      <CustomToolTip label={tooltip}>
+        <Button
+          id={property}
+          size="sm"
+          padding="3px"
+          bg="transparent"
+          onClick={handleOpenToolbar}
+        >
+          {valueIcon}
+        </Button>
+      </CustomToolTip>
       <Box
         position="absolute"
         top={checkDisplayTop}
@@ -244,6 +273,7 @@ function EmojiDropDownSelector({
   property,
   icon,
   value,
+  tooltip,
   options,
 }) {
   // const valueIcon = options.find((option) => option.value === value)?.icon || ''
@@ -274,15 +304,17 @@ function EmojiDropDownSelector({
       borderLeft="1px solid gray"
       paddingX="0.3rem"
     >
-      <Button
-        id={property}
-        size="sm"
-        padding="3px"
-        bg="transparent"
-        onClick={handleOpenToolbar}
-      >
-        {icon}
-      </Button>
+      <CustomToolTip label={tooltip}>
+        <Button
+          id={property}
+          size="sm"
+          padding="3px"
+          bg="transparent"
+          onClick={handleOpenToolbar}
+        >
+          {icon}
+        </Button>
+      </CustomToolTip>
       <Box
         position="absolute"
         top={checkDisplayTop}
@@ -355,6 +387,8 @@ function TextInput({
   handleOpenToolbar,
   property,
   value,
+  icon,
+  tooltip,
   placeholder,
   inputPlaceholder,
 }) {
@@ -374,15 +408,20 @@ function TextInput({
       borderLeft="1px solid gray"
       paddingX="0.3rem"
     >
-      <Button
-        id={property}
-        size="sm"
-        padding="3px"
-        bg="transparent"
-        onClick={handleOpenToolbar}
-      >
-        {placeholder}
-      </Button>
+      <CustomToolTip label={tooltip}>
+        <Button
+          id={property}
+          size="sm"
+          padding="3px"
+          bg="transparent"
+          onClick={handleOpenToolbar}
+        >
+          {icon && icon}
+          <Text as="span" pl={icon && `0.45rem`}>
+            {placeholder}
+          </Text>
+        </Button>
+      </CustomToolTip>
       {isOpen === property && (
         <Box
           position="absolute"
@@ -432,23 +471,31 @@ TextInput.propTypes = {
   handleOpenToolbar: PropTypes.func,
 }
 
-function ButtonSelector({ handleEdit, property, operationType, placeholder }) {
+function ButtonSelector({
+  handleEdit,
+  property,
+  operationType,
+  placeholder,
+  tooltip,
+}) {
   const handleClick = () => {
     handleEdit(property, null, operationType)
   }
   return (
     <Box>
-      <Button
-        padding="0"
-        onClick={handleClick}
-        bg="transparent"
-        borderRadius="5px"
-        borderTopRightRadius="0px"
-        borderBottomRightRadius="0px"
-        _hover={{ bg: '#ff818180' }}
-      >
-        {placeholder}
-      </Button>
+      <CustomToolTip label={tooltip}>
+        <Button
+          padding="0"
+          onClick={handleClick}
+          bg="transparent"
+          borderRadius="5px"
+          borderTopRightRadius="0px"
+          borderBottomRightRadius="0px"
+          _hover={{ bg: '#ff818180' }}
+        >
+          {placeholder}
+        </Button>
+      </CustomToolTip>
     </Box>
   )
 }

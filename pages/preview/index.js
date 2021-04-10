@@ -1,3 +1,5 @@
+import { Box } from '@chakra-ui/layout'
+import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
 import { ResumeWebsite } from '../../builder/web-preview/preview'
 import { getUserDataFromLS } from '../../features/helper'
@@ -13,7 +15,18 @@ function ResumePreview() {
     loadData()
   }, [])
 
-  if (!blocksData) return <div>loading</div>
+  if (!blocksData)
+    return (
+      <Box
+        w="100%"
+        h="100vh"
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
+      </Box>
+    )
 
   return <ResumeWebsite userBlocksData={blocksData} />
 }
