@@ -17,7 +17,7 @@ export const blocksProperties = {
     imageUrl: imageURL,
   },
   inception: {
-    border: '0px solid black',
+    border: 'none',
     boxShadow: 'none',
     borderRadius: '0px',
     backgroundColor: 'transparent',

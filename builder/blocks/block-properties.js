@@ -135,7 +135,7 @@ const border = {
   tooltip: 'Border Color',
   icon: <BorderIcon />,
   options: [
-    { value: '0px solid black', title: 'none' },
+    { value: 'none', title: 'none' },
     { value: '1px solid black', title: 'black' },
     { value: '1px solid rgb(205, 211, 216)', title: 'gray' },
   ],
