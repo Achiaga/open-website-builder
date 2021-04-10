@@ -1,13 +1,14 @@
-import { BiBorderRadius } from 'react-icons/bi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import { GiTwoShadows } from 'react-icons/gi'
 import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi'
 import {
   AiOutlineVerticalAlignBottom,
   AiOutlineVerticalAlignMiddle,
   AiOutlineVerticalAlignTop,
-  AiOutlineBorderRight,
 } from 'react-icons/ai'
+import ShadowIcon from '../../assets/shadow-icon'
+import BorderRadiusIcon from '../../assets/border-radius-icon'
+import BorderIcon from '../../assets/border-icon'
+import ImageIcon from '../../assets/image-icon'
 
 import { FontIcon, BgIcon } from '../../assets/fontIcon'
 
@@ -18,6 +19,7 @@ import { DELETE } from './constants'
 const fontSize = {
   type: 'dropdown',
   property: 'fontSize',
+  tooltip: 'font size',
   options: [
     { value: '12', title: 'xs' },
     { value: '18', title: 'sm' },
@@ -32,6 +34,7 @@ const fontSize = {
 const textAlign = {
   type: 'dropdown',
   property: 'textAlign',
+  tooltip: 'Align Item Horizontally',
   options: [
     { value: 'left', title: <FiAlignLeft /> },
     { value: 'center', title: <FiAlignCenter /> },
@@ -41,6 +44,7 @@ const textAlign = {
 const alignItems = {
   type: 'dropdown',
   property: 'alignItems',
+  tooltip: 'Align Item Vertically',
   options: [
     { value: 'start', title: <AiOutlineVerticalAlignTop /> },
     { value: 'center', title: <AiOutlineVerticalAlignMiddle /> },
@@ -50,6 +54,7 @@ const alignItems = {
 const fontWeight = {
   type: 'dropdown',
   property: 'fontWeight',
+  tooltip: 'Bold Text',
   options: [
     { value: '300', title: 'thin' },
     { value: '400', title: 'normal' },
@@ -61,6 +66,7 @@ const fontWeight = {
 const color = {
   type: 'colorDropdown',
   property: 'fontColor',
+  tooltip: 'Text Color',
   options: [
     {
       value: '#000000',
@@ -125,7 +131,8 @@ const color = {
 const border = {
   type: 'dropdown',
   property: 'border',
-  icon: <AiOutlineBorderRight />,
+  tooltip: 'Border Color',
+  icon: <BorderIcon />,
   options: [
     { value: '0px solid black', title: 'none' },
     { value: '1px solid black', title: 'black' },
@@ -136,7 +143,8 @@ const border = {
 const borderRadius = {
   type: 'dropdown',
   property: 'borderRadius',
-  icon: <BiBorderRadius />,
+  tooltip: 'Border Radius',
+  icon: <BorderRadiusIcon />,
   options: [
     { value: '0px', title: 'none' },
     { value: '10px', title: 'sm' },
@@ -149,7 +157,8 @@ const borderRadius = {
 const boxShadow = {
   type: 'dropdown',
   property: 'boxShadow',
-  icon: <GiTwoShadows />,
+  tooltip: 'Shadow',
+  icon: <ShadowIcon />,
   options: [
     {
       value: 'none',
@@ -180,7 +189,8 @@ const boxShadow = {
 const textShadow = {
   type: 'dropdown',
   property: 'textShadow',
-  icon: <GiTwoShadows />,
+  tooltip: 'Text Shadow',
+  icon: <ShadowIcon />,
   options: [
     {
       value: 'none',
@@ -206,6 +216,7 @@ const textShadow = {
 const backgroundColor = {
   type: 'colorDropdown',
   property: 'backgroundColor',
+  tooltip: 'Background Color',
   options: [
     {
       value: 'transparent',
@@ -298,15 +309,16 @@ const backgroundColor = {
 const emoji = {
   type: 'emojiDropdown',
   property: 'emoji',
+  tooltip: 'Add Emoji to the Text',
   icon: '😋',
   options: [
     {
-      value: '&#128526',
-      title: '&#128526',
+      value: '💼',
+      title: '💼',
     },
     {
-      value: '&#10084',
-      title: '&#10084',
+      value: '🎓',
+      title: '🎓',
     },
     {
       value: '🎉',
@@ -316,11 +328,28 @@ const emoji = {
       value: '🙌',
       title: '🙌',
     },
+    {
+      value: '😄',
+      title: '😄',
+    },
+    {
+      value: '🚀',
+      title: '🚀',
+    },
+    {
+      value: '🌟',
+      title: '🌟',
+    },
+    {
+      value: '😎',
+      title: '😎',
+    },
   ],
 }
 
 export const deleteProperty = {
   type: 'button',
+  tooltip: 'Delete (*Childrens of the block WILL BE DELETED TOO*).',
   placeholder: <RiDeleteBin6Line color="black" size="1.1rem" />,
   property: '',
   operationType: DELETE,
@@ -329,6 +358,9 @@ export const deleteProperty = {
 const imageInput = {
   type: 'text',
   placeholder: 'Img',
+  icon: <ImageIcon />,
+  tooltip:
+    'Copy the "Image Adress" of the Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
   inputPlaceholder: 'Enter your link',
   property: 'imageUrl',
 }
@@ -343,7 +375,8 @@ const imageBgInput = {
 const redirectInput = {
   type: 'text',
   placeholder: 'Link',
-  inputPlaceholder: 'Add a link to redirect to when click',
+  tooltip: 'Add a Link you want the user to be redirect to when click on it.',
+  inputPlaceholder: 'Add a link to redirect when click',
   property: 'redirect',
 }
 
@@ -354,14 +387,12 @@ export const Properties = {
     textAlign,
     alignItems,
     fontWeight,
-    borderRadius,
     textShadow,
-    redirectInput,
-    color,
-    backgroundColor,
     emoji,
+    color,
+    redirectInput,
   ],
-  image: [deleteProperty, boxShadow, borderRadius, imageInput, redirectInput],
+  image: [deleteProperty, borderRadius, imageInput, boxShadow, redirectInput],
   inception: [
     deleteProperty,
     border,

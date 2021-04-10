@@ -10,7 +10,6 @@ export const blocksProperties = {
     boxShadow: 'none',
     borderRadius: '0px',
     fontColor: '#000000',
-    backgroundColor: '#FFFFFF',
   },
   image: {
     boxShadow: 'none',
