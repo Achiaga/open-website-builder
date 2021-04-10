@@ -24,3 +24,17 @@ export const getUserDataById = (id) => {
     console.error('getUserDataById', err)
   }
 }
+export const requestUser = (id) => {
+  try {
+    return request('read-user-websites', id)
+  } catch (err) {
+    console.error('requestUser', err)
+  }
+}
+export const requestRemoveProject = (projectId) => {
+  try {
+    return request('remove-project', projectId)
+  } catch (err) {
+    console.error('removeProject', err)
+  }
+}

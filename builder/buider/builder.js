@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { WebBuilder } from '../web-builder'
 import { BuilderSidebar } from '../sidebar'
-import { getBuilderData } from '../../features/builderSlice'
+import { getBuilderData, getIsLoadingData } from '../../features/builderSlice'
 import { SettingsBar } from '../sidebar/settingsBar'
 import MobileVersion from '../web-builder/mobile-version'
 import { loadInitialData } from '../../features/builderSlice'
@@ -23,6 +23,7 @@ function getParams() {
 
 const Builder = () => {
   const userBlocksData = useSelector(getBuilderData)
+  const isLoadingData = useSelector(getIsLoadingData)
   const router = useRouter()
   const { user, isLoading } = useUser()
   const dispatch = useDispatch()
@@ -58,11 +59,11 @@ const Builder = () => {
     }
   }, [isLoading])
 
-  if (!userBlocksData)
+  if (!userBlocksData || isLoadingData) {
     return (
       <Box
         w="100%"
-        h="100%"
+        h="100vh"
         d="flex"
         justifyContent="center"
         alignItems="center"
@@ -70,6 +71,7 @@ const Builder = () => {
         <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
       </Box>
     )
+  }
   return (
     <>
       <Box

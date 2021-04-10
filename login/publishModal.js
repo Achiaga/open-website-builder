@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { Box, Text } from '@chakra-ui/layout'
-import { useSelector } from 'react-redux'
-import { getUserData } from '../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getWebsiteId, setPublishStatus } from '../features/builderSlice'
 import Fireworks from '../components/fireworks'
 import { IoClose } from 'react-icons/io5'
 
-const PublishSuccessModal = ({ setPublish }) => {
-  const userData = useSelector(getUserData)
-  const { websiteId } = userData
+const PublishSuccessModal = () => {
+  const dispatch = useDispatch()
+  const websiteId = useSelector(getWebsiteId)
   function handleClose() {
-    setPublish(false)
+    dispatch(setPublishStatus(null))
   }
   return (
     <Box
@@ -123,7 +123,7 @@ const PublishSuccessModal = ({ setPublish }) => {
           paddingBottom={'0'}
         >
           - Change it on your settings{' '}
-          <Link href="/">
+          <Link href="/dashboard">
             <Text
               as="u"
               cursor="pointer"

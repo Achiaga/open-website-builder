@@ -1,21 +1,32 @@
 import { Box, Button } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
+import Link from 'next/link'
 
-const Template = ({
-  handleEditTemplate,
-  handlePreviewTemplate,
-  templateId,
-}) => {
+const CustomButton = ({ colorScheme, children }) => {
   return (
-    <Box w="100%" h="lg" pos="relative" borderRadius="10px">
+    <Button
+      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+      fontSize="xl"
+      fontWeight="bold"
+      cursor="pointer"
+      colorScheme={colorScheme || 'primary'}
+      color={colorScheme ? 'primary.500' : '#fff'}
+    >
+      {children}
+    </Button>
+  )
+}
+
+const Template = ({ templateInfo }) => {
+  return (
+    <Box w="100%" h="lg" pos="relative" borderRadius="10px" overflow="hidden">
       <Box
         role="group"
         pos="absolute"
         w="full"
         h="full"
         zIndex="10"
-        borderRadius="10px"
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -24,60 +35,34 @@ const Template = ({
       >
         <Box
           w="full"
-          px={['4rem', '6rem']}
           display="flex"
+          px="10%"
           alignContent="center"
-          justifyContent="space-between"
+          justifyContent="space-around"
           d="none"
           _groupHover={{ display: 'flex' }}
         >
-          <Button
-            boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-            fontSize="xl"
-            color="white"
-            bg="primary.500"
-            fontWeight="bold"
-            cursor="pointer"
-            _hover={{ bg: '#5e76ef', color: 'white' }}
-            onClick={() => handleEditTemplate(templateId)}
-          >
-            Select
-          </Button>
-          <Button
-            boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-            fontSize="xl"
-            color="primary.500"
-            fontWeight="bold"
-            cursor="pointer"
-            bg="#f3f3f3"
-            _hover={{ bg: 'white', color: '#5956f5' }}
-            onClick={() => handlePreviewTemplate(templateId)}
-          >
-            Preview
-          </Button>
+          <Link href={`/builder?template=${templateInfo.id}`} passHref>
+            <a>
+              <CustomButton>Select</CustomButton>
+            </a>
+          </Link>
+          <Link href={`/preview/template/${templateInfo.id}`} passHref>
+            <a target="_blank">
+              <CustomButton colorScheme="gray"> Preview</CustomButton>
+            </a>
+          </Link>
         </Box>
       </Box>
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '100%',
-          borderRadius: '10px',
-          overflow: 'hidden',
-          boxShadow:
-            '0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
-        }}
-      >
+      <Box>
         <Image
-          style={{ clipPath: 'inset(0 0 0 50%)' }}
-          src={`/${templateId}.png`}
+          src={templateInfo.imageUrl}
           layout="fill"
           objectFit="cover"
           objectPosition="left top"
-          alt="template1"
-          borderRadius="100px "
+          alt={`template for the Portfolio ${templateInfo.id}`}
         />
-      </div>
+      </Box>
     </Box>
   )
 }
@@ -85,7 +70,7 @@ const Template = ({
 Template.propTypes = {
   handleEditTemplate: PropTypes.func.isRequired,
   handlePreviewTemplate: PropTypes.func.isRequired,
-  templateId: PropTypes.string.isRequired,
+  templateInfo: PropTypes.any.isRequired,
 }
 
 export default Template

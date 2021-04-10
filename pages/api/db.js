@@ -39,7 +39,7 @@ async function getUserData(userId, res) {
       user_id: userId,
     })
     await client.close()
-    respondAPIQuery(res, userData)
+    respondAPIQuery(res, userData || {})
   } catch (error) {
     console.error(error)
     await client.close()
@@ -52,7 +52,6 @@ export async function requestWebsiteData(websiteId, res) {
     respondAPIQuery(res, websiteData)
   } catch (error) {
     console.error(error)
-
     respondAPIQuery(res, { error })
   }
 }
@@ -73,6 +72,55 @@ export async function getWebsiteData(websiteId) {
   } catch (err) {
     console.error('getWebsiteData error', err)
     await client.close()
+  }
+}
+export async function requestUserData(userId, res) {
+  try {
+    const websiteData = await getAllUserData(userId)
+    respondAPIQuery(res, websiteData)
+  } catch (error) {
+    console.error(error)
+    respondAPIQuery(res, { error })
+  }
+}
+export async function getAllUserData(userId) {
+  if (!userId) return {}
+  const client = await getDBCredentials()
+  try {
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const cusrosUserData = await websiteCollection.find({
+      user_id: userId,
+    })
+    const data = await cusrosUserData.toArray()
+    await client.close()
+    return { websitesData: data }
+  } catch (err) {
+    console.error('getWebsiteData error', err)
+    await client.close()
+    throw err
+  }
+}
+export async function removeProject({ projectId, userId }, res) {
+  const client = await getDBCredentials()
+  try {
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    await websiteCollection.deleteOne({
+      _id: ObjectId(projectId),
+    })
+    const cursorUserProejcts = await websiteCollection.find({
+      user_id: userId,
+    })
+    const data = await cursorUserProejcts.toArray()
+    await client.close()
+    respondAPIQuery(res, { websitesData: data })
+  } catch (err) {
+    console.error('getWebsiteData error', err)
+    await client.close()
+    respondAPIQuery(res, { error })
   }
 }
 
@@ -100,13 +148,14 @@ export default function betaUsers(req, res) {
   const { type, data } = req.body
   switch (type) {
     case 'save':
-      updateWebsiteData(data, res)
-      break
+      return updateWebsiteData(data, res)
     case 'read-user':
-      getUserData(data, res)
-      break
+      return getUserData(data, res)
     case 'read-website':
-      requestWebsiteData(data, res)
-      break
+      return requestWebsiteData(data, res)
+    case 'read-user-websites':
+      return requestUserData(data, res)
+    case 'remove-project':
+      return removeProject(data, res)
   }
 }

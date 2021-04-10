@@ -1,9 +1,12 @@
+import { UserProvider } from '@auth0/nextjs-auth0'
 import DashboardPage from '../../components/dashboard-page'
 
-const defaultRoute = 'projects'
-
 function Dashboard() {
-  return <DashboardPage dashboardType={defaultRoute} />
+  return (
+    <UserProvider>
+      <DashboardPage />
+    </UserProvider>
+  )
 }
 
 export default Dashboard
