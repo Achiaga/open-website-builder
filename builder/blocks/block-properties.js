@@ -360,7 +360,7 @@ export const Properties = {
     color,
     redirectInput,
   ],
-  image: [deleteProperty, borderRadius, imageInput, boxShadow, redirectInput],
+  image: [deleteProperty, borderRadius, boxShadow, imageInput, redirectInput],
   inception: [
     deleteProperty,
     border,
