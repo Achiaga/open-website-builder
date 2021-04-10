@@ -9,6 +9,7 @@ import ShadowIcon from '../../assets/shadow-icon'
 import BorderRadiusIcon from '../../assets/border-radius-icon'
 import BorderIcon from '../../assets/border-icon'
 import ImageIcon from '../../assets/image-icon'
+import { emojis } from '../../assets/emojis'
 
 import { FontIcon, BgIcon } from '../../assets/fontIcon'
 
@@ -311,40 +312,7 @@ const emoji = {
   property: 'emoji',
   tooltip: 'Add Emoji to the Text',
   icon: '😋',
-  options: [
-    {
-      value: '💼',
-      title: '💼',
-    },
-    {
-      value: '🎓',
-      title: '🎓',
-    },
-    {
-      value: '🎉',
-      title: '🎉',
-    },
-    {
-      value: '🙌',
-      title: '🙌',
-    },
-    {
-      value: '😄',
-      title: '😄',
-    },
-    {
-      value: '🚀',
-      title: '🚀',
-    },
-    {
-      value: '🌟',
-      title: '🌟',
-    },
-    {
-      value: '😎',
-      title: '😎',
-    },
-  ],
+  options: emojis,
 }
 
 export const deleteProperty = {
