@@ -13,7 +13,7 @@ export default {
   },
   comparison: {
     title_1: 'Create an awe-inspiring ',
-    title_color_2: 'website ',
+    title_color_2: 'websites ',
     title_3: 'that gets you ',
     title_color_4: 'hired ',
     subtitle:
@@ -31,11 +31,11 @@ export default {
     title_3: 'UI to ',
     title_color_4: 'impress ',
     title_5: 'your new company ',
-    subtitle: 'Empathize with your cv, standout from the crowd',
-    feature_1: 'Simple Resume Builder',
+    subtitle: 'Empathize with your portfolio, standout from the crowd',
+    feature_1: 'Simple Portfolio Builder',
     feature_text_1:
       'Simple drag and drop builder. Simple, fast, and fully customizable.',
-    feature_2: 'Resume Templates',
+    feature_2: 'Templates',
     feature_text_2:
       'Need inspiration? Choose one of our beautiful templates and personalize it to your own style.',
     feature_3: 'WOW Effect',
@@ -86,7 +86,7 @@ export default {
       'Congrats, you have finished your web-resume. Now you have your own custom space on the internet. Now is the time to share your personalized link with your dream company and get hired. 😀',
   },
   card_info: {
-    title: 'Creating resumes used to be a pain. ',
+    title: 'Creating portfolio used to be a pain. ',
     title_color: 'Not any more!',
     subtitle: 'The way we work has changed, but resumes haven’t. Until now. ',
     old_title: 'The old way',

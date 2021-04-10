@@ -45,7 +45,7 @@ const ComparisionItem = ({ item }) => {
           pl="1.5rem"
           fontSize="36px"
           lineHeight="43.2px"
-          textAlign="center"
+          textAlign={'center'}
           fontWeight="700"
         >
           {t.comparison[item.title]}
@@ -102,10 +102,10 @@ const Comparison = () => {
           as="h1"
           position="relative"
           fontWeight="bold"
-          textAlign="center"
+          textAlign={'center'}
           color="black"
           fontFamily="Montserrat"
-          fontSize={['2.5rem', '50px']}
+          fontSize={['2.2rem', '50px']}
           lineHeight={['3rem', '4rem']}
           w={['auto', '60rem']}
           pb={['0.75rem', '0']}
@@ -115,19 +115,21 @@ const Comparison = () => {
           <Text as="span" color="primary.500">
             {t.comparison.title_color_2}
           </Text>
-          {t.comparison.title_3}
-          <Text as="span" color="primary.500">
-            {t.comparison.title_color_4}
+          <Text as="span" d={['none', 'flex']} justifyContent="center">
+            {t.comparison.title_3}{' '}
+            <Text as="span" color="primary.500" d={['none', 'block']} ml="14px">
+              {t.comparison.title_color_4}
+            </Text>
           </Text>
         </Text>
         <Text
           as="h2"
-          textAlign="center"
+          textAlign={['left', 'center']}
           position="relative"
           fontSize={['22px', '24px']}
+          m={['auto']}
           my={['2rem', '1rem']}
           width={['auto', '60rem']}
-          m={['auto']}
           color="gray.600"
         >
           {t.comparison.subtitle}

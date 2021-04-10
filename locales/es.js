@@ -13,7 +13,7 @@ export default {
   },
   comparison: {
     title_1: 'Crea un impresionante ',
-    title_color_2: 'web-cv ',
+    title_color_2: 'webs ',
     title_3: 'y consigue tu trabajo ',
     title_color_4: 'ideal',
     subtitle:
@@ -33,8 +33,8 @@ export default {
     title_3: 'Interfaz para ',
     title_color_4: 'impresionar ',
     title_5: 'a tu nueva empresa ',
-    subtitle: 'Empatiza con tu cv! Destaca del resto',
-    feature_1: 'Simple CV Builder',
+    subtitle: 'Empatiza con tu web! Destaca del resto',
+    feature_1: 'Simple Portfolio Builder',
     feature_text_1:
       'Construye tu CV de manera sencilla, rapida and customizable.',
     feature_2: 'Plantillas',
