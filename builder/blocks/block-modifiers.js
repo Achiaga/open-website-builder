@@ -24,7 +24,6 @@ const CustomToolTip = ({ label, children }) => {
       color="black"
       closeOnClick
       gutter={12}
-      openDelay={500}
       sx={{
         '.chakra-tooltip__arrow-wrapper': {
           zIndex: '1 !important',
