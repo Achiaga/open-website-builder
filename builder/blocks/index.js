@@ -9,11 +9,13 @@ import BlockInception from './inception'
 import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  getBlocks,
   getIsMobileBuilder,
   getResizingBlock,
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
+import { useState } from 'react'
 
 const blocksType = {
   image: Image,
@@ -59,8 +61,10 @@ const DragHandle = () => {
   )
 }
 
-export function BuilderBlock({ blockId, blocks }) {
+export function BuilderBlock({ blockId }) {
+  const [isOver, setIsOver] = useState(false)
   const dispatch = useDispatch()
+  const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId]
   const GenericBlock = blocksType[type]
   const selectedBlockId = useSelector(getSelectedBlockId)
@@ -72,7 +76,9 @@ export function BuilderBlock({ blockId, blocks }) {
 
   return (
     <Box
-      width="100%"
+      onMouseOver={() => setIsOver(true)}
+      onMouseOut={() => setIsOver(false)}
+      w="100%"
       h="100%"
       id={blockId}
       onClick={(e) => {
@@ -81,7 +87,7 @@ export function BuilderBlock({ blockId, blocks }) {
         dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
-      outlineColor={isEditable ? 'primary.500' : 'transparent'}
+      outlineColor={isEditable || isOver ? 'primary.500' : 'transparent'}
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
     >

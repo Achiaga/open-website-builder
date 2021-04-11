@@ -144,7 +144,7 @@ const WebBuilder = () => {
           if (!type) return null
           return (
             <Box key={i} zIndex={blocksZIndex[type]}>
-              <BuilderBlock blockId={i} blocks={blocks} />
+              <BuilderBlock blockId={i} />
             </Box>
           )
         })

@@ -174,7 +174,7 @@ export default class ReactGridLayout extends React.Component {
       // from SCU is if the user intentionally memoizes children. If they do, and they can
       // handle changes properly, performance will increase.
       this.props.children !== nextProps.children ||
-      !fastRGLPropsEqual(this.props, nextProps, isEqual) ||
+      // !fastRGLPropsEqual(this.props, nextProps, isEqual) ||
       this.state.activeDrag !== nextState.activeDrag ||
       this.state.mounted !== nextState.mounted ||
       this.state.droppingPosition !== nextState.droppingPosition
@@ -449,7 +449,7 @@ export default class ReactGridLayout extends React.Component {
         useCSSTransforms={useCSSTransforms}
         transformScale={transformScale}
       >
-        <div />
+        <div></div>
       </GridItem>
     )
   }
@@ -481,7 +481,6 @@ export default class ReactGridLayout extends React.Component {
       resizeHandle,
     } = this.props
     const { mounted, droppingPosition } = this.state
-
     // Determine user manipulations possible.
     // If an item is static, it can't be manipulated by default.
     // Any properties defined directly on the grid item will take precedence.
@@ -497,7 +496,6 @@ export default class ReactGridLayout extends React.Component {
 
     // isBounded set on child if set on parent, and child is not explicitly false
     const bounded = draggable && isBounded && l.isBounded !== false
-
     return (
       <GridItem
         containerWidth={width}
