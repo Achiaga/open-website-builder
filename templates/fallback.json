@@ -4,7 +4,7 @@
       "type": "text",
       "data": {
         "text": "Test block text 🎉",
-        "fontSize": "1rem",
+        "fontSize": "40",
         "textAlign": "center",
         "alignItems": "center",
         "fontWeight": "400",

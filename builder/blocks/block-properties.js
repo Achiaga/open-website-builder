@@ -10,10 +10,11 @@ import BorderRadiusIcon from '../../assets/border-radius-icon'
 import BorderIcon from '../../assets/border-icon'
 import ImageIcon from '../../assets/image-icon'
 import { emojis } from '../../assets/emojis'
+import DuplicateIcon from '../../assets/duplicate-icon'
 
 import { FontIcon, BgIcon } from '../../assets/fontIcon'
 
-import { DELETE } from './constants'
+import { DELETE, DUPLICATE } from './constants'
 
 // Text
 
@@ -322,6 +323,13 @@ export const deleteProperty = {
   property: '',
   operationType: DELETE,
 }
+export const duplicateProperty = {
+  type: 'duplicate',
+  tooltip: 'Duplicate block/group',
+  placeholder: <DuplicateIcon color="black" size="1.1rem" />,
+  property: '',
+  operationType: DUPLICATE,
+}
 
 const imageInput = {
   type: 'text',
@@ -329,13 +337,6 @@ const imageInput = {
   icon: <ImageIcon />,
   tooltip:
     'Copy the "Image Adress" of your Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
-  inputPlaceholder: 'Enter your link',
-  property: 'imageUrl',
-}
-
-const imageBgInput = {
-  type: 'text',
-  placeholder: 'Img',
   inputPlaceholder: 'Enter your link',
   property: 'imageUrl',
 }
@@ -359,8 +360,17 @@ export const Properties = {
     emoji,
     color,
     redirectInput,
+    duplicateProperty,
   ],
-  image: [deleteProperty, borderRadius, boxShadow, imageInput, redirectInput],
+
+  image: [
+    deleteProperty,
+    borderRadius,
+    boxShadow,
+    imageInput,
+    redirectInput,
+    duplicateProperty,
+  ],
   inception: [
     deleteProperty,
     border,
@@ -368,5 +378,6 @@ export const Properties = {
     imageInput,
     boxShadow,
     backgroundColor,
+    duplicateProperty,
   ],
 }

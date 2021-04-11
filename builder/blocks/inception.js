@@ -10,7 +10,6 @@ const BlockInception = (props) => {
     border: border,
     borderRadius: props.borderRadius,
   }
-  console.log(props.border)
   return (
     <Box
       width="100%"

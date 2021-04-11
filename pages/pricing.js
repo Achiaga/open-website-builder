@@ -1,9 +1,7 @@
-const TemplatePage = () => {
-	return (
-		<div>
-			<h1>Pricing</h1>
-		</div>
-	);
-};
+import PricingPage from '../components/pricing'
 
-export default TemplatePage;
+const TemplatePage = () => {
+  return <PricingPage />
+}
+
+export default TemplatePage

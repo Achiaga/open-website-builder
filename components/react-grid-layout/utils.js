@@ -408,8 +408,7 @@ export function moveElement(
       }
     }
   }
-  layout = newLayout
-  return layout
+  return newLayout
 }
 
 /**

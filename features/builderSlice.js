@@ -3,13 +3,14 @@ import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
 
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
-import { DELETE } from '../builder/blocks/constants'
+import { DELETE, DUPLICATE } from '../builder/blocks/constants'
 
 import {
   addBlock,
   removeblockFromState,
   findBlockParentId,
   getParentBlock,
+  isBlockInHierarchy,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -18,6 +19,7 @@ import {
   updateInitialState,
 } from './login-helpers'
 import { saveData } from '../login/helpers'
+import { findAllChildren } from '../components/react-grid-layout/utils'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -65,6 +67,9 @@ export const builderSlice = createSlice({
     setSelectedBlockId: (state, action) => {
       state.selectedBlockId = action.payload
     },
+    setDraggingBlock: (state, action) => {
+      state.draggingBlock = action.payload
+    },
     setResizingBlockId: (state, action) => {
       state.resizingBlockId = action.payload
     },
@@ -77,6 +82,15 @@ export const builderSlice = createSlice({
     },
     setLayout: (state, action) => {
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
+    },
+    setBulkAddItems: (state, action) => {
+      const { blocks, layouts, hierarchy } = action.payload
+      state.builderData.layouts = [...state.builderData.layouts, ...layouts]
+      state.builderData.blocks = { ...state.builderData.blocks, ...blocks }
+      state.builderData.hierarchy = {
+        ...state.builderData.hierarchy,
+        ...hierarchy,
+      }
     },
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = action.payload
@@ -135,6 +149,7 @@ export const {
   setNewDropBlockType,
   setNewDropBlock,
   setSelectedBlockId,
+  setDraggingBlock,
   setResizingBlockId,
   setGridRowHeight,
   setBlockConfig,
@@ -145,6 +160,7 @@ export const {
   setPublishStatus,
   setAccountCreated,
   setLoadingData,
+  setBulkAddItems,
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
@@ -159,6 +175,7 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
   dispatch
 ) => {
   if (operationType === DELETE) dispatch(removeblock({ blockId, newData }))
+  else if (operationType === DUPLICATE) dispatch(duplicateBlock(blockId))
   else dispatch(setBlockConfig({ newData, blockId }))
 }
 
@@ -292,6 +309,7 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
     dispatch(setNewDropBlock({ type: null }))
   })
 }
+
 export const publishWebsite = (user) => async (dispatch, getState) => {
   dispatch(setPublishStatus('loading'))
   const builderData = getBuilderData(getState())
@@ -335,6 +353,95 @@ export const denyOverwriteData = () => (dispatch, getState) => {
   dispatch(updateInitialState(tempInitialData))
   dispatch(setTempDBData(null))
 }
+export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
+  batch(() => {
+    dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
+    dispatch(addNewLayoutItem(blockLayout))
+    dispatch(setNewDropBlock({ type: null }))
+  })
+}
+
+const addDuplicatedToHierarchy = (
+  newHierarchy,
+  childId,
+  oldHierarchy,
+  relationsTable
+) => {
+  const updatedHierarchy = { ...newHierarchy }
+  const parent = isBlockInHierarchy(oldHierarchy, childId)
+  updatedHierarchy[relationsTable[parent]] = [
+    ...(updatedHierarchy[relationsTable[parent]] || []),
+    relationsTable[childId],
+  ]
+  return updatedHierarchy
+}
+const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
+  const oldLayouts = getLayout(state)
+  const oldHierarchy = getHierarchy(state)
+  let newHierarchy = { [newBlockId]: [] }
+  const newLayoutItems = []
+  const newBlocks = {}
+  const relationsTable = { [blockId]: newBlockId }
+  for (let childId of allChilds) {
+    const blockData = getBlockData(childId)(state)
+    if (blockData) {
+      const layoutItem = {
+        ...oldLayouts.find((layoutItem) => layoutItem.i === childId),
+      }
+      const newBlockId = `${blockData.type}-${uuid()}`
+      layoutItem.i = newBlockId
+      layoutItem.x = layoutItem.x + 10
+      layoutItem.y = layoutItem.y + 10
+      newLayoutItems.push(layoutItem)
+      newBlocks[layoutItem.i] = blockData
+      relationsTable[childId] = newBlockId
+      newHierarchy = addDuplicatedToHierarchy(
+        newHierarchy,
+        childId,
+        oldHierarchy,
+        relationsTable
+      )
+    }
+  }
+
+  return { newLayoutItems, newBlocks, newHierarchy }
+}
+
+// This is only for internal use
+export const duplicateBlock = (blockId) => (dispatch, getState) => {
+  const blockData = getBlockData(blockId)(getState())
+  const blockType = blockData.type
+  const oldLayouts = getLayout(getState())
+
+  const oldHierarchy = getHierarchy(getState())
+  const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
+
+  const duplicatedBlockLayout = {
+    ...oldLayouts.find((layoutItem) => layoutItem.i === blockId),
+  }
+  const newBlockId = `${blockType}-${uuid()}`
+  duplicatedBlockLayout.i = newBlockId
+  duplicatedBlockLayout.x = duplicatedBlockLayout.x + 10
+  duplicatedBlockLayout.y = duplicatedBlockLayout.y + 10
+
+  const { newLayoutItems, newBlocks, newHierarchy } = bulkDuplicate(
+    allChilds,
+    blockId,
+    newBlockId,
+    getState()
+  )
+
+  batch(() => {
+    dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
+    dispatch(
+      setBulkAddItems({
+        layouts: newLayoutItems,
+        blocks: newBlocks,
+        hierarchy: newHierarchy,
+      })
+    )
+  })
+}
 
 // SELECTORS ****************************************************
 //***************************************************************
@@ -366,6 +473,7 @@ export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
 export const getSelectedBlockId = (state) => state.builder.selectedBlockId
 export const getResizingBlock = (state) => state.builder.resizingBlockId
+export const getDraggingBlock = (state) => state.builder.draggingBlock
 export const getBlocksConfig = (state) => state.builder.builderData.blocksConfig
 export const getBlockParentId = (id) => (state) => {
   return findBlockParentId(getStructure(state), id)

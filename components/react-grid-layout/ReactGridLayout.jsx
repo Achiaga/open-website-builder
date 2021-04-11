@@ -174,7 +174,7 @@ export default class ReactGridLayout extends React.Component {
       // from SCU is if the user intentionally memoizes children. If they do, and they can
       // handle changes properly, performance will increase.
       this.props.children !== nextProps.children ||
-      !fastRGLPropsEqual(this.props, nextProps, isEqual) ||
+      // !fastRGLPropsEqual(this.props, nextProps, isEqual) ||
       this.state.activeDrag !== nextState.activeDrag ||
       this.state.mounted !== nextState.mounted ||
       this.state.droppingPosition !== nextState.droppingPosition
@@ -240,7 +240,7 @@ export default class ReactGridLayout extends React.Component {
   onDrag(i, x, y, { e, node }) {
     const { oldDragItem } = this.state
     let { layout } = this.state
-    const { cols, hierarchy } = this.props
+    const { hierarchy } = this.props
     var l = getLayoutItem(layout, i)
     if (!l) return
 
@@ -255,23 +255,12 @@ export default class ReactGridLayout extends React.Component {
     }
 
     // Move the element to the dragged location.
-    const isUserAction = true
-    layout = moveElement(
-      layout,
-      l,
-      x,
-      y,
-      isUserAction,
-      this.props.preventCollision,
-      compactType(this.props),
-      cols,
-      hierarchy
-    )
+    layout = moveElement(layout, l, x, y, null, null, null, null, hierarchy)
 
     this.props.onDrag(layout, oldDragItem, l, placeholder, e, node)
 
     this.setState({
-      layout: compact(layout, compactType(this.props), cols),
+      layout: layout,
       activeDrag: placeholder,
     })
   }
@@ -309,7 +298,7 @@ export default class ReactGridLayout extends React.Component {
     this.props.onDragStop(layout, oldDragItem, l, null, e, node)
 
     // Set state
-    const newLayout = compact(layout, compactType(this.props), cols)
+    const newLayout = layout
     const { oldLayout } = this.state
     this.setState({
       activeDrag: null,
@@ -460,7 +449,7 @@ export default class ReactGridLayout extends React.Component {
         useCSSTransforms={useCSSTransforms}
         transformScale={transformScale}
       >
-        <div />
+        <div></div>
       </GridItem>
     )
   }
@@ -492,7 +481,6 @@ export default class ReactGridLayout extends React.Component {
       resizeHandle,
     } = this.props
     const { mounted, droppingPosition } = this.state
-
     // Determine user manipulations possible.
     // If an item is static, it can't be manipulated by default.
     // Any properties defined directly on the grid item will take precedence.
@@ -508,7 +496,6 @@ export default class ReactGridLayout extends React.Component {
 
     // isBounded set on child if set on parent, and child is not explicitly false
     const bounded = draggable && isBounded && l.isBounded !== false
-
     return (
       <GridItem
         containerWidth={width}
@@ -627,11 +614,7 @@ export default class ReactGridLayout extends React.Component {
     const { droppingItem, cols } = this.props
     const { layout } = this.state
 
-    const newLayout = compact(
-      layout.filter((l) => l.i !== droppingItem.i),
-      compactType(this.props),
-      cols
-    )
+    const newLayout = layout.filter((l) => l.i !== droppingItem.i)
 
     this.setState({
       layout: newLayout,
