@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
@@ -136,6 +136,23 @@ const WebBuilder = () => {
     dispatch(setResizingBlockId(resizingBlock))
   }
 
+  const getLayouts = useCallback(() => {
+    return (
+      layouts
+        .map(({ i }) => {
+          const { type } = blocks[i] || {}
+          if (!type) return null
+          return (
+            <Box key={i} zIndex={blocksZIndex[type]}>
+              <BuilderBlock blockId={i} blocks={blocks} />
+            </Box>
+          )
+        })
+        //this is use to remove undefines in case of error when deleting
+        .filter((item) => item)
+    )
+  }, [layouts])
+
   const isMobile = builderDevice === 'mobile'
 
   return (
@@ -173,18 +190,7 @@ const WebBuilder = () => {
         hierarchy={hierarchy}
         draggableHandle=".draggHandle"
       >
-        {layouts
-          .map(({ i }) => {
-            const { type } = blocks[i] || {}
-            if (!type) return null
-            return (
-              <Box key={i} zIndex={blocksZIndex[type]}>
-                <BuilderBlock blockId={i} />
-              </Box>
-            )
-          })
-          //this is use to remove undefines in case of error when deleting
-          .filter((item) => item)}
+        {getLayouts()}
       </ReactGridLayout>
     </GridLayoutWrapper>
   )

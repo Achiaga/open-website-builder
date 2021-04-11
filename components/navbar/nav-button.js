@@ -1,17 +1,19 @@
-import Button from '../commun/button'
-import { Text } from '@chakra-ui/react'
+import { Button, Text } from '@chakra-ui/react'
 
-const NavButton = ({ display, content, id, onClick, ...props }) => {
+const NavButton = ({ display, content, id, color, onClick, ...props }) => {
   return (
     <Button
       id={id}
-      color="black"
       fontWeight="500"
       background="transparent"
       border="none"
       onClick={onClick}
       display={display}
-      _hover={{ bg: 'primary.100' }}
+      borderBottom="1px solid transparent"
+      borderRadius="0"
+      px="0.2rem"
+      mx="0.8rem"
+      _hover={{ borderBottom: '2px solid', borderColor: color || 'gray.500' }}
     >
       <Text {...props}>{content}</Text>
     </Button>
