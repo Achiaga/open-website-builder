@@ -77,8 +77,29 @@ export const GenericText = (props) => {
   )
 }
 
+function cleanRedirect(url) {
+  var prefix = 'https://'
+  var prefix2 = 'http://'
+  if (url.substr(0, prefix2.length) === prefix2) {
+    return url.replace(prefix2, prefix)
+  }
+  if (url.substr(0, prefix.length) !== prefix) {
+    return prefix + url
+  }
+}
+
+const RedirectWrapper = ({ redirectUrl, children }) => {
+  if (!redirectUrl) return children
+  return (
+    <a href={redirectUrl} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  )
+}
+
 export const PrevText = (props) => {
   const { rowHeight } = useContext(BlocksContext)
+  const redirectUrl = cleanRedirect(props.redirect)
   const Textmodifiers = {
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
@@ -90,8 +111,9 @@ export const PrevText = (props) => {
   }
   const fontSize = Math.round(parseInt(props.fontSize) * rowHeight * 0.13)
   const mobileFontSize = fontSize * 2
+
   return (
-    <>
+    <RedirectWrapper redirectUrl={redirectUrl}>
       <Text
         w="100%"
         h="100%"
@@ -102,7 +124,7 @@ export const PrevText = (props) => {
       >
         {props.text}
       </Text>
-    </>
+    </RedirectWrapper>
   )
 }
 

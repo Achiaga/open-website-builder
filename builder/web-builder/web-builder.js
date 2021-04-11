@@ -25,6 +25,8 @@ import {
   getLayout,
   setSaveStatus,
   getHierarchy,
+  setDraggingBlock,
+  getDraggingBlock,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -73,6 +75,7 @@ const WebBuilder = () => {
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
   const gridRowHeight = useSelector(getGridRowHeight)
   const builderDevice = useSelector(getBuilderDevice)
+  const draggingBlock = useSelector(getDraggingBlock)
   const lastHoveredEl = useRef()
 
   useEffect(() => {
@@ -118,10 +121,14 @@ const WebBuilder = () => {
   }
 
   function handleDragStop(newLayout, __, newItem) {
+    console.log('dragStop')
     handleLayoutChange(newLayout, __, newItem)
+    setTimeout(() => dispatch(setDraggingBlock(null)), 0)
   }
 
   function handleDrag(layout, _, newItem) {
+    console.log('handleDrag')
+    !draggingBlock && dispatch(setDraggingBlock(newItem.i))
     const newParent = getParentBlock(layout, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)
   }
@@ -144,7 +151,7 @@ const WebBuilder = () => {
           if (!type) return null
           return (
             <Box key={i} zIndex={blocksZIndex[type]}>
-              <BuilderBlock blockId={i} blocks={blocks} />
+              <BuilderBlock blockId={i} />
             </Box>
           )
         })
