@@ -7,11 +7,11 @@ import { Properties } from './block-properties'
 import {
   editBlockConfig,
   getBlockParentId,
-  getIsMobileBuilder,
+  // getIsMobileBuilder,
 } from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
-import { deleteProperty } from './block-properties'
+// import { deleteProperty } from './block-properties'
 
 const CustomToolTip = ({ label, children }) => {
   return (
@@ -134,7 +134,8 @@ function DropDownSelector({
 
 DropDownSelector.propTypes = {
   icon: PropTypes.any,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.string.isRequired,
+  tooltip: PropTypes.string.isRequired,
   isBlockAtTop: PropTypes.bool.isRequired,
   isBlockAtLeft: PropTypes.bool.isRequired,
   handleOpenToolbar: PropTypes.func.isRequired,
@@ -147,7 +148,6 @@ DropDownSelector.propTypes = {
       title: PropTypes.any.isRequired,
     }).isRequired
   ).isRequired,
-  placeholder: PropTypes.string.isRequired,
 }
 
 function ColorDropDownSelector({
@@ -246,7 +246,7 @@ function ColorDropDownSelector({
 }
 
 ColorDropDownSelector.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.string.isRequired,
   isBlockAtTop: PropTypes.bool.isRequired,
   isBlockAtLeft: PropTypes.bool.isRequired,
   isBlockAtRight: PropTypes.bool.isRequired,
@@ -260,7 +260,6 @@ ColorDropDownSelector.propTypes = {
       title: PropTypes.any.isRequired,
     }).isRequired
   ).isRequired,
-  placeholder: PropTypes.string.isRequired,
 }
 
 function EmojiDropDownSelector({
@@ -364,7 +363,7 @@ function EmojiDropDownSelector({
 }
 
 EmojiDropDownSelector.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.string.isRequired,
   isBlockAtTop: PropTypes.bool.isRequired,
   isBlockAtLeft: PropTypes.bool.isRequired,
   isBlockAtRight: PropTypes.bool.isRequired,
@@ -378,7 +377,6 @@ EmojiDropDownSelector.propTypes = {
       title: PropTypes.any.isRequired,
     }).isRequired
   ).isRequired,
-  placeholder: PropTypes.string.isRequired,
 }
 
 function TextInput({
@@ -465,11 +463,11 @@ function TextInput({
 TextInput.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   property: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   handleCloseInput: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   inputPlaceholder: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.string.isRequired,
   isBlockAtTop: PropTypes.bool.isRequired,
   isBlockAtLeft: PropTypes.bool.isRequired,
   isBlockAtRight: PropTypes.bool.isRequired,
@@ -508,7 +506,7 @@ ButtonSelector.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   property: PropTypes.string.isRequired,
   operationType: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.object.isRequired,
 }
 
 function DuplicateButton({
@@ -540,7 +538,7 @@ DuplicateButton.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   property: PropTypes.string.isRequired,
   operationType: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.object.isRequired,
 }
 
 export const Modifiers = ({
@@ -578,7 +576,7 @@ export const Modifiers = ({
 }
 
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState('')
   const dispatch = useDispatch()
   const blockParentId = useSelector(getBlockParentId(blockKey))
 
@@ -589,12 +587,12 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 
   function handleCloseInput(e) {
     if (e.key === 'Enter') {
-      setIsOpen(false)
+      setIsOpen('')
     }
   }
 
   function handleEdit(id, value, operationType = EDIT) {
-    if (id !== 'imageUrl' && id !== 'redirect') setIsOpen(false)
+    if (id !== 'imageUrl' && id !== 'redirect') setIsOpen('')
     const newData = { ...data }
     if (id === 'emoji') {
       newData.text = `${data.text} ${value}`
