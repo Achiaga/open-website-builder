@@ -9,7 +9,6 @@ import BlockInception from './inception'
 import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  getBlockData,
   getIsMobileBuilder,
   getResizingBlock,
   getSelectedBlockId,
@@ -17,7 +16,7 @@ import {
   duplicateBlock,
 } from '../../features/builderSlice'
 
-const blocks = {
+const blocksType = {
   image: Image,
   text: GenericText,
   inception: BlockInception,
@@ -58,10 +57,10 @@ const DragHandle = () => {
   )
 }
 
-export function BuilderBlock({ blockId }) {
+export function BuilderBlock({ blockId, blocks }) {
   const dispatch = useDispatch()
-  const { type, data } = useSelector(getBlockData(blockId))
-  const GenericBlock = blocks[type]
+  const { type, data } = blocks[blockId]
+  const GenericBlock = blocksType[type]
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
 
@@ -72,7 +71,6 @@ export function BuilderBlock({ blockId }) {
   function handleClick() {
     dispatch(duplicateBlock(blockId))
   }
-
   return (
     <Box
       width="100%"
