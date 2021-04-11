@@ -6,7 +6,7 @@ export default {
     title_1: 'Crea tu ',
     title_color_2: 'Portfolio ',
     title_color_3: 'Online ',
-    title_4: 'en 5 mins',
+    title_4: 'en 13 mins',
     subtitle:
       'Un curriculum online gratis, simple e impresionante, tu proximo cv no sera pdf, sera una página web.',
     button: 'Crea tu Protfolio gratis',
@@ -68,6 +68,26 @@ export default {
     join_color: 'Antfolio',
     email_subscription: 'Escribe tu email',
     access: 'Consigue acceso premiun',
+  },
+  business_subscription_modal: {
+    header: 'We are glad to see you on board 🚀!',
+    body_1: 'Write your email and we will contact you.',
+    body_2:
+      'After submitting your email. We will send you a message with some questions about your specific requirements needed.',
+    body_3: 'We can not specify a price before knowing your requirements.',
+    body_color_1: '50 Free Pro accounts ',
+    body_4: 'for our beta testers.',
+    progressLabel_color: '30 ',
+    progressLabel: 'spots left',
+    footer_color_1: 'Antfolio ',
+    footer: "is so fast and delightful — you'll feel like you have ",
+    footer_color_2: 'superpowers.',
+    join: 'Join',
+    join_color: 'Antfolio Pro version',
+    noSpam:
+      'No spam, we promise. We will only notify you once the pro version is ready',
+    email_subscription: 'Your email ( eg: johndoe@gmail.com )',
+    access: 'Get early access',
   },
   steps: {
     title: 'Como funciona?',

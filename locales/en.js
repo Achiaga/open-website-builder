@@ -6,7 +6,7 @@ export default {
     title_1: 'Build your ',
     title_color_2: 'Online ',
     title_color_3: 'Portfolio ',
-    title_4: 'in 15 mins',
+    title_4: 'in 13 mins',
     subtitle:
       "Your next resume won't be a document, it will be a website. Free, simple, breath-taking web resume. ",
     button: 'Create your Portfolio',
@@ -55,6 +55,26 @@ export default {
     body_2:
       'If you want to enjoy the Pro features, join our list, and we will let you know once it is ready.',
     body_3: 'As a token of our gratitude 😁 the first month is on us.',
+    body_color_1: '50 Free Pro accounts ',
+    body_4: 'for our beta testers.',
+    progressLabel_color: '30 ',
+    progressLabel: 'spots left',
+    footer_color_1: 'Antfolio ',
+    footer: "is so fast and delightful — you'll feel like you have ",
+    footer_color_2: 'superpowers.',
+    join: 'Join',
+    join_color: 'Antfolio Pro version',
+    noSpam:
+      'No spam, we promise. We will only notify you once the pro version is ready',
+    email_subscription: 'Your email ( eg: johndoe@gmail.com )',
+    access: 'Get early access',
+  },
+  business_subscription_modal: {
+    header: 'We are glad to see you on board!  🚀 ',
+    body_1: 'Write your email and we will contact you.',
+    body_2:
+      'After submitting your email. We will send you a message with some questions about your specific requirements needed.',
+    body_3: 'We can not specify a price before knowing your requirements.',
     body_color_1: '50 Free Pro accounts ',
     body_4: 'for our beta testers.',
     progressLabel_color: '30 ',

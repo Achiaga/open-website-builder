@@ -1,22 +1,43 @@
 import { Box, Button, useDisclosure } from '@chakra-ui/react'
 import { PricingCard } from './PricingCard'
-import SubscriptionModal from '../modals/subscription-modal/subscription-modal'
+import { SubscriptionModal, BusinessSubscriptionModal } from '../modals'
+import { useEffect } from 'react'
+import { AnalyticsEvent } from '../../utils/analytics'
 
 const ActionButton = (props) => (
   <Button size="lg" w="full" fontWeight="bold" {...props} />
 )
 
 const PricingCards = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: isProOpen,
+    onOpen: onProOpen,
+    onClose: onProClose,
+  } = useDisclosure()
+  const {
+    isOpen: isBusinessOpen,
+    onOpen: onBusinessOpen,
+    onClose: onBusinessClose,
+  } = useDisclosure()
+
+  useEffect(() => {
+    AnalyticsEvent('modal_open', 'business pricing')
+  }, [isBusinessOpen])
+
+  useEffect(() => {
+    AnalyticsEvent('modal_open', 'pro pricing')
+  }, [isProOpen])
+
   return (
     <>
       <Box
         d="grid"
-        gridTemplateColumns="repeat( auto-fit, minmax(320px, 1fr) )"
+        gridTemplateColumns={'repeat( auto-fit, minmax(320px, 1fr))'}
         gridColumnGap="1rem"
         justifyItems="center"
         alignItems="center"
         px={[3, '3rem']}
+        pb="4rem"
       >
         <PricingCard
           data={{
@@ -52,14 +73,14 @@ const PricingCards = () => {
             ],
           }}
           button={
-            <ActionButton colorScheme="primary" onClick={onOpen}>
+            <ActionButton colorScheme="primary" onClick={onProOpen}>
               Get started
             </ActionButton>
           }
         />
         <PricingCard
           data={{
-            price: 399,
+            price: 60,
             name: 'Enterprise',
             description:
               'Have custom requirements, or want to offer Antfolio to your clients?',
@@ -72,16 +93,25 @@ const PricingCards = () => {
             ],
           }}
           button={
-            <ActionButton variant="outline" colorScheme="primary">
+            <ActionButton
+              variant="outline"
+              colorScheme="primary"
+              onClick={onBusinessOpen}
+            >
               Contact us
             </ActionButton>
           }
         />
       </Box>
       <SubscriptionModal
-        onOpen={onOpen}
-        toggleModalOpen={onClose}
-        isModalOpen={isOpen}
+        onOpen={onProOpen}
+        toggleModalOpen={onProClose}
+        isModalOpen={isProOpen}
+      />
+      <BusinessSubscriptionModal
+        onOpen={onBusinessOpen}
+        toggleModalOpen={onBusinessClose}
+        isModalOpen={isBusinessOpen}
       />
     </>
   )

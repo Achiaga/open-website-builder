@@ -30,32 +30,32 @@ const LeftSideContent = () => {
       <Text
         as="h1"
         color="primary.500"
-        pt={2}
+        pt={[4, 2]}
         fontSize="2xl"
         fontWeight="medium"
         textAlign="center"
       >
-        {t.subscription_modal.header}
+        {t.business_subscription_modal.header}
       </Text>
-      <Text as="p" lineHeight="20px" py="3rem" fontSize="lg">
-        {t.subscription_modal.body_1}
+      <Text as="p" lineHeight="25px" py={['1rem', '3rem']} fontSize="lg">
+        {t.business_subscription_modal.body_1}
         <br />
         <br />
-        {t.subscription_modal.body_2}
+        {t.business_subscription_modal.body_2}
         <br />
         <br />
-        {t.subscription_modal.body_3}
+        {t.business_subscription_modal.body_3}
         <br />
         <br />
       </Text>
 
       <Text fontWeight="medium" as="p" fontSize="sm" textAlign="center">
         <Text as="span" color="primary.500">
-          {t.subscription_modal.footer_color_1}
+          {t.business_subscription_modal.footer_color_1}
         </Text>
-        {t.subscription_modal.footer}
+        {t.business_subscription_modal.footer}
         <Text as="span" color="primary.500">
-          {t.subscription_modal.footer_color_2}
+          {t.business_subscription_modal.footer_color_2}
         </Text>
       </Text>
     </Box>
@@ -108,9 +108,9 @@ const RightSideContent = () => {
         <LogoSvg />
       </Box>
       <Text as="h1" textAlign="center" lineHeight="24px" d={['none', 'block']}>
-        {t.subscription_modal.join}
+        {t.business_subscription_modal.join}
         <Text as="span" color="primary.500" ml="4px">
-          {t.subscription_modal.join_color}
+          {t.business_subscription_modal.join_color}
         </Text>
       </Text>
 
@@ -128,7 +128,7 @@ const RightSideContent = () => {
           border="none"
           bg="white"
           fontSize="sm"
-          placeholder={t.subscription_modal.email_subscription}
+          placeholder={t.business_subscription_modal.email_subscription}
           type="email"
           id="email"
           value={emailValue}
@@ -153,7 +153,7 @@ const RightSideContent = () => {
           ) : isSuccess ? (
             t.button_success
           ) : (
-            t.subscription_modal.access
+            t.business_subscription_modal.access
           )}
         </Button>
         <Text
@@ -166,14 +166,14 @@ const RightSideContent = () => {
           mt={['1rem', '1rem']}
           fontWeight="400"
         >
-          💌 {t.subscription_modal.noSpam}
+          💌 {t.business_subscription_modal.noSpam}
         </Text>
       </Box>
     </Box>
   )
 }
 
-const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
+const BusinessSubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
   return (
     <Modal isOpen={isModalOpen} onClose={toggleModalOpen}>
       <ModalContent
@@ -195,4 +195,4 @@ const SubscriptionModal = ({ isModalOpen, toggleModalOpen }) => {
   )
 }
 
-export default SubscriptionModal
+export default BusinessSubscriptionModal

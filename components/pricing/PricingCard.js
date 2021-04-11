@@ -23,20 +23,26 @@ export const PricingCard = (props) => {
       color="gray.500"
       mb="2rem"
       w={'100%'}
+      borderRadius={'0.75rem'}
     >
       <VStack spacing={6}>
         <Heading size="2xl" fontWeight="bold">
           {name}
         </Heading>
       </VStack>
-      <Box d="flex" justifyContent="center" height="120px" alignItems="center">
+      <Box
+        d="flex"
+        justifyContent="center"
+        height={['auto', '120px']}
+        alignItems="center"
+      >
         <Text
           fontSize="lg"
           textAlign="center"
           fontWeight="300"
           py="1rem"
           wordBreak="break-word"
-          width="220px"
+          width={['auto', '220px']}
         >
           {description}
         </Text>
@@ -45,8 +51,9 @@ export const PricingCard = (props) => {
         align="flex-end"
         justify="center"
         fontWeight="extrabold"
-        my="8"
+        my={['6', '8']}
         pos="relative"
+        pl={['5rem', '0']}
       >
         <Heading
           size="3xl"
@@ -67,11 +74,16 @@ export const PricingCard = (props) => {
             $
           </Text>
         </Heading>
-        <Text fontSize="md" pos="absolute" right="0">
+        <Text
+          fontSize="md"
+          pos={['relative', 'absolute']}
+          pl={['1rem', '0']}
+          right="0"
+        >
           {price ? '/ month' : 'free forever'}
         </Text>
       </Flex>
-      <List spacing="4" mb="8" maxW="28ch" mx="auto" height="300px">
+      <List spacing="4" mb="8" maxW="28ch" mx="auto" height={['auto', '300px']}>
         <Text fontSize="xl" mb="1rem" color="gray.500" fontWeight="600">
           {subHeader}
         </Text>
