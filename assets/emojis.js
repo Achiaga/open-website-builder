@@ -1,3 +1,5 @@
+import Dribble from './dribble-icon'
+
 export const emojis = [
   {
     value: '😄',
@@ -110,4 +112,8 @@ export const emojis = [
     value: '🏀',
     title: '🏀',
   },
+  // {
+  //   value: <Dribble />,
+  //   title: <Dribble />,
+  // },
 ]
