@@ -10,6 +10,7 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlocks,
+  getDraggingBlock,
   getIsMobileBuilder,
   getResizingBlock,
   getSelectedBlockId,
@@ -69,8 +70,10 @@ export function BuilderBlock({ blockId }) {
   const GenericBlock = blocksType[type]
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
+  const draggingBlock = useSelector(getDraggingBlock)
 
   const isEditable = selectedBlockId === blockId
+  const isDragging = draggingBlock === blockId
 
   const dragHandle = isEditable && type === 'text' && !isMobileBuilder
 
@@ -83,7 +86,7 @@ export function BuilderBlock({ blockId }) {
       id={blockId}
       onClick={(e) => {
         e.stopPropagation()
-        if (isEditable) return null
+        if (isEditable || isDragging) return null
         dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
