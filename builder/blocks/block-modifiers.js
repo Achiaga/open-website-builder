@@ -35,6 +35,7 @@ const PropertiesModifiers = {
   colorDropdown: ColorDropDownSelector,
   emojiDropdown: EmojiDropDownSelector,
   button: ButtonSelector,
+  duplicate: DuplicateButton,
   text: TextInput,
   redirect: TextInput,
 }
@@ -409,6 +410,7 @@ function TextInput({
       cursor="pointer"
       height="20px"
       borderLeft="1px solid gray"
+      borderRight="1px solid gray"
       paddingX="0.3rem"
     >
       <CustomToolTip label={tooltip}>
@@ -509,6 +511,38 @@ ButtonSelector.propTypes = {
   placeholder: PropTypes.string.isRequired,
 }
 
+function DuplicateButton({
+  handleEdit,
+  property,
+  operationType,
+  placeholder,
+  tooltip,
+}) {
+  const handleClick = () => {
+    handleEdit(property, null, operationType)
+  }
+  return (
+    <Box>
+      <CustomToolTip label={tooltip}>
+        <Button
+          padding="0"
+          onClick={handleClick}
+          bg="transparent"
+          borderRadius="5px"
+        >
+          {placeholder}
+        </Button>
+      </CustomToolTip>
+    </Box>
+  )
+}
+DuplicateButton.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  property: PropTypes.string.isRequired,
+  operationType: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+}
+
 export const Modifiers = ({
   isOpen,
   isBlockAtTop,
@@ -589,7 +623,6 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
         display="flex"
         alignItems="center"
         justifyContent="left"
-        paddingRight="3px"
         {...xOffsetToolbar}
         {...yOffsetToolbar}
         rounded="5px"

@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
 
 import { ROW_HEIGHT } from '../builder/web-builder/constants'
-import { DELETE } from '../builder/blocks/constants'
+import { DELETE, DUPLICATE } from '../builder/blocks/constants'
 
 import {
   addBlock,
@@ -171,6 +171,7 @@ export const editBlockConfig = ({ blockId, newData, operationType }) => (
   dispatch
 ) => {
   if (operationType === DELETE) dispatch(removeblock({ blockId, newData }))
+  else if (operationType === DUPLICATE) dispatch(duplicateBlock(blockId))
   else dispatch(setBlockConfig({ newData, blockId }))
 }
 

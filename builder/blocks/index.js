@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
 import Image from './image'
-import { RiDragMove2Fill } from 'react-icons/ri'
+import { BsArrowsMove } from 'react-icons/bs'
 import GenericText, { PrevText } from './text'
 import BlockInception from './inception'
 import { PrevInception } from './prevInception'
@@ -14,7 +14,6 @@ import {
   getResizingBlock,
   getSelectedBlockId,
   setBlockEditable,
-  duplicateBlock,
 } from '../../features/builderSlice'
 
 const blocks = {
@@ -50,10 +49,13 @@ const DragHandle = () => {
       boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
       className="draggHandle"
       pos="absolute"
-      left="0px"
+      paddingY="2px"
+      paddingX="2px"
+      cursor="move"
+      left="-30px"
       bg="white"
     >
-      <RiDragMove2Fill size="34px" />
+      <BsArrowsMove size="20px" />
     </Box>
   )
 }
@@ -68,10 +70,6 @@ export function BuilderBlock({ blockId }) {
   const isEditable = selectedBlockId === blockId
 
   const dragHandle = isEditable && type === 'text' && !isMobileBuilder
-
-  function handleClick() {
-    dispatch(duplicateBlock(blockId))
-  }
 
   return (
     <Box
@@ -91,17 +89,6 @@ export function BuilderBlock({ blockId }) {
       {isEditable && !isMobileBuilder && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
-          {/* This is only for internal use */}
-          <Box
-            onClick={handleClick}
-            pos="absolute"
-            top="0"
-            bg="white"
-            zIndex="9999"
-            cursor="pointer"
-          >
-            Duplicate
-          </Box>
         </>
       )}
       {dragHandle && <DragHandle />}
