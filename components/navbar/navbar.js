@@ -56,28 +56,28 @@ const Navbar = ({ isSticky = true, color }) => {
         pos="relative"
         justify="space-between"
         align="center"
-        color={color || 'black'}
+        color={color || 'gray.500'}
         fontSize={['sm', 'md']}
       >
         <NavButton
           display={['none', 'block']}
           onClick={handleNavRouting}
           content="Templates"
-          color={color || 'black'}
+          color={color || 'gray.500'}
           id="templates"
         />
         <NavButton
           display={['none', 'block']}
           onClick={handleNavRouting}
           content="Pricing"
-          color={color || 'black'}
+          color={color || 'gray.500'}
           id="pricing"
         />
         {/* <NavButton
           display={['none', 'block']}
           onClick={handleNavRouting}
           content="About Us"
-          color={color || 'black'}
+          color={color || 'gray.500'}
           id="about"
         /> */}
         <NavButton
@@ -85,7 +85,7 @@ const Navbar = ({ isSticky = true, color }) => {
           onClick={handleLogin}
           content="Login"
           id="login"
-          color={color || 'black'}
+          color={color || 'gray.500'}
         />
         <Select
           border="none"
@@ -98,10 +98,10 @@ const Navbar = ({ isSticky = true, color }) => {
           onChange={changeLanguage}
           defaultValue={locale}
         >
-          <option color={color || 'black'} value="en">
+          <option color={color || 'gray.500'} value="en">
             en
           </option>
-          <option color={color || 'black'} value="es">
+          <option color={color || 'gray.500'} value="es">
             es
           </option>
         </Select>

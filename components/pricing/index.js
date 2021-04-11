@@ -77,9 +77,9 @@ const PricingCards = () => {
 
 const PricingPage = () => {
   return (
-    <>
+    <Box height="100vh">
       <Navbar isSticky={false} color="white" />
-      <Box as="section" pb="14" height="100vh" overflow="scroll">
+      <Box as="section" pb="14">
         <Box
           bg="#43E28E linear-gradient(91.56deg, #43E28E 0%, #506bf0 122.55%)"
           height={['50vh', '40rem']}
@@ -122,7 +122,7 @@ const PricingPage = () => {
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }
 

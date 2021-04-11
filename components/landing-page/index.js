@@ -61,7 +61,7 @@ const LandingPage = () => {
             toggleModalOpen={toggleModalOpen}
           />
         )}
-        <Navbar handleFreeTrial={handleFreeTrial} />
+        <Navbar handleFreeTrial={handleFreeTrial} color="gray.500" />
         <Hero handleFreeTrial={handleFreeTrial} />
         <Comparison />
         <Features handleFreeTrial={handleFreeTrial} />
