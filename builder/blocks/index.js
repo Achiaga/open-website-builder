@@ -31,7 +31,19 @@ const ResizingCounter = ({ blockId }) => {
   const isResizing = resizingBlock?.i === blockId
   if (!isResizing) return null
   return (
-    <Box pos="absolute" right="0" bottom="25px" bg="white" zIndex="99999">
+    <Box
+      pos="absolute"
+      right="0"
+      bottom="-40px"
+      paddingY="3px"
+      paddingX="7px"
+      bg="white"
+      zIndex="99999"
+      color="primary.500"
+      borderRadius="5px"
+      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+      fontWeight="600"
+    >
       <Box as="span">w: {resizingBlock?.w}</Box>
       <Box as="span"> h: {resizingBlock?.h}</Box>
     </Box>
@@ -45,7 +57,7 @@ const DragHandle = () => {
   return (
     <Box
       rounded="5px"
-      boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
+      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
       className="draggHandle"
       pos="absolute"
       paddingY="2px"

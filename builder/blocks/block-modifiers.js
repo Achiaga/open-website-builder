@@ -23,7 +23,6 @@ const CustomToolTip = ({ label, children }) => {
       color="black"
       closeOnClick
       gutter={12}
-      openDelay={500}
     >
       {children}
     </Tooltip>
