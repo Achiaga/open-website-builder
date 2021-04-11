@@ -1,14 +1,14 @@
-import { Flex, Select } from '@chakra-ui/react'
+import { Box, Flex, Select } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-
 import { useTranslation } from '../../hooks/translation'
 import { AnalyticsEvent } from '../../utils/analytics'
 import Button from '../commun/button'
 import NavButton from './nav-button'
+import LogoSvg from '../../assets/logo'
 
 import BackgroundCircles from './background'
 
-const Navbar = () => {
+const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
   const { locale } = router
   const [t] = useTranslation()
@@ -23,6 +23,10 @@ const Navbar = () => {
     router.push(`/templates`)
   }
 
+  const handleLogoRedirect = () => {
+    router.push('/')
+  }
+
   const handleNavRouting = (e) => {
     const { id } = e.currentTarget
     router.push(`/${id}`)
@@ -34,7 +38,7 @@ const Navbar = () => {
 
   return (
     <Flex
-      position="sticky"
+      position={isSticky ? 'sticky' : 'absolute'}
       top="0"
       w="100%"
       h={[70, 100]}
@@ -43,40 +47,45 @@ const Navbar = () => {
       pt={[8, 0]}
       justify="space-between"
       align="center"
-      fontFamily="Montserrat"
     >
-      <BackgroundCircles />
+      <Box pos="relative" cursor="pointer" onClick={handleLogoRedirect}>
+        <LogoSvg width="50px" />
+      </Box>
+      {isSticky && <BackgroundCircles />}
       <Flex
         pos="relative"
         justify="space-between"
         align="center"
-        color="black"
+        color={color || 'black'}
         fontSize={['sm', 'md']}
       >
         <NavButton
           display={['none', 'block']}
           onClick={handleNavRouting}
           content="Templates"
+          color={color || 'black'}
           id="templates"
         />
         <NavButton
           display={['none', 'block']}
           onClick={handleNavRouting}
           content="Pricing"
+          color={color || 'black'}
           id="pricing"
         />
-        <NavButton
+        {/* <NavButton
           display={['none', 'block']}
           onClick={handleNavRouting}
           content="About Us"
+          color={color || 'black'}
           id="about"
-        />
+        /> */}
         <NavButton
           display={['none', 'block']}
           onClick={handleLogin}
           content="Login"
           id="login"
-          borderBottom="1px solid black"
+          color={color || 'black'}
         />
         <Select
           border="none"
@@ -89,10 +98,10 @@ const Navbar = () => {
           onChange={changeLanguage}
           defaultValue={locale}
         >
-          <option color="black" value="en">
+          <option color={color || 'black'} value="en">
             en
           </option>
-          <option color="black" value="es">
+          <option color={color || 'black'} value="es">
             es
           </option>
         </Select>

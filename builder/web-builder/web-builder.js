@@ -155,8 +155,6 @@ const WebBuilder = () => {
 
   const isMobile = builderDevice === 'mobile'
 
-  console.log('render Main')
-
   return (
     <GridLayoutWrapper
       style={{
@@ -190,7 +188,7 @@ const WebBuilder = () => {
         }}
         layout={layouts}
         hierarchy={hierarchy}
-        // draggableHandle=".draggHandle"
+        draggableHandle=".draggHandle"
       >
         {getLayouts()}
       </ReactGridLayout>
