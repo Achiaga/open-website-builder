@@ -341,13 +341,6 @@ const imageInput = {
   property: 'imageUrl',
 }
 
-const imageBgInput = {
-  type: 'text',
-  placeholder: 'Img',
-  inputPlaceholder: 'Enter your link',
-  property: 'imageUrl',
-}
-
 const redirectInput = {
   type: 'text',
   placeholder: 'Link',
@@ -369,11 +362,12 @@ export const Properties = {
     redirectInput,
     duplicateProperty,
   ],
+
   image: [
     deleteProperty,
     borderRadius,
-    imageInput,
     boxShadow,
+    imageInput,
     redirectInput,
     duplicateProperty,
   ],

@@ -1,6 +1,6 @@
 import { Box, Button, useDisclosure } from '@chakra-ui/react'
 import { PricingCard } from './PricingCard'
-import CustomModal from './NoPaymentModal'
+import SubscriptionModal from '../modals/subscription-modal/subscription-modal'
 
 const ActionButton = (props) => (
   <Button size="lg" w="full" fontWeight="bold" {...props} />
@@ -16,7 +16,7 @@ const PricingCards = () => {
         gridColumnGap="1rem"
         justifyItems="center"
         alignItems="center"
-        px="3rem"
+        px={[3, '3rem']}
       >
         <PricingCard
           data={{
@@ -78,7 +78,11 @@ const PricingCards = () => {
           }
         />
       </Box>
-      <CustomModal onOpen={onOpen} onClose={onClose} isOpen={isOpen} />
+      <SubscriptionModal
+        onOpen={onOpen}
+        toggleModalOpen={onClose}
+        isModalOpen={isOpen}
+      />
     </>
   )
 }

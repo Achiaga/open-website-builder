@@ -102,6 +102,7 @@ export function BuilderBlock({ blockId }) {
         dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
+      outlineOffset="-2px"
       outlineColor={isEditable || isOver ? 'primary.500' : 'transparent'}
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}

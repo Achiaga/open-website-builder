@@ -1,12 +1,9 @@
 import Head from 'next/head'
-import { useState } from 'react'
 
 import { Box } from '@chakra-ui/react'
 
-import { AnalyticsEvent } from '../../utils/analytics'
 import { initLiveChatScript } from '../../utils/analytics'
 
-import { SubscriptionModal } from '../modals'
 import Navbar from '../navbar'
 import Hero from '../hero'
 import Comparison from '../comparison'
@@ -16,13 +13,6 @@ import CardInfo from '../card-info'
 import Footer from '../footer'
 
 const LandingPage = () => {
-  const [isModalOpen, toggleModalOpen] = useState(false)
-
-  const handleFreeTrial = () => {
-    toggleModalOpen(true)
-    AnalyticsEvent('Modal Opened', 'clicked')
-  }
-
   return (
     <Box
       minHeight="100vh"
@@ -37,7 +27,7 @@ const LandingPage = () => {
           name="google-site-verification"
           content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
         />
-        <title>Antfolio - Build your online portfolio/resume</title>
+        <title>Antfolio - Build your online portfolio in 15 minutes</title>
         <link rel="icon" href="/favicon.ico" />
         <script
           defer
@@ -56,16 +46,10 @@ const LandingPage = () => {
         alignItems="center"
         w="full"
       >
-        {isModalOpen && (
-          <SubscriptionModal
-            isModalOpen={isModalOpen}
-            toggleModalOpen={toggleModalOpen}
-          />
-        )}
-        <Navbar handleFreeTrial={handleFreeTrial} color="gray.500" />
-        <Hero handleFreeTrial={handleFreeTrial} />
+        <Navbar color="gray.500" />
+        <Hero />
         <Comparison />
-        <Features handleFreeTrial={handleFreeTrial} />
+        <Features />
         <Steps />
         <CardInfo />
         <Footer />

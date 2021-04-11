@@ -16,6 +16,7 @@ import { getBlockOffsets } from './block-positionn-helpers'
 const CustomToolTip = ({ label, children }) => {
   return (
     <Tooltip
+      paddingRight="5px"
       hasArrow
       placement="top"
       label={label}
@@ -23,6 +24,11 @@ const CustomToolTip = ({ label, children }) => {
       color="black"
       closeOnClick
       gutter={12}
+      sx={{
+        '.chakra-tooltip__arrow-wrapper': {
+          zIndex: '1 !important',
+        },
+      }}
     >
       {children}
     </Tooltip>
