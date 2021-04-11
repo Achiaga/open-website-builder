@@ -45,6 +45,7 @@ const LandingPage = () => {
             __html: initLiveChatScript,
           }}
         />
+        <link rel="canonical" href="https://www.antfolio.app" />
       </Head>
 
       <Box
