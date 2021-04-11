@@ -50,12 +50,11 @@ export default {
     button: 'Start Creating',
   },
   subscription_modal: {
-    header: "Join our early adopters' List, and get the job of your dreams",
-    body_1: 'We are thrilled to see you here 😁!',
+    header: 'We are thrilled to see you here 🥳!',
+    body_1: 'Unfortunately, the Pro version is not ready yet',
     body_2:
-      'Unfortunately, the app is not open to the public yet, it works by invitation only. If you want to join us, ask for early access.',
-    body_3:
-      'We want people to enjoy making their resumes as they have never done before. If you want to help us in this adventure and change how people present themself! Let us know, we have ',
+      'If you want to enjoy the Pro features, join our list, and we will let you know once it is ready.',
+    body_3: 'As a token of our gratitude 😁 the first month is on us.',
     body_color_1: '50 Free Pro accounts ',
     body_4: 'for our beta testers.',
     progressLabel_color: '30 ',
@@ -64,8 +63,10 @@ export default {
     footer: "is so fast and delightful — you'll feel like you have ",
     footer_color_2: 'superpowers.',
     join: 'Join',
-    join_color: 'Antfolio',
-    email_subscription: 'Type your email',
+    join_color: 'Antfolio Pro version',
+    noSpam:
+      'No spam, we promise. We will only notify you once the pro version is ready',
+    email_subscription: 'Your email ( eg: johndoe@gmail.com )',
     access: 'Get early access',
   },
   steps: {
