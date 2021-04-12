@@ -8,8 +8,9 @@ const PricingPage = () => {
       <Navbar isSticky={false} color="white" />
       <Box as="section" pb="14">
         <Box
+          paddingTop={['3rem', '0']}
           bg="#43E28E linear-gradient(91.56deg, #43E28E 0%, #506bf0 122.55%)"
-          height={['50vh', '40rem']}
+          height={['60vh', '40rem']}
         >
           <Box
             h="50vh"
@@ -22,7 +23,7 @@ const PricingPage = () => {
           >
             <Text
               as="h1"
-              fontSize="5rem"
+              fontSize={['3.5rem', '5rem']}
               color="white"
               fontWeight="800"
               textAlign="center"
@@ -35,7 +36,7 @@ const PricingPage = () => {
               maxWidth="40ch"
               margin="0 2rem"
               color="white"
-              fontSize="1.2rem"
+              fontSize={['1rem', '1.2rem']}
               lineHeight="1.8"
               textAlign="center"
               fontWeight="500"
