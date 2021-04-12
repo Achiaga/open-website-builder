@@ -335,7 +335,7 @@ function EmojiDropDownSelector({
         boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
       >
         {isOpen === property &&
-          options?.map(({ value: optionValue, title, icon }, index) => {
+          options?.map(({ value: optionValue }, index) => {
             return (
               <Button
                 bg="transparent"
@@ -355,9 +355,8 @@ function EmojiDropDownSelector({
                 value={optionValue}
                 paddingX="4px"
               >
-                {icon}
                 <Box width="60%" display="flex" justifyContent="flex-start">
-                  {title}
+                  {optionValue}
                 </Box>
               </Button>
             )
@@ -378,8 +377,7 @@ EmojiDropDownSelector.propTypes = {
   value: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      title: PropTypes.any.isRequired,
+      value: PropTypes.any.isRequired,
     }).isRequired
   ).isRequired,
 }

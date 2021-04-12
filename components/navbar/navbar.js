@@ -48,7 +48,12 @@ const Navbar = ({ isSticky = true, color }) => {
       justify="space-between"
       align="center"
     >
-      <Box pos="relative" cursor="pointer" onClick={handleLogoRedirect}>
+      <Box
+        pos="relative"
+        cursor="pointer"
+        zIndex="60"
+        onClick={handleLogoRedirect}
+      >
         <LogoSvg width="50px" />
       </Box>
       {isSticky && <BackgroundCircles />}
