@@ -90,8 +90,9 @@ function cleanRedirect(url) {
 
 const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
+  const workingRedirectUrl = cleanRedirect(redirectUrl)
   return (
-    <a href={redirectUrl} target="_blank" rel="noreferrer">
+    <a href={workingRedirectUrl} target="_blank" rel="noreferrer">
       {children}
     </a>
   )
@@ -99,7 +100,7 @@ const RedirectWrapper = ({ redirectUrl, children }) => {
 
 export const PrevText = (props) => {
   const { rowHeight } = useContext(BlocksContext)
-  const redirectUrl = cleanRedirect(props.redirect)
+  const redirectUrl = props?.redirect
   const Textmodifiers = {
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
