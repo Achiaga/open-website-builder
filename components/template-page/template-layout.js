@@ -20,7 +20,14 @@ const CustomButton = ({ colorScheme, children }) => {
 
 const Template = ({ templateInfo }) => {
   return (
-    <Box w="100%" h="lg" pos="relative" borderRadius="10px" overflow="hidden">
+    <Box
+      w="100%"
+      h="lg"
+      pos="relative"
+      borderRadius="10px"
+      overflow="hidden"
+      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+    >
       <Box
         role="group"
         pos="absolute"

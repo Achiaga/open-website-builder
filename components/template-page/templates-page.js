@@ -6,10 +6,10 @@ import Template from './template-layout'
 import LogoSvg from '../../assets/logo'
 
 const TEMPLATES = [
-  { id: 'template1', imageUrl: '/template1.png', tags: [] },
+  { id: 'template1', imageUrl: '/template1.jpg', tags: [] },
   { id: 'template2', imageUrl: '/template2.jpg', tags: [] },
   { id: 'template3', imageUrl: '/template3.jpg', tags: [] },
-  { id: 'template4', imageUrl: '/template4.png', tags: [] },
+  { id: 'template4', imageUrl: '/template4.jpg', tags: [] },
 ]
 
 const TemplatePage = () => {
@@ -38,7 +38,7 @@ const TemplatePage = () => {
           as="h1"
           textAlign={['center', 'left']}
           fontWeight="bold"
-          color="black"
+          color="gray.500"
           pt={[2, 0]}
           fontFamily="Montserrat"
           fontSize={['4xl', '5xl']}
@@ -59,7 +59,7 @@ const TemplatePage = () => {
         <Text
           mt={[0, 2]}
           textAlign={['center', 'left']}
-          color="gray.600"
+          color="gray.500"
           fontFamily="Montserrat"
           fontSize={['lg', 'xl']}
           px={[8, 0]}
@@ -70,7 +70,7 @@ const TemplatePage = () => {
         <Text
           mt={[6, 1]}
           textAlign={['center', 'left']}
-          color="gray.600"
+          color="gray.500"
           fontFamily="Montserrat"
           fontSize={['lg', 'xl']}
           as="h4"
