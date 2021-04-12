@@ -75,7 +75,6 @@ const Template = ({ templateInfo }) => {
 }
 
 Template.propTypes = {
-  handleEditTemplate: PropTypes.func.isRequired,
   handlePreviewTemplate: PropTypes.func.isRequired,
   templateInfo: PropTypes.any.isRequired,
 }
