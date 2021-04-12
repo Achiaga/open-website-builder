@@ -9,6 +9,7 @@ import { AnalyticsEvent } from '../../../utils/analytics'
 import { useTranslation } from '../../../hooks/translation'
 import { addUserToBetaList } from '../../../helpers/transport'
 import LogoSvg from '../../../assets/logo'
+import { PRO } from '../../../constants'
 
 const LeftSideContent = () => {
   const [t] = useTranslation()
@@ -79,7 +80,7 @@ const RightSideContent = () => {
     if (isLoading || !emailValue) return
     setIsLoading(true)
     AnalyticsEvent('signup', 'modal')
-    addUserToBetaList(emailValue)
+    addUserToBetaList(emailValue, PRO)
       .then((value) => {
         if (value === 'success') {
           setIsSuccess(true)

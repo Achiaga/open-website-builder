@@ -29,27 +29,43 @@ const addUser = async (payload) => {
   try {
     const response = await base('pro-users').create([
       {
-        fields: { ...payload },
+        fields: { email: payload.email },
       },
     ])
     return response
   } catch (err) {
     console.error(err)
-    const response = await base('pro-users').create([
+    throw err
+  }
+}
+const addBusinessUser = async (payload) => {
+  try {
+    const response = await base('business-users').create([
       {
         fields: { email: payload.email },
       },
     ])
     return response
+  } catch (err) {
+    console.error(err)
+    throw err
   }
 }
 
 export default function betaUsers(req, res) {
   const { email, metaData, type } = req.body
   switch (type) {
-    case 'save':
-      return addUser({ email, ...metaData }).then(() => {
-        respondAPIQuery(res, 'success')
-      })
+    case 'pro':
+      return addUser({ email, ...metaData })
+        .then(() => {
+          respondAPIQuery(res, 'success')
+        })
+        .catch((error) => respondAPIQuery(res, { error }, 500))
+    case 'business':
+      return addBusinessUser({ email, ...metaData })
+        .then(() => {
+          respondAPIQuery(res, 'success')
+        })
+        .catch((error) => respondAPIQuery(res, { error }, 500))
   }
 }

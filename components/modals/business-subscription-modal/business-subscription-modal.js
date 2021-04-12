@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { Box, Text, Input, Spinner } from '@chakra-ui/react'
+import {
+  Box,
+  Text,
+  Input,
+  Spinner,
+  ListItem,
+  ListIcon,
+  List,
+} from '@chakra-ui/react'
 import { ModalContent, ModalCloseButton } from '@chakra-ui/react'
 
 import Modal from '../../modal'
@@ -9,6 +17,8 @@ import { AnalyticsEvent } from '../../../utils/analytics'
 import { useTranslation } from '../../../hooks/translation'
 import { addUserToBetaList } from '../../../helpers/transport'
 import LogoSvg from '../../../assets/logo'
+import { MdCheckCircle } from 'react-icons/md'
+import { BUSINESS } from '../../../constants'
 
 const LeftSideContent = () => {
   const [t] = useTranslation()
@@ -39,6 +49,20 @@ const LeftSideContent = () => {
       </Text>
       <Text as="p" lineHeight="25px" py={['1rem', '3rem']} fontSize="lg">
         {t.business_subscription_modal.body_1}
+        <br />
+        <br />
+        <List spacing={3}>
+          <ListItem color="gray.500">
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            {t.business_subscription_modal.listItem1}
+          </ListItem>
+          <ListItem color="gray.500">
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            {t.business_subscription_modal.listItem2}
+          </ListItem>
+        </List>
+        <br />
+        {t.business_subscription_modal.body_1_1}
         <br />
         <br />
         {t.business_subscription_modal.body_2}
@@ -79,7 +103,7 @@ const RightSideContent = () => {
     if (isLoading || !emailValue) return
     setIsLoading(true)
     AnalyticsEvent('signup', 'modal')
-    addUserToBetaList(emailValue)
+    addUserToBetaList(emailValue, BUSINESS)
       .then((value) => {
         if (value === 'success') {
           setIsSuccess(true)

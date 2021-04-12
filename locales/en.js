@@ -71,10 +71,14 @@ export default {
   },
   business_subscription_modal: {
     header: 'We are glad to see you on board!  🚀 ',
-    body_1: 'Write your email and we will contact you.',
+    body_1: 'If you are:',
+    listItem1: 'An agency with multiple clients',
+    listItem2: 'Or want custom design and integrations',
+    body_1_1: 'This is your plan. We will build for you!! 🏗',
     body_2:
-      'After submitting your email. We will send you a message with some questions about your specific requirements needed.',
-    body_3: 'We can not specify a price before knowing your requirements.',
+      'We will contact you shortly after submitting your email, to see what requirements you have 😁.',
+    body_3:
+      'Once we know your personalized needs we will create a tailor plan just for you.',
     body_color_1: '50 Free Pro accounts ',
     body_4: 'for our beta testers.',
     progressLabel_color: '30 ',
