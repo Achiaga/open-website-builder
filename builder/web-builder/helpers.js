@@ -91,10 +91,10 @@ export function normalizeBlockStructure(userBlocksData) {
 }
 
 function containsInX(parent, child) {
-  return child.x >= parent.x && child.x <= parent.x + parent.w
+  return child.x >= parent.x - 2 && child.x <= parent.x + parent.w - 2
 }
 function containsInY(parent, child) {
-  return child.y >= parent.y && child.y <= parent.y + parent.h
+  return child.y >= parent.y - 2 && child.y <= parent.y + parent.h - 2
 }
 
 function isNewItemInsideInception(parent, child) {

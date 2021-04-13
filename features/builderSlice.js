@@ -11,6 +11,7 @@ import {
   findBlockParentId,
   getParentBlock,
   isBlockInHierarchy,
+  getUpdatedHierarchy,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -221,6 +222,19 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
   })
 }
 
+export const updateLayoutChange = (newLayout, newItem) => (
+  dispatch,
+  getState
+) => {
+  const hierarchy = getHierarchy(getState())
+  const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
+  dispatch(updateLayouts(newLayout, newItem.i))
+  dispatch(updateHierarchy(updatedHierarchy))
+  setTimeout(() => {
+    dispatch(setResizingBlockId(null))
+  }, 600)
+}
+
 export const setBlockEditable = (blockId) => (dispatch) => {
   batch(() => {
     dispatch(setSelectedBlockId(blockId))
@@ -291,6 +305,7 @@ export const addNewHierachyItem = (blockLayoutId, newParentId) => (
   if (builderDevice === 'mobile') {
     dispatch(setMobileHierarchy(newHierarchy))
   } else {
+    dispatch(setMobileHierarchy(newHierarchy))
     dispatch(setHierarchy(newHierarchy))
   }
 }
@@ -456,9 +471,9 @@ export const getUserData = (state) => state.builder.user
 export const getWebsiteId = (state) => state.builder.user?.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
-  if (getBuilderDevice(state) === 'mobile') {
-    return getMobileHierarchy(state)
-  }
+  // if (getBuilderDevice(state) === 'mobile') {
+  //   return getMobileHierarchy(state)
+  // }
   return getDesktopHierarchy(state)
 }
 const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy

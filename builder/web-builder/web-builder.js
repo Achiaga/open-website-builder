@@ -5,12 +5,11 @@ import { Box } from '@chakra-ui/react'
 
 import {
   saveOnLocal,
-  getUpdatedHierarchy,
   getParentBlock,
   highlightFutureParentBlock,
 } from './helpers'
 import { GRID_COLUMNS } from './constants'
-import { batch, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
   getGridRowHeight,
@@ -20,13 +19,12 @@ import {
   setBlockEditable,
   addNewBlock,
   getBuilderDevice,
-  updateLayouts,
-  updateHierarchy,
   getLayout,
   setSaveStatus,
   getHierarchy,
   setDraggingBlock,
   getDraggingBlock,
+  updateLayoutChange,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -109,25 +107,16 @@ const WebBuilder = () => {
   }
 
   function handleLayoutChange(newLayout, __, newItem) {
-    const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
-    batch(() => {
-      dispatch(updateLayouts(newLayout, newItem.i))
-      dispatch(updateHierarchy(updatedHierarchy))
-      setTimeout(() => {
-        dispatch(setResizingBlockId(null))
-      }, 600)
-    })
+    dispatch(updateLayoutChange(newLayout, newItem))
     removeHighlightedElem()
   }
 
   function handleDragStop(newLayout, __, newItem) {
-    console.log('dragStop')
     handleLayoutChange(newLayout, __, newItem)
     setTimeout(() => dispatch(setDraggingBlock(null)), 0)
   }
 
   function handleDrag(layout, _, newItem) {
-    console.log('handleDrag')
     !draggingBlock && dispatch(setDraggingBlock(newItem.i))
     const newParent = getParentBlock(layout, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)
