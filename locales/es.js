@@ -6,7 +6,7 @@ export default {
     title_1: 'Crea tu ',
     title_color_2: 'Portfolio ',
     title_color_3: 'Online ',
-    title_4: 'en 13 mins',
+    title_4: 'en 15 mins',
     subtitle:
       'Un curriculum online gratis, simple e impresionante, tu proximo cv no sera pdf, sera una página web.',
     button: 'Crea tu Protfolio gratis',
