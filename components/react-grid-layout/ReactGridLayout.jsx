@@ -25,10 +25,6 @@ import { calcXY } from './calculateUtils'
 import GridItem from './GridItem'
 import ReactGridLayoutPropTypes from './ReactGridLayoutPropTypes'
 
-// Types
-
-// End Types
-
 const layoutClassName = 'react-grid-layout'
 let isFirefox = false
 // Try...catch will protect from navigator not existing (e.g. node) or a bad implementation of navigator
@@ -75,7 +71,7 @@ export default class ReactGridLayout extends React.Component {
       h: 1,
       w: 1,
     },
-    resizeHandles: ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'],
+    resizeHandles: ['nw', 'se'],
     onLayoutChange: noop,
     onDragStart: noop,
     onDrag: noop,

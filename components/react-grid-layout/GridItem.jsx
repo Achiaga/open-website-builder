@@ -19,7 +19,7 @@ import classNames from 'classnames'
 /**
  * An individual item within a ReactGridLayout.
  */
-export default class GridItem extends React.Component {
+class GridItem extends React.Component {
   static propTypes = {
     // Children must be only a single element
     children: PropTypes.element,
@@ -131,6 +131,7 @@ export default class GridItem extends React.Component {
     if (this.props.children !== nextProps.children) return true
     if (this.props.droppingPosition !== nextProps.droppingPosition) return true
     // TODO memoize these calculations so they don't take so long?
+
     const oldPosition = calcGridItemPosition(
       this.getPositionParams(this.props),
       this.props.x,
@@ -554,3 +555,4 @@ export default class GridItem extends React.Component {
     return newChild
   }
 }
+export default GridItem

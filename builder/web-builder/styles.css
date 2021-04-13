@@ -1,6 +1,12 @@
 .react-resizable {
   position: relative;
 }
+.react-resizable:hover .react-resizable-handle {
+  display: block;
+}
+.react-resizable .react-resizable-handle {
+  display: none;
+}
 .react-resizable-handle {
   position: absolute;
   width: 20px;
@@ -8,7 +14,7 @@
   background-repeat: no-repeat;
   background-origin: content-box;
   box-sizing: border-box;
-  /* background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWAgMAAAC52oSoAAAACVBMVEUAAAAkMUH///+gCSacAAAAAXRSTlMAQObYZgAAABdJREFUCNdjAAGugIGiVoEAnAoFARgFAOeDEYv7AULEAAAAAElFTkSuQmCC'); */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWAgMAAAC52oSoAAAACVBMVEUAAAAkMUH///+gCSacAAAAAXRSTlMAQObYZgAAABdJREFUCNdjAAGugIGiVoEAnAoFARgFAOeDEYv7AULEAAAAAElFTkSuQmCC');
   background-position: bottom right;
   padding: 0 3px 3px 0;
 }
