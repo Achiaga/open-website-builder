@@ -2,7 +2,6 @@ import localforage from 'localforage'
 import { findAllChildren } from '../../features/builderSlice'
 
 import { blocksProperties } from './default-data'
-// import { findAllChildren } from '../../components/react-grid-layout/utils'
 // Block Factory *********************************
 
 export function addBlock(newId, blockType) {
@@ -74,7 +73,13 @@ export function saveOnLocal(userBlocksData) {
   if (!Object.keys(userBlocksData).length) return
   const dataToSave = {
     ...userBlocksData,
-    layouts: Object.values(userBlocksData.layouts),
+    layouts: Object.values(userBlocksData.layouts).map((item) => ({
+      x: item.x,
+      y: item.y,
+      i: item.i,
+      w: item.w,
+      h: item.h,
+    })),
   }
   localforage.setItem('userData', dataToSave)
 }

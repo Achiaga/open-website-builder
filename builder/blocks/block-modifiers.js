@@ -605,7 +605,6 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
     dispatch(editBlockConfig({ newData, blockId: blockKey, operationType }))
   }
   const dim = getBlockOffsets(blockKey, blockParentId)
-  console.log(dim)
 
   const isBlockAtRight = dim.left > window.innerWidth * 0.7
   const isBlockAtLeft = dim.left < window.innerWidth * 0.07

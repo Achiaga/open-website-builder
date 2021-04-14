@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
@@ -50,6 +50,7 @@ const DraggableItem = ({
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
+  if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
   const { x, y, w, h } = blockLayout
   const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
@@ -57,14 +58,18 @@ const DraggableItem = ({
   const height = gridRowHeight * h
   const xPos = x * gridColumnWidth
   const yPos = y * gridRowHeight
+
   function onDragStop(_, blockPos) {
     dispatch(handleDragStop(blockPos, blockId))
     removeHighlightedElem()
   }
+
   function onResizeStop(_, __, ___, delta) {
     dispatch(handleResizeStop(delta, blockId))
   }
+
   function onDrag(_, blockPos) {
+    if (!blockId.includes('inception')) return
     const newBlockLayout = {
       x: blockPos.x / gridColumnWidth,
       y: blockPos.y / gridRowHeight,
@@ -72,6 +77,7 @@ const DraggableItem = ({
       h: h,
       i: blockId,
     }
+
     dispatch(
       handleDrag(
         blockPos,
@@ -90,6 +96,7 @@ const DraggableItem = ({
       onStop={onDragStop}
       onDrag={onDrag}
       handle=".draggHandle"
+      bounds="parent"
     >
       <Resizable
         defaultSize={{ width, height }}
@@ -133,6 +140,7 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
       pos="relative"
       className="droppable-element"
       onDragOver={higlightOnDrop}
+      bg="gray.50"
       onDrop={(e) => {
         e.preventDefault()
         handleDropNewItem(e)
@@ -172,10 +180,6 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function onDrop(newLayout, droppedBlockLayout) {
-    dispatch(addNewBlock(newLayout, droppedBlockLayout))
-    removeHighlightedElem()
-  }
   useEffect(() => {
     handleWindowResize()
   }, [window?.innerWidth])
@@ -190,10 +194,15 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function handleLayoutChange(newLayout, __, newItem) {
-    dispatch(updateLayoutChange(newLayout, newItem))
-    removeHighlightedElem()
-  }
+  // function onDrop(newLayout, droppedBlockLayout) {
+  //   dispatch(addNewBlock(newLayout, droppedBlockLayout))
+  //   removeHighlightedElem()
+  // }
+
+  // function handleLayoutChange(newLayout, __, newItem) {
+  //   dispatch(updateLayoutChange(newLayout, newItem))
+  //   removeHighlightedElem()
+  // }
 
   // function handleDragStop(newLayout, __, newItem) {
   //   handleLayoutChange(newLayout, __, newItem)
@@ -224,7 +233,6 @@ const WebBuilder = () => {
   function handleDropNewItem(ev) {
     ev.preventDefault()
     const { pageX, pageY } = ev
-    console.log(ev)
     const x = pageX / gridColumnWidth
     const y = pageY / gridRowHeight
     const newDroppedBlock = {
@@ -244,7 +252,10 @@ const WebBuilder = () => {
     }
   }
 
-  const isMobile = builderDevice === 'mobile'
+  const layoutsKeys = useMemo(() => Object.keys(layouts), [
+    Object.keys(layouts),
+  ])
+
   return (
     <GridLayoutWrapper
       style={{
@@ -254,8 +265,8 @@ const WebBuilder = () => {
       higlightOnDrop={higlightOnDrop}
       handleDropNewItem={handleDropNewItem}
     >
-      <LayoutsRender
-        layouts={Object.keys(layouts)}
+      <MemoizeLayoutsRender
+        layouts={layoutsKeys}
         handleHiglightSection={handleHiglightSection}
         removeHighlightedElem={removeHighlightedElem}
         gridRowHeight={gridRowHeight}
@@ -281,6 +292,7 @@ const LayoutsRender = ({
     )
   })
 }
+const MemoizeLayoutsRender = React.memo(LayoutsRender)
 
 WebBuilder.propTypes = {
   userBlocksData: PropTypes.any,

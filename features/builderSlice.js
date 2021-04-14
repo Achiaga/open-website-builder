@@ -240,17 +240,27 @@ export const setBlockEditable = (blockId) => (dispatch) => {
   })
 }
 
-function applyAutoMobileLayout(mobileLayout, blockId, updatedLayout) {
+function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
   const mobileLayoutUpdated = { ...mobileLayout }
-  mobileLayoutUpdated[blockId] = updatedLayout[blockId]
-
+  console.log('updatedLayout', updatedLayout)
+  const { x, y, w, h, i } = updatedLayout[blockId]
+  const isOnRight = x > 100
+  const moreWidth = x + w > 100
+  console.log(isOnRight)
+  mobileLayoutUpdated[blockId] = {
+    x: moreWidth ? 0 : x / 4,
+    y: isOnRight ? y + 2 * h : y + (2 * h) / 3,
+    w: moreWidth ? 100 : w,
+    h: h,
+    i: i,
+  }
   return mobileLayoutUpdated
 }
 
 export const updateBlockLayout = (newBlockLayout) => (dispatch, getState) => {
   const layouts = { ...getLayout(getState()) }
   layouts[newBlockLayout.i] = newBlockLayout
-  dispatch(setLayouts(layouts))
+  dispatch(updateLayouts(layouts, newBlockLayout.i))
 }
 
 export const updateLayouts = (updatedLayout, blockId) => (
@@ -259,23 +269,22 @@ export const updateLayouts = (updatedLayout, blockId) => (
 ) => {
   const builderDevice = getBuilderDevice(getState())
   const mobileEditedBlocks = getMobileEditedBlocks(getState())
+  console.log('mobileEditedBlocks', mobileEditedBlocks)
   const mobileLayout = getMobileLayout(getState())
   const isBlockMobileEdited = mobileEditedBlocks.includes(blockId)
   if (builderDevice === 'mobile') {
     batch(() => {
       dispatch(setMobileLayout(updatedLayout))
-      // if (!isBlockMobileEdited) {
-      //   dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
-      // }
+      if (!isBlockMobileEdited) {
+        dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
+      }
     })
   } else {
-    // if (!isBlockMobileEdited) {
-    //   dispatch(
-    //     setMobileLayout(
-    //       applyAutoMobileLayout(mobileLayout, blockId, updatedLayout)
-    //     )
-    //   )
-    // }
+    if (!isBlockMobileEdited) {
+      dispatch(
+        setMobileLayout(autoMobileLayout(mobileLayout, blockId, updatedLayout))
+      )
+    }
     dispatch(setLayouts(updatedLayout))
   }
 }
