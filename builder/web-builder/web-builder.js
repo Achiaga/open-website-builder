@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import RGL, { WidthProvider } from '../../components/react-grid-layout'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
+import Draggable from 'react-draggable'
+import { Resizable } from 're-resizable'
 
 import {
   saveOnLocal,
@@ -25,29 +27,66 @@ import {
   setDraggingBlock,
   getDraggingBlock,
   updateLayoutChange,
+  getBlockLayoutById,
+  handleDragStop,
+  handleResizeStop,
+  handleDrag,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
-const reactGridLayoutProps = {
-  autoSize: true,
-  margin: [0, 0],
-  className: 'layout',
-  verticalCompact: false,
+const DraggableItem = ({ blockId }) => {
+  const dispatch = useDispatch()
+  const gridRowHeight = useSelector(getGridRowHeight)
+  const { x, y, w, h } = useSelector(getBlockLayoutById(blockId))
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const width = gridColumnWidth * w
+  const height = gridRowHeight * h
+  const xPos = x * gridColumnWidth
+  const yPos = y * gridRowHeight
+  console.log(blockId)
+  function onDragStop(_, blockPos) {
+    dispatch(handleDragStop(blockPos, blockId))
+  }
+  function onResizeStop(_, __, ___, delta) {
+    dispatch(handleResizeStop(delta, blockId))
+  }
+  function onDrag(_, blockPos) {
+    dispatch(handleDrag(blockPos, blockId, gridColumnWidth, gridRowHeight))
+  }
+  return (
+    <Draggable
+      key={blockId}
+      position={{ x: xPos, y: yPos }}
+      onStop={onDragStop}
+      onDrag={onDrag}
+      handle=".test"
+    >
+      <Resizable
+        defaultSize={{ width, height }}
+        key={blockId}
+        style={{ position: 'absolute' }}
+        onResizeStop={onResizeStop}
+      >
+        <Box w={'100%'} h={'100%'} pos="absolute" className="test">
+          <BuilderBlock blockId={blockId} />
+        </Box>
+      </Resizable>
+    </Draggable>
+  )
 }
-
-const ReactGridLayout = WidthProvider(RGL)
+const MemoDrag = React.memo(DraggableItem)
 
 const GridLayoutWrapper = ({ children }) => {
   const dispatch = useDispatch()
   return (
     <Box
-      d="flex"
       w="100%"
       height="100%"
       flexDir="row"
       onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
       pos="relative"
+      className="droppable-element"
     >
       {children}
     </Box>
@@ -71,9 +110,7 @@ const WebBuilder = () => {
   const layouts = useSelector(getLayout)
   const hierarchy = useSelector(getHierarchy)
   const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
-  const gridRowHeight = useSelector(getGridRowHeight)
   const builderDevice = useSelector(getBuilderDevice)
-  const draggingBlock = useSelector(getDraggingBlock)
   const lastHoveredEl = useRef()
 
   useEffect(() => {
@@ -116,38 +153,17 @@ const WebBuilder = () => {
     setTimeout(() => dispatch(setDraggingBlock(null)), 0)
   }
 
-  function handleDrag(layout, _, newItem) {
-    !draggingBlock && dispatch(setDraggingBlock(newItem.i))
-    const newParent = getParentBlock(layout, newItem, hierarchy)
-    highlightFutureParentBlock(newParent?.i, lastHoveredEl)
-  }
+  // function handleDrag(layout, _, newItem) {
+  //   !draggingBlock && dispatch(setDraggingBlock(newItem.i))
+  //   const newParent = getParentBlock(layout, newItem, hierarchy)
+  //   highlightFutureParentBlock(newParent?.i, lastHoveredEl)
+  // }
 
   function handleKeyPress(e) {
     if (e.key === 'Escape') {
       dispatch(setBlockEditable(null))
     }
   }
-
-  function handleAddSize(_, __, resizingBlock) {
-    dispatch(setResizingBlockId(resizingBlock))
-  }
-
-  const getLayouts = useCallback(() => {
-    return (
-      layouts
-        .map(({ i }) => {
-          const { type } = blocks[i] || {}
-          if (!type) return null
-          return (
-            <Box key={i} zIndex={blocksZIndex[type]}>
-              <BuilderBlock blockId={i} />
-            </Box>
-          )
-        })
-        //this is use to remove undefines in case of error when deleting
-        .filter((item) => item)
-    )
-  }, [layouts])
 
   const isMobile = builderDevice === 'mobile'
 
@@ -158,38 +174,15 @@ const WebBuilder = () => {
         height: '100%',
       }}
     >
-      <ReactGridLayout
-        {...reactGridLayoutProps}
-        key={builderDevice}
-        cols={isMobile ? 100 : GRID_COLUMNS}
-        style={{
-          width: '100%',
-          minHeight: '100vh',
-          height: '100%',
-          backgroundColor: '#f4f5f6',
-        }}
-        rowHeight={gridRowHeight}
-        onDrop={onDrop}
-        preventCollision={!!newBlockType}
-        isDroppable={true}
-        onResize={handleAddSize}
-        onDrag={handleDrag}
-        onResizeStop={handleLayoutChange}
-        onDragStop={handleDragStop}
-        useCSSTransforms={true}
-        droppingItem={{
-          i: newBlockType ? `${newBlockType}-${newBlockId}` : '',
-          w: 15,
-          h: 10,
-        }}
-        layout={layouts}
-        hierarchy={hierarchy}
-        draggableHandle=".draggHandle"
-      >
-        {getLayouts()}
-      </ReactGridLayout>
+      <LayoutsRender layouts={Object.keys(layouts)} />
     </GridLayoutWrapper>
   )
+}
+
+const LayoutsRender = ({ layouts }) => {
+  return layouts.map((i) => {
+    return <MemoDrag key={i} blockId={i} />
+  })
 }
 
 WebBuilder.propTypes = {

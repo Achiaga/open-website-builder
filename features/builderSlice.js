@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
 
-import { ROW_HEIGHT } from '../builder/web-builder/constants'
+import { GRID_COLUMNS, ROW_HEIGHT } from '../builder/web-builder/constants'
 import { DELETE, DUPLICATE } from '../builder/blocks/constants'
 
 import {
@@ -21,6 +21,7 @@ import {
 } from './login-helpers'
 import { saveData } from '../login/helpers'
 import { findAllChildren } from '../components/react-grid-layout/utils'
+import { layout } from '@chakra-ui/styled-system'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -252,6 +253,13 @@ function applyAutoMobileLayout(mobileLayout, blockId, updatedLayout) {
   return mobileLayoutUpdated
 }
 
+export const updateBlockLayout = (newBlockLayout) => (dispatch, getState) => {
+  const layouts = getLayout(getState())
+  const updatedLayouts = { ...layouts }
+  updatedLayouts[newBlockLayout.i] = newBlockLayout
+  dispatch(setLayouts(updatedLayouts))
+}
+
 export const updateLayouts = (updatedLayout, blockId) => (
   dispatch,
   getState
@@ -458,6 +466,71 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
   })
 }
 
+// NEW FUNCTUIONS ***********************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+
+export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
+  const blockLayout = getBlockLayoutById(blockId)(getState())
+  const gridRowHeight = getGridRowHeight(getState())
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const newX = blockPos.x / gridColumnWidth
+  const newY = blockPos.y / gridRowHeight
+  dispatch(
+    updateBlockLayout({
+      ...blockLayout,
+      x: newX,
+      y: newY,
+    })
+  )
+}
+
+export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
+  const blockLayout = getBlockLayoutById(blockId)(getState())
+  const gridRowHeight = getGridRowHeight(getState())
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const width = blockLayout.w + delta.width / gridColumnWidth
+  const height = blockLayout.h + delta.height / gridRowHeight
+  dispatch(
+    updateBlockLayout({
+      ...blockLayout,
+      w: width,
+      h: height,
+    })
+  )
+}
+
+export const handleDrag = (
+  blockPos,
+  blockId,
+  gridColumnWidth,
+  gridRowHeight
+) => (dispatch, getState) => {
+  const hierarchy = getHierarchy(getState())
+  const children = findAllChildren(hierarchy, blockId)
+  const layouts = getLayout(getState())
+  const updatedLayouts = { ...layouts }
+  for (let item of children) {
+    let layoutItem = layouts[item]
+    const newX =
+      (layoutItem.x * gridColumnWidth + blockPos.deltaX) / gridColumnWidth
+    const newY =
+      (layoutItem.y * gridRowHeight + blockPos.deltaY) / gridRowHeight
+
+    layoutItem = {
+      ...layoutItem,
+      x: newX,
+      y: newY,
+    }
+    updatedLayouts[item] = layoutItem
+  }
+
+  dispatch(setLayouts(updatedLayouts))
+}
+
 // SELECTORS ****************************************************
 //***************************************************************
 //***************************************************************
@@ -493,6 +566,8 @@ export const getBlocksConfig = (state) => state.builder.builderData.blocksConfig
 export const getBlockParentId = (id) => (state) => {
   return findBlockParentId(getStructure(state), id)
 }
+export const getBlockLayoutById = (blockId) => (state) =>
+  getLayout(state)[blockId]
 
 export const getGridRowHeight = (state) => state.builder.gridRowHeight
 export const getLayout = (state) => {
