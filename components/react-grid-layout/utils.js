@@ -348,21 +348,6 @@ export function getStatics(layout) {
  * @param  {Number}     [y]               Y position in grid units.
  */
 
-export function findAllChildren(hierarchy, elementDragginId) {
-  let values = []
-  if (!hierarchy?.[elementDragginId]) return null
-  if (hierarchy[elementDragginId]) {
-    for (let elemId of hierarchy[elementDragginId]) {
-      values = [
-        ...values,
-        ...hierarchy[elementDragginId],
-        ...(findAllChildren(hierarchy, elemId) || []),
-      ]
-    }
-  }
-  return values
-}
-
 export function moveElement(
   layout,
   l,

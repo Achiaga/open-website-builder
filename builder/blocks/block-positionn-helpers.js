@@ -55,16 +55,9 @@ function getChildInceptionPos(blockId, blockParentId) {
 function getBlockPos(blcokId) {
   const element = document.getElementById(blcokId)
   const parentElement = element.offsetParent
-  let dim = getBlockOffset(parentElement)
-  if (hasTranslate(parentElement)) {
-    return getTranslateValues(element)
-  }
-  return dim
+  return getTranslateValues(parentElement)
 }
 
-export function getBlockOffsets(blockId, blockParentId) {
-  if (blockId.includes('child-inception')) {
-    return getChildInceptionPos(blockId, blockParentId)
-  }
+export function getBlockOffsets(blockId) {
   return getBlockPos(blockId)
 }

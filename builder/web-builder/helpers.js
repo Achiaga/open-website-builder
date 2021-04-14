@@ -1,7 +1,8 @@
 import localforage from 'localforage'
+import { findAllChildren } from '../../features/builderSlice'
 
 import { blocksProperties } from './default-data'
-import { findAllChildren } from '../../components/react-grid-layout/utils'
+// import { findAllChildren } from '../../components/react-grid-layout/utils'
 // Block Factory *********************************
 
 export function addBlock(newId, blockType) {
@@ -32,14 +33,14 @@ function removeAllBlockChildren(
   children
 ) {
   const blocks = { ...oldBlocks }
-  let layouts = [...oldLayout]
+  let layouts = { ...oldLayout }
   const hierarchy = { ...oldHierarchy }
   const blocksToRemve = [...children, blockId]
   for (const blockId of blocksToRemve) {
     delete blocks[blockId]
     delete hierarchy[blockId]
+    delete layouts[blockId]
   }
-  layouts = layouts.filter((layout) => !blocksToRemve.includes(layout.i))
   return { layouts, blocks, hierarchy }
 }
 
@@ -51,10 +52,10 @@ export function removeblockFromState(
 ) {
   const findAllChild = findAllChildren(oldHierarchy, blockId)
   const blocks = { ...oldBlocks }
-  let layouts = [...oldLayout]
+  let layouts = { ...oldLayout }
   if (!findAllChild?.length) {
     delete blocks[blockId]
-    layouts = layouts.filter((layout) => layout.i !== blockId)
+    delete layouts[blockId]
     return { layouts, blocks, hierarchy: oldHierarchy }
   }
   if (oldHierarchy[blockId]) {
@@ -122,7 +123,7 @@ export function isBlockInHierarchy(hierarchy, itemId) {
 }
 
 function getAllInceptions(newLayout) {
-  return newLayout.filter(({ i }) => i.includes('inception'))
+  return Object.values(newLayout).filter(({ i }) => i.includes('inception'))
 }
 
 function getIsGammaInception(hierarchy, parentId, parents) {

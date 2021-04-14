@@ -20,8 +20,6 @@ import {
   updateInitialState,
 } from './login-helpers'
 import { saveData } from '../login/helpers'
-import { findAllChildren } from '../components/react-grid-layout/utils'
-import { layout } from '@chakra-ui/styled-system'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -87,7 +85,7 @@ export const builderSlice = createSlice({
     },
     setBulkAddItems: (state, action) => {
       const { blocks, layouts, hierarchy } = action.payload
-      state.builderData.layouts = [...state.builderData.layouts, ...layouts]
+      state.builderData.layouts = { ...state.builderData.layouts, ...layouts }
       state.builderData.blocks = { ...state.builderData.blocks, ...blocks }
       state.builderData.hierarchy = {
         ...state.builderData.hierarchy,
@@ -243,21 +241,16 @@ export const setBlockEditable = (blockId) => (dispatch) => {
 }
 
 function applyAutoMobileLayout(mobileLayout, blockId, updatedLayout) {
-  const blockLayoutIndex = mobileLayout.findIndex(
-    (layout) => layout.i === blockId
-  )
-  const mobileLayoutUpdated = [...mobileLayout]
-  mobileLayoutUpdated[blockLayoutIndex] = updatedLayout.find(
-    (layout) => layout.i === blockId
-  )
+  const mobileLayoutUpdated = { ...mobileLayout }
+  mobileLayoutUpdated[blockId] = updatedLayout[blockId]
+
   return mobileLayoutUpdated
 }
 
 export const updateBlockLayout = (newBlockLayout) => (dispatch, getState) => {
-  const layouts = getLayout(getState())
-  const updatedLayouts = { ...layouts }
-  updatedLayouts[newBlockLayout.i] = newBlockLayout
-  dispatch(setLayouts(updatedLayouts))
+  const layouts = { ...getLayout(getState()) }
+  layouts[newBlockLayout.i] = newBlockLayout
+  dispatch(setLayouts(layouts))
 }
 
 export const updateLayouts = (updatedLayout, blockId) => (
@@ -271,26 +264,26 @@ export const updateLayouts = (updatedLayout, blockId) => (
   if (builderDevice === 'mobile') {
     batch(() => {
       dispatch(setMobileLayout(updatedLayout))
-      if (!isBlockMobileEdited) {
-        dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
-      }
+      // if (!isBlockMobileEdited) {
+      //   dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
+      // }
     })
   } else {
-    if (!isBlockMobileEdited) {
-      dispatch(
-        setMobileLayout(
-          applyAutoMobileLayout(mobileLayout, blockId, updatedLayout)
-        )
-      )
-    }
+    // if (!isBlockMobileEdited) {
+    //   dispatch(
+    //     setMobileLayout(
+    //       applyAutoMobileLayout(mobileLayout, blockId, updatedLayout)
+    //     )
+    //   )
+    // }
     dispatch(setLayouts(updatedLayout))
   }
 }
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  dispatch(setMobileLayout([...mobileLayout, newLayout]))
-  dispatch(setLayouts([...layouts, newLayout]))
+  // dispatch(setMobileLayout([...mobileLayout, newLayout]))
+  dispatch(setLayouts({ ...layouts, [newLayout.i]: newLayout }))
 }
 export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
   const builderDevice = getBuilderDevice(getState())
@@ -402,20 +395,18 @@ const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
   const oldLayouts = getLayout(state)
   const oldHierarchy = getHierarchy(state)
   let newHierarchy = { [newBlockId]: [] }
-  const newLayoutItems = []
+  const newLayoutItems = {}
   const newBlocks = {}
   const relationsTable = { [blockId]: newBlockId }
   for (let childId of allChilds) {
     const blockData = getBlockData(childId)(state)
     if (blockData) {
-      const layoutItem = {
-        ...oldLayouts.find((layoutItem) => layoutItem.i === childId),
-      }
+      const layoutItem = { ...oldLayouts[childId] }
       const newBlockId = `${blockData.type}-${uuid()}`
       layoutItem.i = newBlockId
       layoutItem.x = layoutItem.x + 10
       layoutItem.y = layoutItem.y + 10
-      newLayoutItems.push(layoutItem)
+      newLayoutItems[layoutItem.i] = layoutItem
       newBlocks[layoutItem.i] = blockData
       relationsTable[childId] = newBlockId
       newHierarchy = addDuplicatedToHierarchy(
@@ -439,9 +430,8 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
   const oldHierarchy = getHierarchy(getState())
   const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
 
-  const duplicatedBlockLayout = {
-    ...oldLayouts.find((layoutItem) => layoutItem.i === blockId),
-  }
+  const duplicatedBlockLayout = { ...oldLayouts[blockId] }
+
   const newBlockId = `${blockType}-${uuid()}`
   duplicatedBlockLayout.i = newBlockId
   duplicatedBlockLayout.x = duplicatedBlockLayout.x + 10
@@ -503,32 +493,54 @@ export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
   )
 }
 
+export function findAllChildren(hierarchy, elementDragginId) {
+  let values = []
+  if (!hierarchy?.[elementDragginId]) return null
+  if (hierarchy[elementDragginId]) {
+    for (let elemId of hierarchy[elementDragginId]) {
+      values = [
+        ...values,
+        ...hierarchy[elementDragginId],
+        ...(findAllChildren(hierarchy, elemId) || []),
+      ]
+    }
+  }
+  return values
+}
+
 export const handleDrag = (
   blockPos,
+  newBlockLayout,
   blockId,
   gridColumnWidth,
   gridRowHeight
 ) => (dispatch, getState) => {
   const hierarchy = getHierarchy(getState())
-  const children = findAllChildren(hierarchy, blockId)
-  const layouts = getLayout(getState())
-  const updatedLayouts = { ...layouts }
-  for (let item of children) {
-    let layoutItem = layouts[item]
-    const newX =
-      (layoutItem.x * gridColumnWidth + blockPos.deltaX) / gridColumnWidth
-    const newY =
-      (layoutItem.y * gridRowHeight + blockPos.deltaY) / gridRowHeight
+  const children = [...new Set(findAllChildren(hierarchy, blockId))]
+  const layouts = { ...getLayout(getState()) }
+  const updatedHierarchy = getUpdatedHierarchy(
+    layouts,
+    newBlockLayout,
+    hierarchy
+  )
+  if (children) {
+    for (let item of children) {
+      let layoutItem = { ...layouts[item] }
+      const newX =
+        (layoutItem.x * gridColumnWidth + blockPos.deltaX) / gridColumnWidth
+      const newY =
+        (layoutItem.y * gridRowHeight + blockPos.deltaY) / gridRowHeight
 
-    layoutItem = {
-      ...layoutItem,
-      x: newX,
-      y: newY,
+      layoutItem.x = newX
+      layoutItem.y = newY
+      layouts[item] = layoutItem
     }
-    updatedLayouts[item] = layoutItem
   }
 
-  dispatch(setLayouts(updatedLayouts))
+  batch(() => {
+    dispatch(updateHierarchy(updatedHierarchy))
+    dispatch(setLayouts(layouts))
+  })
 }
 
 // SELECTORS ****************************************************
