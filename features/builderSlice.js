@@ -242,11 +242,9 @@ export const setBlockEditable = (blockId) => (dispatch) => {
 
 function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
   const mobileLayoutUpdated = { ...mobileLayout }
-  console.log('updatedLayout', updatedLayout)
   const { x, y, w, h, i } = updatedLayout[blockId]
   const isOnRight = x > 100
   const moreWidth = x + w > 100
-  console.log(isOnRight)
   mobileLayoutUpdated[blockId] = {
     x: moreWidth ? 0 : x / 4,
     y: isOnRight ? y + 2 * h : y + (2 * h) / 3,
@@ -269,7 +267,6 @@ export const updateLayouts = (updatedLayout, blockId) => (
 ) => {
   const builderDevice = getBuilderDevice(getState())
   const mobileEditedBlocks = getMobileEditedBlocks(getState())
-  console.log('mobileEditedBlocks', mobileEditedBlocks)
   const mobileLayout = getMobileLayout(getState())
   const isBlockMobileEdited = mobileEditedBlocks.includes(blockId)
   if (builderDevice === 'mobile') {
@@ -277,8 +274,10 @@ export const updateLayouts = (updatedLayout, blockId) => (
       dispatch(setMobileLayout(updatedLayout))
       if (!isBlockMobileEdited) {
         dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
+        return
       }
     })
+    return
   } else {
     if (!isBlockMobileEdited) {
       dispatch(
@@ -291,7 +290,7 @@ export const updateLayouts = (updatedLayout, blockId) => (
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  // dispatch(setMobileLayout([...mobileLayout, newLayout]))
+  dispatch(setMobileLayout({ ...mobileLayout, [newLayout.i]: newLayout }))
   dispatch(setLayouts({ ...layouts, [newLayout.i]: newLayout }))
 }
 export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
@@ -524,6 +523,7 @@ export const handleDrag = (
   gridColumnWidth,
   gridRowHeight
 ) => (dispatch, getState) => {
+  const builderDevice = getBuilderDevice(getState())
   const hierarchy = getHierarchy(getState())
   const children = [...new Set(findAllChildren(hierarchy, blockId))]
   const layouts = { ...getLayout(getState()) }
@@ -547,8 +547,12 @@ export const handleDrag = (
   }
 
   batch(() => {
+    if (builderDevice === 'mobile') {
+      dispatch(setMobileLayout(layouts))
+    } else {
+      dispatch(setLayouts(layouts))
+    }
     dispatch(updateHierarchy(updatedHierarchy))
-    dispatch(setLayouts(layouts))
   })
 }
 
