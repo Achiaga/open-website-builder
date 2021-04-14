@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import RGL, { WidthProvider } from '../../components/react-grid-layout'
+import React, { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
@@ -33,8 +32,15 @@ import {
   handleResizeStop,
   handleDrag,
   getNewBlockType,
+  getBlockData,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
+
+const blocksZIndex = {
+  inception: 0,
+  image: 1,
+  text: 2,
+}
 
 const DraggableItem = ({
   blockId,
@@ -44,6 +50,7 @@ const DraggableItem = ({
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
+  const blockData = useSelector(getBlockData(blockId))
   const { x, y, w, h } = blockLayout
   const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
   const width = gridColumnWidth * w
@@ -82,15 +89,30 @@ const DraggableItem = ({
       position={{ x: xPos, y: yPos }}
       onStop={onDragStop}
       onDrag={onDrag}
-      handle=".test"
+      handle=".draggHandle"
     >
       <Resizable
         defaultSize={{ width, height }}
         key={blockId}
         style={{ position: 'absolute' }}
         onResizeStop={onResizeStop}
+        enable={{
+          top: false,
+          right: false,
+          bottom: false,
+          left: false,
+          topRight: false,
+          bottomRight: true,
+          bottomLeft: false,
+          topLeft: false,
+        }}
       >
-        <Box w={'100%'} h={'100%'} pos="absolute" className="test">
+        <Box
+          w={'100%'}
+          h={'100%'}
+          pos="absolute"
+          zIndex={blocksZIndex[blockData?.type]}
+        >
           <BuilderBlock blockId={blockId} />
         </Box>
       </Resizable>
@@ -106,7 +128,7 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
       w="100%"
       height="100%"
       flexDir="row"
-      // onClick={() => dispatch(setBlockEditable(null))}
+      onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
       pos="relative"
       className="droppable-element"
@@ -122,12 +144,6 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
 }
 GridLayoutWrapper.propTypes = {
   children: PropTypes.any,
-}
-
-const blocksZIndex = {
-  inception: 0,
-  image: 1,
-  text: 2,
 }
 
 const WebBuilder = () => {
