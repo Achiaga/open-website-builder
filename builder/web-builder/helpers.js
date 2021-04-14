@@ -123,7 +123,7 @@ export function isBlockInHierarchy(hierarchy, itemId) {
 }
 
 function getAllInceptions(newLayout) {
-  return Object.values(newLayout).filter(({ i }) => i.includes('inception'))
+  return Object.values(newLayout).filter(({ i }) => i?.includes('inception'))
 }
 
 function getIsGammaInception(hierarchy, parentId, parents) {

@@ -78,12 +78,14 @@ export function BuilderBlock({ blockId }) {
   const [isOver, setIsOver] = useState(false)
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
-  const { type, data } = blocks[blockId]
-  const GenericBlock = blocksType[type]
+  const { type, data } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
   const draggingBlock = useSelector(getDraggingBlock)
 
+  if (!type) return null
+
+  const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
   const isDragging = draggingBlock === blockId
 
