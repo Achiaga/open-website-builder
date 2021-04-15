@@ -198,7 +198,6 @@ const WebBuilder = () => {
   // }
 
   const handleHiglightSection = useCallback((newItem) => {
-    console.log('newItem')
     // !draggingBlock && dispatch(setDraggingBlock(newItem.i))
     const newParent = getParentBlock(layouts, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)

@@ -18,7 +18,8 @@ export function GeneratePreviewBlock({ layoutItem }) {
   const {
     builder: { blocks },
   } = useContext(BlocksContext)
-  const { data, type } = blocks[layoutItem.i]
+  const { data, type } = blocks[layoutItem.i] || {}
+
   const { w, h, x, y, i } = layoutItem || {}
 
   const GenericBlock = previewBlocks[type]
@@ -27,12 +28,13 @@ export function GeneratePreviewBlock({ layoutItem }) {
   //   backgroundPosition: 'center',
   //   backgroundRepeat: 'no-repeat',
   // }
+  console.log(w, h, x, y)
   const zIndex = getBlockZIndex(type)
   return (
     <Box
       key={i}
-      gridColumn={`${x + 1} /  span ${w}`}
-      gridRow={`${y + 1} / span ${h}`}
+      gridColumn={`${Math.round(x) + 1} /  span ${Math.round(w)}`}
+      gridRow={`${Math.round(y) + 1} / span ${Math.round(h)}`}
       overflow="hidden"
       border={data.border}
       boxShadow={data.boxShadow}

@@ -233,7 +233,9 @@ export function highlightFutureParentBlock(newParentId, lastHoveredEl) {
   }
   if (newParentId) {
     const elem = document.getElementById(newParentId)?.children?.[0]
-    elem.style.backgroundColor = '#27b36647'
-    lastHoveredEl.current = elem
+    if (elem?.style) {
+      elem.style.backgroundColor = '#27b36647'
+      lastHoveredEl.current = elem
+    }
   }
 }

@@ -242,7 +242,8 @@ export const setBlockEditable = (blockId) => (dispatch) => {
 
 function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
   const mobileLayoutUpdated = { ...mobileLayout }
-  const { x, y, w, h, i } = updatedLayout[blockId]
+  const { x, y, w, h, i } = updatedLayout[blockId] || {}
+  if (!i) return mobileLayoutUpdated
   const isOnRight = x > 100
   const moreWidth = x + w > 100
   mobileLayoutUpdated[blockId] = {
@@ -504,14 +505,13 @@ export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
 export function findAllChildren(hierarchy, elementDragginId) {
   let values = []
   if (!hierarchy?.[elementDragginId]) return null
-  if (hierarchy[elementDragginId]) {
-    for (let elemId of hierarchy[elementDragginId]) {
-      values = [
-        ...values,
-        ...hierarchy[elementDragginId],
-        ...(findAllChildren(hierarchy, elemId) || []),
-      ]
-    }
+  for (let elemId of hierarchy[elementDragginId]) {
+    values = [
+      ...values,
+      ...hierarchy[elementDragginId],
+      ...(hierarchy[elemId] || []),
+      ...(findAllChildren(hierarchy, elemId) || []),
+    ]
   }
   return values
 }

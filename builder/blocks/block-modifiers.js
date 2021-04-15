@@ -578,6 +578,20 @@ export const Modifiers = ({
   )
 }
 
+export function getXOffsetToolbar(dim) {
+  const isBlockAtRight = dim.left > window.innerWidth * 0.7
+
+  return isBlockAtRight
+    ? { right: window.innerWidth - (dim.left + dim.width) }
+    : { left: dim.left }
+}
+export function getYOffsetToolbar(dim) {
+  const isBlockAtTop = dim.top < 150
+  return isBlockAtTop
+    ? { top: dim.top + dim.height + 5 + 'px' }
+    : { top: dim.top - 50 + 'px' }
+}
+
 export const BlockModifiers = ({ data, blockKey, blockType }) => {
   const [isOpen, setIsOpen] = useState('')
   const dispatch = useDispatch()
@@ -606,17 +620,12 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
   }
   const dim = getBlockOffsets(blockKey, blockParentId)
 
-  const isBlockAtRight = dim.left > window.innerWidth * 0.7
   const isBlockAtLeft = dim.left < window.innerWidth * 0.07
-
-  const xOffsetToolbar = isBlockAtRight
-    ? { right: window.innerWidth - (dim.left + dim.width) }
-    : { left: dim.left }
-
   const isBlockAtTop = dim.top < 150
-  const yOffsetToolbar = isBlockAtTop
-    ? { top: dim.top + dim.height + 5 + 'px' }
-    : { top: dim.top - 50 + 'px' }
+  const isBlockAtRight = dim.left > window.innerWidth * 0.7
+
+  const xOffsetToolbar = getXOffsetToolbar(dim)
+  const yOffsetToolbar = getYOffsetToolbar(dim)
 
   return (
     <Portal id="main-builder">

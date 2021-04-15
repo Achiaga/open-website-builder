@@ -1,6 +1,6 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   editBlockConfig,
@@ -9,13 +9,13 @@ import {
 } from '../../features/builderSlice'
 import { BlocksContext } from '../web-preview/preview'
 import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
+import Editor from './editor'
 
 export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
-
   const Textmodifiers = {
     textAlign: props.textAlign,
     backgroundColor: props.backgroundColor,
@@ -43,18 +43,20 @@ export const GenericText = (props) => {
   }
 
   useEffect(() => {
-    titleRef.current.textContent = rawText
+    // titleRef.current.textContent = rawText
   }, [rawText])
 
-  function handleKeyUp(e) {
-    e.stopPropagation()
-    const value = titleRef.current?.innerText
+  function handleKeyUp(value) {
+    // e.stopPropagation()
+    // const value = titleRef.current?.innerText
+    // var result = md.render(value)
+    // console.log(result)
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
   const fontSize =
     parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 0.5
-
+  return <Editor />
   return (
     <Text
       as="span"
@@ -112,18 +114,21 @@ export const PrevText = (props) => {
   }
   const fontSize = Math.round(parseInt(props.fontSize) * rowHeight * 0.13)
   const mobileFontSize = fontSize * 2
+  function createMarkup() {
+    return { __html: props.text }
+  }
 
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
       <Text
         w="100%"
         h="100%"
-        d={'grid'}
         {...Textmodifiers}
         fontSize={[mobileFontSize, mobileFontSize, fontSize]}
         wordBreak="break-word"
+        dangerouslySetInnerHTML={createMarkup()}
       >
-        {props.text}
+        {/* {props.text} */}
       </Text>
     </RedirectWrapper>
   )
