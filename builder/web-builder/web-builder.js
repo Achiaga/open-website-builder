@@ -15,18 +15,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getBuilderData,
   getGridRowHeight,
-  getNewBlock,
-  setResizingBlockId,
   setGridRowHeight,
   setBlockEditable,
   addNewBlock,
-  getBuilderDevice,
   getLayout,
   setSaveStatus,
   getHierarchy,
-  setDraggingBlock,
-  getDraggingBlock,
-  updateLayoutChange,
   getBlockLayoutById,
   handleDragStop,
   handleResizeStop,
@@ -69,7 +63,6 @@ const DraggableItem = ({
   }
 
   function onDrag(_, blockPos) {
-    if (!blockId.includes('inception')) return
     const newBlockLayout = {
       x: blockPos.x / gridColumnWidth,
       y: blockPos.y / gridRowHeight,
@@ -77,7 +70,8 @@ const DraggableItem = ({
       h: h,
       i: blockId,
     }
-
+    handleHiglightSection(newBlockLayout)
+    if (!blockId.includes('inception')) return
     dispatch(
       handleDrag(
         blockPos,
@@ -87,7 +81,6 @@ const DraggableItem = ({
         gridRowHeight
       )
     )
-    handleHiglightSection(newBlockLayout)
   }
   return (
     <Draggable
@@ -97,6 +90,7 @@ const DraggableItem = ({
       onDrag={onDrag}
       handle=".draggHandle"
       bounds="parent"
+      style={{ zIndex: blocksZIndex[blockData?.type] }}
     >
       <Resizable
         defaultSize={{ width, height }}
@@ -114,12 +108,7 @@ const DraggableItem = ({
           topLeft: false,
         }}
       >
-        <Box
-          w={'100%'}
-          h={'100%'}
-          pos="absolute"
-          zIndex={blocksZIndex[blockData?.type]}
-        >
+        <Box w={'100%'} h={'100%'} pos="absolute">
           <BuilderBlock blockId={blockId} />
         </Box>
       </Resizable>
@@ -161,7 +150,6 @@ const WebBuilder = () => {
   const newBlockType = useSelector(getNewBlockType)
   const layouts = useSelector(getLayout)
   const hierarchy = useSelector(getHierarchy)
-  const builderDevice = useSelector(getBuilderDevice)
   const lastHoveredEl = useRef()
   const gridRowHeight = useSelector(getGridRowHeight)
   const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
@@ -210,6 +198,7 @@ const WebBuilder = () => {
   // }
 
   const handleHiglightSection = useCallback((newItem) => {
+    console.log('newItem')
     // !draggingBlock && dispatch(setDraggingBlock(newItem.i))
     const newParent = getParentBlock(layouts, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)
