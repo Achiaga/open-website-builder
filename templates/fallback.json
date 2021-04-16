@@ -13,23 +13,6 @@
         "fontColor": "#000000",
         "backgroundColor": "#FFFFFF"
       }
-    },
-    "image-025c673b-d62c-4606-8171-dc8937f29390": {
-      "type": "image",
-      "data": {
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "imageUrl": "https://images.unsplash.com/photo-1542103749-8ef59b94f47e"
-      }
-    },
-    "inception-434af8dd-8d65-4bd8-9743-2daa4b861c05": {
-      "type": "inception",
-      "data": {
-        "border": "2px solid black",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "backgroundColor": "transparent"
-      }
     }
   },
   "layouts": [
@@ -39,26 +22,6 @@
       "x": 0,
       "y": 21,
       "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 103,
-      "h": 43,
-      "x": 97,
-      "y": 21,
-      "i": "image-025c673b-d62c-4606-8171-dc8937f29390",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 16,
-      "h": 43,
-      "x": 0,
-      "y": 21,
-      "i": "inception-434af8dd-8d65-4bd8-9743-2daa4b861c05",
       "moved": false,
       "static": false,
       "isDraggable": true
@@ -74,21 +37,7 @@
       "moved": false,
       "static": false,
       "isDraggable": true
-    },
-    {
-      "w": 50,
-      "h": 43,
-      "x": 50,
-      "y": 21,
-      "i": "image-025c673b-d62c-4606-8171-dc8937f29390",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
     }
   ],
-  "hierarchy": {
-    "inception-434af8dd-8d65-4bd8-9743-2daa4b861c05": [
-      "text-664e08d1-3e6a-4c49-99aa-8d876f699425"
-    ]
-  }
+  "hierarchy": {}
 }

@@ -11,7 +11,6 @@ import { GeneratePreviewBlock } from './helpers'
 export const BlocksContext = createContext()
 
 function getPageRows(layouts) {
-  console.log(layouts)
   return layouts.reduce((max, item) => {
     const heightSum = item.y + item.h
     if (heightSum > max) return heightSum
@@ -42,7 +41,6 @@ export const ResumeWebsite = ({ userBlocksData }) => {
   }, [])
 
   const rowHeight = windowWidth / GRID_COLUMNS
-  console.log(userBlocksData)
   return (
     <MediaContextProvider>
       <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>

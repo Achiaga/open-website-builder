@@ -501,6 +501,23 @@ export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
     })
   )
 }
+export const handleResizeTextBlock = (newSize, blockId) => (
+  dispatch,
+  getState
+) => {
+  const blockLayout = getBlockLayoutById(blockId)(getState())
+  const gridRowHeight = getGridRowHeight(getState())
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const width = newSize.width / gridColumnWidth
+  const height = newSize.height / gridRowHeight
+  dispatch(
+    updateBlockLayout({
+      ...blockLayout,
+      w: width,
+      h: height,
+    })
+  )
+}
 
 export function findAllChildren(hierarchy, elementDragginId) {
   let values = []

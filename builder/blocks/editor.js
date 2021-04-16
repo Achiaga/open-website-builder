@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/layout'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { editBlockConfig } from '../../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { editBlockConfig, getGridRowHeight } from '../../features/builderSlice'
 import { ButtonSelector, TextInput } from './block-modifiers'
 import {
   deleteProperty,
@@ -10,6 +10,7 @@ import {
 } from './block-properties'
 import { EDIT } from './constants'
 import 'quill-emoji/dist/quill-emoji.css'
+import { BuilderPrevText } from './text'
 
 const ReactQuill =
   typeof window === 'object' ? require('react-quill') : () => {}
@@ -29,6 +30,40 @@ ReactQuill.register &&
     },
     true
   )
+
+function QuillToolbar() {
+  return (
+    <>
+      <select
+        className="ql-header"
+        defaultValue={''}
+        onChange={(e) => e.persist()}
+      >
+        <option value="1" />
+        <option value="2" />
+        <option value="3" />
+        <option value="4" />
+        <option value="5" />
+        <option value="6" />
+        <option selected />
+      </select>
+      <button className="ql-bold" />
+      <button className="ql-italic" />
+      <button className="ql-blockquote" />
+      <button className="ql-link" />
+      {/* <select className="ql-align" /> */}
+      <select className="ql-color">
+        <option value="red" />
+        <option value="green" />
+        <option value="blue" />
+        <option value="orange" />
+        <option value="violet" />
+        <option value="#d0d1d2" />
+        <option selected />
+      </select>
+    </>
+  )
+}
 
 export const CustomToolbar = ({ blockId }) => {
   const [isOpen, setIsOpen] = useState('')
@@ -58,29 +93,7 @@ export const CustomToolbar = ({ blockId }) => {
       color="black"
       zIndex="9999"
     >
-      <select
-        className="ql-header"
-        defaultValue={''}
-        onChange={(e) => e.persist()}
-      >
-        <option value="1" />
-        <option value="2" />
-        <option selected />
-      </select>
-      <button className="ql-bold" />
-      <button className="ql-italic" />
-      <button className="ql-blockquote" />
-      <button className="ql-link" />
-      <select className="ql-align" />
-      <select className="ql-color">
-        <option value="red" />
-        <option value="green" />
-        <option value="blue" />
-        <option value="orange" />
-        <option value="violet" />
-        <option value="#d0d1d2" />
-        <option selected />
-      </select>
+      {QuillToolbar()}
       <ButtonSelector handleEdit={handleEdit} {...deleteProperty} />
       <ButtonSelector handleEdit={handleEdit} {...duplicateProperty} />
       <TextInput
@@ -113,17 +126,33 @@ const formats = [
   'link',
   'image',
   'color',
-  'align',
+  // 'align',
   'emoji',
 ]
 
+function ReactQuillEditor(onChange, text, placeholder, modules) {
+  return (
+    <ReactQuill
+      onChange={onChange}
+      value={text}
+      placeholder={placeholder}
+      modules={modules}
+      formats={formats}
+      theme={'snow'}
+      // style={{ height: '100%' }}
+    />
+  )
+}
+
 const Editor = ({ data, selectedId, handleChange, blockId, placeholder }) => {
   const [text, setText] = useState(data.text)
+  const rowHeight = useSelector(getGridRowHeight)
   function onChange(html) {
     setText(html)
     handleChange(html)
   }
   const isSelected = selectedId === blockId
+  if (!isSelected) return <BuilderPrevText data={{ ...data, rowHeight }} />
   const modules = {
     toolbar: {
       container: '#toolbar',
@@ -139,15 +168,7 @@ const Editor = ({ data, selectedId, handleChange, blockId, placeholder }) => {
       <Box d={isSelected ? 'block' : 'none'}>
         <CustomToolbar blockId={blockId} />
       </Box>
-      <ReactQuill
-        onChange={onChange}
-        value={text}
-        placeholder={placeholder}
-        modules={modules}
-        formats={formats}
-        theme={'snow'}
-        style={{ height: '100%' }}
-      />
+      {ReactQuillEditor(onChange, text, placeholder, modules, formats)}
     </Box>
   )
 }

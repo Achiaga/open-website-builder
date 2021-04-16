@@ -82,6 +82,7 @@ const DraggableItem = ({
       )
     )
   }
+  console.log('blockSize', width, height)
   return (
     <Draggable
       key={blockId}
@@ -92,6 +93,7 @@ const DraggableItem = ({
       bounds="parent"
     >
       <Resizable
+        size={{ width, height }}
         defaultSize={{ width, height }}
         key={blockId}
         style={{ position: 'absolute' }}

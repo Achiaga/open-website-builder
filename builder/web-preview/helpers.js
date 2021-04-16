@@ -28,7 +28,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
   //   backgroundPosition: 'center',
   //   backgroundRepeat: 'no-repeat',
   // }
-  console.log(w, h, x, y)
   const zIndex = getBlockZIndex(type)
   return (
     <Box

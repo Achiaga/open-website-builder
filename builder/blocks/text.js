@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Text } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { batch, useDispatch, useSelector } from 'react-redux'
 import {
   editBlockConfig,
   getIsMobileBuilder,
   getSelectedBlockId,
+  handleResizeTextBlock,
 } from '../../features/builderSlice'
 import { BlocksContext } from '../web-preview/preview'
 import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
@@ -15,25 +16,25 @@ export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
-  const isMobileBuilder = useSelector(getIsMobileBuilder)
-  const Textmodifiers = {
-    textAlign: props.textAlign,
-    backgroundColor: props.backgroundColor,
-    color: props.fontColor,
-    alignItems: props.alignItems,
-    fontWeight: props.fontWeight,
-    textShadow: props.textShadow,
-    borderRadius: props.borderRadius,
-  }
+  // const isMobileBuilder = useSelector(getIsMobileBuilder)
+  // const Textmodifiers = {
+  //   textAlign: props.textAlign,
+  //   backgroundColor: props.backgroundColor,
+  //   color: props.fontColor,
+  //   alignItems: props.alignItems,
+  //   fontWeight: props.fontWeight,
+  //   textShadow: props.textShadow,
+  //   borderRadius: props.borderRadius,
+  // }
   const titleRef = useRef(null)
 
-  useEffect(() => {
-    titleRef?.current?.addEventListener('paste', function (e) {
-      e.preventDefault()
-      var text = e.clipboardData.getData('text/plain')
-      document.execCommand('insertText', false, text)
-    })
-  }, [titleRef])
+  // useEffect(() => {
+  //   titleRef?.current?.addEventListener('paste', function (e) {
+  //     e.preventDefault()
+  //     var text = e.clipboardData.getData('text/plain')
+  //     document.execCommand('insertText', false, text)
+  //   })
+  // }, [titleRef])
 
   // useEffect(() => {
   //   console.log(titleRef?.current.offsetHeight)
@@ -41,17 +42,23 @@ export const GenericText = (props) => {
 
   function handleKeyUp(value) {
     // e.stopPropagation()
-    // const value = titleRef.current?.innerText
+    const blockHeight = titleRef.current?.offsetHeight
+    const dim = titleRef.current?.getBoundingClientRect()
+    console.log(blockHeight, dim)
     // var result = md.render(value)
-    // console.log(result)
-    console.log(value)
     const updatedBlock = { ...data, text: value }
-    dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
+    batch(() => {
+      dispatch(
+        editBlockConfig({ newData: updatedBlock, blockId: parentBlockId })
+      )
+      dispatch(handleResizeTextBlock(dim, parentBlockId))
+    })
   }
   const fontSize =
     parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 0.5
+
   return (
-    <Box ref={titleRef} h="100%">
+    <Box ref={titleRef}>
       <Editor
         data={props}
         blockId={props.parentBlockId}
@@ -103,6 +110,55 @@ const RedirectWrapper = ({ redirectUrl, children }) => {
   )
 }
 
+const Styles = ({ children }) => {
+  return (
+    <Box
+      boxSizing="border-box"
+      lineHeight="1.42"
+      height="100%"
+      outline="none"
+      overflow-y="auto"
+      padding="12px 15px"
+      tabSize="4"
+      textAlign="left"
+      whiteSpace="pre-wrap"
+      wordWrap="break-word"
+      bg="transparent"
+      w="100%"
+      fontFamily="Helvetica, Arial, sans-serif"
+      sx={{
+        blockquote: {
+          borderLeft: '4px solid #ccc',
+          marginBottom: '5px',
+          marginTop: '5px',
+          paddingLeft: '16px',
+        },
+        h1: {
+          fontFamily: 'Helvetica, Arial, sans-serif',
+          fontSize: '4em',
+        },
+        h2: {
+          fontSize: '1.5em',
+        },
+        h3: {
+          fontSize: '1.17em',
+        },
+        h4: {
+          fontSize: '1em',
+        },
+        h5: {
+          fontSize: '0.83em',
+        },
+        h6: {
+          fontSize: '0.67em',
+        },
+      }}
+    >
+      {children}
+    </Box>
+  )
+}
+
 export const PrevText = (props) => {
   const { rowHeight } = useContext(BlocksContext)
   const redirectUrl = props?.redirect
@@ -123,17 +179,36 @@ export const PrevText = (props) => {
 
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
+      <Styles>
+        <Text
+          w="100%"
+          h="100%"
+          bg="transparent"
+          wordBreak="break-word"
+          dangerouslySetInnerHTML={createMarkup()}
+        />
+      </Styles>
+    </RedirectWrapper>
+  )
+}
+export const BuilderPrevText = ({ data }) => {
+  const fontSize = Math.round(
+    parseInt(data.fontSize || 30) * data.rowHeight * 0.13
+  )
+  const mobileFontSize = fontSize * 2
+  function createMarkup() {
+    return { __html: data.text }
+  }
+
+  return (
+    <Styles>
       <Text
         w="100%"
         h="100%"
-        {...Textmodifiers}
-        fontSize={[mobileFontSize, mobileFontSize, fontSize]}
         wordBreak="break-word"
         dangerouslySetInnerHTML={createMarkup()}
-      >
-        {/* {props.text} */}
-      </Text>
-    </RedirectWrapper>
+      />
+    </Styles>
   )
 }
 

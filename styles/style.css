@@ -566,7 +566,7 @@
   display: none;
 }
 .ql-snow .ql-editor h1 {
-  font-size: 5em;
+  font-size: 4em;
 }
 .ql-snow .ql-editor h2 {
   font-size: 1.5em;
@@ -933,5 +933,5 @@
   color: #06c;
 }
 .ql-container.ql-snow {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
