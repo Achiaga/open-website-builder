@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,7 +25,6 @@ export const GenericText = (props) => {
     textShadow: props.textShadow,
     borderRadius: props.borderRadius,
   }
-  const [text] = useState(rawText)
   const titleRef = useRef(null)
 
   useEffect(() => {
@@ -36,47 +35,51 @@ export const GenericText = (props) => {
     })
   }, [titleRef])
 
-  function handleDoubleClick() {
-    titleRef.current?.blur()
-    titleRef.current?.focus()
-    document.execCommand('selectAll', false, null)
-  }
-
-  useEffect(() => {
-    // titleRef.current.textContent = rawText
-  }, [rawText])
+  // useEffect(() => {
+  //   console.log(titleRef?.current.offsetHeight)
+  // }, [titleRef?.current?.offsetHeight])
 
   function handleKeyUp(value) {
     // e.stopPropagation()
     // const value = titleRef.current?.innerText
     // var result = md.render(value)
     // console.log(result)
+    console.log(value)
     const updatedBlock = { ...data, text: value }
     dispatch(editBlockConfig({ newData: updatedBlock, blockId: parentBlockId }))
   }
   const fontSize =
     parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 0.5
-  return <Editor />
   return (
-    <Text
-      as="span"
-      onDoubleClick={handleDoubleClick}
-      cursor="pointer"
-      w="100%"
-      h="100%"
-      d="grid"
-      onKeyUp={handleKeyUp}
-      contentEditable={selectedId === parentBlockId && !isMobileBuilder}
-      suppressContentEditableWarning
-      {...Textmodifiers}
-      fontSize={fontSize}
-      wordBreak="break-word"
-      ref={titleRef}
-      outline="none"
-    >
-      {text}
-    </Text>
+    <Box ref={titleRef} h="100%">
+      <Editor
+        data={props}
+        blockId={props.parentBlockId}
+        handleChange={handleKeyUp}
+        selectedId={selectedId}
+      />
+    </Box>
   )
+  // return (
+  //   <Text
+  //     as="span"
+  //     onDoubleClick={handleDoubleClick}
+  //     cursor="pointer"
+  //     w="100%"
+  //     h="100%"
+  //     d="grid"
+  //     onKeyUp={handleKeyUp}
+  //     contentEditable={selectedId === parentBlockId && !isMobileBuilder}
+  //     suppressContentEditableWarning
+  //     {...Textmodifiers}
+  //     fontSize={fontSize}
+  //     wordBreak="break-word"
+  //     ref={titleRef}
+  //     outline="none"
+  //   >
+  //     {text}
+  //   </Text>
+  // )
 }
 
 function cleanRedirect(url) {

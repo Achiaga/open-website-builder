@@ -341,7 +341,7 @@ const imageInput = {
   property: 'imageUrl',
 }
 
-const redirectInput = {
+export const redirectInput = {
   type: 'text',
   placeholder: 'Link',
   tooltip: 'Add a Link you want the user to be redirect to when click on it.',

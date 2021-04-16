@@ -90,7 +90,6 @@ const DraggableItem = ({
       onDrag={onDrag}
       handle=".draggHandle"
       bounds="parent"
-      style={{ zIndex: blocksZIndex[blockData?.type] }}
     >
       <Resizable
         defaultSize={{ width, height }}
@@ -108,7 +107,12 @@ const DraggableItem = ({
           topLeft: false,
         }}
       >
-        <Box w={'100%'} h={'100%'} pos="absolute">
+        <Box
+          w={'100%'}
+          h={'100%'}
+          pos="absolute"
+          style={{ zIndex: blocksZIndex[blockData?.type] }}
+        >
           <BuilderBlock blockId={blockId} />
         </Box>
       </Resizable>

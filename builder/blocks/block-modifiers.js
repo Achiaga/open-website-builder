@@ -11,6 +11,7 @@ import {
 } from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
+import { CustomToolbar } from '../blocks/editor'
 // import { deleteProperty } from './block-properties'
 
 const CustomToolTip = ({ label, children }) => {
@@ -382,7 +383,7 @@ EmojiDropDownSelector.propTypes = {
   ).isRequired,
 }
 
-function TextInput({
+export function TextInput({
   handleEdit,
   handleCloseInput,
   isOpen,
@@ -477,7 +478,7 @@ TextInput.propTypes = {
   handleOpenToolbar: PropTypes.func,
 }
 
-function ButtonSelector({
+export function ButtonSelector({
   handleEdit,
   property,
   operationType,

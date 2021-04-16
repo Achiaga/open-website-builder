@@ -109,7 +109,7 @@ export function BuilderBlock({ blockId }) {
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
     >
-      {isEditable && !isMobileBuilder && !type === 'text' && (
+      {isEditable && !isMobileBuilder && type !== 'text' && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
         </>
