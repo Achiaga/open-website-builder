@@ -490,9 +490,12 @@ export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
 export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
   const blockLayout = getBlockLayoutById(blockId)(getState())
   const gridRowHeight = getGridRowHeight(getState())
+  const isMobile = getIsMobileBuilder(getState())
+  const gridsWidth = isMobile ? 100 : GRID_COLUMNS
   const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
-  const width = blockLayout.w + delta.width / gridColumnWidth
+  let width = blockLayout.w + delta.width / gridColumnWidth
   const height = blockLayout.h + delta.height / gridRowHeight
+  width = width >= gridsWidth ? gridsWidth : width
   dispatch(
     updateBlockLayout({
       ...blockLayout,

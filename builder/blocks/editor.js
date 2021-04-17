@@ -138,7 +138,6 @@ function ReactQuillEditor(onChange, text, placeholder, modules) {
       modules={modules}
       formats={formats}
       theme={'snow'}
-      // style={{ height: '100%' }}
     />
   )
 }

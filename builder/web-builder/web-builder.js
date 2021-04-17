@@ -138,7 +138,7 @@ const DraggableItem = ({
           onMouseOver={() => setIsOver(true)}
           onMouseOut={() => setIsOver(false)}
         >
-          <BuilderBlock blockId={blockId} />
+          <BuilderBlock blockId={blockId} isOver={isOver} />
         </Box>
       </Resizable>
     </Draggable>
@@ -150,6 +150,7 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
   const dispatch = useDispatch()
   return (
     <Box
+      minHeight="100vh"
       w="100%"
       height="100%"
       flexDir="row"
@@ -276,10 +277,6 @@ const WebBuilder = () => {
 
   return (
     <GridLayoutWrapper
-      style={{
-        minHeight: '100vh',
-        height: '100%',
-      }}
       higlightOnDrop={higlightOnDrop}
       handleDropNewItem={handleDropNewItem}
     >

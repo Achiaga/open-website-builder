@@ -16,7 +16,6 @@ import {
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
-import { useState } from 'react'
 
 const blocksType = {
   image: Image,
@@ -83,8 +82,7 @@ const hoverEffect = {
   },
 }
 
-export function BuilderBlock({ blockId }) {
-  const [isOver, setIsOver] = useState(false)
+export function BuilderBlock({ blockId, isOver }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId] || {}
@@ -102,8 +100,6 @@ export function BuilderBlock({ blockId }) {
 
   return (
     <Box
-      onMouseOver={() => setIsOver(true)}
-      onMouseOut={() => setIsOver(false)}
       w="100%"
       h="100%"
       id={blockId}
