@@ -121,10 +121,12 @@ export const PrevText = (props) => {
     <RedirectWrapper redirectUrl={redirectUrl}>
       <Styles>
         <Text
+          as="span"
           w="100%"
           h="100%"
           bg="transparent"
           wordBreak="break-word"
+          color="gray.200"
           dangerouslySetInnerHTML={createMarkup()}
         />
       </Styles>

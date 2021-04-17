@@ -19,6 +19,7 @@ import {
   loadInitialDataNoAccount,
   loadDataFromDB,
   updateInitialState,
+  normalizeBuilderData,
 } from './login-helpers'
 import { saveData } from '../login/helpers'
 
@@ -30,6 +31,7 @@ const initialState = {
   newBlock: {
     id: uuid(),
   },
+  user: {},
   gridRowHeight: ROW_HEIGHT,
 }
 
@@ -41,7 +43,7 @@ export const builderSlice = createSlice({
       state.builderData.blocks = action.payload
     },
     setInitialBuilderData: (state, action) => {
-      state.builderData = action.payload
+      state.builderData = normalizeBuilderData(action.payload)
     },
     setLoadingData: (state, action) => {
       state.loadingData = action.payload
@@ -343,9 +345,23 @@ export const addNewBlock = (blockLayout) => (dispatch, getState) => {
   dispatch(saveDataOnLocal())
 }
 
+function objectToArrray(data) {
+  if (Array.isArray(data)) return data
+  return Object.values(data)
+}
+
+export function denormalizeBuilderData(data) {
+  const deNormalizedData = {
+    ...data,
+    layouts: objectToArrray(data.layouts),
+    mobileLayout: objectToArrray(data.mobileLayout),
+  }
+  return deNormalizedData
+}
+
 export const publishWebsite = (user) => async (dispatch, getState) => {
   dispatch(setPublishStatus('loading'))
-  const builderData = getBuilderData(getState())
+  const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const websiteId = getWebsiteId(getState())
   const res = await saveData({ user, builderData, publish: true })
   batch(() => {
@@ -356,7 +372,7 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
 
 export const saveWebsite = (user) => async (dispatch, getState) => {
   dispatch(setSaveStatus('loading'))
-  const builderData = getBuilderData(getState())
+  const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const userData = getUserData(getState())
   const res = await saveData({ user, builderData })
   const updatedUserData = {
