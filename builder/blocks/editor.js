@@ -13,7 +13,7 @@ import {
   redirectInput,
 } from './block-properties'
 import { EDIT } from './constants'
-import 'quill-emoji/dist/quill-emoji.css'
+// import 'quill-emoji/dist/quill-emoji.css'
 import { BuilderPrevText } from './text'
 
 const ReactQuill =
