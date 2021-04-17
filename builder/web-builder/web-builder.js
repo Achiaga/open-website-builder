@@ -121,7 +121,7 @@ const DraggableItem = ({
         size={{ width, height }}
         defaultSize={{ width, height }}
         key={blockId}
-        style={{ position: 'absolute' }}
+        style={{ position: 'absolute', zIndex: 2 }}
         onResizeStop={onResizeStop}
         enable={{
           top: false,
@@ -142,7 +142,7 @@ const DraggableItem = ({
               border: '1px solid blue',
               background: 'white',
               borderRadius: '2px',
-              zIndex: 1,
+              zIndex: 2,
             },
             right: {
               border: '1px solid blue',
@@ -173,7 +173,7 @@ const BlockItem = ({ blockId, isOver, setIsOver, zIndexValue }) => {
       pos="absolute"
       onMouseOver={() => setIsOver(true)}
       onMouseOut={() => setIsOver(false)}
-      zIndex={zIndexValue}
+      // zIndex={zIndexValue}
     >
       <BuilderBlock blockId={blockId} isOver={isOver} />
     </Box>
@@ -197,8 +197,11 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
       onDragOver={higlightOnDrop}
       bg="gray.50"
       onDrop={(e) => {
+        const origin = e.dataTransfer.getData('text/plain')
         e.preventDefault()
-        handleDropNewItem(e)
+        if (origin === 'safe') {
+          handleDropNewItem(e)
+        }
       }}
       fontSize="13px"
       zIndex="1"
