@@ -231,14 +231,14 @@ const WebBuilder = () => {
     }
   }, [])
 
-  const handleHiglightSection = useCallback((newItem) => {
+  const handleHiglightSection = (newItem) => {
     const newParent = getParentBlock(layouts, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)
-  }, [])
+  }
 
-  const handleHiglightSectionMiddleWare = useCallback((newItem) => {
+  const handleHiglightSectionMiddleWare = (newItem) => {
     handleHiglightSection(newItem)
-  }, [])
+  }
 
   const higlightOnDrop = useCallback((ev) => {
     ev.preventDefault()

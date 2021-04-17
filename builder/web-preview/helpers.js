@@ -19,7 +19,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
     builder: { blocks },
   } = useContext(BlocksContext)
   const { data, type } = blocks[layoutItem.i] || {}
-
   const { w, h, x, y, i } = layoutItem || {}
 
   const GenericBlock = previewBlocks[type]

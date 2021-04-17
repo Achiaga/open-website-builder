@@ -175,9 +175,14 @@ export const loadInitialData = (user, params) => async (dispatch) => {
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
   dispatch
 ) => {
-  if (operationType === DELETE) dispatch(removeblock({ blockId, newData }))
-  else if (operationType === DUPLICATE) dispatch(duplicateBlock(blockId))
-  else dispatch(setBlockConfig({ newData, blockId }))
+  if (operationType === DELETE) {
+    dispatch(removeblock({ blockId, newData }))
+  } else if (operationType === DUPLICATE) {
+    dispatch(duplicateBlock(blockId))
+  } else {
+    dispatch(setBlockConfig({ newData, blockId }))
+  }
+  dispatch(saveDataOnLocal())
 }
 
 const removeMobileblock = (blockId) => (dispatch, getState) => {
@@ -261,6 +266,7 @@ export const updateBlockLayout = (newBlockLayout) => (dispatch, getState) => {
   const layouts = { ...getLayout(getState()) }
   layouts[newBlockLayout.i] = newBlockLayout
   dispatch(updateLayouts(layouts, newBlockLayout.i))
+  dispatch(saveDataOnLocal())
 }
 
 export const updateLayouts = (updatedLayout, blockId) => (
@@ -276,10 +282,8 @@ export const updateLayouts = (updatedLayout, blockId) => (
       dispatch(setMobileLayout(updatedLayout))
       if (!isBlockMobileEdited) {
         dispatch(setMobileEditedBlocks([...mobileEditedBlocks, blockId]))
-        return
       }
     })
-    return
   } else {
     if (!isBlockMobileEdited) {
       dispatch(
@@ -288,6 +292,7 @@ export const updateLayouts = (updatedLayout, blockId) => (
     }
     dispatch(setLayouts(updatedLayout))
   }
+  dispatch(saveDataOnLocal())
 }
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
   const layouts = getLayout(getState())
@@ -335,6 +340,7 @@ export const addNewBlock = (blockLayout) => (dispatch, getState) => {
     }
     dispatch(setNewDropBlock({ type: null }))
   })
+  dispatch(saveDataOnLocal())
 }
 
 export const publishWebsite = (user) => async (dispatch, getState) => {
@@ -465,6 +471,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
       })
     )
   })
+  dispatch(saveDataOnLocal())
 }
 
 // NEW FUNCTUIONS ***********************************************
@@ -496,8 +503,8 @@ export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   batch(() => {
     dispatch(updateLayouts(layouts, newBlockLayout.i))
     dispatch(updateHierarchy(updatedHierarchy))
-    dispatch(saveDataOnLocal())
   })
+  dispatch(saveDataOnLocal())
 }
 
 export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
@@ -517,9 +524,11 @@ export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
     })
   )
 }
-export const saveDataOnLocal = () => (dispatch, getState) => {
-  const builderData = getBuilderData(getState())
-  saveOnLocal(builderData)
+export const saveDataOnLocal = () => async (dispatch, getState) => {
+  setTimeout(() => {
+    const builderData = getBuilderData(getState())
+    saveOnLocal(builderData)
+  }, 0)
 }
 export const handleResizeTextBlock = (newSize, blockId) => (
   dispatch,
