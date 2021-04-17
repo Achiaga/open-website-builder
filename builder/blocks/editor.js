@@ -1,7 +1,11 @@
 import { Box } from '@chakra-ui/layout'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { editBlockConfig, getGridRowHeight } from '../../features/builderSlice'
+import {
+  editBlockConfig,
+  getGridRowHeight,
+  getIsMobileBuilder,
+} from '../../features/builderSlice'
 import { ButtonSelector, TextInput } from './block-modifiers'
 import {
   deleteProperty,
@@ -18,11 +22,6 @@ const quillEmoji =
   typeof window === 'object' ? require('quill-emoji') : () => {}
 const { EmojiBlot } = quillEmoji
 
-function insertStar() {
-  const cursorPosition = this.quill.getSelection().index
-  this.quill.insertText(cursorPosition, '★')
-  this.quill.setSelection(cursorPosition + 1)
-}
 ReactQuill.register &&
   ReactQuill?.register(
     {
@@ -147,17 +146,18 @@ function ReactQuillEditor(onChange, text, placeholder, modules) {
 const Editor = ({ data, selectedId, handleChange, blockId, placeholder }) => {
   const [text, setText] = useState(data.text)
   const rowHeight = useSelector(getGridRowHeight)
+  const isMobile = useSelector(getIsMobileBuilder)
   function onChange(html) {
     setText(html)
     handleChange(html)
   }
   const isSelected = selectedId === blockId
-  if (!isSelected) return <BuilderPrevText data={{ ...data, rowHeight }} />
+  if (!isSelected || isMobile)
+    return <BuilderPrevText data={{ ...data, rowHeight }} />
   const modules = {
     toolbar: {
       container: '#toolbar',
     },
-    // 'emoji-textarea': isSelected,
     clipboard: {
       matchVisual: true,
     },

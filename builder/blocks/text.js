@@ -1,19 +1,16 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Text } from '@chakra-ui/react'
 import { batch, useDispatch, useSelector } from 'react-redux'
 import {
   editBlockConfig,
-  getIsMobileBuilder,
   getSelectedBlockId,
   handleResizeTextBlock,
 } from '../../features/builderSlice'
-import { BlocksContext } from '../web-preview/preview'
-import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
 import Editor from './editor'
 
 export const GenericText = (props) => {
-  const { text, parentBlockId, ...data } = props
+  const { parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
 
@@ -30,11 +27,9 @@ export const GenericText = (props) => {
       dispatch(handleResizeTextBlock(dim, parentBlockId))
     })
   }
-  const fontSize =
-    parseInt(props.fontSize) * (STANDARD_MOBILE_SIZE / GRID_COLUMNS) * 0.5
 
   return (
-    <Box ref={titleRef}>
+    <Box ref={titleRef} cursor="pointer">
       <Editor
         data={props}
         blockId={props.parentBlockId}
@@ -43,26 +38,6 @@ export const GenericText = (props) => {
       />
     </Box>
   )
-  // return (
-  //   <Text
-  //     as="span"
-  //     onDoubleClick={handleDoubleClick}
-  //     cursor="pointer"
-  //     w="100%"
-  //     h="100%"
-  //     d="grid"
-  //     onKeyUp={handleKeyUp}
-  //     contentEditable={selectedId === parentBlockId && !isMobileBuilder}
-  //     suppressContentEditableWarning
-  //     {...Textmodifiers}
-  //     fontSize={fontSize}
-  //     wordBreak="break-word"
-  //     ref={titleRef}
-  //     outline="none"
-  //   >
-  //     {text}
-  //   </Text>
-  // )
 }
 
 function cleanRedirect(url) {
@@ -136,19 +111,8 @@ const Styles = ({ children }) => {
 }
 
 export const PrevText = (props) => {
-  const { rowHeight } = useContext(BlocksContext)
   const redirectUrl = props?.redirect
-  const Textmodifiers = {
-    textAlign: props.textAlign,
-    backgroundColor: props.backgroundColor,
-    color: props.fontColor,
-    alignItems: props.alignItems,
-    fontWeight: props.fontWeight,
-    textShadow: props.textShadow,
-    borderRadius: props.borderRadius,
-  }
-  const fontSize = Math.round(parseInt(props.fontSize) * rowHeight * 0.13)
-  const mobileFontSize = fontSize * 2
+
   function createMarkup() {
     return { __html: props.text }
   }
@@ -168,10 +132,6 @@ export const PrevText = (props) => {
   )
 }
 export const BuilderPrevText = ({ data }) => {
-  const fontSize = Math.round(
-    parseInt(data.fontSize || 30) * data.rowHeight * 0.13
-  )
-  const mobileFontSize = fontSize * 2
   function createMarkup() {
     return { __html: data.text }
   }

@@ -74,6 +74,15 @@ const DragHandle = () => {
   )
 }
 
+const hoverEffect = {
+  image: {
+    filter: 'brightness(1.1)',
+  },
+  text: {
+    bg: 'gray.100',
+  },
+}
+
 export function BuilderBlock({ blockId }) {
   const [isOver, setIsOver] = useState(false)
   const dispatch = useDispatch()
@@ -103,11 +112,12 @@ export function BuilderBlock({ blockId }) {
         if (isEditable || isDragging) return null
         dispatch(setBlockEditable(blockId))
       }}
-      outline="2px solid"
+      outline="3px solid"
       outlineOffset="-2px"
-      outlineColor={isEditable || isOver ? 'primary.500' : 'transparent'}
+      outlineColor={isEditable || isOver ? 'green.500' : 'transparent'}
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
+      _hover={!isEditable && hoverEffect[type]}
     >
       {isEditable && !isMobileBuilder && type !== 'text' && (
         <>

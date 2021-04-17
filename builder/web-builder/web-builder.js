@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
@@ -41,6 +41,7 @@ const DraggableItem = ({
   handleHiglightSection,
   removeHighlightedElem,
 }) => {
+  const [isOver, setIsOver] = useState(false)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
@@ -71,17 +72,20 @@ const DraggableItem = ({
       i: blockId,
     }
     handleHiglightSection(newBlockLayout)
-    if (!blockId.includes('inception')) return
-    dispatch(
-      handleDrag(
-        blockPos,
-        newBlockLayout,
-        blockId,
-        gridColumnWidth,
-        gridRowHeight
+    if (blockId.includes('inception')) {
+      dispatch(
+        handleDrag(
+          blockPos,
+          newBlockLayout,
+          blockId,
+          gridColumnWidth,
+          gridRowHeight
+        )
       )
-    )
+    }
   }
+  const blockType = blockData?.type
+  const isTextBlock = blockType === 'text'
   return (
     <Draggable
       key={blockId}
@@ -99,20 +103,40 @@ const DraggableItem = ({
         onResizeStop={onResizeStop}
         enable={{
           top: false,
-          right: false,
+          right: isTextBlock ? true : false,
           bottom: false,
           left: false,
           topRight: false,
-          bottomRight: true,
+          bottomRight: isTextBlock ? false : true,
           bottomLeft: false,
           topLeft: false,
         }}
+        onMouseOver={() => setIsOver(true)}
+        onMouseOut={() => setIsOver(false)}
+        handleStyles={
+          isOver && {
+            bottomRight: {
+              border: '1px solid blue',
+              background: 'white',
+              borderRadius: '2px',
+              zIndex: 1,
+            },
+            right: {
+              border: '1px solid blue',
+              background: 'white',
+              borderRadius: '2px',
+              zIndex: 2,
+            },
+          }
+        }
       >
         <Box
           w={'100%'}
           h={'100%'}
           pos="absolute"
-          style={{ zIndex: blocksZIndex[blockData?.type] }}
+          style={{ zIndex: blocksZIndex[blockType] }}
+          onMouseOver={() => setIsOver(true)}
+          onMouseOut={() => setIsOver(false)}
         >
           <BuilderBlock blockId={blockId} />
         </Box>
