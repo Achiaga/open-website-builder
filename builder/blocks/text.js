@@ -16,36 +16,14 @@ export const GenericText = (props) => {
   const { text: rawText, parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
-  // const isMobileBuilder = useSelector(getIsMobileBuilder)
-  // const Textmodifiers = {
-  //   textAlign: props.textAlign,
-  //   backgroundColor: props.backgroundColor,
-  //   color: props.fontColor,
-  //   alignItems: props.alignItems,
-  //   fontWeight: props.fontWeight,
-  //   textShadow: props.textShadow,
-  //   borderRadius: props.borderRadius,
-  // }
+
   const titleRef = useRef(null)
-
-  // useEffect(() => {
-  //   titleRef?.current?.addEventListener('paste', function (e) {
-  //     e.preventDefault()
-  //     var text = e.clipboardData.getData('text/plain')
-  //     document.execCommand('insertText', false, text)
-  //   })
-  // }, [titleRef])
-
-  // useEffect(() => {
-  //   console.log(titleRef?.current.offsetHeight)
-  // }, [titleRef?.current?.offsetHeight])
 
   function handleKeyUp(value) {
     // e.stopPropagation()
-    const blockHeight = titleRef.current?.offsetHeight
+
     const dim = titleRef.current?.getBoundingClientRect()
-    console.log(blockHeight, dim)
-    // var result = md.render(value)
+
     const updatedBlock = { ...data, text: value }
     batch(() => {
       dispatch(
