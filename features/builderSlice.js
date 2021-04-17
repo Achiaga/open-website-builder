@@ -31,6 +31,7 @@ const initialState = {
   newBlock: {
     id: uuid(),
   },
+  user: {},
   gridRowHeight: ROW_HEIGHT,
 }
 

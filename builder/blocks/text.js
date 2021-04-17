@@ -111,20 +111,24 @@ const Styles = ({ children }) => {
 }
 
 export const PrevText = (props) => {
+  // console.log(props)
   const redirectUrl = props?.redirect
 
   function createMarkup() {
     return { __html: props.text }
   }
 
+  console.log(createMarkup())
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
       <Styles>
         <Text
+          as="span"
           w="100%"
           h="100%"
           bg="transparent"
           wordBreak="break-word"
+          color="gray.200"
           dangerouslySetInnerHTML={createMarkup()}
         />
       </Styles>
