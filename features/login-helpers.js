@@ -35,12 +35,7 @@ function arrayToObject(arr) {
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const LSData = await getUserDataFromLS()
   const templateData = templates[template]
-  let data = LSData || templateData || templates.fallback
-  data = {
-    ...data,
-    layouts: arrayToObject(data.layouts),
-    mobileLayout: arrayToObject(data.mobileLayout),
-  }
+  const data = LSData || templateData || templates.fallback
 
   dispatch(setInitialBuilderData(data || templates.fallback))
 }
@@ -87,6 +82,15 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
     dispatch(updateInitialState({ resume_data, publish, userData }))
   }
   dispatch(setLoadingData(false))
+}
+
+export function normalizeBuilderData(data) {
+  const normalizedData = {
+    ...data,
+    layouts: arrayToObject(data.layouts),
+    mobileLayout: arrayToObject(data.mobileLayout),
+  }
+  return normalizedData
 }
 
 export const handleLoginCallbackLoadData = (user) => async (dispatch) => {

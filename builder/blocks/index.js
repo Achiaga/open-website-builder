@@ -93,7 +93,6 @@ export function BuilderBlock({ blockId, isOver }) {
   const isDragging = draggingBlock === blockId
 
   const dragHandle = isEditable && type === 'text' && !isMobileBuilder
-
   return (
     <Box
       w="100%"

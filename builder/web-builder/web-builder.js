@@ -34,7 +34,7 @@ const blocksZIndex = {
 
 function getZIndexValue(blockType, isSelected) {
   if (isSelected && blockType === 'text') return '4'
-  return blocksZIndex[blockType]
+  return blocksZIndex[blockType].toString()
 }
 
 const DraggableItem = ({
@@ -98,13 +98,16 @@ const DraggableItem = ({
   const isSelected = selectedBlock === blockId
 
   const el = document.getElementById(blockId)
-  if (el?.offsetParent) {
+  if (el) {
     el.offsetParent.offsetParent.style.zIndex = getZIndexValue(
       blockType,
       isSelected
     )
   }
-
+  useEffect(() => {
+    setIsOver()
+  }, [])
+  const zIndexValue = getZIndexValue(blockType, isSelected)
   return (
     <Draggable
       key={blockId}
@@ -154,6 +157,7 @@ const DraggableItem = ({
           blockId={blockId}
           isOver={isOver}
           setIsOver={setIsOver}
+          zIndexValue={zIndexValue}
         />
         <ResizingCounter {...resizeValues} />
       </Resizable>
@@ -161,7 +165,7 @@ const DraggableItem = ({
   )
 }
 
-const BlockItem = ({ blockId, isOver, setIsOver }) => {
+const BlockItem = ({ blockId, isOver, setIsOver, zIndexValue }) => {
   return (
     <Box
       w={'100%'}
@@ -169,6 +173,7 @@ const BlockItem = ({ blockId, isOver, setIsOver }) => {
       pos="absolute"
       onMouseOver={() => setIsOver(true)}
       onMouseOut={() => setIsOver(false)}
+      zIndex={zIndexValue}
     >
       <BuilderBlock blockId={blockId} isOver={isOver} />
     </Box>
