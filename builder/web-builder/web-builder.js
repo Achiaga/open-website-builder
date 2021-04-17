@@ -82,7 +82,6 @@ const DraggableItem = ({
       )
     )
   }
-  console.log('blockSize', width, height)
   return (
     <Draggable
       key={blockId}
@@ -140,6 +139,7 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
         e.preventDefault()
         handleDropNewItem(e)
       }}
+      fontSize="13px"
     >
       {children}
     </Box>

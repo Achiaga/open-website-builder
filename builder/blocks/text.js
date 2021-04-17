@@ -13,15 +13,13 @@ import { GRID_COLUMNS, STANDARD_MOBILE_SIZE } from '../web-builder/constants'
 import Editor from './editor'
 
 export const GenericText = (props) => {
-  const { text: rawText, parentBlockId, ...data } = props
+  const { text, parentBlockId, ...data } = props
   const dispatch = useDispatch()
   const selectedId = useSelector(getSelectedBlockId)
 
   const titleRef = useRef(null)
 
   function handleKeyUp(value) {
-    // e.stopPropagation()
-
     const dim = titleRef.current?.getBoundingClientRect()
 
     const updatedBlock = { ...data, text: value }

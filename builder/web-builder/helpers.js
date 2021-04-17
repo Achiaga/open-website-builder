@@ -68,18 +68,23 @@ export function removeblockFromState(
   }
 }
 
+function parseLayoutToArr(layout) {
+  return Object.values(layout).map((item) => ({
+    x: item.x,
+    y: item.y,
+    i: item.i,
+    w: item.w,
+    h: item.h,
+  }))
+}
+
 export function saveOnLocal(userBlocksData) {
   // console.log(JSON.stringify(userBlocksData))
   if (!Object.keys(userBlocksData).length) return
   const dataToSave = {
     ...userBlocksData,
-    layouts: Object.values(userBlocksData.layouts).map((item) => ({
-      x: item.x,
-      y: item.y,
-      i: item.i,
-      w: item.w,
-      h: item.h,
-    })),
+    layouts: parseLayoutToArr(userBlocksData.layouts),
+    mobileLayout: parseLayoutToArr(userBlocksData.mobileLayout),
   }
   localforage.setItem('userData', dataToSave)
 }

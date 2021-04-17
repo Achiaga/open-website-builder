@@ -27,6 +27,17 @@ export const { MediaContextProvider, Media } = createMedia({
   },
 })
 
+function getFontSize(windowWidth) {
+  console.log(windowWidth)
+  if (windowWidth >= 1200) return 13
+  if (windowWidth >= 1100) return 10
+  if (windowWidth >= 1000) return 9
+  if (windowWidth > 600 && windowWidth < 1000) return 13
+  if (windowWidth > 400 && windowWidth <= 600) return 7
+  if (windowWidth < 330) return 5.5
+  return 6
+}
+
 export const ResumeWebsite = ({ userBlocksData }) => {
   const [windowWidth, setWindowWidth] = useState(1440)
 
@@ -41,11 +52,12 @@ export const ResumeWebsite = ({ userBlocksData }) => {
   }, [])
 
   const rowHeight = windowWidth / GRID_COLUMNS
+  const fontSize = getFontSize(windowWidth)
   return (
     <MediaContextProvider>
       <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
-        <Media lessThan="md">
-          {/* <Box
+        <Media lessThan="lg">
+          <Box
             d="grid"
             gridTemplateColumns={`repeat(${GRID_COLUMNS / 2}, 1fr)`}
             gridTemplateRows={`repeat( auto-fill,  ${rowHeight * 2}px )`}
@@ -54,6 +66,7 @@ export const ResumeWebsite = ({ userBlocksData }) => {
               (getPageRows(userBlocksData.mobileLayout) - 1) * rowHeight * 2
             }
             overflowX="hidden"
+            fontSize={`${fontSize}px`}
           >
             {userBlocksData.mobileLayout?.map((layoutItem) => {
               return (
@@ -63,9 +76,9 @@ export const ResumeWebsite = ({ userBlocksData }) => {
                 />
               )
             })}
-          </Box> */}
+          </Box>
         </Media>
-        <Media greaterThanOrEqual="md">
+        <Media greaterThanOrEqual="lg">
           <Box
             d="grid"
             gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
@@ -73,6 +86,7 @@ export const ResumeWebsite = ({ userBlocksData }) => {
             w="101vw"
             height={(getPageRows(userBlocksData.layouts) - 1) * rowHeight}
             overflowX="hidden"
+            fontSize={`${fontSize}px`}
           >
             {userBlocksData.layouts?.map((layoutItem) => {
               return (
