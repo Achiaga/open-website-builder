@@ -52,7 +52,6 @@ export const ResumeWebsite = ({ userBlocksData }) => {
 
   const rowHeight = windowWidth / GRID_COLUMNS
   const fontSize = getFontSize(windowWidth)
-
   return (
     <MediaContextProvider>
       <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
