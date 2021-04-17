@@ -52,7 +52,7 @@ function QuillToolbar() {
       <button className="ql-italic" />
       <button className="ql-blockquote" />
       <button className="ql-link" />
-      {/* <select className="ql-align" /> */}
+      <select className="ql-align" />
       <select className="ql-color">
         <option value="red" />
         <option value="green" />
@@ -127,8 +127,8 @@ const formats = [
   'link',
   'image',
   'color',
-  // 'align',
-  'emoji',
+  'align',
+  // 'emoji',
 ]
 
 function ReactQuillEditor(onChange, text, placeholder, modules) {
