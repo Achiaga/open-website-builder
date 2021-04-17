@@ -12,7 +12,6 @@ import {
   getBlocks,
   getDraggingBlock,
   getIsMobileBuilder,
-  getResizingBlock,
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
@@ -61,6 +60,23 @@ const hoverEffect = {
     bg: 'gray.100',
   },
 }
+const DragHandle = () => {
+  return (
+    <Box
+      rounded="5px"
+      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+      className="draggHandle"
+      pos="absolute"
+      paddingY="2px"
+      paddingX="2px"
+      cursor="move"
+      left="-30px"
+      bg="white"
+    >
+      <BsArrowsMove size="20px" />
+    </Box>
+  )
+}
 
 export function BuilderBlock({ blockId, isOver }) {
   const dispatch = useDispatch()
@@ -100,6 +116,7 @@ export function BuilderBlock({ blockId, isOver }) {
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
         </>
       )}
+      {dragHandle && <DragHandle />}
       <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
   )
