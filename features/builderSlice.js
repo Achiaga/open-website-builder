@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
 import { batch } from 'react-redux'
 
-import { ROW_HEIGHT } from '../builder/web-builder/constants'
+import { GRID_COLUMNS, ROW_HEIGHT } from '../builder/web-builder/constants'
 import { DELETE, DUPLICATE } from '../builder/blocks/constants'
 
 import {
@@ -11,6 +11,8 @@ import {
   findBlockParentId,
   getParentBlock,
   isBlockInHierarchy,
+  getUpdatedHierarchy,
+  saveOnLocal,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -19,7 +21,6 @@ import {
   updateInitialState,
 } from './login-helpers'
 import { saveData } from '../login/helpers'
-import { findAllChildren } from '../components/react-grid-layout/utils'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -85,7 +86,7 @@ export const builderSlice = createSlice({
     },
     setBulkAddItems: (state, action) => {
       const { blocks, layouts, hierarchy } = action.payload
-      state.builderData.layouts = [...state.builderData.layouts, ...layouts]
+      state.builderData.layouts = { ...state.builderData.layouts, ...layouts }
       state.builderData.blocks = { ...state.builderData.blocks, ...blocks }
       state.builderData.hierarchy = {
         ...state.builderData.hierarchy,
@@ -174,9 +175,14 @@ export const loadInitialData = (user, params) => async (dispatch) => {
 export const editBlockConfig = ({ blockId, newData, operationType }) => (
   dispatch
 ) => {
-  if (operationType === DELETE) dispatch(removeblock({ blockId, newData }))
-  else if (operationType === DUPLICATE) dispatch(duplicateBlock(blockId))
-  else dispatch(setBlockConfig({ newData, blockId }))
+  if (operationType === DELETE) {
+    dispatch(removeblock({ blockId, newData }))
+  } else if (operationType === DUPLICATE) {
+    dispatch(duplicateBlock(blockId))
+  } else {
+    dispatch(setBlockConfig({ newData, blockId }))
+  }
+  dispatch(saveDataOnLocal())
 }
 
 const removeMobileblock = (blockId) => (dispatch, getState) => {
@@ -221,21 +227,46 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
   })
 }
 
+export const updateLayoutChange = (newLayout, newItem) => (
+  dispatch,
+  getState
+) => {
+  const hierarchy = getHierarchy(getState())
+  const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
+  dispatch(updateLayouts(newLayout, newItem.i))
+  dispatch(updateHierarchy(updatedHierarchy))
+  setTimeout(() => {
+    dispatch(setResizingBlockId(null))
+  }, 600)
+}
+
 export const setBlockEditable = (blockId) => (dispatch) => {
   batch(() => {
     dispatch(setSelectedBlockId(blockId))
   })
 }
 
-function applyAutoMobileLayout(mobileLayout, blockId, updatedLayout) {
-  const blockLayoutIndex = mobileLayout.findIndex(
-    (layout) => layout.i === blockId
-  )
-  const mobileLayoutUpdated = [...mobileLayout]
-  mobileLayoutUpdated[blockLayoutIndex] = updatedLayout.find(
-    (layout) => layout.i === blockId
-  )
+function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
+  const mobileLayoutUpdated = { ...mobileLayout }
+  const { x, y, w, h, i } = updatedLayout[blockId] || {}
+  if (!i) return mobileLayoutUpdated
+  const isOnRight = x > 100
+  const moreWidth = x + w > 100
+  mobileLayoutUpdated[blockId] = {
+    x: moreWidth ? 0 : x / 4,
+    y: isOnRight ? y + 2 * h : y + (2 * h) / 3,
+    w: moreWidth ? 100 : w,
+    h: h,
+    i: i,
+  }
   return mobileLayoutUpdated
+}
+
+export const updateBlockLayout = (newBlockLayout) => (dispatch, getState) => {
+  const layouts = { ...getLayout(getState()) }
+  layouts[newBlockLayout.i] = newBlockLayout
+  dispatch(updateLayouts(layouts, newBlockLayout.i))
+  dispatch(saveDataOnLocal())
 }
 
 export const updateLayouts = (updatedLayout, blockId) => (
@@ -256,19 +287,18 @@ export const updateLayouts = (updatedLayout, blockId) => (
   } else {
     if (!isBlockMobileEdited) {
       dispatch(
-        setMobileLayout(
-          applyAutoMobileLayout(mobileLayout, blockId, updatedLayout)
-        )
+        setMobileLayout(autoMobileLayout(mobileLayout, blockId, updatedLayout))
       )
     }
     dispatch(setLayouts(updatedLayout))
   }
+  dispatch(saveDataOnLocal())
 }
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  dispatch(setMobileLayout([...mobileLayout, newLayout]))
-  dispatch(setLayouts([...layouts, newLayout]))
+  dispatch(setMobileLayout({ ...mobileLayout, [newLayout.i]: newLayout }))
+  dispatch(setLayouts({ ...layouts, [newLayout.i]: newLayout }))
 }
 export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
   const builderDevice = getBuilderDevice(getState())
@@ -291,12 +321,14 @@ export const addNewHierachyItem = (blockLayoutId, newParentId) => (
   if (builderDevice === 'mobile') {
     dispatch(setMobileHierarchy(newHierarchy))
   } else {
+    dispatch(setMobileHierarchy(newHierarchy))
     dispatch(setHierarchy(newHierarchy))
   }
 }
 
-export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
+export const addNewBlock = (blockLayout) => (dispatch, getState) => {
   const state = getState()
+  const newLayout = getLayout(state)
   const hierarchy = getHierarchy(state)
   const newBlockData = addBlock(blockLayout.i, getNewBlockType(state))
   const newParent = getParentBlock(newLayout, blockLayout, hierarchy)
@@ -308,6 +340,7 @@ export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
     }
     dispatch(setNewDropBlock({ type: null }))
   })
+  dispatch(saveDataOnLocal())
 }
 
 export const publishWebsite = (user) => async (dispatch, getState) => {
@@ -379,20 +412,18 @@ const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
   const oldLayouts = getLayout(state)
   const oldHierarchy = getHierarchy(state)
   let newHierarchy = { [newBlockId]: [] }
-  const newLayoutItems = []
+  const newLayoutItems = {}
   const newBlocks = {}
   const relationsTable = { [blockId]: newBlockId }
   for (let childId of allChilds) {
     const blockData = getBlockData(childId)(state)
     if (blockData) {
-      const layoutItem = {
-        ...oldLayouts.find((layoutItem) => layoutItem.i === childId),
-      }
+      const layoutItem = { ...oldLayouts[childId] }
       const newBlockId = `${blockData.type}-${uuid()}`
       layoutItem.i = newBlockId
       layoutItem.x = layoutItem.x + 10
       layoutItem.y = layoutItem.y + 10
-      newLayoutItems.push(layoutItem)
+      newLayoutItems[layoutItem.i] = layoutItem
       newBlocks[layoutItem.i] = blockData
       relationsTable[childId] = newBlockId
       newHierarchy = addDuplicatedToHierarchy(
@@ -416,9 +447,8 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
   const oldHierarchy = getHierarchy(getState())
   const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
 
-  const duplicatedBlockLayout = {
-    ...oldLayouts.find((layoutItem) => layoutItem.i === blockId),
-  }
+  const duplicatedBlockLayout = { ...oldLayouts[blockId] }
+
   const newBlockId = `${blockType}-${uuid()}`
   duplicatedBlockLayout.i = newBlockId
   duplicatedBlockLayout.x = duplicatedBlockLayout.x + 10
@@ -441,6 +471,134 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
       })
     )
   })
+  dispatch(saveDataOnLocal())
+}
+
+// NEW FUNCTUIONS ***********************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+//***************************************************************
+
+export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
+  const blockLayout = getBlockLayoutById(blockId)(getState())
+  const gridRowHeight = getGridRowHeight(getState())
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const newX = blockPos.x / gridColumnWidth
+  const newY = blockPos.y / gridRowHeight
+  const newBlockLayout = {
+    ...blockLayout,
+    x: newX,
+    y: newY,
+  }
+  const layouts = { ...getLayout(getState()) }
+  const hierarchy = getHierarchy(getState())
+  layouts[newBlockLayout.i] = newBlockLayout
+  const updatedHierarchy = getUpdatedHierarchy(
+    layouts,
+    newBlockLayout,
+    hierarchy
+  )
+  batch(() => {
+    dispatch(updateLayouts(layouts, newBlockLayout.i))
+    dispatch(updateHierarchy(updatedHierarchy))
+  })
+  dispatch(saveDataOnLocal())
+}
+
+export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
+  const blockLayout = getBlockLayoutById(blockId)(getState())
+  const gridRowHeight = getGridRowHeight(getState())
+  const isMobile = getIsMobileBuilder(getState())
+  const gridsWidth = isMobile ? 100 : GRID_COLUMNS
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  let width = blockLayout.w + delta.width / gridColumnWidth
+  const height = blockLayout.h + delta.height / gridRowHeight
+  width = width >= gridsWidth ? gridsWidth : width
+  dispatch(
+    updateBlockLayout({
+      ...blockLayout,
+      w: width,
+      h: height,
+    })
+  )
+}
+export const saveDataOnLocal = () => async (dispatch, getState) => {
+  setTimeout(() => {
+    const builderData = getBuilderData(getState())
+    saveOnLocal(builderData)
+  }, 0)
+}
+export const handleResizeTextBlock = (newSize, blockId) => (
+  dispatch,
+  getState
+) => {
+  const blockLayout = getBlockLayoutById(blockId)(getState())
+  const gridRowHeight = getGridRowHeight(getState())
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const width = newSize.width / gridColumnWidth
+  const height = newSize.height / gridRowHeight
+  dispatch(
+    updateBlockLayout({
+      ...blockLayout,
+      w: width,
+      h: height,
+    })
+  )
+}
+
+export function findAllChildren(hierarchy, elementDragginId) {
+  let values = []
+  if (!hierarchy?.[elementDragginId]) return null
+  for (let elemId of hierarchy[elementDragginId]) {
+    values = [
+      ...values,
+      ...hierarchy[elementDragginId],
+      ...(hierarchy[elemId] || []),
+      ...(findAllChildren(hierarchy, elemId) || []),
+    ]
+  }
+  return values
+}
+
+export const handleDrag = (
+  blockPos,
+  newBlockLayout,
+  blockId,
+  gridColumnWidth,
+  gridRowHeight
+) => (dispatch, getState) => {
+  const builderDevice = getBuilderDevice(getState())
+  const hierarchy = getHierarchy(getState())
+  const children = [...new Set(findAllChildren(hierarchy, blockId))]
+  const layouts = { ...getLayout(getState()) }
+  const updatedHierarchy = getUpdatedHierarchy(
+    layouts,
+    newBlockLayout,
+    hierarchy
+  )
+  if (children) {
+    for (let item of children) {
+      let layoutItem = { ...layouts[item] }
+      const newX =
+        (layoutItem.x * gridColumnWidth + blockPos.deltaX) / gridColumnWidth
+      const newY =
+        (layoutItem.y * gridRowHeight + blockPos.deltaY) / gridRowHeight
+
+      layoutItem.x = newX
+      layoutItem.y = newY
+      layouts[item] = layoutItem
+    }
+  }
+  batch(() => {
+    if (builderDevice === 'mobile') {
+      dispatch(setMobileLayout(layouts))
+    } else {
+      dispatch(setLayouts(layouts))
+    }
+    dispatch(updateHierarchy(updatedHierarchy))
+  })
 }
 
 // SELECTORS ****************************************************
@@ -451,14 +609,15 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
 //***************************************************************
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getHasBuilderData = (state) => !!state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
 export const getWebsiteId = (state) => state.builder.user?.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
-  if (getBuilderDevice(state) === 'mobile') {
-    return getMobileHierarchy(state)
-  }
+  // if (getBuilderDevice(state) === 'mobile') {
+  //   return getMobileHierarchy(state)
+  // }
   return getDesktopHierarchy(state)
 }
 const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy
@@ -478,6 +637,8 @@ export const getBlocksConfig = (state) => state.builder.builderData.blocksConfig
 export const getBlockParentId = (id) => (state) => {
   return findBlockParentId(getStructure(state), id)
 }
+export const getBlockLayoutById = (blockId) => (state) =>
+  getLayout(state)[blockId]
 
 export const getGridRowHeight = (state) => state.builder.gridRowHeight
 export const getLayout = (state) => {
@@ -485,6 +646,12 @@ export const getLayout = (state) => {
     return getMobileLayout(state)
   }
   return getDesktopLayout(state)
+}
+export const getLayoutsKeys = (state) => {
+  if (getBuilderDevice(state) === 'mobile') {
+    return Object.keys(getMobileLayout(state))
+  }
+  return Object.keys(getDesktopLayout(state))
 }
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts

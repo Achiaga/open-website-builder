@@ -1,7 +1,7 @@
 import localforage from 'localforage'
+import { findAllChildren } from '../../features/builderSlice'
 
 import { blocksProperties } from './default-data'
-import { findAllChildren } from '../../components/react-grid-layout/utils'
 // Block Factory *********************************
 
 export function addBlock(newId, blockType) {
@@ -32,14 +32,14 @@ function removeAllBlockChildren(
   children
 ) {
   const blocks = { ...oldBlocks }
-  let layouts = [...oldLayout]
+  let layouts = { ...oldLayout }
   const hierarchy = { ...oldHierarchy }
   const blocksToRemve = [...children, blockId]
   for (const blockId of blocksToRemve) {
     delete blocks[blockId]
     delete hierarchy[blockId]
+    delete layouts[blockId]
   }
-  layouts = layouts.filter((layout) => !blocksToRemve.includes(layout.i))
   return { layouts, blocks, hierarchy }
 }
 
@@ -51,10 +51,10 @@ export function removeblockFromState(
 ) {
   const findAllChild = findAllChildren(oldHierarchy, blockId)
   const blocks = { ...oldBlocks }
-  let layouts = [...oldLayout]
+  let layouts = { ...oldLayout }
   if (!findAllChild?.length) {
     delete blocks[blockId]
-    layouts = layouts.filter((layout) => layout.i !== blockId)
+    delete layouts[blockId]
     return { layouts, blocks, hierarchy: oldHierarchy }
   }
   if (oldHierarchy[blockId]) {
@@ -68,10 +68,25 @@ export function removeblockFromState(
   }
 }
 
+function parseLayoutToArr(layout) {
+  return Object.values(layout).map((item) => ({
+    x: item.x,
+    y: item.y,
+    i: item.i,
+    w: item.w,
+    h: item.h,
+  }))
+}
+
 export function saveOnLocal(userBlocksData) {
   // console.log(JSON.stringify(userBlocksData))
   if (!Object.keys(userBlocksData).length) return
-  localforage.setItem('userData', userBlocksData)
+  const dataToSave = {
+    ...userBlocksData,
+    layouts: parseLayoutToArr(userBlocksData.layouts),
+    mobileLayout: parseLayoutToArr(userBlocksData.mobileLayout),
+  }
+  localforage.setItem('userData', dataToSave)
 }
 
 export function normalizeLayout(userBlocksData) {
@@ -91,10 +106,10 @@ export function normalizeBlockStructure(userBlocksData) {
 }
 
 function containsInX(parent, child) {
-  return child.x >= parent.x && child.x <= parent.x + parent.w
+  return child.x >= parent.x - 2 && child.x <= parent.x + parent.w - 2
 }
 function containsInY(parent, child) {
-  return child.y >= parent.y && child.y <= parent.y + parent.h
+  return child.y >= parent.y - 2 && child.y <= parent.y + parent.h - 2
 }
 
 function isNewItemInsideInception(parent, child) {
@@ -118,7 +133,7 @@ export function isBlockInHierarchy(hierarchy, itemId) {
 }
 
 function getAllInceptions(newLayout) {
-  return newLayout.filter(({ i }) => i.includes('inception'))
+  return Object.values(newLayout).filter(({ i }) => i?.includes('inception'))
 }
 
 function getIsGammaInception(hierarchy, parentId, parents) {
@@ -223,7 +238,9 @@ export function highlightFutureParentBlock(newParentId, lastHoveredEl) {
   }
   if (newParentId) {
     const elem = document.getElementById(newParentId)?.children?.[0]
-    elem.style.backgroundColor = '#27b36647'
-    lastHoveredEl.current = elem
+    if (elem?.style) {
+      elem.style.backgroundColor = '#27b36647'
+      lastHoveredEl.current = elem
+    }
   }
 }

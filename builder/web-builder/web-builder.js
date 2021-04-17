@@ -1,55 +1,202 @@
-import React, { useCallback, useEffect, useRef } from 'react'
-import RGL, { WidthProvider } from '../../components/react-grid-layout'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
+import Draggable from 'react-draggable'
+import { Resizable } from 're-resizable'
+import { v4 as uuid } from 'uuid'
 
-import {
-  saveOnLocal,
-  getUpdatedHierarchy,
-  getParentBlock,
-  highlightFutureParentBlock,
-} from './helpers'
+import { getParentBlock, highlightFutureParentBlock } from './helpers'
 import { GRID_COLUMNS } from './constants'
-import { batch, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  getBuilderData,
   getGridRowHeight,
-  getNewBlock,
-  setResizingBlockId,
   setGridRowHeight,
   setBlockEditable,
   addNewBlock,
-  getBuilderDevice,
-  updateLayouts,
-  updateHierarchy,
-  getLayout,
-  setSaveStatus,
+  getLayoutsKeys,
   getHierarchy,
-  setDraggingBlock,
-  getDraggingBlock,
+  getBlockLayoutById,
+  handleDragStop,
+  handleResizeStop,
+  handleDrag,
+  getNewBlockType,
+  getBlockData,
+  getSelectedBlockId,
+  getLayout,
 } from '../../features/builderSlice'
-import { BuilderBlock } from '../blocks'
+import { BuilderBlock, ResizingCounter } from '../blocks'
 
-const reactGridLayoutProps = {
-  autoSize: true,
-  margin: [0, 0],
-  className: 'layout',
-  verticalCompact: false,
+const blocksZIndex = {
+  inception: 0,
+  image: 1,
+  text: 2,
 }
 
-const ReactGridLayout = WidthProvider(RGL)
+function getZIndexValue(blockType, isSelected) {
+  if (isSelected && blockType === 'text') return '4'
+  return blocksZIndex[blockType]
+}
 
-const GridLayoutWrapper = ({ children }) => {
+const DraggableItem = ({
+  blockId,
+  handleHiglightSection,
+  removeHighlightedElem,
+  gridColumnWidth,
+}) => {
+  const [resizeValues, setResizeValues] = useState(null)
+  const [isOver, setIsOver] = useState(false)
+  const dispatch = useDispatch()
+  const gridRowHeight = useSelector(getGridRowHeight)
+  const blockLayout = useSelector(getBlockLayoutById(blockId))
+  const selectedBlock = useSelector(getSelectedBlockId)
+  if (!blockLayout) return null
+  const blockData = useSelector(getBlockData(blockId))
+  const { x, y, w, h } = blockLayout
+  const width = gridColumnWidth * w
+  const height = gridRowHeight * h
+  const xPos = x * gridColumnWidth
+  const yPos = y * gridRowHeight
+
+  function onDragStop(_, blockPos) {
+    dispatch(handleDragStop(blockPos, blockId))
+    removeHighlightedElem()
+  }
+
+  function onResizeStop(_, __, ___, delta) {
+    dispatch(handleResizeStop(delta, blockId))
+    setResizeValues(null)
+  }
+
+  function handleResize(_, __, elRef) {
+    const { width, height } = elRef.getBoundingClientRect()
+    setResizeValues({ width: Math.round(width), height: Math.round(height) })
+  }
+
+  function onDrag(_, blockPos) {
+    const newBlockLayout = {
+      x: blockPos.x / gridColumnWidth,
+      y: blockPos.y / gridRowHeight,
+      w: w,
+      h: h,
+      i: blockId,
+    }
+    handleHiglightSection(newBlockLayout)
+    if (blockId.includes('inception')) {
+      dispatch(
+        handleDrag(
+          blockPos,
+          newBlockLayout,
+          blockId,
+          gridColumnWidth,
+          gridRowHeight
+        )
+      )
+    }
+  }
+  const blockType = blockData?.type
+  const isTextBlock = blockType === 'text'
+  const isSelected = selectedBlock === blockId
+
+  const el = document.getElementById(blockId)
+  if (el?.offsetParent) {
+    el.offsetParent.offsetParent.style.zIndex = getZIndexValue(
+      blockType,
+      isSelected
+    )
+  }
+
+  return (
+    <Draggable
+      key={blockId}
+      position={{ x: xPos, y: yPos }}
+      onStop={onDragStop}
+      onDrag={onDrag}
+      handle=".draggHandle"
+      bounds="parent"
+    >
+      <Resizable
+        size={{ width, height }}
+        defaultSize={{ width, height }}
+        key={blockId}
+        style={{ position: 'absolute' }}
+        onResizeStop={onResizeStop}
+        enable={{
+          top: false,
+          right: isTextBlock ? true : false,
+          bottom: false,
+          left: false,
+          topRight: false,
+          bottomRight: isTextBlock ? false : true,
+          bottomLeft: false,
+          topLeft: false,
+        }}
+        onResize={handleResize}
+        onMouseOver={() => setIsOver(true)}
+        onMouseOut={() => setIsOver(false)}
+        handleStyles={
+          isOver && {
+            bottomRight: {
+              border: '1px solid blue',
+              background: 'white',
+              borderRadius: '2px',
+              zIndex: 1,
+            },
+            right: {
+              border: '1px solid blue',
+              background: 'white',
+              borderRadius: '2px',
+              zIndex: 2,
+            },
+          }
+        }
+      >
+        <MemoBlockItem
+          blockId={blockId}
+          isOver={isOver}
+          setIsOver={setIsOver}
+        />
+        <ResizingCounter {...resizeValues} />
+      </Resizable>
+    </Draggable>
+  )
+}
+
+const BlockItem = ({ blockId, isOver, setIsOver }) => {
+  return (
+    <Box
+      w={'100%'}
+      h={'100%'}
+      pos="absolute"
+      onMouseOver={() => setIsOver(true)}
+      onMouseOut={() => setIsOver(false)}
+    >
+      <BuilderBlock blockId={blockId} isOver={isOver} />
+    </Box>
+  )
+}
+const MemoBlockItem = React.memo(BlockItem)
+const MemoDrag = React.memo(DraggableItem)
+
+const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
   const dispatch = useDispatch()
   return (
     <Box
-      d="flex"
+      minHeight="100vh"
       w="100%"
       height="100%"
       flexDir="row"
       onClick={() => dispatch(setBlockEditable(null))}
       id="main-builder"
       pos="relative"
+      className="droppable-element"
+      onDragOver={higlightOnDrop}
+      bg="gray.50"
+      onDrop={(e) => {
+        e.preventDefault()
+        handleDropNewItem(e)
+      }}
+      fontSize="13px"
+      zIndex="1"
     >
       {children}
     </Box>
@@ -59,29 +206,16 @@ GridLayoutWrapper.propTypes = {
   children: PropTypes.any,
 }
 
-const blocksZIndex = {
-  inception: 0,
-  image: 1,
-  text: 2,
-}
-
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const builderData = useSelector(getBuilderData)
-  const { blocks } = builderData
 
+  const newBlockType = useSelector(getNewBlockType)
+  const layoutsKeys = useSelector(getLayoutsKeys)
   const layouts = useSelector(getLayout)
   const hierarchy = useSelector(getHierarchy)
-  const { type: newBlockType, id: newBlockId } = useSelector(getNewBlock)
-  const gridRowHeight = useSelector(getGridRowHeight)
-  const builderDevice = useSelector(getBuilderDevice)
-  const draggingBlock = useSelector(getDraggingBlock)
   const lastHoveredEl = useRef()
-
-  useEffect(() => {
-    saveOnLocal(builderData)
-    dispatch(setSaveStatus('null'))
-  }, [blocks, layouts, hierarchy])
+  const gridRowHeight = useSelector(getGridRowHeight)
+  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
 
   useEffect(() => {
     handleWindowResize()
@@ -93,45 +227,59 @@ const WebBuilder = () => {
     }
   }, [])
 
-  function onDrop(newLayout, droppedBlockLayout) {
-    dispatch(addNewBlock(newLayout, droppedBlockLayout))
-    removeHighlightedElem()
-  }
+  useEffect(() => {
+    handleWindowResize()
+  }, [window?.innerWidth])
 
   function handleWindowResize() {
     dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
   }
 
-  function removeHighlightedElem() {
+  const removeHighlightedElem = useCallback(() => {
     if (lastHoveredEl.current?.style) {
       lastHoveredEl.current.style.backgroundColor = null
     }
-  }
+  }, [])
 
-  function handleLayoutChange(newLayout, __, newItem) {
-    const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
-    batch(() => {
-      dispatch(updateLayouts(newLayout, newItem.i))
-      dispatch(updateHierarchy(updatedHierarchy))
-      setTimeout(() => {
-        dispatch(setResizingBlockId(null))
-      }, 600)
-    })
-    removeHighlightedElem()
-  }
-
-  function handleDragStop(newLayout, __, newItem) {
-    console.log('dragStop')
-    handleLayoutChange(newLayout, __, newItem)
-    setTimeout(() => dispatch(setDraggingBlock(null)), 0)
-  }
-
-  function handleDrag(layout, _, newItem) {
-    console.log('handleDrag')
-    !draggingBlock && dispatch(setDraggingBlock(newItem.i))
-    const newParent = getParentBlock(layout, newItem, hierarchy)
+  const handleHiglightSection = (newItem) => {
+    const newParent = getParentBlock(layouts, newItem, hierarchy)
     highlightFutureParentBlock(newParent?.i, lastHoveredEl)
   }
+
+  const handleHiglightSectionMiddleWare = (newItem) => {
+    handleHiglightSection(newItem)
+  }
+
+  const higlightOnDrop = useCallback((ev) => {
+    ev.preventDefault()
+    const { pageX, pageY } = ev
+    const x = pageX / gridColumnWidth
+    const y = pageY / gridRowHeight
+    const newLayout = {
+      x,
+      y,
+      w: 10,
+      h: 10,
+      i: `${newBlockType}-${uuid()}`,
+    }
+    handleHiglightSection(newLayout)
+  }, [])
+
+  const handleDropNewItem = useCallback((ev) => {
+    ev.preventDefault()
+    const { pageX, pageY } = ev
+    const x = pageX / gridColumnWidth
+    const y = pageY / gridRowHeight
+    const newDroppedBlock = {
+      x,
+      y,
+      w: 10,
+      h: 10,
+      i: `${newBlockType}-${uuid()}`,
+    }
+    dispatch(addNewBlock(newDroppedBlock))
+    removeHighlightedElem()
+  })
 
   function handleKeyPress(e) {
     if (e.key === 'Escape') {
@@ -139,69 +287,42 @@ const WebBuilder = () => {
     }
   }
 
-  function handleAddSize(_, __, resizingBlock) {
-    dispatch(setResizingBlockId(resizingBlock))
-  }
-
-  const getLayouts = useCallback(() => {
-    return (
-      layouts
-        .map(({ i }) => {
-          const { type } = blocks[i] || {}
-          if (!type) return null
-          return (
-            <Box key={i} zIndex={blocksZIndex[type]}>
-              <BuilderBlock blockId={i} />
-            </Box>
-          )
-        })
-        //this is use to remove undefines in case of error when deleting
-        .filter((item) => item)
-    )
-  }, [layouts])
-
-  const isMobile = builderDevice === 'mobile'
-
   return (
     <GridLayoutWrapper
-      style={{
-        minHeight: '100vh',
-        height: '100%',
-      }}
+      higlightOnDrop={higlightOnDrop}
+      handleDropNewItem={handleDropNewItem}
     >
-      <ReactGridLayout
-        {...reactGridLayoutProps}
-        key={builderDevice}
-        cols={isMobile ? 100 : GRID_COLUMNS}
-        style={{
-          width: '100%',
-          minHeight: '100vh',
-          height: '100%',
-          backgroundColor: '#f4f5f6',
-        }}
-        rowHeight={gridRowHeight}
-        onDrop={onDrop}
-        preventCollision={!!newBlockType}
-        isDroppable={true}
-        onResize={handleAddSize}
-        onDrag={handleDrag}
-        onResizeStop={handleLayoutChange}
-        onDragStop={handleDragStop}
-        useCSSTransforms={true}
-        droppingItem={{
-          i: newBlockType ? `${newBlockType}-${newBlockId}` : '',
-          w: 15,
-          h: 10,
-        }}
-        layout={layouts}
-        hierarchy={hierarchy}
-        draggableHandle=".draggHandle"
-      >
-        {getLayouts()}
-      </ReactGridLayout>
+      <MemoizeLayoutsRender
+        layouts={layoutsKeys}
+        handleHiglightSection={handleHiglightSectionMiddleWare}
+        removeHighlightedElem={removeHighlightedElem}
+        gridRowHeight={gridRowHeight}
+        gridColumnWidth={gridColumnWidth}
+      />
     </GridLayoutWrapper>
   )
 }
+
+const LayoutsRender = ({
+  layouts,
+  handleHiglightSection,
+  removeHighlightedElem,
+  gridRowHeight,
+  gridColumnWidth,
+}) => {
+  return layouts.map((i) => {
+    return (
+      <MemoDrag
+        key={i + gridRowHeight}
+        blockId={i}
+        handleHiglightSection={handleHiglightSection}
+        removeHighlightedElem={removeHighlightedElem}
+        gridColumnWidth={gridColumnWidth}
+      />
+    )
+  })
+}
+const MemoizeLayoutsRender = React.memo(LayoutsRender)
 
 WebBuilder.propTypes = {
   userBlocksData: PropTypes.any,

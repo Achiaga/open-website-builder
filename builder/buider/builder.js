@@ -7,7 +7,10 @@ import { useRouter } from 'next/router'
 
 import { WebBuilder } from '../web-builder'
 import { BuilderSidebar } from '../sidebar'
-import { getBuilderData, getIsLoadingData } from '../../features/builderSlice'
+import {
+  getHasBuilderData,
+  getIsLoadingData,
+} from '../../features/builderSlice'
 import { SettingsBar } from '../sidebar/settingsBar'
 import MobileVersion from '../web-builder/mobile-version'
 import { loadInitialData } from '../../features/builderSlice'
@@ -22,7 +25,7 @@ function getParams() {
 }
 
 const Builder = () => {
-  const userBlocksData = useSelector(getBuilderData)
+  const hasBuilderData = useSelector(getHasBuilderData)
   const isLoadingData = useSelector(getIsLoadingData)
   const router = useRouter()
   const { user, isLoading } = useUser()
@@ -59,7 +62,7 @@ const Builder = () => {
     }
   }, [isLoading])
 
-  if (!userBlocksData || isLoadingData) {
+  if (!hasBuilderData || isLoadingData) {
     return (
       <Box
         w="100%"
@@ -72,6 +75,7 @@ const Builder = () => {
       </Box>
     )
   }
+
   return (
     <>
       <Box

@@ -27,13 +27,22 @@ async function getUserData(user, template) {
   }
 }
 
+function arrayToObject(arr) {
+  if (!Array.isArray(arr)) return arr
+  return arr.reduce((acc, item) => ({ ...acc, [item.i]: item }), {})
+}
+
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
-  const blocksData = await getUserDataFromLS()
-  dispatch(
-    setInitialBuilderData(
-      templates[template] || blocksData || templates.fallback
-    )
-  )
+  const LSData = await getUserDataFromLS()
+  const templateData = templates[template]
+  let data = LSData || templateData || templates.fallback
+  data = {
+    ...data,
+    layouts: arrayToObject(data.layouts),
+    mobileLayout: arrayToObject(data.mobileLayout),
+  }
+
+  dispatch(setInitialBuilderData(data || templates.fallback))
 }
 export const updateInitialState = ({
   resume_data,
