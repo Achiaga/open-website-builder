@@ -196,6 +196,7 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
         handleDropNewItem(e)
       }}
       fontSize="13px"
+      zIndex="1"
     >
       {children}
     </Box>
