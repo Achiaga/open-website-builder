@@ -90,8 +90,10 @@ const DraggableItem = ({
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
 
-  const el = document.getElementById(blockId)
-  el.offsetParent.offsetParent.style.zIndex = isSelected ? '3' : '2'
+  if (isTextBlock) {
+    const el = document.getElementById(blockId)
+    el.offsetParent.offsetParent.style.zIndex = isSelected ? '3' : '2'
+  }
 
   return (
     <Draggable
