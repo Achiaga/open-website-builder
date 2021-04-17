@@ -27,6 +27,7 @@ import {
   handleDrag,
   getNewBlockType,
   getBlockData,
+  getSelectedBlockId,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -45,6 +46,7 @@ const DraggableItem = ({
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
+  const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
   const { x, y, w, h } = blockLayout
@@ -86,6 +88,11 @@ const DraggableItem = ({
   }
   const blockType = blockData?.type
   const isTextBlock = blockType === 'text'
+  const isSelected = selectedBlock === blockId
+
+  const el = document.getElementById(blockId)
+  el.offsetParent.offsetParent.style.zIndex = isSelected ? '3' : '2'
+
   return (
     <Draggable
       key={blockId}

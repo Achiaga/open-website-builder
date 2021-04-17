@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/layout'
+import { Portal } from '@chakra-ui/portal'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -164,9 +165,11 @@ const Editor = ({ data, selectedId, handleChange, blockId, placeholder }) => {
 
   return (
     <Box className="text-editor" h="100%">
+      {/* <Portal id="main-builder" pos="absolute"> */}
       <Box d={isSelected ? 'block' : 'none'}>
         <CustomToolbar blockId={blockId} />
       </Box>
+      {/* </Portal> */}
       {ReactQuillEditor(onChange, text, placeholder, modules, formats)}
     </Box>
   )

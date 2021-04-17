@@ -108,7 +108,7 @@ export function BuilderBlock({ blockId, isOver }) {
         if (isEditable || isDragging) return null
         dispatch(setBlockEditable(blockId))
       }}
-      outline="3px solid"
+      outline="2px solid"
       outlineOffset="-2px"
       outlineColor={isEditable || isOver ? 'green.500' : 'transparent'}
       transition="outline-color .3s"
