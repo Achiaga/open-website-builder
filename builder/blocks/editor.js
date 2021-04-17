@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/layout'
-import { Portal } from '@chakra-ui/portal'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -18,8 +17,10 @@ import { EDIT } from './constants'
 import { BuilderPrevText } from './text'
 
 const ReactQuill =
+  // eslint-disable-next-line no-undef
   typeof window === 'object' ? require('react-quill') : () => {}
 const quillEmoji =
+  // eslint-disable-next-line no-undef
   typeof window === 'object' ? require('quill-emoji') : () => {}
 const { EmojiBlot } = quillEmoji
 
@@ -165,11 +166,9 @@ const Editor = ({ data, selectedId, handleChange, blockId, placeholder }) => {
 
   return (
     <Box className="text-editor" h="100%">
-      {/* <Portal id="main-builder" pos="absolute"> */}
       <Box d={isSelected ? 'block' : 'none'}>
         <CustomToolbar blockId={blockId} />
       </Box>
-      {/* </Portal> */}
       {ReactQuillEditor(onChange, text, placeholder, modules, formats)}
     </Box>
   )

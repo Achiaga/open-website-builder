@@ -478,13 +478,23 @@ export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
   const newX = blockPos.x / gridColumnWidth
   const newY = blockPos.y / gridRowHeight
-  dispatch(
-    updateBlockLayout({
-      ...blockLayout,
-      x: newX,
-      y: newY,
-    })
+  const newBlockLayout = {
+    ...blockLayout,
+    x: newX,
+    y: newY,
+  }
+  const layouts = { ...getLayout(getState()) }
+  const hierarchy = getHierarchy(getState())
+  layouts[newBlockLayout.i] = newBlockLayout
+  const updatedHierarchy = getUpdatedHierarchy(
+    layouts,
+    newBlockLayout,
+    hierarchy
   )
+  batch(() => {
+    dispatch(updateLayouts(layouts, newBlockLayout.i))
+    dispatch(updateHierarchy(updatedHierarchy))
+  })
 }
 
 export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {

@@ -4,15 +4,9 @@ import { useState } from 'react'
 import { Portal } from '../usePortal'
 import { EDIT } from './constants'
 import { Properties } from './block-properties'
-import {
-  editBlockConfig,
-  getBlockParentId,
-  // getIsMobileBuilder,
-} from '../../features/builderSlice'
+import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
-import { CustomToolbar } from '../blocks/editor'
-// import { deleteProperty } from './block-properties'
 
 const CustomToolTip = ({ label, children }) => {
   return (

@@ -28,7 +28,6 @@ export const { MediaContextProvider, Media } = createMedia({
 })
 
 function getFontSize(windowWidth) {
-  console.log(windowWidth)
   if (windowWidth >= 1200) return 13
   if (windowWidth >= 1100) return 10
   if (windowWidth >= 1000) return 9

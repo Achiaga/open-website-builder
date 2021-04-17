@@ -37,6 +37,11 @@ const blocksZIndex = {
   text: 2,
 }
 
+function getZIndexValue(blockType, isSelected) {
+  if (isSelected && blockType === 'text') return '4'
+  return blocksZIndex[blockType]
+}
+
 const DraggableItem = ({
   blockId,
   handleHiglightSection,
@@ -90,9 +95,12 @@ const DraggableItem = ({
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
 
-  if (isTextBlock) {
-    const el = document.getElementById(blockId)
-    el.offsetParent.offsetParent.style.zIndex = isSelected ? '3' : '2'
+  const el = document.getElementById(blockId)
+  if (el?.offsetParent) {
+    el.offsetParent.offsetParent.style.zIndex = getZIndexValue(
+      blockType,
+      isSelected
+    )
   }
 
   return (
@@ -237,11 +245,14 @@ const WebBuilder = () => {
   //   setTimeout(() => dispatch(setDraggingBlock(null)), 0)
   // }
 
-  const handleHiglightSection = useCallback((newItem) => {
-    // !draggingBlock && dispatch(setDraggingBlock(newItem.i))
-    const newParent = getParentBlock(layouts, newItem, hierarchy)
-    highlightFutureParentBlock(newParent?.i, lastHoveredEl)
-  }, [])
+  const handleHiglightSection = useCallback(
+    (newItem) => {
+      // !draggingBlock && dispatch(setDraggingBlock(newItem.i))
+      const newParent = getParentBlock(layouts, newItem, hierarchy)
+      highlightFutureParentBlock(newParent?.i, lastHoveredEl)
+    },
+    [layouts]
+  )
 
   const higlightOnDrop = (ev) => {
     ev.preventDefault()
