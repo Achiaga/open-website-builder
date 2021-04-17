@@ -34,7 +34,7 @@ const blocksZIndex = {
 
 function getZIndexValue(blockType, isSelected) {
   if (isSelected && blockType === 'text') return '4'
-  return blocksZIndex[blockType].toString()
+  return blocksZIndex[blockType]?.toString() ?? '2'
 }
 
 const DraggableItem = ({
