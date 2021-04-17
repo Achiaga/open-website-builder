@@ -28,10 +28,8 @@ export const previewBlocks = {
   inception: PrevInception,
 }
 
-const ResizingCounter = ({ blockId }) => {
-  const resizingBlock = useSelector(getResizingBlock)
-  const isResizing = resizingBlock?.i === blockId
-  if (!isResizing) return null
+export const ResizingCounter = ({ width, height }) => {
+  if (!width || !height) return null
   return (
     <Box
       pos="absolute"
@@ -46,31 +44,13 @@ const ResizingCounter = ({ blockId }) => {
       boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
       fontWeight="600"
     >
-      <Box as="span">w: {resizingBlock?.w}</Box>
-      <Box as="span"> h: {resizingBlock?.h}</Box>
+      <Box as="span">w: {width}</Box>
+      <Box as="span"> h: {height}</Box>
     </Box>
   )
 }
 ResizingCounter.propTypes = {
   blockId: PropTypes.string,
-}
-
-const DragHandle = () => {
-  return (
-    <Box
-      rounded="5px"
-      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-      className="draggHandle"
-      pos="absolute"
-      paddingY="2px"
-      paddingX="2px"
-      cursor="move"
-      left="-30px"
-      bg="white"
-    >
-      <BsArrowsMove size="20px" />
-    </Box>
-  )
 }
 
 const hoverEffect = {
@@ -120,8 +100,6 @@ export function BuilderBlock({ blockId, isOver }) {
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
         </>
       )}
-      {dragHandle && <DragHandle />}
-      <ResizingCounter blockId={blockId} />
       <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
   )

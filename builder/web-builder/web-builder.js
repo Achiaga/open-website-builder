@@ -24,7 +24,7 @@ import {
   getSelectedBlockId,
   getLayout,
 } from '../../features/builderSlice'
-import { BuilderBlock } from '../blocks'
+import { BuilderBlock, ResizingCounter } from '../blocks'
 
 const blocksZIndex = {
   inception: 0,
@@ -43,6 +43,7 @@ const DraggableItem = ({
   removeHighlightedElem,
   gridColumnWidth,
 }) => {
+  const [resizeValues, setResizeValues] = useState(null)
   const [isOver, setIsOver] = useState(false)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
@@ -63,6 +64,12 @@ const DraggableItem = ({
 
   function onResizeStop(_, __, ___, delta) {
     dispatch(handleResizeStop(delta, blockId))
+    setResizeValues(null)
+  }
+
+  function handleResize(_, __, elRef) {
+    const { width, height } = elRef.getBoundingClientRect()
+    setResizeValues({ width: Math.round(width), height: Math.round(height) })
   }
 
   function onDrag(_, blockPos) {
@@ -123,6 +130,7 @@ const DraggableItem = ({
           bottomLeft: false,
           topLeft: false,
         }}
+        onResize={handleResize}
         onMouseOver={() => setIsOver(true)}
         onMouseOut={() => setIsOver(false)}
         handleStyles={
@@ -147,6 +155,7 @@ const DraggableItem = ({
           isOver={isOver}
           setIsOver={setIsOver}
         />
+        <ResizingCounter {...resizeValues} />
       </Resizable>
     </Draggable>
   )
