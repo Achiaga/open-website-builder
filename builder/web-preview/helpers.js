@@ -35,10 +35,10 @@ export function GeneratePreviewBlock({ layoutItem }) {
       gridColumn={`${Math.round(x) + 1} /  span ${Math.round(w)}`}
       gridRow={`${Math.round(y) + 1} / span ${Math.round(h)}`}
       overflow="hidden"
-      border={data.border}
-      boxShadow={data.boxShadow}
-      borderRadius={data.borderRadius}
-      backgroundColor={data.backgroundColor}
+      border={data?.border}
+      boxShadow={data?.boxShadow}
+      borderRadius={data?.borderRadius}
+      backgroundColor={data?.backgroundColor}
       zIndex={zIndex}
     >
       <GenericBlock

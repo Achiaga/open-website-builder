@@ -12,6 +12,7 @@ import {
   getParentBlock,
   isBlockInHierarchy,
   getUpdatedHierarchy,
+  saveOnLocal,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -320,8 +321,9 @@ export const addNewHierachyItem = (blockLayoutId, newParentId) => (
   }
 }
 
-export const addNewBlock = (newLayout, blockLayout) => (dispatch, getState) => {
+export const addNewBlock = (blockLayout) => (dispatch, getState) => {
   const state = getState()
+  const newLayout = getLayout(state)
   const hierarchy = getHierarchy(state)
   const newBlockData = addBlock(blockLayout.i, getNewBlockType(state))
   const newParent = getParentBlock(newLayout, blockLayout, hierarchy)
@@ -494,6 +496,7 @@ export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   batch(() => {
     dispatch(updateLayouts(layouts, newBlockLayout.i))
     dispatch(updateHierarchy(updatedHierarchy))
+    dispatch(saveDataOnLocal())
   })
 }
 
@@ -513,6 +516,10 @@ export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
       h: height,
     })
   )
+}
+export const saveDataOnLocal = () => (dispatch, getState) => {
+  const builderData = getBuilderData(getState())
+  saveOnLocal(builderData)
 }
 export const handleResizeTextBlock = (newSize, blockId) => (
   dispatch,
@@ -575,7 +582,6 @@ export const handleDrag = (
       layouts[item] = layoutItem
     }
   }
-
   batch(() => {
     if (builderDevice === 'mobile') {
       dispatch(setMobileLayout(layouts))
@@ -594,6 +600,7 @@ export const handleDrag = (
 //***************************************************************
 
 export const getBuilderData = (state) => state.builder.builderData
+export const getHasBuilderData = (state) => !!state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
 export const getWebsiteId = (state) => state.builder.user?.websiteId
@@ -630,6 +637,12 @@ export const getLayout = (state) => {
     return getMobileLayout(state)
   }
   return getDesktopLayout(state)
+}
+export const getLayoutsKeys = (state) => {
+  if (getBuilderDevice(state) === 'mobile') {
+    return Object.keys(getMobileLayout(state))
+  }
+  return Object.keys(getDesktopLayout(state))
 }
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts

@@ -1,25 +1,19 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
 import { Resizable } from 're-resizable'
 import { v4 as uuid } from 'uuid'
 
-import {
-  saveOnLocal,
-  getParentBlock,
-  highlightFutureParentBlock,
-} from './helpers'
+import { getParentBlock, highlightFutureParentBlock } from './helpers'
 import { GRID_COLUMNS } from './constants'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  getBuilderData,
   getGridRowHeight,
   setGridRowHeight,
   setBlockEditable,
   addNewBlock,
-  getLayout,
-  setSaveStatus,
+  getLayoutsKeys,
   getHierarchy,
   getBlockLayoutById,
   handleDragStop,
@@ -28,6 +22,7 @@ import {
   getNewBlockType,
   getBlockData,
   getSelectedBlockId,
+  getLayout,
 } from '../../features/builderSlice'
 import { BuilderBlock } from '../blocks'
 
@@ -46,6 +41,7 @@ const DraggableItem = ({
   blockId,
   handleHiglightSection,
   removeHighlightedElem,
+  gridColumnWidth,
 }) => {
   const [isOver, setIsOver] = useState(false)
   const dispatch = useDispatch()
@@ -55,7 +51,6 @@ const DraggableItem = ({
   if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
   const { x, y, w, h } = blockLayout
-  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
   const xPos = x * gridColumnWidth
@@ -147,20 +142,30 @@ const DraggableItem = ({
           }
         }
       >
-        <Box
-          w={'100%'}
-          h={'100%'}
-          pos="absolute"
-          style={{ zIndex: blocksZIndex[blockType] }}
-          onMouseOver={() => setIsOver(true)}
-          onMouseOut={() => setIsOver(false)}
-        >
-          <BuilderBlock blockId={blockId} isOver={isOver} />
-        </Box>
+        <MemoBlockItem
+          blockId={blockId}
+          isOver={isOver}
+          setIsOver={setIsOver}
+        />
       </Resizable>
     </Draggable>
   )
 }
+
+const BlockItem = ({ blockId, isOver, setIsOver }) => {
+  return (
+    <Box
+      w={'100%'}
+      h={'100%'}
+      pos="absolute"
+      onMouseOver={() => setIsOver(true)}
+      onMouseOut={() => setIsOver(false)}
+    >
+      <BuilderBlock blockId={blockId} isOver={isOver} />
+    </Box>
+  )
+}
+const MemoBlockItem = React.memo(BlockItem)
 const MemoDrag = React.memo(DraggableItem)
 
 const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
@@ -193,18 +198,14 @@ GridLayoutWrapper.propTypes = {
 
 const WebBuilder = () => {
   const dispatch = useDispatch()
-  const builderData = useSelector(getBuilderData)
-  const { blocks } = builderData
+
   const newBlockType = useSelector(getNewBlockType)
+  const layoutsKeys = useSelector(getLayoutsKeys)
   const layouts = useSelector(getLayout)
   const hierarchy = useSelector(getHierarchy)
   const lastHoveredEl = useRef()
   const gridRowHeight = useSelector(getGridRowHeight)
   const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
-  useEffect(() => {
-    saveOnLocal(builderData)
-    dispatch(setSaveStatus('null'))
-  }, [blocks, layouts, hierarchy])
 
   useEffect(() => {
     handleWindowResize()
@@ -230,31 +231,16 @@ const WebBuilder = () => {
     }
   }, [])
 
-  // function onDrop(newLayout, droppedBlockLayout) {
-  //   dispatch(addNewBlock(newLayout, droppedBlockLayout))
-  //   removeHighlightedElem()
-  // }
+  const handleHiglightSection = useCallback((newItem) => {
+    const newParent = getParentBlock(layouts, newItem, hierarchy)
+    highlightFutureParentBlock(newParent?.i, lastHoveredEl)
+  }, [])
 
-  // function handleLayoutChange(newLayout, __, newItem) {
-  //   dispatch(updateLayoutChange(newLayout, newItem))
-  //   removeHighlightedElem()
-  // }
+  const handleHiglightSectionMiddleWare = useCallback((newItem) => {
+    handleHiglightSection(newItem)
+  }, [])
 
-  // function handleDragStop(newLayout, __, newItem) {
-  //   handleLayoutChange(newLayout, __, newItem)
-  //   setTimeout(() => dispatch(setDraggingBlock(null)), 0)
-  // }
-
-  const handleHiglightSection = useCallback(
-    (newItem) => {
-      // !draggingBlock && dispatch(setDraggingBlock(newItem.i))
-      const newParent = getParentBlock(layouts, newItem, hierarchy)
-      highlightFutureParentBlock(newParent?.i, lastHoveredEl)
-    },
-    [layouts]
-  )
-
-  const higlightOnDrop = (ev) => {
+  const higlightOnDrop = useCallback((ev) => {
     ev.preventDefault()
     const { pageX, pageY } = ev
     const x = pageX / gridColumnWidth
@@ -267,9 +253,9 @@ const WebBuilder = () => {
       i: `${newBlockType}-${uuid()}`,
     }
     handleHiglightSection(newLayout)
-  }
+  }, [])
 
-  function handleDropNewItem(ev) {
+  const handleDropNewItem = useCallback((ev) => {
     ev.preventDefault()
     const { pageX, pageY } = ev
     const x = pageX / gridColumnWidth
@@ -281,19 +267,15 @@ const WebBuilder = () => {
       h: 10,
       i: `${newBlockType}-${uuid()}`,
     }
-    dispatch(addNewBlock(layouts, newDroppedBlock))
+    dispatch(addNewBlock(newDroppedBlock))
     removeHighlightedElem()
-  }
+  })
 
   function handleKeyPress(e) {
     if (e.key === 'Escape') {
       dispatch(setBlockEditable(null))
     }
   }
-
-  const layoutsKeys = useMemo(() => Object.keys(layouts), [
-    Object.keys(layouts),
-  ])
 
   return (
     <GridLayoutWrapper
@@ -302,9 +284,10 @@ const WebBuilder = () => {
     >
       <MemoizeLayoutsRender
         layouts={layoutsKeys}
-        handleHiglightSection={handleHiglightSection}
+        handleHiglightSection={handleHiglightSectionMiddleWare}
         removeHighlightedElem={removeHighlightedElem}
         gridRowHeight={gridRowHeight}
+        gridColumnWidth={gridColumnWidth}
       />
     </GridLayoutWrapper>
   )
@@ -315,6 +298,7 @@ const LayoutsRender = ({
   handleHiglightSection,
   removeHighlightedElem,
   gridRowHeight,
+  gridColumnWidth,
 }) => {
   return layouts.map((i) => {
     return (
@@ -323,6 +307,7 @@ const LayoutsRender = ({
         blockId={i}
         handleHiglightSection={handleHiglightSection}
         removeHighlightedElem={removeHighlightedElem}
+        gridColumnWidth={gridColumnWidth}
       />
     )
   })
