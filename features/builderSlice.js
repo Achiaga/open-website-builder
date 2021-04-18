@@ -258,7 +258,7 @@ function applyAutoMobileToBlock(blockLayout) {
   const moreWidth = x + w > 100
   const newX = moreWidth ? 0 : x / 4
   const newY = isOnRight ? y + 2 * h : y + (2 * h) / 3
-  const newW = moreWidth ? 100 : w
+  const newW = w > 100 ? 100 : w
   const updatedBlock = {
     x: newX,
     y: newY,
