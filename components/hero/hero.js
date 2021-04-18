@@ -50,10 +50,10 @@ const Hero = () => {
           lineHeight={['120%', '7rem']}
         >
           {t.hero.title_1}
-          <Text as="h1" color="primary.500">
+          <Text as="span" color="primary.500">
             {t.hero.title_color_2}
           </Text>
-          <Text as="h1" color="primary.500">
+          <Text as="span" color="primary.500">
             {t.hero.title_color_3}
           </Text>
           {t.hero.title_4}
