@@ -16,6 +16,7 @@ const ToolSection = ({ Icon, text, type, ...props }) => {
   const dispatch = useDispatch()
   return (
     <Box
+      id="safe"
       as="div"
       h="40px"
       w="full"
@@ -35,7 +36,7 @@ const ToolSection = ({ Icon, text, type, ...props }) => {
       cursor="grab"
       opacity="0.999"
       onDragStart={(e) => {
-        e.dataTransfer.setData('text/plain', '')
+        e.dataTransfer.setData('text/plain', 'safe')
         dispatch(setNewDropBlockType(type))
       }}
       _hover={{ background: '#F2F2F2;' }}

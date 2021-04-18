@@ -10,7 +10,7 @@ import { InitializeAnalytics } from '../utils/analytics'
 
 import '../styles/globals.css'
 import '../builder/web-builder/styles.css'
-import '../styles/style.css'
+import '../styles/QuillStyle.css'
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

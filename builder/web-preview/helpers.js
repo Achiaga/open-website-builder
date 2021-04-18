@@ -22,11 +22,7 @@ export function GeneratePreviewBlock({ layoutItem }) {
   const { w, h, x, y, i } = layoutItem || {}
 
   const GenericBlock = previewBlocks[type]
-  // const backgroundImamgeProps = {
-  //   backgroundImage: `url(${data?.imageUrl})`,
-  //   backgroundPosition: 'center',
-  //   backgroundRepeat: 'no-repeat',
-  // }
+
   const zIndex = getBlockZIndex(type)
   return (
     <Box

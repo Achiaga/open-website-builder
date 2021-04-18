@@ -34,7 +34,7 @@ const blocksZIndex = {
 
 function getZIndexValue(blockType, isSelected) {
   if (isSelected && blockType === 'text') return '4'
-  return blocksZIndex[blockType].toString()
+  return blocksZIndex[blockType]?.toString() ?? '2'
 }
 
 const DraggableItem = ({
@@ -51,11 +51,15 @@ const DraggableItem = ({
   const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
+
   const { x, y, w, h } = blockLayout
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
   const xPos = x * gridColumnWidth
   const yPos = y * gridRowHeight
+  const blockType = blockData?.type
+  const isTextBlock = blockType === 'text'
+  const isSelected = selectedBlock === blockId
 
   function onDragStop(_, blockPos) {
     dispatch(handleDragStop(blockPos, blockId))
@@ -63,7 +67,7 @@ const DraggableItem = ({
   }
 
   function onResizeStop(_, __, ___, delta) {
-    dispatch(handleResizeStop(delta, blockId))
+    dispatch(handleResizeStop(delta, blockId, blockType))
     setResizeValues(null)
   }
 
@@ -93,9 +97,6 @@ const DraggableItem = ({
       )
     }
   }
-  const blockType = blockData?.type
-  const isTextBlock = blockType === 'text'
-  const isSelected = selectedBlock === blockId
 
   const el = document.getElementById(blockId)
   if (el) {
@@ -121,7 +122,7 @@ const DraggableItem = ({
         size={{ width, height }}
         defaultSize={{ width, height }}
         key={blockId}
-        style={{ position: 'absolute' }}
+        style={{ position: 'absolute', zIndex: 2 }}
         onResizeStop={onResizeStop}
         enable={{
           top: false,
@@ -142,7 +143,7 @@ const DraggableItem = ({
               border: '1px solid blue',
               background: 'white',
               borderRadius: '2px',
-              zIndex: 1,
+              zIndex: 2,
             },
             right: {
               border: '1px solid blue',
@@ -165,7 +166,7 @@ const DraggableItem = ({
   )
 }
 
-const BlockItem = ({ blockId, isOver, setIsOver, zIndexValue }) => {
+const BlockItem = ({ blockId, isOver, setIsOver }) => {
   return (
     <Box
       w={'100%'}
@@ -173,7 +174,7 @@ const BlockItem = ({ blockId, isOver, setIsOver, zIndexValue }) => {
       pos="absolute"
       onMouseOver={() => setIsOver(true)}
       onMouseOut={() => setIsOver(false)}
-      zIndex={zIndexValue}
+      // zIndex={zIndexValue}
     >
       <BuilderBlock blockId={blockId} isOver={isOver} />
     </Box>
@@ -197,8 +198,11 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
       onDragOver={higlightOnDrop}
       bg="gray.50"
       onDrop={(e) => {
+        const origin = e.dataTransfer.getData('text/plain')
         e.preventDefault()
-        handleDropNewItem(e)
+        if (origin === 'safe') {
+          handleDropNewItem(e)
+        }
       }}
       fontSize="13px"
       zIndex="1"

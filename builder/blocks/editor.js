@@ -8,29 +8,17 @@ import {
 } from '../../features/builderSlice'
 import { ButtonSelector, TextInput } from './block-modifiers'
 import {
+  color,
   deleteProperty,
   duplicateProperty,
   redirectInput,
 } from './block-properties'
 import { EDIT } from './constants'
-// import 'quill-emoji/dist/quill-emoji.css'
 import { BuilderPrevText } from './text'
 
 const ReactQuill =
   // eslint-disable-next-line no-undef
   typeof window === 'object' ? require('react-quill') : () => {}
-const quillEmoji =
-  // eslint-disable-next-line no-undef
-  typeof window === 'object' ? require('quill-emoji') : () => {}
-const { EmojiBlot } = quillEmoji
-
-ReactQuill.register &&
-  ReactQuill?.register(
-    {
-      'formats/emoji': EmojiBlot,
-    },
-    true
-  )
 
 function QuillToolbar() {
   return (
@@ -44,23 +32,20 @@ function QuillToolbar() {
         <option value="2" />
         <option value="3" />
         <option value="4" />
+        <option selected />
         <option value="5" />
         <option value="6" />
-        <option selected />
       </select>
       <button className="ql-bold" />
       <button className="ql-italic" />
       <button className="ql-blockquote" />
+      <button className="ql-underline" />
       <button className="ql-link" />
       <select className="ql-align" />
       <select className="ql-color">
-        <option value="red" />
-        <option value="green" />
-        <option value="blue" />
-        <option value="orange" />
-        <option value="violet" />
-        <option value="#d0d1d2" />
-        <option selected />
+        {color.options.map((colorOption, index) => {
+          return <option value={colorOption.value} key={index} />
+        })}
       </select>
     </>
   )
@@ -75,7 +60,7 @@ export const CustomToolbar = ({ blockId }) => {
     setIsOpen(id)
   }
 
-  function handleEdit(id, value, operationType = EDIT) {
+  function handleEdit(_, __, operationType = EDIT) {
     dispatch(editBlockConfig({ blockId, operationType }))
   }
 
@@ -94,8 +79,8 @@ export const CustomToolbar = ({ blockId }) => {
       color="black"
       zIndex="9999"
     >
-      {QuillToolbar()}
       <ButtonSelector handleEdit={handleEdit} {...deleteProperty} />
+      {QuillToolbar()}
       <ButtonSelector handleEdit={handleEdit} {...duplicateProperty} />
       <TextInput
         isOpen={isOpen}
