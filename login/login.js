@@ -96,11 +96,9 @@ export function Login() {
             boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
           >
             <Box>
-              <MenuItem>
-                <a href="/preview" target="_blank">
-                  Preview
-                </a>
-              </MenuItem>
+              <a href="/preview" target="_blank">
+                <MenuItem>Preview</MenuItem>
+              </a>
 
               <MenuItem onClick={handleMobileVersion}>
                 {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
@@ -111,11 +109,11 @@ export function Login() {
                 <MenuItem onClick={handlePublish}>
                   {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
                 </MenuItem>
-                <MenuItem>
-                  <Link href="/dashboard" passHref>
+                <Link href="/dashboard" passHref>
+                  <MenuItem>
                     <a>Dashboard</a>
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Box>
             ) : (

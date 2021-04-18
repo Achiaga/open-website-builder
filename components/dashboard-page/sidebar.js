@@ -3,7 +3,6 @@ import { Box, Text, Button } from '@chakra-ui/react'
 
 import LogoSvg from '../../assets/logo'
 import { RiDashboardLine } from 'react-icons/ri'
-import { GrUserSettings } from 'react-icons/gr'
 
 const ButtonSidebar = ({ children, ...props }) => {
   return (
@@ -89,49 +88,14 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
             </Text>
           </ButtonSidebar>
         </Link>
-        {/* <Link href="/dashboard/statics">
-          <ButtonSidebar id="statics" isActive={dashboardType === 'statics'}>
-            <RiDashboardLine fontSize="1rem" />
-            <Text as="h4" fontSize="1rem" pl="0.75em">
-              Statics
-            </Text>
-          </ButtonSidebar>
-        </Link>
-        <Link href="/dashboard/documentation">
-          <ButtonSidebar
-            id="documentation"
-            isActive={dashboardType === 'documentation'}
-          >
-            <RiDashboardLine fontSize="1rem" />
-            <Text as="h4" fontSize="1rem" pl="0.75em">
-              Documentation
-            </Text>
-          </ButtonSidebar>
-        </Link>
-        <Link href="/dashboard/plan">
-          <ButtonSidebar id="plan" isActive={dashboardType === 'plan'}>
-            <RiDashboardLine fontSize="1rem" />
-            <Text as="h4" fontSize="1rem" pl="0.75em">
-              Your Plan
-            </Text>
-          </ButtonSidebar>
-        </Link>
-        <Link href="/dashboard/referral">
-          <ButtonSidebar id="referral" isActive={dashboardType === 'referral'}>
-            <RiDashboardLine fontSize="1rem" />
-            <Text as="h4" fontSize="1rem" pl="0.75em">
-              Referral Program
-            </Text>
-          </ButtonSidebar>
-        </Link> */}
-        <Link href="/dashboard/settings">
+        {/* <Link href="/dashboard/settings">
           <ButtonSidebar id="settings" isActive={dashboardType === 'settings'}>
             <GrUserSettings fontSize="1rem" />
             <Text as="h4" fontSize="1rem" pl="0.75rem">
               Settings
             </Text>
           </ButtonSidebar>
-        </Link>
+        </Link> */}
       </Box>
     </Box>
   )
