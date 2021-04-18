@@ -11,6 +11,7 @@ import {
   getTempDBData,
   publishWebsite,
   getPublishStatus,
+  setInitialBuilderData,
 } from '../features/builderSlice'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
@@ -21,6 +22,8 @@ import SaveButton from './saveButton'
 import AccountCreatedModal from './accountCreatedModal'
 import OverwriteDBWarning from './overwriteDBWarning'
 import { Spinner } from '@chakra-ui/spinner'
+import { removeLocalData } from '../builder/web-builder/helpers'
+import templates from '../templates'
 
 const logoutUrl =
   // eslint-disable-next-line no-undef
@@ -76,6 +79,11 @@ export function Login() {
       setBuilderDevice(builderDevice === 'mobile' ? 'desktop' : 'mobile')
     )
   }
+  function handleRemove() {
+    removeLocalData().then(() => {
+      dispatch(setInitialBuilderData(templates.fallback))
+    })
+  }
   return (
     <Box d="flex" flexDir="column">
       {publishStatus === 'success' && <PublishSuccessModal />}
@@ -103,6 +111,7 @@ export function Login() {
               <MenuItem onClick={handleMobileVersion}>
                 {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
               </MenuItem>
+              <MenuItem onClick={handleRemove}>Delete Project</MenuItem>
             </Box>
             {user ? (
               <Box>

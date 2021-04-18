@@ -2,6 +2,7 @@ import { Box, Button } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { removeLocalData } from '../../builder/web-builder/helpers'
 
 const CustomButton = ({ colorScheme, children }) => {
   return (
@@ -19,6 +20,9 @@ const CustomButton = ({ colorScheme, children }) => {
 }
 
 const Template = ({ templateInfo }) => {
+  function handleSelectTemplate() {
+    removeLocalData()
+  }
   return (
     <Box
       w="100%"
@@ -48,6 +52,7 @@ const Template = ({ templateInfo }) => {
           justifyContent="space-around"
           d="none"
           _groupHover={{ display: 'flex' }}
+          onClick={handleSelectTemplate}
         >
           <Link href={`/builder?template=${templateInfo.id}`} passHref>
             <a>

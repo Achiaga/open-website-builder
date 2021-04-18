@@ -88,6 +88,9 @@ export function saveOnLocal(userBlocksData) {
   }
   localforage.setItem('userData', dataToSave)
 }
+export function removeLocalData() {
+  return localforage.removeItem('userData')
+}
 
 export function normalizeLayout(userBlocksData) {
   if (!userBlocksData) return []
