@@ -86,22 +86,31 @@ const Styles = ({ children }) => {
         },
         h1: {
           fontFamily: 'Helvetica, Arial, sans-serif',
-          fontSize: '4em',
+          fontSize: '6em',
         },
         h2: {
-          fontSize: '1.5em',
+          fontSize: '4em',
         },
         h3: {
-          fontSize: '1.17em',
+          fontSize: '3em',
         },
         h4: {
-          fontSize: '1em',
+          fontSize: '2em',
         },
         h5: {
-          fontSize: '0.83em',
+          fontSize: '1em',
         },
         h6: {
-          fontSize: '0.67em',
+          fontSize: '0.8em',
+        },
+        '.ql-align-center': {
+          textAlign: 'center',
+        },
+        '.ql-align-justify': {
+          textAlign: 'justify',
+        },
+        '.ql-align-right': {
+          textAlign: 'right',
         },
       }}
     >

@@ -65,7 +65,7 @@ const fontWeight = {
     { value: '900', title: 'super-bold' },
   ],
 }
-const color = {
+export const color = {
   type: 'colorDropdown',
   property: 'fontColor',
   tooltip: 'Text Color',
