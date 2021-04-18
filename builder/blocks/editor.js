@@ -32,9 +32,9 @@ function QuillToolbar() {
         <option value="2" />
         <option value="3" />
         <option value="4" />
-        <option selected />
         <option value="5" />
         <option value="6" />
+        <option selected />
       </select>
       <button className="ql-bold" />
       <button className="ql-italic" />

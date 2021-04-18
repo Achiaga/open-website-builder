@@ -98,10 +98,10 @@ const Styles = ({ children }) => {
           fontSize: '2em',
         },
         h5: {
-          fontSize: '1em',
+          fontSize: '1.5em',
         },
         h6: {
-          fontSize: '0.8em',
+          fontSize: '1.2em',
         },
         '.ql-align-center': {
           textAlign: 'center',
