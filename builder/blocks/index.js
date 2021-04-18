@@ -57,7 +57,7 @@ const hoverEffect = {
     filter: 'brightness(1.1)',
   },
   text: {
-    bg: 'gray.100',
+    bg: '#b6b6b72e',
   },
 }
 const DragHandle = () => {

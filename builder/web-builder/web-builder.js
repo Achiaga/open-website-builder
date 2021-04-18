@@ -108,6 +108,7 @@ const DraggableItem = ({
   useEffect(() => {
     setIsOver()
   }, [])
+
   const zIndexValue = getZIndexValue(blockType, isSelected)
   return (
     <Draggable
