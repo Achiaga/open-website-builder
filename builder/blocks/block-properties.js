@@ -375,6 +375,7 @@ export const Properties = {
     deleteProperty,
     border,
     borderRadius,
+    redirectInput,
     imageInput,
     boxShadow,
     backgroundColor,

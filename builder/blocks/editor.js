@@ -40,7 +40,6 @@ function QuillToolbar() {
       <button className="ql-italic" />
       <button className="ql-blockquote" />
       <button className="ql-underline" />
-      <button className="ql-link" />
       <select className="ql-align" />
       <select className="ql-color">
         {color.options.map((colorOption, index) => {
@@ -98,9 +97,8 @@ export const CustomToolbar = ({ blockId }) => {
 
 const formats = [
   'header',
-  'font',
+  // 'font',
   'size',
-  'link',
   'bold',
   'italic',
   'underline',
@@ -109,7 +107,7 @@ const formats = [
   'list',
   'bullet',
   'indent',
-  'link',
+  // 'link',
   'image',
   'color',
   'align',

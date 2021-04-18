@@ -51,7 +51,7 @@ function cleanRedirect(url) {
   }
 }
 
-const RedirectWrapper = ({ redirectUrl, children }) => {
+export const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
   const workingRedirectUrl = cleanRedirect(redirectUrl)
   return (
