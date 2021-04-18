@@ -6,6 +6,7 @@ import { initLiveChatScript } from '../../utils/analytics'
 
 import Navbar from '../navbar'
 import Hero from '../hero'
+import VideoDemo from '../video-demo'
 import Comparison from '../comparison'
 import Features from '../features'
 import Steps from '../steps'
@@ -48,6 +49,7 @@ const LandingPage = () => {
       >
         <Navbar color="gray.500" />
         <Hero />
+        <VideoDemo />
         <Comparison />
         <Features />
         <Steps />
