@@ -1,0 +1,1090 @@
+{
+  "blocks": {
+    "text-664e08d1-3e6a-4c49-99aa-8d876f699425": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(0, 0, 0);\">Portfolio Z</span></h4>",
+        "fontSize": "40",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "text-63091382-6d81-4359-9cca-66d30aa51351": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Contact Me</h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-465d5a63-7e63-4c3a-aae4-d923494ed6f6": {
+      "type": "text",
+      "data": {
+        "text": "<h2><span style=\"color: rgb(0, 0, 0);\">Hello, I am John.</span></h2><h2><span style=\"color: rgb(0, 0, 0);\">A product designer.</span></h2><p><br></p><p><br></p><p><br></p><h4><span style=\"color: rgb(0, 0, 0);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit dapibus porta lorem morbi hendrerit. Maecenas et, at quis purus.</span></h4><p><br></p><p><br></p><p><br></p><h4><span style=\"color: rgb(26, 26, 26);\">Contact me</span></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-7d0c1ad9-9242-4412-ae66-0021fed32b3f": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1583931941487-71de4804fd64?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+      }
+    },
+    "text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab": {
+      "type": "text",
+      "data": {
+        "text": "<h3>About me</h3>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque tempor, malesuada adipiscing congue diam. Quis orci amet porttitor blandit amet nullam sit. Elit, purus blandit non ut non quam curabitur.</span></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-00692428-6d45-4d4d-bd00-782dfb01bf60": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque tempor, malesuada adipiscing congue diam. Quis orci amet porttitor blandit amet nullam sit. Elit, purus blandit non ut non quam curabitur.</span></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b": {
+      "type": "text",
+      "data": {
+        "text": "<h3><strong>Portfolio</strong></h3>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-bf317183-fbe6-4b9e-89ab-41d12570b301": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(155, 154, 151);\"><span class=\"ql-cursor\">﻿</span>Lorem ipsum dolor sit amet, consectetur adipiscing</span></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "rgb(220, 220, 220)"
+      }
+    },
+    "text-18fccd88-9ac0-44e2-97c0-880214d5a71d": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(132, 132, 132);\">Facebook</span></h4><h4><span style=\"color: rgb(0, 0, 0);\">Marketing Website Design</span></h4><p><br></p><p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://cdn.icon-icons.com/icons2/2108/PNG/512/facebook_icon_130940.png"
+      }
+    },
+    "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "rgb(220, 220, 220)"
+      }
+    },
+    "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(155, 154, 151);\">Tweeter</span></h4><h4>UX Researcher</h4><p><br></p><p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://image.flaticon.com/icons/png/512/124/124021.png"
+      }
+    },
+    "inception-a2dedf73-ff3b-4745-b938-18217315b5b5": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "rgb(220, 220, 220)"
+      }
+    },
+    "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(132, 132, 132);\">Snapchat</span></h4><h4>UI Porduct Explorations</h4><p><br></p><p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-3aaeb41c-785b-4192-8318-1c5947abdf60": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.trecebits.com/wp-content/uploads/2017/05/snapchat-comun.jpg"
+      }
+    },
+    "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "rgb(220, 220, 220)"
+      }
+    },
+    "text-5ed039df-75be-4e07-8e7e-b1df18a50acf": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(132, 132, 132);\">Youtuber</span></h4><h4>Youtube Design </h4><p><br></p><p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-f5184a83-320d-452a-9770-2f348e28482e": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://assets.website-files.com/5fd908fb4e197900bca2f9f3/601e18c1d9d9610fb9e9b31f_youtube-portfoliox-webflow-template%201.svg"
+      }
+    },
+    "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c": {
+      "type": "text",
+      "data": {
+        "text": "<h3><strong>Blog</strong></h3>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-af95907f-1511-4676-b23f-b9c32f918306": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid black",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "text-993d289e-27df-4ccd-9dcc-4b1e9189b133": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(0, 0, 0);\">What did I learn from doing 50+ design sprints?</span></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0": {
+      "type": "text",
+      "data": {
+        "text": "<p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et tortor velit morbi integer sed orci, suspendisse quis. Turpis quis id eget feugiat.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Desing</h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid black",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "text-3ba1160d-1cb6-4e48-a63b-a208b6778859": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(0, 0, 0);\">Figma - What design tool to choose in 2021? </span></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-ab4c0891-db48-4210-b548-4a86b5b24bf7": {
+      "type": "text",
+      "data": {
+        "text": "<p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et tortor velit morbi integer sed orci, suspendisse quis. Turpis quis id eget feugiat.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Desing</h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-5cb4ff64-9673-476f-af28-27a91839740c": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid black",
+        "boxShadow": "none",
+        "borderRadius": "20px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "text-86b1afc2-66ba-4f01-b12a-b463517b2269": {
+      "type": "text",
+      "data": {
+        "text": "<h4><span style=\"color: rgb(0, 0, 0);\">7 great icon collections you can download for free</span></h4><h4><br></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-d8068859-f435-4295-aeaa-bcb663e30789": {
+      "type": "text",
+      "data": {
+        "text": "<p><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et tortor velit morbi integer sed orci, suspendisse quis. Turpis quis id eget feugiat.</span></p>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-4729991d-704c-470c-8aa7-ebeaff0d467d": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Desing</h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-5949fef7-02df-4e1a-b201-892e87a2a5fd": {
+      "type": "text",
+      "data": {
+        "text": "<h4><u style=\"color: rgb(155, 154, 151);\">Browse all articles</u></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-05c00d22-dcd3-4d81-8f22-df7164f49253": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "text-2b3149f5-6c30-44a2-912d-7289d93fc64f": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Project Z</h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-41b83a22-3064-44fa-a9f1-be186152efa5": {
+      "type": "text",
+      "data": {
+        "text": "<h4><a href=\"https://antfolio.app\" rel=\"noopener noreferrer\" target=\"_blank\">antfolio.app</a></h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-ac937d69-1764-4861-a8dc-453048554577": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Contat me</h4>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://www.antfolio.app/favicon.ico"
+      }
+    }
+  },
+  "layouts": {
+    "text-664e08d1-3e6a-4c49-99aa-8d876f699425": {
+      "x": 28.47222222222222,
+      "y": 3.777777777777784,
+      "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
+      "w": 20.998263888888886,
+      "h": 8.333332803514269
+    },
+    "text-63091382-6d81-4359-9cca-66d30aa51351": {
+      "x": 147.91666666666666,
+      "y": 3.75,
+      "w": 22.916666666666668,
+      "h": 8.333333333333334,
+      "i": "text-63091382-6d81-4359-9cca-66d30aa51351"
+    },
+    "text-465d5a63-7e63-4c3a-aae4-d923494ed6f6": {
+      "x": 27.916666666666664,
+      "y": 23.055555555555554,
+      "w": 71.25,
+      "h": 58.61111111111111,
+      "i": "text-465d5a63-7e63-4c3a-aae4-d923494ed6f6"
+    },
+    "image-7d0c1ad9-9242-4412-ae66-0021fed32b3f": {
+      "x": 115.41666666666666,
+      "y": 17.77777777777778,
+      "w": 54.58333333333334,
+      "h": 68.47222222222223,
+      "i": "image-7d0c1ad9-9242-4412-ae66-0021fed32b3f"
+    },
+    "text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab": {
+      "x": 28.88888888888889,
+      "y": 103.05555555555556,
+      "w": 28.194444444444443,
+      "h": 10.972222222222221,
+      "i": "text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab"
+    },
+    "text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8": {
+      "x": 28.75,
+      "y": 118.61111111111111,
+      "w": 69.16666666666667,
+      "h": 33.333333333333336,
+      "i": "text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8"
+    },
+    "text-00692428-6d45-4d4d-bd00-782dfb01bf60": {
+      "x": 104.02777777777777,
+      "y": 118.61111111111111,
+      "w": 69.16666666666667,
+      "h": 33.333333333333336,
+      "i": "text-00692428-6d45-4d4d-bd00-782dfb01bf60"
+    },
+    "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b": {
+      "x": 29.583333333333332,
+      "y": 165,
+      "w": 28.194444444444443,
+      "h": 10.972222222222221,
+      "i": "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b"
+    },
+    "text-bf317183-fbe6-4b9e-89ab-41d12570b301": {
+      "x": 30,
+      "y": 175.83333333333334,
+      "w": 91.25,
+      "h": 8.333333333333334,
+      "i": "text-bf317183-fbe6-4b9e-89ab-41d12570b301"
+    },
+    "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1": {
+      "x": 30.416666666666664,
+      "y": 192.08333333333331,
+      "w": 62.361111111111114,
+      "h": 50.55555555555555,
+      "i": "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1"
+    },
+    "text-18fccd88-9ac0-44e2-97c0-880214d5a71d": {
+      "x": 33.19444444444444,
+      "y": 217.08333333333331,
+      "w": 46.52777777777778,
+      "h": 20.833333333333332,
+      "i": "text-18fccd88-9ac0-44e2-97c0-880214d5a71d"
+    },
+    "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe": {
+      "x": 34.30555555555556,
+      "y": 197.91666666666666,
+      "w": 15,
+      "h": 15.69444444444444,
+      "i": "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe"
+    },
+    "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e": {
+      "x": 112.22222222222221,
+      "y": 191.80555555555554,
+      "w": 62.5,
+      "h": 50.69444444444444,
+      "i": "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e"
+    },
+    "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be": {
+      "x": 115,
+      "y": 216.80555555555554,
+      "w": 46.52777777777778,
+      "h": 20.833333333333332,
+      "i": "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be"
+    },
+    "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e": {
+      "x": 116.11111111111111,
+      "y": 197.63888888888889,
+      "w": 15,
+      "h": 15.69444444444444,
+      "i": "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e"
+    },
+    "inception-a2dedf73-ff3b-4745-b938-18217315b5b5": {
+      "x": 30.97222222222222,
+      "y": 250.69444444444443,
+      "w": 62.361111111111114,
+      "h": 50.55555555555555,
+      "i": "inception-a2dedf73-ff3b-4745-b938-18217315b5b5"
+    },
+    "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e": {
+      "x": 33.74999999999999,
+      "y": 275.6944444444443,
+      "w": 46.52777777777778,
+      "h": 20.833333333333332,
+      "i": "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e"
+    },
+    "image-3aaeb41c-785b-4192-8318-1c5947abdf60": {
+      "x": 34.8611111111111,
+      "y": 256.52777777777766,
+      "w": 15.833333333333334,
+      "h": 15.138888888888884,
+      "i": "image-3aaeb41c-785b-4192-8318-1c5947abdf60"
+    },
+    "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac": {
+      "x": 112.63888888888889,
+      "y": 250.00000000000003,
+      "w": 62.361111111111114,
+      "h": 50.55555555555555,
+      "i": "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac"
+    },
+    "text-5ed039df-75be-4e07-8e7e-b1df18a50acf": {
+      "x": 115.41666666666666,
+      "y": 274.99999999999994,
+      "w": 46.52777777777778,
+      "h": 20.833333333333332,
+      "i": "text-5ed039df-75be-4e07-8e7e-b1df18a50acf"
+    },
+    "image-f5184a83-320d-452a-9770-2f348e28482e": {
+      "x": 116.52777777777777,
+      "y": 255.83333333333326,
+      "w": 15,
+      "h": 15.69444444444444,
+      "i": "image-f5184a83-320d-452a-9770-2f348e28482e"
+    },
+    "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c": {
+      "x": 29.166666666666664,
+      "y": 320.4166666666667,
+      "w": 28.194444444444443,
+      "h": 10.972222222222221,
+      "i": "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c"
+    },
+    "inception-af95907f-1511-4676-b23f-b9c32f918306": {
+      "x": 82.63888888888889,
+      "y": 321.1111111111111,
+      "w": 90.55555555555556,
+      "h": 25.694444444444443,
+      "i": "inception-af95907f-1511-4676-b23f-b9c32f918306"
+    },
+    "text-993d289e-27df-4ccd-9dcc-4b1e9189b133": {
+      "x": 84.86111111111111,
+      "y": 322.63888888888886,
+      "w": 80,
+      "h": 8.333333333333334,
+      "i": "text-993d289e-27df-4ccd-9dcc-4b1e9189b133"
+    },
+    "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0": {
+      "x": 86.11111111111111,
+      "y": 329.30555555555554,
+      "w": 76.11111111111111,
+      "h": 8.333333333333334,
+      "i": "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0"
+    },
+    "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121": {
+      "x": 86.25,
+      "y": 337.22222222222223,
+      "w": 17.22222222222222,
+      "h": 8.333333333333334,
+      "i": "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121"
+    },
+    "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0": {
+      "x": 83.19444444444444,
+      "y": 353.47222222222223,
+      "w": 90.55555555555556,
+      "h": 25.694444444444443,
+      "i": "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0"
+    },
+    "text-3ba1160d-1cb6-4e48-a63b-a208b6778859": {
+      "x": 85.41666666666667,
+      "y": 355,
+      "w": 77.77777777777777,
+      "h": 8.333333333333334,
+      "i": "text-3ba1160d-1cb6-4e48-a63b-a208b6778859"
+    },
+    "text-ab4c0891-db48-4210-b548-4a86b5b24bf7": {
+      "x": 86.66666666666667,
+      "y": 362.0833333333333,
+      "w": 76.11111111111111,
+      "h": 8.333333333333334,
+      "i": "text-ab4c0891-db48-4210-b548-4a86b5b24bf7"
+    },
+    "text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70": {
+      "x": 86.80555555555556,
+      "y": 369.5833333333333,
+      "w": 17.22222222222222,
+      "h": 8.333333333333334,
+      "i": "text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70"
+    },
+    "inception-5cb4ff64-9673-476f-af28-27a91839740c": {
+      "x": 83.75,
+      "y": 386.1111111111111,
+      "w": 90.55555555555556,
+      "h": 25.694444444444443,
+      "i": "inception-5cb4ff64-9673-476f-af28-27a91839740c"
+    },
+    "text-86b1afc2-66ba-4f01-b12a-b463517b2269": {
+      "x": 86.80555555555556,
+      "y": 387.63888888888886,
+      "w": 86.38888888888889,
+      "h": 13.333333333333332,
+      "i": "text-86b1afc2-66ba-4f01-b12a-b463517b2269"
+    },
+    "text-d8068859-f435-4295-aeaa-bcb663e30789": {
+      "x": 87.22222222222221,
+      "y": 394.72222222222223,
+      "w": 76.11111111111111,
+      "h": 8.333333333333334,
+      "i": "text-d8068859-f435-4295-aeaa-bcb663e30789"
+    },
+    "text-4729991d-704c-470c-8aa7-ebeaff0d467d": {
+      "x": 87.36111111111111,
+      "y": 402.22222222222223,
+      "w": 17.22222222222222,
+      "h": 8.333333333333334,
+      "i": "text-4729991d-704c-470c-8aa7-ebeaff0d467d"
+    },
+    "text-5949fef7-02df-4e1a-b201-892e87a2a5fd": {
+      "x": 83.61111111111111,
+      "y": 418.6111111111111,
+      "w": 33.47222222222222,
+      "h": 8.333333333333334,
+      "i": "text-5949fef7-02df-4e1a-b201-892e87a2a5fd"
+    },
+    "inception-05c00d22-dcd3-4d81-8f22-df7164f49253": {
+      "x": 21.944444444444443,
+      "y": 444.30555555555554,
+      "w": 153.61111111111111,
+      "h": 14.583333333333332,
+      "i": "inception-05c00d22-dcd3-4d81-8f22-df7164f49253"
+    },
+    "text-2b3149f5-6c30-44a2-912d-7289d93fc64f": {
+      "x": 21.80555555555555,
+      "y": 447.5,
+      "w": 32.638888888888886,
+      "h": 8.333333333333334,
+      "i": "text-2b3149f5-6c30-44a2-912d-7289d93fc64f"
+    },
+    "text-41b83a22-3064-44fa-a9f1-be186152efa5": {
+      "x": 96.94444444444444,
+      "y": 447.91666666666663,
+      "w": 25,
+      "h": 8.333333333333334,
+      "i": "text-41b83a22-3064-44fa-a9f1-be186152efa5"
+    },
+    "text-ac937d69-1764-4861-a8dc-453048554577": {
+      "x": 153.75,
+      "y": 447.91666666666663,
+      "w": 21.25,
+      "h": 8.333333333333334,
+      "i": "text-ac937d69-1764-4861-a8dc-453048554577"
+    },
+    "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346": {
+      "x": 85.55555555555556,
+      "y": 446.66666666666663,
+      "w": 10,
+      "h": 10,
+      "i": "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346"
+    }
+  },
+  "mobileLayout": {
+    "text-664e08d1-3e6a-4c49-99aa-8d876f699425": {
+      "x": 7.118055555555555,
+      "y": 9.33333298012063,
+      "w": 20.998263888888886,
+      "h": 8.333332803514269,
+      "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425"
+    },
+    "text-63091382-6d81-4359-9cca-66d30aa51351": {
+      "x": 0,
+      "y": 20.416666666666668,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-63091382-6d81-4359-9cca-66d30aa51351"
+    },
+    "text-465d5a63-7e63-4c3a-aae4-d923494ed6f6": {
+      "x": 6.979166666666666,
+      "y": 62.12962962962962,
+      "w": 71.25,
+      "h": 58.61111111111111,
+      "i": "text-465d5a63-7e63-4c3a-aae4-d923494ed6f6"
+    },
+    "image-7d0c1ad9-9242-4412-ae66-0021fed32b3f": {
+      "x": 0,
+      "y": 154.72222222222223,
+      "w": 100,
+      "h": 68.47222222222223,
+      "i": "image-7d0c1ad9-9242-4412-ae66-0021fed32b3f"
+    },
+    "text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab": {
+      "x": 7.222222222222222,
+      "y": 110.37037037037037,
+      "w": 28.194444444444443,
+      "h": 10.972222222222221,
+      "i": "text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab"
+    },
+    "text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8": {
+      "x": 7.1875,
+      "y": 140.83333333333334,
+      "w": 69.16666666666667,
+      "h": 33.333333333333336,
+      "i": "text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8"
+    },
+    "text-00692428-6d45-4d4d-bd00-782dfb01bf60": {
+      "x": 0,
+      "y": 185.27777777777777,
+      "w": 100,
+      "h": 33.333333333333336,
+      "i": "text-00692428-6d45-4d4d-bd00-782dfb01bf60"
+    },
+    "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b": {
+      "x": 7.395833333333333,
+      "y": 172.3148148148148,
+      "w": 28.194444444444443,
+      "h": 10.972222222222221,
+      "i": "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b"
+    },
+    "text-bf317183-fbe6-4b9e-89ab-41d12570b301": {
+      "x": 0,
+      "y": 181.38888888888889,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-bf317183-fbe6-4b9e-89ab-41d12570b301"
+    },
+    "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1": {
+      "x": 7.604166666666666,
+      "y": 225.787037037037,
+      "w": 62.361111111111114,
+      "h": 50.55555555555555,
+      "i": "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1"
+    },
+    "text-18fccd88-9ac0-44e2-97c0-880214d5a71d": {
+      "x": 8.29861111111111,
+      "y": 230.9722222222222,
+      "w": 46.52777777777778,
+      "h": 20.833333333333332,
+      "i": "text-18fccd88-9ac0-44e2-97c0-880214d5a71d"
+    },
+    "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe": {
+      "x": 8.57638888888889,
+      "y": 208.37962962962962,
+      "w": 15,
+      "h": 15.69444444444444,
+      "i": "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe"
+    },
+    "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e": {
+      "x": 0,
+      "y": 293.19444444444446,
+      "w": 100,
+      "h": 50.69444444444444,
+      "i": "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e"
+    },
+    "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e": {
+      "x": 0,
+      "y": 230,
+      "w": 100,
+      "h": 15.69444444444444,
+      "i": "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e"
+    },
+    "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be": {
+      "x": 0,
+      "y": 259.44444444444446,
+      "w": 100,
+      "h": 20.833333333333332,
+      "i": "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be"
+    },
+    "inception-a2dedf73-ff3b-4745-b938-18217315b5b5": {
+      "x": 7.743055555555555,
+      "y": 284.39814814814815,
+      "w": 62.361111111111114,
+      "h": 50.55555555555555,
+      "i": "inception-a2dedf73-ff3b-4745-b938-18217315b5b5"
+    },
+    "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e": {
+      "x": 8.437499999999998,
+      "y": 289.5833333333332,
+      "w": 46.52777777777778,
+      "h": 20.833333333333332,
+      "i": "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e"
+    },
+    "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac": {
+      "x": 0,
+      "y": 351.11111111111114,
+      "w": 100,
+      "h": 50.55555555555555,
+      "i": "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac"
+    },
+    "text-5ed039df-75be-4e07-8e7e-b1df18a50acf": {
+      "x": 0,
+      "y": 316.66666666666663,
+      "w": 100,
+      "h": 20.833333333333332,
+      "i": "text-5ed039df-75be-4e07-8e7e-b1df18a50acf"
+    },
+    "image-3aaeb41c-785b-4192-8318-1c5947abdf60": {
+      "x": 8.715277777777775,
+      "y": 266.62037037037027,
+      "w": 15.833333333333334,
+      "h": 15.138888888888884,
+      "i": "image-3aaeb41c-785b-4192-8318-1c5947abdf60"
+    },
+    "image-f5184a83-320d-452a-9770-2f348e28482e": {
+      "x": 0,
+      "y": 287.2222222222221,
+      "w": 100,
+      "h": 15.69444444444444,
+      "i": "image-f5184a83-320d-452a-9770-2f348e28482e"
+    },
+    "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c": {
+      "x": 7.291666666666666,
+      "y": 327.7314814814815,
+      "w": 28.194444444444443,
+      "h": 10.972222222222221,
+      "i": "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c"
+    },
+    "inception-af95907f-1511-4676-b23f-b9c32f918306": {
+      "x": 0,
+      "y": 338.2407407407407,
+      "w": 100,
+      "h": 25.694444444444443,
+      "i": "inception-af95907f-1511-4676-b23f-b9c32f918306"
+    },
+    "text-993d289e-27df-4ccd-9dcc-4b1e9189b133": {
+      "x": 0,
+      "y": 328.1944444444444,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-993d289e-27df-4ccd-9dcc-4b1e9189b133"
+    },
+    "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0": {
+      "x": 0,
+      "y": 334.8611111111111,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0"
+    },
+    "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121": {
+      "x": 0,
+      "y": 342.77777777777777,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121"
+    },
+    "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0": {
+      "x": 0,
+      "y": 370.60185185185185,
+      "w": 100,
+      "h": 25.694444444444443,
+      "i": "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0"
+    },
+    "text-3ba1160d-1cb6-4e48-a63b-a208b6778859": {
+      "x": 0,
+      "y": 360.55555555555554,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-3ba1160d-1cb6-4e48-a63b-a208b6778859"
+    },
+    "text-ab4c0891-db48-4210-b548-4a86b5b24bf7": {
+      "x": 0,
+      "y": 367.63888888888886,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-ab4c0891-db48-4210-b548-4a86b5b24bf7"
+    },
+    "inception-5cb4ff64-9673-476f-af28-27a91839740c": {
+      "x": 0,
+      "y": 403.2407407407407,
+      "w": 100,
+      "h": 25.694444444444443,
+      "i": "inception-5cb4ff64-9673-476f-af28-27a91839740c"
+    },
+    "text-86b1afc2-66ba-4f01-b12a-b463517b2269": {
+      "x": 0,
+      "y": 395.27777777777777,
+      "w": 100,
+      "h": 13.333333333333332,
+      "i": "text-86b1afc2-66ba-4f01-b12a-b463517b2269"
+    },
+    "text-5949fef7-02df-4e1a-b201-892e87a2a5fd": {
+      "x": 0,
+      "y": 424.16666666666663,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-5949fef7-02df-4e1a-b201-892e87a2a5fd"
+    },
+    "inception-05c00d22-dcd3-4d81-8f22-df7164f49253": {
+      "x": 0,
+      "y": 454.02777777777777,
+      "w": 100,
+      "h": 14.583333333333332,
+      "i": "inception-05c00d22-dcd3-4d81-8f22-df7164f49253"
+    },
+    "text-2b3149f5-6c30-44a2-912d-7289d93fc64f": {
+      "x": 5.4513888888888875,
+      "y": 453.05555555555554,
+      "w": 32.638888888888886,
+      "h": 8.333333333333334,
+      "i": "text-2b3149f5-6c30-44a2-912d-7289d93fc64f"
+    },
+    "text-41b83a22-3064-44fa-a9f1-be186152efa5": {
+      "x": 0,
+      "y": 453.4722222222222,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-41b83a22-3064-44fa-a9f1-be186152efa5"
+    },
+    "text-ac937d69-1764-4861-a8dc-453048554577": {
+      "x": 0,
+      "y": 464.5833333333333,
+      "w": 100,
+      "h": 8.333333333333334,
+      "i": "text-ac937d69-1764-4861-a8dc-453048554577"
+    },
+    "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346": {
+      "x": 21.38888888888889,
+      "y": 453.3333333333333,
+      "w": 10,
+      "h": 10,
+      "i": "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346"
+    }
+  },
+  "hierarchy": {
+    "text-00692428-6d45-4d4d-bd00-782dfb01bf60": [],
+    "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b": [],
+    "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1": [
+      "text-18fccd88-9ac0-44e2-97c0-880214d5a71d",
+      "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe"
+    ],
+    "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e": [
+      "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be",
+      "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e"
+    ],
+    "inception-a2dedf73-ff3b-4745-b938-18217315b5b5": [
+      "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e",
+      "image-3aaeb41c-785b-4192-8318-1c5947abdf60"
+    ],
+    "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac": [
+      "text-5ed039df-75be-4e07-8e7e-b1df18a50acf",
+      "image-f5184a83-320d-452a-9770-2f348e28482e"
+    ],
+    "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c": [],
+    "inception-af95907f-1511-4676-b23f-b9c32f918306": [
+      "text-993d289e-27df-4ccd-9dcc-4b1e9189b133",
+      "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0",
+      "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121"
+    ],
+    "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0": [
+      "text-3ba1160d-1cb6-4e48-a63b-a208b6778859",
+      "text-ab4c0891-db48-4210-b548-4a86b5b24bf7",
+      "text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70"
+    ],
+    "inception-5cb4ff64-9673-476f-af28-27a91839740c": [
+      "text-86b1afc2-66ba-4f01-b12a-b463517b2269",
+      "text-d8068859-f435-4295-aeaa-bcb663e30789",
+      "text-4729991d-704c-470c-8aa7-ebeaff0d467d"
+    ],
+    "inception-05c00d22-dcd3-4d81-8f22-df7164f49253": [
+      "text-2b3149f5-6c30-44a2-912d-7289d93fc64f",
+      "text-41b83a22-3064-44fa-a9f1-be186152efa5",
+      "text-ac937d69-1764-4861-a8dc-453048554577",
+      "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346"
+    ]
+  },
+  "mobileHierarchy": {
+    "text-00692428-6d45-4d4d-bd00-782dfb01bf60": [],
+    "text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b": [],
+    "inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1": [
+      "text-18fccd88-9ac0-44e2-97c0-880214d5a71d",
+      "image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe"
+    ],
+    "inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e": [
+      "text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be",
+      "image-a3fd17df-8700-4f8b-bc2f-881838d3c28e"
+    ],
+    "inception-a2dedf73-ff3b-4745-b938-18217315b5b5": [
+      "text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e",
+      "image-3aaeb41c-785b-4192-8318-1c5947abdf60"
+    ],
+    "inception-137651a3-8fb4-4be2-9dff-e9bdc74badac": [
+      "text-5ed039df-75be-4e07-8e7e-b1df18a50acf",
+      "image-f5184a83-320d-452a-9770-2f348e28482e"
+    ],
+    "text-f0ad16ad-d734-44a4-ba05-34fc9703af6c": [],
+    "inception-af95907f-1511-4676-b23f-b9c32f918306": [
+      "text-993d289e-27df-4ccd-9dcc-4b1e9189b133",
+      "text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0",
+      "text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121"
+    ],
+    "inception-43130ab8-4a3c-42e4-863f-80548aecbdd0": [
+      "text-3ba1160d-1cb6-4e48-a63b-a208b6778859",
+      "text-ab4c0891-db48-4210-b548-4a86b5b24bf7",
+      "text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70"
+    ],
+    "inception-5cb4ff64-9673-476f-af28-27a91839740c": [
+      "text-86b1afc2-66ba-4f01-b12a-b463517b2269",
+      "text-d8068859-f435-4295-aeaa-bcb663e30789",
+      "text-4729991d-704c-470c-8aa7-ebeaff0d467d"
+    ],
+    "inception-05c00d22-dcd3-4d81-8f22-df7164f49253": [
+      "text-2b3149f5-6c30-44a2-912d-7289d93fc64f",
+      "text-41b83a22-3064-44fa-a9f1-be186152efa5",
+      "text-ac937d69-1764-4861-a8dc-453048554577",
+      "image-f467acc0-5f9c-4d3e-9c77-d4312c00a346"
+    ]
+  }
+}

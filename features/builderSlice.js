@@ -674,9 +674,9 @@ export const getLayout = (state) => {
 }
 export const getLayoutsKeys = (state) => {
   if (getBuilderDevice(state) === 'mobile') {
-    return Object.keys(getMobileLayout(state))
+    return Object.keys(getMobileLayout(state) || [])
   }
-  return Object.keys(getDesktopLayout(state))
+  return Object.keys(getDesktopLayout(state) || [])
 }
 const getMobileLayout = (state) => state.builder.builderData.mobileLayout
 const getDesktopLayout = (state) => state.builder.builderData.layouts

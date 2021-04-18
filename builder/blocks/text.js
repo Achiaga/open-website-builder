@@ -135,7 +135,7 @@ export const PrevText = (props) => {
           h="100%"
           bg="transparent"
           wordBreak="break-word"
-          color="gray.200"
+          color="gray.500"
           dangerouslySetInnerHTML={createMarkup()}
         />
       </Styles>

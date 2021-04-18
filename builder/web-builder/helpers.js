@@ -79,7 +79,7 @@ function parseLayoutToArr(layout) {
 }
 
 export function saveOnLocal(userBlocksData) {
-  // console.log(JSON.stringify(userBlocksData))
+  console.log(JSON.stringify(userBlocksData))
   if (!Object.keys(userBlocksData).length) return
   const dataToSave = {
     ...userBlocksData,
