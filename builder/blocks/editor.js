@@ -13,24 +13,11 @@ import {
   redirectInput,
 } from './block-properties'
 import { EDIT } from './constants'
-// import 'quill-emoji/dist/quill-emoji.css'
 import { BuilderPrevText } from './text'
 
 const ReactQuill =
   // eslint-disable-next-line no-undef
   typeof window === 'object' ? require('react-quill') : () => {}
-const quillEmoji =
-  // eslint-disable-next-line no-undef
-  typeof window === 'object' ? require('quill-emoji') : () => {}
-const { EmojiBlot } = quillEmoji
-
-ReactQuill.register &&
-  ReactQuill?.register(
-    {
-      'formats/emoji': EmojiBlot,
-    },
-    true
-  )
 
 function QuillToolbar() {
   return (
@@ -75,7 +62,7 @@ export const CustomToolbar = ({ blockId }) => {
     setIsOpen(id)
   }
 
-  function handleEdit(id, value, operationType = EDIT) {
+  function handleEdit(_, __, operationType = EDIT) {
     dispatch(editBlockConfig({ blockId, operationType }))
   }
 

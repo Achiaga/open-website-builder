@@ -523,7 +523,10 @@ export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   dispatch(saveDataOnLocal())
 }
 
-export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
+export const handleResizeStop = (delta, blockId, blockType) => (
+  dispatch,
+  getState
+) => {
   const blockLayout = getBlockLayoutById(blockId)(getState())
   const gridRowHeight = getGridRowHeight(getState())
   const isMobile = getIsMobileBuilder(getState())
@@ -532,11 +535,17 @@ export const handleResizeStop = (delta, blockId) => (dispatch, getState) => {
   let width = blockLayout.w + delta.width / gridColumnWidth
   const height = blockLayout.h + delta.height / gridRowHeight
   width = width >= gridsWidth ? gridsWidth : width
+  let textSize
+  if (blockType === 'text') {
+    const textEl = document.getElementById(blockId).childNodes
+    textSize = textEl[textEl.length - 1].getBoundingClientRect()?.height
+    textSize = textSize / gridRowHeight
+  }
   dispatch(
     updateBlockLayout({
       ...blockLayout,
       w: width,
-      h: height,
+      h: textSize || height,
     })
   )
 }

@@ -51,11 +51,15 @@ const DraggableItem = ({
   const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
+
   const { x, y, w, h } = blockLayout
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
   const xPos = x * gridColumnWidth
   const yPos = y * gridRowHeight
+  const blockType = blockData?.type
+  const isTextBlock = blockType === 'text'
+  const isSelected = selectedBlock === blockId
 
   function onDragStop(_, blockPos) {
     dispatch(handleDragStop(blockPos, blockId))
@@ -63,7 +67,7 @@ const DraggableItem = ({
   }
 
   function onResizeStop(_, __, ___, delta) {
-    dispatch(handleResizeStop(delta, blockId))
+    dispatch(handleResizeStop(delta, blockId, blockType))
     setResizeValues(null)
   }
 
@@ -93,9 +97,6 @@ const DraggableItem = ({
       )
     }
   }
-  const blockType = blockData?.type
-  const isTextBlock = blockType === 'text'
-  const isSelected = selectedBlock === blockId
 
   const el = document.getElementById(blockId)
   if (el) {
@@ -165,7 +166,7 @@ const DraggableItem = ({
   )
 }
 
-const BlockItem = ({ blockId, isOver, setIsOver, zIndexValue }) => {
+const BlockItem = ({ blockId, isOver, setIsOver }) => {
   return (
     <Box
       w={'100%'}
