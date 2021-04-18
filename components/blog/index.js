@@ -93,7 +93,7 @@ const MainBlogCard = () => {
           height={['60vw', '35vw']}
           width="50%"
           redirectUrl="blog/article-1"
-          imageUrl="https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1525&q=80"
+          imageUrl="/blogImgSmall2.png"
         />
       </Box>
     </Box>

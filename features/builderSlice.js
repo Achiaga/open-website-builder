@@ -87,8 +87,12 @@ export const builderSlice = createSlice({
       state.builderData.layouts = [...state.builderData.layouts, action.payload]
     },
     setBulkAddItems: (state, action) => {
-      const { blocks, layouts, hierarchy } = action.payload
+      const { blocks, layouts, hierarchy, mobileLayouts } = action.payload
       state.builderData.layouts = { ...state.builderData.layouts, ...layouts }
+      state.builderData.mobileLayout = {
+        ...state.builderData.mobileLayout,
+        ...mobileLayouts,
+      }
       state.builderData.blocks = { ...state.builderData.blocks, ...blocks }
       state.builderData.hierarchy = {
         ...state.builderData.hierarchy,
@@ -248,16 +252,46 @@ export const setBlockEditable = (blockId) => (dispatch) => {
   })
 }
 
+function applyAutoMobileToBlock(blockLayout) {
+  const { x, y, w, h, i } = blockLayout || {}
+  const isOnRight = x > 100
+  const moreWidth = x + w > 100
+  const newX = moreWidth ? 0 : x / 4
+  const newY = isOnRight ? y + 2 * h : y + (2 * h) / 3
+  const newW = moreWidth ? 100 : w
+  const updatedBlock = {
+    x: newX,
+    y: newY,
+    w: newW,
+    h: h,
+    i: i,
+  }
+  return updatedBlock
+}
+
+function bulkApplyAutoMobileLayout(blocks) {
+  const updatedBlocks = {}
+  for (let blockId in blocks) {
+    const updatdBlock = applyAutoMobileToBlock(blocks[blockId])
+    updatedBlocks[blockId] = updatdBlock
+  }
+  return updatedBlocks
+}
+
 function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
   const mobileLayoutUpdated = { ...mobileLayout }
   const { x, y, w, h, i } = updatedLayout[blockId] || {}
-  if (!i) return mobileLayoutUpdated
+  if (!i || !blockId) return mobileLayoutUpdated
   const isOnRight = x > 100
   const moreWidth = x + w > 100
+  const newX = moreWidth ? 0 : x / 4
+  const newY = isOnRight ? y + 2 * h : y + (2 * h) / 3
+  const newW = moreWidth ? 100 : w
+  console.log(newX, newY, newW)
   mobileLayoutUpdated[blockId] = {
-    x: moreWidth ? 0 : x / 4,
-    y: isOnRight ? y + 2 * h : y + (2 * h) / 3,
-    w: moreWidth ? 100 : w,
+    x: newX,
+    y: newY,
+    w: newW,
     h: h,
     i: i,
   }
@@ -299,7 +333,12 @@ export const updateLayouts = (updatedLayout, blockId) => (
 export const addNewLayoutItem = (newLayout) => (dispatch, getState) => {
   const layouts = getLayout(getState())
   const mobileLayout = getMobileLayout(getState())
-  dispatch(setMobileLayout({ ...mobileLayout, [newLayout.i]: newLayout }))
+  dispatch(
+    setMobileLayout({
+      ...mobileLayout,
+      [newLayout.i]: applyAutoMobileToBlock(newLayout),
+    })
+  )
   dispatch(setLayouts({ ...layouts, [newLayout.i]: newLayout }))
 }
 export const updateHierarchy = (newHierarchy) => (dispatch, getState) => {
@@ -476,7 +515,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
     newBlockId,
     getState()
   )
-
+  const mobileLayouts = bulkApplyAutoMobileLayout(newLayoutItems)
   batch(() => {
     dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
     dispatch(
@@ -484,6 +523,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
         layouts: newLayoutItems,
         blocks: newBlocks,
         hierarchy: newHierarchy,
+        mobileLayouts,
       })
     )
   })
