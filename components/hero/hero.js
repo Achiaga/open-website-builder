@@ -24,7 +24,7 @@ const Hero = () => {
       alignItems="center"
       w={'100vw'}
       h={['80vh', 'auto']}
-      mb={['2rem', '6.5rem']}
+      mb={['2rem', '2rem']}
       pl={0}
       mt={['2rem', 0]}
       justifyContent="center"

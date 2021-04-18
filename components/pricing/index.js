@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Box, Text } from '@chakra-ui/react'
 import Navbar from '../navbar'
 import PricingCards from './PricingCards'
@@ -5,6 +6,15 @@ import PricingCards from './PricingCards'
 const PricingPage = () => {
   return (
     <Box height="100vh">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
+        />
+        <title>Antfolio - Build your online portfolio in 15 minutes</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://www.antfolio.app" />
+      </Head>
       <Navbar isSticky={false} color="white" />
       <Box as="section" pb="14">
         <Box
