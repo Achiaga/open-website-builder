@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import { Box, Spinner } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { useTranslation } from '../../hooks/translation'
 import { useRouter } from 'next/router'
 
 import LogoSvg from '../../assets/logo'
 import Button from '../commun/button'
 import Twitter from '../../assets/twitter'
+import Youtube from '../../assets/youtube'
 
 const Features = () => {
   const router = useRouter()
@@ -55,11 +54,24 @@ const Features = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Link href="https://twitter.com/antfolio_app" passHref={true}>
+        <a
+          target="_blank"
+          href="https://twitter.com/antfolio_app"
+          rel="noopener noreferrer"
+        >
           <Button padding="0" border="none" bg="transparent">
             <Twitter />
           </Button>
-        </Link>
+        </a>
+        <a
+          target="_blank"
+          href="https://www.youtube.com/channel/UCgBOJ-yayl77XIXvgm0hCzw"
+          rel="noopener noreferrer"
+        >
+          <Button padding="0" border="none" bg="transparent">
+            <Youtube />
+          </Button>
+        </a>
       </Box>
     </Box>
   )
