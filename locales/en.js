@@ -8,7 +8,7 @@ export default {
     title_color_3: 'Portfolio ',
     title_4: 'in 15 mins',
     subtitle:
-      "Your next resume won't be a document, it will be a website. Free, simple, breath-taking web resume. ",
+      "Your next portfolio won't be a PDF, it will be a website. Free, simple, breath-taking web resume. ",
     button: 'Create your Portfolio',
   },
   comparison: {
@@ -17,13 +17,13 @@ export default {
     title_3: 'that gets you ',
     title_color_4: 'hired ',
     subtitle:
-      'Antfolio allows you to have a full resume on an online website. Differentiate yourself from the rest by showing a fun, original, outstanding resume instead of a piece of paper. Always accessible - 100% customizable',
+      'With Antfolio easy to use builder and our templates, you will have a portfolio website online in minutes. Differentiate yourself from the rest by showing a fun, original, outstanding portfolio instead of a piece of pdf. Always accessible - 100% customizable',
     un_sexy_1: 'Old ',
     un_sexy_color_2: 'Boring ',
-    un_sexy_3: 'Resume',
+    un_sexy_3: 'PDF',
     sexy_1: 'New ',
-    sexy_color_2: 'Engaging ',
-    sexy_3: 'Resume',
+    sexy_color_2: 'web ',
+    sexy_3: 'Portfolio',
   },
   features: {
     title_1: 'Super ',
@@ -31,19 +31,20 @@ export default {
     title_3: 'UI to ',
     title_color_4: 'impress ',
     title_5: 'your new company ',
-    subtitle: 'Beautiful No-Code portfolio builder, standout from the crowd',
+    subtitle:
+      'Beautiful No-Code portfolio builder, that makes you standout from the crowd',
     feature_1: 'Drag & Drop Builder',
     feature_text_1:
-      'Simple, fast, and fully customizable. With Antfolio you will be able to create and fully customizable portfolio in minutes and without any coding or desing knowlege. No Matter your background, we got you cover.',
+      'Simple, fast, and fully customizable. With Antfolio you will be able to create and fully customizable portfolio in minutes and without any coding or design knowledge. No Matter your background, we got you covered. We even give you a free domain.',
     feature_2: 'Free Templates',
     feature_text_2:
-      'Need inspiration? Choose one of our beautiful portfolio templates and personalize it to your own style. Antfolio lets you change the layout, colors, font-size. It is easer than creating a power point.',
+      'Need inspiration? Choose one of our beautiful portfolio templates and personalize it to your style. Antfolio lets you change the layout, colors, font size. It is easier than creating a PowerPoint.',
     feature_3: 'WOW Effect',
     feature_text_3:
-      'Create a lasting impression by astonishing anyone who checks your resume. With our beatufiul tempaltes and your creativity, you will be able to create impressive portfolios, that people will remember.',
+      'Create a lasting impression by astonishing anyone who checks your portfolio. With our beautiful templates and your creativity, you will be able to create impressive portfolios, that people will remember.',
     feature_4: 'Always online',
     feature_text_4:
-      'With your new web-portfolio sharing is as simple as sending a link. Your portfiolio will be always online. You will even appear on google searches, allowing you to get more traffic to your site and get the job you always dreamed about.',
+      "With your new web portfolio, sharing is as simple as sending a link. Your portfolio will be always online. You will even appear on google searches, this will increase your web traffic. You don't need to care about anything. Just focus on getting the job you always dreamed about.",
     feature_5: 'No-Code',
     feature_text_5:
       "With Antfolio you don't dont need to know how to code, we take care of everything. We will give you a free domain so you can get started asap. All our websites have SSL encryption so you don't have to worry about anything ",
