@@ -23,14 +23,22 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
         justifyContent="center"
         alignItems="center"
         w={['100%', '100%']}
-        height={['60vw', '20vw']}
+        height={['60vw', '22vw']}
         pos="relative"
       >
         {isVideo ? (
-          <video autoPlay muted width={'70%'} loop>
-            <source src={imageUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <Box
+            boxShadow="0px 10px 50px 0px #00000033"
+            borderRadius="10px"
+            overflow="hidden"
+            w="93%"
+            height={['60vw', '19vw']}
+          >
+            <video autoPlay muted loop>
+              <source src={imageUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </Box>
         ) : (
           <Image
             src={imageUrl}
@@ -167,8 +175,9 @@ const Features = () => {
         <Feature
           title={t.features.feature_5}
           description={t.features.feature_text_5}
-          imageUrl="/pdf_feature.png"
+          imageUrl="/short_features_video.mp4"
           index={5}
+          isVideo
         />
         <Link href={`/builder`}>
           <Button

@@ -12,7 +12,10 @@ const VideoDemo = () => {
         src={'/hero-video.mp4'}
         width="1100"
         height="800"
-        controls="controls"
+        muted
+        controls
+        autoPlay
+        loop
       />
     </Box>
   )
