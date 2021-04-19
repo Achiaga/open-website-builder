@@ -59,8 +59,9 @@ const Steps = () => {
           bg="transparent"
           borderRadius={'20px'}
           flexDirection={['column', 'row']}
-          border="2px solid"
-          borderColor="gray.200"
+          border={['2px solid', '0px']}
+          borderColor={['gray.200', 'transparent']}
+          boxShadow={['0', '3px 3px 10px 3px rgba(56,28,100,0.1)']}
         >
           <OldCard
             title={t.card_info.old_title}

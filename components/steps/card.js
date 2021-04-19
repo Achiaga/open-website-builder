@@ -13,9 +13,10 @@ const Card = ({ step, title, body, subbody }) => {
         bg="white"
         borderRadius="20px"
         border={['2px solid']}
-        borderColor={['gray.200']}
+        borderColor={['gray.200', 'transparent']}
         padding="1.5rem"
         mb={['4rem', 0]}
+        boxShadow={['0', '3px 3px 10px 3px rgba(56,28,100,0.1)']}
       >
         <Text as="h1" fontSize={['20px', '36px']} fontWeight="400">
           {step}

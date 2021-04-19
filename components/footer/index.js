@@ -6,6 +6,7 @@ import LogoSvg from '../../assets/logo'
 import Button from '../commun/button'
 import Twitter from '../../assets/twitter'
 import Youtube from '../../assets/youtube'
+import Linkedin from '../../assets/linkedin'
 
 const Features = () => {
   const router = useRouter()
@@ -48,7 +49,6 @@ const Features = () => {
       </Box>
       <Box
         pos="absolute"
-        w="80px"
         right="4rem"
         display="flex"
         justifyContent="space-between"
@@ -70,6 +70,15 @@ const Features = () => {
         >
           <Button padding="0" border="none" bg="transparent">
             <Youtube />
+          </Button>
+        </a>
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/company/antfolio-app"
+          rel="noopener noreferrer"
+        >
+          <Button padding="0" border="none" bg="transparent">
+            <Linkedin />
           </Button>
         </a>
       </Box>
