@@ -1,49 +1,76 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from '../../hooks/translation'
 import { AnalyticsEvent } from '../../utils/analytics'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
-import ItemListFeatures from './item-list-features'
 import Button from '../commun/button'
 import CircleBg from '../../assets/features-circle'
 
+const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
+  return (
+    <Box
+      d="flex"
+      flexDir={index % 2 ? 'row' : 'row-reverse'}
+      alignItems="center"
+      justifyContent="center"
+      w="100%"
+      px={['32px', '10vw']}
+      py={['1rem', '2rem']}
+    >
+      <Box
+        display={['none', 'flex']}
+        justifyContent="center"
+        alignItems="center"
+        w={['100%', '100%']}
+        height={['60vw', '20vw']}
+        pos="relative"
+      >
+        {isVideo ? (
+          <video autoPlay muted width={'70%'} loop>
+            <source src={imageUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image
+            src={imageUrl}
+            alt="features_simple_image"
+            layout="fill"
+            objectFit="contain"
+          />
+        )}
+      </Box>
+      <Box w="100%" pl="4rem" px={[0, '2rem']} d="flex" flexDir="column">
+        <Text
+          as="h4"
+          color={'primary.500'}
+          whiteSpace="nowrap"
+          fontSize={['3xl', '5xl']}
+          fontStyle="normal"
+          fontWeight="700"
+          textAlign="left"
+        >
+          {title}
+        </Text>
+        <Box
+          as="span"
+          color={'gray.500'}
+          fontSize="xl"
+          textAlign={['justify', 'left']}
+          w={['100%', '90%']}
+        >
+          {description}
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+
 const Features = () => {
-  const router = useRouter()
   const [t] = useTranslation()
-  const [textIndex, setTextIndex] = useState(0)
-  const [stopInterval, setStopInterval] = useState(false)
-
-  useEffect(() => {
-    if (!stopInterval) {
-      const intervalIndex = setInterval(() => {
-        setTextIndex((state) => {
-          if (state < 4) setTextIndex(state + 1)
-          else setTextIndex(0)
-        })
-      }, 3000)
-      return () => clearInterval(intervalIndex)
-    }
-  }, [textIndex])
-
-  const selectedImg = {
-    0: '/features_simple.png',
-    1: '/features_template.png',
-    2: '/wow-effect.mp4',
-    3: '/always-online.png',
-    4: '/pdf_feature.png',
-  }[textIndex]
-
-  const handleTextIndex = (e) => {
-    const { id } = e.currentTarget
-    setStopInterval(true)
-    setTextIndex(Number(id))
-  }
 
   const handleButton = () => {
     AnalyticsEvent('modal_open', 'features')
-    router.push('/templates')
   }
 
   return (
@@ -109,84 +136,41 @@ const Features = () => {
         minH={'34rem'}
         pt={['0rem', '2rem']}
         px={['0.5rem', '2rem']}
-        flexDirection={['column', 'row']}
+        flexDirection={'column'}
       >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          w={['100%', '100%']}
-          height={['60vw', '40vw']}
-          pos="relative"
-        >
-          {textIndex === 2 ? (
-            <video autoPlay muted width={500}>
-              <source src={selectedImg} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <Image
-              src={selectedImg}
-              alt="features_simple_image"
-              layout="fill"
-              objectFit="contain"
-            />
-          )}
-        </Box>
-        <Box
-          display="flex"
-          justifyContent="start"
-          alignItems="baseline"
-          height="100%"
-          py={['2rem', '3rem']}
-          flexDir={'column'}
-          w={['100%', '30%']}
-        >
-          <Box
-            display="flex"
-            justifyContent="start"
-            alignItems="baseline"
-            height="100%"
-            minH="20.5rem"
-            flexDir={'column'}
-            w={'100%'}
-          >
-            <ItemListFeatures
-              keyItem={0}
-              title={t.features.feature_1}
-              text={t.features.feature_text_1}
-              handleTextIndex={handleTextIndex}
-              textIndex={textIndex}
-            />
-            <ItemListFeatures
-              keyItem={1}
-              title={t.features.feature_2}
-              text={t.features.feature_text_2}
-              handleTextIndex={handleTextIndex}
-              textIndex={textIndex}
-            />
-            <ItemListFeatures
-              keyItem={2}
-              title={t.features.feature_3}
-              text={t.features.feature_text_3}
-              handleTextIndex={handleTextIndex}
-              textIndex={textIndex}
-            />
-            <ItemListFeatures
-              keyItem={3}
-              title={t.features.feature_4}
-              text={t.features.feature_text_4}
-              handleTextIndex={handleTextIndex}
-              textIndex={textIndex}
-            />
-            <ItemListFeatures
-              keyItem={4}
-              title={t.features.feature_5}
-              text={t.features.feature_text_5}
-              handleTextIndex={handleTextIndex}
-              textIndex={textIndex}
-            />
-          </Box>
+        <Feature
+          title={t.features.feature_1}
+          description={t.features.feature_text_1}
+          imageUrl="/features_simple.png"
+          index={1}
+        />
+        <Feature
+          title={t.features.feature_2}
+          description={t.features.feature_text_2}
+          imageUrl="/features_template.png"
+          index={2}
+        />
+        <Feature
+          title={t.features.feature_3}
+          description={t.features.feature_text_3}
+          imageUrl="/wow-effect.mp4"
+          index={3}
+          isVideo
+        />
+
+        <Feature
+          title={t.features.feature_4}
+          description={t.features.feature_text_4}
+          imageUrl="/always-online.png"
+          index={4}
+        />
+        <Feature
+          title={t.features.feature_5}
+          description={t.features.feature_text_5}
+          imageUrl="/pdf_feature.png"
+          index={5}
+        />
+        <Link href={`/builder`}>
           <Button
             fontSize="xl"
             minW="7.5rem"
@@ -198,7 +182,7 @@ const Features = () => {
           >
             {t.features.button}
           </Button>
-        </Box>
+        </Link>
       </Box>
     </Box>
   )

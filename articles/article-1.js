@@ -134,7 +134,7 @@ const Article1 = () => {
           height={['80vw', '40vw']}
           width={'100vw'}
           redirectUrl="blog/article-1"
-          imageUrl="https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1525&q=80"
+          imageUrl="/blogImg.png"
         />
         <Box px={['1.5rem', '10rem']} zIndex="1" pb="10rem">
           <ArticleDate>April 10, 2021</ArticleDate>

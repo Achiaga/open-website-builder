@@ -79,7 +79,7 @@ function parseLayoutToArr(layout) {
 }
 
 export function saveOnLocal(userBlocksData) {
-  console.log(JSON.stringify(userBlocksData))
+  // console.log(JSON.stringify(userBlocksData))
   if (!Object.keys(userBlocksData).length) return
   const dataToSave = {
     ...userBlocksData,
@@ -87,6 +87,9 @@ export function saveOnLocal(userBlocksData) {
     mobileLayout: parseLayoutToArr(userBlocksData.mobileLayout),
   }
   localforage.setItem('userData', dataToSave)
+}
+export function removeLocalData() {
+  return localforage.removeItem('userData')
 }
 
 export function normalizeLayout(userBlocksData) {

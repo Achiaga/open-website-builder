@@ -31,22 +31,22 @@ export default {
     title_3: 'UI to ',
     title_color_4: 'impress ',
     title_5: 'your new company ',
-    subtitle: 'Empathize with your portfolio, standout from the crowd',
-    feature_1: 'Simple Portfolio Builder',
+    subtitle: 'Beautiful No-Code portfolio builder, standout from the crowd',
+    feature_1: 'Drag & Drop Builder',
     feature_text_1:
-      'Simple drag and drop builder. Simple, fast, and fully customizable.',
-    feature_2: 'Templates',
+      'Simple, fast, and fully customizable. With Antfolio you will be able to create and fully customizable portfolio in minutes and without any coding or desing knowlege. No Matter your background, we got you cover.',
+    feature_2: 'Free Templates',
     feature_text_2:
-      'Need inspiration? Choose one of our beautiful templates and personalize it to your own style.',
+      'Need inspiration? Choose one of our beautiful portfolio templates and personalize it to your own style. Antfolio lets you change the layout, colors, font-size. It is easer than creating a power point.',
     feature_3: 'WOW Effect',
     feature_text_3:
-      'Create a lasting impression by astonishing anyone who checks your resume',
+      'Create a lasting impression by astonishing anyone who checks your resume. With our beatufiul tempaltes and your creativity, you will be able to create impressive portfolios, that people will remember.',
     feature_4: 'Always online',
     feature_text_4:
-      'With your new web-resume sharing is as simple as sending a link.',
-    feature_5: 'PDF support',
+      'With your new web-portfolio sharing is as simple as sending a link. Your portfiolio will be always online. You will even appear on google searches, allowing you to get more traffic to your site and get the job you always dreamed about.',
+    feature_5: 'No-Code',
     feature_text_5:
-      'Dont worrry, we have you cover. Antfolio will create a pdf version just in case.',
+      "With Antfolio you don't dont need to know how to code, we take care of everything. We will give you a free domain so you can get started asap. All our websites have SSL encryption so you don't have to worry about anything ",
     button: 'Start Creating',
   },
   subscription_modal: {
