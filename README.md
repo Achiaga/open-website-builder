@@ -9,6 +9,6 @@ Installation
 Env
 --------------
 
-- Ask managerfor the keys
+- Ask tema lead for the keys
 
 - Add them on the root of the project under env.local
