@@ -1,20 +1,13 @@
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
+
 import { Box, Text } from '@chakra-ui/react'
 
 import { useTranslation } from '../../hooks/translation'
-import { AnalyticsEvent } from '../../utils/analytics'
 import Button from '../commun/button'
 
 const Hero = () => {
   const [t] = useTranslation()
-  const router = useRouter()
-
-  const handleButton = () => {
-    AnalyticsEvent('modal_open', 'hero')
-    // handleFreeTrial(e);
-    router.push('/templates')
-  }
 
   return (
     <Box
@@ -58,16 +51,17 @@ const Hero = () => {
           </Text>
           {t.hero.title_4}
         </Text>
-        <Button
-          fontSize="xl"
-          minW="7.5rem"
-          w="18rem"
-          h={14}
-          onClick={handleButton}
-          marginTop="2.5rem"
-        >
-          {t.hero.button}
-        </Button>
+        <Link href="/templates">
+          <Button
+            fontSize="xl"
+            minW="7.5rem"
+            w="18rem"
+            h={14}
+            marginTop="2.5rem"
+          >
+            {t.hero.button}
+          </Button>
+        </Link>
       </Box>
 
       <Box
