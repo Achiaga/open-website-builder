@@ -1,6 +1,5 @@
-
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { Link } from 'next/router'
 import { Box, Text, Grid } from '@chakra-ui/react'
 
 import Template from './template-layout'
@@ -16,12 +15,6 @@ const TEMPLATES = [
 ]
 
 const TemplatePage = () => {
-  const router = useRouter()
-
-  const redirectLogo = () => {
-    router.push('/')
-  }
-
   return (
     <Box>
       <Head>
@@ -29,7 +22,7 @@ const TemplatePage = () => {
           name="google-site-verification"
           content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
         />
-        <title>Antfolio - Build your online portfolio in 15 minutes</title>
+        <title>Antfolio - The best templates made by our best designers</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://www.antfolio.app" />
       </Head>
@@ -41,9 +34,11 @@ const TemplatePage = () => {
         paddingX="20"
         paddingTop="0.5rem"
       >
-        <Box onClick={redirectLogo} pt={[4, 4]} cursor="pointer" w={[10, 20]}>
-          <LogoSvg width="3.5rem" />
-        </Box>
+        <Link href="/">
+          <Box pt={[4, 4]} cursor="pointer" w={[10, 20]}>
+            <LogoSvg width="3.5rem" />
+          </Box>
+        </Link>
       </Box>
       <Box w="full" display="flex" alignItems="center" justifyContent="center">
         <Text
