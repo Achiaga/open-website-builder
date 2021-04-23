@@ -65,8 +65,7 @@ const RayTracing = ({ width, gridColumnWidth, blockPostRef2, blockId }) => {
   return (
     <Box
       pos="absolute"
-      left={`${closestItem.x}px`}
-      top={`${draggingBlockPos.y}px`}
+      left={`${-closestItem.diff}px`}
       zIndex="9999"
       bg="green.500"
       width={`${closestItem.diff}px`}
@@ -229,14 +228,14 @@ const DraggableItem = ({
             zIndexValue={zIndexValue}
           />
           <ResizingCounter {...resizeValues} />
+          <RayTracing
+            width={width}
+            gridColumnWidth={gridColumnWidth}
+            blockPostRef2={blockPostRef2}
+            blockId={blockId}
+          />
         </Resizable>
       </Draggable>
-      <RayTracing
-        width={width}
-        gridColumnWidth={gridColumnWidth}
-        blockPostRef2={blockPostRef2}
-        blockId={blockId}
-      />
     </>
   )
 }
