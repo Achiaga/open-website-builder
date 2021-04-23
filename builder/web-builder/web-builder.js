@@ -39,17 +39,26 @@ function getZIndexValue(blockType, isSelected) {
 
 let blockPosRef = {}
 
-function getClosestElement(layout, item, gridColumnWidth) {
+function getClosestElement(layout, draggingBlock, gridColumnWidth) {
   const copyLayout = { ...layout }
-  delete copyLayout[item.i]
+  delete copyLayout[draggingBlock.i]
   let closest = { x: 0, diff: Infinity }
   for (let block in copyLayout) {
-    const { x, i } = layout[block]
+    const { x, w } = layout[block]
+    const staticBlockX = x * gridColumnWidth
+    const staticBlockWidth = w * gridColumnWidth
+    if (staticBlockX > draggingBlock.x) break
 
-    const xPos = x * gridColumnWidth
-    console.log(x, xPos, i)
-    const diff = item.x - xPos
-    if (diff < closest.diff) closest = { x: xPos, diff }
+    const diffLeft = Math.round(draggingBlock.x - staticBlockX)
+    const diffRight = Math.round(
+      draggingBlock.x - (staticBlockX + staticBlockWidth)
+    )
+    const isBlockRight = draggingBlock.x > staticBlockX + staticBlockWidth
+    const diff = Math.abs(isBlockRight ? diffRight : diffLeft)
+
+    if (diff < closest.diff) {
+      closest = { ...closest, x: staticBlockX, diff: diff }
+    }
   }
   return closest
 }
@@ -61,16 +70,17 @@ const RayTracing = ({ width, gridColumnWidth, blockPostRef2, blockId }) => {
   const leftDis = Math.round(draggingBlockPos?.x + width / 2)
   const item = { i: blockId, x: draggingBlockPos.x, y: draggingBlockPos.y }
   const closestItem = getClosestElement(layouts, item, gridColumnWidth)
-  console.log(closestItem)
   return (
     <Box
       pos="absolute"
       left={`${-closestItem.diff}px`}
-      zIndex="9999"
+      zIndex="2"
       bg="green.500"
       width={`${closestItem.diff}px`}
       h="1px"
-    />
+    >
+      <Box textAlign="center">{closestItem.diff}</Box>
+    </Box>
   )
   if (leftDis - 20 <= windowWidth / 2 && leftDis + 20 >= windowWidth / 2) {
     return (
@@ -221,6 +231,14 @@ const DraggableItem = ({
             }
           }
         >
+          {isSelected && (
+            <RayTracing
+              width={width}
+              gridColumnWidth={gridColumnWidth}
+              blockPostRef2={blockPostRef2}
+              blockId={blockId}
+            />
+          )}
           <MemoBlockItem
             blockId={blockId}
             isOver={isOver}
@@ -228,12 +246,6 @@ const DraggableItem = ({
             zIndexValue={zIndexValue}
           />
           <ResizingCounter {...resizeValues} />
-          <RayTracing
-            width={width}
-            gridColumnWidth={gridColumnWidth}
-            blockPostRef2={blockPostRef2}
-            blockId={blockId}
-          />
         </Resizable>
       </Draggable>
     </>

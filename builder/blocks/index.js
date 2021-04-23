@@ -72,6 +72,7 @@ const DragHandle = () => {
       cursor="move"
       left="-30px"
       bg="white"
+      zIndex="9999"
     >
       <BsArrowsMove size="20px" />
     </Box>
