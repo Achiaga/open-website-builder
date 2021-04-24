@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Box } from '@chakra-ui/react'
+import { Box, Portal } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
 import { Resizable } from 're-resizable'
 import { v4 as uuid } from 'uuid'
@@ -87,7 +87,7 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
     )
 
     if (isBlockOnCenter(sbX, sbW, dgB)) {
-      return { middle: true, x: sbX, w: sbW, h: sbH }
+      return { middle: true, x: sbX, w: sbW, h: sbH, y: sbY }
     }
 
     if (isBlockOnRow(sbY, dgB, sbH) && isBlockOnRight(sbX, dgB)) {
@@ -127,16 +127,19 @@ const RayTracing = ({ width, gridColumnWidth, blockPostRef2, blockId }) => {
   )
   if (closestItem.middle) {
     return (
-      <Box
-        pos="absolute"
-        left={`${closestItem.w / 2 - (draggingBlockPos.x - closestItem.x)}px`}
-        zIndex="2"
-        bg="green.500"
-        width="1px"
-        h={`${closestItem.h}px`}
-      >
-        <Box textAlign="center">{closestItem.diff}</Box>
-      </Box>
+      <Portal id="main-builder">
+        <Box
+          pos="absolute"
+          left={`${closestItem.w / 2 + closestItem.x}px`}
+          top={`${closestItem.y}px`}
+          zIndex="2"
+          bg="green.500"
+          width="1px"
+          h={`${closestItem.h}px`}
+        >
+          <Box textAlign="center">{closestItem.diff}</Box>
+        </Box>
+      </Portal>
     )
   }
   return null
