@@ -28,7 +28,16 @@ function getLeftBorderPos(draggingBlock) {
   return { x: 0, diff: Math.round(draggingBlock.x) }
 }
 
-function isBlockOnCenter(sbX, sbW, dgB) {
+function isBlockOnCenterY(sbY, sbH, dgB) {
+  const draggingBlockHalf = dgB.y + dgB.h / 2
+  const staticBlockHalf = sbY + sbH / 2
+  console.log({ staticBlockHalf, draggingBlockHalf })
+  return (
+    draggingBlockHalf - 10 < staticBlockHalf &&
+    draggingBlockHalf + 10 > staticBlockHalf
+  )
+}
+function isBlockOnCenterX(sbX, sbW, dgB) {
   const draggingBlockHalf = dgB.x + dgB.w / 2
   const staticBlockHalf = sbX + sbW / 2
   return (
@@ -40,7 +49,13 @@ function isBlockOnCenter(sbX, sbW, dgB) {
 function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
   const copyLayout = { ...layout }
   delete copyLayout[dgB.i]
-  let closest = { x: 0, diff: Infinity, middle: false }
+  let closest = {
+    x: 0,
+    diff: Infinity,
+    middleX: false,
+    middleY: false,
+    middle: false,
+  }
 
   for (let block in copyLayout) {
     const { i } = layout[block]
@@ -50,8 +65,11 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
       gridRowHeight
     )
 
-    if (isBlockOnCenter(sbX, sbW, dgB)) {
-      return { middle: true, x: sbX, w: sbW, h: sbH, y: sbY }
+    if (isBlockOnCenterX(sbX, sbW, dgB)) {
+      return { middle: true, middleX: true, x: sbX, w: sbW, h: sbH, y: sbY }
+    }
+    if (isBlockOnCenterY(sbY, sbH, dgB)) {
+      return { middle: true, middleY: true, x: sbX, w: sbW, h: sbH, y: sbY }
     }
 
     if (isBlockOnRow(sbY, dgB, sbH) && isBlockOnRight(sbX, dgB)) {
@@ -77,7 +95,7 @@ export const RayTracing = ({
   blockPostRef2,
   blockId,
 }) => {
-  const draggingBlockPos = blockPostRef2.current || {}
+  const draggingBlockPos = blockPostRef2 || {}
   const layouts = useSelector(getLayout)
   const gridRowHeight = useSelector(getGridRowHeight)
   const windowWidth = window.innerWidth
@@ -87,6 +105,7 @@ export const RayTracing = ({
     x: draggingBlockPos.x,
     y: draggingBlockPos.y,
     w: draggingBlockPos.w,
+    h: draggingBlockPos.h,
   }
   const closestItem = getClosestElement(
     layouts,
@@ -97,24 +116,28 @@ export const RayTracing = ({
   if (closestItem.middle) {
     return (
       <Portal id="main-builder">
-        <Box
-          pos="absolute"
-          left={`${closestItem.w / 2 + closestItem.x}px`}
-          top={`${closestItem.y}px`}
-          zIndex="2"
-          bg="green.500"
-          width="1px"
-          h={`${closestItem.h}px`}
-        />
-        <Box
-          pos="absolute"
-          left={`${closestItem.x}px`}
-          top={`${closestItem.y + closestItem.h / 2}px`}
-          zIndex="2"
-          bg="green.500"
-          width={`${closestItem.w}px`}
-          h="1px"
-        />
+        {closestItem.middleX && (
+          <Box
+            pos="absolute"
+            left={`${closestItem.w / 2 + closestItem.x}px`}
+            top={`${closestItem.y}px`}
+            zIndex="2"
+            bg="green.500"
+            width="1px"
+            h={`${closestItem.h}px`}
+          />
+        )}
+        {closestItem.middleY && (
+          <Box
+            pos="absolute"
+            left={`${closestItem.x}px`}
+            top={`${closestItem.y + closestItem.h / 2}px`}
+            zIndex="2"
+            bg="green.500"
+            width={`${closestItem.w}px`}
+            h="1px"
+          />
+        )}
       </Portal>
     )
   }
