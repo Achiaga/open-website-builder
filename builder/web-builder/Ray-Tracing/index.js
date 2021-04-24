@@ -31,7 +31,6 @@ function getLeftBorderPos(draggingBlock) {
 function isBlockOnCenterY(sbY, sbH, dgB) {
   const draggingBlockHalf = dgB.y + dgB.h / 2
   const staticBlockHalf = sbY + sbH / 2
-  console.log({ staticBlockHalf, draggingBlockHalf })
   return (
     draggingBlockHalf - 10 < staticBlockHalf &&
     draggingBlockHalf + 10 > staticBlockHalf
@@ -64,12 +63,18 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
       gridColumnWidth,
       gridRowHeight
     )
-
-    if (isBlockOnCenterX(sbX, sbW, dgB)) {
-      return { middle: true, middleX: true, x: sbX, w: sbW, h: sbH, y: sbY }
-    }
-    if (isBlockOnCenterY(sbY, sbH, dgB)) {
-      return { middle: true, middleY: true, x: sbX, w: sbW, h: sbH, y: sbY }
+    const isBlockCenterX = isBlockOnCenterX(sbX, sbW, dgB)
+    const isBlockCenterY = isBlockOnCenterY(sbY, sbH, dgB)
+    if (isBlockCenterX || isBlockCenterY) {
+      return {
+        middle: true,
+        middleX: isBlockCenterX,
+        middleY: isBlockCenterY,
+        x: sbX,
+        w: sbW,
+        h: sbH,
+        y: sbY,
+      }
     }
 
     if (isBlockOnRow(sbY, dgB, sbH) && isBlockOnRight(sbX, dgB)) {
