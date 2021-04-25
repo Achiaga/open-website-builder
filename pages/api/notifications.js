@@ -1,6 +1,32 @@
 import AWS from 'aws-sdk'
 import * as emails from '../../emails'
 
+AWS.config.update({
+  accessKeyId: process.env.AWS_ID,
+  secretAccessKey: process.env.AWS_KEY,
+  region: process.env.MY_AWS_REGION,
+})
+
+const respondAPIQuery = (res, data = {}, status = 200) => {
+  const hasError = data.error
+  if (hasError) {
+    res.statusCode = data.error.code
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify(data.error))
+    return
+  }
+  if (data && !hasError) {
+    res.statusCode = status
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify(data))
+    return
+  }
+  res.statusCode = 500
+  res.setHeader('Content-Type', 'application/json')
+  res.end()
+  return
+}
+
 const newSubscriberEmail = (req) => {
   const { email, subscriberEmail, accountName } = req.body
   return {
@@ -27,25 +53,20 @@ const newSubscriberEmail = (req) => {
   }
 }
 
+export default async function sendEmail(req, res) {
+  const { type } = req.body
 
-export default function sendEmail(req, res) {
-  const {  type } = req.body
   const sendEmailType = {
     newSubscriberEmail,
   }[type]
-  const { email, subscriberEmail, accountName } = req.boyd
-  AWS.config.update({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_KEY,
-    region: process.env.MY_AWS_REGION,
-  })
+
   try {
     const response = await new AWS.SES({ apiVersion: '2010-12-01' })
       .sendEmail(sendEmailType(req))
       .promise()
     respondAPIQuery(res, response, 200)
-  } catch (err) {
-    console.error('email failed', err)
+  } catch (error) {
+    console.error('email failed', error)
     respondAPIQuery(res, { error }, 500)
   }
 }
