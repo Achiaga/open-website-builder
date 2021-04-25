@@ -45,6 +45,14 @@ function isBlockOnCenterX(sbX, sbW, dgB) {
   )
 }
 
+function getBlockDistantToNextBlock(dgB, sbX, sbW) {
+  const diffLeft = Math.round(dgB.x - sbX)
+  const diffRight = Math.round(dgB.x - (sbX + sbW))
+  const isBlockRight = dgB.x > sbX + sbW
+  const diff = Math.abs(isBlockRight ? diffRight : diffLeft)
+  return diff
+}
+
 function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
   const copyLayout = { ...layout }
   delete copyLayout[dgB.i]
@@ -78,10 +86,7 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
     }
 
     if (isBlockOnRow(sbY, dgB, sbH) && isBlockOnRight(sbX, dgB)) {
-      const diffLeft = Math.round(dgB.x - sbX)
-      const diffRight = Math.round(dgB.x - (sbX + sbW))
-      const isBlockRight = dgB.x > sbX + sbW
-      const diff = Math.abs(isBlockRight ? diffRight : diffLeft)
+      const diff = getBlockDistantToNextBlock(dgB, sbX, sbW)
 
       if (diff < closest.diff) {
         closest = { ...closest, x: sbX, diff: diff, i }
@@ -146,20 +151,19 @@ export const RayTracing = ({
       </Portal>
     )
   }
-  return null
-  // Left ray tracing
-  // return (
-  //   <Box
-  //     pos="absolute"
-  //     left={`${-closestItem.diff}px`}
-  //     zIndex="2"
-  //     bg="green.500"
-  //     width={`${closestItem.diff}px`}
-  //     h="1px"
-  //   >
-  //     <Box textAlign="center">{closestItem.diff}</Box>
-  //   </Box>
-  // )
+  //Left ray tracing
+  return (
+    <Box
+      pos="absolute"
+      left={`${-closestItem.diff}px`}
+      zIndex="2"
+      bg="green.500"
+      width={`${closestItem.diff}px`}
+      h="1px"
+    >
+      <Box textAlign="center">{closestItem.diff}</Box>
+    </Box>
+  )
   // Middle Screen line
   // if (leftDis - 20 <= windowWidth / 2 && leftDis + 20 >= windowWidth / 2) {
   //   return (
