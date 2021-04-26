@@ -156,6 +156,8 @@ const BuilderSidebar = () => {
         <ToolSection Icon={TextIcon} text="Text" type="text" />
         <ToolSection Icon={MediaIcon} text="Image" type="image" />
         <ToolSection Icon={SectionIcon} text="Section" type="inception" />
+        <ToolSection Icon={SectionIcon} text="Form" type="form" />
+        <ToolSection Icon={SectionIcon} text="Button" type="button" />
       </Box>
     </>
   )

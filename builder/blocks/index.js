@@ -15,11 +15,15 @@ import {
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
+import { GenericForm } from './form'
+import { ButtonGeneric } from './button'
 
 const blocksType = {
   image: Image,
   text: GenericText,
   inception: BlockInception,
+  form: GenericForm,
+  button: ButtonGeneric,
 }
 export const previewBlocks = {
   image: Image,

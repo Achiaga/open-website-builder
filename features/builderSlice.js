@@ -287,7 +287,6 @@ function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
   const newX = moreWidth ? 0 : x / 4
   const newY = isOnRight ? y + 2 * h : y + (2 * h) / 3
   const newW = moreWidth ? 100 : w
-  console.log(newX, newY, newW)
   mobileLayoutUpdated[blockId] = {
     x: newX,
     y: newY,

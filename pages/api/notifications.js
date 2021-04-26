@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import AWS from 'aws-sdk'
 import * as emails from '../../emails'
 
@@ -70,3 +71,4 @@ export default async function sendEmail(req, res) {
     respondAPIQuery(res, { error }, 500)
   }
 }
+s
