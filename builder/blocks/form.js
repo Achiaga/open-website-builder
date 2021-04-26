@@ -3,11 +3,29 @@ import { FormControl, FormHelperText, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
 import { useState } from 'react'
+import { sendEmailNotifiaction } from './block-helpers/transporter'
 
 export const GenericForm = () => {
   const [inputValue, setInputValue] = useState()
-  function handleSubmitForm(e) {
+  const [requestStatus, setRequestStatus] = useState({
+    loading: false,
+    error: false,
+    success: false,
+  })
+  async function handleSubmitForm(e) {
     e.preventDefault()
+    setRequestStatus({ ...requestStatus, loading: true })
+    try {
+      await sendEmailNotifiaction(
+        'gonzalo.achiaga@gmail.com',
+        'achiaga.10@gmail.com',
+        'Gonzalo'
+      )
+      setRequestStatus({ ...requestStatus, loading: false, success: true })
+    } catch (err) {
+      setRequestStatus((status) => ({ ...status, error: true, loading: false }))
+      console.error(err)
+    }
     console.log('sendData', inputValue)
   }
 

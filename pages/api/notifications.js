@@ -1,12 +1,6 @@
 /* eslint-disable no-undef */
 import AWS from 'aws-sdk'
-import * as emails from '../../emails'
-
-AWS.config.update({
-  accessKeyId: process.env.AWS_ID,
-  secretAccessKey: process.env.AWS_KEY,
-  region: process.env.MY_AWS_REGION,
-})
+import emailTemplates from '../../emails'
 
 const respondAPIQuery = (res, data = {}, status = 200) => {
   const hasError = data.error
@@ -27,7 +21,6 @@ const respondAPIQuery = (res, data = {}, status = 200) => {
   res.end()
   return
 }
-
 const newSubscriberEmail = (req) => {
   const { email, subscriberEmail, accountName } = req.body
   return {
@@ -38,7 +31,7 @@ const newSubscriberEmail = (req) => {
       Body: {
         Html: {
           Charset: 'UTF-8',
-          Data: emails.newSubscriberEmail(subscriberEmail, accountName),
+          Data: emailTemplates.newSubscriberEmail(subscriberEmail, accountName),
         },
         Text: {
           Charset: 'UTF-8',
@@ -56,10 +49,16 @@ const newSubscriberEmail = (req) => {
 
 export default async function sendEmail(req, res) {
   const { type } = req.body
-
+  console.log('sendEmail')
   const sendEmailType = {
     newSubscriberEmail,
   }[type]
+
+  AWS.config.update({
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_KEY,
+    region: process.env.MY_AWS_REGION,
+  })
 
   try {
     const response = await new AWS.SES({ apiVersion: '2010-12-01' })
@@ -71,4 +70,3 @@ export default async function sendEmail(req, res) {
     respondAPIQuery(res, { error }, 500)
   }
 }
-s
