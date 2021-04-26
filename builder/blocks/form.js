@@ -17,9 +17,9 @@ export const GenericForm = () => {
     setRequestStatus({ ...requestStatus, loading: true })
     try {
       await sendEmailNotifiaction(
-        'gonzalo.achiaga@gmail.com',
+        'alfonso.achiaga@gmail.com ',
         'achiaga.10@gmail.com',
-        'Gonzalo'
+        'Alfonso'
       )
       setRequestStatus({ ...requestStatus, loading: false, success: true })
     } catch (err) {
