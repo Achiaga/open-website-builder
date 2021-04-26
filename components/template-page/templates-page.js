@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Link } from 'next/router'
+import Link from 'next/link'
 import { Box, Text, Grid } from '@chakra-ui/react'
 
 import Template from './template-layout'
@@ -24,7 +24,6 @@ const TemplatePage = () => {
         />
         <title>Antfolio - The best templates made by our best designers</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.antfolio.app" />
       </Head>
       <Box
         width="full"
