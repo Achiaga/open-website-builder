@@ -5,18 +5,19 @@ import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { useEffect, useState } from 'react'
 import { sendEmailNotifiaction } from './block-helpers/transporter'
+import colorShades, { getIsColorBright } from './block-helpers/color-shades'
 
 function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function sendEmail(data, updateSate) {
+async function sendEmail(inputEmail, updateSate) {
   updateSate((status) => ({ ...status, loading: true }))
   try {
     await timeout(3000)
     await sendEmailNotifiaction(
-      'gonzalo.achiaga@gmail.com ',
-      'achiaga.10@gmail.com',
+      'gonzalo.achiaga@gmail.com',
+      inputEmail,
       'Gonzalo'
     )
     updateSate((status) => ({ ...status, loading: false, success: true }))
@@ -51,7 +52,6 @@ export const PrevContactForm = () => {
     e.preventDefault()
     if (success) return
     sendEmail(inputValue, setRequestStatus)
-    console.log('sendData', inputValue)
   }
 
   function onChange(e) {
@@ -106,7 +106,25 @@ export const PrevContactForm = () => {
   )
 }
 
-export const GenericForm = () => {
+const CustonButton = ({ children, ...props }) => {
+  const backgroundColor = props.backgroundColor
+  // console.log(backgroundColor)
+  const shades = colorShades(backgroundColor)
+  const isColorBright = getIsColorBright(backgroundColor)
+  return (
+    <Button
+      {...props}
+      _hover={{
+        backgroundColor: shades.colors[isColorBright ? '400' : '600'],
+      }}
+    >
+      {children}
+    </Button>
+  )
+}
+
+export const GenericForm = (props) => {
+  // console.log(props)
   return (
     <Box d="flex" h="100%">
       <Input
@@ -118,16 +136,16 @@ export const GenericForm = () => {
         borderColor="gray.300"
         placeholder="eg: johndoe@gmail.coms"
       />
-      <Button
+      <CustonButton
         type="submit"
         borderTopLeftRadius="0"
         borderBottomLeftRadius="0"
-        colorScheme={'primary'}
+        backgroundColor={props.backgroundColor}
         h="100%"
         minWidth="fit-content"
       >
         Get in touch
-      </Button>
+      </CustonButton>
     </Box>
   )
 }

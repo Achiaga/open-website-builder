@@ -381,4 +381,12 @@ export const Properties = {
     backgroundColor,
     duplicateProperty,
   ],
+  form: [
+    deleteProperty,
+    border,
+    borderRadius,
+    boxShadow,
+    backgroundColor,
+    duplicateProperty,
+  ],
 }
