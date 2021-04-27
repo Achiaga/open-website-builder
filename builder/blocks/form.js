@@ -108,7 +108,6 @@ export const PrevContactForm = () => {
 
 const CustonButton = ({ children, ...props }) => {
   const backgroundColor = props.backgroundColor
-  // console.log(backgroundColor)
   const shades = colorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'
@@ -126,20 +125,21 @@ const CustonButton = ({ children, ...props }) => {
 }
 
 export const GenericForm = (props) => {
-  // console.log(props)
+  console.log(props)
   return (
     <Box d="flex" h="100%">
       <Input
         type="email"
+        borderRadius={props.borderRadius}
         borderTopRightRadius="0"
         borderBottomRightRadius="0"
         h="100%"
-        border="1px solid"
-        borderColor="gray.300"
-        placeholder="eg: johndoe@gmail.coms"
+        border={props.border}
+        placeholder="eg: your@email.com"
       />
       <CustonButton
         type="submit"
+        borderRadius={props.borderRadius}
         borderTopLeftRadius="0"
         borderBottomLeftRadius="0"
         backgroundColor={props.backgroundColor}
