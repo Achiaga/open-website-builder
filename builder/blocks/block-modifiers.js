@@ -1,4 +1,12 @@
-import { Box, Text, Button, Input, Tooltip, Grid } from '@chakra-ui/react'
+import {
+  Box,
+  Text,
+  Button,
+  Input,
+  Tooltip,
+  Grid,
+  useDisclosure,
+} from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Portal } from '../usePortal'
@@ -7,6 +15,7 @@ import { Properties } from './block-properties'
 import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
+import ImageSelectorModal from './block-helpers/ImageSelectorModal'
 
 const CustomToolTip = ({ label, children }) => {
   return (
@@ -38,6 +47,7 @@ const PropertiesModifiers = {
   duplicate: DuplicateButton,
   text: TextInput,
   redirect: TextInput,
+  image: ImageSelector,
 }
 
 function DropDownSelector({
@@ -501,6 +511,38 @@ export function ButtonSelector({
   )
 }
 ButtonSelector.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  property: PropTypes.string.isRequired,
+  operationType: PropTypes.string.isRequired,
+  placeholder: PropTypes.object.isRequired,
+}
+export function ImageSelector({
+  handleEdit,
+  property,
+  icon,
+  operationType,
+  tooltip,
+}) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <Box>
+      <CustomToolTip label={tooltip}>
+        <Button
+          id={property}
+          size="sm"
+          padding="3px"
+          bg="transparent"
+          onClick={onOpen}
+        >
+          {icon}
+        </Button>
+      </CustomToolTip>
+      <ImageSelectorModal isOpen={isOpen} onClose={onClose} />
+    </Box>
+  )
+}
+ImageSelector.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   property: PropTypes.string.isRequired,
   operationType: PropTypes.string.isRequired,
