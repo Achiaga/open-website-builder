@@ -1,48 +1,133 @@
 import { Button } from '@chakra-ui/button'
-import { FormControl, FormHelperText, FormLabel } from '@chakra-ui/form-control'
+import { Box, Spinner } from '@chakra-ui/react'
+
+import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
-import { Box } from '@chakra-ui/layout'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { sendEmailNotifiaction } from './block-helpers/transporter'
 
-export const GenericForm = () => {
+function timeout(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function sendEmail(data, updateSate) {
+  updateSate((status) => ({ ...status, loading: true }))
+  try {
+    await timeout(3000)
+    await sendEmailNotifiaction(
+      'gonzalo.achiaga@gmail.com ',
+      'achiaga.10@gmail.com',
+      'Gonzalo'
+    )
+    updateSate((status) => ({ ...status, loading: false, success: true }))
+  } catch (err) {
+    updateSate((status) => ({ ...status, error: true, loading: false }))
+    console.error(err)
+  }
+}
+
+function getButtonContent(loading, success) {
+  if (loading)
+    return (
+      <Box>
+        <Spinner speed="0.65s" size="md" />
+      </Box>
+    )
+  if (success) return 'Sucess'
+  return 'Send'
+}
+
+const inputInitialValue = {
+  loading: false,
+  error: false,
+  success: false,
+}
+
+export const PrevContactForm = () => {
   const [inputValue, setInputValue] = useState()
-  const [requestStatus, setRequestStatus] = useState({
-    loading: false,
-    error: false,
-    success: false,
-  })
-  async function handleSubmitForm(e) {
+  const [requestStatus, setRequestStatus] = useState(inputInitialValue)
+  const { loading, success, error } = requestStatus
+  function handleSubmitForm(e) {
     e.preventDefault()
-    setRequestStatus({ ...requestStatus, loading: true })
-    try {
-      await sendEmailNotifiaction(
-        'alfonso.achiaga@gmail.com ',
-        'achiaga.10@gmail.com',
-        'Alfonso'
-      )
-      setRequestStatus({ ...requestStatus, loading: false, success: true })
-    } catch (err) {
-      setRequestStatus((status) => ({ ...status, error: true, loading: false }))
-      console.error(err)
-    }
+    if (success) return
+    sendEmail(inputValue, setRequestStatus)
     console.log('sendData', inputValue)
   }
 
   function onChange(e) {
+    if (success) {
+      setRequestStatus(inputInitialValue)
+    }
     setInputValue(e.target.value)
   }
 
+  useEffect(() => {
+    success && setInputValue('')
+  }, [success])
+
   return (
-    <Box>
-      <form onSubmit={handleSubmitForm}>
-        <FormControl id="email">
-          <FormLabel>Email address</FormLabel>
-          <Input type="email" onChange={onChange} />
-          <FormHelperText>We&apos;ll never share your email.</FormHelperText>
-          <Button type="submit">Send</Button>
+    <>
+      <form onSubmit={handleSubmitForm} style={{ height: '100%' }}>
+        <FormControl id="email" d="flex" h="100%">
+          <Input
+            type="email"
+            onChange={onChange}
+            borderTopRightRadius="0"
+            borderBottomRightRadius="0"
+            h="100%"
+            border="1px solid"
+            borderColor="gray.300"
+            placeholder="Write your email eg: johnDoe@gmail.com"
+          />
+          <Button
+            type="submit"
+            borderTopLeftRadius="0"
+            borderBottomLeftRadius="0"
+            colorScheme={success ? 'green' : 'primary'}
+            h="100%"
+            minWidth="fit-content"
+          >
+            {getButtonContent(loading, success)}
+          </Button>
+          {error && (
+            <Box
+              color="red.500"
+              position="absolute"
+              bottom="-1.25rem"
+              fontWeight="500"
+              fontSize="sm"
+            >
+              Sorry, something went wrong. Try again!
+            </Box>
+          )}
         </FormControl>
       </form>
+    </>
+  )
+}
+
+export const GenericForm = () => {
+  return (
+    <Box d="flex" h="100%">
+      <Input
+        type="email"
+        borderTopRightRadius="0"
+        borderBottomRightRadius="0"
+        h="100%"
+        border="1px solid"
+        borderColor="gray.300"
+        placeholder="eg: johndoe@gmail.coms"
+      />
+      <Button
+        type="submit"
+        borderTopLeftRadius="0"
+        borderBottomLeftRadius="0"
+        colorScheme={'primary'}
+        h="100%"
+        minWidth="fit-content"
+      >
+        Get in touch
+      </Button>
     </Box>
   )
 }

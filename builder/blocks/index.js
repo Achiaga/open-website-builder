@@ -15,7 +15,7 @@ import {
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
-import { GenericForm } from './form'
+import { GenericForm, PrevContactForm } from './form'
 import { ButtonGeneric } from './button'
 
 const blocksType = {
@@ -29,6 +29,8 @@ export const previewBlocks = {
   image: Image,
   text: PrevText,
   inception: PrevInception,
+  form: PrevContactForm,
+  button: ButtonGeneric,
 }
 
 export const ResizingCounter = ({ width, height }) => {
