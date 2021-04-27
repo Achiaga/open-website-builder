@@ -111,11 +111,13 @@ const CustonButton = ({ children, ...props }) => {
   // console.log(backgroundColor)
   const shades = colorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
+  const fontColor = isColorBright ? 'gray.500' : 'white'
   return (
     <Button
       {...props}
+      color={fontColor}
       _hover={{
-        backgroundColor: shades.colors[isColorBright ? '400' : '600'],
+        backgroundColor: shades.colors[isColorBright ? '600' : '400'],
       }}
     >
       {children}
