@@ -389,4 +389,13 @@ export const Properties = {
     backgroundColor,
     duplicateProperty,
   ],
+  button: [
+    deleteProperty,
+    border,
+    borderRadius,
+    boxShadow,
+    backgroundColor,
+    redirectInput,
+    duplicateProperty,
+  ],
 }

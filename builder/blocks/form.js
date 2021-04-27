@@ -106,7 +106,7 @@ export const PrevContactForm = () => {
   )
 }
 
-const CustonButton = ({ children, ...props }) => {
+export const CustonButton = ({ children, ...props }) => {
   const backgroundColor = props.backgroundColor
   const shades = colorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
@@ -117,6 +117,9 @@ const CustonButton = ({ children, ...props }) => {
       color={fontColor}
       _hover={{
         backgroundColor: shades.colors[isColorBright ? '600' : '400'],
+      }}
+      _active={{
+        backgroundColor: shades.colors[isColorBright ? '700' : '300'],
       }}
     >
       {children}
