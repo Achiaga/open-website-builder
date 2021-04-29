@@ -32,16 +32,16 @@ function isBlockOnCenterY(sbY, sbH, dgB) {
   const draggingBlockHalf = dgB.y + dgB.h / 2
   const staticBlockHalf = sbY + sbH / 2
   return (
-    draggingBlockHalf - 10 < staticBlockHalf &&
-    draggingBlockHalf + 10 > staticBlockHalf
+    draggingBlockHalf - 5 < staticBlockHalf &&
+    draggingBlockHalf + 5 > staticBlockHalf
   )
 }
 function isBlockOnCenterX(sbX, sbW, dgB) {
   const draggingBlockHalf = dgB.x + dgB.w / 2
   const staticBlockHalf = sbX + sbW / 2
   return (
-    draggingBlockHalf - 10 < staticBlockHalf &&
-    draggingBlockHalf + 10 > staticBlockHalf
+    draggingBlockHalf - 5 < staticBlockHalf &&
+    draggingBlockHalf + 5 > staticBlockHalf
   )
 }
 
@@ -124,6 +124,10 @@ export const RayTracing = ({
     gridRowHeight
   )
   if (closestItem.middle) {
+    const width =
+      draggingBlockPos.x +
+      draggingBlockPos.w / 2 -
+      (closestItem.x + closestItem.w / 2)
     return (
       <Portal id="main-builder">
         {closestItem.middleX && (
@@ -140,18 +144,31 @@ export const RayTracing = ({
         {closestItem.middleY && (
           <Box
             pos="absolute"
-            left={`${closestItem.x}px`}
+            left={`${closestItem.x + closestItem.w / 2}px`}
             top={`${closestItem.y + closestItem.h / 2}px`}
             zIndex="2"
             bg="green.500"
-            width={`${closestItem.w}px`}
+            width={`${width}px`}
             h="1px"
-          />
+            d="flex"
+            justifyContent="space-between"
+            fontSize="xs"
+          >
+            <Box textAlign="flex-start" lineHeight="0" color="red.400">
+              x
+            </Box>
+            <Box textAlign="center" fontSize="xs">
+              {Math.round(width)}
+            </Box>
+            <Box textAlign="flex-end" lineHeight="0" color="red.400">
+              x
+            </Box>
+          </Box>
         )}
       </Portal>
     )
   }
-  //Left ray tracing
+  //Left Ray tracing
   return (
     <Box
       pos="absolute"
@@ -160,8 +177,17 @@ export const RayTracing = ({
       bg="green.500"
       width={`${closestItem.diff}px`}
       h="1px"
+      flexDir="row"
+      d="flex"
+      justifyContent="space-between"
     >
+      <Box textAlign="flex-start" lineHeight="0" fontSize="2xs" color="red.400">
+        x
+      </Box>
       <Box textAlign="center">{closestItem.diff}</Box>
+      <Box textAlign="flex-end" lineHeight="0" fontSize="2xs" color="red.400">
+        x
+      </Box>
     </Box>
   )
   // Middle Screen line
