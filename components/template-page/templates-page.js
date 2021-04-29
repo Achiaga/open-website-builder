@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Link } from 'next/router'
+import Link from 'next/link'
 import { Box, Text, Grid } from '@chakra-ui/react'
 
 import Template from './template-layout'
