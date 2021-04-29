@@ -22,7 +22,6 @@ const ImageItem = ({ imageSrc }) => {
       }}
       overflow="hidden"
       cursor="pointer"
-      mb="0.5rem"
     >
       <Image src={imageSrc} bg="blue.500" />
     </Box>
@@ -47,34 +46,18 @@ const ImagesSrcList = [
   'https://images.unsplash.com/photo-1619631428195-711ec2d5cb4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
 ]
 
-function getColumns(imagesList) {
-  const imagesNumber = imagesList.length
-  const columnSize = imagesNumber / 3
-  return [
-    imagesList.slice(0, columnSize),
-    imagesList.slice(columnSize, columnSize * 2),
-    imagesList.slice(columnSize * 2, columnSize * 3),
-  ]
-}
-
 const ImagesGrid = () => {
-  const columns = getColumns(ImagesSrcList)
   return (
     <Box
-      d="flex"
-      flexDir="row"
-      alignItems="flex-start"
-      justifyContent="space-between"
+      lineHeight={0}
+      style={{
+        columnCount: 3,
+        columnGap: '0px',
+      }}
     >
-      {columns.map((column, index) => {
-        return (
-          <Box w="32.5%" key={index}>
-            {column.map((item, index) => (
-              <ImageItem key={index} imageSrc={item} />
-            ))}
-          </Box>
-        )
-      })}
+      {ImagesSrcList.map((item, index) => (
+        <ImageItem key={index} imageSrc={item} />
+      ))}
     </Box>
   )
 }
@@ -84,7 +67,7 @@ const ImageSelectorModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Custom images</ModalHeader>
+        <ModalHeader>Images Selector</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <ImagesGrid />
