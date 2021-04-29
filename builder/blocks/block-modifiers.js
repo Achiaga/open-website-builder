@@ -402,6 +402,7 @@ export function TextInput({
   placeholder,
   inputPlaceholder,
 }) {
+  console.log(property)
   const handleChange = (e) => {
     e.stopPropagation()
     handleEdit(property, e.target.value)
@@ -524,7 +525,9 @@ export function ImageSelector({
   tooltip,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-
+  const handleChange = (imageUrl) => {
+    handleEdit(property, imageUrl)
+  }
   return (
     <Box>
       <CustomToolTip label={tooltip}>
@@ -538,7 +541,11 @@ export function ImageSelector({
           {icon}
         </Button>
       </CustomToolTip>
-      <ImageSelectorModal isOpen={isOpen} onClose={onClose} />
+      <ImageSelectorModal
+        isOpen={isOpen}
+        onClose={onClose}
+        handleSelectImage={handleChange}
+      />
     </Box>
   )
 }

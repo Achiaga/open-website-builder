@@ -10,18 +10,21 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal'
+import { useState } from 'react'
 
-const ImageItem = ({ imageSrc }) => {
+const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
   return (
     <Box
       border="3px solid"
-      borderColor="transparent"
+      borderColor={isSelcted ? 'blue.400' : 'transparent'}
       borderRadius="10px"
       _hover={{
         borderColor: 'blue.400',
       }}
       overflow="hidden"
       cursor="pointer"
+      onClick={() => onSelect(index)}
+      mb="0.3rem"
     >
       <Image src={imageSrc} bg="blue.500" />
     </Box>
@@ -46,38 +49,59 @@ const ImagesSrcList = [
   'https://images.unsplash.com/photo-1619631428195-711ec2d5cb4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
 ]
 
-const ImagesGrid = () => {
+const ImagesGrid = ({ onSelect, selectedImg }) => {
   return (
     <Box
       lineHeight={0}
       style={{
         columnCount: 3,
-        columnGap: '0px',
+        columnGap: '0.3rem',
       }}
     >
       {ImagesSrcList.map((item, index) => (
-        <ImageItem key={index} imageSrc={item} />
+        <ImageItem
+          key={index}
+          imageSrc={item}
+          index={index}
+          isSelcted={selectedImg === index}
+          onSelect={onSelect}
+        />
       ))}
     </Box>
   )
 }
 
-const ImageSelectorModal = ({ isOpen, onClose }) => {
+const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
+  const [selectedImgIndex, setSelectedImg] = useState(null)
+  function onSelect(index) {
+    setSelectedImg(index)
+  }
+  function handleApplyImage(e) {
+    e.preventDefault()
+    onClose()
+    handleSelectImage(ImagesSrcList[selectedImgIndex])
+  }
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Images Selector</ModalHeader>
+        <ModalHeader>Image Selector</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <ImagesGrid />
+          <Box maxH="500px" overflowY="scroll">
+            <Box>
+              <ImagesGrid selectedImg={selectedImgIndex} onSelect={onSelect} />
+            </Box>
+          </Box>
         </ModalBody>
 
         <ModalFooter>
           <Button variant="ghost" mr={3} onClick={onClose}>
             Close
           </Button>
-          <Button colorScheme="primary">Apply</Button>
+          <Button colorScheme="primary" onClick={handleApplyImage}>
+            Set Image
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
