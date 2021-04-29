@@ -11,6 +11,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/tabs'
 import { useEffect, useState } from 'react'
 import { createApi } from 'unsplash-js'
 import useDebouncedValue from './useDebounce'
@@ -68,12 +69,15 @@ const ImagesGrid = ({ onSelect, selectedImg, images = [] }) => {
   )
 }
 
-const UnpslashImages = () => {
+const UnpslashImages = ({ onSelect, selectedImg }) => {
   const [searchTerm, debouncedValue, setSearchTerm] = useDebouncedValue(
     null,
     500
   )
   const [images, setImages] = useState(null)
+  function handleSelect(index) {
+    onSelect({ image: images[index], index })
+  }
   useEffect(() => {
     unsplash.search
       .getPhotos({
@@ -94,35 +98,87 @@ const UnpslashImages = () => {
         placeholder="search for an image"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <ImagesGrid images={images} />
+      <Box
+        lineHeight={0}
+        style={{
+          columnCount: 3,
+          columnGap: '0.3rem',
+        }}
+      >
+        {images?.map((item, index) => (
+          <ImageItem
+            key={index}
+            imageSrc={getUnsplashSmallImageUrl(item)}
+            index={index}
+            isSelcted={selectedImg === index}
+            onSelect={handleSelect}
+          />
+        ))}
+      </Box>
     </Box>
   )
 }
 
 function getUnsplashSmallImageUrl(imgObj) {
+  console.log(imgObj.urls)
   return imgObj.urls.small
 }
 
+function getSelectedImgUrl(imgObj, tabIndex) {
+  console.log(imgObj)
+  if (tabIndex === 0) return imgObj.image.urls.regular
+  return imgObj
+}
+
 const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
-  const [selectedImgIndex, setSelectedImg] = useState(null)
-  function onSelect(index) {
-    setSelectedImg(index)
+  const [selectedImg, setSelectedImg] = useState(null)
+  const [tabIndex, setTabIndex] = useState(0)
+  function onSelect(image) {
+    setSelectedImg(image)
   }
   function handleApplyImage(e) {
     e.preventDefault()
     onClose()
-    handleSelectImage(ImagesSrcList[selectedImgIndex])
+    handleSelectImage(getSelectedImgUrl(selectedImg, tabIndex))
   }
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+    <Modal isOpen={isOpen} onClose={onClose} size="5xl">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Image Selector</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Box maxH="500px" overflowY="scroll">
-            <UnpslashImages />
-            {/* <ImagesGrid selectedImg={selectedImgIndex} onSelect={onSelect}/> */}
+          <Box minH="300px" maxH="500px" overflowY="scroll">
+            <Tabs
+              colorScheme="primary"
+              border="none"
+              outline="none"
+              onChange={(index) => setTabIndex(index)}
+            >
+              <TabList>
+                <Tab>Unsplash</Tab>
+                <Tab>Antfolio</Tab>
+                <Tab>Upload your own</Tab>
+              </TabList>
+
+              <TabPanels>
+                <TabPanel>
+                  <UnpslashImages
+                    onSelect={onSelect}
+                    selectedImg={selectedImg?.index}
+                  />
+                </TabPanel>
+                <TabPanel>
+                  <ImagesGrid
+                    selectedImg={selectedImg?.index}
+                    onSelect={onSelect}
+                  />
+                </TabPanel>
+                <TabPanel>
+                  <p>No here yet!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </Box>
         </ModalBody>
 
