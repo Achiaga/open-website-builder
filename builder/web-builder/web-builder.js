@@ -136,8 +136,8 @@ const DraggableItem = ({
           topLeft: false,
         }}
         onResize={handleResize}
-        onMouseOver={() => setIsOver(true)}
-        onMouseOut={() => setIsOver(false)}
+        // onMouseOver={() => setIsOver(true)}
+        // onMouseOut={() => setIsOver(false)}
         handleStyles={
           isOver && {
             bottomRight: {
@@ -173,8 +173,8 @@ const BlockItem = ({ blockId, isOver, setIsOver }) => {
       w={'100%'}
       h={'100%'}
       pos="absolute"
-      onMouseOver={() => setIsOver(true)}
-      onMouseOut={() => setIsOver(false)}
+      // onMouseOver={() => setIsOver(true)}
+      // onMouseOut={() => setIsOver(false)}
       // zIndex={zIndexValue}
     >
       <BuilderBlock blockId={blockId} isOver={isOver} />

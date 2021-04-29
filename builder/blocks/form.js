@@ -128,7 +128,6 @@ export const CustonButton = ({ children, ...props }) => {
 }
 
 export const GenericForm = (props) => {
-  console.log(props)
   return (
     <Box d="flex" h="100%">
       <Input

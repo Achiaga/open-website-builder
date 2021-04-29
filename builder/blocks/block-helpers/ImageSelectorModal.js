@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/button'
 import { Image } from '@chakra-ui/image'
+import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
 import {
   Modal,
@@ -10,8 +11,9 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal'
-import { useState } from 'react'
-
+import { useEffect, useState } from 'react'
+import { createApi } from 'unsplash-js'
+import useDebouncedValue from './useDebounce'
 const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
   return (
     <Box
@@ -25,6 +27,7 @@ const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
       cursor="pointer"
       onClick={() => onSelect(index)}
       mb="0.3rem"
+      pos="relative"
     >
       <Image src={imageSrc} bg="blue.500" />
     </Box>
@@ -32,24 +35,18 @@ const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
 }
 
 const ImagesSrcList = [
-  'https://antfolio.s3.amazonaws.com/blogImgTransparent.png',
   'https://images.unsplash.com/photo-1619314366404-275e4654e83e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1619631428195-711ec2d5cb4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-  'https://images.unsplash.com/photo-1619266465172-02a857c3556d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
-  'https://images.unsplash.com/photo-1619556819833-5b9ac82240ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
-  'https://images.unsplash.com/photo-1619266465172-02a857c3556d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
-  'https://images.unsplash.com/photo-1586155638764-bf045442f5f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1619631428195-711ec2d5cb4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-  'https://images.unsplash.com/photo-1619314366404-275e4654e83e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1619631428195-711ec2d5cb4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-  'https://images.unsplash.com/photo-1619266465172-02a857c3556d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
-  'https://images.unsplash.com/photo-1619556819833-5b9ac82240ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
-  'https://images.unsplash.com/photo-1619266465172-02a857c3556d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80',
-  'https://images.unsplash.com/photo-1586155638764-bf045442f5f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1619631428195-711ec2d5cb4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+  'https://images.unsplash.com/photo-1619604308122-6c083d5a9345?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
+  'https://images.unsplash.com/photo-1619602662217-938271505f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
+  'https://images.unsplash.com/photo-1619314527562-9b962f41f88a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
+  'https://images.unsplash.com/photo-1619631632892-3e5b9ff8fef9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80',
 ]
 
-const ImagesGrid = ({ onSelect, selectedImg }) => {
+const unsplash = createApi({
+  // eslint-disable-next-line no-undef
+  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_API,
+})
+const ImagesGrid = ({ onSelect, selectedImg, images = [] }) => {
   return (
     <Box
       lineHeight={0}
@@ -58,10 +55,10 @@ const ImagesGrid = ({ onSelect, selectedImg }) => {
         columnGap: '0.3rem',
       }}
     >
-      {ImagesSrcList.map((item, index) => (
+      {images?.map((item, index) => (
         <ImageItem
           key={index}
-          imageSrc={item}
+          imageSrc={getUnsplashSmallImageUrl(item)}
           index={index}
           isSelcted={selectedImg === index}
           onSelect={onSelect}
@@ -69,6 +66,41 @@ const ImagesGrid = ({ onSelect, selectedImg }) => {
       ))}
     </Box>
   )
+}
+
+const UnpslashImages = () => {
+  const [searchTerm, debouncedValue, setSearchTerm] = useDebouncedValue(
+    null,
+    500
+  )
+  const [images, setImages] = useState(null)
+  useEffect(() => {
+    unsplash.search
+      .getPhotos({
+        query: searchTerm,
+      })
+      .then((result) => {
+        if (result.errors) {
+          console.log('error occurred: ', result.errors[0])
+        } else {
+          const photos = result.response.results
+          setImages(photos)
+        }
+      })
+  }, [debouncedValue])
+  return (
+    <Box>
+      <Input
+        placeholder="search for an image"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <ImagesGrid images={images} />
+    </Box>
+  )
+}
+
+function getUnsplashSmallImageUrl(imgObj) {
+  return imgObj.urls.small
 }
 
 const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
@@ -89,9 +121,8 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
         <ModalCloseButton />
         <ModalBody>
           <Box maxH="500px" overflowY="scroll">
-            <Box>
-              <ImagesGrid selectedImg={selectedImgIndex} onSelect={onSelect} />
-            </Box>
+            <UnpslashImages />
+            {/* <ImagesGrid selectedImg={selectedImgIndex} onSelect={onSelect}/> */}
           </Box>
         </ModalBody>
 

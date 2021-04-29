@@ -49,7 +49,6 @@ const newSubscriberEmail = (req) => {
 
 export default async function sendEmail(req, res) {
   const { type } = req.body
-  console.log('sendEmail')
   const sendEmailType = {
     newSubscriberEmail,
   }[type]

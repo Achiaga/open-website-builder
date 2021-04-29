@@ -402,7 +402,6 @@ export function TextInput({
   placeholder,
   inputPlaceholder,
 }) {
-  console.log(property)
   const handleChange = (e) => {
     e.stopPropagation()
     handleEdit(property, e.target.value)
