@@ -79,10 +79,10 @@ const DraggableItem = ({
   function onDrag(_, blockPos) {
     setBlockPostRef({
       ...blockPos,
-
       w: w * gridColumnWidth,
       h: h * gridRowHeight,
       blockId,
+      isDragging: true,
     })
     const newBlockLayout = {
       x: blockPos.x / gridColumnWidth,
@@ -163,7 +163,7 @@ const DraggableItem = ({
             }
           }
         >
-          {isSelected && (
+          {blockPostRef.isDragging && (
             <RayTracing
               width={width}
               gridColumnWidth={gridColumnWidth}

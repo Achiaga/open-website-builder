@@ -99,6 +99,22 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
   return closest
 }
 
+function getHorizontalLineDim(draggingBlockPos, closestItem) {
+  if (draggingBlockPos.x < closestItem.x + closestItem.w)
+    return {
+      width: closestItem.w,
+      left: closestItem.x,
+      inside: true,
+    }
+  return {
+    width:
+      draggingBlockPos.x +
+      draggingBlockPos.w / 2 -
+      (closestItem.x + closestItem.w / 2),
+    left: closestItem.x + closestItem.w / 2,
+  }
+}
+
 export const RayTracing = ({
   width,
   gridColumnWidth,
@@ -124,10 +140,8 @@ export const RayTracing = ({
     gridRowHeight
   )
   if (closestItem.middle) {
-    const width =
-      draggingBlockPos.x +
-      draggingBlockPos.w / 2 -
-      (closestItem.x + closestItem.w / 2)
+    const hrLineDim = getHorizontalLineDim(draggingBlockPos, closestItem)
+    console.log(hrLineDim)
     return (
       <Portal id="main-builder">
         {closestItem.middleX && (
@@ -144,23 +158,30 @@ export const RayTracing = ({
         {closestItem.middleY && (
           <Box
             pos="absolute"
-            left={`${closestItem.x + closestItem.w / 2}px`}
+            left={`${hrLineDim.left}px`}
             top={`${closestItem.y + closestItem.h / 2}px`}
             zIndex="2"
             bg="green.500"
-            width={`${width}px`}
+            width={`${hrLineDim.width}px`}
             h="1px"
             d="flex"
             justifyContent="space-between"
             fontSize="xs"
           >
-            <Box textAlign="flex-start" lineHeight="0" color="red.400">
+            <Box
+              textAlign="flex-start"
+              lineHeight="0"
+              color="red.400"
+              ml="-3px"
+            >
               x
             </Box>
-            <Box textAlign="center" fontSize="xs">
-              {Math.round(width)}
-            </Box>
-            <Box textAlign="flex-end" lineHeight="0" color="red.400">
+            {!hrLineDim.inside && (
+              <Box textAlign="center" fontSize="xs">
+                {Math.round(width)}
+              </Box>
+            )}
+            <Box textAlign="flex-end" lineHeight="0" color="red.400" mr="-3px">
               x
             </Box>
           </Box>
@@ -181,11 +202,23 @@ export const RayTracing = ({
       d="flex"
       justifyContent="space-between"
     >
-      <Box textAlign="flex-start" lineHeight="0" fontSize="2xs" color="red.400">
+      <Box
+        textAlign="flex-start"
+        lineHeight="0"
+        fontSize="2xs"
+        color="red.400"
+        ml="-3px"
+      >
         x
       </Box>
       <Box textAlign="center">{closestItem.diff}</Box>
-      <Box textAlign="flex-end" lineHeight="0" fontSize="2xs" color="red.400">
+      <Box
+        textAlign="flex-end"
+        lineHeight="0"
+        fontSize="2xs"
+        color="red.400"
+        mr="-3px"
+      >
         x
       </Box>
     </Box>
