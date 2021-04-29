@@ -27,20 +27,18 @@ const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
       overflow="hidden"
       cursor="pointer"
       onClick={() => onSelect(index)}
-      mb="0.3rem"
+      // mb="0.3rem"
       pos="relative"
     >
-      <Image src={imageSrc} bg="blue.500" />
+      <Image src={imageSrc} />
     </Box>
   )
 }
 
-const ImagesSrcList = [
-  'https://images.unsplash.com/photo-1619314366404-275e4654e83e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1619604308122-6c083d5a9345?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
-  'https://images.unsplash.com/photo-1619602662217-938271505f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
-  'https://images.unsplash.com/photo-1619314527562-9b962f41f88a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
-  'https://images.unsplash.com/photo-1619631632892-3e5b9ff8fef9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80',
+const AntfolioImages = [
+  'https://antfolio.s3.amazonaws.com/mac-study-model.png',
+  'https://antfolio.s3.amazonaws.com/blogImgTransparent.png',
+  'https://antfolio.s3.amazonaws.com/books-study-model.png',
 ]
 
 const unsplash = createApi({
@@ -48,6 +46,9 @@ const unsplash = createApi({
   accessKey: process.env.NEXT_PUBLIC_UNSPLASH_API,
 })
 const ImagesGrid = ({ onSelect, selectedImg, images = [] }) => {
+  function handleSelect(index) {
+    onSelect({ image: images[index], index })
+  }
   return (
     <Box
       lineHeight={0}
@@ -59,10 +60,10 @@ const ImagesGrid = ({ onSelect, selectedImg, images = [] }) => {
       {images?.map((item, index) => (
         <ImageItem
           key={index}
-          imageSrc={getUnsplashSmallImageUrl(item)}
+          imageSrc={item}
           index={index}
           isSelcted={selectedImg === index}
-          onSelect={onSelect}
+          onSelect={handleSelect}
         />
       ))}
     </Box>
@@ -81,7 +82,7 @@ const UnpslashImages = ({ onSelect, selectedImg }) => {
   useEffect(() => {
     unsplash.search
       .getPhotos({
-        query: searchTerm,
+        query: searchTerm || 'happy person',
       })
       .then((result) => {
         if (result.errors) {
@@ -120,14 +121,12 @@ const UnpslashImages = ({ onSelect, selectedImg }) => {
 }
 
 function getUnsplashSmallImageUrl(imgObj) {
-  console.log(imgObj.urls)
   return imgObj.urls.small
 }
 
 function getSelectedImgUrl(imgObj, tabIndex) {
-  console.log(imgObj)
   if (tabIndex === 0) return imgObj.image.urls.regular
-  return imgObj
+  return imgObj.image
 }
 
 const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
@@ -172,6 +171,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   <ImagesGrid
                     selectedImg={selectedImg?.index}
                     onSelect={onSelect}
+                    images={AntfolioImages}
                   />
                 </TabPanel>
                 <TabPanel>
