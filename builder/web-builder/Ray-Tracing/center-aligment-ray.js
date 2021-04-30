@@ -3,14 +3,14 @@ import { Portal } from '@chakra-ui/portal'
 
 function isInsideX(draggingBlockPos, closestItem) {
   return (
-    draggingBlockPos.x < closestItem.x + closestItem.w &&
-    draggingBlockPos.x > closestItem.x
+    draggingBlockPos.x <= closestItem.x + closestItem.w &&
+    draggingBlockPos.x >= closestItem.x
   )
 }
 function isInsideY(draggingBlockPos, closestItem) {
   return (
-    draggingBlockPos.y < closestItem.y + closestItem.h &&
-    draggingBlockPos.y > closestItem.y
+    draggingBlockPos.y <= closestItem.y + closestItem.h &&
+    draggingBlockPos.y >= closestItem.y
   )
 }
 

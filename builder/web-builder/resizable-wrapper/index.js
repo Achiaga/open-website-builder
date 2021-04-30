@@ -14,7 +14,6 @@ const ResizeWrapper = ({
   useEffect(() => {
     setIsOver()
   }, [])
-  console.log(isOver)
   return (
     <Resizable
       size={{ width, height }}

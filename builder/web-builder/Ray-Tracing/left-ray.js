@@ -18,25 +18,29 @@ const LeftRay = ({ closestItem, draggingBlockPos }) => {
       d="flex"
       justifyContent="space-between"
     >
-      <Box
-        textAlign="flex-start"
-        lineHeight="0"
-        fontSize="xs"
-        color="red.400"
-        ml="-3px"
-      >
-        x
-      </Box>
-      <Box textAlign="center">{closestItem.diff}</Box>
-      <Box
-        textAlign="flex-end"
-        lineHeight="0"
-        fontSize="xs"
-        color="red.400"
-        mr="-3px"
-      >
-        x
-      </Box>
+      {closestItem.diff && (
+        <>
+          <Box
+            textAlign="flex-start"
+            lineHeight="0"
+            fontSize="xs"
+            color="red.400"
+            ml="-3px"
+          >
+            x
+          </Box>
+          <Box textAlign="center">{closestItem.diff}</Box>
+          <Box
+            textAlign="flex-end"
+            lineHeight="0"
+            fontSize="xs"
+            color="red.400"
+            mr="-3px"
+          >
+            x
+          </Box>
+        </>
+      )}
     </Box>
   )
 }

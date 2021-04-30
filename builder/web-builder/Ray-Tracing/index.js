@@ -7,12 +7,12 @@ import LeftRay from './left-ray'
 
 function isBlockOnRow(staticBlockY, draggingBlock, staticBlockHeight) {
   return (
-    staticBlockY < draggingBlock.y &&
-    staticBlockY + staticBlockHeight > draggingBlock.y
+    staticBlockY <= draggingBlock.y &&
+    staticBlockY + staticBlockHeight >= draggingBlock.y
   )
 }
 function isBlockOnRight(staticBlockX, draggingBlock) {
-  return staticBlockX < draggingBlock.x
+  return staticBlockX <= draggingBlock.x
 }
 function getGridPos({ x, w, h, y }, gridColumnWidth, gridRowHeight) {
   const sbX = x * gridColumnWidth
@@ -35,16 +35,16 @@ function isBlockOnCenterY(sbY, sbH, dgB) {
   const draggingBlockHalf = dgB.y + dgB.h / 2
   const staticBlockHalf = sbY + sbH / 2
   return (
-    draggingBlockHalf - 5 < staticBlockHalf &&
-    draggingBlockHalf + 5 > staticBlockHalf
+    draggingBlockHalf - 1 < staticBlockHalf &&
+    draggingBlockHalf + 1 > staticBlockHalf
   )
 }
 function isBlockOnCenterX(sbX, sbW, dgB) {
   const draggingBlockHalf = dgB.x + dgB.w / 2
   const staticBlockHalf = sbX + sbW / 2
   return (
-    draggingBlockHalf - 5 < staticBlockHalf &&
-    draggingBlockHalf + 5 > staticBlockHalf
+    draggingBlockHalf - 1 < staticBlockHalf &&
+    draggingBlockHalf + 1 > staticBlockHalf
   )
 }
 
@@ -129,7 +129,7 @@ export const RayTracing = ({
     gridRowHeight
   )
   const isMidScreen =
-    leftDis - 2 <= windowWidth / 2 && leftDis + 2 >= windowWidth / 2
+    leftDis - 1 <= windowWidth / 2 && leftDis + 1 >= windowWidth / 2
   return (
     <>
       {closestItem.middle && (
