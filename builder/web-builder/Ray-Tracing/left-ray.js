@@ -21,7 +21,7 @@ const LeftRay = ({ closestItem, draggingBlockPos }) => {
       <Box
         textAlign="flex-start"
         lineHeight="0"
-        fontSize="2xs"
+        fontSize="xs"
         color="red.400"
         ml="-3px"
       >
@@ -31,7 +31,7 @@ const LeftRay = ({ closestItem, draggingBlockPos }) => {
       <Box
         textAlign="flex-end"
         lineHeight="0"
-        fontSize="2xs"
+        fontSize="xs"
         color="red.400"
         mr="-3px"
       >
