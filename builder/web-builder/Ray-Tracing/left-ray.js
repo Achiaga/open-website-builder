@@ -1,13 +1,18 @@
 import { Box } from '@chakra-ui/layout'
 
-const LeftRay = ({ closestItem }) => {
+const LeftRay = ({ closestItem, draggingBlockPos }) => {
+  const width = closestItem?.right
+    ? closestItem.diff - draggingBlockPos.w
+    : closestItem.diff
   return (
     <Box
       pos="absolute"
-      left={`${-closestItem.diff}px`}
+      {...(closestItem.right
+        ? { right: `${-closestItem.diff + draggingBlockPos.w}px` }
+        : { left: `${-closestItem.diff}px` })}
       zIndex="2"
       bg="green.500"
-      width={`${closestItem.diff}px`}
+      width={`${width}px`}
       h="1px"
       flexDir="row"
       d="flex"

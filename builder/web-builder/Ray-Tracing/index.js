@@ -20,12 +20,13 @@ function getGridPos({ x, w, h, y }, gridColumnWidth, gridRowHeight) {
   return { sbX, sbY, sbW, sbH }
 }
 
-function hasNoLeftBlocks(closest) {
+function hasHorizontalBlocks(closest) {
   return closest.diff === Infinity
 }
 
-function getLeftBorderPos(draggingBlock) {
-  return { x: 0, diff: Math.round(draggingBlock.x) }
+function getSidesBorderPos(draggingBlock) {
+  const isBlockOnRight = draggingBlock.x > window.innerWidth / 2
+  return { x: 0, diff: Math.round(draggingBlock.x), right: isBlockOnRight }
 }
 
 function isBlockOnCenterY(sbY, sbH, dgB) {
@@ -84,17 +85,19 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
         y: sbY,
       }
     }
-
-    if (isBlockOnRow(sbY, dgB, sbH) && isBlockOnRight(sbX, dgB)) {
+    if (isBlockOnRow(sbY, dgB, sbH)) {
       const diff = getBlockDistantToNextBlock(dgB, sbX, sbW)
-
-      if (diff < closest.diff) {
-        closest = { ...closest, x: sbX, diff: diff, i }
+      closest = {
+        ...closest,
+        x: sbX,
+        diff: diff,
+        i,
+        right: !isBlockOnRight(sbX, dgB),
       }
     }
   }
 
-  if (hasNoLeftBlocks(closest)) return getLeftBorderPos(dgB)
+  if (hasHorizontalBlocks(closest)) return getSidesBorderPos(dgB)
 
   return closest
 }
@@ -132,7 +135,9 @@ export const RayTracing = ({
     )
   }
   //Left Ray tracing
-  return <LeftRay closestItem={closestItem} />
+  return (
+    <LeftRay closestItem={closestItem} draggingBlockPos={draggingBlockPos} />
+  )
   // Middle Screen line
   // if (leftDis - 20 <= windowWidth / 2 && leftDis + 20 >= windowWidth / 2) {
   //   return (
