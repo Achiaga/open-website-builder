@@ -1,13 +1,34 @@
 import { Box } from '@chakra-ui/layout'
 import { Portal } from '@chakra-ui/portal'
 
+function isDragBlockInside(draggingBlockPos, closestItem) {
+  return (
+    draggingBlockPos.x < closestItem.x + closestItem.w &&
+    draggingBlockPos.x > closestItem.x
+  )
+}
+
+function isDragBlockLeft(draggingBlockPos, closestItem) {
+  return draggingBlockPos.x < closestItem.x
+}
+
 function getHorizontalLineDim(draggingBlockPos, closestItem) {
-  if (draggingBlockPos.x < closestItem.x + closestItem.w)
+  if (isDragBlockInside(draggingBlockPos, closestItem))
     return {
       width: closestItem.w,
       left: closestItem.x,
       inside: true,
     }
+  if (isDragBlockLeft(draggingBlockPos, closestItem)) {
+    return {
+      width: Math.abs(
+        draggingBlockPos.x +
+          draggingBlockPos.w / 2 -
+          (closestItem.x + closestItem.w / 2)
+      ),
+      left: draggingBlockPos.x + draggingBlockPos.w / 2,
+    }
+  }
   return {
     width:
       draggingBlockPos.x +
@@ -19,6 +40,7 @@ function getHorizontalLineDim(draggingBlockPos, closestItem) {
 
 const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
   const hrLineDim = getHorizontalLineDim(draggingBlockPos, closestItem)
+  console.log(hrLineDim)
   return (
     <Portal id="main-builder">
       {closestItem.middleX && (

@@ -1,3 +1,5 @@
+import { Box } from '@chakra-ui/layout'
+import { Portal } from '@chakra-ui/portal'
 import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
 import CenterAligmentRay from './center-aligment-ray'
@@ -126,42 +128,41 @@ export const RayTracing = ({
     gridColumnWidth,
     gridRowHeight
   )
-  if (closestItem.middle) {
-    return (
-      <CenterAligmentRay
-        draggingBlockPos={draggingBlockPos}
-        closestItem={closestItem}
-      />
-    )
-  }
-  //Left Ray tracing
+  const isMidScreen =
+    leftDis - 2 <= windowWidth / 2 && leftDis + 2 >= windowWidth / 2
   return (
-    <LeftRay closestItem={closestItem} draggingBlockPos={draggingBlockPos} />
+    <>
+      {closestItem.middle && (
+        <CenterAligmentRay
+          draggingBlockPos={draggingBlockPos}
+          closestItem={closestItem}
+        />
+      )}
+      {isMidScreen && (
+        <Portal id="main-builder">
+          <Box
+            pos="absolute"
+            left="50%"
+            transform="translate(-50%,0)"
+            top="0"
+            zIndex="9999"
+            bg="green.500"
+            width="1px"
+            h="100%"
+          />
+        </Portal>
+      )}
+      <LeftRay closestItem={closestItem} draggingBlockPos={draggingBlockPos} />
+    </>
   )
-  // Middle Screen line
-  // if (leftDis - 20 <= windowWidth / 2 && leftDis + 20 >= windowWidth / 2) {
-  //   return (
-  //     <>
-  //       <Box
-  //         pos="absolute"
-  //         left="50%"
-  //         transform="translate(-50%,0)"
-  //         top="0"
-  //         zIndex="9999"
-  //         bg="green.500"
-  //         width="1px"
-  //         h="100%"
-  //       />
-  //       <Box
-  //         pos="absolute"
-  //         left={blockPosRef.x}
-  //         top={blockPosRef.y}
-  //         zIndex="9999"
-  //         bg="green.500"
-  //         width={`${diff}px`}
-  //         h="1px"
-  //       />
-  //     </>
-  //   )
-  // }
 }
+
+// <Box
+//   pos="absolute"
+//   left={blockPosRef.x}
+//   top={blockPosRef.y}
+//   zIndex="9999"
+//   bg="green.500"
+//   width={`${diff}px`}
+//   h="1px"
+// />
