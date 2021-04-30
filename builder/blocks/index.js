@@ -79,7 +79,7 @@ const DragHandle = () => {
   )
 }
 
-export function BuilderBlock({ blockId, isOver }) {
+export function BuilderBlock({ blockId }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId] || {}
@@ -105,8 +105,8 @@ export function BuilderBlock({ blockId, isOver }) {
         dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
-      outlineOffset="-2px"
-      outlineColor={isEditable || isOver ? 'green.500' : 'transparent'}
+      outlineOffset="0px"
+      outlineColor={isEditable ? '#43E28E' : 'transparent'}
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
