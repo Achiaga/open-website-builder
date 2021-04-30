@@ -39,6 +39,15 @@ const AntfolioImages = [
   'https://antfolio.s3.amazonaws.com/mac-study-model.png',
   'https://antfolio.s3.amazonaws.com/blogImgTransparent.png',
   'https://antfolio.s3.amazonaws.com/books-study-model.png',
+  'https://antfolio.s3.amazonaws.com/bank.png',
+  'https://antfolio.s3.amazonaws.com/bitcoin.png',
+  'https://antfolio.s3.amazonaws.com/brief-case.png',
+  'https://antfolio.s3.amazonaws.com/cart.png',
+  'https://antfolio.s3.amazonaws.com/chart.png',
+  'https://antfolio.s3.amazonaws.com/doge-coin.png',
+  'https://antfolio.s3.amazonaws.com/ethereum.png',
+  'https://antfolio.s3.amazonaws.com/pie-chart.png',
+  'https://antfolio.s3.amazonaws.com/pig-bank.png',
 ]
 
 const unsplash = createApi({
