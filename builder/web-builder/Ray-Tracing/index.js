@@ -1,7 +1,7 @@
-import { Box } from '@chakra-ui/layout'
-import { Portal } from '@chakra-ui/portal'
 import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
+import CenterAligmentRay from './center-aligment-ray'
+import LeftRay from './left-ray'
 
 function isBlockOnRow(staticBlockY, draggingBlock, staticBlockHeight) {
   return (
@@ -99,22 +99,6 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
   return closest
 }
 
-function getHorizontalLineDim(draggingBlockPos, closestItem) {
-  if (draggingBlockPos.x < closestItem.x + closestItem.w)
-    return {
-      width: closestItem.w,
-      left: closestItem.x,
-      inside: true,
-    }
-  return {
-    width:
-      draggingBlockPos.x +
-      draggingBlockPos.w / 2 -
-      (closestItem.x + closestItem.w / 2),
-    left: closestItem.x + closestItem.w / 2,
-  }
-}
-
 export const RayTracing = ({
   width,
   gridColumnWidth,
@@ -140,89 +124,15 @@ export const RayTracing = ({
     gridRowHeight
   )
   if (closestItem.middle) {
-    const hrLineDim = getHorizontalLineDim(draggingBlockPos, closestItem)
-    console.log(hrLineDim)
     return (
-      <Portal id="main-builder">
-        {closestItem.middleX && (
-          <Box
-            pos="absolute"
-            left={`${closestItem.w / 2 + closestItem.x}px`}
-            top={`${closestItem.y}px`}
-            zIndex="2"
-            bg="green.500"
-            width="1px"
-            h={`${closestItem.h}px`}
-          />
-        )}
-        {closestItem.middleY && (
-          <Box
-            pos="absolute"
-            left={`${hrLineDim.left}px`}
-            top={`${closestItem.y + closestItem.h / 2}px`}
-            zIndex="2"
-            bg="green.500"
-            width={`${hrLineDim.width}px`}
-            h="1px"
-            d="flex"
-            justifyContent="space-between"
-            fontSize="xs"
-          >
-            <Box
-              textAlign="flex-start"
-              lineHeight="0"
-              color="red.400"
-              ml="-3px"
-            >
-              x
-            </Box>
-            {!hrLineDim.inside && (
-              <Box textAlign="center" fontSize="xs">
-                {Math.round(width)}
-              </Box>
-            )}
-            <Box textAlign="flex-end" lineHeight="0" color="red.400" mr="-3px">
-              x
-            </Box>
-          </Box>
-        )}
-      </Portal>
+      <CenterAligmentRay
+        draggingBlockPos={draggingBlockPos}
+        closestItem={closestItem}
+      />
     )
   }
   //Left Ray tracing
-  return (
-    <Box
-      pos="absolute"
-      left={`${-closestItem.diff}px`}
-      zIndex="2"
-      bg="green.500"
-      width={`${closestItem.diff}px`}
-      h="1px"
-      flexDir="row"
-      d="flex"
-      justifyContent="space-between"
-    >
-      <Box
-        textAlign="flex-start"
-        lineHeight="0"
-        fontSize="2xs"
-        color="red.400"
-        ml="-3px"
-      >
-        x
-      </Box>
-      <Box textAlign="center">{closestItem.diff}</Box>
-      <Box
-        textAlign="flex-end"
-        lineHeight="0"
-        fontSize="2xs"
-        color="red.400"
-        mr="-3px"
-      >
-        x
-      </Box>
-    </Box>
-  )
+  return <LeftRay closestItem={closestItem} />
   // Middle Screen line
   // if (leftDis - 20 <= windowWidth / 2 && leftDis + 20 >= windowWidth / 2) {
   //   return (

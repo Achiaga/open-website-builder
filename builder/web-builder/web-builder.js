@@ -163,7 +163,7 @@ const DraggableItem = ({
             }
           }
         >
-          {blockPostRef.isDragging && (
+          {blockPostRef?.isDragging && (
             <RayTracing
               width={width}
               gridColumnWidth={gridColumnWidth}
