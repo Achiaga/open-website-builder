@@ -100,22 +100,23 @@ const MainBlogCard = () => {
   )
 }
 
-const ArticleCard = () => {
+const ArticleCard = ({ title, imageUrl, description, bg }) => {
   return (
     <Box color="gray.500">
-      <ArticleImage
-        height={['60vw', '250px']}
-        w="100%"
-        redirectUrl="blog/article-1"
-        imageUrl="https://www.vectary.com/api/vctr-repo/v2/binary/7bc33b3f-1e38-45b4-a8d0-2966f9372809/e52d95ad-6c6f-4aa9-a7a2-03e51a5fb36d.jpeg"
-      />
+      <Box bg={bg || 'transparent'}>
+        <ArticleImage
+          height={['60vw', '250px']}
+          w="90%"
+          redirectUrl="blog/article-1"
+          imageUrl={imageUrl}
+        />
+      </Box>
       <Box mt="1rem">
         <ArticleTitle fontSize="27px" url="blog/article-1">
-          A top VC's recipe for an eye-catching pitch
+          {title}
         </ArticleTitle>
         <Text fontWeight="400" fontSize="lg" lineHeight="1.8" mt="1rem">
-          In this Q&A, we sit down with Martin Mignot of Index Ventures to hear
-          his tips for delivering a perfect remote pitch.
+          {description}
         </Text>
       </Box>
     </Box>
@@ -138,9 +139,22 @@ const BlogPage = () => {
             mt="1rem"
             pb="10rem"
           >
-            <ArticleCard />
-            <ArticleCard />
-            <ArticleCard />
+            <ArticleCard
+              title="A top VC's recipe for an eye-catching pitch"
+              imageUrl="https://www.vectary.com/api/vctr-repo/v2/binary/7bc33b3f-1e38-45b4-a8d0-2966f9372809/e52d95ad-6c6f-4aa9-a7a2-03e51a5fb36d.jpeg"
+              description="In this Q&A, we sit down with Martin Mignot of Index Ventures to hear
+          his tips for delivering a perfect remote pitch."
+            />
+            <ArticleCard
+              title="What makes Antfolio unique?"
+              imageUrl="/coming-soon-article.png"
+              bg="primary.500"
+            />
+            <ArticleCard
+              title="How was Antfolio created?"
+              imageUrl="/coming-soon-article.png"
+              bg="primary.500"
+            />
           </Box>
         </Box>
       </Box>
