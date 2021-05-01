@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import { motion, useCycle } from 'framer-motion'
 import { GrAdd, GrClose } from 'react-icons/gr'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -11,6 +12,26 @@ import {
 import TextIcon from '../../assets/text-icon'
 import MediaIcon from '../../assets/media-icon'
 import SectionIcon from '../../assets/section-icon'
+
+const sidebar = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+    transition: {
+      type: 'spring',
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    clipPath: 'circle(1px at 40px 40px)',
+    transition: {
+      delay: 0.5,
+      type: 'spring',
+      stiffness: 400,
+      damping: 40,
+    },
+  },
+}
 
 const ToolSection = ({ Icon, text, type, ...props }) => {
   const dispatch = useDispatch()
@@ -52,36 +73,54 @@ const ToolSection = ({ Icon, text, type, ...props }) => {
 
 const BuilderSidebar = () => {
   const builderDevice = useSelector(getBuilderDevice)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, toggleOpen] = useCycle(false, true)
 
   const isMobile = builderDevice === 'mobile'
 
   if (!isOpen)
     return (
-      <Box
-        as="button"
-        pos="fixed"
-        top="10px"
-        right="10px"
-        zIndex="9999"
-        border="1px solid transparent"
-        borderRadius="10px"
-        w="60px"
-        h="60px"
-        backgroundColor="#ffffff42"
-        justifyContent="center"
-        d="flex"
-        alignItems="center"
-        cursor="pointer"
-        boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-        _hover={{
-          bg: !isMobile && 'white',
-          border: !isMobile && '1px solid',
-        }}
-        onClick={() => setIsOpen(true)}
-      >
-        <GrAdd size="2.2em" />
-      </Box>
+      <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
+        <motion.div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '500px',
+            height: '500px',
+            background: '#fff',
+            zIndex: '99999',
+            borderRadius: '0.375rem',
+            boxShadow:
+              '0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)',
+          }}
+          variants={sidebar}
+        />
+        <Box
+          as="button"
+          pos="fixed"
+          top="10px"
+          right="10px"
+          zIndex="9999"
+          border="1px solid transparent"
+          borderRadius="10px"
+          w="60px"
+          h="60px"
+          backgroundColor="#ffffff42"
+          justifyContent="center"
+          d="flex"
+          alignItems="center"
+          cursor="pointer"
+          boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+          _hover={{
+            bg: !isMobile && 'white',
+            border: !isMobile && '1px solid',
+          }}
+          onClick={() => toggleOpen()}
+        >
+          <GrAdd size="2.2em" />
+        </Box>
+      </motion.nav>
     )
   if (isMobile && isOpen)
     return (
@@ -103,7 +142,7 @@ const BuilderSidebar = () => {
           <Box
             pos="absolute"
             cursor="pointer"
-            onClick={() => setIsOpen(false)}
+            onClick={() => toggleOpen()}
             p="0.25rem"
             borderRadius="0.25rem"
             right="1rem"
@@ -145,7 +184,7 @@ const BuilderSidebar = () => {
           </Box>
           <Box
             cursor="pointer"
-            onClick={() => setIsOpen(false)}
+            onClick={() => toggleOpen()}
             p="0.25rem"
             borderRadius="0.25rem"
             _hover={{ background: '#F2F2F2;' }}

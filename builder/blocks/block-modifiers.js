@@ -540,11 +540,13 @@ export function ImageSelector({
           {icon}
         </Button>
       </CustomToolTip>
-      <ImageSelectorModal
-        isOpen={isOpen}
-        onClose={onClose}
-        handleSelectImage={handleChange}
-      />
+      <Portal id="modal-images">
+        <ImageSelectorModal
+          isOpen={isOpen}
+          onClose={onClose}
+          handleSelectImage={handleChange}
+        />
+      </Portal>
     </Box>
   )
 }

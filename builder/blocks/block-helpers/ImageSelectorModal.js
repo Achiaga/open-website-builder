@@ -1,137 +1,13 @@
 import { Button } from '@chakra-ui/button'
-import { Image } from '@chakra-ui/image'
-import { Input } from '@chakra-ui/input'
+import Link from 'next/link'
+import { Text, ScaleFade } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/layout'
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-} from '@chakra-ui/modal'
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/tabs'
-import { useEffect, useState } from 'react'
-import { createApi } from 'unsplash-js'
-import useDebouncedValue from './useDebounce'
-const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
-  return (
-    <Box
-      border="3px solid"
-      borderColor={isSelcted ? 'blue.400' : 'transparent'}
-      borderRadius="10px"
-      _hover={{
-        borderColor: 'blue.400',
-      }}
-      overflow="hidden"
-      cursor="pointer"
-      onClick={() => onSelect(index)}
-      // mb="0.3rem"
-      pos="relative"
-    >
-      <Image src={imageSrc} />
-    </Box>
-  )
-}
+import { GrClose } from 'react-icons/gr'
 
-const AntfolioImages = [
-  'https://antfolio.s3.amazonaws.com/mac-study-model.png',
-  'https://antfolio.s3.amazonaws.com/blogImgTransparent.png',
-  'https://antfolio.s3.amazonaws.com/books-study-model.png',
-  'https://antfolio.s3.amazonaws.com/bank.png',
-  'https://antfolio.s3.amazonaws.com/bitcoin.png',
-  'https://antfolio.s3.amazonaws.com/brief-case.png',
-  'https://antfolio.s3.amazonaws.com/cart.png',
-  'https://antfolio.s3.amazonaws.com/chart.png',
-  'https://antfolio.s3.amazonaws.com/doge-coin.png',
-  'https://antfolio.s3.amazonaws.com/ethereum.png',
-  'https://antfolio.s3.amazonaws.com/pie-chart.png',
-  'https://antfolio.s3.amazonaws.com/pig-bank.png',
-]
-
-const unsplash = createApi({
-  // eslint-disable-next-line no-undef
-  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_API,
-})
-const ImagesGrid = ({ onSelect, selectedImg, images = [] }) => {
-  function handleSelect(index) {
-    onSelect({ image: images[index], index })
-  }
-  return (
-    <Box
-      lineHeight={0}
-      style={{
-        columnCount: 3,
-        columnGap: '0.3rem',
-      }}
-    >
-      {images?.map((item, index) => (
-        <ImageItem
-          key={index}
-          imageSrc={item}
-          index={index}
-          isSelcted={selectedImg === index}
-          onSelect={handleSelect}
-        />
-      ))}
-    </Box>
-  )
-}
-
-const UnpslashImages = ({ onSelect, selectedImg }) => {
-  const [searchTerm, debouncedValue, setSearchTerm] = useDebouncedValue(
-    null,
-    500
-  )
-  const [images, setImages] = useState(null)
-  function handleSelect(index) {
-    onSelect({ image: images[index], index })
-  }
-  useEffect(() => {
-    unsplash.search
-      .getPhotos({
-        query: searchTerm || 'happy person',
-      })
-      .then((result) => {
-        if (result.errors) {
-          console.log('error occurred: ', result.errors[0])
-        } else {
-          const photos = result.response.results
-          setImages(photos)
-        }
-      })
-  }, [debouncedValue])
-  return (
-    <Box>
-      <Input
-        placeholder="search for an image"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <Box
-        lineHeight={0}
-        style={{
-          columnCount: 3,
-          columnGap: '0.3rem',
-        }}
-      >
-        {images?.map((item, index) => (
-          <ImageItem
-            key={index}
-            imageSrc={getUnsplashSmallImageUrl(item)}
-            index={index}
-            isSelcted={selectedImg === index}
-            onSelect={handleSelect}
-          />
-        ))}
-      </Box>
-    </Box>
-  )
-}
-
-function getUnsplashSmallImageUrl(imgObj) {
-  return imgObj.urls.small
-}
+import { useState } from 'react'
+import SidebarTab from './sidebar-tab'
+import { AntfolioImages, AntfolioIcons } from './assets'
+import { UnpslashImages, ImagesGrid } from './ImagesGrid'
 
 function getSelectedImgUrl(imgObj, tabIndex) {
   if (tabIndex === 0) return imgObj.image.urls.regular
@@ -149,59 +25,178 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
     onClose()
     handleSelectImage(getSelectedImgUrl(selectedImg, tabIndex))
   }
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} size="5xl">
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Image Selector</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Box minH="300px" maxH="500px" overflowY="scroll">
-            <Tabs
-              colorScheme="primary"
-              border="none"
-              outline="none"
-              onChange={(index) => setTabIndex(index)}
-            >
-              <TabList>
-                <Tab>Unsplash</Tab>
-                <Tab>Antfolio</Tab>
-                <Tab>Upload your own</Tab>
-              </TabList>
 
-              <TabPanels>
-                <TabPanel>
+  if (isOpen) {
+    return (
+      <Box
+        position="fixed"
+        top="0"
+        left="0"
+        sx={{
+          width: '100vw',
+          height: '100vh',
+          gap: ' 20px',
+          borderRadius: ' 0px',
+          backdropFilter: ' blur(1px)',
+          backgroundColor: ' rgba(0,76,255, 0.022)',
+          boxShadow: ' rgba(0, 0, 0, 0.3) 2px 8px 8px',
+          border: ' 0px rgba(255,255,255,0.4) solid',
+          borderBottom: ' 0px rgba(40,40,40,0.35) solid',
+          borderRight: ' 0px rgba(40,40,40,0.35) solid,',
+        }}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        zIndex="99999"
+      >
+        <ScaleFade initialScale={0.9} in={isOpen}>
+          <Box
+            position="relative"
+            // left="50%"
+            // top="50%"
+            // transform="translate(-50%, -50%)"
+            width="1000px"
+            height="1000px"
+            background="white"
+            zIndex="99999"
+            sx={{ width: '80vw', height: '80vh' }}
+            borderRadius="0.375rem"
+            boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+            display="flex"
+          >
+            <Box
+              as="button"
+              position="absolute"
+              right="0.65rem"
+              top="0.65rem"
+              textAlign="center"
+              onClick={onClose}
+            >
+              <GrClose size="1em" />
+            </Box>
+            <Box
+              position="absolute"
+              right="1rem"
+              bottom="1rem"
+              textAlign="center"
+            >
+              <Button variant="ghost" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button colorScheme="primary" onClick={handleApplyImage}>
+                Set Image
+              </Button>
+            </Box>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              justifyContent="start"
+              position="relative"
+              background="primary.500"
+              borderRadius="0.375rem 0 0px 0.375rem"
+              color="white"
+              fontWeight="semibold"
+              fontSize="xl"
+              minWidth="15%"
+              paddingTop="1rem"
+            >
+              <SidebarTab
+                index={0}
+                tabIndex={tabIndex}
+                onClick={() => setTabIndex(0)}
+                label={'Unsplash'}
+              />
+              <SidebarTab
+                index={1}
+                tabIndex={tabIndex}
+                onClick={() => setTabIndex(1)}
+                label={'Images'}
+              />
+              <SidebarTab
+                index={2}
+                tabIndex={tabIndex}
+                onClick={() => setTabIndex(2)}
+                label={'Props'}
+              />
+              <SidebarTab
+                index={3}
+                tabIndex={tabIndex}
+                onClick={() => setTabIndex(3)}
+                label={'Icons'}
+              />
+              <Box
+                position="absolute"
+                left="0rem"
+                bottom="1.5rem"
+                textAlign="center"
+              >
+                <Button
+                  background="white"
+                  color="primary.500"
+                  padding="1.5rem 1.25rem"
+                  onClick={() => setTabIndex(4)}
+                >
+                  Upload <br />
+                  your Own
+                </Button>
+                <Text fontSize="sm" paddingTop="1rem" paddingX="1rem">
+                  Upgrade to{' '}
+                  <Link href="/pricing">
+                    <Text
+                      as="span"
+                      color="gold"
+                      textDecoration="underline"
+                      fontWeight="800"
+                    >
+                      Pro
+                    </Text>
+                  </Link>{' '}
+                  to access it!
+                </Text>
+              </Box>
+            </Box>
+            <Box
+              paddingX="1.75rem"
+              paddingTop="1.5rem"
+              paddingBottom="3.5rem"
+              width="100%"
+            >
+              <Box>
+                {tabIndex === 0 && (
                   <UnpslashImages
                     onSelect={onSelect}
                     selectedImg={selectedImg?.index}
                   />
-                </TabPanel>
-                <TabPanel>
+                )}
+                {tabIndex === 1 && (
                   <ImagesGrid
                     selectedImg={selectedImg?.index}
                     onSelect={onSelect}
-                    images={AntfolioImages}
+                    // images={AntfolioImages}
+                    numCol={3}
+                    columnGap={'0.3rem'}
                   />
-                </TabPanel>
-                <TabPanel>
-                  <p>No here yet!</p>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
+                )}
+                {tabIndex === 2 && (
+                  <ImagesGrid
+                    selectedImg={selectedImg?.index}
+                    onSelect={onSelect}
+                    // images={AntfolioIcons}
+                    numCol={7}
+                    columnGap={'1rem'}
+                  />
+                )}
+                {tabIndex === 3 && <p>No icons yet!</p>}
+                {tabIndex === 4 && <p>No here yet!</p>}
+              </Box>
+            </Box>
           </Box>
-        </ModalBody>
-
-        <ModalFooter>
-          <Button variant="ghost" mr={3} onClick={onClose}>
-            Close
-          </Button>
-          <Button colorScheme="primary" onClick={handleApplyImage}>
-            Set Image
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
-  )
+        </ScaleFade>
+      </Box>
+    )
+  }
+  return null
 }
 
 export default ImageSelectorModal
