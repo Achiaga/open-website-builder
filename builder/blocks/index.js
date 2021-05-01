@@ -10,7 +10,6 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlocks,
-  getDraggingBlock,
   getIsMobileBuilder,
   getSelectedBlockId,
   setBlockEditable,
@@ -78,25 +77,24 @@ const DragHandle = () => {
       cursor="move"
       left="-30px"
       bg="white"
+      zIndex="9999"
     >
       <BsArrowsMove size="20px" />
     </Box>
   )
 }
 
-export function BuilderBlock({ blockId, isOver }) {
+export function BuilderBlock({ blockId, isDragging }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
-  const draggingBlock = useSelector(getDraggingBlock)
 
   if (!type) return null
 
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
-  const isDragging = draggingBlock === blockId
 
   const dragHandle = isEditable && type === 'text' && !isMobileBuilder
   return (
@@ -110,13 +108,14 @@ export function BuilderBlock({ blockId, isOver }) {
         dispatch(setBlockEditable(blockId))
       }}
       outline="2px solid"
-      outlineOffset="-2px"
-      outlineColor={isEditable || isOver ? 'green.500' : 'transparent'}
+      outlineOffset="0px"
+      outlineColor={isEditable ? '#43E28E' : 'transparent'}
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
+      position="relative"
     >
-      {isEditable && !isMobileBuilder && type !== 'text' && (
+      {isEditable && !isMobileBuilder && type !== 'text' && !isDragging && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
         </>

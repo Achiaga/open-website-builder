@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
-import { Resizable } from 're-resizable'
 import { v4 as uuid } from 'uuid'
 
 import { getParentBlock, highlightFutureParentBlock } from './helpers'
@@ -25,6 +24,8 @@ import {
   getLayout,
 } from '../../features/builderSlice'
 import { BuilderBlock, ResizingCounter } from '../blocks'
+import { RayTracing } from './Ray-Tracing'
+import ResizeWrapper from './resizable-wrapper'
 
 const blocksZIndex = {
   inception: 0,
@@ -44,14 +45,13 @@ const DraggableItem = ({
   gridColumnWidth,
 }) => {
   const [resizeValues, setResizeValues] = useState(null)
-  const [isOver, setIsOver] = useState(false)
+
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
   const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
-
   const { x, y, w, h } = blockLayout
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
@@ -60,8 +60,9 @@ const DraggableItem = ({
   const blockType = blockData?.type
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
-
+  const [blockPostRef, setBlockPostRef] = useState(null)
   function onDragStop(_, blockPos) {
+    setBlockPostRef(null)
     dispatch(handleDragStop(blockPos, blockId))
     removeHighlightedElem()
   }
@@ -77,6 +78,13 @@ const DraggableItem = ({
   }
 
   function onDrag(_, blockPos) {
+    setBlockPostRef({
+      ...blockPos,
+      w: w * gridColumnWidth,
+      h: h * gridRowHeight,
+      blockId,
+      isDragging: true,
+    })
     const newBlockLayout = {
       x: blockPos.x / gridColumnWidth,
       y: blockPos.y / gridRowHeight,
@@ -85,6 +93,7 @@ const DraggableItem = ({
       i: blockId,
     }
     handleHiglightSection(newBlockLayout)
+
     if (blockId.includes('inception')) {
       dispatch(
         handleDrag(
@@ -105,79 +114,53 @@ const DraggableItem = ({
       isSelected
     )
   }
-  useEffect(() => {
-    setIsOver()
-  }, [])
 
   const zIndexValue = getZIndexValue(blockType, isSelected)
+  const isDragging = blockPostRef?.isDragging
   return (
-    <Draggable
-      key={blockId}
-      position={{ x: xPos, y: yPos }}
-      onStop={onDragStop}
-      onDrag={onDrag}
-      handle=".draggHandle"
-      bounds="parent"
-    >
-      <Resizable
-        size={{ width, height }}
-        defaultSize={{ width, height }}
+    <>
+      <Draggable
         key={blockId}
-        style={{ position: 'absolute', zIndex: 2 }}
-        onResizeStop={onResizeStop}
-        enable={{
-          top: false,
-          right: isTextBlock ? true : false,
-          bottom: false,
-          left: false,
-          topRight: false,
-          bottomRight: isTextBlock ? false : true,
-          bottomLeft: false,
-          topLeft: false,
-        }}
-        onResize={handleResize}
-        // onMouseOver={() => setIsOver(true)}
-        // onMouseOut={() => setIsOver(false)}
-        handleStyles={
-          isOver && {
-            bottomRight: {
-              border: '1px solid blue',
-              background: 'white',
-              borderRadius: '2px',
-              zIndex: 2,
-            },
-            right: {
-              border: '1px solid blue',
-              background: 'white',
-              borderRadius: '2px',
-              zIndex: 2,
-            },
-          }
-        }
+        position={{ x: xPos, y: yPos }}
+        onStop={onDragStop}
+        onDrag={onDrag}
+        handle=".draggHandle"
+        bounds="parent"
       >
-        <MemoBlockItem
-          blockId={blockId}
-          isOver={isOver}
-          setIsOver={setIsOver}
-          zIndexValue={zIndexValue}
-        />
-        <ResizingCounter {...resizeValues} />
-      </Resizable>
-    </Draggable>
+        <Box pos="absolute" zIndex={zIndexValue}>
+          <ResizeWrapper
+            width={width}
+            height={height}
+            blockId={blockId}
+            onResizeStop={onResizeStop}
+            isTextBlock={isTextBlock}
+            handleResize={handleResize}
+          >
+            <RayTracing
+              width={width}
+              gridColumnWidth={gridColumnWidth}
+              blockPostRef2={blockPostRef}
+              blockId={blockId}
+              isDragging={isDragging}
+            />
+
+            <MemoBlockItem
+              blockId={blockId}
+              isDragging={isDragging}
+              zIndexValue={zIndexValue}
+            />
+            <ResizingCounter {...resizeValues} />
+          </ResizeWrapper>
+        </Box>
+      </Draggable>
+    </>
   )
 }
 
-const BlockItem = ({ blockId, isOver, setIsOver }) => {
+const BlockItem = ({ blockId, isDragging, zIndexValue }) => {
   return (
-    <Box
-      w={'100%'}
-      h={'100%'}
-      pos="absolute"
-      // onMouseOver={() => setIsOver(true)}
-      // onMouseOut={() => setIsOver(false)}
-      // zIndex={zIndexValue}
-    >
-      <BuilderBlock blockId={blockId} isOver={isOver} />
+    <Box w={'100%'} h={'100%'} pos="absolute" zIndex={zIndexValue}>
+      <BuilderBlock blockId={blockId} isDragging={isDragging} />
     </Box>
   )
 }
