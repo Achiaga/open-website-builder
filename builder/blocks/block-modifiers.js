@@ -546,7 +546,7 @@ ButtonSelector.propTypes = {
   placeholder: PropTypes.object.isRequired,
 }
 
-function DuplicateButton({
+export function DuplicateButton({
   handleEdit,
   property,
   operationType,
