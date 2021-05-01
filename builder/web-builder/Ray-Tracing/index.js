@@ -51,15 +51,47 @@ function isBlockOnCenterX(sbX, sbW, dgB) {
   )
 }
 
-function getBlockDistantToNextBlock(dgB, sbX, sbW) {
-  const isDraggingBlockInside = dgB.x >= sbX && dgB.x <= sbX + sbW
+function getIsDraggingBlockRight(dgB, sbX, sbW) {
+  return dgB.x > sbX + sbW
+}
+function getIsDraggingBlockPartyallyInsideStatic(dgB, sbX, sbW) {
+  return dgB.x + dgB.w > sbX && dgB.x < sbX && dgB.x + dgB.w < sbX + sbW
+}
+
+function getDiff(
+  isDraggingBlockRight,
+  partiallyInisdeStatic,
+  isDraggingBlockInside,
+  dgB,
+  sbX,
+  sbW
+) {
   const diffLeft = isDraggingBlockInside
     ? Math.round(dgB.x - sbX)
     : Math.round(dgB.x + dgB.w - sbX)
 
   const diffRight = Math.round(dgB.x - (sbX + sbW))
-  const isBlockRight = dgB.x > sbX + sbW || (dgB.x + dgB.w > sbX && dgB.x < sbX)
-  const diff = Math.abs(isBlockRight ? diffRight : diffLeft)
+  if (partiallyInisdeStatic) return Math.abs(dgB.x + dgB.w - (sbX + sbW))
+  if (isDraggingBlockRight) return Math.abs(diffRight)
+  return Math.abs(diffLeft)
+}
+
+function getBlockDistantToNextBlock(dgB, sbX, sbW) {
+  const isDraggingBlockInside = dgB.x >= sbX && dgB.x <= sbX + sbW
+  const isDraggingBlockRight = getIsDraggingBlockRight(dgB, sbX, sbW)
+  const partiallyInisdeStatic = getIsDraggingBlockPartyallyInsideStatic(
+    dgB,
+    sbX,
+    sbW
+  )
+  const diff = getDiff(
+    isDraggingBlockRight,
+    partiallyInisdeStatic,
+    isDraggingBlockInside,
+    dgB,
+    sbX,
+    sbW
+  )
   return diff
 }
 
