@@ -116,6 +116,7 @@ const DraggableItem = ({
   }
 
   const zIndexValue = getZIndexValue(blockType, isSelected)
+  const isDragging = blockPostRef?.isDragging
   return (
     <>
       <Draggable
@@ -126,7 +127,7 @@ const DraggableItem = ({
         handle=".draggHandle"
         bounds="parent"
       >
-        <Box pos="absolute">
+        <Box pos="absolute" zIndex={zIndexValue}>
           <ResizeWrapper
             width={width}
             height={height}
@@ -135,7 +136,7 @@ const DraggableItem = ({
             isTextBlock={isTextBlock}
             handleResize={handleResize}
           >
-            {blockPostRef?.isDragging && (
+            {isDragging && (
               <RayTracing
                 width={width}
                 gridColumnWidth={gridColumnWidth}
@@ -143,7 +144,11 @@ const DraggableItem = ({
                 blockId={blockId}
               />
             )}
-            <MemoBlockItem blockId={blockId} zIndexValue={zIndexValue} />
+            <MemoBlockItem
+              blockId={blockId}
+              isDragging={isDragging}
+              zIndexValue={zIndexValue}
+            />
             <ResizingCounter {...resizeValues} />
           </ResizeWrapper>
         </Box>
@@ -152,10 +157,10 @@ const DraggableItem = ({
   )
 }
 
-const BlockItem = ({ blockId }) => {
+const BlockItem = ({ blockId, isDragging, zIndexValue }) => {
   return (
-    <Box w={'100%'} h={'100%'} pos="absolute">
-      <BuilderBlock blockId={blockId} />
+    <Box w={'100%'} h={'100%'} pos="absolute" zIndex={zIndexValue}>
+      <BuilderBlock blockId={blockId} isDragging={isDragging} />
     </Box>
   )
 }

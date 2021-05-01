@@ -1,6 +1,15 @@
 import { Resizable } from 're-resizable'
 import { useEffect, useState } from 'react'
 
+const ReizeHandlesInitialValue = {
+  top: false,
+  bottom: false,
+  left: false,
+  topRight: false,
+  bottomLeft: false,
+  topLeft: false,
+}
+
 const ResizeWrapper = ({
   width,
   height,
@@ -28,14 +37,9 @@ const ResizeWrapper = ({
       }}
       onResizeStop={onResizeStop}
       enable={{
-        top: false,
+        ...ReizeHandlesInitialValue,
         right: isTextBlock ? true : false,
-        bottom: false,
-        left: false,
-        topRight: false,
         bottomRight: isTextBlock ? false : true,
-        bottomLeft: false,
-        topLeft: false,
       }}
       onResize={handleResize}
       onMouseOver={() => setIsOver(true)}

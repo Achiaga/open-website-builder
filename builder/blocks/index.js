@@ -10,7 +10,6 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlocks,
-  getDraggingBlock,
   getIsMobileBuilder,
   getSelectedBlockId,
   setBlockEditable,
@@ -79,19 +78,17 @@ const DragHandle = () => {
   )
 }
 
-export function BuilderBlock({ blockId }) {
+export function BuilderBlock({ blockId, isDragging }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
-  const draggingBlock = useSelector(getDraggingBlock)
 
   if (!type) return null
 
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
-  const isDragging = draggingBlock === blockId
 
   const dragHandle = isEditable && type === 'text' && !isMobileBuilder
   return (
@@ -112,7 +109,7 @@ export function BuilderBlock({ blockId }) {
       _hover={!isEditable && hoverEffect[type]}
       position="relative"
     >
-      {isEditable && !isMobileBuilder && type !== 'text' && (
+      {isEditable && !isMobileBuilder && type !== 'text' && !isDragging && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
         </>
