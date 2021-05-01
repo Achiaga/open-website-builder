@@ -8,17 +8,21 @@ import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
 
-const CustomToolTip = ({ label, children }) => {
+export const CustomToolTip = ({ label, children }) => {
   return (
     <Tooltip
       paddingRight="5px"
       hasArrow
       placement="top"
       label={label}
-      bg="white"
-      color="black"
+      bg="#2B2A35"
+      color="#F6F6F9"
+      borderRadius="10px"
       closeOnClick
       gutter={12}
+      paddingX="10px"
+      paddingY="5px"
+      fontSize="xs"
       sx={{
         '.chakra-tooltip__arrow-wrapper': {
           zIndex: '1 !important',
@@ -76,23 +80,31 @@ function DropDownSelector({
       alignItems="center"
       justifyContent="center"
       cursor="pointer"
-      height="20px"
-      borderLeft="1px solid gray"
-      paddingX="0.3rem"
+      h="100%"
     >
       <CustomToolTip label={tooltip}>
-        <Button
+        <Box
+          as="button"
+          d="flex"
+          alignItems="center"
+          h="100%"
           id={property}
-          size="sm"
-          padding="3px"
           bg="transparent"
           onClick={handleOpenToolbar}
+          borderRadius="0"
+          px="0.75rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
         >
           {icon}
           <Text as="span" pl={icon && `0.45rem`}>
             {result}
           </Text>
-        </Button>
+        </Box>
       </CustomToolTip>
       <Box
         position="absolute"
@@ -102,29 +114,32 @@ function DropDownSelector({
         left={isBlockAtLeft ? '2px' : 'unset'}
         bg="white"
         rounded="5px"
-        zIndex="999999"
+        zIndex="999"
         boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
+        overflow="hidden"
       >
         {isOpen === property &&
           options?.map(({ value: optionValue, title }, index) => {
             return (
-              <Button
+              <Box
+                as="button"
                 bg="transparent"
                 onClick={handleChange}
                 key={index}
-                height="2rem"
+                px="0.5rem"
+                py="0.25rem"
                 fontSize="14px"
+                fontWeight="500"
                 background={`${optionValue === value && '#bdd4f95e'}`}
                 _hover={
                   optionValue === value
                     ? { bg: '#bdd4f98a' }
-                    : { bg: '#F2F2F2' }
+                    : { bg: 'primary.100' }
                 }
                 value={optionValue}
-                paddingX="4px"
               >
                 {title}
-              </Button>
+              </Box>
             )
           })}
       </Box>
@@ -404,24 +419,31 @@ export function TextInput({
       alignItems="center"
       justifyContent="center"
       cursor="pointer"
-      height="20px"
-      borderLeft="1px solid gray"
-      borderRight="1px solid gray"
-      paddingX="0.3rem"
+      h="100%"
     >
       <CustomToolTip label={tooltip}>
-        <Button
+        <Box
+          as="button"
+          d="flex"
+          alignItems="center"
+          h="100%"
           id={property}
-          size="sm"
-          padding="3px"
           bg="transparent"
           onClick={handleOpenToolbar}
+          borderRadius="0"
+          px="0.75rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
         >
           {icon && icon}
           <Text as="span" pl={icon && `0.45rem`}>
             {placeholder}
           </Text>
-        </Button>
+        </Box>
       </CustomToolTip>
       {isOpen === property && (
         <Box
@@ -483,19 +505,36 @@ export function ButtonSelector({
     handleEdit(property, null, operationType)
   }
   return (
-    <Box>
+    <Box
+      position="relative"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      cursor="pointer"
+      h="100%"
+    >
       <CustomToolTip label={tooltip}>
-        <Button
-          padding="0"
+        <Box
+          as="button"
           onClick={handleClick}
+          d="flex"
+          alignItems="center"
+          h="100%"
+          id={property}
           bg="transparent"
-          borderRadius="5px"
-          borderTopRightRadius="0px"
-          borderBottomRightRadius="0px"
-          _hover={{ bg: '#ff818180' }}
+          borderRadius="0"
+          px="1rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          borderTopLeftRadius="17px"
+          borderBottomLeftRadius="17px"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
         >
           {placeholder}
-        </Button>
+        </Box>
       </CustomToolTip>
     </Box>
   )
@@ -518,13 +557,33 @@ function DuplicateButton({
     handleEdit(property, null, operationType)
   }
   return (
-    <Box>
+    <Box
+      position="relative"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      cursor="pointer"
+      h="100%"
+    >
       <CustomToolTip label={tooltip}>
         <Button
-          padding="0"
           onClick={handleClick}
+          as="button"
+          d="flex"
+          alignItems="center"
+          h="100%"
+          id={property}
           bg="transparent"
-          borderRadius="5px"
+          borderRadius="0"
+          px="1rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          borderTopRightRadius="17px"
+          borderBottomRightRadius="17px"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
         >
           {placeholder}
         </Button>
@@ -630,13 +689,15 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
         justifyContent="left"
         {...xOffsetToolbar}
         {...yOffsetToolbar}
-        rounded="5px"
         boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
         pos="absolute"
         onClick={(e) => e.stopPropagation()}
         backgroundColor="white"
-        color="black"
+        color="gray.500"
         zIndex="9999"
+        borderRadius="20px"
+        fontSize="xs"
+        h="35px"
       >
         <Modifiers
           handleOpenToolbar={handleOpenToolbar}

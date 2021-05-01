@@ -108,7 +108,7 @@ const DraggableItem = ({
   }
 
   const el = document.getElementById(blockId)
-  if (el) {
+  if (el?.offsetParent) {
     el.offsetParent.offsetParent.style.zIndex = getZIndexValue(
       blockType,
       isSelected
