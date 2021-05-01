@@ -24,7 +24,6 @@ const TemplatePage = () => {
         />
         <title>Antfolio - The best templates made by our best designers</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.antfolio.app" />
       </Head>
       <Box
         width="full"

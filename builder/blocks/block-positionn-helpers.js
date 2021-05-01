@@ -24,37 +24,9 @@ function getTranslateValues(element) {
   }
 }
 
-function hasTranslate(element) {
-  const style = window.getComputedStyle(element)
-  const transformProperty = style['transform']
-  const marix =
-    transformProperty.match(/matrix.*\((.+)\)/)?.[1].split(', ') ?? null
-  return !!marix
-}
-
-function getBlockOffset(element) {
-  const style = window.getComputedStyle(element)
-  const width = +style['width']?.replace('px', '') || 0
-  const height = +style['height']?.replace('px', '') || 0
-  const top = +style['top']?.replace('px', '') || 0
-  const left = +style['left']?.replace('px', '') || 0
-  return { left, top, width, height }
-}
-
-function getChildInceptionPos(blockId, blockParentId) {
-  const v1 = getBlockPos(blockId)
-  const v2 = getBlockPos(blockParentId)
-  return {
-    top: v1.top + v2.top,
-    left: v1.left + v2.left,
-    width: v1.width,
-    height: v1.height,
-  }
-}
-
 function getBlockPos(blcokId) {
   const element = document.getElementById(blcokId)
-  const parentElement = element?.offsetParent
+  const parentElement = element?.offsetParent.offsetParent
   return getTranslateValues(parentElement)
 }
 

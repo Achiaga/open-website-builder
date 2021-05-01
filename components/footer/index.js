@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { useTranslation } from '../../hooks/translation'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import LogoSvg from '../../assets/logo'
 import Button from '../commun/button'
@@ -9,12 +9,7 @@ import Youtube from '../../assets/youtube'
 import Linkedin from '../../assets/linkedin'
 
 const Features = () => {
-  const router = useRouter()
   const [t] = useTranslation()
-
-  const handleStartNow = () => {
-    router.push(`/templates`)
-  }
 
   return (
     <Box
@@ -31,20 +26,21 @@ const Features = () => {
       </Box>
       <Box width={['200px', '537px']} d={['none', 'block']}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button
-            w="212px"
-            fontSize="18px"
-            bg={'primary.500'}
-            _hover={{ bg: `${'primary.500'}` }}
-            _active={{
-              bg: `${'primary.500'}`,
-              transform: 'scale(0.98)',
-              borderColor: '#bec3c9',
-            }}
-            onClick={handleStartNow}
-          >
-            {t.navbar.startNowButton}
-          </Button>
+          <Link href="/templates">
+            <Button
+              w="212px"
+              fontSize="18px"
+              bg={'primary.500'}
+              _hover={{ bg: `${'primary.500'}` }}
+              _active={{
+                bg: `${'primary.500'}`,
+                transform: 'scale(0.98)',
+                borderColor: '#bec3c9',
+              }}
+            >
+              {t.navbar.startNowButton}
+            </Button>
+          </Link>
         </Box>
       </Box>
       <Box
