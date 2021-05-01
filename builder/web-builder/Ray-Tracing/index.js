@@ -52,13 +52,13 @@ function isBlockOnCenterX(sbX, sbW, dgB) {
 }
 
 function getBlockDistantToNextBlock(dgB, sbX, sbW) {
-  const isDraggingBlockInside = dgB.x >= sbX && dgB.x + dgB.w <= sbX + sbW
+  const isDraggingBlockInside = dgB.x >= sbX && dgB.x <= sbX + sbW
   const diffLeft = isDraggingBlockInside
     ? Math.round(dgB.x - sbX)
     : Math.round(dgB.x + dgB.w - sbX)
 
   const diffRight = Math.round(dgB.x - (sbX + sbW))
-  const isBlockRight = dgB.x > sbX + sbW
+  const isBlockRight = dgB.x > sbX + sbW || (dgB.x + dgB.w > sbX && dgB.x < sbX)
   const diff = Math.abs(isBlockRight ? diffRight : diffLeft)
   return diff
 }
