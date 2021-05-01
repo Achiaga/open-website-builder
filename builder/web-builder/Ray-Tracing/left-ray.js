@@ -26,7 +26,7 @@ const LeftRay = ({ closestItem, draggingBlockPos }) => {
           >
             x
           </Box>
-          <Box textAlign="center">{closestItem.diff}</Box>
+          <Box textAlign="center">{Math.round(closestItem.diff)}</Box>
           <Box
             textAlign="flex-end"
             lineHeight="0"
