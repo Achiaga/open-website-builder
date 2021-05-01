@@ -62,7 +62,7 @@ const DraggableItem = ({
   const isSelected = selectedBlock === blockId
   const [blockPostRef, setBlockPostRef] = useState(null)
   function onDragStop(_, blockPos) {
-    setBlockPostRef(null)
+    // setBlockPostRef(null)
     dispatch(handleDragStop(blockPos, blockId))
     removeHighlightedElem()
   }
@@ -136,14 +136,14 @@ const DraggableItem = ({
             isTextBlock={isTextBlock}
             handleResize={handleResize}
           >
-            {isDragging && (
-              <RayTracing
-                width={width}
-                gridColumnWidth={gridColumnWidth}
-                blockPostRef2={blockPostRef}
-                blockId={blockId}
-              />
-            )}
+            <RayTracing
+              width={width}
+              gridColumnWidth={gridColumnWidth}
+              blockPostRef2={blockPostRef}
+              blockId={blockId}
+              isDragging={isDragging}
+            />
+
             <MemoBlockItem
               blockId={blockId}
               isDragging={isDragging}

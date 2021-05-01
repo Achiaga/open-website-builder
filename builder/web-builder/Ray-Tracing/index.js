@@ -22,13 +22,16 @@ function getGridPos({ x, w, h, y }, gridColumnWidth, gridRowHeight) {
   return { sbX, sbY, sbW, sbH }
 }
 
-function hasHorizontalBlocks(closest) {
+function hasNoHorizontalBlocks(closest) {
   return closest.diff === Infinity
 }
 
 function getSidesBorderPos(draggingBlock) {
   const isBlockOnRight = draggingBlock.x > window.innerWidth / 2
-  return { x: 0, diff: Math.round(draggingBlock.x), right: isBlockOnRight }
+  const diff = isBlockOnRight
+    ? window.innerWidth - Math.round(draggingBlock.x)
+    : Math.round(draggingBlock.x)
+  return { x: 0, diff: diff, right: isBlockOnRight }
 }
 
 function isBlockOnCenterY(sbY, sbH, dgB) {
@@ -49,16 +52,45 @@ function isBlockOnCenterX(sbX, sbW, dgB) {
 }
 
 function getBlockDistantToNextBlock(dgB, sbX, sbW) {
-  const diffLeft = Math.round(dgB.x - sbX)
+  const isDraggingBlockInside = dgB.x >= sbX && dgB.x + dgB.w <= sbX + sbW
+  const diffLeft = isDraggingBlockInside
+    ? Math.round(dgB.x - sbX)
+    : Math.round(dgB.x + dgB.w - sbX)
+
   const diffRight = Math.round(dgB.x - (sbX + sbW))
   const isBlockRight = dgB.x > sbX + sbW
   const diff = Math.abs(isBlockRight ? diffRight : diffLeft)
   return diff
 }
 
-function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
+function isInsideX(draggingBlockPos, staticBlockPos) {
+  const { sbX } = staticBlockPos
+  return (
+    draggingBlockPos.x <= sbX && draggingBlockPos.x + draggingBlockPos.w >= sbX
+  )
+}
+function isInsideY(draggingBlockPos, staticBlockPos) {
+  const { sbY } = staticBlockPos
+  return (
+    draggingBlockPos.y <= sbY && draggingBlockPos.y + draggingBlockPos.h >= sbY
+  )
+}
+
+function getIsStaticBlockInside(draggingBlockPos, staticBlockPos) {
+  return (
+    isInsideX(draggingBlockPos, staticBlockPos) &&
+    isInsideY(draggingBlockPos, staticBlockPos)
+  )
+}
+
+function getClosestElement(
+  layout,
+  draggingBlock,
+  gridColumnWidth,
+  gridRowHeight
+) {
   const copyLayout = { ...layout }
-  delete copyLayout[dgB.i]
+  delete copyLayout[draggingBlock.i]
   let closest = {
     x: 0,
     diff: Infinity,
@@ -69,14 +101,20 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
 
   for (let block in copyLayout) {
     const { i } = layout[block]
-    const { sbX, sbY, sbW, sbH } = getGridPos(
+    const staticBlockPos = getGridPos(
       layout[block],
       gridColumnWidth,
       gridRowHeight
     )
-    const isBlockCenterX = isBlockOnCenterX(sbX, sbW, dgB)
-    const isBlockCenterY = isBlockOnCenterY(sbY, sbH, dgB)
-    if (isBlockCenterX || isBlockCenterY) {
+    const { sbX, sbY, sbW, sbH } = staticBlockPos
+    const isBlockCenterX = isBlockOnCenterX(sbX, sbW, draggingBlock)
+    const isBlockCenterY = isBlockOnCenterY(sbY, sbH, draggingBlock)
+    const isStaticBlockInside = getIsStaticBlockInside(
+      draggingBlock,
+      staticBlockPos
+    )
+
+    if ((isBlockCenterX || isBlockCenterY) && !isStaticBlockInside) {
       return {
         middle: true,
         middleX: isBlockCenterX,
@@ -87,19 +125,22 @@ function getClosestElement(layout, dgB, gridColumnWidth, gridRowHeight) {
         y: sbY,
       }
     }
-    if (isBlockOnRow(sbY, dgB, sbH)) {
-      const diff = getBlockDistantToNextBlock(dgB, sbX, sbW)
-      closest = {
-        ...closest,
-        x: sbX,
-        diff: diff,
-        i,
-        right: !isBlockOnRight(sbX, dgB),
+
+    if (isBlockOnRow(sbY, draggingBlock, sbH) && !isStaticBlockInside) {
+      const diff = getBlockDistantToNextBlock(draggingBlock, sbX, sbW)
+      if (closest.diff > diff) {
+        closest = {
+          ...closest,
+          x: sbX,
+          diff: diff,
+          i,
+          right: !isBlockOnRight(sbX, draggingBlock),
+        }
       }
     }
   }
 
-  if (hasHorizontalBlocks(closest)) return getSidesBorderPos(dgB)
+  if (hasNoHorizontalBlocks(closest)) return getSidesBorderPos(draggingBlock)
 
   return closest
 }
@@ -109,7 +150,9 @@ export const RayTracing = ({
   gridColumnWidth,
   blockPostRef2,
   blockId,
+  isDragging,
 }) => {
+  if (!isDragging) return null
   const draggingBlockPos = blockPostRef2 || {}
   const layouts = useSelector(getLayout)
   const gridRowHeight = useSelector(getGridRowHeight)
