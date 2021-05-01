@@ -201,20 +201,29 @@ function ColorDropDownSelector({
       alignItems="center"
       justifyContent="center"
       cursor="pointer"
-      height="20px"
-      borderLeft="1px solid gray"
-      paddingX="0.3rem"
+      h="100%"
     >
       <CustomToolTip label={tooltip}>
-        <Button
+        <Box
+          as="button"
           id={property}
-          size="sm"
           padding="3px"
           bg="transparent"
           onClick={handleOpenToolbar}
+          d="flex"
+          alignItems="center"
+          h="100%"
+          borderRadius="0"
+          px="0.75rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
         >
           {valueIcon}
-        </Button>
+        </Box>
       </CustomToolTip>
       <Box
         position="absolute"
@@ -246,7 +255,7 @@ function ColorDropDownSelector({
                     : { bg: '#F2F2F2' }
                 }
                 value={optionValue}
-                paddingX="4px"
+                paddingX="2px"
               >
                 {icon}
                 <Box width="60%" display="flex" justifyContent="flex-start">
