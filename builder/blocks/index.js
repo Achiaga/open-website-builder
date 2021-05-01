@@ -110,6 +110,7 @@ export function BuilderBlock({ blockId }) {
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
+      position="relative"
     >
       {isEditable && !isMobileBuilder && type !== 'text' && (
         <>

@@ -24,7 +24,7 @@ const LeftRay = ({ closestItem, draggingBlockPos }) => {
             textAlign="flex-start"
             lineHeight="0"
             fontSize="xs"
-            color="red.400"
+            color="green.500"
             ml="-3px"
           >
             x
@@ -34,7 +34,7 @@ const LeftRay = ({ closestItem, draggingBlockPos }) => {
             textAlign="flex-end"
             lineHeight="0"
             fontSize="xs"
-            color="red.400"
+            color="green.500"
             mr="-3px"
           >
             x

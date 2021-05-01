@@ -156,13 +156,3 @@ export const RayTracing = ({
     </>
   )
 }
-
-// <Box
-//   pos="absolute"
-//   left={blockPosRef.x}
-//   top={blockPosRef.y}
-//   zIndex="9999"
-//   bg="green.500"
-//   width={`${diff}px`}
-//   h="1px"
-// />

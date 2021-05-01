@@ -102,7 +102,7 @@ const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
               <Box
                 textAlign="flex-start"
                 lineHeight="0"
-                color="red.400"
+                color="green.500"
                 ml="-3px"
               >
                 x
@@ -113,7 +113,7 @@ const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
               <Box
                 textAlign="flex-end"
                 lineHeight="0"
-                color="red.400"
+                color="green.500"
                 ml="-3px"
               >
                 x
@@ -140,7 +140,7 @@ const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
               <Box
                 textAlign="flex-start"
                 lineHeight="0"
-                color="red.400"
+                color="green.500"
                 ml="-3px"
               >
                 x
@@ -151,7 +151,7 @@ const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
               <Box
                 textAlign="flex-end"
                 lineHeight="0"
-                color="red.400"
+                color="green.500"
                 mr="-3px"
               >
                 x
