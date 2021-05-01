@@ -173,7 +173,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   <ImagesGrid
                     selectedImg={selectedImg?.index}
                     onSelect={onSelect}
-                    // images={AntfolioImages}
+                    images={AntfolioImages}
                     numCol={3}
                     columnGap={'0.3rem'}
                   />
@@ -182,7 +182,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   <ImagesGrid
                     selectedImg={selectedImg?.index}
                     onSelect={onSelect}
-                    // images={AntfolioIcons}
+                    images={AntfolioIcons}
                     numCol={7}
                     columnGap={'1rem'}
                   />
