@@ -1,6 +1,7 @@
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
+import { Grid, GridItem, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { createApi } from 'unsplash-js'
 import useDebouncedValue from './useDebounce'
@@ -58,7 +59,15 @@ export const ImagesGrid = ({
 // Unsplash Grid
 
 function getUnsplashSmallImageUrl(imgObj) {
-  return imgObj.urls.small
+  return imgObj?.urls?.small
+}
+
+function getUnsplashLink(imgObj) {
+  return imgObj?.user?.links?.html
+}
+
+function getUnsplashAuthor(imgObj) {
+  return imgObj?.user?.name
 }
 
 const unsplash = createApi({
@@ -66,14 +75,63 @@ const unsplash = createApi({
   accessKey: process.env.NEXT_PUBLIC_UNSPLASH_API,
 })
 
+const UnsplashImageItem = ({
+  imageSrc,
+  index,
+  isSelcted,
+  onSelect,
+  author,
+  authorLink,
+  indexcol,
+}) => {
+  return (
+    <Box mb=".5rem">
+      <Box
+        pos="relative"
+        border="3px solid"
+        borderColor={isSelcted ? 'blue.400' : 'transparent'}
+        borderRadius="10px"
+        _hover={{
+          borderColor: 'blue.400',
+        }}
+        cursor="pointer"
+        overflow="hidden"
+        width="full"
+        onClick={() => onSelect([indexcol, index])}
+      >
+        <Image src={imageSrc} />
+      </Box>
+      <Text as="p" color="gray.300" fontSize="12px" textAlign="end">
+        by{' '}
+        <a
+          href={authorLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: 'underline' }}
+        >
+          {author}
+        </a>
+      </Text>
+    </Box>
+  )
+}
+
+function getColumns(images) {
+  const colum1 = images.slice(0, images.length / 3)
+  const colum2 = images.slice(images.length / 3, (2 * images.length) / 3)
+  const colum3 = images.slice((2 * images.length) / 3, images.length)
+  return [colum1, colum2, colum3]
+}
+
 export const UnpslashImages = ({ onSelect, selectedImg }) => {
   const [searchTerm, debouncedValue, setSearchTerm] = useDebouncedValue(
     null,
     500
   )
-  const [images, setImages] = useState(null)
-  function handleSelect(index) {
-    onSelect({ image: images[index], index })
+  const [images, setImages] = useState([])
+  function handleSelect([col, index]) {
+    const cols = getColumns(images)
+    onSelect({ image: cols[col][index], index: [col, index] })
   }
   useEffect(() => {
     unsplash.search
@@ -89,29 +147,41 @@ export const UnpslashImages = ({ onSelect, selectedImg }) => {
         }
       })
   }, [debouncedValue])
+  const columns = getColumns(images)
   return (
     <Box>
       <Input
+        marginBottom="1rem"
         placeholder="search for an image"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Box
-        lineHeight={0}
-        style={{
-          columnCount: 3,
-          columnGap: '0.3rem',
-        }}
+      <Grid
+        templateColumns="repeat(3,minmax(0,1fr))"
+        columnGap={3}
+        justifyContent="space-between"
+        justifyItems="center"
       >
-        {images?.map((item, index) => (
-          <ImageItem
-            key={index}
-            imageSrc={getUnsplashSmallImageUrl(item)}
-            index={index}
-            isSelcted={selectedImg === index}
-            onSelect={handleSelect}
-          />
-        ))}
-      </Box>
+        {columns.map((item, indexcol) => {
+          return (
+            <Box key={indexcol}>
+              {item?.map((item, index) => (
+                <UnsplashImageItem
+                  key={index}
+                  indexcol={indexcol}
+                  imageSrc={getUnsplashSmallImageUrl(item)}
+                  author={getUnsplashAuthor(item)}
+                  authorLink={getUnsplashLink(item)}
+                  index={index}
+                  isSelcted={
+                    selectedImg?.[1] === index && selectedImg?.[0] === indexcol
+                  }
+                  onSelect={handleSelect}
+                />
+              ))}
+            </Box>
+          )
+        })}
+      </Grid>
     </Box>
   )
 }

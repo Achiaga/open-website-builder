@@ -52,9 +52,6 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
         <ScaleFade initialScale={0.9} in={isOpen}>
           <Box
             position="relative"
-            // left="50%"
-            // top="50%"
-            // transform="translate(-50%, -50%)"
             width="1000px"
             height="1000px"
             background="white"
@@ -159,8 +156,9 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
             <Box
               paddingX="1.75rem"
               paddingTop="1.5rem"
-              paddingBottom="3.5rem"
+              marginBottom="3.85rem"
               width="100%"
+              overflow="auto"
             >
               <Box>
                 {tabIndex === 0 && (
