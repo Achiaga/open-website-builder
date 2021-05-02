@@ -1,9 +1,9 @@
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
-import { Grid, GridItem, Text } from '@chakra-ui/react'
+import { Grid, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { createApi } from 'unsplash-js'
+import { unsplash } from '../../../utils/unsplash'
 import useDebouncedValue from './useDebounce'
 
 const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
@@ -69,11 +69,6 @@ function getUnsplashLink(imgObj) {
 function getUnsplashAuthor(imgObj) {
   return imgObj?.user?.name
 }
-
-const unsplash = createApi({
-  // eslint-disable-next-line no-undef
-  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_API,
-})
 
 const UnsplashImageItem = ({
   imageSrc,

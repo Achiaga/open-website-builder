@@ -1,17 +1,22 @@
-import { Button } from '@chakra-ui/button'
+import { useState } from 'react'
 import Link from 'next/link'
+import { Button } from '@chakra-ui/button'
 import { Text, ScaleFade } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/layout'
+
+import { trackDownloads } from '../../../utils/unsplash'
+
+import SidebarTab from './sidebar-tab'
+import { UnpslashImages, ImagesGrid } from './ImagesGrid'
+import { AntfolioImages, AntfolioIcons } from './assets'
 import { GrClose } from 'react-icons/gr'
 
-import { useState } from 'react'
-import SidebarTab from './sidebar-tab'
-import { AntfolioImages, AntfolioIcons } from './assets'
-import { UnpslashImages, ImagesGrid } from './ImagesGrid'
-
 function getSelectedImgUrl(imgObj, tabIndex) {
-  if (tabIndex === 0) return imgObj.image.urls.regular
-  return imgObj.image
+  if (tabIndex === 0) {
+    trackDownloads(imgObj?.image)
+    return imgObj?.image?.urls?.regular
+  }
+  return imgObj?.image
 }
 
 const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
