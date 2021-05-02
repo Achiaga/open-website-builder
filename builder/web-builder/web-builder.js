@@ -27,6 +27,7 @@ import {
 import { BuilderBlock, ResizingCounter } from '../blocks'
 import { RayTracing } from './Ray-Tracing'
 import ResizeWrapper from './resizable-wrapper'
+import { toNumber } from 'lodash'
 
 const blocksZIndex = {
   inception: 0,
@@ -53,6 +54,7 @@ const DraggableItem = ({
   const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
   const blockData = useSelector(getBlockData(blockId))
+  const isMobile = useSelector(getIsMobileBuilder)
   const { x, y, w, h } = blockLayout
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
@@ -118,6 +120,7 @@ const DraggableItem = ({
 
   const zIndexValue = getZIndexValue(blockType, isSelected)
   const isDragging = blockPostRef?.isDragging
+  const right = isMobile ? 719 : window.innerWidth
   return (
     <>
       <Draggable
@@ -126,7 +129,12 @@ const DraggableItem = ({
         onStop={onDragStop}
         onDrag={onDrag}
         handle=".draggHandle"
-        bounds="parent"
+        bounds={{
+          left: 0,
+          top: 0,
+          right: right - width,
+          bottom: '100% ',
+        }}
       >
         <Box pos="absolute" zIndex={zIndexValue}>
           <ResizeWrapper
