@@ -445,9 +445,11 @@ export function TextInput({
           as="button"
           d="flex"
           alignItems="center"
+          w="full"
           h="100%"
           id={property}
           bg="transparent"
+          display="flex"
           onClick={handleOpenToolbar}
           borderRadius="0"
           px="0.75rem"
@@ -459,9 +461,9 @@ export function TextInput({
           }}
         >
           {icon && icon}
-          <Text as="span" pl={icon && `0.45rem`}>
+          {/* <Text as="span" pl={icon && `0.45rem`}>
             {placeholder}
-          </Text>
+          </Text> */}
         </Box>
       </CustomToolTip>
       {isOpen === property && (
@@ -576,17 +578,36 @@ export function ImageSelector({
     handleEdit(property, imageUrl)
   }
   return (
-    <Box>
+    <Box
+      position="relative"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      cursor="pointer"
+      h="100%"
+    >
       <CustomToolTip label={tooltip}>
-        <Button
+        <Box
+          as="button"
+          d="flex"
+          alignItems="center"
+          w="full"
+          h="100%"
           id={property}
-          size="sm"
-          padding="3px"
           bg="transparent"
+          display="flex"
+          borderRadius="0"
+          px="0.75rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
           onClick={onOpen}
         >
           {icon}
-        </Button>
+        </Box>
       </CustomToolTip>
       <Portal id="modal-images">
         <ImageSelectorModal

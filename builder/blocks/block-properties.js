@@ -1,5 +1,6 @@
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi'
+import { HiLink } from 'react-icons/hi'
 import {
   AiOutlineVerticalAlignBottom,
   AiOutlineVerticalAlignMiddle,
@@ -339,18 +340,18 @@ const imageInput = {
   inputPlaceholder: 'Enter your link',
   property: 'imageUrl',
 }
-const imageSelctor = {
+
+const imageSelector = {
   type: 'image',
   icon: <ImageIcon />,
-  tooltip:
-    'Copy the "Image Adress" of your Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
+  tooltip: 'Select an Image',
   inputPlaceholder: 'Enter your link',
   property: 'imageUrl',
 }
 
 export const redirectInput = {
   type: 'text',
-  placeholder: 'Link',
+  icon: <HiLink size="1.1rem" />,
   tooltip: 'Add a Link you want the user to be redirect to when click on it.',
   inputPlaceholder: 'Add a link to redirect when click',
   property: 'redirect',
@@ -374,8 +375,7 @@ export const Properties = {
     deleteProperty,
     borderRadius,
     boxShadow,
-    imageInput,
-    imageSelctor,
+    imageSelector,
     redirectInput,
     duplicateProperty,
   ],
@@ -383,10 +383,10 @@ export const Properties = {
     deleteProperty,
     border,
     borderRadius,
-    redirectInput,
-    imageInput,
     boxShadow,
+    imageSelector,
     backgroundColor,
+    redirectInput,
     duplicateProperty,
   ],
   form: [

@@ -7,7 +7,6 @@ const ImageIcon = () => {
       width="16"
       height="16"
       viewBox="0 0 480 480"
-      // viewBox="0 0 16 16"
       xmlSpace="preserve"
       preserveAspectRatio="xMinYMin slice"
       style={{ enableBackground: 'new 0 0 480 480' }}
