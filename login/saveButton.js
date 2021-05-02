@@ -53,7 +53,7 @@ const SaveButton = () => {
       }
       w="4.3rem"
     >
-      {!isSaved ? (
+      {isSaved ? (
         <Box d="flex" w="fit-content">
           <IoCheckmark size="20px" color="#43E28E" />
           Saved{' '}

@@ -24,6 +24,20 @@ function getParams() {
   return { template, origin }
 }
 
+const Loader = () => {
+  return (
+    <Box
+      w="100%"
+      h="100vh"
+      d="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
+    </Box>
+  )
+}
+
 const Builder = () => {
   const hasBuilderData = useSelector(getHasBuilderData)
   const isLoadingData = useSelector(getIsLoadingData)
@@ -62,20 +76,6 @@ const Builder = () => {
     }
   }, [isLoading])
 
-  if (!hasBuilderData || isLoadingData) {
-    return (
-      <Box
-        w="100%"
-        h="100vh"
-        d="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
-      </Box>
-    )
-  }
-
   return (
     <>
       <Box
@@ -89,9 +89,13 @@ const Builder = () => {
       >
         <SettingsBar />
         <BuilderSidebar />
-        <MobileWrapper>
-          <WebBuilder />
-        </MobileWrapper>
+        {!hasBuilderData || isLoadingData ? (
+          <Loader />
+        ) : (
+          <MobileWrapper>
+            <WebBuilder />
+          </MobileWrapper>
+        )}
       </Box>
       <MobileVersion />
     </>

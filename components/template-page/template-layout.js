@@ -1,8 +1,9 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Spinner } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { removeLocalData } from '../../builder/web-builder/helpers'
+import { useState } from 'react'
 
 const CustomButton = ({ colorScheme, children }) => {
   return (
@@ -20,6 +21,7 @@ const CustomButton = ({ colorScheme, children }) => {
 }
 
 const Template = ({ templateInfo }) => {
+  const [selected, setSelected] = useState(false)
   function handleSelectTemplate() {
     removeLocalData()
   }
@@ -56,7 +58,9 @@ const Template = ({ templateInfo }) => {
         >
           <Link href={`/builder?template=${templateInfo.id}`} passHref>
             <a>
-              <CustomButton>Select</CustomButton>
+              <CustomButton onClick={() => setSelected(true)}>
+                {selected ? <Spinner /> : 'Select'}
+              </CustomButton>
             </a>
           </Link>
           <Link href={`/preview/template/${templateInfo.id}`} passHref>
