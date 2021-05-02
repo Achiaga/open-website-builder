@@ -22,6 +22,7 @@ import {
   getBlockData,
   getSelectedBlockId,
   getLayout,
+  getIsMobileBuilder,
 } from '../../features/builderSlice'
 import { BuilderBlock, ResizingCounter } from '../blocks'
 import { RayTracing } from './Ray-Tracing'
@@ -167,7 +168,14 @@ const BlockItem = ({ blockId, isDragging, zIndexValue }) => {
 const MemoBlockItem = React.memo(BlockItem)
 const MemoDrag = React.memo(DraggableItem)
 
+function getFontSize(isMobile) {
+  if (isMobile) return 9
+  return 13
+}
+
 const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
+  const isMobile = useSelector(getIsMobileBuilder)
+  const fontSize = getFontSize(isMobile)
   const dispatch = useDispatch()
   return (
     <Box
@@ -188,7 +196,7 @@ const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
           handleDropNewItem(e)
         }
       }}
-      fontSize="13px"
+      fontSize={fontSize}
       zIndex="1"
     >
       {children}

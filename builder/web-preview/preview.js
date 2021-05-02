@@ -33,7 +33,7 @@ function getFontSize(windowWidth) {
   if (windowWidth >= 1000) return 9
   if (windowWidth > 600 && windowWidth < 1000) return 13
   if (windowWidth > 400 && windowWidth <= 600) return 7
-  if (windowWidth < 330) return 5.5
+  if (windowWidth < 380) return 4
   return 6
 }
 

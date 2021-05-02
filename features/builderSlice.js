@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
-import { batch } from 'react-redux'
+import { batch, useSelector } from 'react-redux'
 
 import { GRID_COLUMNS, ROW_HEIGHT } from '../builder/web-builder/constants'
 import { DELETE, DUPLICATE } from '../builder/blocks/constants'
@@ -252,49 +252,49 @@ export const setBlockEditable = (blockId) => (dispatch) => {
   })
 }
 
-function applyAutoMobileToBlock(blockLayout) {
-  const { x, y, w, h, i } = blockLayout || {}
-  const isOnRight = x > 100
-  const moreWidth = x + w > 100
-  const newX = moreWidth ? 0 : x / 4
-  const newY = isOnRight ? y + 2 * h : y + (2 * h) / 3
-  const newW = w > 100 ? 100 : w
+function applyAutoMobileToBlock(block) {
   const updatedBlock = {
-    x: newX,
-    y: newY,
-    w: newW,
-    h: h,
-    i: i,
+    x: block.x / 2,
+    y: block.y,
+    w: block.w / 2,
+    h: block.h,
+    i: block.i,
   }
   return updatedBlock
 }
 
-function bulkApplyAutoMobileLayout(blocks) {
-  const updatedBlocks = {}
-  for (let blockId in blocks) {
-    const updatdBlock = applyAutoMobileToBlock(blocks[blockId])
-    updatedBlocks[blockId] = updatdBlock
-  }
-  return updatedBlocks
+function bulkApplyAutoMobileLayout(blocks, mobileLayout) {
+  const newMobLayouts = Object.values(blocks).reduce(
+    (acc, block) => {
+      const newBlock = applyAutoMobileToBlock(block)
+      return {
+        ...acc,
+        [block.i]: newBlock,
+      }
+    },
+    { ...mobileLayout }
+  )
+  return newMobLayouts
 }
 
 function autoMobileLayout(mobileLayout, blockId, updatedLayout) {
-  const mobileLayoutUpdated = { ...mobileLayout }
-  const { x, y, w, h, i } = updatedLayout[blockId] || {}
-  if (!i || !blockId) return mobileLayoutUpdated
-  const isOnRight = x > 100
-  const moreWidth = x + w > 100
-  const newX = moreWidth ? 0 : x / 4
-  const newY = isOnRight ? y + 2 * h : y + (2 * h) / 3
-  const newW = moreWidth ? 100 : w
-  mobileLayoutUpdated[blockId] = {
-    x: newX,
-    y: newY,
-    w: newW,
-    h: h,
-    i: i,
+  const updatedMobile = { ...mobileLayout }
+  const block = updatedLayout[blockId]
+  if (!block) return updatedMobile
+  updatedMobile[blockId] = applyAutoMobileToBlock(block)
+  return updatedMobile
+}
+
+function applyMobileLayout(mobileLayout, blockId, updatedLayout, hierarchy) {
+  const childrenId = hierarchy[blockId]
+  if (childrenId) {
+    const blocksIdsToTransform = [blockId, ...childrenId]
+    const blocksToTransform = Object.values(updatedLayout)
+      .filter((blockId) => blocksIdsToTransform.includes(blockId.i))
+      .reduce((acc, item) => ({ ...acc, [item.i]: item }), {})
+    return bulkApplyAutoMobileLayout(blocksToTransform, mobileLayout)
   }
-  return mobileLayoutUpdated
+  return autoMobileLayout(mobileLayout, blockId, updatedLayout)
 }
 
 export const updateBlockLayout = (newBlockLayout) => (dispatch, getState) => {
@@ -311,6 +311,7 @@ export const updateLayouts = (updatedLayout, blockId) => (
   const builderDevice = getBuilderDevice(getState())
   const mobileEditedBlocks = getMobileEditedBlocks(getState())
   const mobileLayout = getMobileLayout(getState())
+  const hierarchy = getHierarchy(getState())
   const isBlockMobileEdited = mobileEditedBlocks.includes(blockId)
   if (builderDevice === 'mobile') {
     batch(() => {
@@ -322,7 +323,9 @@ export const updateLayouts = (updatedLayout, blockId) => (
   } else {
     if (!isBlockMobileEdited) {
       dispatch(
-        setMobileLayout(autoMobileLayout(mobileLayout, blockId, updatedLayout))
+        setMobileLayout(
+          applyMobileLayout(mobileLayout, blockId, updatedLayout, hierarchy)
+        )
       )
     }
     dispatch(setLayouts(updatedLayout))
@@ -500,7 +503,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
 
   const oldHierarchy = getHierarchy(getState())
   const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
-
+  const mobileLayout = getMobileLayout(getState())
   const duplicatedBlockLayout = { ...oldLayouts[blockId] }
 
   const newBlockId = `${blockType}-${uuid()}`
@@ -514,7 +517,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
     newBlockId,
     getState()
   )
-  const mobileLayouts = bulkApplyAutoMobileLayout(newLayoutItems)
+  const mobileLayouts = bulkApplyAutoMobileLayout(newLayoutItems, mobileLayout)
   batch(() => {
     dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
     dispatch(
