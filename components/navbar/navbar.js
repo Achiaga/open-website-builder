@@ -10,8 +10,22 @@ import LogoSvg from '../../assets/logo'
 import BackgroundCircles from './background'
 import { useUser } from '@auth0/nextjs-auth0'
 
-const Navbar = ({ isSticky = true, color }) => {
+const LoginButton = ({ color }) => {
   const { user } = useUser()
+  return (
+    <NavButton
+      display={['none', 'block']}
+      content={user ? 'Dashboard' : 'Login'}
+      redirect={user ? '/dashboard' : '/api/auth/custom-login'}
+      id={user ? '/dashboard' : '/api/auth/custom-login'}
+      color={color || 'gray.500'}
+    />
+  )
+}
+
+const noUserAccess = ['/blog']
+
+const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
   const { locale } = router
   const [t] = useTranslation()
@@ -20,7 +34,9 @@ const Navbar = ({ isSticky = true, color }) => {
     const locale = e.target.value
     router.push(router.pathname, router.asPath, { locale })
   }
-
+  const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
+    router.pathname
+  )
   const handleStartNow = () => {
     AnalyticsEvent('modal_open', 'navbar')
   }
@@ -71,13 +87,7 @@ const Navbar = ({ isSticky = true, color }) => {
           color={color || 'gray.500'}
           id="pricing"
         />
-        <NavButton
-          display={['none', 'block']}
-          content={user ? 'Dashboard' : 'Login'}
-          redirect={user ? '/dashboard' : '/api/auth/custom-login'}
-          id={user ? '/dashboard' : '/api/auth/custom-login'}
-          color={color || 'gray.500'}
-        />
+        {!hideLoginButton && <LoginButton color={color} />}
         <Select
           border="none"
           bg="none"
