@@ -3,7 +3,8 @@ import getColorShades, { getIsColorBright } from './block-helpers/color-shades'
 import { RedirectWrapper } from './text'
 
 export const CustonButton = ({ children, ...props }) => {
-  const backgroundColor = props.backgroundColor || '#fff'
+  console.log(props?.backgroundColor)
+  const backgroundColor = props?.backgroundColor || '#fff'
   const shades = getColorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'
