@@ -1,10 +1,108 @@
+import Link from 'next/link'
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
-import { Grid, Text } from '@chakra-ui/react'
+import { List, ListIcon, ListItem, Grid, Text, Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { unsplash } from '../../../utils/unsplash'
 import useDebouncedValue from './useDebounce'
+import { MdCheckCircle } from 'react-icons/md'
+
+export const GoProTab = () => {
+  return (
+    <Box w="full">
+      <Box w="full" display="flex" justifyContent="center" alignItems="center">
+        <Text as="h1" fontSize="40px" fontWeight="bold" color="primary.500">
+          Go Pro !
+        </Text>
+      </Box>
+      <Box
+        w="full"
+        px="5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Text
+          as="p"
+          fontSize="16px"
+          fontWeight="regular"
+          color="primary.500"
+          textAlign="center"
+        >
+          Start now our the Pro version and access all our features and
+          resources. To create your dream website. <br />
+        </Text>
+      </Box>
+      <Box
+        w="full"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pb="0.75rem"
+        mt="-0.75rem"
+      >
+        <Image
+          src={'/Rocket.png'}
+          width="200px"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center center"
+        />
+      </Box>
+      <Box
+        w="full"
+        px="5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pb="2rem"
+      >
+        <List
+          spacing={3}
+          fontSize="16px"
+          fontWeight="regular"
+          color="black"
+          textAlign="left"
+        >
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            The best free icons
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            Upload your own images
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            No watermark
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            Animation + Hover Effect
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            Integrations
+          </ListItem>
+        </List>
+      </Box>
+      <Box
+        w="full"
+        px="5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Link href="/pricing">
+          <Button background="green.500" color="white" fontWeight="bold">
+            Upgrade
+          </Button>
+        </Link>
+      </Box>
+    </Box>
+  )
+}
 
 const UrlImageItem = ({ imageSrc }) => {
   return (
@@ -49,7 +147,7 @@ export const UrlImagesTab = ({ onSelect }) => {
   )
 }
 
-const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
+const ImageItem = ({ imageSrc, index, isSelcted, onSelect, indexcol }) => {
   return (
     <Box
       pos="relative"
@@ -59,43 +157,90 @@ const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
       _hover={{
         borderColor: 'blue.400',
       }}
-      overflow="hidden"
       cursor="pointer"
-      onClick={() => onSelect(index)}
+      overflow="hidden"
+      width="full"
+      onClick={() => onSelect([indexcol, index])}
     >
       <Image src={imageSrc} />
     </Box>
   )
 }
 
+function getImagesColumns(images, numCol = 3) {
+  if (numCol === 3) {
+    const colum1 = images.slice(0, images.length / 3)
+    const colum2 = images.slice(images.length / 3, (2 * images.length) / 3)
+    const colum3 = images.slice((2 * images.length) / 3, images.length)
+    return [colum1, colum2, colum3]
+  } else if (numCol === 7) {
+    const colum1 = images.slice(0, images.length / 7)
+    const colum2 = images.slice(images.length / 7, (2 * images.length) / 7)
+    const colum3 = images.slice(
+      (2 * images.length) / 7,
+      (3 * images.length) / 7
+    )
+    const colum4 = images.slice(
+      (3 * images.length) / 7,
+      (4 * images.length) / 7
+    )
+    const colum5 = images.slice(
+      (4 * images.length) / 7,
+      (5 * images.length) / 7
+    )
+    const colum6 = images.slice(
+      (5 * images.length) / 7,
+      (6 * images.length) / 7
+    )
+    const colum7 = images.slice(
+      (6 * images.length) / 7,
+      (7 * images.length) / 7
+    )
+    return [colum1, colum2, colum3, colum4, colum5, colum6, colum7]
+  } else {
+    const colum1 = images.slice(0, images.length / 3)
+    const colum2 = images.slice(images.length / 3, (2 * images.length) / 3)
+    const colum3 = images.slice((2 * images.length) / 3, images.length)
+    return [colum1, colum2, colum3]
+  }
+}
+
 export const ImagesGrid = ({
   onSelect,
   selectedImg,
-  numCol = '3',
+  numCol = 3,
   columnGap = '0.3rem',
   images = [],
 }) => {
-  function handleSelect(index) {
-    onSelect({ image: images[index], index })
+  function handleSelect([col, index]) {
+    const cols = getImagesColumns(images, numCol)
+    onSelect({ image: cols[col][index], index: [col, index] })
   }
+  const columns = getImagesColumns(images, numCol)
   return (
-    <Box
-      lineHeight={0}
-      style={{
-        columnCount: numCol,
-        columnGap: columnGap,
-      }}
+    <Grid
+      templateColumns={`repeat(${numCol},minmax(0,1fr))`}
+      columnGap={columnGap}
+      justifyContent="space-between"
+      justifyItems="center"
     >
-      {images?.map((item, index) => (
-        <ImageItem
-          key={index}
-          imageSrc={item}
-          index={index}
-          isSelcted={selectedImg === index}
-          onSelect={handleSelect}
-        />
+      {columns?.map((item, indexcol) => (
+        <Box key={indexcol}>
+          {item?.map((item, index) => (
+            <ImageItem
+              key={index}
+              indexcol={indexcol}
+              imageSrc={item}
+              index={index}
+              isSelcted={
+                selectedImg?.[1] === index && selectedImg?.[0] === indexcol
+              }
+              onSelect={handleSelect}
+            />
+          ))}
+        </Box>
       ))}
-    </Box>
+    </Grid>
   )
 }
 

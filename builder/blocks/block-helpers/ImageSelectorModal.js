@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@chakra-ui/button'
 import { Text, ScaleFade } from '@chakra-ui/react'
@@ -7,7 +7,12 @@ import { Box } from '@chakra-ui/layout'
 import { trackDownloads } from '../../../utils/unsplash'
 
 import SidebarTab from './sidebar-tab'
-import { UnpslashImages, ImagesGrid, UrlImagesTab } from './ImagesGrid'
+import {
+  UnpslashImages,
+  ImagesGrid,
+  UrlImagesTab,
+  GoProTab,
+} from './ImagesGrid'
 import { AntfolioImages, AntfolioIcons } from './assets'
 import { GrClose } from 'react-icons/gr'
 
@@ -30,6 +35,16 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
     onClose()
     handleSelectImage(getSelectedImgUrl(selectedImg, tabIndex))
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.height = '100vh'
+    } else {
+      document.body.style.overflow = 'auto'
+      document.body.style.height = '100%'
+    }
+  }, [isOpen])
 
   if (isOpen) {
     return (
@@ -76,19 +91,21 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
             >
               <GrClose size="1em" />
             </Box>
-            <Box
-              position="absolute"
-              right="1rem"
-              bottom="1rem"
-              textAlign="center"
-            >
-              <Button variant="ghost" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button colorScheme="primary" onClick={handleApplyImage}>
-                Set Image
-              </Button>
-            </Box>
+            {tabIndex !== 3 && tabIndex !== 5 && (
+              <Box
+                position="absolute"
+                right="1rem"
+                bottom="1rem"
+                textAlign="center"
+              >
+                <Button variant="ghost" mr={3} onClick={onClose}>
+                  Close
+                </Button>
+                <Button colorScheme="primary" onClick={handleApplyImage}>
+                  Set Image
+                </Button>
+              </Box>
+            )}
             <Box
               display="flex"
               flexDirection="column"
@@ -126,6 +143,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                 tabIndex={tabIndex}
                 onClick={() => setTabIndex(3)}
                 label={'Icons'}
+                pro={true}
               />
               <SidebarTab
                 index={4}
@@ -196,9 +214,9 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                     columnGap={'1rem'}
                   />
                 )}
-                {tabIndex === 3 && <p>No icons yet!</p>}
+                {tabIndex === 3 && <GoProTab />}
                 {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
-                {tabIndex === 5 && <p>No here yet!</p>}
+                {tabIndex === 5 && <GoProTab />}
               </Box>
             </Box>
           </Box>
