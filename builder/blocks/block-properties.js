@@ -136,7 +136,7 @@ const border = {
   tooltip: 'Border Color',
   icon: <BorderIcon />,
   options: [
-    { value: 'none', title: 'none' },
+    { value: 'none', title: '-' },
     { value: '1px solid black', title: 'black' },
     { value: '1px solid rgb(205, 211, 216)', title: 'gray' },
   ],
@@ -145,10 +145,10 @@ const border = {
 const borderRadius = {
   type: 'dropdown',
   property: 'borderRadius',
-  tooltip: 'Border Radius',
+  tooltip: 'Round Corners',
   icon: <BorderRadiusIcon />,
   options: [
-    { value: '0px', title: 'none' },
+    { value: '0px', title: '-' },
     { value: '10px', title: 'sm' },
     { value: '20px', title: 'md' },
     { value: '100px', title: 'lg' },
@@ -164,7 +164,7 @@ const boxShadow = {
   options: [
     {
       value: 'none',
-      title: 'none',
+      title: '-',
     },
     {
       value:
@@ -318,15 +318,15 @@ const emoji = {
 
 export const deleteProperty = {
   type: 'button',
-  tooltip: 'Delete (*Childrens of the block WILL BE DELETED TOO*).',
-  placeholder: <RiDeleteBin6Line color="black" size="1.1rem" />,
+  tooltip: 'Delete ( Blocks attached to this block will be delted).',
+  placeholder: <RiDeleteBin6Line color="black" size="0.9rem" />,
   property: '',
   operationType: DELETE,
 }
 export const duplicateProperty = {
   type: 'duplicate',
   tooltip: 'Duplicate block/group',
-  placeholder: <DuplicateIcon color="black" size="1.1rem" />,
+  placeholder: <DuplicateIcon color="black" size="0.7rem" />,
   property: '',
   operationType: DUPLICATE,
 }
@@ -334,6 +334,13 @@ export const duplicateProperty = {
 const imageInput = {
   type: 'text',
   placeholder: 'Img',
+  icon: <ImageIcon />,
+  tooltip: 'Select image for your block',
+  inputPlaceholder: 'Enter your link',
+  property: 'imageUrl',
+}
+const imageSelctor = {
+  type: 'image',
   icon: <ImageIcon />,
   tooltip:
     'Copy the "Image Adress" of your Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
@@ -368,6 +375,7 @@ export const Properties = {
     borderRadius,
     boxShadow,
     imageInput,
+    imageSelctor,
     redirectInput,
     duplicateProperty,
   ],
@@ -379,6 +387,23 @@ export const Properties = {
     imageInput,
     boxShadow,
     backgroundColor,
+    duplicateProperty,
+  ],
+  form: [
+    deleteProperty,
+    border,
+    borderRadius,
+    boxShadow,
+    backgroundColor,
+    duplicateProperty,
+  ],
+  button: [
+    deleteProperty,
+    border,
+    borderRadius,
+    boxShadow,
+    backgroundColor,
+    redirectInput,
     duplicateProperty,
   ],
 }

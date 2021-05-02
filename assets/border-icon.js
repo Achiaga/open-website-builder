@@ -2,9 +2,9 @@ const BorderIcon = () => {
   return (
     <svg
       enableBackground="new 0 0 36 36"
-      height="21"
+      height="14"
       viewBox="0 0 550 550"
-      width="21"
+      width="14"
       xmlns="http://www.w3.org/2000/svg"
     >
       <linearGradient

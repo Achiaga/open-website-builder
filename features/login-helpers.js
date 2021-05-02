@@ -45,7 +45,7 @@ export const updateInitialState = ({
   userData,
 }) => async (dispatch) => {
   batch(() => {
-    dispatch(setInitialBuilderData(resume_data))
+    dispatch(setInitialBuilderData(resume_data || templates.fallback))
     dispatch(setUserData({ isPublish: publish, ...userData }))
   })
 }

@@ -6,7 +6,12 @@ import {
   getGridRowHeight,
   getIsMobileBuilder,
 } from '../../features/builderSlice'
-import { ButtonSelector, TextInput } from './block-modifiers'
+import {
+  ButtonSelector,
+  TextInput,
+  CustomToolTip,
+  DuplicateButton,
+} from './block-modifiers'
 import {
   color,
   deleteProperty,
@@ -19,6 +24,66 @@ import { BuilderPrevText } from './text'
 const ReactQuill =
   // eslint-disable-next-line no-undef
   typeof window === 'object' ? require('react-quill') : () => {}
+
+const ToolbarButton = ({ name }) => {
+  return (
+    <CustomToolTip label={'Italic Font'}>
+      <Box
+        position="relative"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        h="100%"
+        px="0.45rem"
+        _hover={{ background: 'primary.100' }}
+      >
+        <Box as="button" className={'ql-' + name} />
+      </Box>
+    </CustomToolTip>
+  )
+}
+const ToolbarSelect = ({ name }) => {
+  return (
+    <CustomToolTip label={'Align Fonts'}>
+      <Box
+        position="relative"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        h="100%"
+        px="0.45rem"
+        _hover={{ background: 'primary.100' }}
+      >
+        <select className={'ql-' + name} />
+      </Box>
+    </CustomToolTip>
+  )
+}
+
+const ToolbarColor = () => {
+  return (
+    <CustomToolTip label={'Font Color'}>
+      <Box
+        position="relative"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        h="100%"
+        px="0.45rem"
+        _hover={{ background: 'primary.100' }}
+      >
+        <select className="ql-color">
+          {color.options.map((colorOption, index) => {
+            return <option value={colorOption.value} key={index} />
+          })}
+        </select>
+      </Box>
+    </CustomToolTip>
+  )
+}
 
 function QuillToolbar() {
   return (
@@ -36,16 +101,12 @@ function QuillToolbar() {
         <option value="6" />
         <option selected />
       </select>
-      <button className="ql-bold" />
-      <button className="ql-italic" />
-      <button className="ql-blockquote" />
-      <button className="ql-underline" />
-      <select className="ql-align" />
-      <select className="ql-color">
-        {color.options.map((colorOption, index) => {
-          return <option value={colorOption.value} key={index} />
-        })}
-      </select>
+      <ToolbarButton name="italic" />
+      <ToolbarButton name="bold" />
+      <ToolbarButton name="blockquote" />
+      <ToolbarButton name="underline" />
+      <ToolbarSelect name="align" />
+      <ToolbarColor />
     </>
   )
 }
@@ -65,32 +126,37 @@ export const CustomToolbar = ({ blockId }) => {
 
   return (
     <Box
-      id="toolbar"
       display="flex"
       alignItems="center"
       justifyContent="left"
       top="-50px"
-      rounded="5px"
       boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
       pos="absolute"
       onClick={(e) => e.stopPropagation()}
       backgroundColor="white"
-      color="black"
+      color="gray.500"
       zIndex="9999"
+      borderRadius="20px"
+      fontSize="xs"
+      h="35px"
     >
       <ButtonSelector handleEdit={handleEdit} {...deleteProperty} />
-      {QuillToolbar()}
-      <ButtonSelector handleEdit={handleEdit} {...duplicateProperty} />
+      <Box
+        id="toolbar"
+        display="flex"
+        alignItems="center"
+        justifyContent="left"
+      >
+        {QuillToolbar()}
+      </Box>
       <TextInput
         isOpen={isOpen}
         handleOpenToolbar={handleOpenToolbar}
-        isBlockAtTop={false}
-        isBlockAtLeft={false}
-        isBlockAtRight={false}
         handleEdit={handleEdit}
         {...redirectInput}
         value={''}
       />
+      <DuplicateButton handleEdit={handleEdit} {...duplicateProperty} />
     </Box>
   )
 }
