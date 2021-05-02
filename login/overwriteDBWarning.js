@@ -1,17 +1,17 @@
 import { Box, Text } from '@chakra-ui/layout'
 import { useDispatch } from 'react-redux'
 
-import { denyOverwriteData, overwriteDBData } from '../features/builderSlice'
+import { keepDBData, keepTemplate } from '../features/builderSlice'
 import { Button } from '@chakra-ui/button'
 
 const OverwriteDBWarning = () => {
   const dispatch = useDispatch()
 
   function handleConfirm() {
-    dispatch(overwriteDBData())
+    dispatch(keepTemplate())
   }
   function handleDeny() {
-    dispatch(denyOverwriteData())
+    dispatch(keepDBData())
   }
 
   return (
@@ -30,7 +30,7 @@ const OverwriteDBWarning = () => {
       <Box
         maxWidth="60vw"
         bg="white"
-        p="4rem"
+        p="2rem"
         pb="1rem"
         px="6.5rem"
         borderRadius="10px"
@@ -48,33 +48,24 @@ const OverwriteDBWarning = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Text fontSize="2xl" pb="1rem">
+          <Text fontSize="lg" pb="2rem">
             Sorry for the incoveninece, but we have detected that you already
-            have a portfolio save.
+            have a portfolio saved.
           </Text>
-          <Text fontSize="2xl" pb="1rem">
-            Do you want to save the new Portfolio and delete the old one?
+          <Text fontSize="xl" pb="1rem">
+            Do you want to save the new Template and delete the old portfolio?
           </Text>
-          <Box d="flex" justifyContent="space-between" w="100%">
+          <Box d="flex" justifyContent="center" w="100%" pb="2rem">
             <Button
-              colorScheme="crimson"
-              onClick={handleConfirm}
+              colorScheme="gray"
               variant="outline"
-            >
-              <b>Delete Old Portfolio </b>
-              <Text as="span" ml="4px">
-                and keep new one
-              </Text>
-            </Button>
-            <Button
-              colorScheme="primary"
               onClick={handleDeny}
-              variant="outline"
+              mr="1.5rem"
             >
-              <b>Keep Old portfolio </b>
-              <Text as="span" ml="4px">
-                and delete new one
-              </Text>
+              <b>Keep old Portfolio </b>
+            </Button>
+            <Button colorScheme="primary" onClick={handleConfirm} ml="1.5rem">
+              <b>Keep Template </b>
             </Button>
           </Box>
           <Box

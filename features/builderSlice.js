@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid'
-import { batch, useSelector } from 'react-redux'
+import { batch } from 'react-redux'
 
 import { GRID_COLUMNS, ROW_HEIGHT } from '../builder/web-builder/constants'
 import { DELETE, DUPLICATE } from '../builder/blocks/constants'
@@ -428,7 +428,7 @@ export const saveWebsite = (user) => async (dispatch, getState) => {
   })
 }
 
-export const overwriteDBData = () => async (dispatch, getState) => {
+export const keepTemplate = () => async (dispatch, getState) => {
   const builderData = getBuilderData(getState())
   const { publish, userData } = getTempDBData(getState())
   await saveData({
@@ -437,11 +437,13 @@ export const overwriteDBData = () => async (dispatch, getState) => {
   })
   dispatch(setSaveStatus('null'))
   dispatch(setTempDBData(null))
+  dispatch(setLoadingData(false))
 }
-export const denyOverwriteData = () => (dispatch, getState) => {
+export const keepDBData = () => (dispatch, getState) => {
   const tempInitialData = getTempDBData(getState())
   dispatch(updateInitialState(tempInitialData))
   dispatch(setTempDBData(null))
+  dispatch(setLoadingData(false))
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
   batch(() => {

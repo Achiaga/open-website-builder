@@ -31,13 +31,8 @@ const ProjectCard = ({ project }) => {
           <a>
             <Button
               marginRight="1rem"
-              variant="outline"
               borderColor="primary.700"
-              color="primary.700"
-              _hover={{
-                background: 'primary.700',
-                color: 'white',
-              }}
+              colorScheme="primary"
             >
               Edit
             </Button>
@@ -46,7 +41,7 @@ const ProjectCard = ({ project }) => {
         <Button
           marginRight="1rem"
           variant="outline"
-          colorScheme="red"
+          colorScheme="gray"
           onClick={handleRemoveProject}
         >
           {isRemoving ? <Spinner color="red" /> : 'Delete'}

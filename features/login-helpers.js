@@ -13,7 +13,7 @@ import { getUserDataFromLS } from './helper'
 import { saveData } from '../login/helpers'
 import { getUserDataById } from '../utils/user-data'
 
-async function getUserData(user, template) {
+async function getUserData(user) {
   try {
     const userData = await getUserDataById(user.sub)
     if (!Object.keys(userData).length) return null
@@ -22,7 +22,7 @@ async function getUserData(user, template) {
     console.error('error con getUserData', err)
     const blocksData = await getUserDataFromLS()
     return {
-      resume_data: blocksData || templates[template] || templates.fallback,
+      resume_data: blocksData,
     }
   }
 }
@@ -35,9 +35,8 @@ function arrayToObject(arr) {
 export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const LSData = await getUserDataFromLS()
   const templateData = templates[template]
-  const data = LSData || templateData || templates.fallback
-
-  dispatch(setInitialBuilderData(data || templates.fallback))
+  const data = templateData || LSData || templates.fallback
+  dispatch(setInitialBuilderData(data))
 }
 export const updateInitialState = ({
   resume_data,
@@ -71,13 +70,20 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
   dispatch(setLoadingData(true))
   const dbData = await getUserData(user, template)
   const userData = { user_email: user.email, user_id: user.sub }
+  const { resume_data, publish, _id } = dbData || {}
+  if (templates[template] && resume_data) {
+    batch(() => {
+      dispatch(setTempDBData({ resume_data, publish, userData }))
+      dispatch(loadInitialDataNoAccount(template))
+    })
+    return
+  }
   if (!dbData) {
     batch(() => {
       dispatch(loadInitialDataNoAccount(template))
       dispatch(setUserData({ user_email: user.email, user_id: user.sub }))
     })
   } else {
-    const { resume_data, publish, _id } = dbData
     userData['websiteId'] = _id
     dispatch(updateInitialState({ resume_data, publish, userData }))
   }

@@ -1,5 +1,6 @@
 import { Box, Flex, Select } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useTranslation } from '../../hooks/translation'
 import { AnalyticsEvent } from '../../utils/analytics'
 import Button from '../commun/button'
@@ -7,6 +8,22 @@ import NavButton from './nav-button'
 import LogoSvg from '../../assets/logo'
 
 import BackgroundCircles from './background'
+import { useUser } from '@auth0/nextjs-auth0'
+
+const LoginButton = ({ color }) => {
+  const { user } = useUser()
+  return (
+    <NavButton
+      display={['none', 'block']}
+      content={user ? 'Dashboard' : 'Login'}
+      redirect={user ? '/dashboard' : '/api/auth/custom-login'}
+      id={user ? '/dashboard' : '/api/auth/custom-login'}
+      color={color || 'gray.500'}
+    />
+  )
+}
+
+const noUserAccess = ['/blog']
 
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
@@ -17,23 +34,15 @@ const Navbar = ({ isSticky = true, color }) => {
     const locale = e.target.value
     router.push(router.pathname, router.asPath, { locale })
   }
-
+  const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
+    router.pathname
+  )
   const handleStartNow = () => {
     AnalyticsEvent('modal_open', 'navbar')
-    router.push(`/templates`)
   }
 
   const handleLogoRedirect = () => {
     router.push('/')
-  }
-
-  const handleNavRouting = (e) => {
-    const { id } = e.currentTarget
-    router.push(`/${id}`)
-  }
-
-  const handleLogin = () => {
-    router.push('/api/auth/custom-login')
   }
 
   return (
@@ -66,32 +75,19 @@ const Navbar = ({ isSticky = true, color }) => {
       >
         <NavButton
           display={['none', 'block']}
-          onClick={handleNavRouting}
           content="Templates"
           color={color || 'gray.500'}
+          redirect="/templates"
           id="templates"
         />
         <NavButton
           display={['none', 'block']}
-          onClick={handleNavRouting}
           content="Pricing"
+          redirect="/pricing"
           color={color || 'gray.500'}
           id="pricing"
         />
-        {/* <NavButton
-          display={['none', 'block']}
-          onClick={handleNavRouting}
-          content="About Us"
-          color={color || 'gray.500'}
-          id="about"
-        /> */}
-        <NavButton
-          display={['none', 'block']}
-          onClick={handleLogin}
-          content="Login"
-          id="login"
-          color={color || 'gray.500'}
-        />
+        {!hideLoginButton && <LoginButton color={color} />}
         <Select
           border="none"
           bg="none"
@@ -110,9 +106,13 @@ const Navbar = ({ isSticky = true, color }) => {
             es
           </option>
         </Select>
-        <Button fontSize="md" minW="4rem" h={10} onClick={handleStartNow}>
-          {t.navbar.startNowButton}
-        </Button>
+        <Link href={'/templates'}>
+          <a>
+            <Button fontSize="md" minW="4rem" h={10} onClick={handleStartNow}>
+              {t.navbar.startNowButton}
+            </Button>
+          </a>
+        </Link>
       </Flex>
     </Flex>
   )
