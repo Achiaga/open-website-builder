@@ -107,13 +107,27 @@ export function BuilderBlock({ blockId, isDragging }) {
         if (isEditable || isDragging) return null
         dispatch(setBlockEditable(blockId))
       }}
-      outline="2px solid"
+      outline="1px solid"
       outlineOffset="0px"
-      outlineColor={isEditable ? '#43E28E' : 'transparent'}
+      outlineColor={isEditable ? 'primary.600' : 'transparent'}
       transition="outline-color .3s"
       className={!dragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
       position="relative"
+      _before={
+        isEditable
+          ? {
+              border: '1px solid',
+              borderColor: '#767676',
+              content: "''",
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }
+          : {}
+      }
     >
       {isEditable && !isMobileBuilder && type !== 'text' && !isDragging && (
         <>
