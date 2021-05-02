@@ -1,10 +1,108 @@
+import Link from 'next/link'
 import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
-import { Grid, Text } from '@chakra-ui/react'
+import { List, ListIcon, ListItem, Grid, Text, Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { unsplash } from '../../../utils/unsplash'
 import useDebouncedValue from './useDebounce'
+import { MdCheckCircle } from 'react-icons/md'
+
+export const GoProTab = () => {
+  return (
+    <Box w="full">
+      <Box w="full" display="flex" justifyContent="center" alignItems="center">
+        <Text as="h1" fontSize="40px" fontWeight="bold" color="primary.500">
+          Go Pro !
+        </Text>
+      </Box>
+      <Box
+        w="full"
+        px="5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Text
+          as="p"
+          fontSize="16px"
+          fontWeight="regular"
+          color="primary.500"
+          textAlign="center"
+        >
+          Start now our the Pro version and access all our features and
+          resources. To create your dream website. <br />
+        </Text>
+      </Box>
+      <Box
+        w="full"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pb="0.75rem"
+        mt="-0.75rem"
+      >
+        <Image
+          src={'/Rocket.png'}
+          width="200px"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center center"
+        />
+      </Box>
+      <Box
+        w="full"
+        px="5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        pb="2rem"
+      >
+        <List
+          spacing={3}
+          fontSize="16px"
+          fontWeight="regular"
+          color="black"
+          textAlign="left"
+        >
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            The best free icons
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            Upload your own images
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            No watermark
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            Animation + Hover Effect
+          </ListItem>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color="green.500" />
+            Integrations
+          </ListItem>
+        </List>
+      </Box>
+      <Box
+        w="full"
+        px="5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Link href="/pricing">
+          <Button background="green.500" color="white" fontWeight="bold">
+            Upgrade
+          </Button>
+        </Link>
+      </Box>
+    </Box>
+  )
+}
 
 const UrlImageItem = ({ imageSrc }) => {
   return (

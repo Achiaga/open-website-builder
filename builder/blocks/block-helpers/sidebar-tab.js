@@ -1,8 +1,15 @@
 import { Box } from '@chakra-ui/layout'
+import { Text } from '@chakra-ui/react'
 
-const SidebarTab = ({ tabIndex, index, label, onClick }) => {
+const SidebarTab = ({ tabIndex, index, label, pro = false, onClick }) => {
   return (
-    <Box cursor="pointer" padding="8px 0" width="100%" textAlign="left">
+    <Box
+      cursor="pointer"
+      position="relative"
+      padding="8px 0"
+      width="100%"
+      textAlign="left"
+    >
       <Box
         as="button"
         background="transparent"
@@ -21,6 +28,24 @@ const SidebarTab = ({ tabIndex, index, label, onClick }) => {
       >
         {label}
       </Box>
+      {pro && (
+        <Box
+          position="absolute"
+          borderRadius="25px"
+          background="gold"
+          color="primary.500"
+          top="0.9rem"
+          right="1.5rem"
+          width="30px"
+          display="flex"
+          justifyContent="center"
+          fontSize="12px"
+          fontWeight="800"
+          boxShadow="0px 10px 50px 0px #00000033"
+        >
+          Pro
+        </Box>
+      )}
     </Box>
   )
 }
