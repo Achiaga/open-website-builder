@@ -339,6 +339,14 @@ const imageInput = {
   inputPlaceholder: 'Enter your link',
   property: 'imageUrl',
 }
+const imageSelctor = {
+  type: 'image',
+  icon: <ImageIcon />,
+  tooltip:
+    'Copy the "Image Adress" of your Online Img you want to add and paste it. (we only support Online Imgs for the momment).',
+  inputPlaceholder: 'Enter your link',
+  property: 'imageUrl',
+}
 
 export const redirectInput = {
   type: 'text',
@@ -367,6 +375,7 @@ export const Properties = {
     borderRadius,
     boxShadow,
     imageInput,
+    imageSelctor,
     redirectInput,
     duplicateProperty,
   ],
@@ -378,6 +387,23 @@ export const Properties = {
     imageInput,
     boxShadow,
     backgroundColor,
+    duplicateProperty,
+  ],
+  form: [
+    deleteProperty,
+    border,
+    borderRadius,
+    boxShadow,
+    backgroundColor,
+    duplicateProperty,
+  ],
+  button: [
+    deleteProperty,
+    border,
+    borderRadius,
+    boxShadow,
+    backgroundColor,
+    redirectInput,
     duplicateProperty,
   ],
 }
