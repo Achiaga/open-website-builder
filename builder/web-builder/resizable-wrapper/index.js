@@ -32,7 +32,7 @@ const ResizeWrapper = ({
       style={{
         position: 'absolute',
         zIndex: 2,
-        outline: '1px solid',
+        outline: '2px solid',
         outlineColor: isOver ? '#586ee0' : 'transparent',
         transition: 'outline-color .3s',
       }}

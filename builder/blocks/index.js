@@ -114,7 +114,7 @@ export function BuilderBlock({ blockId, isDragging }) {
       className={!dragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
       position="relative"
-      _after={
+      _before={
         isEditable
           ? {
               border: '1px solid',
