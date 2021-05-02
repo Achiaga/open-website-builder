@@ -27,7 +27,6 @@ import {
 import { BuilderBlock, ResizingCounter } from '../blocks'
 import { RayTracing } from './Ray-Tracing'
 import ResizeWrapper from './resizable-wrapper'
-import { toNumber } from 'lodash'
 
 const blocksZIndex = {
   inception: 0,
@@ -144,6 +143,7 @@ const DraggableItem = ({
             onResizeStop={onResizeStop}
             isTextBlock={isTextBlock}
             handleResize={handleResize}
+            isSelected={isSelected}
           >
             <RayTracing
               width={width}

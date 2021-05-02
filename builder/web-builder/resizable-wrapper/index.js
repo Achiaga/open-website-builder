@@ -17,6 +17,7 @@ const ResizeWrapper = ({
   onResizeStop,
   isTextBlock,
   handleResize,
+  isSelected,
   children,
 }) => {
   const [isOver, setIsOver] = useState(false)
@@ -32,7 +33,7 @@ const ResizeWrapper = ({
         position: 'absolute',
         zIndex: 2,
         outline: '2px solid',
-        outlineColor: isOver ? '#43E28E' : 'transparent',
+        outlineColor: isOver ? '#586ee0' : 'transparent',
         transition: 'outline-color .3s',
       }}
       onResizeStop={onResizeStop}
@@ -45,18 +46,27 @@ const ResizeWrapper = ({
       onMouseOver={() => setIsOver(true)}
       onMouseOut={() => setIsOver(false)}
       handleStyles={
-        isOver && {
+        (isOver || isSelected) && {
           bottomRight: {
-            border: '1px solid blue',
-            background: 'white',
-            borderRadius: '2px',
+            background:
+              'linear-gradient(0,rgba(255,255,255,0.5),rgba(255,255,255,0.5)),#f6f6f9',
+            boxShadow:
+              '0 0 6px rgb(27 24 60 / 10%), 0 0 2px rgb(39 34 93 / 75%)',
             zIndex: 2,
+            borderRadius: '10px',
           },
           right: {
-            border: '1px solid blue',
-            background: 'white',
-            borderRadius: '2px',
-            zIndex: 2,
+            background:
+              'linear-gradient(0,rgba(255,255,255,0.5),rgba(255,255,255,0.5)),#f6f6f9',
+            boxShadow:
+              '0 0 6px rgb(27 24 60 / 10%), 0 0 2px rgb(39 34 93 / 75%)',
+            borderRadius: '50px',
+            margin: 'auto',
+            height: '30%',
+            minHeight: '30px',
+            top: '50%',
+            zIndex: 4,
+            transform: 'translate(0px, -50%)',
           },
         }
       }
