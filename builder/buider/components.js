@@ -79,7 +79,7 @@ export const MobileWrapper = ({ children }) => {
     <Box
       w="100%"
       height="100%"
-      bg="#dbe5f0"
+      bg="#f6f6f9"
       py="2rem"
       overflow="scroll"
       overflowY="hidden"
