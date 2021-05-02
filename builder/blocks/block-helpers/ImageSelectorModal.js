@@ -7,7 +7,7 @@ import { Box } from '@chakra-ui/layout'
 import { trackDownloads } from '../../../utils/unsplash'
 
 import SidebarTab from './sidebar-tab'
-import { UnpslashImages, ImagesGrid } from './ImagesGrid'
+import { UnpslashImages, ImagesGrid, UrlImagesTab } from './ImagesGrid'
 import { AntfolioImages, AntfolioIcons } from './assets'
 import { GrClose } from 'react-icons/gr'
 
@@ -40,8 +40,8 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
         sx={{
           width: '100vw',
           height: '100vh',
-          gap: ' 20px',
-          borderRadius: ' 0px',
+          gap: '20px',
+          borderRadius: '0px',
           backdropFilter: ' blur(1px)',
           backgroundColor: ' rgba(0,76,255, 0.022)',
           boxShadow: ' rgba(0, 0, 0, 0.3) 2px 8px 8px',
@@ -127,6 +127,12 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                 onClick={() => setTabIndex(3)}
                 label={'Icons'}
               />
+              <SidebarTab
+                index={4}
+                tabIndex={tabIndex}
+                onClick={() => setTabIndex(4)}
+                label={'Url'}
+              />
               <Box
                 position="absolute"
                 left="0rem"
@@ -137,7 +143,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   background="white"
                   color="primary.500"
                   padding="1.5rem 1.25rem"
-                  onClick={() => setTabIndex(4)}
+                  onClick={() => setTabIndex(5)}
                 >
                   Upload <br />
                   your Own
@@ -191,7 +197,8 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   />
                 )}
                 {tabIndex === 3 && <p>No icons yet!</p>}
-                {tabIndex === 4 && <p>No here yet!</p>}
+                {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
+                {tabIndex === 5 && <p>No here yet!</p>}
               </Box>
             </Box>
           </Box>

@@ -6,6 +6,49 @@ import { useEffect, useState } from 'react'
 import { unsplash } from '../../../utils/unsplash'
 import useDebouncedValue from './useDebounce'
 
+const UrlImageItem = ({ imageSrc }) => {
+  return (
+    <Box
+      pos="relative"
+      display="flex"
+      justifyContent="center"
+      borderRadius="10px"
+    >
+      <Image src={imageSrc} />
+    </Box>
+  )
+}
+
+export const UrlImagesTab = ({ onSelect }) => {
+  const [imgUrl, setImgUrl] = useState()
+
+  function handleSelect(value) {
+    setImgUrl(value)
+    onSelect({ image: value })
+  }
+  return (
+    <Box>
+      <Input
+        marginBottom=".4rem"
+        placeholder="Add the link of the image you want to use"
+        onChange={(e) => handleSelect(e.target.value)}
+      />
+      <Text
+        fontSize="12px"
+        color="gray.400"
+        marginBottom="1.5rem"
+        marginLeft="0.5rem"
+      >
+        {
+          "*To use the online image you want: Right Click on Image -> 'Copy image address' -> Paste it here"
+        }
+      </Text>
+
+      <UrlImageItem imageSrc={imgUrl} onSelect={handleSelect} />
+    </Box>
+  )
+}
+
 const ImageItem = ({ imageSrc, index, isSelcted, onSelect }) => {
   return (
     <Box
