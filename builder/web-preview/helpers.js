@@ -8,6 +8,8 @@ const zIndexs = {
   inception: 0,
   image: 1,
   text: 2,
+  button: 3,
+  form: 4,
 }
 
 function getBlockZIndex(blockType) {

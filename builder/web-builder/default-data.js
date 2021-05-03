@@ -22,4 +22,16 @@ export const blocksProperties = {
     borderRadius: '0px',
     backgroundColor: 'transparent',
   },
+  button: {
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0px',
+    backgroundColor: '#000000',
+  },
+  form: {
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0px',
+    backgroundColor: '#000000',
+  },
 }
