@@ -91,6 +91,7 @@ export const PrevContactForm = (props) => {
           borderBottomLeftRadius="0"
           backgroundColor={success ? '#3cd04e' : props.backgroundColor}
           borderRadius={props.borderRadius}
+          color="gray.400"
           h="100%"
           w="50%"
           minW="fit-content"
@@ -177,6 +178,7 @@ export const GenericContactForm = (props) => {
         borderBottomRightRadius="0"
         border={border !== 'none' ? 'none' : '1px solid'}
         borderColor="gray.300"
+        color="gray.400"
         h="100%"
         value={textInput}
         onChange={handleInputChange}
