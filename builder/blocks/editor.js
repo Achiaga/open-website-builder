@@ -107,13 +107,7 @@ function QuillToolbar() {
 }
 
 export const CustomToolbar = ({ blockId }) => {
-  const [isOpen, setIsOpen] = useState('')
   const dispatch = useDispatch()
-
-  const handleOpenToolbar = (e) => {
-    const { id } = e.currentTarget
-    setIsOpen(id)
-  }
 
   function handleEdit(_, __, operationType = EDIT) {
     dispatch(editBlockConfig({ blockId, operationType }))

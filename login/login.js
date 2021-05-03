@@ -126,7 +126,14 @@ export function Login() {
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Box>
             ) : (
-              <MenuItem onClick={handleLogin}>Login</MenuItem>
+              <Box>
+                <Link href="/templates">
+                  <a>
+                    <MenuItem>Templates</MenuItem>
+                  </a>
+                </Link>
+                <MenuItem onClick={handleLogin}>Login</MenuItem>
+              </Box>
             )}
           </Box>
         )}
