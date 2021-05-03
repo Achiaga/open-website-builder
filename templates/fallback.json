@@ -1,43 +1,950 @@
 {
   "blocks": {
-    "text-664e08d1-3e6a-4c49-99aa-8d876f699425": {
+    "image-2916cf6c-29f3-45fa-bcbf-c72bd2e27171": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=%2FblogImgSmall2.png&w=3840&q=75"
+      }
+    },
+    "text-7748f2a1-dd59-4599-9bee-7e109c71984c": {
       "type": "text",
       "data": {
-        "text": "Test block text 🎉",
-        "fontSize": "40",
+        "text": "<h3><strong style=\"color: rgb(11, 110, 153);\">Welcome to your website!</strong></h3><p><br></p><p><br></p><h4>Howdy! 👋 We are excited to have you here.</h4><p><br></p><p><br></p><h4 class=\"ql-align-justify\">This is the <em style=\"color: rgb(11, 110, 153);\">Tutorial Template</em>, if you are the type of person who learns by tinkering with it, you can <span style=\"color: rgb(11, 110, 153);\">skip</span> it by just clicking on the button below. 🤠 🤟</h4><h4><br></h4><h4 class=\"ql-align-justify\">On the other hand, if you want to read our <span style=\"color: rgb(11, 110, 153);\">super</span> <span style=\"color: rgb(11, 110, 153);\">fun</span> <span style=\"color: rgb(11, 110, 153);\">documentation</span> (that will save you time), just <em style=\"color: rgb(11, 110, 153);\"><u>scroll down</u></em> to the next section. 🥳 🙌</h4>",
+        "fontSize": "24",
         "textAlign": "center",
         "alignItems": "center",
         "fontWeight": "400",
         "boxShadow": "none",
         "borderRadius": "0px",
-        "fontColor": "#000000",
-        "backgroundColor": "#FFFFFF"
+        "fontColor": "#000000"
+      }
+    },
+    "button-e3272edd-5905-44f5-b11f-0e28b27e6d88": {
+      "type": "button",
+      "data": {
+        "backgroundColor": "#4CB0EA",
+        "borderRadius": "100px",
+        "redirect": "https://www.antfolio.app/templates"
+      }
+    },
+    "image-6455f65b-bf7b-4bcb-ba32-0a8723175784": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/thumbs-up.png"
+      }
+    },
+    "text-94dc9c93-2ced-4404-b206-19fff3e29888": {
+      "type": "text",
+      "data": {
+        "text": "<h2>Introduction - What is Antfolio?</h2>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-dfc85ad4-067e-4bee-ad08-d26e41c996b8": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/hand.png"
+      }
+    },
+    "text-6b189b1b-32f6-445a-a7c2-c2c7fda1a599": {
+      "type": "text",
+      "data": {
+        "text": "<h5>We are a <span style=\"color: rgb(11, 110, 153);\">website builder</span>. Right now we are focused on portfolio-resume builder since we are in the early stage but we are continuously developing and adding new features to allow you to build whatever you need. Right now we are expanding to landing pages, validation ideas, blogs, and in the near future we will even support podcast websites. But if you have any specific needs, feel free to send us a message and we will try to help you.</h5><p><br></p><p><br></p><h5>The main idea behind antfolio is to enable users to create amazing websites with no previous knowledge of code or what even a website is. Make a website should be fun and painless. No learning curve. No headache for design or looking for the right image. We are an e-2-e website builder fun, easy to build, and more importantly, quick (time === money). That is why we have spent so much time on making the builder the easiest with the best UX/UI possible.</h5><p><br></p><p><br></p><h5>Let's stop with the blabla about us. And let's jump to the important topic for you. 😁🚀</h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-d07feb18-8d73-4a62-a4a5-6b54f4574825": {
+      "type": "text",
+      "data": {
+        "text": "<h2>Steps - Start Building</h2>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-1ad8b82e-d468-4418-833a-6c489a2fd397": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>1. You need to choose one of our awesome templates:</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-b036b2b0-04c4-4d52-8f7c-aa79a46efbf4": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "text-d9425919-46a2-4863-a587-332f32601616": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>2. Start editing it to make it yours:</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-a67780c6-7e32-48f5-94c8-c018a2bc0553": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#f7484e"
+      }
+    },
+    "text-9a92092d-7c91-420d-80bd-8676e5ceca24": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong style=\"color: rgb(0, 0, 0);\"><em>**Warning**</em></strong><strong style=\"color: rgb(255, 255, 255);\"> Remember to save when you make changes on your web. You can find the button on the top left of the screen. We can not keep track of all your changes on our database (we are not made of gold 😜). So all your changes will be stored temporarily on your session but to be sure you don't lose your amazing website, hit that button from time to time. </strong></h5><h5><br></h5><h5><strong style=\"color: rgb(255, 255, 255);\">﻿The most important time to save is before leaving the builder so you don't lose your temporary data. We will warn you with a message just in case. 🤟</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-fe292955-f400-4304-842f-9412206cfd02": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#00BA5E"
+      }
+    },
+    "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong style=\"color: rgb(217, 115, 13);\">**<em>Info**</em></strong><strong style=\"color: rgb(255, 255, 255);\"> You can build a web without login in (sign-ups === boring). And the changes you make will be saved temporarily on your session. But if want to publish your website online, we need you to sign up so we can keep track of what website belongs to who. 🏗</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-93414268-4562-45bf-8bec-4a9ac5fd13ec": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/startup-rocket.png"
+      }
+    },
+    "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>4. Build the mobile version:</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-4ebda679-7374-49cb-abaf-d6e69bee669e": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>5. Publish it:</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-ea77333b-31bb-42be-8391-5c6a859e2f33": {
+      "type": "text",
+      "data": {
+        "text": "<h5>More Documentation:</h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "text-9659c1b3-eefc-435b-b545-65ad7f60920c": {
+      "type": "text",
+      "data": {
+        "text": "<h5>😸 Add New Elements</h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded": {
+      "type": "text",
+      "data": {
+        "text": "<h5>😸 Change an Image</h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-32e578ae-deb5-430a-97ea-f15f8af2ffad": {
+      "type": "text",
+      "data": {
+        "text": "<h5>😸 Edit Text</h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-7bebad99-e891-469d-ae1a-a89fc05112d7": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>3. Preview your website:</strong></h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-f8040f54-e528-40e9-813e-0c05627b7ab5": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "image-c8bfabfe-59b7-467f-b883-282c699a64da": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "image-84781dc9-618d-42da-ae0f-0df5720b793f": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1618159072219-620bc5c8f3f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+      }
+    },
+    "image-1f757f02-3480-4336-9124-d40821fbfc09": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/gift.png"
+      }
+    },
+    "button-0968d24f-2da9-4d5e-be52-5977fd4e669c": {
+      "type": "button",
+      "data": {
+        "backgroundColor": "#4CB0EA"
+      }
+    },
+    "inception-48242a5f-de81-4232-a0b2-1512e977caf6": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "image-850964fb-55a3-4d87-b86a-8e7aed0891da": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/idea.png"
+      }
+    },
+    "text-838fae2f-2142-423a-bb13-ebadd5c498d6": {
+      "type": "text",
+      "data": {
+        "text": "<h5>More About us:</h5>",
+        "fontSize": "24",
+        "textAlign": "center",
+        "alignItems": "center",
+        "fontWeight": "400",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "button-e76f83ce-7523-4940-bf92-20152026183a": {
+      "type": "button",
+      "data": {
+        "backgroundColor": "#4CB0EA"
       }
     }
   },
-  "layouts": [
-    {
-      "w": 96,
-      "h": 43,
+  "layouts": {
+    "image-2916cf6c-29f3-45fa-bcbf-c72bd2e27171": {
+      "x": 125.83333333333333,
+      "y": 17.5,
+      "w": 64.86111111111111,
+      "h": 65.69444444444444,
+      "i": "image-2916cf6c-29f3-45fa-bcbf-c72bd2e27171"
+    },
+    "text-7748f2a1-dd59-4599-9bee-7e109c71984c": {
+      "x": 7.638888888888888,
+      "y": 17.77777777777778,
+      "w": 107.5,
+      "h": 60.97222222222222,
+      "i": "text-7748f2a1-dd59-4599-9bee-7e109c71984c"
+    },
+    "button-e3272edd-5905-44f5-b11f-0e28b27e6d88": {
+      "x": 53.75000000000001,
+      "y": 83.75,
+      "w": 24.305555555555554,
+      "h": 6.666666666666666,
+      "i": "button-e3272edd-5905-44f5-b11f-0e28b27e6d88"
+    },
+    "image-6455f65b-bf7b-4bcb-ba32-0a8723175784": {
+      "x": 89.30555555555556,
+      "y": 17.916666666666668,
+      "w": 25.97222222222222,
+      "h": 23.055555555555554,
+      "i": "image-6455f65b-bf7b-4bcb-ba32-0a8723175784"
+    },
+    "text-94dc9c93-2ced-4404-b206-19fff3e29888": {
+      "x": 50.83333333333333,
+      "y": 109.58333333333333,
+      "w": 102.91666666666666,
+      "h": 13.472222222222221,
+      "i": "text-94dc9c93-2ced-4404-b206-19fff3e29888"
+    },
+    "image-dfc85ad4-067e-4bee-ad08-d26e41c996b8": {
+      "x": 7.777777777777778,
+      "y": 134.16666666666666,
+      "w": 45.97222222222222,
+      "h": 38.88888888888889,
+      "i": "image-dfc85ad4-067e-4bee-ad08-d26e41c996b8"
+    },
+    "text-6b189b1b-32f6-445a-a7c2-c2c7fda1a599": {
+      "x": 57.3611111111111,
+      "y": 125.27777777777776,
+      "w": 126.94444444444444,
+      "h": 54.58333333333333,
+      "i": "text-6b189b1b-32f6-445a-a7c2-c2c7fda1a599"
+    },
+    "text-d07feb18-8d73-4a62-a4a5-6b54f4574825": {
+      "x": 56.11111111111111,
+      "y": 206.11111111111111,
+      "w": 87.77777777777777,
+      "h": 13.472222222222221,
+      "i": "text-d07feb18-8d73-4a62-a4a5-6b54f4574825"
+    },
+    "text-1ad8b82e-d468-4418-833a-6c489a2fd397": {
+      "x": 7.222222222222222,
+      "y": 228.47222222222223,
+      "w": 77.36111111111111,
+      "h": 7.083333333333333,
+      "i": "text-1ad8b82e-d468-4418-833a-6c489a2fd397"
+    },
+    "image-b036b2b0-04c4-4d52-8f7c-aa79a46efbf4": {
+      "x": 67.77777777777777,
+      "y": 240.69444444444443,
+      "w": 63.61111111111111,
+      "h": 34.583333333333336,
+      "i": "image-b036b2b0-04c4-4d52-8f7c-aa79a46efbf4"
+    },
+    "text-d9425919-46a2-4863-a587-332f32601616": {
+      "x": 11.11111111111111,
+      "y": 284.72222222222223,
+      "w": 51.80555555555556,
+      "h": 7.083333333333333,
+      "i": "text-d9425919-46a2-4863-a587-332f32601616"
+    },
+    "image-a67780c6-7e32-48f5-94c8-c018a2bc0553": {
+      "x": 65.83333333333333,
+      "y": 306.80555555555554,
+      "w": 68.33333333333333,
+      "h": 40.83333333333333,
+      "i": "image-a67780c6-7e32-48f5-94c8-c018a2bc0553"
+    },
+    "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512": {
+      "x": 22.77777777777778,
+      "y": 525.5555555555554,
+      "w": 158.33333333333334,
+      "h": 33.75,
+      "i": "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512"
+    },
+    "text-9a92092d-7c91-420d-80bd-8676e5ceca24": {
+      "x": 24.305555555555554,
+      "y": 527.5,
+      "w": 154.02777777777777,
+      "h": 29.583333333333332,
+      "i": "text-9a92092d-7c91-420d-80bd-8676e5ceca24"
+    },
+    "inception-fe292955-f400-4304-842f-9412206cfd02": {
+      "x": 24.305555555555554,
+      "y": 493.75,
+      "w": 156.25,
+      "h": 18.333333333333332,
+      "i": "inception-fe292955-f400-4304-842f-9412206cfd02"
+    },
+    "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3": {
+      "x": 25.833333333333325,
+      "y": 495.55555555555554,
+      "w": 150.69444444444443,
+      "h": 14.583333333333332,
+      "i": "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3"
+    },
+    "image-93414268-4562-45bf-8bec-4a9ac5fd13ec": {
+      "x": 133.8888888888889,
+      "y": 199.44444444444443,
+      "w": 24.166666666666664,
+      "h": 26.666666666666664,
+      "i": "image-93414268-4562-45bf-8bec-4a9ac5fd13ec"
+    },
+    "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9": {
+      "x": 11.527777777777782,
+      "y": 645.4166666666666,
+      "w": 45.27777777777778,
+      "h": 7.083333333333333,
+      "i": "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9"
+    },
+    "text-4ebda679-7374-49cb-abaf-d6e69bee669e": {
+      "x": 11.527777777777782,
+      "y": 718.6111111111111,
+      "w": 45.27777777777778,
+      "h": 7.083333333333333,
+      "i": "text-4ebda679-7374-49cb-abaf-d6e69bee669e"
+    },
+    "text-ea77333b-31bb-42be-8391-5c6a859e2f33": {
+      "x": 40.55555555555556,
+      "y": 814.0277777777777,
+      "w": 45.27777777777778,
+      "h": 7.083333333333333,
+      "i": "text-ea77333b-31bb-42be-8391-5c6a859e2f33"
+    },
+    "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5": {
+      "x": 17.916666666666668,
+      "y": 493.05555555555554,
+      "w": 168.88888888888886,
+      "h": 68.05555555555556,
+      "i": "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5"
+    },
+    "text-9659c1b3-eefc-435b-b545-65ad7f60920c": {
+      "x": 29.02777777777777,
+      "y": 297.63888888888886,
+      "w": 40.833333333333336,
+      "h": 7.083333333333333,
+      "i": "text-9659c1b3-eefc-435b-b545-65ad7f60920c"
+    },
+    "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7": {
+      "x": 65,
+      "y": 370.97222222222223,
+      "w": 68.33333333333333,
+      "h": 40.83333333333333,
+      "i": "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7"
+    },
+    "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded": {
+      "x": 28.888888888888875,
+      "y": 361.52777777777777,
+      "w": 33.888888888888886,
+      "h": 7.083333333333333,
+      "i": "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded"
+    },
+    "text-32e578ae-deb5-430a-97ea-f15f8af2ffad": {
+      "x": 28.88888888888887,
+      "y": 427.0833333333333,
+      "w": 33.888888888888886,
+      "h": 7.083333333333333,
+      "i": "text-32e578ae-deb5-430a-97ea-f15f8af2ffad"
+    },
+    "image-7bebad99-e891-469d-ae1a-a89fc05112d7": {
+      "x": 65.55555555555554,
+      "y": 438.75,
+      "w": 68.33333333333333,
+      "h": 40.83333333333333,
+      "i": "image-7bebad99-e891-469d-ae1a-a89fc05112d7"
+    },
+    "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55": {
+      "x": 11.11111111111111,
+      "y": 575.9722222222222,
+      "w": 51.80555555555556,
+      "h": 7.083333333333333,
+      "i": "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55"
+    },
+    "image-f8040f54-e528-40e9-813e-0c05627b7ab5": {
+      "x": 71.25000000000001,
+      "y": 584.0277777777777,
+      "w": 68.61111111111111,
+      "h": 40.83333333333333,
+      "i": "image-f8040f54-e528-40e9-813e-0c05627b7ab5"
+    },
+    "image-c8bfabfe-59b7-467f-b883-282c699a64da": {
+      "x": 71.25000000000001,
+      "y": 655.4166666666666,
+      "w": 68.61111111111111,
+      "h": 40.83333333333333,
+      "i": "image-c8bfabfe-59b7-467f-b883-282c699a64da"
+    },
+    "image-84781dc9-618d-42da-ae0f-0df5720b793f": {
+      "x": 68.05555555555557,
+      "y": 730.9722222222222,
+      "w": 68.61111111111111,
+      "h": 40.83333333333333,
+      "i": "image-84781dc9-618d-42da-ae0f-0df5720b793f"
+    },
+    "image-1f757f02-3480-4336-9124-d40821fbfc09": {
+      "x": 6.527777777777778,
+      "y": 809.0277777777777,
+      "w": 31.666666666666664,
+      "h": 30.555555555555554,
+      "i": "image-1f757f02-3480-4336-9124-d40821fbfc09"
+    },
+    "button-0968d24f-2da9-4d5e-be52-5977fd4e669c": {
+      "x": 45.138888888888886,
+      "y": 825.8333333333333,
+      "w": 36.111111111111114,
+      "h": 6.666666666666667,
+      "i": "button-0968d24f-2da9-4d5e-be52-5977fd4e669c"
+    },
+    "inception-48242a5f-de81-4232-a0b2-1512e977caf6": {
       "x": 0,
-      "y": 21,
-      "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "y": 801.5277777777777,
+      "w": 200,
+      "h": 46.25,
+      "i": "inception-48242a5f-de81-4232-a0b2-1512e977caf6"
+    },
+    "image-850964fb-55a3-4d87-b86a-8e7aed0891da": {
+      "x": 99.58333333333333,
+      "y": 811.8055555555555,
+      "w": 32.36111111111111,
+      "h": 25.833333333333332,
+      "i": "image-850964fb-55a3-4d87-b86a-8e7aed0891da"
+    },
+    "text-838fae2f-2142-423a-bb13-ebadd5c498d6": {
+      "x": 135.27777777777777,
+      "y": 814.0277777777777,
+      "w": 45.27777777777778,
+      "h": 7.083333333333333,
+      "i": "text-838fae2f-2142-423a-bb13-ebadd5c498d6"
+    },
+    "button-e76f83ce-7523-4940-bf92-20152026183a": {
+      "x": 133.88888888888889,
+      "y": 825.8333333333333,
+      "w": 36.111111111111114,
+      "h": 6.666666666666667,
+      "i": "button-e76f83ce-7523-4940-bf92-20152026183a"
     }
-  ],
-  "mobileLayout": [
-    {
-      "w": 50,
-      "h": 43,
+  },
+  "mobileLayout": {
+    "image-2916cf6c-29f3-45fa-bcbf-c72bd2e27171": {
+      "x": 62.916666666666664,
+      "y": 17.5,
+      "w": 32.43055555555556,
+      "h": 65.69444444444444,
+      "i": "image-2916cf6c-29f3-45fa-bcbf-c72bd2e27171"
+    },
+    "text-7748f2a1-dd59-4599-9bee-7e109c71984c": {
+      "x": 3.819444444444444,
+      "y": 17.77777777777778,
+      "w": 53.75,
+      "h": 60.97222222222222,
+      "i": "text-7748f2a1-dd59-4599-9bee-7e109c71984c"
+    },
+    "button-e3272edd-5905-44f5-b11f-0e28b27e6d88": {
+      "x": 26.875000000000004,
+      "y": 83.75,
+      "w": 12.152777777777777,
+      "h": 6.666666666666666,
+      "i": "button-e3272edd-5905-44f5-b11f-0e28b27e6d88"
+    },
+    "image-6455f65b-bf7b-4bcb-ba32-0a8723175784": {
+      "x": 44.65277777777778,
+      "y": 17.916666666666668,
+      "w": 12.98611111111111,
+      "h": 23.055555555555554,
+      "i": "image-6455f65b-bf7b-4bcb-ba32-0a8723175784"
+    },
+    "text-94dc9c93-2ced-4404-b206-19fff3e29888": {
+      "x": 25.416666666666664,
+      "y": 109.58333333333333,
+      "w": 51.45833333333333,
+      "h": 13.472222222222221,
+      "i": "text-94dc9c93-2ced-4404-b206-19fff3e29888"
+    },
+    "image-dfc85ad4-067e-4bee-ad08-d26e41c996b8": {
+      "x": 3.888888888888889,
+      "y": 134.16666666666666,
+      "w": 22.98611111111111,
+      "h": 38.88888888888889,
+      "i": "image-dfc85ad4-067e-4bee-ad08-d26e41c996b8"
+    },
+    "text-6b189b1b-32f6-445a-a7c2-c2c7fda1a599": {
+      "x": 28.68055555555555,
+      "y": 125.27777777777776,
+      "w": 63.47222222222222,
+      "h": 54.58333333333333,
+      "i": "text-6b189b1b-32f6-445a-a7c2-c2c7fda1a599"
+    },
+    "text-d07feb18-8d73-4a62-a4a5-6b54f4574825": {
+      "x": 28.055555555555554,
+      "y": 206.11111111111111,
+      "w": 43.888888888888886,
+      "h": 13.472222222222221,
+      "i": "text-d07feb18-8d73-4a62-a4a5-6b54f4574825"
+    },
+    "text-1ad8b82e-d468-4418-833a-6c489a2fd397": {
+      "x": 3.611111111111111,
+      "y": 228.47222222222223,
+      "w": 38.68055555555556,
+      "h": 7.083333333333333,
+      "i": "text-1ad8b82e-d468-4418-833a-6c489a2fd397"
+    },
+    "image-b036b2b0-04c4-4d52-8f7c-aa79a46efbf4": {
+      "x": 33.888888888888886,
+      "y": 240.69444444444443,
+      "w": 31.805555555555554,
+      "h": 34.583333333333336,
+      "i": "image-b036b2b0-04c4-4d52-8f7c-aa79a46efbf4"
+    },
+    "text-d9425919-46a2-4863-a587-332f32601616": {
+      "x": 5.555555555555555,
+      "y": 284.72222222222223,
+      "w": 25.90277777777778,
+      "h": 7.083333333333333,
+      "i": "text-d9425919-46a2-4863-a587-332f32601616"
+    },
+    "image-a67780c6-7e32-48f5-94c8-c018a2bc0553": {
+      "x": 32.916666666666664,
+      "y": 306.80555555555554,
+      "w": 34.166666666666664,
+      "h": 40.83333333333333,
+      "i": "image-a67780c6-7e32-48f5-94c8-c018a2bc0553"
+    },
+    "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512": {
+      "x": 11.38888888888889,
+      "y": 525.5555555555554,
+      "w": 79.16666666666667,
+      "h": 33.75,
+      "i": "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512"
+    },
+    "text-9a92092d-7c91-420d-80bd-8676e5ceca24": {
+      "x": 11.73611111111111,
+      "y": 423.3333333333333,
+      "w": 77.01388888888889,
+      "h": 29.583333333333332,
+      "i": "text-9a92092d-7c91-420d-80bd-8676e5ceca24"
+    },
+    "inception-fe292955-f400-4304-842f-9412206cfd02": {
+      "x": 12.152777777777777,
+      "y": 493.75,
+      "w": 78.125,
+      "h": 18.333333333333332,
+      "i": "inception-fe292955-f400-4304-842f-9412206cfd02"
+    },
+    "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3": {
+      "x": 12.430555555555552,
+      "y": 416.38888888888886,
+      "w": 75.34722222222221,
+      "h": 14.583333333333332,
+      "i": "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3"
+    },
+    "image-93414268-4562-45bf-8bec-4a9ac5fd13ec": {
+      "x": 66.94444444444446,
+      "y": 199.44444444444443,
+      "w": 12.083333333333332,
+      "h": 26.666666666666664,
+      "i": "image-93414268-4562-45bf-8bec-4a9ac5fd13ec"
+    },
+    "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9": {
+      "x": 5.763888888888891,
+      "y": 645.4166666666666,
+      "w": 22.63888888888889,
+      "h": 7.083333333333333,
+      "i": "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9"
+    },
+    "text-4ebda679-7374-49cb-abaf-d6e69bee669e": {
+      "x": 5.763888888888891,
+      "y": 718.6111111111111,
+      "w": 22.63888888888889,
+      "h": 7.083333333333333,
+      "i": "text-4ebda679-7374-49cb-abaf-d6e69bee669e"
+    },
+    "text-ea77333b-31bb-42be-8391-5c6a859e2f33": {
+      "x": 20.27777777777778,
+      "y": 814.0277777777777,
+      "w": 22.63888888888889,
+      "h": 7.083333333333333,
+      "i": "text-ea77333b-31bb-42be-8391-5c6a859e2f33"
+    },
+    "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5": {
+      "x": 8.958333333333334,
+      "y": 493.05555555555554,
+      "w": 84.44444444444443,
+      "h": 68.05555555555556,
+      "i": "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5"
+    },
+    "text-9659c1b3-eefc-435b-b545-65ad7f60920c": {
+      "x": 14.513888888888886,
+      "y": 297.63888888888886,
+      "w": 20.416666666666668,
+      "h": 7.083333333333333,
+      "i": "text-9659c1b3-eefc-435b-b545-65ad7f60920c"
+    },
+    "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7": {
+      "x": 32.5,
+      "y": 370.97222222222223,
+      "w": 34.166666666666664,
+      "h": 40.83333333333333,
+      "i": "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7"
+    },
+    "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded": {
+      "x": 14.444444444444438,
+      "y": 361.52777777777777,
+      "w": 16.944444444444443,
+      "h": 7.083333333333333,
+      "i": "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded"
+    },
+    "text-32e578ae-deb5-430a-97ea-f15f8af2ffad": {
+      "x": 14.444444444444436,
+      "y": 427.0833333333333,
+      "w": 16.944444444444443,
+      "h": 7.083333333333333,
+      "i": "text-32e578ae-deb5-430a-97ea-f15f8af2ffad"
+    },
+    "image-7bebad99-e891-469d-ae1a-a89fc05112d7": {
+      "x": 32.77777777777777,
+      "y": 438.75,
+      "w": 34.166666666666664,
+      "h": 40.83333333333333,
+      "i": "image-7bebad99-e891-469d-ae1a-a89fc05112d7"
+    },
+    "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55": {
+      "x": 5.555555555555555,
+      "y": 575.9722222222222,
+      "w": 25.90277777777778,
+      "h": 7.083333333333333,
+      "i": "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55"
+    },
+    "image-f8040f54-e528-40e9-813e-0c05627b7ab5": {
+      "x": 35.62500000000001,
+      "y": 584.0277777777777,
+      "w": 34.30555555555556,
+      "h": 40.83333333333333,
+      "i": "image-f8040f54-e528-40e9-813e-0c05627b7ab5"
+    },
+    "image-c8bfabfe-59b7-467f-b883-282c699a64da": {
+      "x": 35.62500000000001,
+      "y": 655.4166666666666,
+      "w": 34.30555555555556,
+      "h": 40.83333333333333,
+      "i": "image-c8bfabfe-59b7-467f-b883-282c699a64da"
+    },
+    "image-84781dc9-618d-42da-ae0f-0df5720b793f": {
+      "x": 34.027777777777786,
+      "y": 730.9722222222222,
+      "w": 34.30555555555556,
+      "h": 40.83333333333333,
+      "i": "image-84781dc9-618d-42da-ae0f-0df5720b793f"
+    },
+    "image-1f757f02-3480-4336-9124-d40821fbfc09": {
+      "x": 3.263888888888889,
+      "y": 809.0277777777777,
+      "w": 15.833333333333332,
+      "h": 30.555555555555554,
+      "i": "image-1f757f02-3480-4336-9124-d40821fbfc09"
+    },
+    "button-0968d24f-2da9-4d5e-be52-5977fd4e669c": {
+      "x": 22.569444444444443,
+      "y": 825.8333333333333,
+      "w": 18.055555555555557,
+      "h": 6.666666666666667,
+      "i": "button-0968d24f-2da9-4d5e-be52-5977fd4e669c"
+    },
+    "inception-48242a5f-de81-4232-a0b2-1512e977caf6": {
       "x": 0,
-      "y": 21,
-      "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "y": 801.5277777777777,
+      "w": 100,
+      "h": 46.25,
+      "i": "inception-48242a5f-de81-4232-a0b2-1512e977caf6"
+    },
+    "image-850964fb-55a3-4d87-b86a-8e7aed0891da": {
+      "x": 49.791666666666664,
+      "y": 811.8055555555555,
+      "w": 16.180555555555554,
+      "h": 25.833333333333332,
+      "i": "image-850964fb-55a3-4d87-b86a-8e7aed0891da"
+    },
+    "text-838fae2f-2142-423a-bb13-ebadd5c498d6": {
+      "x": 67.63888888888889,
+      "y": 814.0277777777777,
+      "w": 22.63888888888889,
+      "h": 7.083333333333333,
+      "i": "text-838fae2f-2142-423a-bb13-ebadd5c498d6"
+    },
+    "button-e76f83ce-7523-4940-bf92-20152026183a": {
+      "x": 66.94444444444444,
+      "y": 825.8333333333333,
+      "w": 18.055555555555557,
+      "h": 6.666666666666667,
+      "i": "button-e76f83ce-7523-4940-bf92-20152026183a"
     }
-  ],
-  "hierarchy": {}
+  },
+  "hierarchy": {
+    "text-d07feb18-8d73-4a62-a4a5-6b54f4574825": [],
+    "text-d9425919-46a2-4863-a587-332f32601616": [],
+    "text-ffa64229-b5c8-4c96-82df-cae1dc9c6eb9": [],
+    "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512": [
+      "text-9a92092d-7c91-420d-80bd-8676e5ceca24"
+    ],
+    "inception-fe292955-f400-4304-842f-9412206cfd02": [
+      "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3"
+    ],
+    "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9": [],
+    "text-4ebda679-7374-49cb-abaf-d6e69bee669e": [],
+    "text-ea77333b-31bb-42be-8391-5c6a859e2f33": [],
+    "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5": [
+      "inception-fe292955-f400-4304-842f-9412206cfd02",
+      "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512"
+    ],
+    "text-d7504968-041b-4c62-b2c3-876be2bbb749": [],
+    "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7": [],
+    "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded": [],
+    "text-32e578ae-deb5-430a-97ea-f15f8af2ffad": [],
+    "image-7bebad99-e891-469d-ae1a-a89fc05112d7": [],
+    "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55": [],
+    "image-c8bfabfe-59b7-467f-b883-282c699a64da": [],
+    "image-84781dc9-618d-42da-ae0f-0df5720b793f": [],
+    "inception-05f42340-e322-41f9-9eba-8fcfb45ee4a8": [],
+    "inception-48242a5f-de81-4232-a0b2-1512e977caf6": [
+      "image-1f757f02-3480-4336-9124-d40821fbfc09",
+      "button-0968d24f-2da9-4d5e-be52-5977fd4e669c",
+      "text-ea77333b-31bb-42be-8391-5c6a859e2f33",
+      "image-850964fb-55a3-4d87-b86a-8e7aed0891da",
+      "text-838fae2f-2142-423a-bb13-ebadd5c498d6",
+      "button-e76f83ce-7523-4940-bf92-20152026183a"
+    ],
+    "text-838fae2f-2142-423a-bb13-ebadd5c498d6": [],
+    "button-e76f83ce-7523-4940-bf92-20152026183a": []
+  },
+  "mobileHierarchy": {
+    "text-d07feb18-8d73-4a62-a4a5-6b54f4574825": [],
+    "text-d9425919-46a2-4863-a587-332f32601616": [],
+    "text-ffa64229-b5c8-4c96-82df-cae1dc9c6eb9": [],
+    "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512": [
+      "text-9a92092d-7c91-420d-80bd-8676e5ceca24"
+    ],
+    "inception-fe292955-f400-4304-842f-9412206cfd02": [
+      "text-86bb4495-740b-4dd3-9cc0-d26aeedca7b3"
+    ],
+    "text-f6f50b85-a676-4822-9e70-cbb1754bc6f9": [],
+    "text-4ebda679-7374-49cb-abaf-d6e69bee669e": [],
+    "text-ea77333b-31bb-42be-8391-5c6a859e2f33": [],
+    "inception-fd391eda-77a5-4903-bcc9-05de5da7ffe5": [
+      "inception-fe292955-f400-4304-842f-9412206cfd02",
+      "inception-5ef86abd-4cfa-48c7-aacc-7118316ae512"
+    ],
+    "text-d7504968-041b-4c62-b2c3-876be2bbb749": [],
+    "image-ef150c81-d5bc-428f-9887-f8d6d3741ef7": [],
+    "text-822f8070-0d03-4f8e-aa14-4cbd47d2dded": [],
+    "text-32e578ae-deb5-430a-97ea-f15f8af2ffad": [],
+    "image-7bebad99-e891-469d-ae1a-a89fc05112d7": [],
+    "text-70231f08-80ba-4951-8e4c-9bb69fdb9a55": [],
+    "image-c8bfabfe-59b7-467f-b883-282c699a64da": [],
+    "image-84781dc9-618d-42da-ae0f-0df5720b793f": [],
+    "inception-05f42340-e322-41f9-9eba-8fcfb45ee4a8": [],
+    "inception-48242a5f-de81-4232-a0b2-1512e977caf6": [
+      "image-1f757f02-3480-4336-9124-d40821fbfc09",
+      "button-0968d24f-2da9-4d5e-be52-5977fd4e669c",
+      "text-ea77333b-31bb-42be-8391-5c6a859e2f33",
+      "image-850964fb-55a3-4d87-b86a-8e7aed0891da"
+    ]
+  }
 }
