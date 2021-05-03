@@ -26,11 +26,10 @@ export const apiCall = async (path, body) => {
   return await JsonResponse
 }
 
-export const sendEmailNotifiaction = (email, subscriberEmail, accountName) => {
+export const sendEmailNotifiaction = (websiteId, subscriberEmail) => {
   return apiCall('/api/notifications', {
     type: 'newSubscriberEmail',
-    email,
+    websiteId,
     subscriberEmail,
-    accountName,
   })
 }

@@ -3,25 +3,23 @@ import { Box, Spinner } from '@chakra-ui/react'
 
 import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { sendEmailNotifiaction } from './block-helpers/transporter'
 import colorShades, { getIsColorBright } from './block-helpers/color-shades'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
+import { BlocksContext } from '../web-preview/preview'
 
 function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function sendEmail(inputEmail, updateSate) {
+async function sendEmail(inputEmail, updateSate, websiteId) {
   updateSate((status) => ({ ...status, loading: true }))
+  console.log(websiteId)
   try {
-    await timeout(3000)
-    await sendEmailNotifiaction(
-      'gonzalo.achiaga@gmail.com',
-      inputEmail,
-      'Gonzalo'
-    )
+    // await timeout(3000)
+    await sendEmailNotifiaction(websiteId, inputEmail)
     updateSate((status) => ({ ...status, loading: false, success: true }))
   } catch (err) {
     updateSate((status) => ({ ...status, error: true, loading: false }))
@@ -47,13 +45,14 @@ const inputInitialValue = {
 }
 
 export const PrevContactForm = (props) => {
+  const { websiteId } = useContext(BlocksContext)
   const [inputValue, setInputValue] = useState()
   const [requestStatus, setRequestStatus] = useState(inputInitialValue)
   const { loading, success, error } = requestStatus
   function handleSubmitForm(e) {
     e.preventDefault()
     if (success) return
-    sendEmail(inputValue, setRequestStatus)
+    sendEmail(inputValue, setRequestStatus, websiteId)
   }
 
   function onChange(e) {
@@ -66,9 +65,6 @@ export const PrevContactForm = (props) => {
   useEffect(() => {
     success && setInputValue('')
   }, [success])
-
-  console.log(props, success)
-
   return (
     <form onSubmit={handleSubmitForm} style={{ height: '100%' }}>
       <FormControl id="email" d="flex" h="100%">
@@ -138,17 +134,17 @@ export const CustonButton = ({ children, ...props }) => {
 
 export const GenericContactForm = (props) => {
   const dispatch = useDispatch()
-  const [buttonText, setButtonText] = useState(props.buttonText)
-  const [textInput, setTextInput] = useState(props.inputPlaceholder)
+  const [buttonText, setButtonText] = useState(props.buttonText || 'Button')
+  const [textInput, setTextInput] = useState(
+    props.inputPlaceholder || 'eg: my@email.com'
+  )
 
   const { borderRadius, border, boxShadow, backgroundColor } = props
 
   function handleButtonChange(e) {
-    console.log(e.target.value)
     setButtonText(e.target.value)
   }
   function handleInputChange(e) {
-    console.log(e.target.value)
     setTextInput(e.target.value)
   }
   useEffect(() => {
@@ -161,7 +157,6 @@ export const GenericContactForm = (props) => {
       editBlockConfig({ newData: updatedBlock, blockId: props.parentBlockId })
     )
   }, [textInput, buttonText])
-  console.log(props.border)
   return (
     <Box
       d="flex"

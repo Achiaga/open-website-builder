@@ -62,10 +62,10 @@ const OverwriteDBWarning = () => {
               onClick={handleDeny}
               mr="1.5rem"
             >
-              <b>Keep old Portfolio </b>
+              <b>Keep Saved Website </b>
             </Button>
             <Button colorScheme="primary" onClick={handleConfirm} ml="1.5rem">
-              <b>Keep Template </b>
+              <b>Keep Current Website </b>
             </Button>
           </Box>
           <Box
