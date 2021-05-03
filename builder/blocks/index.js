@@ -129,12 +129,13 @@ export function BuilderBlock({ blockId, isDragging }) {
           : {}
       }
     >
+      {dragHandle && <DragHandle />}
       {isEditable && !isMobileBuilder && type !== 'text' && !isDragging && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
         </>
       )}
-      {dragHandle && <DragHandle />}
+
       <GenericBlock parentBlockId={blockId} {...data} />
     </Box>
   )

@@ -167,7 +167,7 @@ export const GenericContactForm = (props) => {
       borderRadius={borderRadius}
     >
       <Input
-        type="email"
+        type="text"
         borderRadius={props.borderRadius}
         borderTopRightRadius="0"
         borderBottomRightRadius="0"

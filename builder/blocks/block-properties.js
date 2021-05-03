@@ -358,7 +358,6 @@ export const Properties = {
     textShadow,
     emoji,
     color,
-    redirectInput,
     duplicateProperty,
   ],
 
