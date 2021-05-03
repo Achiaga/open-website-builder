@@ -453,9 +453,9 @@ const newSubscriberEmail = (newEmail, accountOwner) => {
                                           height: auto;
                                           float: none;
                                           width: 100%;
-                                          max-width: 150px;
+                                          max-width: 100px;
                                         "
-                                        width="150"
+                                        width="100"
                                       />
                                     </td>
                                   </tr>
@@ -466,7 +466,7 @@ const newSubscriberEmail = (newEmail, accountOwner) => {
                                     background: white;
                                     border-bottom-left-radius: 3rem;
                                     border-bottom-right-radius: 3rem;
-                                    padding: 2rem;
+                                    padding: 3rem;
                                   "
                                   role="presentation"
                                   cellpadding="0"
@@ -495,7 +495,10 @@ const newSubscriberEmail = (newEmail, accountOwner) => {
                                         >
                                           <p style="line-height: 130%">
                                             <span style="font-size: 32px"
-                                              ><span style="font-size: 32px"
+                                              ><span style="
+                                                font-size: 32px;  
+                                                color: #243141;
+                                              "
                                                 >Hi ${accountOwner},
                                               </span></span
                                             >
@@ -503,37 +506,32 @@ const newSubscriberEmail = (newEmail, accountOwner) => {
                                           <p style="line-height: 130%">
                                             <span
                                               style="
-                                                font-size: 42px;
-                                                line-height: 60.6px;
+                                                font-size: 35px;
+                                                line-height: 50px;
                                               "
                                               ><span
                                                 style="
-                                                  line-height: 60.6px;
-                                                  font-size: 42px;
+                                                  line-height: 50x;
+                                                  font-size: 36px;
+                                                  color: #243141;
                                                 "
-                                                >You got a new email!!</span
+                                                >You got a new subscriber!!</span
                                               ></span
                                             >
                                           </p>
                                           <p
                                             style="
-                                              font-size: 14px;
-                                              line-height: 130%;
+                                              font-size: 30px;
+                                              line-height: 120%;
                                             "
                                           >
-                                            <span
-                                              style="
-                                                font-size: 36px;
-                                                line-height: 60.6px;
-                                              "
-                                              ><span
+                                          <span
                                                 style="
-                                                  line-height: 60.6px;
-                                                  font-size: 36px;
+                                                  line-height: 120%;
+                                                  font-size: 30px;
                                                 "
-                                                >${newEmail}</span
-                                              ></span
-                                            >
+                                                >${newEmail}
+                                          </span>
                                           </p>
                                         </div>
                                       </td>

@@ -37,7 +37,7 @@ function getFontSize(windowWidth) {
   return 6
 }
 
-export const ResumeWebsite = ({ userBlocksData }) => {
+export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
   const [windowWidth, setWindowWidth] = useState(1440)
 
   function handleWindowResize() {
@@ -54,7 +54,9 @@ export const ResumeWebsite = ({ userBlocksData }) => {
   const fontSize = getFontSize(windowWidth)
   return (
     <MediaContextProvider>
-      <BlocksContext.Provider value={{ builder: userBlocksData, rowHeight }}>
+      <BlocksContext.Provider
+        value={{ builder: userBlocksData, rowHeight, websiteId }}
+      >
         <Media lessThan="lg">
           <Box
             d="grid"

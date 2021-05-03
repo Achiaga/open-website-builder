@@ -28,18 +28,20 @@ export const GenericImage = (props) => {
   // }
 
   return (
-    <Box
-      w="100%"
-      h="100%"
-      backgroundImage={`url(${props.imageUrl})`}
-      backgroundPosition="50% 50%"
-      backgroundRepeat="no-repeat"
-      backgroundSize="cover"
-      cursor={
-        isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto'
-      }
-      {...modifiers}
-    ></Box>
+    <Box w="100%" h="100%" background={props.backgroundColor}>
+      <Box
+        w="100%"
+        h="100%"
+        backgroundImage={`url(${props.imageUrl})`}
+        backgroundPosition="50% 50%"
+        backgroundRepeat="no-repeat"
+        backgroundSize="cover"
+        cursor={
+          isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto'
+        }
+        {...modifiers}
+      />
+    </Box>
   )
 }
 GenericImage.displayName = 'ImageBlock'

@@ -224,6 +224,8 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
     blocks,
     hierarchy
   )
+  const isLastBlock = !Object.keys(newBuilderData.layouts).length
+  if (isLastBlock) return
   batch(() => {
     dispatch(setSelectedBlockId(null))
     dispatch(removeMobileblock(blockId))

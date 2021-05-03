@@ -12,10 +12,10 @@ function isEmpty(obj) {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
-function Resume({ websiteData, isPublish }) {
+function Resume({ websiteData, isPublish, resumeId }) {
   if (isEmpty(websiteData)) return <ErrorPage />
   if (!isPublish) return <NewPage />
-  return <ResumeWebsite userBlocksData={websiteData} />
+  return <ResumeWebsite userBlocksData={websiteData} websiteId={resumeId} />
 }
 
 export async function getServerSideProps(context) {
@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
     if (isFalshy(resumeId)) return { props: {} }
     const { websiteData, isPublish } = await getWebsiteData(resumeId)
     if (!isPublish) return { props: { isPublish } }
-    return { props: { websiteData, isPublish } }
+    return { props: { websiteData, isPublish, resumeId } }
   } catch (err) {
     console.error(err)
     return { props: {} }

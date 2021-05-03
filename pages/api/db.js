@@ -83,6 +83,28 @@ export async function requestUserData(userId, res) {
     respondAPIQuery(res, { error })
   }
 }
+export async function getUserDataFromWebsiteId(websiteId) {
+  try {
+    const client = await getDBCredentials()
+    try {
+      await client.connect()
+      const database = client.db(process?.env?.DB_NAME)
+      const websiteCollection = database.collection(process.env.DB_COLLECTION)
+      const cusrosUserData = await websiteCollection.find({
+        _id: ObjectId(websiteId),
+      })
+      const data = await cusrosUserData.toArray()
+      await client.close()
+      return { userEmail: data[0].user_email }
+    } catch (err) {
+      console.error('getUserEmail error', err)
+      await client.close()
+      throw err
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
 export async function getAllUserData(userId) {
   if (!userId) return {}
   const client = await getDBCredentials()
