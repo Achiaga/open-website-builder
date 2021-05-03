@@ -8,6 +8,8 @@ const zIndexs = {
   inception: 0,
   image: 1,
   text: 2,
+  button: 3,
+  form: 4,
 }
 
 function getBlockZIndex(blockType) {
@@ -33,7 +35,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
       border={data?.border}
       boxShadow={data?.boxShadow}
       borderRadius={data?.borderRadius}
-      backgroundColor={data?.backgroundColor}
       zIndex={zIndex}
     >
       <GenericBlock

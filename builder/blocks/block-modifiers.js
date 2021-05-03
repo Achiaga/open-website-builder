@@ -423,7 +423,6 @@ export function TextInput({
   value,
   icon,
   tooltip,
-  placeholder,
   inputPlaceholder,
 }) {
   const handleChange = (e) => {
@@ -566,13 +565,7 @@ ButtonSelector.propTypes = {
   operationType: PropTypes.string.isRequired,
   placeholder: PropTypes.object.isRequired,
 }
-export function ImageSelector({
-  handleEdit,
-  property,
-  icon,
-  operationType,
-  tooltip,
-}) {
+export function ImageSelector({ handleEdit, property, icon, tooltip }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const handleChange = (imageUrl) => {
     handleEdit(property, imageUrl)

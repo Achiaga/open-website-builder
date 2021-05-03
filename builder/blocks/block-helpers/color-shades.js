@@ -1,7 +1,7 @@
 import colorNamer from 'color-namer'
 
 function hexToRgb(hex) {
-  const sanitizedHex = hex.replaceAll('##', '#')
+  const sanitizedHex = hex?.replace('##', '#')
   const colorParts = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
     sanitizedHex
   )
@@ -52,7 +52,7 @@ function lighten(hex, intensity) {
 }
 
 function darken(hex, intensity) {
-  const color = hexToRgb(hex)
+  const color = hexToRgb(hex || '#fff')
 
   if (!color) {
     return ''
@@ -77,7 +77,6 @@ export function getColorName(color) {
 
 export default function getColorShades(baseColor) {
   const name = getColorName(baseColor)
-
   const response = {
     name,
     colors: {

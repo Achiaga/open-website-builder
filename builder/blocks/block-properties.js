@@ -332,15 +332,6 @@ export const duplicateProperty = {
   operationType: DUPLICATE,
 }
 
-const imageInput = {
-  type: 'text',
-  placeholder: 'Img',
-  icon: <ImageIcon />,
-  tooltip: 'Select image for your block',
-  inputPlaceholder: 'Enter your link',
-  property: 'imageUrl',
-}
-
 const imageSelector = {
   type: 'image',
   icon: <ImageIcon />,

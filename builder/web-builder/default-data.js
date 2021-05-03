@@ -22,4 +22,18 @@ export const blocksProperties = {
     borderRadius: '0px',
     backgroundColor: 'transparent',
   },
+  button: {
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0px',
+    backgroundColor: '#000000',
+    buttonText: 'Send',
+    inputPlaceholder: 'eg: your@email.com',
+  },
+  form: {
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0px',
+    backgroundColor: '#000000',
+  },
 }

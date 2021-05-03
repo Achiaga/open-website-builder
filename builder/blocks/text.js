@@ -18,7 +18,6 @@ export const GenericText = (props) => {
 
   function handleKeyUp(value) {
     const dim = titleRef.current?.getBoundingClientRect()
-
     const updatedBlock = { ...data, text: value }
     batch(() => {
       dispatch(

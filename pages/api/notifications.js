@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import AWS from 'aws-sdk'
 import emailTemplates from '../../emails'
+import { getUserDataFromWebsiteId } from './db'
 
 const respondAPIQuery = (res, data = {}, status = 200) => {
   const hasError = data.error
@@ -21,11 +22,13 @@ const respondAPIQuery = (res, data = {}, status = 200) => {
   res.end()
   return
 }
-const newSubscriberEmail = (req) => {
-  const { email, subscriberEmail, accountName } = req.body
+const newSubscriberEmail = async (req) => {
+  const { websiteId, subscriberEmail } = req.body
+  const { userEmail } = await getUserDataFromWebsiteId(websiteId)
+  const accountName = userEmail.split('@')[0]
   return {
     Destination: {
-      ToAddresses: [email],
+      ToAddresses: [userEmail],
     },
     Message: {
       Body: {
@@ -60,8 +63,9 @@ export default async function sendEmail(req, res) {
   })
 
   try {
+    // const response = await sendEmailType(req)
     const response = await new AWS.SES({ apiVersion: '2010-12-01' })
-      .sendEmail(sendEmailType(req))
+      .sendEmail(await sendEmailType(req))
       .promise()
     respondAPIQuery(res, response, 200)
   } catch (error) {
