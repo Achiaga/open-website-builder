@@ -35,7 +35,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
       border={data?.border}
       boxShadow={data?.boxShadow}
       borderRadius={data?.borderRadius}
-      backgroundColor={data?.backgroundColor}
       zIndex={zIndex}
     >
       <GenericBlock

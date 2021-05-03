@@ -41,8 +41,6 @@ export const ButtonGeneric = (props) => {
   const redirectUrl = props?.redirect
   const { borderRadius, border, boxShadow, backgroundColor } = props
 
-  console.log(props)
-
   function handleChange(e) {
     console.log(e.target.value)
     setTextInput(e.target.value)
