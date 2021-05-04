@@ -12,6 +12,7 @@ import {
   publishWebsite,
   getPublishStatus,
   setInitialBuilderData,
+  getBuilderData,
 } from '../features/builderSlice'
 import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
@@ -25,11 +26,10 @@ import { Spinner } from '@chakra-ui/spinner'
 import { removeLocalData } from '../builder/web-builder/helpers'
 import templates from '../templates'
 
-const logoutUrl =
-  // eslint-disable-next-line no-undef
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:300'
-    : 'https://antfolio.app'
+// eslint-disable-next-line no-undef
+const isDev = process.env.NODE_ENV === 'development'
+
+const logoutUrl = isDev ? 'http://localhost:300' : 'https://antfolio.app'
 
 const MenuItem = ({ children, onClick = () => {} }) => {
   return (
@@ -52,7 +52,7 @@ export function Login() {
   const accountCreated = useSelector(getAccountCreated)
   const tempData = useSelector(getTempDBData)
   const publishStatus = useSelector(getPublishStatus)
-
+  const websiteData = useSelector(getBuilderData)
   const builderDevice = useSelector(getBuilderDevice)
   const router = useRouter()
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -71,6 +71,18 @@ export function Login() {
     return router.push('/api/auth/custom-login')
   }
 
+  function downloadData() {
+    var dataStr =
+      'data:text/json;charset=utf-8,' +
+      encodeURIComponent(JSON.stringify(websiteData))
+    var downloadAnchorNode = document.createElement('a')
+    downloadAnchorNode.setAttribute('href', dataStr)
+    downloadAnchorNode.setAttribute('download', 'test' + '.json')
+    document.body.appendChild(downloadAnchorNode) // required for firefox
+    downloadAnchorNode.click()
+    downloadAnchorNode.remove()
+  }
+
   function handleMenuOption() {
     setMenuOpen((open) => !open)
   }
@@ -84,6 +96,7 @@ export function Login() {
       dispatch(setInitialBuilderData(templates.fallback))
     })
   }
+
   return (
     <Box d="flex" flexDir="column">
       {publishStatus === 'success' && <PublishSuccessModal />}
@@ -111,6 +124,9 @@ export function Login() {
               <MenuItem onClick={handleMobileVersion}>
                 {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
               </MenuItem>
+              {isDev && (
+                <MenuItem onClick={downloadData}>Download Data</MenuItem>
+              )}
               <MenuItem onClick={handleRemove}>Delete Project</MenuItem>
             </Box>
             {user ? (
