@@ -1,4 +1,5 @@
 import { ResumeWebsite } from '../../../builder/web-preview/preview'
+import { denormalizeBuilderData } from '../../../features/builderSlice'
 import templates from '../../../templates'
 
 function TemplatePreview(blocksData) {
@@ -10,7 +11,7 @@ function TemplatePreview(blocksData) {
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { templateId } = context.query
-  return { props: templates[templateId] }
+  return { props: denormalizeBuilderData(templates[templateId]) }
 }
 
 export default TemplatePreview

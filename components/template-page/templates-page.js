@@ -12,7 +12,6 @@ const TEMPLATES = [
   { id: 'template3', imageUrl: '/template3.jpg', tags: [] },
   { id: 'template4', imageUrl: '/template4.jpg', tags: [] },
   { id: 'template5', imageUrl: '/template5.jpg', tags: [] },
-  { id: 'template6', imageUrl: '/template5.jpg', tags: [] },
 ]
 
 const TemplatePage = () => {

@@ -16,7 +16,6 @@ function timeout(ms) {
 
 async function sendEmail(inputEmail, updateSate, websiteId) {
   updateSate((status) => ({ ...status, loading: true }))
-  console.log(websiteId)
   try {
     // await timeout(3000)
     await sendEmailNotifiaction(websiteId, inputEmail)

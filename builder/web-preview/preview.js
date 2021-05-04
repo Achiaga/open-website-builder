@@ -7,6 +7,7 @@ import { GRID_COLUMNS } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
 
 import { GeneratePreviewBlock } from './helpers'
+import { normalizeBuilderData } from '../../features/login-helpers'
 
 export const BlocksContext = createContext()
 
@@ -49,7 +50,6 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
     handleWindowResize()
     return () => window.removeEventListener('resize', handleWindowResize)
   }, [])
-
   const rowHeight = windowWidth / GRID_COLUMNS
   const fontSize = getFontSize(windowWidth)
   return (

@@ -1134,58 +1134,6 @@
       "moved": false,
       "static": false,
       "isDraggable": true
-    },
-    "text-aeeda195-1e22-4dc7-8d35-f8396afa3150": {
-      "x": null,
-      "y": null
-    },
-    "text-4d0449ab-9bf1-452e-8ec0-a63ebe118c02": {
-      "x": null,
-      "y": null
-    },
-    "text-cf34a160-4a26-42f0-a746-f9a392dd0f61": {
-      "x": null,
-      "y": null
-    },
-    "text-77d4582d-ee5e-4b23-a03c-0ac628a8d9b2": {
-      "x": null,
-      "y": null
-    },
-    "text-1f231412-b78f-4269-8d8c-0163b9953a69": {
-      "x": null,
-      "y": null
-    },
-    "text-616fd162-15d1-4cdf-85ad-7d1dfed0e2ca": {
-      "x": null,
-      "y": null
-    },
-    "text-009925e4-65ef-4116-854b-13a37c13204f": {
-      "x": null,
-      "y": null
-    },
-    "text-1e558c87-e011-4d1d-98a4-ba5976d0e566": {
-      "x": null,
-      "y": null
-    },
-    "text-c8e9a216-90f8-4431-ba7b-d5f0ba99a6bc": {
-      "x": null,
-      "y": null
-    },
-    "text-923ecdf0-08d6-45cd-a20d-987de87346ca": {
-      "x": null,
-      "y": null
-    },
-    "text-9f95a337-7e5d-497a-bbc3-c55e9800c301": {
-      "x": null,
-      "y": null
-    },
-    "text-b89c02fc-d7ba-47be-928b-957e912e4ff9": {
-      "x": null,
-      "y": null
-    },
-    "text-98553f17-c2e6-4ff6-820b-8c12a070c5ba": {
-      "x": null,
-      "y": null
     }
   },
   "mobileLayout": {
@@ -1540,26 +1488,6 @@
       "w": 25.013020833333336,
       "h": 6.805555555555555,
       "i": "text-0571bfc0-2146-4b1e-95a8-4daa1d158539"
-    },
-    "text-9f95a337-7e5d-497a-bbc3-c55e9800c301": {
-      "x": null,
-      "y": null
-    },
-    "text-b89c02fc-d7ba-47be-928b-957e912e4ff9": {
-      "x": null,
-      "y": null
-    },
-    "text-98553f17-c2e6-4ff6-820b-8c12a070c5ba": {
-      "x": null,
-      "y": null
-    },
-    "text-c8e9a216-90f8-4431-ba7b-d5f0ba99a6bc": {
-      "x": null,
-      "y": null
-    },
-    "text-923ecdf0-08d6-45cd-a20d-987de87346ca": {
-      "x": null,
-      "y": null
     }
   },
   "mobileEditedBlocks": [

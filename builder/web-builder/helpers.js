@@ -42,7 +42,6 @@ function removeAllBlockChildren(
     delete layouts[blockId]
     mobileEditedBlocks = mobileEditedBlocks.filter((item) => item !== blockId)
   }
-  console.log(mobileEditedBlocks)
   return { layouts, blocks, hierarchy, mobileEditedBlocks }
 }
 
@@ -57,7 +56,6 @@ export function removeblockFromState(
   const blocksToRemove = [...children, blockId]
   const blocks = { ...oldBlocks }
   let layouts = { ...oldLayout }
-  console.log(mobileEditedBlocks)
   let editedBlocks = [...(mobileEditedBlocks || [])]
   return removeAllBlockChildren(
     layouts,
@@ -85,7 +83,6 @@ export function saveOnLocal(userBlocksData) {
     layouts: parseLayoutToArr(userBlocksData.layouts),
     mobileLayout: parseLayoutToArr(userBlocksData.mobileLayout),
   }
-  console.log(JSON.stringify(dataToSave))
   localforage.setItem('userData', dataToSave)
 }
 export function removeLocalData() {
