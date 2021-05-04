@@ -13,6 +13,7 @@ import {
   isBlockInHierarchy,
   getUpdatedHierarchy,
   saveOnLocal,
+  cleanLayouts,
 } from '../builder/web-builder/helpers'
 import {
   handleLoginCallback,
@@ -100,7 +101,7 @@ export const builderSlice = createSlice({
       }
     },
     setMobileLayout: (state, action) => {
-      state.builderData.mobileLayout = action.payload
+      state.builderData.mobileLayout = cleanLayouts(action.payload)
     },
     setMobileEditedBlocks: (state, action) => {
       state.builderData.mobileEditedBlocks = action.payload
@@ -109,7 +110,7 @@ export const builderSlice = createSlice({
       state.builderData.hasMobileBeenEdited = true
     },
     setLayouts: (state, action) => {
-      state.builderData.layouts = action.payload
+      state.builderData.layouts = cleanLayouts(action.payload)
     },
     setHierarchy: (state, action) => {
       state.builderData.hierarchy = action.payload
@@ -196,25 +197,24 @@ const removeMobileblock = (blockId) => (dispatch, getState) => {
   const { blocks } = getBuilderData(getState())
   const layouts = getMobileLayout(state)
   const hierarchy = getMobileHierarchy(state)
+  const mobileEditedBlocks = getMobileEditedBlocks(getState())
   const newBuilderData = removeblockFromState(
     blockId,
     layouts,
     blocks,
-    hierarchy
+    hierarchy,
+    mobileEditedBlocks
   )
   batch(() => {
     dispatch(setSelectedBlockId(null))
     dispatch(setMobileHierarchy(newBuilderData.hierarchy))
     dispatch(setMobileLayout(newBuilderData.layouts))
+    dispatch(setMobileEditedBlocks(newBuilderData.mobileEditedBlocks))
   })
 }
 
 export const removeblock = ({ blockId }) => (dispatch, getState) => {
   const state = getState()
-  if (getIsMobileBuilder(state)) {
-    dispatch(removeMobileblock(blockId))
-    return
-  }
   const { blocks } = getBuilderData(getState())
   const layouts = getLayout(state)
   const hierarchy = getHierarchy(state)
@@ -225,6 +225,7 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
     hierarchy
   )
   const isLastBlock = !Object.keys(newBuilderData.layouts).length
+
   if (isLastBlock) return
   batch(() => {
     dispatch(setSelectedBlockId(null))
@@ -595,6 +596,7 @@ export const handleResizeStop = (delta, blockId, blockType) => (
     })
   )
 }
+
 export const saveDataOnLocal = () => async (dispatch, getState) => {
   setTimeout(() => {
     const builderData = getBuilderData(getState())

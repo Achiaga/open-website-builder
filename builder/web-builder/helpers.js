@@ -25,47 +25,47 @@ export const findBlockParentId = (structure, blockId) => {
 }
 
 function removeAllBlockChildren(
-  blockId,
   oldLayout,
   oldBlocks,
   oldHierarchy,
-  children
+  oldEditedBlocks,
+  blocksToRemve
 ) {
   const blocks = { ...oldBlocks }
   let layouts = { ...oldLayout }
   const hierarchy = { ...oldHierarchy }
-  const blocksToRemve = [...children, blockId]
+
+  let mobileEditedBlocks = [...(oldEditedBlocks || [])]
   for (const blockId of blocksToRemve) {
     delete blocks[blockId]
     delete hierarchy[blockId]
     delete layouts[blockId]
+    mobileEditedBlocks = mobileEditedBlocks.filter((item) => item !== blockId)
   }
-  return { layouts, blocks, hierarchy }
+  console.log(mobileEditedBlocks)
+  return { layouts, blocks, hierarchy, mobileEditedBlocks }
 }
 
 export function removeblockFromState(
   blockId,
   oldLayout,
   oldBlocks,
-  oldHierarchy
+  oldHierarchy,
+  mobileEditedBlocks
 ) {
-  const findAllChild = findAllChildren(oldHierarchy, blockId)
+  const children = findAllChildren(oldHierarchy, blockId) || []
+  const blocksToRemove = [...children, blockId]
   const blocks = { ...oldBlocks }
   let layouts = { ...oldLayout }
-  if (!findAllChild?.length) {
-    delete blocks[blockId]
-    delete layouts[blockId]
-    return { layouts, blocks, hierarchy: oldHierarchy }
-  }
-  if (oldHierarchy[blockId]) {
-    return removeAllBlockChildren(
-      blockId,
-      layouts,
-      blocks,
-      oldHierarchy,
-      findAllChild
-    )
-  }
+  console.log(mobileEditedBlocks)
+  let editedBlocks = [...(mobileEditedBlocks || [])]
+  return removeAllBlockChildren(
+    layouts,
+    blocks,
+    oldHierarchy,
+    editedBlocks,
+    blocksToRemove
+  )
 }
 
 function parseLayoutToArr(layout) {
@@ -246,4 +246,14 @@ export function highlightFutureParentBlock(newParentId, lastHoveredEl) {
       lastHoveredEl.current = elem
     }
   }
+}
+
+export function cleanLayouts(layouts) {
+  return Object.values(layouts).reduce((acc, layoutItem) => {
+    if (!layoutItem.i) return acc
+    return {
+      ...acc,
+      [layoutItem.i]: layoutItem,
+    }
+  }, {})
 }
