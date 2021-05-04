@@ -85,6 +85,7 @@ export function saveOnLocal(userBlocksData) {
     layouts: parseLayoutToArr(userBlocksData.layouts),
     mobileLayout: parseLayoutToArr(userBlocksData.mobileLayout),
   }
+  console.log(JSON.stringify(dataToSave))
   localforage.setItem('userData', dataToSave)
 }
 export function removeLocalData() {

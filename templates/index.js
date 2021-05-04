@@ -4,6 +4,7 @@ import template2 from './template2.json'
 import template3 from './template3.json'
 import template4 from './template4.json'
 import template5 from './template5.json'
+import template6 from './template6.json'
 
 export default {
   fallback,
@@ -12,4 +13,5 @@ export default {
   template3,
   template4,
   template5,
+  template6,
 }
