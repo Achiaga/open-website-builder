@@ -236,19 +236,6 @@ export const removeblock = ({ blockId }) => (dispatch, getState) => {
   })
 }
 
-export const updateLayoutChange = (newLayout, newItem) => (
-  dispatch,
-  getState
-) => {
-  const hierarchy = getHierarchy(getState())
-  const updatedHierarchy = getUpdatedHierarchy(newLayout, newItem, hierarchy)
-  dispatch(updateLayouts(newLayout, newItem.i))
-  dispatch(updateHierarchy(updatedHierarchy))
-  setTimeout(() => {
-    dispatch(setResizingBlockId(null))
-  }, 600)
-}
-
 export const setBlockEditable = (blockId) => (dispatch) => {
   batch(() => {
     dispatch(setSelectedBlockId(blockId))

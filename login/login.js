@@ -31,11 +31,11 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const logoutUrl = isDev ? 'http://localhost:300' : 'https://antfolio.app'
 
-const MenuItem = ({ children, onClick = () => {} }) => {
+const MenuItem = ({ children, onClick = () => {}, warning }) => {
   return (
     <Button
       variant="ghost"
-      colorScheme="primary"
+      colorScheme={warning ? 'crimson' : 'primary'}
       fontSize="sm"
       width="100%"
       justifyContent="start"
@@ -127,7 +127,6 @@ export function Login() {
               {isDev && (
                 <MenuItem onClick={downloadData}>Download Data</MenuItem>
               )}
-              <MenuItem onClick={handleRemove}>Delete Project</MenuItem>
             </Box>
             {user ? (
               <Box>
@@ -149,6 +148,10 @@ export function Login() {
                   </a>
                 </Link>
                 <MenuItem onClick={handleLogin}>Login</MenuItem>
+                <Box borderBottom="1px solid" borderColor="gray.200" />
+                <MenuItem onClick={handleRemove} warning>
+                  Delete Project
+                </MenuItem>
               </Box>
             )}
           </Box>
