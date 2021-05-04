@@ -1,4 +1,4 @@
-import { Box, Flex, Select } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useTranslation } from '../../hooks/translation'
@@ -27,22 +27,18 @@ const noUserAccess = ['/blog']
 
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
-  const { locale } = router
+  // const { locale } = router
   const [t] = useTranslation()
 
-  const changeLanguage = (e) => {
-    const locale = e.target.value
-    router.push(router.pathname, router.asPath, { locale })
-  }
+  // const changeLanguage = (e) => {
+  //   const locale = e.target.value
+  //   router.push(router.pathname, router.asPath, { locale })
+  // }
   const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
     router.pathname
   )
   const handleStartNow = () => {
     AnalyticsEvent('modal_open', 'navbar')
-  }
-
-  const handleLogoRedirect = () => {
-    router.push('/')
   }
 
   return (
@@ -57,14 +53,11 @@ const Navbar = ({ isSticky = true, color }) => {
       justify="space-between"
       align="center"
     >
-      <Box
-        pos="relative"
-        cursor="pointer"
-        zIndex="60"
-        onClick={handleLogoRedirect}
-      >
-        <LogoSvg width="50px" />
-      </Box>
+      <Link href="/">
+        <Box pos="relative" cursor="pointer" zIndex="60">
+          <LogoSvg width="50px" />
+        </Box>
+      </Link>
       {isSticky && <BackgroundCircles />}
       <Flex
         pos="relative"
@@ -88,7 +81,7 @@ const Navbar = ({ isSticky = true, color }) => {
           id="pricing"
         />
         {!hideLoginButton && <LoginButton color={color} />}
-        <Select
+        {/* <Select
           border="none"
           bg="none"
           w="4.5rem"
@@ -105,10 +98,16 @@ const Navbar = ({ isSticky = true, color }) => {
           <option color={color || 'gray.500'} value="es">
             es
           </option>
-        </Select>
+        </Select> */}
         <Link href={'/templates'}>
           <a>
-            <Button fontSize="md" minW="4rem" h={10} onClick={handleStartNow}>
+            <Button
+              ml="1rem"
+              fontSize="md"
+              minW="4rem"
+              h={10}
+              onClick={handleStartNow}
+            >
               {t.navbar.startNowButton}
             </Button>
           </a>
