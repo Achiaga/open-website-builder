@@ -8,16 +8,10 @@ import {
 } from '../../features/builderSlice'
 import {
   ButtonSelector,
-  TextInput,
   CustomToolTip,
   DuplicateButton,
 } from './block-modifiers'
-import {
-  color,
-  deleteProperty,
-  duplicateProperty,
-  redirectInput,
-} from './block-properties'
+import { color, deleteProperty, duplicateProperty } from './block-properties'
 import { EDIT } from './constants'
 import { BuilderPrevText } from './text'
 
@@ -102,6 +96,7 @@ function QuillToolbar() {
         <option selected />
       </select>
       <ToolbarButton name="italic" />
+      <ToolbarButton name="link" />
       <ToolbarButton name="bold" />
       <ToolbarButton name="blockquote" />
       <ToolbarButton name="underline" />
@@ -112,13 +107,7 @@ function QuillToolbar() {
 }
 
 export const CustomToolbar = ({ blockId }) => {
-  const [isOpen, setIsOpen] = useState('')
   const dispatch = useDispatch()
-
-  const handleOpenToolbar = (e) => {
-    const { id } = e.currentTarget
-    setIsOpen(id)
-  }
 
   function handleEdit(_, __, operationType = EDIT) {
     dispatch(editBlockConfig({ blockId, operationType }))
@@ -149,13 +138,6 @@ export const CustomToolbar = ({ blockId }) => {
       >
         {QuillToolbar()}
       </Box>
-      <TextInput
-        isOpen={isOpen}
-        handleOpenToolbar={handleOpenToolbar}
-        handleEdit={handleEdit}
-        {...redirectInput}
-        value={''}
-      />
       <DuplicateButton handleEdit={handleEdit} {...duplicateProperty} />
     </Box>
   )
@@ -173,7 +155,7 @@ const formats = [
   'list',
   'bullet',
   'indent',
-  // 'link',
+  'link',
   'image',
   'color',
   'align',
