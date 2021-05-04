@@ -15,6 +15,7 @@ import {
 } from './ImagesGrid'
 import { AntfolioImages, AntfolioIcons } from './assets'
 import { GrClose } from 'react-icons/gr'
+import noScroll from 'no-scroll'
 
 function getSelectedImgUrl(imgObj, tabIndex) {
   if (tabIndex === 0) {
@@ -38,11 +39,9 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
-      document.body.style.height = '100vh'
+      noScroll.on()
     } else {
-      document.body.style.overflow = 'auto'
-      document.body.style.height = '100%'
+      noScroll.off()
     }
   }, [isOpen])
 

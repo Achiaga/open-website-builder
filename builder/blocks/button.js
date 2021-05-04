@@ -42,7 +42,6 @@ export const ButtonGeneric = (props) => {
   const { borderRadius, border, boxShadow, backgroundColor } = props
 
   function handleChange(e) {
-    console.log(e.target.value)
     setTextInput(e.target.value)
   }
   useEffect(() => {

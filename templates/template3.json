@@ -11,7 +11,7 @@
         "borderRadius": "0px",
         "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": "I’m Sascha — I elevate products through human-centered design & storytelling."
+        "text": "<h1><span style=\"color: rgb(255, 255, 255);\">I’m Sascha — I elevate products through human-centered design &amp; storytelling.</span></h1>"
       }
     },
     "image-025c673b-d62c-4606-8171-dc8937f29390": {
@@ -28,20 +28,6 @@
         "boxShadow": "none",
         "borderRadius": "0px",
         "imageUrl": "https://lh3.googleusercontent.com/proxy/kXsH-QVYZ006H87qvc_APKPov1CcWSld0E1XcNfaSkbHDvqAbLLePpXBxupIRZA-8r5vhZapAY8v3q0Dlj858P7Jsj0rOgJQ8TJOLyEMii6-qK72pqmleKafRHHKUNw"
-      }
-    },
-    "text-b78eaa98-da27-4180-b1a2-541d9dff89fe": {
-      "type": "text",
-      "data": {
-        "fontSize": "42",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "400",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "fontColor": "#FFFFFF",
-        "backgroundColor": "transparent",
-        "text": "Promo — Video Maker App"
       }
     },
     "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e": {
@@ -62,15 +48,6 @@
         "backgroundColor": "#000000"
       }
     },
-    "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6": {
-      "type": "inception",
-      "data": {
-        "border": "0px solid black",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "backgroundColor": "transparent"
-      }
-    },
     "text-deed8c0d-d4ca-4e19-b0ad-395854f00462": {
       "type": "text",
       "data": {
@@ -82,21 +59,7 @@
         "borderRadius": "0px",
         "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": "Promo Video Maker is an app focused on creating high-quality marketing video ads, promotional videos, and captivating visual content that bring measurable results.﻿\n\n\n\n"
-      }
-    },
-    "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345": {
-      "type": "text",
-      "data": {
-        "fontSize": "24",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "700",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "fontColor": "rgb(224,62,62)",
-        "backgroundColor": "transparent",
-        "text": "Case study ⟶\n\n"
+        "text": "<h3><span style=\"color: rgb(255, 255, 255);\">Promo — Video Maker App</span></h3><p><br></p><h4><span style=\"color: rgb(255, 255, 255);\">Promo Video Maker is an app focused on creating high-quality marketing video ads, promotional videos, and captivating visual content that bring measurable results.</span></h4><p><br></p><h4><span style=\"color: rgb(224, 62, 62);\">Case study </span><strong style=\"color: rgb(224, 62, 62);\">⟶</strong></h4>"
       }
     },
     "image-1b7069f4-7259-4529-a8c1-7910866d9bba": {
@@ -118,35 +81,7 @@
         "borderRadius": "0px",
         "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": "Promo.com Web Editor & Pricing"
-      }
-    },
-    "text-09bb58e2-019f-4956-a954-f2474f49ccec": {
-      "type": "text",
-      "data": {
-        "fontSize": "24",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "300",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "fontColor": "#FFFFFF",
-        "backgroundColor": "transparent",
-        "text": "Social and video ad creation platform with ready-made video templates, high-quality footage and music, eye catching customizable text and an award-winning editor."
-      }
-    },
-    "text-2c6671a0-1a61-4c3a-88d4-71db8612892f": {
-      "type": "text",
-      "data": {
-        "fontSize": "24",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "700",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "fontColor": "rgb(224,62,62)",
-        "backgroundColor": "transparent",
-        "text": "Case study ⟶"
+        "text": "<h3><span style=\"color: rgb(255, 255, 255);\">Promo.com Web Editor &amp; Pricing</span></h3><p><br></p><h4><span style=\"color: rgb(255, 255, 255);\">Social and video ad creation platform with ready-made video templates, high-quality footage and music, eye catching customizable text and an award-winning editor.</span></h4><p><br></p><h4><span style=\"color: rgb(224, 62, 62);\">Case study ⟶</span></h4>"
       }
     },
     "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc": {
@@ -166,20 +101,6 @@
         "imageUrl": "https://saschas.ai/wp-content/uploads/2020/04/Preview-Slidely-VR-2x.png"
       }
     },
-    "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b": {
-      "type": "text",
-      "data": {
-        "fontSize": "42",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "700",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "fontColor": "#FFFFFF",
-        "backgroundColor": "transparent",
-        "text": "Slidely VR Gallery"
-      }
-    },
     "text-42dc5655-9917-485b-be80-fe2ba6526917": {
       "type": "text",
       "data": {
@@ -191,21 +112,7 @@
         "borderRadius": "0px",
         "fontColor": "#FFFFFF",
         "backgroundColor": "transparent",
-        "text": "Daydream app for sharing favorite photos, exploring your exhibition in different gallery areas and then posting a high resolution social panoramas to your Facebook.\n\n\n\n"
-      }
-    },
-    "text-7e511817-b106-46b6-9361-52f5f1093eb1": {
-      "type": "text",
-      "data": {
-        "fontSize": "24",
-        "textAlign": "left",
-        "alignItems": "center",
-        "fontWeight": "700",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "fontColor": "rgb(224,62,62)",
-        "backgroundColor": "transparent",
-        "text": "Case study ⟶"
+        "text": "<h3><span style=\"color: rgb(255, 255, 255);\">Slidely VR Gallery</span></h3><p><br></p><h4><span style=\"color: rgb(255, 255, 255);\">Daydream app for sharing favorite photos, exploring your exhibition in different gallery areas and then posting a high resolution social panoramas to your Facebook.</span></h4><p><br></p><h4><span style=\"color: rgb(224, 62, 62);\">Case study </span><strong style=\"color: rgb(224, 62, 62);\">⟶</strong></h4>"
       }
     },
     "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d": {
@@ -215,15 +122,6 @@
         "borderRadius": "0px",
         "imageUrl": "https://saschas.ai/wp-content/uploads/2020/04/Cover-PRM-Mobile-2x.png"
       }
-    },
-    "inception-e0436da4-ee93-44dd-aa73-713684b3284a": {
-      "type": "inception",
-      "data": {
-        "border": "0px solid black",
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "backgroundColor": "#000000"
-      }
     }
   },
   "hierarchy": {
@@ -231,21 +129,15 @@
     "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e": [
       "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6",
       "image-b056a324-fdb5-42b3-a3c3-596dc58138a4",
-      "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc",
       "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
-      "inception-e0436da4-ee93-44dd-aa73-713684b3284a"
-    ],
-    "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6": [
-      "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
-      "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
-      "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345"
+      "inception-e0436da4-ee93-44dd-aa73-713684b3284a",
+      "text-deed8c0d-d4ca-4e19-b0ad-395854f00462"
     ],
     "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc": [
       "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
       "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
       "text-09bb58e2-019f-4956-a954-f2474f49ccec",
-      "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
-      "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc"
+      "text-2c6671a0-1a61-4c3a-88d4-71db8612892f"
     ],
     "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc": [
       "image-ca764269-60c5-48b9-888c-24379b8a5643",
@@ -256,408 +148,204 @@
   },
   "layouts": [
     {
-      "w": 146,
-      "h": 44,
-      "x": 30,
-      "y": 25,
+      "x": 36.25,
+      "y": 25.27777777777778,
       "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 127.38715277777777,
+      "h": 64.44444444444444
     },
     {
-      "w": 200,
-      "h": 115,
       "x": 0,
       "y": 0,
       "i": "image-025c673b-d62c-4606-8171-dc8937f29390",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 200,
+      "h": 115
     },
     {
-      "w": 12,
-      "h": 7,
       "x": 94,
       "y": 104,
       "i": "image-7e98a8c3-6f55-42a1-a1d5-93bf5624be31",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 12,
+      "h": 7
     },
     {
-      "w": 41,
-      "h": 16,
-      "x": 10,
-      "y": 127,
-      "i": "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 200,
-      "h": 93,
       "x": 0,
-      "y": 114,
+      "y": 114.27777777777779,
       "i": "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 200,
+      "h": 93
     },
     {
-      "w": 200,
-      "h": 100,
       "x": 0,
-      "y": 207,
+      "y": 206.86111111111111,
       "i": "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 100,
-      "h": 92,
-      "x": 0,
-      "y": 114,
-      "i": "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 59,
-      "h": 24,
-      "x": 10,
-      "y": 148,
-      "i": "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 39,
-      "h": 10,
-      "x": 10,
-      "y": 173,
-      "i": "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 89,
-      "h": 75,
-      "x": 1,
-      "y": 219,
-      "i": "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 47,
-      "h": 17,
-      "x": 112,
-      "y": 221,
-      "i": "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 54,
-      "h": 24,
-      "x": 112,
-      "y": 242,
-      "i": "text-09bb58e2-019f-4956-a954-f2474f49ccec",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 27,
-      "h": 9,
-      "x": 112,
-      "y": 270,
-      "i": "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
       "w": 200,
-      "h": 91,
+      "h": 100
+    },
+    {
+      "x": 11.944444444444445,
+      "y": 139.38888888888886,
+      "i": "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
+      "w": 73.58289930555556,
+      "h": 40.97222222222222
+    },
+    {
+      "x": 0.8611111111111112,
+      "y": 218.7222222222222,
+      "i": "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+      "w": 89,
+      "h": 75
+    },
+    {
+      "x": 120.05555555555554,
+      "y": 229.61111111111111,
+      "i": "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+      "w": 71.85980902777777,
+      "h": 53.61111111111111
+    },
+    {
       "x": 0,
-      "y": 307,
+      "y": 306.72222222222223,
       "i": "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 200,
+      "h": 91
     },
     {
-      "w": 93,
-      "h": 76,
       "x": 101,
-      "y": 315,
+      "y": 315.8333333333333,
       "i": "image-ca764269-60c5-48b9-888c-24379b8a5643",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 93,
+      "h": 76
     },
     {
-      "w": 63,
-      "h": 8,
-      "x": 11,
-      "y": 325,
-      "i": "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 53,
-      "h": 23,
       "x": 12,
-      "y": 337,
+      "y": 336.72222222222223,
       "i": "text-42dc5655-9917-485b-be80-fe2ba6526917",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 68.41580284966362,
+      "h": 45.97222222222222
     },
     {
-      "w": 25,
-      "h": 10,
-      "x": 12,
-      "y": 362,
-      "i": "text-7e511817-b106-46b6-9361-52f5f1093eb1",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 88,
-      "h": 77,
-      "x": 107,
-      "y": 121,
+      "x": 105.75,
+      "y": 122.24999999999999,
       "i": "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 15,
-      "h": 10,
-      "x": 165,
-      "y": 191,
-      "i": "inception-e0436da4-ee93-44dd-aa73-713684b3284a",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 88,
+      "h": 77
     }
   ],
   "mobileLayout": [
     {
-      "w": 82,
-      "h": 51,
-      "x": 9,
-      "y": 28,
+      "x": 18.125,
+      "y": 25.27777777777778,
       "i": "text-664e08d1-3e6a-4c49-99aa-8d876f699425",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 63.693576388888886,
+      "h": 64.44444444444444
     },
     {
-      "w": 100,
-      "h": 115,
       "x": 0,
       "y": 0,
       "i": "image-025c673b-d62c-4606-8171-dc8937f29390",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 100,
+      "h": 115
     },
     {
-      "w": 8,
-      "h": 5,
       "x": 46,
       "y": 107,
       "i": "image-7e98a8c3-6f55-42a1-a1d5-93bf5624be31",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 8,
+      "h": 5
     },
     {
-      "w": 41,
-      "h": 16,
-      "x": 10,
-      "y": 130,
-      "i": "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 100,
-      "h": 151,
       "x": 0,
-      "y": 268,
+      "y": 206.86111111111111,
       "i": "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 100,
+      "h": 100
     },
     {
-      "w": 59,
-      "h": 24,
-      "x": 10,
-      "y": 149,
+      "x": 17.916666666666668,
+      "y": 169.38888888888889,
       "i": "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 71.23589409722223,
+      "h": 25.833333333333332
     },
     {
-      "w": 39,
-      "h": 10,
-      "x": 10,
-      "y": 174,
-      "i": "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 100,
-      "h": 78,
-      "x": 0,
-      "y": 340,
+      "x": 20.84722222222222,
+      "y": 210.1111111111111,
       "i": "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 63.25,
+      "h": 45
     },
     {
-      "w": 47,
-      "h": 17,
-      "x": 10,
-      "y": 280,
+      "x": 21.416666666666664,
+      "y": 256.2777777777778,
       "i": "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "w": 63.84657118055555,
+      "h": 29.305555555555554
     },
     {
-      "w": 54,
-      "h": 24,
-      "x": 10,
-      "y": 299,
-      "i": "text-09bb58e2-019f-4956-a954-f2474f49ccec",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 27,
-      "h": 9,
-      "x": 10,
-      "y": 328,
-      "i": "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 100,
-      "h": 177,
       "x": 0,
-      "y": 419,
+      "y": 306.72222222222223,
       "i": "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 93,
-      "h": 76,
-      "x": 4,
-      "y": 493,
-      "i": "image-ca764269-60c5-48b9-888c-24379b8a5643",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 63,
-      "h": 8,
-      "x": 10,
-      "y": 433,
-      "i": "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 53,
-      "h": 23,
-      "x": 10,
-      "y": 445,
-      "i": "text-42dc5655-9917-485b-be80-fe2ba6526917",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 25,
-      "h": 10,
-      "x": 10,
-      "y": 470,
-      "i": "text-7e511817-b106-46b6-9361-52f5f1093eb1",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
-      "w": 80,
-      "h": 70,
-      "x": 9,
-      "y": 188,
-      "i": "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
-    },
-    {
       "w": 100,
-      "h": 153,
+      "h": 91
+    },
+    {
+      "x": 24.111111111111114,
+      "y": 312.9166666666667,
+      "i": "image-ca764269-60c5-48b9-888c-24379b8a5643",
+      "w": 59.69444444444444,
+      "h": 47.52777777777778
+    },
+    {
+      "x": 21.555555555555554,
+      "y": 364.9166666666667,
+      "i": "text-42dc5655-9917-485b-be80-fe2ba6526917",
+      "w": 65.31901253594292,
+      "h": 29.305555555555554
+    },
+    {
+      "x": 29.263888888888886,
+      "y": 122.38888888888889,
+      "i": "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+      "w": 48.44444444444445,
+      "h": 40.19444444444444
+    },
+    {
       "x": 0,
-      "y": 115,
-      "i": "inception-e0436da4-ee93-44dd-aa73-713684b3284a",
-      "moved": false,
-      "static": false,
-      "isDraggable": true
+      "y": 114.27777777777779,
+      "i": "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e",
+      "w": 100,
+      "h": 93
     }
   ],
   "mobileHierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-ccfbb5fd-3a6f-4789-99e0-4e22554f565e": [
+      "inception-d2550e2b-4b56-4deb-bebf-938ad97a7ff6",
+      "image-b056a324-fdb5-42b3-a3c3-596dc58138a4",
+      "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+      "inception-e0436da4-ee93-44dd-aa73-713684b3284a",
+      "text-deed8c0d-d4ca-4e19-b0ad-395854f00462"
+    ],
+    "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc": [
+      "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+      "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+      "text-09bb58e2-019f-4956-a954-f2474f49ccec",
+      "text-2c6671a0-1a61-4c3a-88d4-71db8612892f"
+    ],
     "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc": [
       "image-ca764269-60c5-48b9-888c-24379b8a5643",
       "text-f600a6e5-76c3-4a60-9de9-67fbbcb3274b",
       "text-42dc5655-9917-485b-be80-fe2ba6526917",
       "text-7e511817-b106-46b6-9361-52f5f1093eb1"
-    ],
-    "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc": [
-      "text-09bb58e2-019f-4956-a954-f2474f49ccec",
-      "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
-      "text-2c6671a0-1a61-4c3a-88d4-71db8612892f",
-      "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
-      "inception-e89ed090-5d66-4eb9-a63b-66404850a6fc"
-    ],
-    "inception-e0436da4-ee93-44dd-aa73-713684b3284a": [
-      "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
-      "text-1438a2c1-8f57-4eaf-99ca-144bcc69e345",
-      "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
-      "text-b78eaa98-da27-4180-b1a2-541d9dff89fe",
-      "inception-56dfc37c-5c9f-4df1-a04f-9c71142ca1cc"
     ]
-  }
+  },
+  "mobileEditedBlocks": [
+    "image-58c0a593-4ff9-4b29-b3d8-3a7cc814dc9d",
+    "text-deed8c0d-d4ca-4e19-b0ad-395854f00462",
+    "image-1b7069f4-7259-4529-a8c1-7910866d9bba",
+    "text-d11ad73b-3fc5-4cac-be7c-e5689e8a7920",
+    "image-ca764269-60c5-48b9-888c-24379b8a5643",
+    "text-42dc5655-9917-485b-be80-fe2ba6526917"
+  ]
 }

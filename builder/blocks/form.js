@@ -16,7 +16,6 @@ function timeout(ms) {
 
 async function sendEmail(inputEmail, updateSate, websiteId) {
   updateSate((status) => ({ ...status, loading: true }))
-  console.log(websiteId)
   try {
     // await timeout(3000)
     await sendEmailNotifiaction(websiteId, inputEmail)
@@ -167,7 +166,7 @@ export const GenericContactForm = (props) => {
       borderRadius={borderRadius}
     >
       <Input
-        type="email"
+        type="text"
         borderRadius={props.borderRadius}
         borderTopRightRadius="0"
         borderBottomRightRadius="0"
