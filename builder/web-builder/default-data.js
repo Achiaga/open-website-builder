@@ -2,11 +2,7 @@ import { imageURL } from '../initial-data'
 
 export const blocksProperties = {
   text: {
-    text: 'Text',
-    fontSize: '24',
-    textAlign: 'center',
-    alignItems: 'center',
-    fontWeight: '400',
+    text: '<h4>Text</h4>',
     boxShadow: 'none',
     borderRadius: '0px',
     fontColor: '#000000',

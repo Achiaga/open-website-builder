@@ -7,7 +7,6 @@ import { GRID_COLUMNS } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
 
 import { GeneratePreviewBlock } from './helpers'
-import { normalizeBuilderData } from '../../features/login-helpers'
 
 export const BlocksContext = createContext()
 
