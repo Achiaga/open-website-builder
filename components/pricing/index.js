@@ -7,13 +7,11 @@ const PricingPage = () => {
   return (
     <Box height="100vh">
       <Head>
-        <meta
-          name="google-site-verification"
-          content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
-        />
-        <title>Antfolio - Build your online portfolio in 15 minutes</title>
+        <title>
+          Antfolio - Pricing - Build your online portfolio in 15 minutes
+        </title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.antfolio.app" />
+        <link rel="canonical" href="https://www.antfolio.app/pricing" />
       </Head>
       <Navbar isSticky={false} color="white" />
       <Box as="section" pb="14">

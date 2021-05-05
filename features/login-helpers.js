@@ -78,7 +78,7 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
     })
     return
   }
-  if (!dbData) {
+  if (!resume_data) {
     batch(() => {
       dispatch(loadInitialDataNoAccount(template))
       dispatch(setUserData({ user_email: user.email, user_id: user.sub }))

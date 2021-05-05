@@ -14,10 +14,10 @@ export default {
   comparison: {
     title_1: 'Create an awe-inspiring ',
     title_color_2: 'websites ',
-    title_3: 'that gets you ',
-    title_color_4: 'hired ',
+    title_3: 'with a simple ',
+    title_color_4: 'UI ',
     subtitle:
-      'With Antfolio easy to use builder and our templates, you will have a portfolio website online in minutes. Differentiate yourself from the rest by showing a fun, original, outstanding portfolio instead of a piece of pdf. Always accessible - 100% customizable',
+      'With Antfolio easy UI and our templates, you will have your new website online in minutes. Differentiate yourself from the rest by showing a fun, original, outstanding portfolio instead of a piece of pdf. Always accessible - 100% customizable',
     un_sexy_1: 'Old ',
     un_sexy_color_2: 'Boring ',
     un_sexy_3: 'PDF',
@@ -32,7 +32,7 @@ export default {
     title_color_4: 'impress ',
     title_5: 'your new company ',
     subtitle:
-      'Beautiful No-Code portfolio builder, that makes you standout from the crowd',
+      'Beautiful No-Code website builder, that makes you standout from the crowd',
     feature_1: 'Drag & Drop Builder',
     feature_text_1:
       'Simple, fast, and fully customizable. With Antfolio you will be able to create and fully customizable portfolio in minutes and without any coding or design knowledge. No Matter your background, we got you covered. We even give you a free domain.',

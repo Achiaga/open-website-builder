@@ -6,13 +6,9 @@ const BuilderPage = () => {
   return (
     <UserProvider>
       <Head>
-        <meta
-          name="google-site-verification"
-          content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
-        />
-        <title>Antfolio - Build your online portfolio in 15 minutes</title>
+        <title>Antfolio - Builder</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.antfolio.app" />
+        <link rel="canonical" href="https://www.antfolio.app/builder" />
       </Head>
       <Builder />
     </UserProvider>
