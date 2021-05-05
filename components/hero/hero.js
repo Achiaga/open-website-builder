@@ -14,11 +14,10 @@ const Hero = () => {
 
   useEffect(() => {
     typed = new Typed(typeRef.current, {
-      // Waits 1000ms after typing "First"
       strings: [
-        'Portfolios',
-        'Landing pages',
-        'Proposals',
+        'Portfolio',
+        'Landing page',
+        'Proposal',
         'Validation idea',
         'Resumes',
       ],

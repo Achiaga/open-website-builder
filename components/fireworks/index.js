@@ -56,8 +56,8 @@ export default class Realistic extends React.Component {
 
   handlerFire = () => {
     this.fire()
-    setTimeout(() => this.fire(), 300)
-    setTimeout(() => this.fire(), 600)
+    setTimeout(() => this.fire(), 400)
+    // setTimeout(() => this.fire(), 600)
   }
 
   getInstance = (instance) => {

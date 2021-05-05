@@ -7,6 +7,7 @@ import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { useEffect } from 'react'
 import { loadUserInitialData } from '../../features/userSlice'
 import { useDispatch } from 'react-redux'
+import Head from 'next/head'
 
 const SelectedDashboard = ({ dashboardType, ...props }) => {
   if (dashboardType === settings) return <Settings />
@@ -36,26 +37,32 @@ const Dashboard = ({ dashboardType }) => {
   }
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="full"
-      height="full"
-      minHeight="100vh"
-    >
-      <Sidebar dashboardType={dashboardType} />
+    <>
+      <Head>
+        <title>Antfolio - Dashboard</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box
-        width="full"
         display="flex"
-        flexDirection="column"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        height="100vh"
+        justifyContent="center"
+        alignItems="center"
+        width="full"
+        height="full"
+        minHeight="100vh"
       >
-        <SelectedDashboard dashboardType={dashboardType} user={user} />
+        <Sidebar dashboardType={dashboardType} />
+        <Box
+          width="full"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          height="100vh"
+        >
+          <SelectedDashboard dashboardType={dashboardType} user={user} />
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }
 
