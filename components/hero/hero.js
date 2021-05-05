@@ -14,13 +14,7 @@ const Hero = () => {
 
   useEffect(() => {
     typed = new Typed(typeRef.current, {
-      strings: [
-        'Portfolio',
-        'Landing page',
-        'Proposal',
-        'Validation idea',
-        'Resumes',
-      ],
+      strings: ['Portfolio', 'Landing', 'Proposal', 'Portfolio', 'Resume'],
       typeSpeed: 80,
       backSpeed: 50,
       loop: true,
@@ -40,6 +34,7 @@ const Hero = () => {
       pl={0}
       mt={['2rem', 0]}
       justifyContent="center"
+      fontSize={['4rem', '6rem']}
     >
       <Box
         position={['relative', 'absolute']}
@@ -54,7 +49,6 @@ const Hero = () => {
         <Text
           as="h1"
           fontWeight="extrabold"
-          fontSize={['4rem', '6rem']}
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -72,17 +66,17 @@ const Hero = () => {
           >
             {t.hero.title_color_2}
           </Text>
-          <Text
-            as="span"
-            d="flex"
-            background="linear-gradient(
-              135deg
-              ,  #43E28E  0%,#506bf0 100%)"
-            backgroundClip="text"
-            textFillColor="transparent"
-            fontSize={['4rem', '6rem']}
-          >
-            <Box whiteSpace="pre" ref={typeRef} className="typed-animation">
+          <Text as="span" d="flex" color="primary.500">
+            <Box
+              whiteSpace="pre"
+              ref={typeRef}
+              className="typed-animation"
+              background="linear-gradient(
+                135deg
+                ,  #43E28E  0%,#506bf0 100%)"
+              backgroundClip="text"
+              textFillColor="transparent"
+            >
               {typed || t.hero.title_color_3}
             </Box>
           </Text>
