@@ -31,14 +31,26 @@ import ResizeWrapper from './resizable-wrapper'
 const blocksZIndex = {
   inception: 0,
   image: 1,
-  text: 2,
+  form: 2,
   button: 3,
-  form: 4,
+  text: 4,
 }
 
 function getZIndexValue(blockType, isSelected) {
   if (isSelected && blockType === 'text') return '4'
   return blocksZIndex[blockType]?.toString() ?? '2'
+}
+
+const blockSizes = {
+  form: { w: 60, h: 10 },
+  image: { w: 20, h: 20 },
+  button: { w: 20, h: 10 },
+  text: { w: 15, h: 8 },
+  section: { w: 20, h: 20 },
+}
+
+function getDroppedBlockDim(blockType) {
+  return blockSizes[blockType] || { w: 10, h: 10 }
 }
 
 const DraggableItem = ({
@@ -266,11 +278,12 @@ const WebBuilder = () => {
     const { pageX, pageY } = ev
     const x = pageX / gridColumnWidth
     const y = pageY / gridRowHeight
+    const dim = getDroppedBlockDim(newBlockType)
     const newLayout = {
       x,
       y,
-      w: 10,
-      h: 10,
+      w: dim.w,
+      h: dim.h,
       i: `${newBlockType}-${uuid()}`,
     }
     handleHiglightSection(newLayout)
@@ -281,11 +294,12 @@ const WebBuilder = () => {
     const { pageX, pageY } = ev
     const x = pageX / gridColumnWidth
     const y = pageY / gridRowHeight
+    const dim = getDroppedBlockDim(newBlockType)
     const newDroppedBlock = {
       x,
       y,
-      w: 10,
-      h: 10,
+      w: dim.w,
+      h: dim.h,
       i: `${newBlockType}-${uuid()}`,
     }
     dispatch(addNewBlock(newDroppedBlock))
