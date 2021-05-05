@@ -585,6 +585,7 @@ export const handleResizeStop = (delta, blockId, blockType) => (
 }
 
 export const saveDataOnLocal = () => async (dispatch, getState) => {
+  dispatch(setSaveStatus(null))
   setTimeout(() => {
     const builderData = getBuilderData(getState())
     saveOnLocal(builderData)

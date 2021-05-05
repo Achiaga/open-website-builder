@@ -29,7 +29,6 @@ const SaveButton = () => {
         onClick={handleSavePage}
         fontSize="md"
         active={true}
-        w="4.3rem"
         d="flex"
         alignItems="center"
       >
@@ -42,16 +41,21 @@ const SaveButton = () => {
       onClick={handleSavePage}
       fontSize="md"
       alignItems="center"
-      {...(isSaved && { backgroundColor: 'primary.500', color: 'white' })}
+      {...(isSaved && {
+        backgroundColor: 'white',
+        color: 'gray.500',
+        border: '1px solid',
+      })}
+      width="100%"
       _hover={
         isSaved
           ? {
-              backgroundColor: 'primary.700',
+              backgroundColor: 'primary.500',
               color: 'white',
             }
-          : { backgroundColor: 'white', border: '1px solid black' }
+          : { backgroundColor: 'white', border: '1px solid' }
       }
-      w="4.3rem"
+      borderColor="gray.500"
     >
       {isSaved ? (
         <Box d="flex" w="fit-content">
