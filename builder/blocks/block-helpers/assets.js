@@ -1,7 +1,13 @@
 export const AntfolioImages = [
-  'https://antfolio.s3.amazonaws.com/mac-study-model.png',
-  'https://antfolio.s3.amazonaws.com/blogImgTransparent.png',
   'https://antfolio.s3.amazonaws.com/books-study-model.png',
+  'https://antfolio.s3.amazonaws.com/tablet-1.png',
+  'https://antfolio.s3.amazonaws.com/tablet-2.png',
+  'https://antfolio.s3.amazonaws.com/laptop-1.png',
+  'https://antfolio.s3.amazonaws.com/mac-study-model.png',
+  'https://antfolio.s3.amazonaws.com/design-1.png',
+  'https://antfolio.s3.amazonaws.com/phone-1.png',
+  'https://antfolio.s3.amazonaws.com/mac-1.png',
+  'https://antfolio.s3.amazonaws.com/graphic-design.png',
 ]
 export const AntfolioIcons = [
   'https://antfolio.s3.amazonaws.com/bank.png',
