@@ -5,9 +5,29 @@ import { Box, Text } from '@chakra-ui/react'
 
 import { useTranslation } from '../../hooks/translation'
 import Button from '../commun/button'
-
+import { useEffect, useRef } from 'react'
+import Typed from 'typed.js'
+let typed
 const Hero = () => {
   const [t] = useTranslation()
+  const typeRef = useRef()
+
+  useEffect(() => {
+    typed = new Typed(typeRef.current, {
+      // Waits 1000ms after typing "First"
+      strings: [
+        'Portfolios',
+        'Landing pages',
+        'Proposals',
+        'Validation idea',
+        'Resumes',
+      ],
+      typeSpeed: 80,
+      backSpeed: 50,
+      loop: true,
+    })
+    return () => typed.destroy()
+  }, [])
 
   return (
     <Box
@@ -43,11 +63,29 @@ const Hero = () => {
           lineHeight={['120%', '7rem']}
         >
           {t.hero.title_1}
-          <Text as="span" color="primary.500">
+          <Text
+            as="span"
+            background="linear-gradient(
+              135deg
+              ,  #43E28E  0%,#506bf0 100%)"
+            backgroundClip="text"
+            textFillColor="transparent"
+          >
             {t.hero.title_color_2}
           </Text>
-          <Text as="span" color="primary.500">
-            {t.hero.title_color_3}
+          <Text
+            as="span"
+            d="flex"
+            background="linear-gradient(
+              135deg
+              ,  #43E28E  0%,#506bf0 100%)"
+            backgroundClip="text"
+            textFillColor="transparent"
+            fontSize={['4rem', '6rem']}
+          >
+            <Box whiteSpace="pre" ref={typeRef} className="typed-animation">
+              {typed || t.hero.title_color_3}
+            </Box>
           </Text>
           {t.hero.title_4}
         </Text>
@@ -77,6 +115,7 @@ const Hero = () => {
           layout="fill"
           objectFit="cover"
           priority
+          loading="eager"
           rel="preload"
         />
       </Box>

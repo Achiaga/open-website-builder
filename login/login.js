@@ -116,17 +116,19 @@ export function Login() {
             borderRadius="10px"
             boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
           >
+            <MenuItem onClick={handleMobileVersion}>
+              {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
+            </MenuItem>
             <Box>
               <a href="/preview" target="_blank">
                 <MenuItem>Preview</MenuItem>
               </a>
 
-              <MenuItem onClick={handleMobileVersion}>
-                {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
-              </MenuItem>
-              {isDev && (
-                <MenuItem onClick={downloadData}>Download Data</MenuItem>
-              )}
+              <Link href="/templates">
+                <a>
+                  <MenuItem>Templates</MenuItem>
+                </a>
+              </Link>
             </Box>
             {user ? (
               <Box>
@@ -142,11 +144,6 @@ export function Login() {
               </Box>
             ) : (
               <Box>
-                <Link href="/templates">
-                  <a>
-                    <MenuItem>Templates</MenuItem>
-                  </a>
-                </Link>
                 <MenuItem onClick={handleLogin}>Login</MenuItem>
                 <Box borderBottom="1px solid" borderColor="gray.200" />
                 <MenuItem onClick={handleRemove} warning>
@@ -154,6 +151,7 @@ export function Login() {
                 </MenuItem>
               </Box>
             )}
+            {isDev && <MenuItem onClick={downloadData}>Download Data</MenuItem>}
           </Box>
         )}
       </Box>

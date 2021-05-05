@@ -52,7 +52,7 @@ const ResizeWrapper = ({
               'linear-gradient(0,rgba(255,255,255,0.5),rgba(255,255,255,0.5)),#f6f6f9',
             boxShadow:
               '0 0 6px rgb(27 24 60 / 10%), 0 0 2px rgb(39 34 93 / 75%)',
-            zIndex: 2,
+            zIndex: 4,
             borderRadius: '10px',
           },
           right: {
