@@ -1,7 +1,16 @@
-import { Box, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
-import Image from 'next/image'
-import Navbar from '../components/navbar'
+import {
+  Box,
+  HStack,
+  Image,
+  List,
+  ListIcon,
+  ListItem,
+  Text,
+} from '@chakra-ui/react'
 import { FiZap } from 'react-icons/fi'
+import NextImage from 'next/image'
+import Navbar from '../components/navbar'
+
 const BannerImage = ({ height, width, imageUrl }) => {
   return (
     <Box
@@ -12,7 +21,7 @@ const BannerImage = ({ height, width, imageUrl }) => {
       overflow="hidden"
       mt={['2rem', 0]}
     >
-      <Image
+      <NextImage
         src={imageUrl}
         layout="fill"
         objectFit="cover"
@@ -67,11 +76,11 @@ const ArticleDate = ({ children }) => {
   )
 }
 
-const TLDR = ({ items }) => {
+const ListWrapper = ({ title, items }) => {
   return (
     <Box px={[0, '5rem']} py="2rem">
       <Text fontSize="2xl" py="1rem" as="h2">
-        TLDR
+        {title}
       </Text>
       <List fontSize="xl" spacing={4}>
         {items.map((item, index) => {
@@ -86,8 +95,40 @@ const TLDR = ({ items }) => {
     </Box>
   )
 }
+const ListWithLinks = ({ title, items, ordered }) => {
+  return (
+    <Box px={[0, '3rem']} py="1rem">
+      <Text fontSize="2xl" py="1rem" as="h2">
+        {title}
+      </Text>
+      <List fontSize="xl" spacing={4}>
+        {items.map((item, index) => {
+          return (
+            <ListItem d="flex" key={index} alignItems="center">
+              {ordered && (
+                <Text mr={['0.5rem', '1rem']} fontSize="lg" w="1rem">
+                  {index + 1}.
+                </Text>
+              )}
+              <a href={item.link} target="_blank" rel="noreferrer">
+                <Text color="primary.500" mr={['0.5rem', '1rem']}>
+                  {item.title}
+                </Text>
+              </a>{' '}
+              - <Text ml={['0.5rem', '1rem']}>{item.description}</Text>
+            </ListItem>
+          )
+        })}
+      </List>
+    </Box>
+  )
+}
 
-const Parragraph = ({ children }) => {
+const TLDR = ({ items }) => {
+  return <ListWrapper title={'TL:DR'} items={items} />
+}
+
+const Paragraph = ({ children }) => {
   return (
     <Text
       as="p"
@@ -135,40 +176,129 @@ const Article2 = () => {
             height={['80vw', '40vw']}
             width={'100vw'}
             redirectUrl="blog/article-1"
-            imageUrl="/coming-soon-article.png"
+            imageUrl="/features_template.png"
           />
         </Box>
         <Box px={['1.5rem', '10rem']} zIndex="1" pb="10rem">
-          <ArticleDate>April 10, 2021</ArticleDate>
-          <Header>How to make the switch to Pitch</Header>
+          <ArticleDate>May 6, 2021</ArticleDate>
+          <Header>Alternative to Carrd</Header>
           <ContentWrapper>
             <Description>
-              Convincing others to try new software is never easy. One of the
-              most common questions we hear is, “How can I help my team get
-              started?” After speaking with hundreds of people, we’ve put
-              together a guide to help new teams successfully make the
-              transition. Here are our top tips.
+              Carrd is a very popular website builder to create simple pages and
+              it is really good at doing that, but that doesn’t mean it’s right
+              for everyone.
             </Description>
-            <TLDR items={['1', '2', '3']} />
-            <Parragraph>
-              Since January, we’ve shipped 13 new features and 55 improvements
-              that make creating and collaborating on decks fast and easy. Check
-              out the latest updates and see why it’s never been a better time
-              to get your team on board.
-            </Parragraph>
-            <Subtitle>Make the switch to Pitch faster</Subtitle>
-            <Parragraph>
-              When teams have a central space to work they can accomplish
-              anything — from raising money to delivering more customer-centric
-              products. But getting teams to change their ways of working can be
-              tough, even when the benefits outweigh the temporary discomfort of
-              doing things differently.
-            </Parragraph>
-            <Parragraph>
-              So this quarter, we set out to make it easy for teams to get
-              started, migrate over their existing materials, and create
-              beautiful decks quicker than ever.
-            </Parragraph>
+            <Subtitle>What is carrd good for?</Subtitle>
+            <TLDR
+              items={[
+                'Simple pages with not a lot of customization',
+                'Creating websites fast',
+                'People who need to get something out fast without thinking too much on design',
+              ]}
+            />
+            <Paragraph>
+              Whether you’re looking for alternatives for your new site, or want
+              to switch from Carrd to something different, you’re in the right
+              place! We know the market and we know the competitors inside out.
+            </Paragraph>
+            <Paragraph>
+              We have tested dozens of websites and portfolio builders so you
+              don't have to.
+            </Paragraph>
+            <Paragraph>
+              Here are the alternatives grouped by use case.
+            </Paragraph>
+            <ListWithLinks
+              ordered
+              title="10 alternatives to Carrd"
+              items={[
+                {
+                  title: 'Antfolio',
+                  description:
+                    'Best for highly customizable landing pages and portfolios.',
+                  link: 'https://antfolio.app/',
+                },
+                {
+                  title: 'Wix',
+                  description: 'Best for business.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'Unicorn Platform',
+                  description:
+                    'Best for people who don´t want to think on design.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'Ghost',
+                  description: 'Best for blogging.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'Shopify',
+                  description: 'Best for ecommerce.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'Webnode',
+                  description: 'Cheapest website builder.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'BigCommerce',
+                  description: 'Best for large online stores.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'Squarespace',
+                  description: 'Best for design.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'Elementor',
+                  description: 'Best for wordpress websites.',
+                  link: 'https://anfolio.app',
+                },
+                {
+                  title: 'GoDaddy',
+                  description: 'Best for customer support.',
+                  link: 'https://anfolio.app',
+                },
+              ]}
+            />
+            <Subtitle>
+              <b>
+                <a href="https://antfolio.app/">Antfolio: </a>
+              </b>
+              Best alternative overall
+            </Subtitle>
+            <Paragraph>
+              Antfolio is the closest builder to carrd in terms on functionality
+              and ease of use. It allows you
+              <Paragraph>
+                <b>Main differences</b>
+              </Paragraph>
+              <HStack spacing="24px">
+                <Image src="/features_template.png" w="50%" />
+                <Image src="/features_template.png" w="50%" />
+              </HStack>
+              <Paragraph>
+                The builder is the biggest differentiator. Card has a fixed
+                layout that you can customize with a variety of blocks (
+                buttons, images, forms ...). Antfolio offers a builder with no
+                fixed layout, this means you can positions blocks anywhere on
+                the page and create the layouts you want without any constrains.
+                This allows users to be much more creative with their design.
+              </Paragraph>
+              <Paragraph>
+                Antfolio allows users to create highly customizable websites in
+                minutes. It uses a simple drag and drop builder. What makes
+                Antfolio unique is how their builder work. It allows you to
+                positions items anywhere on the page resize them and create
+                amazing layouts. It also offers a high variety of 3D
+                illustrations and icons.
+              </Paragraph>
+            </Paragraph>
           </ContentWrapper>
         </Box>
       </Box>
