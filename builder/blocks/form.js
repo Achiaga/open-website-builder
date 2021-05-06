@@ -109,8 +109,14 @@ export const PrevContactForm = (props) => {
   )
 }
 
+function getBackgroundColor(color) {
+  if (!color) return '#000000'
+  if (color === 'transparent') return '#ffffff00'
+  return color
+}
+
 export const CustonButton = ({ children, ...props }) => {
-  const backgroundColor = props.backgroundColor || '#ffffff'
+  const backgroundColor = getBackgroundColor(props?.backgroundColor)
   const shades = colorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'

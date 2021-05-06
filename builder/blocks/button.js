@@ -6,8 +6,14 @@ import { editBlockConfig } from '../../features/builderSlice'
 import getColorShades, { getIsColorBright } from './block-helpers/color-shades'
 import { RedirectWrapper } from './text'
 
+function getBackgroundColor(color) {
+  if (!color) return '#000000'
+  if (color === 'transparent') return '#ffffff00'
+  return color
+}
+
 export const CustonButton = ({ children, ...props }) => {
-  const backgroundColor = props?.backgroundColor || '#000000'
+  const backgroundColor = getBackgroundColor(props?.backgroundColor)
   const shades = getColorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'
