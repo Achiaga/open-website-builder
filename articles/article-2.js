@@ -205,9 +205,7 @@ const Article2 = () => {
               We have tested dozens of websites and portfolio builders so you
               don't have to.
             </Paragraph>
-            <Paragraph>
-              Here are the alternatives grouped by use case.
-            </Paragraph>
+            <Paragraph>Here are the alternatives:</Paragraph>
             <ListWithLinks
               ordered
               title="10 alternatives to Carrd"
@@ -221,84 +219,123 @@ const Article2 = () => {
                 {
                   title: 'Wix',
                   description: 'Best for business.',
-                  link: 'https://anfolio.app',
+                  link: 'https://www.wix.com/',
                 },
                 {
                   title: 'Unicorn Platform',
                   description:
                     'Best for people who don´t want to think on design.',
-                  link: 'https://anfolio.app',
+                  link: 'https://unicornplatform.com/',
                 },
                 {
                   title: 'Ghost',
                   description: 'Best for blogging.',
-                  link: 'https://anfolio.app',
+                  link: 'https://ghost.org/',
                 },
                 {
                   title: 'Shopify',
                   description: 'Best for ecommerce.',
-                  link: 'https://anfolio.app',
+                  link: 'https://www.shopify.com/',
                 },
                 {
                   title: 'Webnode',
                   description: 'Cheapest website builder.',
-                  link: 'https://anfolio.app',
+                  link: 'https://www.webnode.com/',
                 },
                 {
                   title: 'BigCommerce',
                   description: 'Best for large online stores.',
-                  link: 'https://anfolio.app',
+                  link: 'https://www.bigcommerce.com/',
                 },
                 {
                   title: 'Squarespace',
                   description: 'Best for design.',
-                  link: 'https://anfolio.app',
+                  link: 'https://www.squarespace.com/',
                 },
                 {
                   title: 'Elementor',
                   description: 'Best for wordpress websites.',
-                  link: 'https://anfolio.app',
+                  link: 'https://elementor.com/',
                 },
                 {
                   title: 'GoDaddy',
                   description: 'Best for customer support.',
-                  link: 'https://anfolio.app',
+                  link: 'https://www.godaddy.com/websites/website-builder',
                 },
               ]}
             />
-            <Subtitle>
-              <b>
-                <a href="https://antfolio.app/">Antfolio: </a>
-              </b>
-              Best alternative overall
-            </Subtitle>
-            <Paragraph>
-              Antfolio is the closest builder to carrd in terms on functionality
-              and ease of use. It allows you
+            <Box>
+              <Subtitle>
+                <b>
+                  <a href="https://antfolio.app/">Antfolio: </a>
+                </b>
+                Best alternative overall
+              </Subtitle>
               <Paragraph>
-                <b>Main differences</b>
+                Antfolio is the closest builder to carrd in terms on
+                functionality and ease of use. It allows you
+                <HStack spacing="24px" my="1rem">
+                  <Image src="/features_template.png" w="50%" />
+                  <Image src="/features_template.png" w="50%" />
+                </HStack>
+                <Paragraph>
+                  Antfolio allows users to create highly customizable websites
+                  in minutes. It uses a simple drag and drop builder. What makes
+                  Antfolio unique is how their builder work. It allows you to
+                  positions items anywhere on the page resize them and create
+                  amazing layouts. It also offers a high variety of 3D
+                  illustrations and icons.
+                </Paragraph>
+                <Paragraph>
+                  <b>Main differences</b>
+                </Paragraph>
+                <Paragraph>
+                  The builder is the biggest differentiator. Card has a fixed
+                  layout that you can customize with a variety of blocks (
+                  buttons, images, forms ...). Antfolio offers a builder with no
+                  fixed layout, this means you can positions blocks anywhere on
+                  the page and create the layouts you want without any
+                  constrains. This allows users to be much more creative with
+                  their design.
+                </Paragraph>
               </Paragraph>
-              <HStack spacing="24px">
-                <Image src="/features_template.png" w="50%" />
-                <Image src="/features_template.png" w="50%" />
-              </HStack>
+            </Box>
+            <Box>
+              <Subtitle>
+                <b>
+                  <a href="https://antfolio.app/">Wix: </a>
+                </b>
+                Best for business
+              </Subtitle>
               <Paragraph>
-                The builder is the biggest differentiator. Card has a fixed
-                layout that you can customize with a variety of blocks (
-                buttons, images, forms ...). Antfolio offers a builder with no
-                fixed layout, this means you can positions blocks anywhere on
-                the page and create the layouts you want without any constrains.
-                This allows users to be much more creative with their design.
+                Antfolio is the closest builder to carrd in terms on
+                functionality and ease of use. It allows you
+                <HStack spacing="24px" my="1rem">
+                  <Image src="/features_template.png" w="50%" />
+                  <Image src="/features_template.png" w="50%" />
+                </HStack>
+                <Paragraph>
+                  Antfolio allows users to create highly customizable websites
+                  in minutes. It uses a simple drag and drop builder. What makes
+                  Antfolio unique is how their builder work. It allows you to
+                  positions items anywhere on the page resize them and create
+                  amazing layouts. It also offers a high variety of 3D
+                  illustrations and icons.
+                </Paragraph>
+                <Paragraph>
+                  <b>Main differences</b>
+                </Paragraph>
+                <Paragraph>
+                  The builder is the biggest differentiator. Card has a fixed
+                  layout that you can customize with a variety of blocks (
+                  buttons, images, forms ...). Antfolio offers a builder with no
+                  fixed layout, this means you can positions blocks anywhere on
+                  the page and create the layouts you want without any
+                  constrains. This allows users to be much more creative with
+                  their design.
+                </Paragraph>
               </Paragraph>
-              <Paragraph>
-                Antfolio allows users to create highly customizable websites in
-                minutes. It uses a simple drag and drop builder. What makes
-                Antfolio unique is how their builder work. It allows you to
-                positions items anywhere on the page resize them and create
-                amazing layouts. It also offers a high variety of 3D
-                illustrations and icons.
-              </Paragraph>
-            </Paragraph>
+            </Box>
           </ContentWrapper>
         </Box>
       </Box>

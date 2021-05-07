@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   return {
     paths: [
       { params: { articleId: 'article-1' } },
-      { params: { articleId: 'article-2' } },
+      { params: { articleId: 'alternatives-to-card' } },
     ],
     fallback: false, // See the "fallback" section below
   }
