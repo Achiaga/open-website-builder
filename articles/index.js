@@ -3,5 +3,5 @@ import Article2 from './article-2'
 
 export default {
   'article-1': Article1,
-  'alternatives-to-card': Article2,
+  '100-website-builder-comparison': Article2,
 }
