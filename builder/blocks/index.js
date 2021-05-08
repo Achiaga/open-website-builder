@@ -34,12 +34,14 @@ export const previewBlocks = {
 
 export const ResizingCounter = ({ width, height, pos }) => {
   if (!width || !height) return null
+  let widthSizeBox = 110
+  if (width < 100) widthSizeBox = 90
   return (
     <Portal id="main-builder">
       <Box
         pos="absolute"
-        left={pos.x + width}
-        top={pos.y + height}
+        left={pos.x + width - widthSizeBox}
+        top={pos.y + height + 15}
         paddingY="3px"
         paddingX="7px"
         bg="white"

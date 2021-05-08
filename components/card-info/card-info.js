@@ -17,7 +17,7 @@ const Steps = () => {
       w="100%"
       mt="6rem"
       mb="4rem"
-      px={['1.5rem', 'auto']}
+      px={['1.5rem', '10rem']}
       flexDirection="column"
     >
       <BackgroundCircle />

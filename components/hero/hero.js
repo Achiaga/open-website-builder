@@ -62,8 +62,12 @@ const Hero = () => {
                 h={14}
                 bg="gray.900"
                 color="gray.50"
-                _hover={{ bg: 'gray.700' }}
-                _active={{ bg: 'gray.500' }}
+                _hover={{
+                  bg: 'transparent',
+                  border: '2px solid black',
+                  color: 'black',
+                }}
+                _active={{ bg: 'gray.300' }}
               >
                 Start for Free
               </Button>

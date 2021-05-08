@@ -38,12 +38,12 @@ const ComparisionItem = ({ item }) => {
       h="100%"
       ml="15px"
     >
-      <Box display={['none', 'flex']} pb={8}>
+      <Box display={['none', 'flex']} alignItems="center" pb={8}>
         {item.icon()}
         <Text
           as="p"
           pl="1.5rem"
-          fontSize="36px"
+          fontSize="30px"
           lineHeight="43.2px"
           textAlign={'center'}
           fontWeight="700"
@@ -56,8 +56,8 @@ const ComparisionItem = ({ item }) => {
         </Text>
       </Box>
       <Box
-        width="40vw"
-        height="50vw"
+        width="30vw"
+        height="40vw"
         boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
         borderRadius="5px"
         overflow="hidden"
@@ -87,8 +87,9 @@ const Comparison = () => {
       justifyContent="center"
       alignItems="center"
       w={['100vw', '100%']}
-      pb={['1.5rem', '0']}
+      pb={['1.5rem', '7rem']}
       mx={['auto', 0]}
+      mt={['0', '12rem']}
     >
       <Box
         w={['90vw', '100%']}
@@ -125,11 +126,13 @@ const Comparison = () => {
           as="h2"
           textAlign={['left', 'center']}
           position="relative"
-          fontSize={['22px', '24px']}
+          fontSize={['22px', '22px']}
           m={['auto']}
-          my={['2rem', '1rem']}
-          width={['auto', '60rem']}
+          my={['2rem', '3rem']}
+          mb={['2rem', '2rem']}
+          width={['auto', '80rem']}
           color="gray.600"
+          lineHeight={['0', '50px']}
         >
           {t.comparison.subtitle}
         </Text>
