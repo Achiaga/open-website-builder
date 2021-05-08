@@ -88,7 +88,7 @@ export const ListWrapper = ({ title, items }) => {
 }
 export const ListWithLinks = ({ title, items, ordered }) => {
   return (
-    <Box px={[0, '3rem']} py="1rem">
+    <Box px={[0, '0']} py="1rem">
       <Text fontSize="2xl" py="1rem" as="h2">
         {title}
       </Text>
@@ -102,7 +102,7 @@ export const ListWithLinks = ({ title, items, ordered }) => {
                 </Text>
               )}
               <a href={item.link} target="_blank" rel="noreferrer">
-                <Text color="primary.500" mr={['0.5rem', '1rem']}>
+                <Text color="primary.500" mr={['0.5rem', '1rem']} minW="120px">
                   {item.title}
                 </Text>
               </a>{' '}

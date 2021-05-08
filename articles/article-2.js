@@ -29,68 +29,59 @@ const Article2 = () => {
         </Box>
         <Box px={['1.5rem', '10rem']} zIndex="1" pb="10rem">
           <ArticleDate>May 6, 2021</ArticleDate>
-          <Header>Alternative to Carrd</Header>
+          <Header>The Top 100 Website Builders</Header>
           <ContentWrapper>
             <Description>
-              Carrd is a very popular website builder to create simple pages and
-              it is really good at doing that, but that doesn’t mean it’s right
-              for everyone.
+              Even if you don't know how to code, there's a website builder out
+              there for you, it does not matter if you're a small business
+              owner, designer, photographer, blogger, or consultant, we got you
+              cover.
             </Description>
-            <Subtitle>What is carrd good for?</Subtitle>
-            <TLDR
+            <ListWithLinks
+              title="Our top 3 website builders"
               items={[
-                'Simple pages with not a lot of customization',
-                'Creating websites fast',
-                'People who need to get something out fast without thinking too much on design',
+                {
+                  title: 'Antfolio',
+                  link: 'https://antfolio.app',
+                  description:
+                    'Pros: Simple and ease to use, website ready in minutes. No learning curve. Cons: Only for single page websites',
+                },
+                {
+                  title: 'Webflow',
+                  link: 'https://webflow.com',
+                  description:
+                    'Pros: You can customize everything, anything is possible with Webflow. Cons: Steep learning curve',
+                },
+                {
+                  title: 'Wix',
+                  link: 'https://wix.com',
+                  description:
+                    'Pros: Most popular website builder, lots of tools and very good overall. Cons: overwhelming, too many options and has a learning curve',
+                },
               ]}
             />
+
             <Paragraph>
-              Whether you’re looking for alternatives for your new site, or want
-              to switch from Carrd to something different, you’re in the right
-              place! We know the market and we know the competitors inside out.
+              Gone are the days when you have to be a web developer with coding
+              expertise and a lot of time and resources to build an easy,
+              professional-looking website. Popular website builders like Wix
+              and Weebly make it simple for even a novice to create a polished
+              site in a comparatively short time, even when more sophisticated
+              features like an e-commerce portal or email marketing are needed.
+            </Paragraph>
+            <Paragraph>
+              Finding the right website designer is dependent on the own needs;
+              the process can be daunting due to the abundance of alternatives,
+              ranging from free options for a basic website to e-commerce sites
+              for a more sophisticated business website. Because of the
+              industry's growth and complexity, you have more options than ever
+              before, and you can quickly find the right builder suited to you.
             </Paragraph>
             <Paragraph>
               We have tested dozens of websites and portfolio builders so you
               don&apos;t have to.
             </Paragraph>
-            <Paragraph>Here are the alternatives:</Paragraph>
-
-            <Box>
-              <Subtitle>
-                <b>
-                  <a href="https://antfolio.app/">Antfolio: </a>
-                </b>
-                Best alternative overall
-              </Subtitle>
-              <Paragraph>
-                Antfolio is the closest builder to carrd in terms on
-                functionality and ease of use. It allows you
-                <HStack spacing="24px" my="1rem">
-                  <Image src="/features_template.png" w="50%" />
-                  <Image src="/features_template.png" w="50%" />
-                </HStack>
-                <Paragraph>
-                  Antfolio allows users to create highly customizable websites
-                  in minutes. It uses a simple drag and drop builder. What makes
-                  Antfolio unique is how their builder work. It allows you to
-                  positions items anywhere on the page resize them and create
-                  amazing layouts. It also offers a high variety of 3D
-                  illustrations and icons.
-                </Paragraph>
-                <Paragraph>
-                  <b>Main differences</b>
-                </Paragraph>
-                <Paragraph>
-                  The builder is the biggest differentiator. Card has a fixed
-                  layout that you can customize with a variety of blocks (
-                  buttons, images, forms ...). Antfolio offers a builder with no
-                  fixed layout, this means you can positions blocks anywhere on
-                  the page and create the layouts you want without any
-                  constrains. This allows users to be much more creative with
-                  their design.
-                </Paragraph>
-              </Paragraph>
-            </Box>
+            <Paragraph>Here are 100 best website builders:</Paragraph>
           </ContentWrapper>
         </Box>
         <ComparisonTable />

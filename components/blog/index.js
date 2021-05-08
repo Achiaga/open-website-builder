@@ -79,20 +79,23 @@ const MainBlogCard = () => {
           flexDir="column"
           justifyContent="center"
         >
-          <ArticleTitle fontSize="6xl" url="blog/article-1">
-            Don’t just present. Pitch.
+          <ArticleTitle
+            fontSize="6xl"
+            url="blog/100-website-builder-comparison"
+          >
+            100 Best Website Builder
           </ArticleTitle>
           <Text color="gray.500" fontWeight="300" fontSize="2xl" py="2rem">
-            Today, we’re launching Pitch to the world. Learn how we’re
-            modernizing presentation software to help teams stay connected and
-            do their best work.
+            Today, we’re launching a comparison tool, so you can choose the best
+            website builder for you. You can easily filter builders base on
+            features on how the website is build.
           </Text>
-          <TurnThePage redirectUrl="blog/article-1" />
+          <TurnThePage redirectUrl="blog/100-website-builder-comparison" />
         </Box>
         <ArticleImage
           height={['60vw', '35vw']}
           width="50%"
-          redirectUrl="blog/article-1"
+          redirectUrl="blog/100-website-builder-comparison"
           imageUrl="/blogImgSmall2.png"
         />
       </Box>
@@ -100,19 +103,19 @@ const MainBlogCard = () => {
   )
 }
 
-const ArticleCard = ({ title, imageUrl, description, bg }) => {
+const ArticleCard = ({ title, imageUrl, description, bg, redirectUrl }) => {
   return (
     <Box color="gray.500">
       <Box bg={bg || 'transparent'}>
         <ArticleImage
           height={['60vw', '250px']}
           w="90%"
-          redirectUrl="blog/article-1"
+          redirectUrl={redirectUrl}
           imageUrl={imageUrl}
         />
       </Box>
       <Box mt="1rem">
-        <ArticleTitle fontSize="27px" url="blog/article-1">
+        <ArticleTitle fontSize="27px" url={redirectUrl}>
           {title}
         </ArticleTitle>
         <Text fontWeight="400" fontSize="lg" lineHeight="1.8" mt="1rem">
@@ -140,20 +143,22 @@ const BlogPage = () => {
             pb="10rem"
           >
             <ArticleCard
-              title="A top VC's recipe for an eye-catching pitch"
-              imageUrl="https://www.vectary.com/api/vctr-repo/v2/binary/7bc33b3f-1e38-45b4-a8d0-2966f9372809/e52d95ad-6c6f-4aa9-a7a2-03e51a5fb36d.jpeg"
-              description="In this Q&A, we sit down with Martin Mignot of Index Ventures to hear
-          his tips for delivering a perfect remote pitch."
+              title="Antfolio, The ultimate website builder"
+              imageUrl="https://antfolio.s3.amazonaws.com/mac-study-model.png"
+              description="Coming Soon!"
+              redirectUrl="/blog"
             />
             <ArticleCard
               title="What makes Antfolio unique?"
-              imageUrl="/coming-soon-article.png"
-              bg="primary.500"
+              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+              description="Coming Soon!"
+              redirectUrl="/blog"
             />
             <ArticleCard
               title="How was Antfolio created?"
-              imageUrl="/coming-soon-article.png"
-              bg="primary.500"
+              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+              description="Coming Soon!"
+              redirectUrl="/blog"
             />
           </Box>
         </Box>
