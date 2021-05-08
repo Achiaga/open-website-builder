@@ -54,64 +54,7 @@ const Article2 = () => {
               don&apos;t have to.
             </Paragraph>
             <Paragraph>Here are the alternatives:</Paragraph>
-            <ListWithLinks
-              ordered
-              title="10 alternatives to Carrd"
-              items={[
-                {
-                  title: 'Antfolio',
-                  description:
-                    'Best for highly customizable landing pages and portfolios.',
-                  link: 'https://antfolio.app/',
-                },
-                {
-                  title: 'Wix',
-                  description: 'Best for business.',
-                  link: 'https://www.wix.com/',
-                },
-                {
-                  title: 'Unicorn Platform',
-                  description:
-                    'Best for people who don´t want to think on design.',
-                  link: 'https://unicornplatform.com/',
-                },
-                {
-                  title: 'Ghost',
-                  description: 'Best for blogging.',
-                  link: 'https://ghost.org/',
-                },
-                {
-                  title: 'Shopify',
-                  description: 'Best for ecommerce.',
-                  link: 'https://www.shopify.com/',
-                },
-                {
-                  title: 'Webnode',
-                  description: 'Cheapest website builder.',
-                  link: 'https://www.webnode.com/',
-                },
-                {
-                  title: 'BigCommerce',
-                  description: 'Best for large online stores.',
-                  link: 'https://www.bigcommerce.com/',
-                },
-                {
-                  title: 'Squarespace',
-                  description: 'Best for design.',
-                  link: 'https://www.squarespace.com/',
-                },
-                {
-                  title: 'Elementor',
-                  description: 'Best for wordpress websites.',
-                  link: 'https://elementor.com/',
-                },
-                {
-                  title: 'GoDaddy',
-                  description: 'Best for customer support.',
-                  link: 'https://www.godaddy.com/websites/website-builder',
-                },
-              ]}
-            />
+
             <Box>
               <Subtitle>
                 <b>
@@ -148,9 +91,9 @@ const Article2 = () => {
                 </Paragraph>
               </Paragraph>
             </Box>
-            <ComparisonTable />
           </ContentWrapper>
         </Box>
+        <ComparisonTable />
       </Box>
     </>
   )

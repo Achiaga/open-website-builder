@@ -1,16 +1,27 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { useTable } from 'react-table'
+import { useFilters, useSortBy, useTable } from 'react-table'
+import { Box } from '@chakra-ui/layout'
 
 const Styles = styled.div`
   padding: 1rem;
   width: 100%;
   table {
     border-spacing: 0;
-    border: 1px solid black;
+    border: 1px solid #eef0fe;
     width: 100%;
     tr {
+      :first-child {
+        th {
+          background-color: #506bf0;
+          color: white;
+          padding-left: 0;
+          padding-right: 0;
+          font-weight: 500;
+          font-size: 16px;
+        }
+      }
       :last-child {
         td {
           border-bottom: 0;
@@ -22,8 +33,15 @@ const Styles = styled.div`
     td {
       margin: 0;
       padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
+      border-bottom: 1px solid #eef0fe;
+      border-right: 1px solid #eef0fe;
+
+      :first-child {
+        background-color: #506bf0;
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+      }
 
       :last-child {
         border-right: 0;
@@ -32,18 +50,34 @@ const Styles = styled.div`
   }
 `
 
+function DefaultColumnFilter() {
+  return <div>Hola</div>
+}
+
 function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
+  const defaultColumn = useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: DefaultColumnFilter,
+    }),
+    []
+  )
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({
-    columns,
-    data,
-  })
+  } = useTable(
+    {
+      columns,
+      data,
+      defaultColumn,
+    },
+    useFilters,
+    useSortBy
+  )
 
   // Render the UI for your table
   return (
@@ -52,7 +86,17 @@ function Table({ columns, data }) {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <Box borderBottom="1px solid" borderColor="#eef0fe" py="1rem">
+                  {column.render('Header')}{' '}
+                  <span>
+                    {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : ''}
+                  </span>
+                </Box>
+                <Box>
+                  <div>{column.canFilter ? column.render('Filter') : null}</div>
+                </Box>
+              </th>
             ))}
           </tr>
         ))}
