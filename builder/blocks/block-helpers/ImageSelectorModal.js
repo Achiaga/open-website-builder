@@ -100,7 +100,11 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                 <Button variant="ghost" mr={3} onClick={onClose}>
                   Close
                 </Button>
-                <Button colorScheme="primary" onClick={handleApplyImage}>
+                <Button
+                  colorScheme="primary"
+                  onClick={handleApplyImage}
+                  disabled={!selectedImg}
+                >
                   Set Image
                 </Button>
               </Box>

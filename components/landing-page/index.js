@@ -28,7 +28,7 @@ const LandingPage = () => {
           name="google-site-verification"
           content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
         />
-        <title>Antfolio - Build your online portfolio in 15 minutes</title>
+        <title>Antfolio - Build a beautiful website in 15 minutes</title>
         <link rel="icon" href="/favicon.ico" />
         <script
           defer
