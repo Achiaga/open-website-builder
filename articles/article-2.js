@@ -1,4 +1,4 @@
-import { Box, HStack, Image } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import Navbar from '../components/navbar'
 import ComparisonTable from './comparison-table'
@@ -11,7 +11,6 @@ import {
   ListWithLinks,
   Paragraph,
   Subtitle,
-  TLDR,
 } from './components'
 
 const Article2 = () => {
@@ -27,15 +26,15 @@ const Article2 = () => {
             imageUrl="/features_template.png"
           />
         </Box>
-        <Box px={['1.5rem', '10rem']} zIndex="1" pb="10rem">
+        <Box px={['1.5rem', '10rem']} zIndex="1" pb="2rem">
           <ArticleDate>May 6, 2021</ArticleDate>
           <Header>The Top 100 Website Builders</Header>
           <ContentWrapper>
             <Description>
-              Even if you don't know how to code, there's a website builder out
-              there for you, it does not matter if you're a small business
-              owner, designer, photographer, blogger, or consultant, we got you
-              cover.
+              Even if you don&apos;t know how to code, there&apos;s a website
+              builder out there for you, it does not matter if you&apos;re a
+              small business owner, designer, photographer, blogger, or
+              consultant, we got you cover.
             </Description>
             <ListWithLinks
               title="Our top 3 website builders"
@@ -81,7 +80,7 @@ const Article2 = () => {
               We have tested dozens of websites and portfolio builders so you
               don&apos;t have to.
             </Paragraph>
-            <Paragraph>Here are 100 best website builders:</Paragraph>
+            <Subtitle>Here are 100 best website builders:</Subtitle>
           </ContentWrapper>
         </Box>
         <ComparisonTable />

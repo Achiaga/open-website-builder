@@ -151,7 +151,7 @@ export const Subtitle = ({ children }) => {
 
 export const ContentWrapper = ({ children }) => {
   return (
-    <Box maxW={['100%', '60vw']} m="auto">
+    <Box maxW={['100%', '50vw']} m="auto">
       {children}
     </Box>
   )

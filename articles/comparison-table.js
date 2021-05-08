@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import TableWrapper from './table'
 import fakeData from './fake-data.json'
+import { Box } from '@chakra-ui/layout'
 
 function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
@@ -17,19 +18,37 @@ function SelectColumnFilter({
 
   // Render a multi-select box
   return (
-    <select
-      value={filterValue}
-      onChange={(e) => {
-        setFilter(e.target.value || undefined)
-      }}
+    <Box
+      color="white"
+      bg="transparent"
+      onClick={(e) => e.stopPropagation()}
+      h="100%"
+      d="flex"
+      justifyContent="center"
+      alignItems="center"
     >
-      <option value="">All</option>
-      {options.map((option, i) => (
-        <option key={i} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
+      <select
+        style={{
+          padding: '5px 10px',
+          borderRadius: '5px',
+          backgroundColor: 'transparent',
+        }}
+        w="100%"
+        bg="white"
+        color="gray.500"
+        value={filterValue}
+        onChange={(e) => {
+          setFilter(e.target.value || undefined)
+        }}
+      >
+        <option value="">All</option>
+        {options.map((option, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </Box>
   )
 }
 
@@ -82,7 +101,11 @@ const ComparisonTable = () => {
     []
   )
 
-  return <TableWrapper data={fakeData} columns={columns} />
+  return (
+    <Box minH="400px" px="4rem">
+      <TableWrapper data={fakeData} columns={columns} />
+    </Box>
+  )
 }
 
 export default ComparisonTable

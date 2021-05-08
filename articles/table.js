@@ -1,57 +1,11 @@
 /* eslint-disable react/jsx-key */
 import React, { useMemo } from 'react'
-import styled from 'styled-components'
 import { useFilters, useSortBy, useTable } from 'react-table'
 import { Box } from '@chakra-ui/layout'
-
-const Styles = styled.div`
-  padding: 1rem;
-  width: 100%;
-  table {
-    border-spacing: 0;
-    border: 1px solid #eef0fe;
-    width: 100%;
-    tr {
-      :first-child {
-        th {
-          background-color: #506bf0;
-          color: white;
-          padding-left: 0;
-          padding-right: 0;
-          font-weight: 500;
-          font-size: 16px;
-        }
-      }
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid #eef0fe;
-      border-right: 1px solid #eef0fe;
-
-      :first-child {
-        background-color: #506bf0;
-        color: white;
-        font-weight: 500;
-        font-size: 16px;
-      }
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-`
+import { BsFillCaretUpFill, BsCaretDownFill } from 'react-icons/bs'
 
 function DefaultColumnFilter() {
-  return <div>Hola</div>
+  return <Box minH="30px" />
 }
 
 function Table({ columns, data }) {
@@ -81,17 +35,36 @@ function Table({ columns, data }) {
 
   // Render the UI for your table
   return (
-    <table {...getTableProps()}>
+    <table {...getTableProps()} className="table-styles">
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
               <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                <Box borderBottom="1px solid" borderColor="#eef0fe" py="1rem">
+                <Box
+                  borderBottom="1px solid"
+                  borderColor="#eef0fe"
+                  py="0.75rem"
+                  d="flex"
+                  flexDir="row"
+                  justifyContent="center"
+                  fontSize="sm"
+                >
                   {column.render('Header')}{' '}
-                  <span>
-                    {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : ''}
-                  </span>
+                  <Box d="flex" flexDir="row" ml="1rem">
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <BsCaretDownFill size="10px" />
+                      ) : (
+                        <BsFillCaretUpFill size="10px" />
+                      )
+                    ) : (
+                      <Box d="flex" flexDir="column">
+                        <BsFillCaretUpFill size="10px" />
+                        <BsCaretDownFill size="10px" />
+                      </Box>
+                    )}
+                  </Box>
                 </Box>
                 <Box>
                   <div>{column.canFilter ? column.render('Filter') : null}</div>
@@ -118,11 +91,7 @@ function Table({ columns, data }) {
 }
 
 function TableWrapper({ columns, data }) {
-  return (
-    <Styles>
-      <Table columns={columns} data={data} />
-    </Styles>
-  )
+  return <Table columns={columns} data={data} />
 }
 
 export default TableWrapper
