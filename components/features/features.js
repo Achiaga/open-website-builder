@@ -142,7 +142,7 @@ const Features = () => {
       >
         {t.features.subtitle}
       </Text>
-      <Box>
+      <Box display={['block', 'none']}>
         <Image
           src="/callToAction.png"
           alt="call to action"
