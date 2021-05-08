@@ -102,7 +102,7 @@ const Hero = () => {
         display={['none', 'flex']}
         mt={['0rem', '3rem']}
       >
-        <Image
+        {/* <Image
           src={'/heroArt.png'}
           alt="Antfolio 3D figures showcase "
           layout="fill"
@@ -110,7 +110,7 @@ const Hero = () => {
           priority
           loading="eager"
           rel="preload"
-        />
+        /> */}
       </Box>
     </Box>
   )

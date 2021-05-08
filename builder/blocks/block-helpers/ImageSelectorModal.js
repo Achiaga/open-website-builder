@@ -13,7 +13,7 @@ import {
   UrlImagesTab,
   GoProTab,
 } from './ImagesGrid'
-import { AntfolioImages, AntfolioIcons } from './assets'
+import { AntfolioImages, AntfolioIcons, AntfolioProps } from './assets'
 import { GrClose } from 'react-icons/gr'
 import noScroll from 'no-scroll'
 
@@ -90,7 +90,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
             >
               <GrClose size="1em" />
             </Box>
-            {tabIndex !== 3 && tabIndex !== 5 && (
+            {tabIndex !== 5 && (
               <Box
                 position="absolute"
                 right="1rem"
@@ -212,12 +212,21 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   <ImagesGrid
                     selectedImg={selectedImg?.index}
                     onSelect={onSelect}
-                    images={AntfolioIcons}
+                    images={AntfolioProps}
                     numCol={7}
                     columnGap={'1rem'}
                   />
                 )}
-                {tabIndex === 3 && <GoProTab />}
+                {tabIndex === 3 && (
+                  <ImagesGrid
+                    selectedImg={selectedImg?.index}
+                    onSelect={onSelect}
+                    images={AntfolioIcons}
+                    numCol={10}
+                    columnGap={'3rem'}
+                    padding={'0.5rem'}
+                  />
+                )}
                 {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
                 {tabIndex === 5 && <GoProTab />}
               </Box>

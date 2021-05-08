@@ -8,10 +8,10 @@ import LogoSvg from '../../assets/logo'
 
 const TEMPLATES = [
   { id: 'template1', imageUrl: '/template1.jpg', tags: [] },
-  { id: 'template2', imageUrl: '/template2.jpg', tags: [] },
-  { id: 'template3', imageUrl: '/template3.jpg', tags: [] },
   { id: 'template4', imageUrl: '/template4.jpg', tags: [] },
   { id: 'template5', imageUrl: '/template5.jpg', tags: [] },
+  { id: 'template2', imageUrl: '/template2.jpg', tags: [] },
+  { id: 'template3', imageUrl: '/template3.jpg', tags: [] },
 ]
 
 const TemplatePage = () => {

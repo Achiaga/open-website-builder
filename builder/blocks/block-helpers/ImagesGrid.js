@@ -147,11 +147,19 @@ export const UrlImagesTab = ({ onSelect }) => {
   )
 }
 
-const ImageItem = ({ imageSrc, index, isSelcted, onSelect, indexcol }) => {
+const ImageItem = ({
+  imageSrc,
+  index,
+  padding,
+  isSelcted,
+  onSelect,
+  indexcol,
+}) => {
   return (
     <Box
       pos="relative"
       border="3px solid"
+      padding={padding}
       borderColor={isSelcted ? 'blue.400' : 'transparent'}
       borderRadius="10px"
       _hover={{
@@ -197,6 +205,53 @@ function getImagesColumns(images, numCol = 3) {
       (7 * images.length) / 7
     )
     return [colum1, colum2, colum3, colum4, colum5, colum6, colum7]
+  } else if (numCol === 10) {
+    const colum1 = images.slice(0, images.length / 10)
+    const colum2 = images.slice(images.length / 10, (2 * images.length) / 10)
+    const colum3 = images.slice(
+      (2 * images.length) / 10,
+      (3 * images.length) / 10
+    )
+    const colum4 = images.slice(
+      (3 * images.length) / 10,
+      (4 * images.length) / 10
+    )
+    const colum5 = images.slice(
+      (4 * images.length) / 10,
+      (5 * images.length) / 10
+    )
+    const colum6 = images.slice(
+      (5 * images.length) / 10,
+      (6 * images.length) / 10
+    )
+    const colum7 = images.slice(
+      (6 * images.length) / 10,
+      (7 * images.length) / 10
+    )
+    const colum8 = images.slice(
+      (7 * images.length) / 10,
+      (8 * images.length) / 10
+    )
+    const colum9 = images.slice(
+      (8 * images.length) / 10,
+      (9 * images.length) / 10
+    )
+    const colum10 = images.slice(
+      (9 * images.length) / 10,
+      (10 * images.length) / 10
+    )
+    return [
+      colum1,
+      colum2,
+      colum3,
+      colum4,
+      colum5,
+      colum6,
+      colum7,
+      colum8,
+      colum9,
+      colum10,
+    ]
   } else {
     const colum1 = images.slice(0, images.length / 3)
     const colum2 = images.slice(images.length / 3, (2 * images.length) / 3)
@@ -210,6 +265,7 @@ export const ImagesGrid = ({
   selectedImg,
   numCol = 3,
   columnGap = '0.3rem',
+  padding = '0rem',
   images = [],
 }) => {
   function handleSelect([col, index]) {
@@ -231,6 +287,7 @@ export const ImagesGrid = ({
               key={index}
               indexcol={indexcol}
               imageSrc={item}
+              padding={padding}
               index={index}
               isSelcted={
                 selectedImg?.[1] === index && selectedImg?.[0] === indexcol
