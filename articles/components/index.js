@@ -92,12 +92,12 @@ export const ListWithLinks = ({ title, items, ordered }) => {
       <Text fontSize="2xl" py="1rem" as="h2">
         {title}
       </Text>
-      <List fontSize="xl" spacing={4}>
+      <List spacing={4}>
         {items.map((item, index) => {
           return (
             <ListItem d="flex" key={index} alignItems="center">
               {ordered && (
-                <Text mr={['0.5rem', '1rem']} fontSize="lg" w="1rem">
+                <Text mr={['0.5rem', '1rem']} w="1rem">
                   {index + 1}.
                 </Text>
               )}
@@ -151,7 +151,7 @@ export const Subtitle = ({ children }) => {
 
 export const ContentWrapper = ({ children }) => {
   return (
-    <Box maxW={['100%', '50vw']} m="auto">
+    <Box maxW={['100%', '50vw']} m="auto" lineHeight="1.6" fontSize="18px">
       {children}
     </Box>
   )

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import TableWrapper from './table'
 import fakeData from './fake-data.json'
-import { Box } from '@chakra-ui/layout'
+import { Badge, Box } from '@chakra-ui/layout'
 
 function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
@@ -52,6 +52,27 @@ function SelectColumnFilter({
   )
 }
 
+const pillsColorMapping = {
+  'e-commerce': 'primary',
+  designers: 'green',
+  blogs: 'gray',
+  easy: 'green',
+  medium: 'gray',
+  hard: 'red',
+}
+
+function getPills(items) {
+  const itemsList = items.split(',')
+  return itemsList.map((item, index) => {
+    const color = pillsColorMapping[item.toLowerCase().trim()]
+    return (
+      <Badge colorScheme={color} key={index} variant="solid" mx="0.3rem">
+        {item}
+      </Badge>
+    )
+  })
+}
+
 const ComparisonTable = () => {
   const columns = useMemo(
     () => [
@@ -69,26 +90,33 @@ const ComparisonTable = () => {
         Header: 'Score',
         accessor: 'score',
         Cell: (instance) => instance?.cell?.value || '',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
       },
-      {
-        Header: 'Builder Type',
-        accessor: 'type',
-        Cell: (instance) => instance?.cell?.value || '',
-      },
+
       {
         Header: 'Ease of  use',
         accessor: 'ease-of-use',
         Cell: (instance) => instance?.cell?.value || '',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
       },
       {
         Header: 'Use Case',
         accessor: 'use-case',
-        Cell: (instance) => instance?.cell?.value || '',
+
+        Cell: (instance) => {
+          return getPills(instance?.cell?.value || '')
+        },
+        Filter: SelectColumnFilter,
+        filter: 'includes',
       },
       {
-        Header: 'Customizable rate',
+        Header: 'Customizable score',
         accessor: 'customizable',
         Cell: (instance) => instance?.cell?.value || '',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
       },
       {
         Header: 'Free plan',
@@ -96,6 +124,13 @@ const ComparisonTable = () => {
         Filter: SelectColumnFilter,
         filter: 'includes',
         Cell: (instance) => instance?.cell?.value || '',
+      },
+      {
+        Header: 'Builder Type',
+        accessor: 'type',
+        Cell: (instance) => instance?.cell?.value || '',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
       },
     ],
     []

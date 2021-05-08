@@ -43,19 +43,19 @@ const Article2 = () => {
                   title: 'Antfolio',
                   link: 'https://antfolio.app',
                   description:
-                    'Pros: Simple and ease to use, website ready in minutes. No learning curve. Cons: Only for single page websites',
+                    'Simple and ease to use, website ready in minutes. No learning curve.',
                 },
                 {
                   title: 'Webflow',
                   link: 'https://webflow.com',
                   description:
-                    'Pros: You can customize everything, anything is possible with Webflow. Cons: Steep learning curve',
+                    'Highly customizable everything, steep learning curve.',
                 },
                 {
                   title: 'Wix',
                   link: 'https://wix.com',
                   description:
-                    'Pros: Most popular website builder, lots of tools and very good overall. Cons: overwhelming, too many options and has a learning curve',
+                    'Most popular website builder, lots of tools and very good overall.',
                 },
               ]}
             />
