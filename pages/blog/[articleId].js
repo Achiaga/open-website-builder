@@ -6,11 +6,8 @@ const Blog = ({ articleId }) => {
 }
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { articleId: 'article-1' } },
-      { params: { articleId: 'article-2' } },
-    ],
-    fallback: false, // See the "fallback" section below
+    paths: [{ params: { articleId: '100-website-builder-comparison' } }],
+    fallback: false,
   }
 }
 export async function getStaticProps({ params }) {

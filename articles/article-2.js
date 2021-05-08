@@ -1,129 +1,17 @@
-import { Box, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
-import Image from 'next/image'
+import { Box } from '@chakra-ui/react'
+
 import Navbar from '../components/navbar'
-import { FiZap } from 'react-icons/fi'
-const BannerImage = ({ height, width, imageUrl }) => {
-  return (
-    <Box
-      height={height}
-      w={width}
-      d="flex"
-      pos="relative"
-      overflow="hidden"
-      mt={['2rem', 0]}
-    >
-      <Image
-        src={imageUrl}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center center"
-      />
-    </Box>
-  )
-}
-
-const Header = ({ children }) => {
-  return (
-    <Text
-      as="h1"
-      fontSize={['42px', '6xl']}
-      color="gray.500"
-      fontWeight="700"
-      textAlign="center"
-      py="1rem"
-    >
-      {children}
-    </Text>
-  )
-}
-const Description = ({ children }) => {
-  return (
-    <Text
-      as="p"
-      fontSize="xl"
-      color="gray.500"
-      fontWeight="500"
-      textAlign={['justify', 'left']}
-      py="1rem"
-    >
-      {children}
-    </Text>
-  )
-}
-const ArticleDate = ({ children }) => {
-  return (
-    <Text
-      as="time"
-      fontSize={['md', 'lg']}
-      color="gray.400"
-      fontWeight="400"
-      textAlign="center"
-      justifyContent="center"
-      d="flex"
-      pt={['1rem', '2rem']}
-    >
-      {children}
-    </Text>
-  )
-}
-
-const TLDR = ({ items }) => {
-  return (
-    <Box px={[0, '5rem']} py="2rem">
-      <Text fontSize="2xl" py="1rem" as="h2">
-        TLDR
-      </Text>
-      <List fontSize="xl" spacing={4}>
-        {items.map((item, index) => {
-          return (
-            <ListItem d="flex" key={index} alignItems="center">
-              <ListIcon as={FiZap} color="primary.500" />
-              <Text>{item}</Text>
-            </ListItem>
-          )
-        })}
-      </List>
-    </Box>
-  )
-}
-
-const Parragraph = ({ children }) => {
-  return (
-    <Text
-      as="p"
-      fontSize="xl"
-      color="gray.500"
-      fontWeight="300"
-      textAlign={['justify', 'left']}
-      pt="1rem"
-      pb="1rem"
-    >
-      {children}
-    </Text>
-  )
-}
-const Subtitle = ({ children }) => {
-  return (
-    <Text
-      as="h2"
-      fontSize="2xl"
-      color="gray.500"
-      fontWeight="600"
-      textAlign="left"
-      pt="2rem"
-    >
-      {children}
-    </Text>
-  )
-}
-
-const ContentWrapper = ({ children }) => {
-  return (
-    <Box maxW={['100%', '60vw']} m="auto">
-      {children}
-    </Box>
-  )
-}
+import ComparisonTable from './comparison-table'
+import {
+  ArticleDate,
+  BannerImage,
+  ContentWrapper,
+  Description,
+  Header,
+  ListWithLinks,
+  Paragraph,
+  Subtitle,
+} from './components'
 
 const Article2 = () => {
   return (
@@ -135,42 +23,67 @@ const Article2 = () => {
             height={['80vw', '40vw']}
             width={'100vw'}
             redirectUrl="blog/article-1"
-            imageUrl="/coming-soon-article.png"
+            imageUrl="/features_template.png"
           />
         </Box>
-        <Box px={['1.5rem', '10rem']} zIndex="1" pb="10rem">
-          <ArticleDate>April 10, 2021</ArticleDate>
-          <Header>How to make the switch to Pitch</Header>
+        <Box px={['1.5rem', '10rem']} zIndex="1" pb="2rem">
+          <ArticleDate>May 6, 2021</ArticleDate>
+          <Header>The Top 100 Website Builders</Header>
           <ContentWrapper>
             <Description>
-              Convincing others to try new software is never easy. One of the
-              most common questions we hear is, “How can I help my team get
-              started?” After speaking with hundreds of people, we’ve put
-              together a guide to help new teams successfully make the
-              transition. Here are our top tips.
+              Even if you don&apos;t know how to code, there&apos;s a website
+              builder out there for you, it does not matter if you&apos;re a
+              small business owner, designer, photographer, blogger, or
+              consultant, we got you cover.
             </Description>
-            <TLDR items={['1', '2', '3']} />
-            <Parragraph>
-              Since January, we’ve shipped 13 new features and 55 improvements
-              that make creating and collaborating on decks fast and easy. Check
-              out the latest updates and see why it’s never been a better time
-              to get your team on board.
-            </Parragraph>
-            <Subtitle>Make the switch to Pitch faster</Subtitle>
-            <Parragraph>
-              When teams have a central space to work they can accomplish
-              anything — from raising money to delivering more customer-centric
-              products. But getting teams to change their ways of working can be
-              tough, even when the benefits outweigh the temporary discomfort of
-              doing things differently.
-            </Parragraph>
-            <Parragraph>
-              So this quarter, we set out to make it easy for teams to get
-              started, migrate over their existing materials, and create
-              beautiful decks quicker than ever.
-            </Parragraph>
+            <ListWithLinks
+              title="Our top 3 website builders"
+              items={[
+                {
+                  title: 'Antfolio',
+                  link: 'https://antfolio.app',
+                  description:
+                    'Simple and ease to use, website ready in minutes. No learning curve.',
+                },
+                {
+                  title: 'Webflow',
+                  link: 'https://webflow.com',
+                  description:
+                    'Highly customizable everything, steep learning curve.',
+                },
+                {
+                  title: 'Wix',
+                  link: 'https://wix.com',
+                  description:
+                    'Most popular website builder, lots of tools and very good overall.',
+                },
+              ]}
+            />
+
+            <Paragraph>
+              Gone are the days when you have to be a web developer with coding
+              expertise and a lot of time and resources to build an easy,
+              professional-looking website. Popular website builders like Wix
+              and Weebly make it simple for even a novice to create a polished
+              site in a comparatively short time, even when more sophisticated
+              features like an e-commerce portal or email marketing are needed.
+            </Paragraph>
+            <Paragraph>
+              Finding the right website designer is dependent on the own needs;
+              the process can be daunting due to the abundance of alternatives,
+              ranging from free options for a basic website to e-commerce sites
+              for a more sophisticated business website. Because of the
+              industry's growth and complexity, you have more options than ever
+              before, and you can quickly find the right builder suited to you.
+            </Paragraph>
+            <Paragraph>
+              We have tested dozens of websites and portfolio builders so you
+              don&apos;t have to.
+            </Paragraph>
+            <Subtitle>Here are 100 best website builders:</Subtitle>
           </ContentWrapper>
         </Box>
+        <ComparisonTable />
       </Box>
     </>
   )

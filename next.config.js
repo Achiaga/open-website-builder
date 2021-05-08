@@ -10,6 +10,10 @@ module.exports = {
     JEXIA_ZONE: process.env.JEXIA_ZONE,
   },
   images: {
-    domains: ['images.unsplash.com', 'www.vectary.com'],
+    domains: [
+      'images.unsplash.com',
+      'www.vectary.com',
+      'antfolio.s3.amazonaws.com',
+    ],
   },
 }
