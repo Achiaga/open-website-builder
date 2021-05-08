@@ -18,9 +18,10 @@ const Hero = () => {
         justifyContent="center"
         alignItems="center"
         fontWeight="extrabold"
-        fontSize={['4rem', '7rem']}
+        fontSize={['3.5rem', '7rem']}
         lineHeight="120%"
         h="100vh"
+        textAlign="center"
       >
         <Text
           as="h1"
@@ -32,12 +33,16 @@ const Hero = () => {
         >
           Simple, Easy & Beautiful
         </Text>
-        <Text as="h1" d="flex" fontSize={['4rem', '6rem']}>
+        <Text as="h1" d="flex" fontSize={['3.5rem', '6rem']}>
           No-Code Website Builder
         </Text>
 
         <Box pos="relative" mt="4rem">
-          <Box pos="absolute" left="0" transform="translate(-100%, -10px)">
+          <Box
+            pos="absolute"
+            left="0"
+            transform={['translate(-80%, -50%)', 'translate(-100%, -10px)']}
+          >
             <svg
               xmlns="https://www.w3.org/2000/svg"
               height="100"
@@ -73,8 +78,8 @@ const Hero = () => {
           fontSize="20px"
           fontWeight="semibold"
           color="gray.400"
-          w="60%"
-          textAlign="center"
+          w={['90%', '60%']}
+          textAlign={['justify', 'center']}
         >
           Antfolio combines the best website building experience with an
           obsessive focus on simplicity. Our platform enables anyone to create
