@@ -79,8 +79,7 @@ const ComparisonTable = () => {
         Header: '#',
         accessor: '#',
         Cell: (instance) => {
-          console.log(instance)
-          return instance?.cell?.value || ''
+          return instance?.row?.id || ''
         },
       },
       {
