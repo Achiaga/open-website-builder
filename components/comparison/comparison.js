@@ -124,15 +124,15 @@ const Comparison = () => {
         </Text>
         <Text
           as="h2"
-          textAlign={['left', 'center']}
+          textAlign={['center', 'center']}
           position="relative"
           fontSize={['22px', '22px']}
           m={['auto']}
-          my={['2rem', '3rem']}
+          my={['1rem', '3rem']}
           mb={['2rem', '2rem']}
           width={['auto', '80rem']}
           color="gray.600"
-          lineHeight={['0', '50px']}
+          lineHeight={['30px', '50px']}
         >
           {t.comparison.subtitle}
         </Text>

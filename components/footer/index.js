@@ -22,7 +22,7 @@ const Features = () => {
       marginTop={['0rem', '10rem']}
     >
       <Box pos="absolute" left="4rem">
-        <LogoSvg />
+        <LogoSvg width={45} />
       </Box>
       <Box width={['200px', '537px']} d={['none', 'block']}>
         <Box display="flex" justifyContent="center" alignItems="center">

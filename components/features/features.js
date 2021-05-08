@@ -135,12 +135,21 @@ const Features = () => {
         as="h2"
         textAlign="center"
         position="relative"
-        fontSize="24px"
+        fontSize={['22px', '24px']}
         my={['2rem', '1rem']}
+        px={['2rem', '0rem']}
         color="gray.600"
       >
         {t.features.subtitle}
       </Text>
+      <Box>
+        <Image
+          src="/callToAction.png"
+          alt="call to action"
+          width="200px"
+          height="200px"
+        />
+      </Box>
       <Box
         position="relative"
         display="flex"
