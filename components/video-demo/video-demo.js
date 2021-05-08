@@ -2,7 +2,12 @@ import { Box } from '@chakra-ui/react'
 
 const VideoDemo = () => {
   return (
-    <Box borderRadius={['5px', '10px']} px={['1rem', 0]} pb={['1rem', 0]}>
+    <Box
+      borderRadius={['5px', '10px']}
+      px={['1rem', 0]}
+      pb={['1rem', 0]}
+      zIndex="2"
+    >
       <video
         style={{
           borderRadius: '10px',

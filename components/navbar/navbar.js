@@ -46,7 +46,7 @@ const Navbar = ({ isSticky = true, color }) => {
       position={isSticky ? 'sticky' : 'absolute'}
       top="0"
       w="100%"
-      h={[70, 100]}
+      h={[50, '60px']}
       pr={[4, 28]}
       pl={[4, 24]}
       pt={[8, 0]}
@@ -58,7 +58,7 @@ const Navbar = ({ isSticky = true, color }) => {
           <LogoSvg width="50px" />
         </Box>
       </Link>
-      {isSticky && <BackgroundCircles />}
+      {/* {isSticky && <BackgroundCircles />} */}
       <Flex
         pos="relative"
         justify="space-between"
