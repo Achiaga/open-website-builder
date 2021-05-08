@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-export const BgIcon = ({ bgColor }) => {
+export const BgIcon = ({ bgColor, gradientColor1, gradientColor2 }) => {
   return (
     <div
       style={{
@@ -14,10 +14,12 @@ export const BgIcon = ({ bgColor }) => {
         borderRadius: '3px',
         fontWeight: '500',
         boxShadow: 'rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset',
-        background: bgColor,
+        background: gradientColor1
+          ? `linear-gradient(225deg, ${gradientColor1} 0%, ${gradientColor2} 100%)`
+          : bgColor,
       }}
     >
-      A
+      {!gradientColor1 && 'A'}
     </div>
   )
 }

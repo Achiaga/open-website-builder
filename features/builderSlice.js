@@ -82,6 +82,7 @@ export const builderSlice = createSlice({
     },
     setBlockConfig: (state, action) => {
       const { newData, blockId } = action.payload
+      console.log('setBlockConfig', blockId, newData)
       state.builderData.blocks[blockId].data = newData
     },
     setLayout: (state, action) => {

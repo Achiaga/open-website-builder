@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Portal } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
@@ -32,25 +32,27 @@ export const previewBlocks = {
   button: PreviewButton,
 }
 
-export const ResizingCounter = ({ width, height }) => {
+export const ResizingCounter = ({ width, height, pos }) => {
   if (!width || !height) return null
   return (
-    <Box
-      pos="absolute"
-      right="0"
-      bottom="-40px"
-      paddingY="3px"
-      paddingX="7px"
-      bg="white"
-      zIndex="99999"
-      color="primary.500"
-      borderRadius="5px"
-      boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-      fontWeight="600"
-    >
-      <Box as="span">w: {width}</Box>
-      <Box as="span"> h: {height}</Box>
-    </Box>
+    <Portal id="main-builder">
+      <Box
+        pos="absolute"
+        left={pos.x + width}
+        top={pos.y + height}
+        paddingY="3px"
+        paddingX="7px"
+        bg="white"
+        zIndex="99999"
+        color="primary.500"
+        borderRadius="5px"
+        boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
+        fontWeight="600"
+      >
+        <Box as="span">w: {width}</Box>
+        <Box as="span"> h: {height}</Box>
+      </Box>
+    </Portal>
   )
 }
 ResizingCounter.propTypes = {
