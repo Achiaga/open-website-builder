@@ -15,8 +15,8 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
       alignItems="center"
       justifyContent="center"
       w="100%"
-      px={['32px', '10vw']}
-      py={['1rem', '2rem']}
+      px={['32px', '5vw']}
+      py={['1rem', '4.5rem']}
     >
       <Box
         display={['none', 'flex']}
@@ -48,7 +48,13 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
           />
         )}
       </Box>
-      <Box w="100%" pl="4rem" px={[0, '2rem']} d="flex" flexDir="column">
+      <Box
+        w="100%"
+        px={[0, '2rem']}
+        pl={[0, index % 2 ? '4rem' : '6rem']}
+        d="flex"
+        flexDir="column"
+      >
         <Text
           as="h4"
           color={'primary.500'}
@@ -90,7 +96,7 @@ const Features = () => {
       alignItems="center"
       w="100%"
       mt="4rem"
-      mb={['2rem', '6.5rem']}
+      mb={['2rem', '15rem']}
       mx={['auto', 0]}
     >
       <Box
@@ -129,12 +135,21 @@ const Features = () => {
         as="h2"
         textAlign="center"
         position="relative"
-        fontSize="24px"
+        fontSize={['22px', '24px']}
         my={['2rem', '1rem']}
+        px={['2rem', '0rem']}
         color="gray.600"
       >
         {t.features.subtitle}
       </Text>
+      <Box display={['block', 'none']}>
+        <Image
+          src="/callToAction.png"
+          alt="call to action"
+          width="200px"
+          height="200px"
+        />
+      </Box>
       <Box
         position="relative"
         display="flex"
@@ -184,10 +199,16 @@ const Features = () => {
             fontSize="xl"
             minW="7.5rem"
             w="12rem"
-            h={12}
+            h={14}
             ml={['1rem', '0']}
             mt="2rem"
+            background={'black'}
             onClick={handleButton}
+            _hover={{
+              border: '2px solid black',
+              background: 'transparent',
+              color: 'black',
+            }}
           >
             {t.features.button}
           </Button>

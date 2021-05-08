@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useTranslation } from '../../hooks/translation'
@@ -19,6 +19,7 @@ const LoginButton = ({ color }) => {
       redirect={user ? '/dashboard' : '/api/auth/custom-login'}
       id={user ? '/dashboard' : '/api/auth/custom-login'}
       color={color || 'gray.500'}
+      fontSize="sm"
     />
   )
 }
@@ -49,22 +50,33 @@ const Navbar = ({ isSticky = true, color }) => {
       h={[50, '60px']}
       pr={[4, 28]}
       pl={[4, 24]}
-      pt={[8, 0]}
-      justify="space-between"
-      align="center"
+      pt={[8, 1]}
+      flexDirection="row"
+      alignItems="center"
     >
-      <Link href="/">
-        <Box pos="relative" cursor="pointer" zIndex="60">
-          <LogoSvg width="50px" />
-        </Box>
-      </Link>
+      <Box
+        pos="relative"
+        w="100%"
+        display="flex"
+        justifyContent="left"
+        align-items="center"
+        zIndex="60"
+      >
+        <Link href="/">
+          <Box display="flex" alignItems="center" cursor="pointer">
+            <LogoSvg width="35px" />
+          </Box>
+        </Link>
+      </Box>
       {/* {isSticky && <BackgroundCircles />} */}
       <Flex
-        pos="relative"
-        justify="space-between"
-        align="center"
-        color={color || 'gray.500'}
-        fontSize={['sm', 'md']}
+        display="flex"
+        w="100%"
+        justifyContent="center"
+        alignItems="center"
+        margin="0"
+        width="100%"
+        background-color="transparent"
       >
         <NavButton
           display={['none', 'block']}
@@ -72,6 +84,7 @@ const Navbar = ({ isSticky = true, color }) => {
           color={color || 'gray.500'}
           redirect="/templates"
           id="templates"
+          fontSize="sm"
         />
         <NavButton
           display={['none', 'block']}
@@ -79,7 +92,19 @@ const Navbar = ({ isSticky = true, color }) => {
           redirect="/pricing"
           color={color || 'gray.500'}
           id="pricing"
+          fontSize="sm"
         />
+      </Flex>
+      <Flex
+        pos="relative"
+        justifyContent="flex-end"
+        alignItems="center"
+        w="100%"
+        margin="0"
+        background-color="transparent"
+        color={color || 'gray.500'}
+        fontSize={['sm', 'sm']}
+      >
         {!hideLoginButton && <LoginButton color={color} />}
         {/* <Select
           border="none"
@@ -103,10 +128,16 @@ const Navbar = ({ isSticky = true, color }) => {
           <a>
             <Button
               ml="1rem"
-              fontSize="md"
-              minW="4rem"
-              h={10}
+              fontSize="sm"
+              minW="1rem"
+              px="0.5rem"
+              h={8}
               onClick={handleStartNow}
+              background="black"
+              _hover={{
+                borderBottom: '2px solid',
+                borderColor: color || 'gray.500',
+              }}
             >
               {t.navbar.startNowButton}
             </Button>

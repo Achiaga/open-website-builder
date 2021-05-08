@@ -380,7 +380,7 @@ export const UnpslashImages = ({ onSelect, selectedImg }) => {
       })
       .then((result) => {
         if (result.errors) {
-          console.log('error occurred: ', result.errors[0])
+          console.error('error occurred: ', result.errors[0])
         } else {
           const photos = result.response.results
           setImages(photos)

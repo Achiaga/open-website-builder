@@ -5,7 +5,7 @@ const VideoDemo = () => {
     <Box
       borderRadius={['5px', '10px']}
       px={['1rem', 0]}
-      pb={['1rem', 0]}
+      pb={['4rem', 0]}
       zIndex="2"
     >
       <video

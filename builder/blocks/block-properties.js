@@ -348,6 +348,14 @@ export const redirectInput = {
   property: 'redirect',
 }
 
+export const gradientColor = {
+  type: 'textGradient',
+  property: 'gradientColor',
+  tooltip: 'Gradient Background Color',
+  inputPlaceholder1: '#FFFFFF',
+  inputPlaceholder2: '#000000',
+}
+
 export const Properties = {
   text: [
     deleteProperty,
@@ -376,6 +384,7 @@ export const Properties = {
     boxShadow,
     imageSelector,
     backgroundColor,
+    gradientColor,
     redirectInput,
     duplicateProperty,
   ],

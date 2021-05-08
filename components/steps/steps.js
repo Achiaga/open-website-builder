@@ -15,7 +15,7 @@ const Steps = () => {
       alignItems="center"
       width="100%"
       marginTop="3rem"
-      marginBottom={['2rem', '6.5rem']}
+      marginBottom={['2rem', '12rem']}
     >
       <Text
         position="relative"

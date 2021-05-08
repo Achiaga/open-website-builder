@@ -15,6 +15,7 @@ import { Properties } from './block-properties'
 import { editBlockConfig, getBlockParentId } from '../../features/builderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
+import { BgIcon } from '../../assets/fontIcon'
 import ImageSelectorModal from './block-helpers/ImageSelectorModal'
 
 export const CustomToolTip = ({ label, children }) => {
@@ -46,6 +47,7 @@ export const CustomToolTip = ({ label, children }) => {
 const PropertiesModifiers = {
   dropdown: DropDownSelector,
   colorDropdown: ColorDropDownSelector,
+  textGradient: TextGradient,
   emojiDropdown: EmojiDropDownSelector,
   button: ButtonSelector,
   duplicate: DuplicateButton,
@@ -514,6 +516,131 @@ TextInput.propTypes = {
   handleOpenToolbar: PropTypes.func,
 }
 
+export function TextGradient({
+  handleEdit,
+  handleCloseInput,
+  isOpen,
+  isBlockAtTop,
+  isBlockAtLeft,
+  isBlockAtRight,
+  handleOpenToolbar,
+  property,
+  value = ['', ''],
+  tooltip,
+  inputPlaceholder1,
+  inputPlaceholder2,
+}) {
+  const handleChange1 = (e) => {
+    e.stopPropagation()
+    handleEdit(property, [e.target.value], value[1])
+  }
+  const handleChange2 = (e) => {
+    e.stopPropagation()
+    handleEdit(property, [value[0], e.target.value])
+  }
+  console.log(value)
+  return (
+    <Box
+      onDoubleClick={(e) => e.stopPropagation()}
+      position="relative"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      cursor="pointer"
+      h="100%"
+    >
+      <CustomToolTip label={tooltip}>
+        <Box
+          as="button"
+          id={property}
+          padding="3px"
+          bg="transparent"
+          onClick={handleOpenToolbar}
+          d="flex"
+          alignItems="center"
+          h="100%"
+          borderRadius="0"
+          px="0.75rem"
+          fontSize="sm"
+          color="gray.500"
+          fontWeight="500"
+          _hover={{
+            backgroundColor: 'primary.100',
+          }}
+        >
+          <BgIcon
+            gradientColor1={value[0] || '#506BF0'}
+            gradientColor2={value[1] || '#43E28E'}
+          />
+        </Box>
+      </CustomToolTip>
+      {isOpen === property && (
+        <Box
+          position="absolute"
+          top={isBlockAtTop ? 'unset' : '-100px'}
+          bottom={isBlockAtTop ? '-100px' : 'unset'}
+          left={isBlockAtLeft ? '0' : 'unset'}
+          right={isBlockAtRight ? '-3rem' : 'unset'}
+          bg="white"
+          rounded="5px"
+          zIndex="999999"
+          padding="8px"
+          boxShadow="rgb(15 15 15 / 5%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;"
+        >
+          <Input
+            placeholder={inputPlaceholder1}
+            onChange={handleChange1}
+            onKeyDown={handleCloseInput}
+            value={value[0]}
+            rounded="3px"
+            color="black"
+            paddingX="6px"
+            paddingY="3px"
+            marginBottom="0.5rem"
+            paddingLeft="0.4rem"
+            boxShadow="rgb(15 15 15 / 10%) 0px 0px 0px 1px inset"
+            background="rgba(242, 241, 238, 0.6)"
+            w="15rem"
+            height="1.9rem"
+            fontSize="14px"
+            border="transparent"
+          />
+          <Input
+            placeholder={inputPlaceholder2}
+            onChange={handleChange2}
+            onKeyDown={handleCloseInput}
+            value={value[1]}
+            rounded="3px"
+            color="black"
+            paddingX="6px"
+            paddingY="3px"
+            paddingLeft="0.4rem"
+            boxShadow="rgb(15 15 15 / 10%) 0px 0px 0px 1px inset"
+            background="rgba(242, 241, 238, 0.6)"
+            w="15rem"
+            height="1.9rem"
+            fontSize="14px"
+            border="transparent"
+          />
+        </Box>
+      )}
+    </Box>
+  )
+}
+TextGradient.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  property: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  handleCloseInput: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
+  inputPlaceholder: PropTypes.string,
+  isOpen: PropTypes.string.isRequired,
+  isBlockAtTop: PropTypes.bool.isRequired,
+  isBlockAtLeft: PropTypes.bool.isRequired,
+  isBlockAtRight: PropTypes.bool.isRequired,
+  handleOpenToolbar: PropTypes.func,
+}
+
 export function ButtonSelector({
   handleEdit,
   property,
@@ -736,7 +863,8 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
   }
 
   function handleEdit(id, value, operationType = EDIT) {
-    if (id !== 'imageUrl' && id !== 'redirect') setIsOpen('')
+    if (id !== 'imageUrl' && id !== 'redirect' && id !== 'gradientColor')
+      setIsOpen('')
     const newData = { ...data }
     if (id === 'emoji') {
       newData.text = `${data.text} ${value}`

@@ -146,7 +146,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                 tabIndex={tabIndex}
                 onClick={() => setTabIndex(3)}
                 label={'Icons'}
-                pro={true}
+                pro={false}
               />
               <SidebarTab
                 index={4}

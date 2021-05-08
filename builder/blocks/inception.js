@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react'
 
 const BlockInception = (props) => {
   const border = props.border === 'none' ? '1px dashed black' : props.border
+  const gradient = props.gradientColor || []
   const inceptionModifiers = {
     backgroundColor: props.backgroundColor,
     boxShadow: props.boxShadow,
@@ -21,6 +22,7 @@ const BlockInception = (props) => {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       {...inceptionModifiers}
+      background={`linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`}
     />
   )
 }

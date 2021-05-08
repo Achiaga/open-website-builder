@@ -172,7 +172,7 @@ const DraggableItem = ({
               isDragging={isDragging}
               zIndexValue={zIndexValue}
             />
-            <ResizingCounter {...resizeValues} />
+            <ResizingCounter {...resizeValues} pos={{ x: xPos, y: yPos }} />
           </ResizeWrapper>
         </Box>
       </Draggable>
