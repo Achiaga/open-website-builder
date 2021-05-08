@@ -6,8 +6,6 @@ import { Badge, Box } from '@chakra-ui/layout'
 function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {
-  // Calculate the options for filtering
-  // using the preFilteredRows
   const options = useMemo(() => {
     const options = new Set()
     preFilteredRows.forEach((row) => {
@@ -16,7 +14,6 @@ function SelectColumnFilter({
     return [...options.values()]
   }, [id, preFilteredRows])
 
-  // Render a multi-select box
   return (
     <Box
       color="white"
@@ -59,6 +56,8 @@ const pillsColorMapping = {
   easy: 'green',
   medium: 'gray',
   hard: 'red',
+  templates: 'yellow',
+  'unique design': 'blue',
 }
 
 function getPills(items) {
@@ -66,7 +65,7 @@ function getPills(items) {
   return itemsList.map((item, index) => {
     const color = pillsColorMapping[item.toLowerCase().trim()]
     return (
-      <Badge colorScheme={color} key={index} variant="solid" mx="0.3rem">
+      <Badge colorScheme={color} key={index} variant="solid" mr="0.3rem">
         {item}
       </Badge>
     )
@@ -79,7 +78,10 @@ const ComparisonTable = () => {
       {
         Header: '#',
         accessor: '#',
-        Cell: (instance) => instance?.cell?.value || '',
+        Cell: (instance) => {
+          console.log(instance)
+          return instance?.cell?.value || ''
+        },
       },
       {
         Header: 'Website Builder',
@@ -104,7 +106,6 @@ const ComparisonTable = () => {
       {
         Header: 'Use Case',
         accessor: 'use-case',
-
         Cell: (instance) => {
           return getPills(instance?.cell?.value || '')
         },
@@ -127,8 +128,10 @@ const ComparisonTable = () => {
       },
       {
         Header: 'Builder Type',
-        accessor: 'type',
-        Cell: (instance) => instance?.cell?.value || '',
+        accessor: 'tags',
+        Cell: (instance) => {
+          return getPills(instance?.cell?.value || '')
+        },
         Filter: SelectColumnFilter,
         filter: 'includes',
       },
