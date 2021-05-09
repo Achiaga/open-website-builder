@@ -6,7 +6,7 @@ const Blog = ({ articleId }) => {
 }
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { articleId: '100-website-builder-comparison' } }],
+    paths: [{ params: { articleId: 'top-100-website-builder-comparison' } }],
     fallback: false,
   }
 }
