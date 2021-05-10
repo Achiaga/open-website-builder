@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/layout'
 import { RedirectWrapper } from './text'
 
 export const PrevInception = (props) => {
@@ -9,16 +8,18 @@ export const PrevInception = (props) => {
   }
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
-      <Box
-        w="100%"
-        h="100%"
-        backgroundImage={`url(${props.imageUrl})`}
-        backgroundPosition="50% 50%"
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
-        margin="auto"
-        {...inceptionModifiers}
-      ></Box>
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url(${props.imageUrl})`,
+          backgroundPosition: '50% 50%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          margin: 'auto',
+          ...inceptionModifiers,
+        }}
+      />
     </RedirectWrapper>
   )
 }

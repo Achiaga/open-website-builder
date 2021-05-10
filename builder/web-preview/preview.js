@@ -44,11 +44,11 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
     setWindowWidth(window?.innerWidth)
   }
 
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize)
-    handleWindowResize()
-    return () => window.removeEventListener('resize', handleWindowResize)
-  }, [])
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleWindowResize)
+  //   handleWindowResize()
+  //   return () => window.removeEventListener('resize', handleWindowResize)
+  // }, [])
   const rowHeight = windowWidth / GRID_COLUMNS
   const fontSize = getFontSize(windowWidth)
   return (
@@ -56,8 +56,33 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
       <BlocksContext.Provider
         value={{ builder: userBlocksData, rowHeight, websiteId }}
       >
-        <Media lessThan="lg">
-          <Box
+        {/* <Media lessThan="lg"> */}
+        <div>
+          <div
+            className="mobile"
+            style={{
+              display: 'none',
+              // display: 'grid',
+              overflowX: 'hidden',
+              gridTemplateColumns: `repeat(${GRID_COLUMNS / 2}, 1fr)`,
+              gridTemplateRows: `repeat( auto-fill,  ${rowHeight}px )`,
+              height:
+                (getPageRows(userBlocksData.mobileLayout) - 1) * rowHeight * 2,
+              width: '101vw',
+              fontSize: `${fontSize}px`,
+            }}
+          >
+            {userBlocksData.layouts?.map((layoutItem) => {
+              return (
+                <GeneratePreviewBlock
+                  key={layoutItem.i}
+                  layoutItem={layoutItem}
+                />
+              )
+            })}
+          </div>
+        </div>
+        {/* <Box
             d="grid"
             gridTemplateColumns={`repeat(${GRID_COLUMNS / 2}, 1fr)`}
             gridTemplateRows={`repeat( auto-fill,  ${rowHeight * 2}px )`}
@@ -76,10 +101,33 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
                 />
               )
             })}
-          </Box>
-        </Media>
-        <Media greaterThanOrEqual="lg">
-          <Box
+          </Box> */}
+        {/* </Media> */}
+        {/* <Media greaterThanOrEqual="lg"> */}
+        <div>
+          <div
+            className="desktop"
+            style={{
+              display: 'grid',
+              overflowX: 'hidden',
+              gridTemplateColumns: `repeat(${GRID_COLUMNS}, 1fr)`,
+              gridTemplateRows: `repeat( auto-fill,  ${rowHeight}px )`,
+              height: (getPageRows(userBlocksData.layouts) - 1) * rowHeight,
+              width: '101vw',
+              fontSize: `${fontSize}px`,
+            }}
+          >
+            {userBlocksData.layouts?.map((layoutItem) => {
+              return (
+                <GeneratePreviewBlock
+                  key={layoutItem.i}
+                  layoutItem={layoutItem}
+                />
+              )
+            })}
+          </div>
+        </div>
+        {/* <Box
             d="grid"
             gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
             gridTemplateRows={`repeat( auto-fill,  ${rowHeight}px )`}
@@ -96,8 +144,8 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
                 />
               )
             })}
-          </Box>
-        </Media>
+          </Box> */}
+        {/* </Media> */}
         <MadeWith />
       </BlocksContext.Provider>
     </MediaContextProvider>

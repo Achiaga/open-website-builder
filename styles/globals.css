@@ -20,3 +20,38 @@ a {
 .react-grid-item.cssTransforms {
   transition-property: none !important;
 }
+.textStyles blockquote {
+  border-left: 4px solid #ccc;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 16px;
+}
+
+.textStyles h1 {
+  font-family: 'Helvetica; Arial; sans-serif';
+  font-size: 6em;
+}
+.textStyles h2 {
+  font-size: 4em;
+}
+.textStyles h3 {
+  font-size: 3em;
+}
+.textStyles h4 {
+  font-size: 2em;
+}
+.textStyles h5 {
+  font-size: 1.5em;
+}
+.textStyles h6 {
+  font-size: 1.2em;
+}
+.textStyles .ql-align-center {
+  text-align: center;
+}
+.textStyles .ql-align-justify {
+  text-align: justify;
+}
+.textStyles .ql-align-right {
+  text-align: right;
+}
