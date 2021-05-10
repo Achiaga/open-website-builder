@@ -3,7 +3,7 @@ import AWS from 'aws-sdk'
 import emailTemplates from '../../emails'
 import { getUserDataFromWebsiteId } from './db'
 
-const respondAPIQuery = (res, data = {}, status = 200) => {
+export const respondAPIQuery = (res, data = {}, status = 200) => {
   const hasError = data.error
   if (hasError) {
     res.statusCode = data.error.code

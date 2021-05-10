@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Box, Text, Grid } from '@chakra-ui/react'
+import { Box, Text, Grid, Button } from '@chakra-ui/react'
 
 import Template from './template-layout'
 
 import LogoSvg from '../../assets/logo'
+import { testS3 } from '../../builder/blocks/block-helpers/transporter'
 
 const TEMPLATES = [
   { id: 'template1', imageUrl: '/template1.jpg', tags: [] },
@@ -15,6 +16,10 @@ const TEMPLATES = [
 ]
 
 const TemplatePage = () => {
+  function handleTest() {
+    console.log('handleTest')
+    testS3()
+  }
   return (
     <Box>
       <Head>
@@ -54,6 +59,7 @@ const TemplatePage = () => {
           Choose your Template
         </Text>
       </Box>
+      <Button onClick={handleTest}>Test</Button>
       <Box
         w="full"
         display="flex"

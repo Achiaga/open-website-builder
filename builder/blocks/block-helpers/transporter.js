@@ -33,3 +33,7 @@ export const sendEmailNotifiaction = (websiteId, subscriberEmail) => {
     subscriberEmail,
   })
 }
+
+export const testS3 = () => {
+  return apiCall('/api/aws')
+}
