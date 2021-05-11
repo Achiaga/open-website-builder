@@ -43,7 +43,7 @@ async function uploadFileToS3(s3, bucketName) {
     Bucket: bucketName,
     Key: 'index.html',
     Body: html,
-    content_type: 'text/html',
+    ContentType: 'text/html',
   }
 
   // call S3 to retrieve upload file to specified bucket
@@ -124,7 +124,7 @@ async function makeWebsiteHosting(s3, bucketName) {
 export default async function uploadFile(req, res) {
   console.log('start')
   const s3 = new S3()
-  const bucketName = 'www.gonzalo4.com'
+  const bucketName = 'www.antbuilder.xyz'
   configAWS()
   const value = await checkBucketExists(s3, bucketName)
   const newBucket = await createBucket(s3, bucketName)
