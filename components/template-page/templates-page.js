@@ -5,7 +5,10 @@ import { Box, Text, Grid, Button } from '@chakra-ui/react'
 import Template from './template-layout'
 
 import LogoSvg from '../../assets/logo'
-import { testS3 } from '../../builder/blocks/block-helpers/transporter'
+import {
+  testS3,
+  testDomains,
+} from '../../builder/blocks/block-helpers/transporter'
 
 const TEMPLATES = [
   { id: 'template1', imageUrl: '/template1.jpg', tags: [] },
@@ -19,6 +22,10 @@ const TemplatePage = () => {
   function handleTest() {
     console.log('handleTest')
     testS3()
+  }
+  function handleDomains() {
+    console.log('handleDomains')
+    testDomains()
   }
   return (
     <Box>
@@ -59,7 +66,8 @@ const TemplatePage = () => {
           Choose your Template
         </Text>
       </Box>
-      <Button onClick={handleTest}>Test</Button>
+      <Button onClick={handleTest}>AWS</Button>
+      <Button onClick={handleDomains}>Domains</Button>
       <Box
         w="full"
         display="flex"

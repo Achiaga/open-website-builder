@@ -139,7 +139,6 @@ async function makeWebsiteRedirectHosting(s3, bucketName) {
 }
 
 export default async function uploadFile(req, res) {
-  console.log('start')
   await configAWS()
   const s3 = new S3()
   const fullBucketName = 'www.antbuilder.xyz'
