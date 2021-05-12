@@ -30,13 +30,29 @@ function cloudflarePOST(path, data) {
     return null
   }
 }
+function cloudflarePATCH(path, data) {
+  try {
+    return axios({
+      method: 'patch',
+      url: path,
+      headers: {
+        'X-Auth-Email': process.env.CLOUDFLARE_USER,
+        'X-Auth-Key': process.env.CLOUDFLARE_TOKEN,
+      },
+      data: data,
+    })
+  } catch (err) {
+    console.error(err, path, data)
+    return null
+  }
+}
 
 async function createDnsRecord(zoneId, domain, awsBucketUrl) {
   const res1 = await cloudflarePOST(
     `https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`,
     {
       type: 'CNAME',
-      name: '@',
+      name: 'www',
       content: awsBucketUrl,
       ttl: 120,
       priority: 10,
@@ -47,7 +63,7 @@ async function createDnsRecord(zoneId, domain, awsBucketUrl) {
     `https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`,
     {
       type: 'CNAME',
-      name: domain,
+      name: '@',
       content: `www.${domain}`,
       ttl: 120,
       priority: 10,
@@ -86,7 +102,7 @@ async function checkRecordStatus(domain) {
 }
 
 async function updateSslSettings(zoneId) {
-  const res = await cloudflarePOST(
+  const res = await cloudflarePATCH(
     `https://api.cloudflare.com/client/v4/zones/${zoneId}/settings/ssl`,
     { value: 'flexible' }
   )
@@ -94,26 +110,25 @@ async function updateSslSettings(zoneId) {
   return res.data
 }
 async function updateRedirectSettings(zoneId) {
-  const res = await cloudflarePOST(
-    `https://api.cloudflare.com/client/v4/zones/${zoneId}/ssl/universal/settings`,
-    { enabled: true }
+  const res = await cloudflarePATCH(
+    `https://api.cloudflare.com/client/v4/zones/${zoneId}/settings/always_use_https`,
+    { value: 'on' }
   )
 
   return res.data
 }
 
 async function configSettings(zoneId) {
-  const result = await Promise.all([
-    updateSslSettings(zoneId),
-    updateRedirectSettings(zoneId),
-  ])
-  return result
+  const result = await updateSslSettings(zoneId)
+  const result2 = await updateRedirectSettings(zoneId)
+
+  return { result, result2 }
 }
 
 export default async function registerDomain(req, res) {
   const domain = 'antbuilder.xyz'
   const awsBucketUrl = `www.${domain}.s3-website-us-east-1.amazonaws.com`
-
+  // const zoneId = '6d535808c3890c4ae86e0091f901a5eb'
   const isActive = await checkRecordStatus(domain)
 
   console.log({ isActive })
@@ -125,7 +140,7 @@ export default async function registerDomain(req, res) {
 
   const recordAdded = await createDnsRecord(zoneId, domain, awsBucketUrl)
   const updatedSettings = await configSettings(zoneId)
-
+  console.log({ updatedSettings })
   console.log({ domainAdded, zoneId, recordAdded, updatedSettings })
 
   respondAPIQuery(res, '', 200)
