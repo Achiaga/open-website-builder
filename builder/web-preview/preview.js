@@ -6,7 +6,6 @@ import { GRID_COLUMNS } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
 
 import { GeneratePreviewBlock } from './helpers'
-import { Box } from '@chakra-ui/layout'
 
 export const BlocksContext = createContext()
 

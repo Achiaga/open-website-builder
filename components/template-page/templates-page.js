@@ -20,11 +20,9 @@ const TEMPLATES = [
 
 const TemplatePage = () => {
   function handleTest() {
-    console.log('handleTest')
     testS3()
   }
   function handleDomains() {
-    console.log('handleDomains')
     testDomains()
   }
   return (

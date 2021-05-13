@@ -91,7 +91,6 @@ async function checkRecordStatus(domain) {
     const res = await cloudflareGET(
       `https://api.cloudflare.com/client/v4/zones?name=${domain}`
     )
-    console.log(res.data)
     const { data } = res
     const status = data?.result?.[0]?.status
     return !!status
@@ -130,8 +129,6 @@ export default async function registerDomain(req, res) {
   const awsBucketUrl = `www.${domain}.s3-website-us-east-1.amazonaws.com`
   // const zoneId = '6d535808c3890c4ae86e0091f901a5eb'
   const isActive = await checkRecordStatus(domain)
-
-  console.log({ isActive })
 
   if (isActive) return respondAPIQuery(res, '', 200)
   const domainAdded = await addNewDomain(domain)

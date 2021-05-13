@@ -48,10 +48,9 @@ async function uploadFileToS3(s3, bucketName) {
   // call S3 to retrieve upload file to specified bucket
   try {
     const data = await s3.upload(uploadParams).promise()
-    console.log(data)
     return data.Location
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return err
   }
 }
@@ -68,7 +67,7 @@ async function createBucket(s3, bucketName) {
 
     return { fullBucket: data.Location }
   } catch (err) {
-    console.log('createBucket', err)
+    console.error('createBucket', err)
     return err
   }
 }
@@ -95,7 +94,7 @@ async function setPolicy(s3, bucketName) {
       .promise()
     return policies
   } catch (err) {
-    console.log('setPolicy', err)
+    console.error('setPolicy', err)
     return err
   }
 }
@@ -115,7 +114,7 @@ async function makeWebsiteHosting(s3, bucketName) {
     const hosting = await s3.putBucketWebsite(staticHostParams).promise()
     return hosting
   } catch (err) {
-    console.log('makeWebsiteHosting', err)
+    console.error('makeWebsiteHosting', err)
     return err
   }
 }
@@ -133,7 +132,7 @@ async function makeWebsiteRedirectHosting(s3, bucketName) {
     const hosting = await s3.putBucketWebsite(staticHostParams).promise()
     return hosting
   } catch (err) {
-    console.log('makeWebsiteHosting', err)
+    console.error('makeWebsiteHosting', err)
     return err
   }
 }
