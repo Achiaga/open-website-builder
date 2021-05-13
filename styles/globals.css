@@ -55,3 +55,18 @@ a {
 .textStyles .ql-align-right {
   text-align: right;
 }
+.mobile {
+  display: none !important;
+}
+.desktop {
+  display: grid !important;
+}
+@media (max-width: 700px) {
+  .mobile {
+    display: grid !important;
+  }
+  .desktop {
+    display: none !important;
+    font-size: 13px;
+  }
+}

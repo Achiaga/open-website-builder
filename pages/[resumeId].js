@@ -1,12 +1,10 @@
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import ErrorPage from '../components/error-page'
 import NewPage from '../components/not-deploy-page'
-import ReactDOMServer from 'react-dom/server'
 
 import { getWebsiteData } from './api/db'
-import { useEffect } from 'react'
 
-function isFalshy(resumeId) {
+function isFlashy(resumeId) {
   return !resumeId || resumeId === 'undefined' || resumeId === 'null'
 }
 
@@ -18,17 +16,13 @@ function Resume({ websiteData, isPublish, resumeId }) {
   if (isEmpty(websiteData)) return <ErrorPage />
   if (!isPublish) return <NewPage />
 
-  const html = ReactDOMServer.renderToStaticMarkup(
-    <ResumeWebsite userBlocksData={websiteData} websiteId={resumeId} />
-  )
-  console.log(html)
   return <ResumeWebsite userBlocksData={websiteData} websiteId={resumeId} />
 }
 
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
   try {
-    if (isFalshy(resumeId)) return { props: {} }
+    if (isFlashy(resumeId)) return { props: {} }
     const { websiteData, isPublish } = await getWebsiteData(resumeId)
     if (!isPublish) return { props: { isPublish } }
     return { props: { websiteData, isPublish, resumeId } }

@@ -3,6 +3,7 @@ import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
 import { ResumeWebsite } from '../../builder/web-preview/preview'
 import { getUserDataFromLS } from '../../features/helper'
+import ReactDOMServer from 'react-dom/server'
 
 function ResumePreview() {
   const [blocksData, setBlocksData] = useState(null)
@@ -15,7 +16,7 @@ function ResumePreview() {
     loadData()
   }, [])
 
-  if (!blocksData)
+  if (!blocksData) {
     return (
       <Box
         w="100%"
@@ -27,7 +28,11 @@ function ResumePreview() {
         <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
       </Box>
     )
-
+  }
+  const html = ReactDOMServer.renderToStaticMarkup(
+    <ResumeWebsite userBlocksData={blocksData} />
+  )
+  console.log(html)
   return <ResumeWebsite userBlocksData={blocksData} />
 }
 

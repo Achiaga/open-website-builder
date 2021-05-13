@@ -1,5 +1,3 @@
-import { Box } from '@chakra-ui/react'
-import { divide } from 'lodash'
 import { useContext } from 'react'
 
 import { previewBlocks } from '../blocks'
@@ -33,7 +31,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
       style={{
         gridColumn: `${Math.round(x) + 1} /  span ${Math.round(w)}`,
         gridRow: `${Math.round(y) + 1} / span ${Math.round(h)}`,
-        overflow: 'hidden',
         border: data?.border,
         boxShadow: data?.boxShadow,
         borderRadius: data?.borderRadius,
@@ -47,22 +44,5 @@ export function GeneratePreviewBlock({ layoutItem }) {
         blockId={layoutItem.i}
       />
     </div>
-    // <Box
-    //   key={i}
-    //   gridColumn={`${Math.round(x) + 1} /  span ${Math.round(w)}`}
-    //   gridRow={`${Math.round(y) + 1} / span ${Math.round(h)}`}
-    //   overflow="hidden"
-    //   border={data?.border}
-    //   boxShadow={data?.boxShadow}
-    //   borderRadius={data?.borderRadius}
-    //   zIndex={zIndex}
-    // >
-    //   <GenericBlock
-    //     {...data}
-    //     parentHeight={h}
-    //     isPreview
-    //     blockId={layoutItem.i}
-    //   />
-    // </Box>
   )
 }

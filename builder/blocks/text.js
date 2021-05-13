@@ -68,7 +68,7 @@ const Styles = ({ children }) => {
       height="100%"
       outline="none"
       overflow-y="auto"
-      padding="12px 15px"
+      padding="0px"
       tabSize="4"
       textAlign="left"
       whiteSpace="pre-wrap"
@@ -133,8 +133,8 @@ export const PrevText = (props) => {
           lineHeight: '1.42',
           height: '100%',
           outline: 'none',
-          overflowY: 'auto',
-          padding: '12px 15px',
+          // overflowY: 'auto',
+          padding: '0px',
           tabSize: '4',
           textAlign: 'left',
           // whiteSpace: 'pre-wrap',
