@@ -2,18 +2,6 @@ import { config, S3 } from 'aws-sdk'
 import { respondAPIQuery } from './notifications'
 // Set the region
 
-const html = `<!DOCTYPE html>
-<html>
-<body>
-
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
-
-</body>
-</html>
-`
-
 const checkBucketExists = async (s3, bucketName) => {
   const options = {
     Bucket: bucketName,
@@ -36,7 +24,7 @@ function configAWS() {
   })
 }
 
-async function uploadFileToS3(s3, bucketName) {
+async function uploadFileToS3(s3, bucketName, html) {
   // call S3 to retrieve upload file to specified bucket
   var uploadParams = {
     Bucket: bucketName,
@@ -136,36 +124,62 @@ async function makeWebsiteRedirectHosting(s3, bucketName) {
     return err
   }
 }
+async function updateBucket(s3, bucketName) {
+  const bucketItems = await s3.listObjects({ Bucket: bucketName }).promise()
+
+  var items = bucketItems.Contents
+  console.log(bucketName, items)
+  var params = {
+    Bucket: bucketName,
+    Key: 'index.html',
+  }
+  //   for (var i = 0; i < items.length; i += 1) {
+  //     var deleteParams = { Bucket: bucketName, Key: items[i].Key }
+  //
+  try {
+    const res = await s3.deleteObject(params)
+    console.log(res)
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 export default async function uploadFile(req, res) {
+  const { html } = req.body
+  console.log('html', html)
   await configAWS()
   const s3 = new S3()
   const fullBucketName = 'www.antbuilder.xyz'
   const simpleBucketName = 'antbuilder.xyz'
   const value = await checkBucketExists(s3, fullBucketName)
-  if (!value) {
-    const newBucket = await createBucket(s3, fullBucketName)
-    const newSimpleBucket = await createBucket(s3, simpleBucketName)
-    const uploadedFile = await uploadFileToS3(s3, fullBucketName)
-    const policy = await setPolicy(s3, fullBucketName)
-    const hosting = await makeWebsiteHosting(s3, fullBucketName)
-    const redirectHosting = await makeWebsiteRedirectHosting(
-      s3,
-      simpleBucketName
-    )
-    console.log({
-      value,
-      newBucket,
-      uploadedFile,
-      policy,
-      hosting,
-      redirectHosting,
-      newSimpleBucket,
-    })
+  if (value) {
+    const uploadedFile = await uploadFileToS3(s3, fullBucketName, html)
+    console.log({ uploadedFile })
+    return respondAPIQuery(res, 'Website updated Successfully', 200)
   }
+  // if (!value) {
+  //   const newBucket = await createBucket(s3, fullBucketName)
+  //   const newSimpleBucket = await createBucket(s3, simpleBucketName)
+  //   const uploadedFile = await uploadFileToS3(s3, fullBucketName)
+  //   const policy = await setPolicy(s3, fullBucketName)
+  //   const hosting = await makeWebsiteHosting(s3, fullBucketName)
+  //   const redirectHosting = await makeWebsiteRedirectHosting(
+  //     s3,
+  //     simpleBucketName
+  //   )
+  //   console.log({
+  //     value,
+  //     newBucket,
+  //     uploadedFile,
+  //     policy,
+  //     hosting,
+  //     redirectHosting,
+  //     newSimpleBucket,
+  //   })
+  // }
   console.log({
     value,
   })
 
-  respondAPIQuery(res, '', 200)
+  respondAPIQuery(res, 'Website published Successfully', 200)
 }

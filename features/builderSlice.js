@@ -26,6 +26,7 @@ import {
 import { saveData } from '../login/helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
+import { uploadFileToS3 } from '../builder/blocks/block-helpers/transporter'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -396,7 +397,8 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
   const html = ReactDOMServer.renderToStaticMarkup(
     <ResumeWebsite userBlocksData={builderData} />
   )
-  console.log(generateStaticHTML(html))
+  const staticSiteCode = generateStaticHTML(html)
+  await uploadFileToS3(staticSiteCode)
   // dispatch(setPublishStatus('loading'))
   // const websiteId = getWebsiteId(getState())
   // const res = await saveData({ user, builderData, publish: true })
