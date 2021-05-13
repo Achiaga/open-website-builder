@@ -1,14 +1,17 @@
 import { respondAPIQuery } from './notifications'
 import axios from 'axios'
+import { updateProjectDomain } from './db'
+
+const headers = {
+  headers: {
+    'X-Auth-Email': process.env.CLOUDFLARE_USER,
+    'X-Auth-Key': process.env.CLOUDFLARE_TOKEN,
+  },
+}
 
 function cloudflareGET(path) {
   try {
-    return axios.get(path, {
-      headers: {
-        'X-Auth-Email': process.env.CLOUDFLARE_USER,
-        'X-Auth-Key': process.env.CLOUDFLARE_TOKEN,
-      },
-    })
+    return axios({ method: 'get', url: path, ...headers })
   } catch (err) {
     console.error(err, path)
     return null
@@ -19,10 +22,7 @@ function cloudflarePOST(path, data) {
     return axios({
       method: 'post',
       url: path,
-      headers: {
-        'X-Auth-Email': process.env.CLOUDFLARE_USER,
-        'X-Auth-Key': process.env.CLOUDFLARE_TOKEN,
-      },
+      ...headers,
       data: data,
     })
   } catch (err) {
@@ -35,10 +35,7 @@ function cloudflarePATCH(path, data) {
     return axios({
       method: 'patch',
       url: path,
-      headers: {
-        'X-Auth-Email': process.env.CLOUDFLARE_USER,
-        'X-Auth-Key': process.env.CLOUDFLARE_TOKEN,
-      },
+      ...headers,
       data: data,
     })
   } catch (err) {
@@ -93,7 +90,7 @@ async function checkRecordStatus(domain) {
     )
     const { data } = res
     const status = data?.result?.[0]?.status
-    return !!status
+    return status
   } catch (err) {
     console.error(err)
     return false
@@ -124,21 +121,34 @@ async function configSettings(zoneId) {
   return { result, result2 }
 }
 
-export default async function registerDomain(req, res) {
-  const domain = 'antbuilder.xyz'
+async function checkDomainStatus(res, domain) {
+  const status = await checkRecordStatus(domain)
+  respondAPIQuery(res, { domainStatus: status }, 200)
+  if (status === 'active') return status
+}
+
+async function addDomain(res, domain, projectId) {
   const awsBucketUrl = `www.${domain}.s3-website-us-east-1.amazonaws.com`
-  // const zoneId = '6d535808c3890c4ae86e0091f901a5eb'
-  const isActive = await checkRecordStatus(domain)
-
-  if (isActive) return respondAPIQuery(res, '', 200)
+  const status = await checkRecordStatus(domain)
+  if (status === 'active') {
+    return respondAPIQuery(res, { domainStatus: status }, 200)
+  }
   const domainAdded = await addNewDomain(domain)
-
   const zoneId = domainAdded.result.id
-
   const recordAdded = await createDnsRecord(zoneId, domain, awsBucketUrl)
   const updatedSettings = await configSettings(zoneId)
-  console.log({ updatedSettings })
-  console.log({ domainAdded, zoneId, recordAdded, updatedSettings })
+  const dbUpdate = await updateProjectDomain(domain, projectId)
+  console.log({ domainAdded, zoneId, recordAdded, updatedSettings, dbUpdate })
+  respondAPIQuery(
+    res,
+    { domainAdded, zoneId, recordAdded, updatedSettings },
+    200
+  )
+}
 
-  respondAPIQuery(res, '', 200)
+export default async function registerDomain(req, res) {
+  const { domain, key, projectId } = req.body
+  const simpleDomain = domain.replace('www.', '')
+  if (key === 'check') return checkDomainStatus(res, simpleDomain)
+  return addDomain(res, simpleDomain, projectId)
 }

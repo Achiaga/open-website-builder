@@ -29,6 +29,33 @@ async function updateWebsiteData(data, res) {
     respondAPIQuery(res, { error })
   }
 }
+export async function updateProjectDomain(domain) {
+  try {
+    const client = await getDBCredentials()
+    const options = {
+      // create a document if no documents match the query
+      upsert: true,
+    }
+    const filter = { _id: ObjectId(websiteId) }
+    const updateDoc = {
+      $set: {
+        domain: domain,
+      },
+    }
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const result = await websiteCollection.replaceOne({
+      filter,
+      updateDoc,
+      options,
+    })
+    await client.close()
+    return result
+  } catch (error) {
+    console.error(error)
+  }
+}
 async function getUserData(userId, res) {
   const client = await getDBCredentials()
   try {

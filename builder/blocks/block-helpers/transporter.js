@@ -38,6 +38,9 @@ export const uploadFileToS3 = (html) => {
   console.log('uploadFileToS3', html)
   return apiCall('/api/aws', { html })
 }
-export const testDomains = () => {
-  return apiCall('/api/domain')
+export const addDomain = (domain, projectId) => {
+  return apiCall('/api/domain', { domain, projectId })
+}
+export const requestDomainStatus = (domain) => {
+  return apiCall('/api/domain', { domain, key: 'check' })
 }
