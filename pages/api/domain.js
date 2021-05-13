@@ -130,25 +130,31 @@ async function checkDomainStatus(res, domain) {
 async function addDomain(res, domain, projectId) {
   const awsBucketUrl = `www.${domain}.s3-website-us-east-1.amazonaws.com`
   const status = await checkRecordStatus(domain)
-  if (status === 'active') {
-    return respondAPIQuery(res, { domainStatus: status }, 200)
-  }
-  const domainAdded = await addNewDomain(domain)
-  const zoneId = domainAdded.result.id
-  const recordAdded = await createDnsRecord(zoneId, domain, awsBucketUrl)
-  const updatedSettings = await configSettings(zoneId)
+  // if (status === 'active') {
+  //   return respondAPIQuery(res, { domainStatus: status }, 200)
+  // }
+  // const domainAdded = await addNewDomain(domain)
+  // const zoneId = domainAdded.result.id
+  // const recordAdded = await createDnsRecord(zoneId, domain, awsBucketUrl)
+  // const updatedSettings = await configSettings(zoneId)
   const dbUpdate = await updateProjectDomain(domain, projectId)
-  console.log({ domainAdded, zoneId, recordAdded, updatedSettings, dbUpdate })
+  // console.log({ domainAdded, zoneId, recordAdded, updatedSettings, dbUpdate })
   respondAPIQuery(
     res,
-    { domainAdded, zoneId, recordAdded, updatedSettings },
+    {
+      // domainAdded,
+      // zoneId,
+      // recordAdded,
+      // updatedSettings,
+      dbUpdate,
+    },
     200
   )
 }
 
 export default async function registerDomain(req, res) {
   const { domain, key, projectId } = req.body
-  const simpleDomain = domain.replace('www.', '')
+  const simpleDomain = domain?.replace('www.', '')
   if (key === 'check') return checkDomainStatus(res, simpleDomain)
   return addDomain(res, simpleDomain, projectId)
 }

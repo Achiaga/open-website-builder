@@ -17,8 +17,9 @@ const DomainsWrapper = ({ domain, projectId }) => {
     console.log('domainStatus', domainStatus)
   }
   async function checkDomainStatus() {
+    setDomainStatus('loading')
     const { domainStatus } = await requestDomainStatus(domain)
-    setDomainStatus(domainStatus)
+    setDomainStatus(domainStatus || 'none')
   }
   useEffect(() => {
     checkDomainStatus()
