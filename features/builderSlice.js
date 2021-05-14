@@ -393,19 +393,24 @@ export function denormalizeBuilderData(data) {
 }
 
 export const publishWebsite = (user) => async (dispatch, getState) => {
+  const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
-  const html = ReactDOMServer.renderToStaticMarkup(
-    <ResumeWebsite userBlocksData={builderData} />
-  )
-  const staticSiteCode = generateStaticHTML(html)
-  await uploadFileToS3(staticSiteCode)
-  // dispatch(setPublishStatus('loading'))
-  // const websiteId = getWebsiteId(getState())
-  // const res = await saveData({ user, builderData, publish: true })
-  // batch(() => {
-  //   !websiteId && dispatch(setWebsiteId(res._id))
-  //   dispatch(setPublishStatus('success'))
-  // })
+  console.log(userData)
+  const { domain } = userData
+  if (domain) {
+    const html = ReactDOMServer.renderToStaticMarkup(
+      <ResumeWebsite userBlocksData={builderData} />
+    )
+    const staticSiteCode = generateStaticHTML(html)
+    await uploadFileToS3(staticSiteCode, domain)
+    dispatch(setPublishStatus('loading'))
+  }
+  const websiteId = getWebsiteId(getState())
+  const res = await saveData({ user, builderData, publish: true })
+  batch(() => {
+    !websiteId && dispatch(setWebsiteId(res._id))
+    dispatch(setPublishStatus('success'))
+  })
 }
 
 export const saveWebsite = (user) => async (dispatch, getState) => {

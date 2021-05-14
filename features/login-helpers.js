@@ -38,16 +38,14 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const data = templateData || LSData || templates.fallback
   dispatch(setInitialBuilderData(data))
 }
-export const updateInitialState = ({
-  resume_data,
-  publish,
-  userData,
-}) => async (dispatch) => {
-  batch(() => {
-    dispatch(setInitialBuilderData(resume_data || templates.fallback))
-    dispatch(setUserData({ isPublish: publish, ...userData }))
-  })
-}
+export const updateInitialState =
+  ({ resume_data, publish, userData }) =>
+  async (dispatch) => {
+    batch(() => {
+      dispatch(setInitialBuilderData(resume_data || templates.fallback))
+      dispatch(setUserData({ isPublish: publish, ...userData }))
+    })
+  }
 
 const isLogin = (user) => {
   const userMetadata = user[AUTH0_CUSTOM_CLAIM_PATH]
@@ -69,11 +67,11 @@ const handleSingup = (user) => async (dispatch) => {
 export const loadDataFromDB = (user, template) => async (dispatch) => {
   dispatch(setLoadingData(true))
   const dbData = await getUserData(user, template)
-  const userData = { user_email: user.email, user_id: user.sub }
-  const { resume_data, publish, _id } = dbData || {}
+  const { resume_data, publish, _id, domain } = dbData || {}
+  const userData = { user_email: user.email, user_id: user.sub, domain }
   if (templates[template] && resume_data) {
     batch(() => {
-      dispatch(setTempDBData({ resume_data, publish, userData }))
+      dispatch(setTempDBData({ resume_data, publish, userData, domain }))
       dispatch(loadInitialDataNoAccount(template))
     })
     return
@@ -81,11 +79,11 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
   if (!resume_data) {
     batch(() => {
       dispatch(loadInitialDataNoAccount(template))
-      dispatch(setUserData({ user_email: user.email, user_id: user.sub }))
+      dispatch(setUserData(userData))
     })
   } else {
     userData['websiteId'] = _id
-    dispatch(updateInitialState({ resume_data, publish, userData }))
+    dispatch(updateInitialState({ resume_data, publish, userData, domain }))
   }
   dispatch(setLoadingData(false))
 }

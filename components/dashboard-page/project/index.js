@@ -16,6 +16,7 @@ const ProjectCard = ({ project }) => {
     setIsRemoving(true)
     dispatch(removeProject(project._id, user.sub))
   }
+  const isPublished = project.publish
   return (
     <Box
       display="flex"
@@ -36,6 +37,12 @@ const ProjectCard = ({ project }) => {
         w="100%"
       >
         <Text as="p">{project._id}</Text>
+
+        {isPublished && (
+          <Box bg="green.500" px="0.5rem" borderRadius="1rem" color="gray.600">
+            Published
+          </Box>
+        )}
         <Box>
           <Link href="/builder" passHref>
             <a>
