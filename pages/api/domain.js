@@ -4,7 +4,9 @@ import { updateProjectDomain } from './db'
 
 const headers = {
   headers: {
+    // eslint-disable-next-line no-undef
     'X-Auth-Email': process.env.CLOUDFLARE_USER,
+    // eslint-disable-next-line no-undef
     'X-Auth-Key': process.env.CLOUDFLARE_TOKEN,
   },
 }
@@ -13,22 +15,18 @@ function cloudflareGET(path) {
   try {
     return axios({ method: 'get', url: path, ...headers })
   } catch (err) {
-    console.error(err, path)
     return null
   }
 }
 function cloudflarePOST(path, data) {
-  try {
-    return axios({
-      method: 'post',
-      url: path,
-      ...headers,
-      data: data,
-    })
-  } catch (err) {
-    console.error(err, path, data)
-    return null
-  }
+  return axios({
+    method: 'post',
+    url: path,
+    ...headers,
+    data: data,
+  })
+    .then((value) => value)
+    .catch((err) => err.response.data)
 }
 function cloudflarePATCH(path, data) {
   try {
@@ -39,7 +37,6 @@ function cloudflarePATCH(path, data) {
       data: data,
     })
   } catch (err) {
-    console.error(err, path, data)
     return null
   }
 }
@@ -71,16 +68,20 @@ async function createDnsRecord(zoneId, domain, awsBucketUrl) {
   return { dns1: res1.data, dns2: res2.data }
 }
 async function addNewDomain(domain) {
-  const res = await cloudflarePOST(
-    'https://api.cloudflare.com/client/v4/zones',
-    {
-      account: { id: process.env.CLOUDFLARE_ACCOUNT_ID },
-      name: domain,
-      jump_start: true,
-    }
-  )
-
-  return res.data
+  try {
+    const res = await cloudflarePOST(
+      'https://api.cloudflare.com/client/v4/zones',
+      {
+        account: { id: process.env.CLOUDFLARE_ACCOUNT_ID },
+        name: domain,
+        jump_start: true,
+      }
+    )
+    return res.data
+  } catch (err) {
+    console.error('addNewDomain', err.response.data)
+    throw err
+  }
 }
 
 async function checkRecordStatus(domain) {
@@ -89,7 +90,7 @@ async function checkRecordStatus(domain) {
       `https://api.cloudflare.com/client/v4/zones?name=${domain}`
     )
     const { data } = res
-    const status = data?.result?.[0]?.status
+    const status = data?.result?.[0]
     return status
   } catch (err) {
     console.error(err)
@@ -122,31 +123,38 @@ async function configSettings(zoneId) {
 }
 
 async function checkDomainStatus(res, domain) {
-  const status = await checkRecordStatus(domain)
-  respondAPIQuery(res, { domainStatus: status }, 200)
-  if (status === 'active') return status
+  const checkRes = await checkRecordStatus(domain)
+  console.log(checkRes)
+  respondAPIQuery(
+    res,
+    checkRes
+      ? { domainStatus: checkRes?.status, nameServers: checkRes?.name_servers }
+      : 'No domain',
+    200
+  )
+  return
 }
 
 async function addDomain(res, domain, projectId) {
   const awsBucketUrl = `www.${domain}.s3-website-us-east-1.amazonaws.com`
-  const status = await checkRecordStatus(domain)
-  // if (status === 'active') {
-  //   return respondAPIQuery(res, { domainStatus: status }, 200)
-  // }
-  // const domainAdded = await addNewDomain(domain)
-  // const zoneId = domainAdded.result.id
-  // const recordAdded = await createDnsRecord(zoneId, domain, awsBucketUrl)
-  // const updatedSettings = await configSettings(zoneId)
+  const checkStatus = await checkRecordStatus(domain)
+  if (checkStatus?.status === 'active') {
+    return respondAPIQuery(res, { domainStatus: status }, 200)
+  }
+  const domainAdded = await addNewDomain(domain)
+  const zoneId = domainAdded.result.id
+  const { dns1, dns2 } = await createDnsRecord(zoneId, domain, awsBucketUrl)
+  const updatedSettings = await configSettings(zoneId)
   const dbUpdate = await updateProjectDomain(domain, projectId)
-  // console.log({ domainAdded, zoneId, recordAdded, updatedSettings, dbUpdate })
+  console.log({ domainAdded, zoneId, dns1, dns2, updatedSettings })
   respondAPIQuery(
     res,
     {
-      // domainAdded,
-      // zoneId,
-      // recordAdded,
-      // updatedSettings,
-      dbUpdate,
+      nameServers: domainAdded.result.name_servers,
+      domainStatus: domainAdded.result.status,
+      dns1Status: dns1.success,
+      dns2Status: dns2.success,
+      settings: updatedSettings.result.success,
     },
     200
   )

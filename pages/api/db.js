@@ -48,7 +48,6 @@ export async function updateProjectDomain(domain, projectId) {
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
     const result = await websiteCollection.updateOne(filter, updateDoc, options)
-    console.log({ result })
     await client.close()
     return result
   } catch (error) {

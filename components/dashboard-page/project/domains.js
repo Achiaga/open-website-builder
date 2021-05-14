@@ -1,8 +1,10 @@
 import { Button } from '@chakra-ui/button'
 import { Input } from '@chakra-ui/input'
 import { Box, Text } from '@chakra-ui/layout'
+import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
 import { GoCheck } from 'react-icons/go'
+import { GiSandsOfTime } from 'react-icons/gi'
 import {
   addDomain,
   requestDomainStatus,
@@ -11,23 +13,35 @@ import {
 const DomainsWrapper = ({ domain, projectId }) => {
   const [domainInput, setDomainInput] = useState('')
   const [domainStatus, setDomainStatus] = useState(null)
+  const [nameServers, setNameServers] = useState('')
 
   async function handleAddDomain() {
-    const domainStatus = await addDomain(domainInput, projectId)
-    console.log('domainStatus', domainStatus)
+    setDomainStatus('adding')
+    try {
+      const res = await addDomain(domainInput, projectId)
+      console.log('domainStatus', res)
+      setDomainStatus(res.domainStatus)
+      setNameServers(res.nameServers)
+    } catch (err) {
+      console.error(err)
+      setDomainStatus('error')
+    }
   }
   async function checkDomainStatus() {
-    setDomainStatus('loading')
-    const { domainStatus } = await requestDomainStatus(domain)
-    setDomainStatus(domainStatus || 'none')
+    setDomainStatus('checking')
+    const { domainStatus, nameServers } = await requestDomainStatus(domain)
+    setDomainStatus(domainStatus || null)
+    setNameServers(nameServers)
   }
   useEffect(() => {
-    checkDomainStatus()
+    domain && checkDomainStatus()
   }, [])
 
   const isActive = domainStatus === 'active'
-
-  if (!domainStatus) return <Box>Loading Domain status...</Box>
+  const isPending = domainStatus === 'pending'
+  const isAddingDomain = domainStatus === 'adding'
+  const checkingStatus = domainStatus === 'checking'
+  if (checkingStatus) return <Box>Loading Domain status...</Box>
 
   return (
     <Box py="1rem" fontSize="md">
@@ -38,14 +52,28 @@ const DomainsWrapper = ({ domain, projectId }) => {
         alignItems="center"
         py="0.5rem"
       >
-        {isActive ? (
-          <Box d="flex" alignItems="center">
+        {isActive || isPending ? (
+          <Box d="flex" justifyContent="center" flexDir="column">
             <Box d="flex" alignItems="center">
-              <GoCheck color="#3fab3f" size="20px" />
+              {isActive ? (
+                <GoCheck color="#3fab3f" size="20px" />
+              ) : (
+                <GiSandsOfTime color="#666f7a" size="20px" />
+              )}
               <Text fontSize="md" fontWeight="600" ml="0.5rem">
-                {domain}
+                {domain || domainInput}
               </Text>
+              <br />
             </Box>
+            <Text>
+              {isPending && (
+                <Box>
+                  Add the following name servers to where you bought your domain
+                  <br />
+                  {nameServers[0]} || {nameServers[1]}
+                </Box>
+              )}
+            </Text>
           </Box>
         ) : (
           <Box d="flex">
@@ -60,7 +88,7 @@ const DomainsWrapper = ({ domain, projectId }) => {
               minW="fit-content"
               onClick={handleAddDomain}
             >
-              Add Domain
+              {isAddingDomain ? <Spinner /> : 'Add Domain'}
             </Button>
           </Box>
         )}
