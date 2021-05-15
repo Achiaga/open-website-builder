@@ -11,7 +11,7 @@ import {
   UnpslashImages,
   ImagesGrid,
   UrlImagesTab,
-  GoProTab,
+  UploadImage,
 } from './ImagesGrid'
 import { AntfolioImages, AntfolioIcons, AntfolioProps } from './assets'
 import { GrClose } from 'react-icons/gr'
@@ -36,6 +36,13 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
     onClose()
     handleSelectImage(getSelectedImgUrl(selectedImg, tabIndex))
   }
+
+  const pond = document.querySelector('.filepond--root')
+  pond.addEventListener('FilePond:addfile', (e) => {
+    console.log('File added', e.detail)
+  })
+
+  console.log(pond)
 
   useEffect(() => {
     if (isOpen) {
@@ -90,25 +97,25 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
             >
               <GrClose size="1em" />
             </Box>
-            {tabIndex !== 5 && (
-              <Box
-                position="absolute"
-                right="1rem"
-                bottom="1rem"
-                textAlign="center"
+
+            <Box
+              position="absolute"
+              right="1rem"
+              bottom="1rem"
+              textAlign="center"
+            >
+              <Button variant="ghost" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button
+                colorScheme="primary"
+                onClick={handleApplyImage}
+                disabled={!selectedImg}
               >
-                <Button variant="ghost" mr={3} onClick={onClose}>
-                  Close
-                </Button>
-                <Button
-                  colorScheme="primary"
-                  onClick={handleApplyImage}
-                  disabled={!selectedImg}
-                >
-                  Set Image
-                </Button>
-              </Box>
-            )}
+                Set Image
+              </Button>
+            </Box>
+
             <Box
               display="flex"
               flexDirection="column"
@@ -228,7 +235,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   />
                 )}
                 {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
-                {tabIndex === 5 && <GoProTab />}
+                {tabIndex === 5 && <UploadImage />}
               </Box>
             </Box>
           </Box>
