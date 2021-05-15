@@ -538,7 +538,6 @@ export function TextGradient({
     e.stopPropagation()
     handleEdit(property, [value[0], e.target.value])
   }
-  console.log(value)
   return (
     <Box
       onDoubleClick={(e) => e.stopPropagation()}
