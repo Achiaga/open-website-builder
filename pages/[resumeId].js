@@ -38,8 +38,6 @@ function Resume({ websiteData, isPublish, resumeId }) {
 
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
-  console.log(context.req.headers.host)
-  // getSubdomain()
   try {
     if (isFalsy(resumeId)) return { props: {} }
     const { websiteData, isPublish } = await getWebsiteData(resumeId)

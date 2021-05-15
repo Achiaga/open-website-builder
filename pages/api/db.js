@@ -96,7 +96,7 @@ export async function getWebsiteData(websiteId) {
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
     const userData = await websiteCollection.findOne({
-      _id: ObjectId(websiteId.toString()),
+      _id: ObjectId(websiteId),
     })
     const websiteData = userData.resume_data
     await client.close()
@@ -107,7 +107,6 @@ export async function getWebsiteData(websiteId) {
   }
 }
 export async function getWebsiteDataBySubdomain(subdomain) {
-  console.log({ subdomain })
   if (!subdomain) return {}
   const client = await getDBCredentials()
   try {
@@ -122,6 +121,55 @@ export async function getWebsiteDataBySubdomain(subdomain) {
     return { websiteData, isPublish: userData.publish }
   } catch (err) {
     console.error('getWebsiteData error', err)
+    await client.close()
+  }
+}
+
+async function updateProjectSubdomain(res, subdomain, projectId) {
+  const client = await getDBCredentials()
+  const options = {
+    upsert: true,
+  }
+  const filter = { _id: ObjectId(projectId) }
+
+  const updateDoc = {
+    $set: {
+      subdomain: subdomain,
+    },
+  }
+  console.log({ subdomain, projectId })
+  await client.connect()
+  const database = client.db(process?.env?.DB_NAME)
+  const websiteCollection = database.collection(process.env.DB_COLLECTION)
+  const value = await websiteCollection.updateOne(filter, updateDoc, options)
+  console.log({ value })
+  await client.close()
+  respondAPIQuery(res, 'subdomain added', 200)
+}
+export async function checkSubdomainAvailability(
+  { subdomain, projectId },
+  res
+) {
+  const client = await getDBCredentials()
+  try {
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const domainsCursor = await websiteCollection.find({
+      subdomain: subdomain,
+    })
+    console.log({ subdomain, projectId })
+    const domains = await domainsCursor.toArray()
+    const isAvailable = domains.length < 1
+    console.log({ isAvailable, domains })
+    if (isAvailable) {
+      await updateProjectSubdomain(res, subdomain, projectId)
+    }
+    await client.close()
+    respondAPIQuery(res, { isAvailable }, 200)
+  } catch (err) {
+    console.error('getWebsiteData error', err)
+    respondAPIQuery(res, { error: err }, 500)
     await client.close()
   }
 }
@@ -219,6 +267,7 @@ function respondAPIQuery(res, data = {}, status = 200) {
 
 export default function betaUsers(req, res) {
   const { type, data } = req.body
+  console.log({ data })
   switch (type) {
     case 'save':
       return updateWebsiteData(data, res)
@@ -230,5 +279,7 @@ export default function betaUsers(req, res) {
       return requestUserData(data, res)
     case 'remove-project':
       return removeProject(data, res)
+    case 'subdomain-availability':
+      return checkSubdomainAvailability(data, res)
   }
 }

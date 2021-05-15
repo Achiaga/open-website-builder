@@ -7,6 +7,7 @@ import { Box, Text, Button, Spinner } from '@chakra-ui/react'
 import { removeProject } from '../../../features/userSlice'
 import { getUserProjects } from '../../../features/userSlice'
 import DomainsWrapper from './domains'
+import Subdomain from './subdomain'
 
 const ProjectCard = ({ project }) => {
   const { user } = useUser()
@@ -37,7 +38,6 @@ const ProjectCard = ({ project }) => {
         w="100%"
       >
         <Text as="p">{project._id}</Text>
-
         {isPublished && (
           <Box bg="green.500" px="0.5rem" borderRadius="1rem" color="gray.600">
             Published
@@ -65,6 +65,7 @@ const ProjectCard = ({ project }) => {
           </Button>
         </Box>
       </Box>
+      <Subdomain projectId={project._id} />
       <DomainsWrapper domain={project.domain} projectId={project._id} />
     </Box>
   )
