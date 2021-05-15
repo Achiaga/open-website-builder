@@ -8,9 +8,11 @@ import { IoClose } from 'react-icons/io5'
 const PublishSuccessModal = () => {
   const dispatch = useDispatch()
   const websiteId = useSelector(getWebsiteId)
+
   function handleClose() {
     dispatch(setPublishStatus(null))
   }
+
   return (
     <Box
       left="0"

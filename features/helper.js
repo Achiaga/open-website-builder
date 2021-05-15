@@ -1,5 +1,5 @@
 import localforage from 'localforage'
-import { FallbackData } from '../builder/initial-data'
+import { htmlWrapper } from './StaticSiteGenerator'
 
 export async function getUserDataFromLS() {
   let value = null
@@ -10,4 +10,8 @@ export async function getUserDataFromLS() {
   } catch (err) {
     console.error(err)
   }
+}
+
+export function generateStaticHTML(body) {
+  return htmlWrapper(body)
 }

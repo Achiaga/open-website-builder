@@ -14,19 +14,50 @@ async function updateWebsiteData(data, res) {
   try {
     const client = await getDBCredentials()
     const options = {
-      // create a document if no documents match the query
       upsert: true,
     }
-    const query = { user_id: data.user_id }
+    const filter = { _id: ObjectId(data.projectId) }
+
+    const updateDoc = {
+      $set: {
+        user_id: data.user_id,
+        resume_data: data.resume_data,
+      },
+    }
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    const result = await websiteCollection.replaceOne(query, data, options)
+    await websiteCollection.updateOne(filter, updateDoc, options)
     await client.close()
-    respondAPIQuery(res, result)
+    respondAPIQuery(res, 'updated successfully', 200)
   } catch (error) {
     console.error(error)
-    respondAPIQuery(res, { error })
+    respondAPIQuery(res, { error }, 500)
+  }
+}
+export async function updateProjectDomain(domain, projectId) {
+  try {
+    const client = await getDBCredentials()
+
+    const options = {
+      upsert: true,
+    }
+
+    const filter = { _id: ObjectId(projectId) }
+    const updateDoc = {
+      $set: {
+        domain: domain,
+      },
+    }
+    await client.connect()
+
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const result = await websiteCollection.updateOne(filter, updateDoc, options)
+    await client.close()
+    return result
+  } catch (error) {
+    console.error(error)
   }
 }
 async function getUserData(userId, res) {

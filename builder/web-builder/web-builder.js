@@ -191,7 +191,7 @@ const MemoBlockItem = React.memo(BlockItem)
 const MemoDrag = React.memo(DraggableItem)
 
 function getFontSize(isMobile) {
-  if (isMobile) return 9
+  if (isMobile) return 11
   return 13
 }
 

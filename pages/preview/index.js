@@ -15,7 +15,7 @@ function ResumePreview() {
     loadData()
   }, [])
 
-  if (!blocksData)
+  if (!blocksData) {
     return (
       <Box
         w="100%"
@@ -27,6 +27,7 @@ function ResumePreview() {
         <Spinner size="xl" thickness="4px" color="primary.500" speed="0.65s" />
       </Box>
     )
+  }
 
   return <ResumeWebsite userBlocksData={blocksData} />
 }
