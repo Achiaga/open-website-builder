@@ -24,7 +24,7 @@ function configAWS() {
   })
 }
 
-async function uploadFileToS3(s3, bucketName, html) {
+async function uploadWebsiteToS3(s3, bucketName, html) {
   // call S3 to retrieve upload file to specified bucket
   var uploadParams = {
     Bucket: bucketName,
@@ -124,25 +124,6 @@ async function makeWebsiteRedirectHosting(s3, bucketName) {
     return err
   }
 }
-async function updateBucket(s3, bucketName) {
-  const bucketItems = await s3.listObjects({ Bucket: bucketName }).promise()
-
-  var items = bucketItems.Contents
-  console.log(bucketName, items)
-  var params = {
-    Bucket: bucketName,
-    Key: 'index.html',
-  }
-  //   for (var i = 0; i < items.length; i += 1) {
-  //     var deleteParams = { Bucket: bucketName, Key: items[i].Key }
-  //
-  try {
-    const res = await s3.deleteObject(params)
-    console.log(res)
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 async function uploadWebsiteFiles(req, res, s3) {
   const { html, domain } = req.body
@@ -150,14 +131,13 @@ async function uploadWebsiteFiles(req, res, s3) {
   const simpleBucketName = domain
   const value = await checkBucketExists(s3, fullBucketName)
   if (value) {
-    const uploadedFile = await uploadFileToS3(s3, fullBucketName, html)
-    console.log({ uploadedFile })
+    const uploadedWebsite = await uploadWebsiteToS3(s3, fullBucketName, html)
     return respondAPIQuery(res, 'Website updated Successfully', 200)
   }
   if (!value) {
     const newBucket = await createBucket(s3, fullBucketName)
     const newSimpleBucket = await createBucket(s3, simpleBucketName)
-    const uploadedFile = await uploadFileToS3(s3, fullBucketName)
+    const uploadedWebsite = await uploadWebsiteToS3(s3, fullBucketName)
     const policy = await setPolicy(s3, fullBucketName)
     const hosting = await makeWebsiteHosting(s3, fullBucketName)
     const redirectHosting = await makeWebsiteRedirectHosting(
@@ -167,16 +147,14 @@ async function uploadWebsiteFiles(req, res, s3) {
     console.log({
       value,
       newBucket,
-      uploadedFile,
+      uploadedWebsite,
       policy,
       hosting,
       redirectHosting,
       newSimpleBucket,
     })
   }
-  console.log({
-    value,
-  })
+
   respondAPIQuery(res, 'Website published Successfully', 200)
 }
 
@@ -200,7 +178,6 @@ async function uploadImageToS3(req, res, s3) {
         Metadata: { userId: userId },
       })
       .promise()
-    console.log(value)
     respondAPIQuery(
       res,
       {
@@ -216,7 +193,6 @@ async function uploadImageToS3(req, res, s3) {
 
 export default async function uploadFile(req, res) {
   const { key } = req.body
-  console.log(req.body)
   await configAWS()
   const s3 = new S3()
   if (key === 'website') await uploadWebsiteFiles(req, res, s3)

@@ -14,14 +14,20 @@ async function updateWebsiteData(data, res) {
   try {
     const client = await getDBCredentials()
     const options = {
-      // create a document if no documents match the query
       upsert: true,
     }
-    const query = { user_id: data.user_id }
+    const filter = { _id: ObjectId(data.projectId) }
+
+    const updateDoc = {
+      $set: {
+        user_id: data.user_id,
+        resume_data: data.resume_data,
+      },
+    }
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    await websiteCollection.replaceOne(query, data, options)
+    await websiteCollection.updateOne(filter, updateDoc, options)
     await client.close()
     respondAPIQuery(res, 'updated successfully', 200)
   } catch (error) {

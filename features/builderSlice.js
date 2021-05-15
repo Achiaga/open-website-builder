@@ -395,7 +395,6 @@ export function denormalizeBuilderData(data) {
 export const publishWebsite = (user) => async (dispatch, getState) => {
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
-  console.log(userData)
   const { domain } = userData
   if (domain) {
     const html = ReactDOMServer.renderToStaticMarkup(
@@ -416,8 +415,9 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
 export const saveWebsite = (user) => async (dispatch, getState) => {
   dispatch(setSaveStatus('loading'))
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
+  const projectId = getWebsiteId(getState())
   const userData = getUserData(getState())
-  const res = await saveData({ user, builderData })
+  const res = await saveData({ user, builderData, projectId })
   const updatedUserData = {
     isPublish: res.publish,
     user_email: res.user_email,

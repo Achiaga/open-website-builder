@@ -124,7 +124,6 @@ async function configSettings(zoneId) {
 
 async function checkDomainStatus(res, domain) {
   const checkRes = await checkRecordStatus(domain)
-  console.log(checkRes)
   respondAPIQuery(
     res,
     checkRes
@@ -146,7 +145,6 @@ async function addDomain(res, domain, projectId) {
   const { dns1, dns2 } = await createDnsRecord(zoneId, domain, awsBucketUrl)
   const updatedSettings = await configSettings(zoneId)
   const dbUpdate = await updateProjectDomain(domain, projectId)
-  console.log({ domainAdded, zoneId, dns1, dns2, updatedSettings })
   respondAPIQuery(
     res,
     {

@@ -19,7 +19,6 @@ const DomainsWrapper = ({ domain, projectId }) => {
     setDomainStatus('adding')
     try {
       const res = await addDomain(domainInput, projectId)
-      console.log('domainStatus', res)
       setDomainStatus(res.domainStatus)
       setNameServers(res.nameServers)
     } catch (err) {
