@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from '../../hooks/translation'
-import { AnalyticsEvent } from '../../utils/analytics'
+import { event } from '../../utils/analytics'
 import Link from 'next/link'
 
 import Button from '../commun/button'
@@ -84,7 +84,12 @@ const Features = () => {
   const [t] = useTranslation()
 
   const handleButton = () => {
-    AnalyticsEvent('modal_open', 'features')
+    event({
+      action: 'builder',
+      params: {
+        search_term: 'enter from link landing page',
+      },
+    })
   }
 
   return (

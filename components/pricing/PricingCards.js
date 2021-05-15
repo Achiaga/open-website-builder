@@ -2,7 +2,7 @@ import { Box, Button, useDisclosure } from '@chakra-ui/react'
 import { PricingCard } from './PricingCard'
 import { SubscriptionModal, BusinessSubscriptionModal } from '../modals'
 import { useEffect } from 'react'
-import { AnalyticsEvent } from '../../utils/analytics'
+import { event } from '../../utils/analytics'
 
 const ActionButton = (props) => (
   <Button size="lg" w="full" fontWeight="bold" {...props} />
@@ -21,11 +21,21 @@ const PricingCards = () => {
   } = useDisclosure()
 
   useEffect(() => {
-    AnalyticsEvent('modal_open', 'business pricing')
+    event({
+      action: 'business pricing',
+      params: {
+        search_term: 'open-modal',
+      },
+    })
   }, [isBusinessOpen])
 
   useEffect(() => {
-    AnalyticsEvent('modal_open', 'pro pricing')
+    event({
+      action: 'pro pricing',
+      params: {
+        search_term: 'open-modal',
+      },
+    })
   }, [isProOpen])
 
   return (

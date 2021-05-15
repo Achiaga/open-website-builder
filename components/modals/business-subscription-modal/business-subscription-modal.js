@@ -13,7 +13,7 @@ import { ModalContent, ModalCloseButton } from '@chakra-ui/react'
 import Modal from '../../modal'
 import Button from '../../commun/button'
 
-import { AnalyticsEvent } from '../../../utils/analytics'
+import { event } from '../../../utils/analytics'
 import { useTranslation } from '../../../hooks/translation'
 import { addUserToBetaList } from '../../../helpers/transport'
 import LogoSvg from '../../../assets/logo'
@@ -102,7 +102,12 @@ const RightSideContent = () => {
     e.preventDefault()
     if (isLoading || !emailValue) return
     setIsLoading(true)
-    AnalyticsEvent('signup', 'modal')
+    event({
+      action: 'enterprise price',
+      params: {
+        search_term: 'enter email',
+      },
+    })
     addUserToBetaList(emailValue, BUSINESS)
       .then((value) => {
         if (value === 'success') {

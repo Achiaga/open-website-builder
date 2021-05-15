@@ -5,7 +5,7 @@ import { ModalContent, ModalCloseButton } from '@chakra-ui/react'
 import Modal from '../../modal'
 import Button from '../../commun/button'
 
-import { AnalyticsEvent } from '../../../utils/analytics'
+import { event } from '../../../utils/analytics'
 import { useTranslation } from '../../../hooks/translation'
 import { addUserToBetaList } from '../../../helpers/transport'
 import LogoSvg from '../../../assets/logo'
@@ -79,7 +79,12 @@ const RightSideContent = () => {
     e.preventDefault()
     if (isLoading || !emailValue) return
     setIsLoading(true)
-    AnalyticsEvent('signup', 'modal')
+    event({
+      action: 'pro plan',
+      params: {
+        search_term: 'enter email',
+      },
+    })
     addUserToBetaList(emailValue, PRO)
       .then((value) => {
         if (value === 'success') {

@@ -1,13 +1,13 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useTranslation } from '../../hooks/translation'
-import { AnalyticsEvent } from '../../utils/analytics'
+import { event } from '../../utils/analytics'
 import Button from '../commun/button'
 import NavButton from './nav-button'
 import LogoSvg from '../../assets/logo'
 
-import BackgroundCircles from './background'
+// import BackgroundCircles from './background'
 import { useUser } from '@auth0/nextjs-auth0'
 
 const LoginButton = ({ color }) => {
@@ -39,7 +39,12 @@ const Navbar = ({ isSticky = true, color }) => {
     router.pathname
   )
   const handleStartNow = () => {
-    AnalyticsEvent('modal_open', 'navbar')
+    event({
+      action: 'enter templates',
+      params: {
+        search_term: 'enter from navbar link',
+      },
+    })
   }
 
   return (
