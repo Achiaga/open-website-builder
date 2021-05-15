@@ -7,12 +7,8 @@ import { Box } from '@chakra-ui/layout'
 import { trackDownloads } from '../../../utils/unsplash'
 
 import SidebarTab from './sidebar-tab'
-import {
-  UnpslashImages,
-  ImagesGrid,
-  UrlImagesTab,
-  GoProTab,
-} from './ImagesGrid'
+import { UnpslashImages, ImagesGrid, UrlImagesTab } from './ImagesGrid'
+import { UploadImage } from './uploadImage'
 import { AntfolioImages, AntfolioIcons, AntfolioProps } from './assets'
 import { GrClose } from 'react-icons/gr'
 import noScroll from 'no-scroll'
@@ -90,25 +86,25 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
             >
               <GrClose size="1em" />
             </Box>
-            {tabIndex !== 5 && (
-              <Box
-                position="absolute"
-                right="1rem"
-                bottom="1rem"
-                textAlign="center"
+
+            <Box
+              position="absolute"
+              right="1rem"
+              bottom="1rem"
+              textAlign="center"
+            >
+              <Button variant="ghost" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button
+                colorScheme="primary"
+                onClick={handleApplyImage}
+                disabled={!selectedImg}
               >
-                <Button variant="ghost" mr={3} onClick={onClose}>
-                  Close
-                </Button>
-                <Button
-                  colorScheme="primary"
-                  onClick={handleApplyImage}
-                  disabled={!selectedImg}
-                >
-                  Set Image
-                </Button>
-              </Box>
-            )}
+                Set Image
+              </Button>
+            </Box>
+
             <Box
               display="flex"
               flexDirection="column"
@@ -228,7 +224,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   />
                 )}
                 {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
-                {tabIndex === 5 && <GoProTab />}
+                {tabIndex === 5 && <UploadImage />}
               </Box>
             </Box>
           </Box>
