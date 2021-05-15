@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/react'
+import { m } from 'framer-motion'
 
 function validateUrl(string) {
   try {
@@ -28,20 +29,27 @@ export const GenericImage = (props) => {
   // }
 
   return (
-    <Box w="100%" h="100%" background={props.backgroundColor}>
-      <Box
-        w="100%"
-        h="100%"
-        backgroundImage={`url(${props.imageUrl})`}
-        backgroundPosition="50% 50%"
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
-        cursor={
-          isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto'
-        }
-        {...modifiers}
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        background: props.backgroundColor,
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url(${props.imageUrl})`,
+          backgroundPosition: '50% 50%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          cursor:
+            isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto',
+          ...modifiers,
+        }}
       />
-    </Box>
+    </div>
   )
 }
 GenericImage.displayName = 'ImageBlock'

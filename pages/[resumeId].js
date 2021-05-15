@@ -4,7 +4,7 @@ import NewPage from '../components/not-deploy-page'
 
 import { getWebsiteData } from './api/db'
 
-function isFalshy(resumeId) {
+function isFlashy(resumeId) {
   return !resumeId || resumeId === 'undefined' || resumeId === 'null'
 }
 
@@ -15,13 +15,14 @@ function isEmpty(obj) {
 function Resume({ websiteData, isPublish, resumeId }) {
   if (isEmpty(websiteData)) return <ErrorPage />
   if (!isPublish) return <NewPage />
+
   return <ResumeWebsite userBlocksData={websiteData} websiteId={resumeId} />
 }
 
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
   try {
-    if (isFalshy(resumeId)) return { props: {} }
+    if (isFlashy(resumeId)) return { props: {} }
     const { websiteData, isPublish } = await getWebsiteData(resumeId)
     if (!isPublish) return { props: { isPublish } }
     return { props: { websiteData, isPublish, resumeId } }

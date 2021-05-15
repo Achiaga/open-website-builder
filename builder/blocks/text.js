@@ -68,7 +68,7 @@ const Styles = ({ children }) => {
       height="100%"
       outline="none"
       overflow-y="auto"
-      padding="12px 15px"
+      padding="0px"
       tabSize="4"
       textAlign="left"
       whiteSpace="pre-wrap"
@@ -124,20 +124,37 @@ export const PrevText = (props) => {
   function createMarkup() {
     return { __html: props.text }
   }
-
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
-      <Styles>
-        <Text
-          as="span"
-          w="100%"
-          h="100%"
-          bg="transparent"
-          wordBreak="break-word"
-          color="gray.500"
+      <div
+        className="textStyles"
+        style={{
+          boxSizing: 'border-box',
+          lineHeight: '1.42',
+          height: '100%',
+          outline: 'none',
+          // overflowY: 'auto',
+          padding: '0px',
+          tabSize: '4',
+          textAlign: 'left',
+          // whiteSpace: 'pre-wrap',
+          wordWrap: 'break-word',
+          backgroundColor: 'transparent',
+          width: '100%',
+          fontFamily: 'Helvetica, Arial, sans-serif',
+        }}
+      >
+        <span
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'transparent',
+            wordBreak: 'break-word',
+            color: 'gray.500',
+          }}
           dangerouslySetInnerHTML={createMarkup()}
         />
-      </Styles>
+      </div>
     </RedirectWrapper>
   )
 }

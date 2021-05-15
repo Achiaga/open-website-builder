@@ -1,6 +1,6 @@
 import { Box, Spinner } from '@chakra-ui/react'
 import Sidebar from './sidebar'
-import Projects from './projects'
+import Projects from './project'
 import Settings from './settings'
 import { settings } from './routesVariables'
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'

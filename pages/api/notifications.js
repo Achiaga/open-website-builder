@@ -3,10 +3,10 @@ import AWS from 'aws-sdk'
 import emailTemplates from '../../emails'
 import { getUserDataFromWebsiteId } from './db'
 
-const respondAPIQuery = (res, data = {}, status = 200) => {
+export const respondAPIQuery = (res, data = {}, status = 200) => {
   const hasError = data.error
   if (hasError) {
-    res.statusCode = data.error.code
+    res.statusCode = status
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(data.error))
     return
@@ -17,7 +17,7 @@ const respondAPIQuery = (res, data = {}, status = 200) => {
     res.end(JSON.stringify(data))
     return
   }
-  res.statusCode = 500
+  res.statusCode = status || 204
   res.setHeader('Content-Type', 'application/json')
   res.end()
   return
