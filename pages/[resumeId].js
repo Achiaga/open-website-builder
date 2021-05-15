@@ -4,11 +4,28 @@ import NewPage from '../components/not-deploy-page'
 
 import { getWebsiteData } from './api/db'
 
-function isFlashy(resumeId) {
+export function getSubdomain(req) {
+  let host
+  let sub
+  if (req && req.headers.host) {
+    host = req.headers.host
+  }
+  if (typeof window !== 'undefined') {
+    host = window.location.host
+  }
+  if (host) {
+    sub = host.split('localhost:3000')[0]
+    if (sub) {
+      return sub.split('.')[0]
+    }
+  }
+}
+
+export function isFalsy(resumeId) {
   return !resumeId || resumeId === 'undefined' || resumeId === 'null'
 }
 
-function isEmpty(obj) {
+export function isEmpty(obj) {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
@@ -21,8 +38,10 @@ function Resume({ websiteData, isPublish, resumeId }) {
 
 export async function getServerSideProps(context) {
   const { resumeId } = context.query
+  console.log(context.req.headers.host)
+  // getSubdomain()
   try {
-    if (isFlashy(resumeId)) return { props: {} }
+    if (isFalsy(resumeId)) return { props: {} }
     const { websiteData, isPublish } = await getWebsiteData(resumeId)
     if (!isPublish) return { props: { isPublish } }
     return { props: { websiteData, isPublish, resumeId } }

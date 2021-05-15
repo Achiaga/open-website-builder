@@ -88,6 +88,7 @@ export async function requestWebsiteData(websiteId, res) {
 }
 
 export async function getWebsiteData(websiteId) {
+  console.log({ websiteId })
   if (!websiteId) return {}
   const client = await getDBCredentials()
   try {
@@ -95,7 +96,26 @@ export async function getWebsiteData(websiteId) {
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
     const userData = await websiteCollection.findOne({
-      _id: ObjectId(websiteId),
+      _id: ObjectId(websiteId.toString()),
+    })
+    const websiteData = userData.resume_data
+    await client.close()
+    return { websiteData, isPublish: userData.publish }
+  } catch (err) {
+    console.error('getWebsiteData error', err)
+    await client.close()
+  }
+}
+export async function getWebsiteDataBySubdomain(subdomain) {
+  console.log({ subdomain })
+  if (!subdomain) return {}
+  const client = await getDBCredentials()
+  try {
+    await client.connect()
+    const database = client.db(process?.env?.DB_NAME)
+    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const userData = await websiteCollection.findOne({
+      subdomain: subdomain,
     })
     const websiteData = userData.resume_data
     await client.close()
