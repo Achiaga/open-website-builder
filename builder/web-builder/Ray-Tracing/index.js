@@ -3,6 +3,7 @@ import { Portal } from '@chakra-ui/portal'
 import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
 import CenterAligmentRay from './center-aligment-ray'
+import VerticalAlignment from './vertical-alignment'
 import LeftRay from './left-ray'
 
 function isBlockOnRow(staticBlockY, draggingBlock, staticBlockHeight) {
@@ -114,6 +115,18 @@ function getIsStaticBlockInside(draggingBlockPos, staticBlockPos) {
     isInsideY(draggingBlockPos, staticBlockPos)
   )
 }
+function getIsBlockLeftAlign(sbX, sbW, dgB) {
+  return (
+    (dgB.x - 1 <= sbX && dgB.x + 1 >= sbX) ||
+    (dgB.x + dgB.w - 1 <= sbX && dgB.x + dgB.w + 1 >= sbX)
+  )
+}
+function getIsBlockRightAlign(sbX, sbW, dgB) {
+  return (
+    (dgB.x - 1 <= sbX + sbW && dgB.x + 1 >= sbX + sbW) ||
+    (dgB.x + dgB.w - 1 <= sbX + sbW && dgB.x + dgB.w + 1 >= sbX + sbW)
+  )
+}
 
 function getClosestElement(
   layout,
@@ -145,6 +158,19 @@ function getClosestElement(
       draggingBlock,
       staticBlockPos
     )
+
+    const isBlockLeftAlign = getIsBlockLeftAlign(sbX, sbW, draggingBlock)
+    const isBlockRightAlign = getIsBlockRightAlign(sbX, sbW, draggingBlock)
+    if (isBlockLeftAlign || isBlockRightAlign) {
+      return {
+        left: isBlockLeftAlign,
+        right: isBlockRightAlign,
+        x: sbX,
+        w: sbW,
+        h: sbH,
+        y: sbY,
+      }
+    }
 
     if ((isBlockCenterX || isBlockCenterY) && !isStaticBlockInside) {
       return {
@@ -207,6 +233,12 @@ export const RayTracing = ({
     leftDis - 1 <= windowWidth / 2 && leftDis + 1 >= windowWidth / 2
   return (
     <>
+      {(closestItem.left || closestItem.right) && (
+        <VerticalAlignment
+          closestItem={closestItem}
+          draggingBlockPos={draggingBlockPos}
+        />
+      )}
       {closestItem.middle && (
         <CenterAligmentRay
           draggingBlockPos={draggingBlockPos}
