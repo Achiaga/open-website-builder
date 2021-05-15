@@ -3,16 +3,10 @@ import { Image } from '@chakra-ui/image'
 import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
 import { List, ListIcon, ListItem, Grid, Text, Button } from '@chakra-ui/react'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { unsplash } from '../../../utils/unsplash'
 import useDebouncedValue from './useDebounce'
 import { MdCheckCircle } from 'react-icons/md'
-
-// Import React FilePond
-import { FilePond } from 'react-filepond'
-
-// Import FilePond styles
-import 'filepond/dist/filepond.min.css'
 
 export const GoProTab = () => {
   return (
@@ -428,74 +422,6 @@ export const UnpslashImages = ({ onSelect, selectedImg }) => {
           )
         })}
       </Grid>
-    </Box>
-  )
-}
-
-export const UploadImage = () => {
-  const pond = useRef(null)
-  const [files, setFiles] = useState()
-
-  const handleInit = () => {
-    console.log('FilePond instance has initialised', pond)
-  }
-
-  console.log(files)
-
-  return (
-    <Box w="full">
-      <Box
-        w="full"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        mb="5rem"
-      >
-        <Text
-          as="h1"
-          fontSize="40px"
-          mb="0.5rem"
-          fontWeight="bold"
-          color="primary.500"
-        >
-          Upload Your Own Image
-        </Text>
-        <Text as="p" fontSize="18px" fontWeight="regular" color="gray.400">
-          Accept images in JPEG, PNG, GIF (up to 2MB) and SVG format.
-        </Text>
-      </Box>
-      <Box
-        px="8rem"
-        mt="3rem"
-        height="100%"
-        width="100%"
-        // display="flex"
-        // alignItems="center"
-        // justifyContent="center"
-        sx={{
-          '.filepond--root ': {
-            'max-height': '10em !important',
-          },
-        }}
-      >
-        <div className="App">
-          <FilePond
-            ref={pond}
-            files={files}
-            allowMultiple={false}
-            maxFiles={1}
-            server="/api"
-            oninit={() => handleInit()}
-            onupdatefiles={(fileItems) => {
-              // Set current file objects to this.state
-              setFiles({
-                files: fileItems.map((fileItem) => fileItem.file),
-              })
-            }}
-          ></FilePond>
-        </div>
-      </Box>
     </Box>
   )
 }

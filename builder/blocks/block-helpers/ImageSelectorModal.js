@@ -7,12 +7,8 @@ import { Box } from '@chakra-ui/layout'
 import { trackDownloads } from '../../../utils/unsplash'
 
 import SidebarTab from './sidebar-tab'
-import {
-  UnpslashImages,
-  ImagesGrid,
-  UrlImagesTab,
-  UploadImage,
-} from './ImagesGrid'
+import { UnpslashImages, ImagesGrid, UrlImagesTab } from './ImagesGrid'
+import { UploadImage } from './uploadImage'
 import { AntfolioImages, AntfolioIcons, AntfolioProps } from './assets'
 import { GrClose } from 'react-icons/gr'
 import noScroll from 'no-scroll'
@@ -36,13 +32,6 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
     onClose()
     handleSelectImage(getSelectedImgUrl(selectedImg, tabIndex))
   }
-
-  const pond = document.querySelector('.filepond--root')
-  pond.addEventListener('FilePond:addfile', (e) => {
-    console.log('File added', e.detail)
-  })
-
-  console.log(pond)
 
   useEffect(() => {
     if (isOpen) {
