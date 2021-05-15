@@ -88,7 +88,6 @@ export async function requestWebsiteData(websiteId, res) {
 }
 
 export async function getWebsiteData(websiteId) {
-  console.log({ websiteId })
   if (!websiteId) return {}
   const client = await getDBCredentials()
   try {
@@ -102,7 +101,7 @@ export async function getWebsiteData(websiteId) {
     await client.close()
     return { websiteData, isPublish: userData.publish }
   } catch (err) {
-    console.error('getWebsiteData error', err)
+    console.error('getWebsiteData error', websiteId, err)
     await client.close()
   }
 }
@@ -137,12 +136,10 @@ async function updateProjectSubdomain(res, subdomain, projectId) {
       subdomain: subdomain,
     },
   }
-  console.log({ subdomain, projectId })
   await client.connect()
   const database = client.db(process?.env?.DB_NAME)
   const websiteCollection = database.collection(process.env.DB_COLLECTION)
-  const value = await websiteCollection.updateOne(filter, updateDoc, options)
-  console.log({ value })
+  await websiteCollection.updateOne(filter, updateDoc, options)
   await client.close()
   respondAPIQuery(res, 'subdomain added', 200)
 }
@@ -158,10 +155,8 @@ export async function checkSubdomainAvailability(
     const domainsCursor = await websiteCollection.find({
       subdomain: subdomain,
     })
-    console.log({ subdomain, projectId })
     const domains = await domainsCursor.toArray()
     const isAvailable = domains.length < 1
-    console.log({ isAvailable, domains })
     if (isAvailable) {
       await updateProjectSubdomain(res, subdomain, projectId)
     }
@@ -267,7 +262,6 @@ function respondAPIQuery(res, data = {}, status = 200) {
 
 export default function betaUsers(req, res) {
   const { type, data } = req.body
-  console.log({ data })
   switch (type) {
     case 'save':
       return updateWebsiteData(data, res)
