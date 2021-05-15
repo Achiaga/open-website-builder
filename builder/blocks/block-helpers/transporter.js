@@ -35,7 +35,10 @@ export const sendEmailNotifiaction = (websiteId, subscriberEmail) => {
 }
 
 export const uploadFileToS3 = (html, domain) => {
-  return apiCall('/api/aws', { html, domain })
+  return apiCall('/api/aws', { html, domain, key: 'website' })
+}
+export const uploadImageToS3 = (file, name, type, userId) => {
+  return apiCall('/api/aws', { file, key: 'image', name, type, userId })
 }
 export const addDomain = (domain, projectId) => {
   return apiCall('/api/domain', { domain, projectId })

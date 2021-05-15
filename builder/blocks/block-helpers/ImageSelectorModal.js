@@ -224,7 +224,7 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   />
                 )}
                 {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
-                {tabIndex === 5 && <UploadImage />}
+                {tabIndex === 5 && <UploadImage onSelect={onSelect} />}
               </Box>
             </Box>
           </Box>

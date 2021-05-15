@@ -1,30 +1,34 @@
 import { Box, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { FilePond } from 'react-filepond'
 
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css'
+import { uploadImageToS3 } from '../transporter'
+import { useSelector } from 'react-redux'
+import { getUserId } from '../../../../features/builderSlice'
 
-function blobToBase64(blob) {
-  console.log(blob)
-  if (!blob && blob instanceof Blob) return 'no data'
+async function uploadFile(blob, userId, onSelect) {
+  const { name, type } = blob
   var reader = new FileReader()
   reader.readAsDataURL(blob)
-  reader.onloadend = function () {
+  reader.onloadend = async function () {
     var base64data = reader.result
-    console.log(base64data)
+    const { url } = await uploadImageToS3(base64data, name, type, userId)
+    onSelect({ image: url })
   }
 }
-
-export const UploadImage = () => {
-  const [files, setFiles] = useState()
-
+export const UploadImage = ({ onSelect }) => {
+  const userId = useSelector(getUserId)
   useEffect(() => {
     const pond = document.querySelector('.filepond--root')
     if (pond) {
       pond.addEventListener('FilePond:addfile', (e) => {
-        console.log('File added', e.detail)
+        const file = e.detail.pond.getFile().file
+        if (file.type !== 'text/html') {
+          uploadFile(file, userId, onSelect)
+        }
       })
     }
   }, [])
@@ -64,16 +68,10 @@ export const UploadImage = () => {
         }}
       >
         <FilePond
-          files={files}
           allowMultiple={true}
           maxFiles={1}
-          name="files"
+          server=""
           labelIdle='Drag & Drop your file or <span class="filepond--label-action">Browse</span>'
-          onupdatefiles={(fileItems) => {
-            setFiles({
-              files: fileItems.map((fileItem) => fileItem.file),
-            })
-          }}
         />
       </Box>
     </Box>

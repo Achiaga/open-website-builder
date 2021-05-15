@@ -21,12 +21,12 @@ async function updateWebsiteData(data, res) {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    const result = await websiteCollection.replaceOne(query, data, options)
+    await websiteCollection.replaceOne(query, data, options)
     await client.close()
-    respondAPIQuery(res, result)
+    respondAPIQuery(res, 'updated successfully', 200)
   } catch (error) {
     console.error(error)
-    respondAPIQuery(res, { error })
+    respondAPIQuery(res, { error }, 500)
   }
 }
 export async function updateProjectDomain(domain, projectId) {

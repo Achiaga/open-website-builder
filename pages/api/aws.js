@@ -1,6 +1,6 @@
 import { config, S3 } from 'aws-sdk'
+import CryptoJS from 'crypto-js'
 import { respondAPIQuery } from './notifications'
-// Set the region
 
 const checkBucketExists = async (s3, bucketName) => {
   const options = {
@@ -144,11 +144,8 @@ async function updateBucket(s3, bucketName) {
   }
 }
 
-export default async function uploadFile(req, res) {
+async function uploadWebsiteFiles(req, res, s3) {
   const { html, domain } = req.body
-  console.log('html', html)
-  await configAWS()
-  const s3 = new S3()
   const fullBucketName = `www.${domain}`
   const simpleBucketName = domain
   const value = await checkBucketExists(s3, fullBucketName)
@@ -157,29 +154,71 @@ export default async function uploadFile(req, res) {
     console.log({ uploadedFile })
     return respondAPIQuery(res, 'Website updated Successfully', 200)
   }
-  // if (!value) {
-  //   const newBucket = await createBucket(s3, fullBucketName)
-  //   const newSimpleBucket = await createBucket(s3, simpleBucketName)
-  //   const uploadedFile = await uploadFileToS3(s3, fullBucketName)
-  //   const policy = await setPolicy(s3, fullBucketName)
-  //   const hosting = await makeWebsiteHosting(s3, fullBucketName)
-  //   const redirectHosting = await makeWebsiteRedirectHosting(
-  //     s3,
-  //     simpleBucketName
-  //   )
-  //   console.log({
-  //     value,
-  //     newBucket,
-  //     uploadedFile,
-  //     policy,
-  //     hosting,
-  //     redirectHosting,
-  //     newSimpleBucket,
-  //   })
-  // }
+  if (!value) {
+    const newBucket = await createBucket(s3, fullBucketName)
+    const newSimpleBucket = await createBucket(s3, simpleBucketName)
+    const uploadedFile = await uploadFileToS3(s3, fullBucketName)
+    const policy = await setPolicy(s3, fullBucketName)
+    const hosting = await makeWebsiteHosting(s3, fullBucketName)
+    const redirectHosting = await makeWebsiteRedirectHosting(
+      s3,
+      simpleBucketName
+    )
+    console.log({
+      value,
+      newBucket,
+      uploadedFile,
+      policy,
+      hosting,
+      redirectHosting,
+      newSimpleBucket,
+    })
+  }
   console.log({
     value,
   })
-
   respondAPIQuery(res, 'Website published Successfully', 200)
+}
+
+async function uploadImageToS3(req, res, s3) {
+  const { file, name, type, userId } = req.body
+  const buf = Buffer.from(
+    file.replace(/^data:image\/\w+;base64,/, ''),
+    'base64'
+  )
+  const encryptedUserId = CryptoJS.AES.encrypt(userId, 'Secret Passphrase')
+  const fileName = `${encryptedUserId}__${name}`
+  try {
+    const value = await s3
+      .putObject({
+        Bucket: 'antfolio',
+        Key: `user-images/${fileName}`,
+        ACL: 'public-read',
+        Body: buf,
+        ContentEncoding: 'base64',
+        ContentType: type,
+        Metadata: { userId: userId },
+      })
+      .promise()
+    console.log(value)
+    respondAPIQuery(
+      res,
+      {
+        url: `https://antfolio.s3.amazonaws.com/user-images/${fileName}`,
+      },
+      200
+    )
+  } catch (err) {
+    console.error(err)
+    respondAPIQuery(res, { error: err }, 500)
+  }
+}
+
+export default async function uploadFile(req, res) {
+  const { key } = req.body
+  console.log(req.body)
+  await configAWS()
+  const s3 = new S3()
+  if (key === 'website') await uploadWebsiteFiles(req, res, s3)
+  if (key === 'image') await uploadImageToS3(req, res, s3)
 }

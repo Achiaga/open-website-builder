@@ -20,6 +20,7 @@
     "aws-sdk": "^2.892.0",
     "axios": "^0.21.1",
     "color-namer": "^1.4.0",
+    "crypto-js": "^4.0.0",
     "filepond": "^4.27.1",
     "framer-motion": "^3.3.0",
     "localforage": "^1.9.0",

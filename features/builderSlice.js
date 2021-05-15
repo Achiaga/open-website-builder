@@ -677,6 +677,7 @@ export const getBuilderData = (state) => state.builder.builderData
 export const getHasBuilderData = (state) => !!state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
+export const getUserId = (state) => state.builder.user.user_id
 export const getWebsiteId = (state) => state.builder.user?.websiteId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
