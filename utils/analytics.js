@@ -28,20 +28,6 @@ window.smartsupp||(function(d) {
 	c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);`
 
-// export const InitializeAnalytics = async () => {
-//   if (process.env.NODE_ENV === 'development') return
-//   ReactGA.initialize(process.env.c)
-//   initHorjar()
-//   ReactGA.pageview('/')
-// }
-
-// export const AnalyticsEvent = (category, action) => {
-//   ReactGA.event({
-//     category: category,
-//     action: action,
-//   })
-// }
-
 // log the pageview with their URL
 export const pageview = (url) => {
   if (process?.env?.NODE_ENV === 'development') return

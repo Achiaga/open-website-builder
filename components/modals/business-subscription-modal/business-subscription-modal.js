@@ -103,10 +103,9 @@ const RightSideContent = () => {
     if (isLoading || !emailValue) return
     setIsLoading(true)
     event({
-      action: 'enterprise price',
-      params: {
-        search_term: 'enter email',
-      },
+      action: 'enterprise_price',
+      category: 'payments',
+      label: 'enter email',
     })
     addUserToBetaList(emailValue, BUSINESS)
       .then((value) => {

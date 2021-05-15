@@ -85,10 +85,9 @@ const Features = () => {
 
   const handleButton = () => {
     event({
-      action: 'builder',
-      params: {
-        search_term: 'enter from link landing page',
-      },
+      action: 'enter_builder',
+      category: 'enter_page',
+      label: 'enter from link landing page',
     })
   }
 

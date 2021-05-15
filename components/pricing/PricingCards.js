@@ -22,19 +22,17 @@ const PricingCards = () => {
 
   useEffect(() => {
     event({
-      action: 'business pricing',
-      params: {
-        search_term: 'open-modal',
-      },
+      action: 'business_price',
+      category: 'payments',
+      label: 'click price business modal',
     })
   }, [isBusinessOpen])
 
   useEffect(() => {
     event({
-      action: 'pro pricing',
-      params: {
-        search_term: 'open-modal',
-      },
+      action: 'pro_price',
+      category: 'payments',
+      label: 'click price pro modal',
     })
   }, [isProOpen])
 

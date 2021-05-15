@@ -40,10 +40,9 @@ const Navbar = ({ isSticky = true, color }) => {
   )
   const handleStartNow = () => {
     event({
-      action: 'enter templates',
-      params: {
-        search_term: 'enter from navbar link',
-      },
+      action: 'enter_templates_pages',
+      category: 'builder',
+      label: 'enter from navbar link',
     })
   }
 
