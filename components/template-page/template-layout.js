@@ -4,7 +4,7 @@ import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { Box, Button, Spinner } from '@chakra-ui/react'
 import { removeLocalData } from '../../builder/web-builder/helpers'
-import { event } from '../../../utils/analytics'
+import { event } from '../../utils/analytics'
 
 const CustomButton = ({ colorScheme, children }) => {
   return (
