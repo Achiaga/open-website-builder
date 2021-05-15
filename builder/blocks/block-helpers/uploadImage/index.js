@@ -7,7 +7,8 @@ import { FilePond } from 'react-filepond'
 import 'filepond/dist/filepond.min.css'
 
 function blobToBase64(blob) {
-  if (!blob) return 'no data'
+  console.log(blob)
+  if (!blob && blob instanceof Blob) return 'no data'
   var reader = new FileReader()
   reader.readAsDataURL(blob)
   reader.onloadend = function () {
@@ -27,10 +28,6 @@ export const UploadImage = () => {
       })
     }
   }, [])
-
-  console.log('file', files?.files)
-  console.log('file', blobToBase64(files?.files?.[0]))
-  console.log('file', files?.[0]?.getFile())
 
   return (
     <Box w="full">
