@@ -145,12 +145,12 @@ async function updateBucket(s3, bucketName) {
 }
 
 export default async function uploadFile(req, res) {
-  const { html } = req.body
+  const { html, domain } = req.body
   console.log('html', html)
   await configAWS()
   const s3 = new S3()
-  const fullBucketName = 'www.antbuilder.xyz'
-  const simpleBucketName = 'antbuilder.xyz'
+  const fullBucketName = `www.${domain}`
+  const simpleBucketName = domain
   const value = await checkBucketExists(s3, fullBucketName)
   if (value) {
     const uploadedFile = await uploadFileToS3(s3, fullBucketName, html)
