@@ -249,13 +249,6 @@ export const setBlockEditable = (blockId) => (dispatch) => {
 }
 
 function applyAutoMobileToBlock(block) {
-  if (block.i.includes('text')) {
-    const el = document.getElementById(block.i)
-    const dim = el.getBoundingClientRect()
-    console.log('block.i', dim)
-  }
-  const desktopMobileRatio = window.innerWidth / 400
-  console.log('desktopMobileRatio', desktopMobileRatio)
   const updatedBlock = {
     x: block.x / 2,
     y: block.y,
