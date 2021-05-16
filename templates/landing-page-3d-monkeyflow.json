@@ -1,0 +1,1309 @@
+{
+  "blocks": {
+    "image-ee3cd434-0398-4804-b282-f64f8ec27841": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/graphic-design.png"
+      }
+    },
+    "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Banana Flow</h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-077601f5-bbc2-46af-b31d-034659b08e10": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://img-premium.flaticon.com/png/512/38/38519.png?token=exp=1621103694~hmac=9a190811e4ddc237b0ca45fb307664dd"
+      }
+    },
+    "button-9034147e-8374-401b-a458-33d17b404a5d": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-9034147e-8374-401b-a458-33d17b404a5d",
+        "border": "none",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "100px",
+        "backgroundColor": "#000000",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Go to Product",
+        "redirect": "antfolio.app"
+      }
+    },
+    "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e": {
+      "type": "text",
+      "data": {
+        "text": "<h1><strong style=\"color: rgb(217, 115, 13);\">Save money. Effortlessly.</strong></h1><h5><br></h5><h4>Automate saving, budgeting, and investing so you can feel relaxed and confident about your money.</h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "button-e0c26517-94b2-4078-b5da-29de00c4c6a5": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-e0c26517-94b2-4078-b5da-29de00c4c6a5",
+        "border": "none",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "20px",
+        "backgroundColor": "#E65F0C",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Start Now"
+      }
+    },
+    "image-a81603fe-db82-4d5b-adbd-4592ce48df6f": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/youtube.png"
+      }
+    },
+    "inception-01b09be7-94cd-4006-950c-0f992641739b": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "backgroundColor": "transparent",
+        "gradientColor": ["#ffb26b", "#ff7b54"]
+      }
+    },
+    "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "backgroundColor": "transparent",
+        "gradientColor": ["#fad586", "#ffd56b"]
+      }
+    },
+    "image-d99c7903-4341-41b6-97df-75f36da16bc6": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/twitch.png"
+      }
+    },
+    "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "backgroundColor": "transparent",
+        "gradientColor": ["#8ac4d0", "#2978b5"]
+      }
+    },
+    "image-69dd4877-5a25-49f2-a1dc-6188677da336": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/discord.png"
+      }
+    },
+    "inception-3b6eced2-438f-4eea-890b-b46f77805e6c": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "backgroundColor": "transparent",
+        "gradientColor": ["#ff7171", "#FC5C7B"]
+      }
+    },
+    "image-547ee445-653b-4a56-8734-fb6eadfa278f": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/dribbble.png"
+      }
+    },
+    "text-3d142160-c578-4875-b900-0aad28e93727": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong>Step-by-step </strong><strong style=\"color: rgb(217, 115, 13);\">training videos</strong></h4><h6><br></h6><h6 class=\"ql-align-center\"><span style=\"color: rgb(116, 116, 118);\">Expert Training Videos for all relevant categories.</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-fbce9c7b-6223-4184-9e2a-8ce074c02202": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong style=\"color: rgb(223, 171, 1);\">Divide</strong><strong> </strong><strong style=\"color: rgb(223, 171, 1);\">your</strong><strong> </strong><strong style=\"color: rgb(223, 171, 1);\">money</strong><strong> when it comes in</strong></h4><h6><br></h6><h6 class=\"ql-align-center\"><span style=\"color: rgb(116, 116, 118);\">Banana Flow moves your money automatically when it comes in.</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong>Choose how much </strong><strong style=\"color: rgb(11, 110, 153);\">should go where</strong></h4><h6><br></h6><h6 class=\"ql-align-center\"><span style=\"color: rgb(116, 116, 118);\">Move your money where it matters. Create multiple flow of your money</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-631ca09d-181a-4a66-9988-d531309e8e00": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong style=\"color: rgb(224, 62, 62);\">Privacy friendly</strong></h4><h4 class=\"ql-align-center\"><strong style=\"color: rgb(1, 191, 127);\">&nbsp;</strong><strong>and secure</strong></h4><p><br></p><h6 class=\"ql-align-center\"><span style=\"color: rgb(116, 116, 118);\">It is your money,</span></h6><h6 class=\"ql-align-center\"><span style=\"color: rgb(116, 116, 118);\"> so no time to full around</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-de95a6e7-8b0d-48f9-9a05-47473825c212": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/laptop-1.png"
+      }
+    },
+    "text-9847ae8d-5523-40e1-8fea-299c4b8edf95": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong style=\"color: rgb(217, 115, 13);\">Lorem ipsum</strong></h5><p><br></p><h3><strong>Popular use cases</strong></h3><h5><br></h5><h5>Flow is for everyone, from freelancers and business owners to young families and their grandparents. We collect the best money systems that you can use in one go. Flow is for everyone, from freelancers and business owners to young families and their grandparents. We collect the best money systems that you can use in one go.</h5><h5><br></h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-a47bb04d-c081-4ac1-a234-6a9b9e5bc643": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/tablet-2.png"
+      }
+    },
+    "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong style=\"color: rgb(217, 115, 13);\">Lorem ipsum</strong></h5><p><br></p><h3><strong>Popular use cases</strong></h3><h5><br></h5><h5>Flow is for everyone, from freelancers and business owners to young families and their grandparents. We collect the best money systems that you can use in one go.</h5><h5><br></h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-991a347d-2a85-4d90-b541-06de6ae39f2d": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong style=\"color: rgb(217, 115, 13);\">Lorem ipsum</strong></h5><p><br></p><h3><strong>Popular use cases</strong></h3><h5><br></h5><h5>Flow is for everyone, from freelancers and business owners to young families and their grandparents. We collect the best money systems that you can use in one go. Flow is for everyone, from freelancers and business owners to young families and their grandparents. </h5><h5><br></h5><h5><br></h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-237c8484-57b0-4c22-8587-e49fe48258ab": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/phone-1.png"
+      }
+    },
+    "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent",
+        "gradientColor": ["#fcf6e3", "#fcf6e3"]
+      }
+    },
+    "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a": {
+      "type": "text",
+      "data": {
+        "text": "<h3 class=\"ql-align-center\"><strong>Take your dog training to the next level with Pupy Pro!</strong></h3>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-d3c39b00-60a6-41b2-a8ea-8257012376e7": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.pupy.co/imgs/benefit-full_access.png"
+      }
+    },
+    "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635": {
+      "type": "text",
+      "data": {
+        "text": "<h6 class=\"ql-align-center\">We’re always creating new training exercises and videos to keep you and your dog on your toes – with Pupy Pro you’ll get access to every single piece of training material we ever make, delivered straight to your app.</h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-db61a595-b5c1-44e6-876c-1b40cb8f2186": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong>Full access</strong></h4><p><br></p><h5>You’ll get access to every single piece of training material we ever make.</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "http://pupy.co/imgs/benefit-personal_trainer.png"
+      }
+    },
+    "text-fddfce69-b55d-4bb1-b366-70731aa51588": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong>Personal Trainer Contact</strong></h4><p><br></p><h5>You’ll get access to every single piece of training material we ever make.</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-9f4ad966-3401-43b6-a98b-f902c438f541": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong>Full access</strong></h4><p><br></p><h5>You’ll get access to every single piece of training material we ever make.</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong>Full access</strong></h4><p><br></p><h5>You’ll get access to every single piece of training material we ever make.</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "http://pupy.co/imgs/benefit-personal_trainer.png"
+      }
+    },
+    "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.pupy.co/imgs/benefit-full_access.png"
+      }
+    },
+    "image-e330a00a-c35f-4a55-95bf-e2944099650f": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://img-premium.flaticon.com/png/512/38/38519.png?token=exp=1621103694~hmac=9a190811e4ddc237b0ca45fb307664dd"
+      }
+    },
+    "text-1bae267a-dc3b-4655-afab-973f30cde3a6": {
+      "type": "text",
+      "data": {
+        "text": "<h5 class=\"ql-align-center\"><span style=\"color: rgb(155, 154, 151);\">What others think about Monkey Flow</span></h5><h2 class=\"ql-align-center\"><strong>Testimonials</strong></h2>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "image-18e2e7f0-0348-4229-aad0-e5983d029e36": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "imageUrl": "https://images.unsplash.com/photo-1609902726285-00668009f004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjU5ODR8MHwxfHNlYXJjaHw0fHxoYXBweSUyMHBlcnNvbnxlbnwwfHx8fDE2MjEwNjc4NDU&ixlib=rb-1.2.1&q=80&w=1080"
+      }
+    },
+    "text-8fdfe777-d3a8-4d79-b650-31f572c3a003": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong>Sebastian</strong></h4><p class=\"ql-align-center\"><br></p><h6 class=\"ql-align-center\">\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc laoreet bibendum mauris at fringilla. Vivamus bibendum felis vel quam dignissim convallis. Quisque tincidunt convallis nulla non blandit. Pellentesque dapibus sit amet nisi sed bibendum. Rutrum bibendum massa. Quisque convallis quam pellentesque ipsum condimentum, at interdum nulla interdum...\"</h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-63adbfb8-5280-40d2-89cd-d13ababdffea": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "image-70ae8b11-cd18-4471-8efa-12d59983bb15": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "imageUrl": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjU5ODR8MHwxfHNlYXJjaHw0fHxzbWlsZXxlbnwwfHx8fDE2MjExNDk2MTQ&ixlib=rb-1.2.1&q=80&w=1080"
+      }
+    },
+    "text-da283e81-d095-4802-9c30-69c424730aa8": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong>Daniel</strong></h4><p class=\"ql-align-center\"><br></p><h6 class=\"ql-align-center\">\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc laoreet bibendum mauris at fringilla. Vivamus bibendum felis vel quam dignissim convallis. Quisque tincidunt convallis nulla non blandit. Pellentesque dapibus sit amet nisi sed bibendum. Rutrum bibendum massa. Quisque convallis quam pellentesque ipsum condimentum, at interdum nulla interdum...\"</h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-196daa14-af2f-4bff-8554-6798af2bc52a": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid rgb(205, 211, 216)",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "backgroundColor": "transparent"
+      }
+    },
+    "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "imageUrl": "https://images.unsplash.com/photo-1580465446361-8aae5321522b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjU5ODR8MHwxfHNlYXJjaHwxMHx8c21pbGV8ZW58MHx8fHwxNjIxMTQ5NjE0&ixlib=rb-1.2.1&q=80&w=1080"
+      }
+    },
+    "text-d8c625e8-0af4-4b56-a063-d2107b8342a4": {
+      "type": "text",
+      "data": {
+        "text": "<h4 class=\"ql-align-center\"><strong>Astrid</strong></h4><p class=\"ql-align-center\"><br></p><h6 class=\"ql-align-center\">\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc laoreet bibendum mauris at fringilla. Vivamus bibendum felis vel quam dignissim convallis. Quisque tincidunt convallis nulla non blandit. Pellentesque dapibus sit amet nisi sed bibendum. Rutrum bibendum massa. Quisque convallis quam pellentesque ipsum condimentum, at interdum nulla interdum...\"</h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17": {
+      "type": "text",
+      "data": {
+        "text": "<h2 class=\"ql-align-center\"><strong>Ready to kickstart your dog’s training?</strong></h2><h4><br></h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374",
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "#000000",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Start Now"
+      }
+    },
+    "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent"
+      }
+    }
+  },
+  "hierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-01b09be7-94cd-4006-950c-0f992641739b": [
+      "image-a81603fe-db82-4d5b-adbd-4592ce48df6f"
+    ],
+    "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915": [
+      "image-d99c7903-4341-41b6-97df-75f36da16bc6"
+    ],
+    "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea": [
+      "image-69dd4877-5a25-49f2-a1dc-6188677da336"
+    ],
+    "inception-3b6eced2-438f-4eea-890b-b46f77805e6c": [
+      "image-547ee445-653b-4a56-8734-fb6eadfa278f"
+    ],
+    "text-fbce9c7b-6223-4184-9e2a-8ce074c02202": [],
+    "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77": [],
+    "text-631ca09d-181a-4a66-9988-d531309e8e00": [],
+    "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123": [],
+    "text-991a347d-2a85-4d90-b541-06de6ae39f2d": [],
+    "image-237c8484-57b0-4c22-8587-e49fe48258ab": [],
+    "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf": [
+      "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a",
+      "image-d3c39b00-60a6-41b2-a8ea-8257012376e7",
+      "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635",
+      "text-db61a595-b5c1-44e6-876c-1b40cb8f2186",
+      "image-414680b2-20f3-4ad6-a9d5-2f586e1d0f60",
+      "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9",
+      "text-fddfce69-b55d-4bb1-b366-70731aa51588",
+      "image-25a3d6ea-00d6-4ab3-b6d0-ba904566c840",
+      "text-9f4ad966-3401-43b6-a98b-f902c438f541",
+      "image-5a8c1470-f95e-434c-bd22-f336a2fa6525",
+      "text-b785eb27-518f-4868-a4bd-615e01737013",
+      "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452",
+      "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e",
+      "image-eac3265d-62d1-460a-b6e3-6517a40b66cf"
+    ],
+    "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9": [],
+    "text-fddfce69-b55d-4bb1-b366-70731aa51588": [],
+    "text-9f4ad966-3401-43b6-a98b-f902c438f541": [],
+    "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": [],
+    "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": [],
+    "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": [],
+    "image-e330a00a-c35f-4a55-95bf-e2944099650f": [],
+    "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": [
+      "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
+      "text-8fdfe777-d3a8-4d79-b650-31f572c3a003"
+    ],
+    "inception-63adbfb8-5280-40d2-89cd-d13ababdffea": [
+      "image-70ae8b11-cd18-4471-8efa-12d59983bb15",
+      "text-da283e81-d095-4802-9c30-69c424730aa8"
+    ],
+    "inception-196daa14-af2f-4bff-8554-6798af2bc52a": [
+      "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0",
+      "text-d8c625e8-0af4-4b56-a063-d2107b8342a4"
+    ],
+    "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0": [
+      "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374",
+      "image-e330a00a-c35f-4a55-95bf-e2944099650f",
+      "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17"
+    ]
+  },
+  "layouts": {
+    "image-ee3cd434-0398-4804-b282-f64f8ec27841": {
+      "x": 98.19444444444444,
+      "y": 14.722222222222221,
+      "i": "image-ee3cd434-0398-4804-b282-f64f8ec27841",
+      "w": 96.52777777777779,
+      "h": 73.05555555555556
+    },
+    "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6": {
+      "x": 16.666666666666668,
+      "y": 3.888888888888889,
+      "i": "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6",
+      "w": 32.22222222222222,
+      "h": 5
+    },
+    "image-077601f5-bbc2-46af-b31d-034659b08e10": {
+      "x": 5,
+      "y": 2.5,
+      "i": "image-077601f5-bbc2-46af-b31d-034659b08e10",
+      "w": 8.194444444444443,
+      "h": 7.777777777777778
+    },
+    "button-9034147e-8374-401b-a458-33d17b404a5d": {
+      "x": 172.91666666666666,
+      "y": 3.0555555555555554,
+      "i": "button-9034147e-8374-401b-a458-33d17b404a5d",
+      "w": 19.444444444444443,
+      "h": 6.527777777777778
+    },
+    "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e": {
+      "x": 14.305555555555555,
+      "y": 21.527777777777782,
+      "i": "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e",
+      "w": 87.5,
+      "h": 44.30555555555556
+    },
+    "button-e0c26517-94b2-4078-b5da-29de00c4c6a5": {
+      "x": 14.166666666666666,
+      "y": 77.22222222222221,
+      "i": "button-e0c26517-94b2-4078-b5da-29de00c4c6a5",
+      "w": 30,
+      "h": 7.083333333333333
+    },
+    "image-a81603fe-db82-4d5b-adbd-4592ce48df6f": {
+      "x": 36.11111111111114,
+      "y": 121.94444444444444,
+      "i": "image-a81603fe-db82-4d5b-adbd-4592ce48df6f",
+      "w": 7.777777777777778,
+      "h": 6.666666666666668
+    },
+    "inception-01b09be7-94cd-4006-950c-0f992641739b": {
+      "x": 32.77777777777778,
+      "y": 117.91666666666666,
+      "i": "inception-01b09be7-94cd-4006-950c-0f992641739b",
+      "w": 14.444444444444441,
+      "h": 14.444444444444448
+    },
+    "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915": {
+      "x": 74.16666666666667,
+      "y": 117.77777777777777,
+      "i": "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915",
+      "w": 14.583333333333329,
+      "h": 14.583333333333336
+    },
+    "image-d99c7903-4341-41b6-97df-75f36da16bc6": {
+      "x": 78.19444444444444,
+      "y": 122.22222222222221,
+      "i": "image-d99c7903-4341-41b6-97df-75f36da16bc6",
+      "w": 6.666666666666667,
+      "h": 6.666666666666668
+    },
+    "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea": {
+      "x": 113.33333333333333,
+      "y": 118.05555555555556,
+      "i": "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea",
+      "w": 14.583333333333329,
+      "h": 14.583333333333336
+    },
+    "image-69dd4877-5a25-49f2-a1dc-6188677da336": {
+      "x": 116.80555555555557,
+      "y": 121.94444444444444,
+      "i": "image-69dd4877-5a25-49f2-a1dc-6188677da336",
+      "w": 7.777777777777778,
+      "h": 6.666666666666668
+    },
+    "inception-3b6eced2-438f-4eea-890b-b46f77805e6c": {
+      "x": 152.36111111111111,
+      "y": 118.05555555555556,
+      "i": "inception-3b6eced2-438f-4eea-890b-b46f77805e6c",
+      "w": 14.583333333333329,
+      "h": 14.583333333333336
+    },
+    "image-547ee445-653b-4a56-8734-fb6eadfa278f": {
+      "x": 155.97222222222226,
+      "y": 121.8055555555556,
+      "i": "image-547ee445-653b-4a56-8734-fb6eadfa278f",
+      "w": 7.083333333333333,
+      "h": 7.083333333333335
+    },
+    "text-3d142160-c578-4875-b900-0aad28e93727": {
+      "x": 22.916666666666668,
+      "y": 135.41666666666666,
+      "i": "text-3d142160-c578-4875-b900-0aad28e93727",
+      "w": 33.75,
+      "h": 19.166666666666668
+    },
+    "text-fbce9c7b-6223-4184-9e2a-8ce074c02202": {
+      "x": 64.72222222222221,
+      "y": 135.55555555555551,
+      "i": "text-fbce9c7b-6223-4184-9e2a-8ce074c02202",
+      "w": 33.75,
+      "h": 19.166666666666668
+    },
+    "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77": {
+      "x": 103.61111111111113,
+      "y": 135.55555555555554,
+      "i": "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77",
+      "w": 33.75,
+      "h": 22.22222222222222
+    },
+    "text-631ca09d-181a-4a66-9988-d531309e8e00": {
+      "x": 142.91666666666666,
+      "y": 135.69444444444443,
+      "i": "text-631ca09d-181a-4a66-9988-d531309e8e00",
+      "w": 33.75,
+      "h": 18.61111111111111
+    },
+    "image-de95a6e7-8b0d-48f9-9a05-47473825c212": {
+      "x": 106.25,
+      "y": 184.86111111111111,
+      "i": "image-de95a6e7-8b0d-48f9-9a05-47473825c212",
+      "w": 70,
+      "h": 59.44444444444444
+    },
+    "text-9847ae8d-5523-40e1-8fea-299c4b8edf95": {
+      "x": 14.86111111111111,
+      "y": 193.61111111111111,
+      "i": "text-9847ae8d-5523-40e1-8fea-299c4b8edf95",
+      "w": 85.97222222222221,
+      "h": 40.138888888888886
+    },
+    "image-a47bb04d-c081-4ac1-a234-6a9b9e5bc643": {
+      "x": 13.75,
+      "y": 255.97222222222223,
+      "i": "image-a47bb04d-c081-4ac1-a234-6a9b9e5bc643",
+      "w": 72.22222222222221,
+      "h": 62.361111111111114
+    },
+    "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123": {
+      "x": 102.63888888888889,
+      "y": 267.7777777777777,
+      "i": "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123",
+      "w": 85.97222222222221,
+      "h": 32.638888888888886
+    },
+    "text-991a347d-2a85-4d90-b541-06de6ae39f2d": {
+      "x": 23.055555555555554,
+      "y": 347.5,
+      "i": "text-991a347d-2a85-4d90-b541-06de6ae39f2d",
+      "w": 85.97222222222221,
+      "h": 40.138888888888886
+    },
+    "image-237c8484-57b0-4c22-8587-e49fe48258ab": {
+      "x": 117.08333333333333,
+      "y": 331.94444444444446,
+      "i": "image-237c8484-57b0-4c22-8587-e49fe48258ab",
+      "w": 64.02777777777777,
+      "h": 67.22222222222223
+    },
+    "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf": {
+      "x": 0,
+      "y": 410.97222222222223,
+      "i": "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf",
+      "w": 200,
+      "h": 187.36111111111111
+    },
+    "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a": {
+      "x": 61.52777777777778,
+      "y": 419.02777777777777,
+      "i": "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a",
+      "w": 76.80555555555556,
+      "h": 15.277777777777777
+    },
+    "image-d3c39b00-60a6-41b2-a8ea-8257012376e7": {
+      "x": 47.083333333333336,
+      "y": 457.5,
+      "i": "image-d3c39b00-60a6-41b2-a8ea-8257012376e7",
+      "w": 42.36111111111111,
+      "h": 27.777777777777775
+    },
+    "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635": {
+      "x": 54.72222222222222,
+      "y": 438.19444444444446,
+      "i": "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635",
+      "w": 90.69444444444444,
+      "h": 9.166666666666666
+    },
+    "text-db61a595-b5c1-44e6-876c-1b40cb8f2186": {
+      "x": 47.083333333333336,
+      "y": 489.02777777777777,
+      "i": "text-db61a595-b5c1-44e6-876c-1b40cb8f2186",
+      "w": 42.5,
+      "h": 18.75
+    },
+    "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9": {
+      "x": 114.58333333333333,
+      "y": 457.5,
+      "i": "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9",
+      "w": 42.36111111111111,
+      "h": 27.777777777777775
+    },
+    "text-fddfce69-b55d-4bb1-b366-70731aa51588": {
+      "x": 114.72222222222221,
+      "y": 489.02777777777777,
+      "i": "text-fddfce69-b55d-4bb1-b366-70731aa51588",
+      "w": 44.02777777777778,
+      "h": 18.75
+    },
+    "text-9f4ad966-3401-43b6-a98b-f902c438f541": {
+      "x": 44.86111111111111,
+      "y": 558.8888888888889,
+      "i": "text-9f4ad966-3401-43b6-a98b-f902c438f541",
+      "w": 42.5,
+      "h": 18.75
+    },
+    "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": {
+      "x": 116.80555555555556,
+      "y": 558.8888888888889,
+      "i": "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452",
+      "w": 42.5,
+      "h": 18.75
+    },
+    "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": {
+      "x": 116.11111111111111,
+      "y": 523.4722222222222,
+      "i": "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e",
+      "w": 42.36111111111111,
+      "h": 27.777777777777775
+    },
+    "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": {
+      "x": 44.86111111111111,
+      "y": 523.8888888888889,
+      "i": "image-eac3265d-62d1-460a-b6e3-6517a40b66cf",
+      "w": 42.36111111111111,
+      "h": 27.777777777777775
+    },
+    "image-e330a00a-c35f-4a55-95bf-e2944099650f": {
+      "x": 95.69444444444441,
+      "y": 723.0555555555555,
+      "i": "image-e330a00a-c35f-4a55-95bf-e2944099650f",
+      "w": 8.333333333333332,
+      "h": 8.333333333333334
+    },
+    "text-1bae267a-dc3b-4655-afab-973f30cde3a6": {
+      "x": 66.94444444444446,
+      "y": 609.1666666666666,
+      "i": "text-1bae267a-dc3b-4655-afab-973f30cde3a6",
+      "w": 65.41666666666667,
+      "h": 13.88888888888889
+    },
+    "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": {
+      "x": 11.666666666666666,
+      "y": 630.2777777777777,
+      "i": "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc",
+      "w": 52.08333333333333,
+      "h": 63.19444444444444
+    },
+    "image-18e2e7f0-0348-4229-aad0-e5983d029e36": {
+      "x": 31.388888888888875,
+      "y": 635.5555555555555,
+      "i": "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
+      "w": 12.36111111111111,
+      "h": 12.5
+    },
+    "text-8fdfe777-d3a8-4d79-b650-31f572c3a003": {
+      "x": 16.249999999999996,
+      "y": 650.5555555555555,
+      "i": "text-8fdfe777-d3a8-4d79-b650-31f572c3a003",
+      "w": 42.22222222222222,
+      "h": 38.05555555555556
+    },
+    "inception-63adbfb8-5280-40d2-89cd-d13ababdffea": {
+      "x": 74.02777777777777,
+      "y": 630.2777777777777,
+      "i": "inception-63adbfb8-5280-40d2-89cd-d13ababdffea",
+      "w": 52.08333333333333,
+      "h": 63.19444444444444
+    },
+    "image-70ae8b11-cd18-4471-8efa-12d59983bb15": {
+      "x": 93.75,
+      "y": 635.5555555555555,
+      "i": "image-70ae8b11-cd18-4471-8efa-12d59983bb15",
+      "w": 12.36111111111111,
+      "h": 12.5
+    },
+    "text-da283e81-d095-4802-9c30-69c424730aa8": {
+      "x": 78.61111111111111,
+      "y": 650.5555555555555,
+      "i": "text-da283e81-d095-4802-9c30-69c424730aa8",
+      "w": 42.22222222222222,
+      "h": 38.05555555555556
+    },
+    "inception-196daa14-af2f-4bff-8554-6798af2bc52a": {
+      "x": 136.80555555555554,
+      "y": 630.2777777777777,
+      "i": "inception-196daa14-af2f-4bff-8554-6798af2bc52a",
+      "w": 52.08333333333333,
+      "h": 63.19444444444444
+    },
+    "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0": {
+      "x": 156.52777777777774,
+      "y": 635.5555555555555,
+      "i": "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0",
+      "w": 12.36111111111111,
+      "h": 12.5
+    },
+    "text-d8c625e8-0af4-4b56-a063-d2107b8342a4": {
+      "x": 141.3888888888888,
+      "y": 650.5555555555555,
+      "i": "text-d8c625e8-0af4-4b56-a063-d2107b8342a4",
+      "w": 42.22222222222222,
+      "h": 38.05555555555556
+    },
+    "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17": {
+      "x": 57.222222222222186,
+      "y": 734.7222222222222,
+      "i": "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17",
+      "w": 85.55555555555556,
+      "h": 25.27777777777778
+    },
+    "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374": {
+      "x": 85.83333333333333,
+      "y": 763.8888888888889,
+      "i": "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374",
+      "w": 29.583333333333332,
+      "h": 6.666666666666666
+    },
+    "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0": {
+      "x": 0,
+      "y": 718.6111111111111,
+      "i": "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0",
+      "w": 200,
+      "h": 69.58333333333333
+    }
+  },
+  "mobileLayout": {
+    "image-ee3cd434-0398-4804-b282-f64f8ec27841": {
+      "x": 10.069444444444445,
+      "y": 78.47222222222221,
+      "i": "image-ee3cd434-0398-4804-b282-f64f8ec27841",
+      "w": 77.70833333333333,
+      "h": 30.000000000000004
+    },
+    "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6": {
+      "x": 14.305555555555555,
+      "y": 4.166666666666667,
+      "i": "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6",
+      "w": 20,
+      "h": 4.305555555555555
+    },
+    "image-077601f5-bbc2-46af-b31d-034659b08e10": {
+      "x": 2.5,
+      "y": 2.5,
+      "i": "image-077601f5-bbc2-46af-b31d-034659b08e10",
+      "w": 7.569444444444444,
+      "h": 7.638888888888888
+    },
+    "button-9034147e-8374-401b-a458-33d17b404a5d": {
+      "x": -55.763888888888886,
+      "y": -7.222222222222222,
+      "i": "button-9034147e-8374-401b-a458-33d17b404a5d",
+      "w": 9.722222222222221,
+      "h": 6.527777777777778
+    },
+    "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e": {
+      "x": 4.791666666666667,
+      "y": 21.527777777777782,
+      "i": "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e",
+      "w": 69.30555555555556,
+      "h": 37.638888888888886
+    },
+    "button-e0c26517-94b2-4078-b5da-29de00c4c6a5": {
+      "x": 5.138888888888888,
+      "y": 67.08333333333333,
+      "i": "button-e0c26517-94b2-4078-b5da-29de00c4c6a5",
+      "w": 22.36111111111111,
+      "h": 6.111111111111111
+    },
+    "image-a81603fe-db82-4d5b-adbd-4592ce48df6f": {
+      "x": 23.19444444444446,
+      "y": 123.75,
+      "i": "image-a81603fe-db82-4d5b-adbd-4592ce48df6f",
+      "w": 6.111111111111111,
+      "h": 5.6944444444444455
+    },
+    "inception-01b09be7-94cd-4006-950c-0f992641739b": {
+      "x": 20.97222222222222,
+      "y": 121.25,
+      "i": "inception-01b09be7-94cd-4006-950c-0f992641739b",
+      "w": 10.416666666666664,
+      "h": 10.416666666666671
+    },
+    "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915": {
+      "x": 65.69444444444446,
+      "y": 120.83333333333333,
+      "i": "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915",
+      "w": 10.34722222222222,
+      "h": 10.41666666666667
+    },
+    "image-d99c7903-4341-41b6-97df-75f36da16bc6": {
+      "x": 68.40277777777776,
+      "y": 124.02777777777777,
+      "i": "image-d99c7903-4341-41b6-97df-75f36da16bc6",
+      "w": 5,
+      "h": 5.000000000000002
+    },
+    "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea": {
+      "x": 19.86111111111111,
+      "y": 157.63888888888889,
+      "i": "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea",
+      "w": 10.34722222222222,
+      "h": 10.416666666666668
+    },
+    "image-69dd4877-5a25-49f2-a1dc-6188677da336": {
+      "x": 22.29166666666668,
+      "y": 160.41666666666666,
+      "i": "image-69dd4877-5a25-49f2-a1dc-6188677da336",
+      "w": 5.694444444444445,
+      "h": 5.277777777777779
+    },
+    "inception-3b6eced2-438f-4eea-890b-b46f77805e6c": {
+      "x": 67.29166666666667,
+      "y": 159.44444444444443,
+      "i": "inception-3b6eced2-438f-4eea-890b-b46f77805e6c",
+      "w": 10.34722222222222,
+      "h": 10.416666666666668
+    },
+    "image-547ee445-653b-4a56-8734-fb6eadfa278f": {
+      "x": 69.65277777777781,
+      "y": 161.80555555555563,
+      "i": "image-547ee445-653b-4a56-8734-fb6eadfa278f",
+      "w": 5.624999999999999,
+      "h": 5.694444444444445
+    },
+    "text-3d142160-c578-4875-b900-0aad28e93727": {
+      "x": 11.458333333333334,
+      "y": 134.72222222222223,
+      "i": "text-3d142160-c578-4875-b900-0aad28e93727",
+      "w": 29.65277777777778,
+      "h": 16.11111111111111
+    },
+    "text-fbce9c7b-6223-4184-9e2a-8ce074c02202": {
+      "x": 55,
+      "y": 134.30555555555551,
+      "i": "text-fbce9c7b-6223-4184-9e2a-8ce074c02202",
+      "w": 32.43055555555556,
+      "h": 16.11111111111111
+    },
+    "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77": {
+      "x": 10.000000000000007,
+      "y": 171.80555555555554,
+      "i": "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77",
+      "w": 31.458333333333332,
+      "h": 16.11111111111111
+    },
+    "text-631ca09d-181a-4a66-9988-d531309e8e00": {
+      "x": 57.013888888888886,
+      "y": 171.94444444444443,
+      "i": "text-631ca09d-181a-4a66-9988-d531309e8e00",
+      "w": 30.76388888888889,
+      "h": 15.694444444444445
+    },
+    "image-de95a6e7-8b0d-48f9-9a05-47473825c212": {
+      "x": 64.09722222222221,
+      "y": 212.22222222222223,
+      "i": "image-de95a6e7-8b0d-48f9-9a05-47473825c212",
+      "w": 28.750000000000004,
+      "h": 24.583333333333332
+    },
+    "text-9847ae8d-5523-40e1-8fea-299c4b8edf95": {
+      "x": 5.763888888888888,
+      "y": 204.02777777777777,
+      "i": "text-9847ae8d-5523-40e1-8fea-299c4b8edf95",
+      "w": 52.847222222222214,
+      "h": 40.416666666666664
+    },
+    "image-a47bb04d-c081-4ac1-a234-6a9b9e5bc643": {
+      "x": 4.791666666666667,
+      "y": 259.4444444444444,
+      "i": "image-a47bb04d-c081-4ac1-a234-6a9b9e5bc643",
+      "w": 26.666666666666664,
+      "h": 36.25
+    },
+    "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123": {
+      "x": 35.763888888888886,
+      "y": 262.91666666666663,
+      "i": "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123",
+      "w": 58.819444444444436,
+      "h": 30.833333333333332
+    },
+    "text-991a347d-2a85-4d90-b541-06de6ae39f2d": {
+      "x": 5.416666666666667,
+      "y": 322.3611111111111,
+      "i": "text-991a347d-2a85-4d90-b541-06de6ae39f2d",
+      "w": 55.06944444444444,
+      "h": 40.416666666666664
+    },
+    "image-237c8484-57b0-4c22-8587-e49fe48258ab": {
+      "x": 66.59722222222221,
+      "y": 322.0833333333333,
+      "i": "image-237c8484-57b0-4c22-8587-e49fe48258ab",
+      "w": 25.486111111111107,
+      "h": 35.83333333333334
+    },
+    "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf": {
+      "x": 0,
+      "y": 385.41666666666663,
+      "i": "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf",
+      "w": 100,
+      "h": 161.66666666666669
+    },
+    "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a": {
+      "x": 16.875,
+      "y": 392.63888888888886,
+      "i": "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a",
+      "w": 67.43055555555556,
+      "h": 12.777777777777777
+    },
+    "image-d3c39b00-60a6-41b2-a8ea-8257012376e7": {
+      "x": 11.875,
+      "y": 425.13888888888886,
+      "i": "image-d3c39b00-60a6-41b2-a8ea-8257012376e7",
+      "w": 23.125,
+      "h": 17.361111111111107
+    },
+    "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635": {
+      "x": 17.5,
+      "y": 410,
+      "i": "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635",
+      "w": 62.291666666666664,
+      "h": 7.5
+    },
+    "text-db61a595-b5c1-44e6-876c-1b40cb8f2186": {
+      "x": 42.56944444444444,
+      "y": 424.5833333333333,
+      "i": "text-db61a595-b5c1-44e6-876c-1b40cb8f2186",
+      "w": 40.83333333333333,
+      "h": 12.777777777777777
+    },
+    "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9": {
+      "x": 12.152777777777777,
+      "y": 453.6111111111111,
+      "i": "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9",
+      "w": 22.430555555555554,
+      "h": 18.055555555555554
+    },
+    "text-fddfce69-b55d-4bb1-b366-70731aa51588": {
+      "x": 42.083333333333336,
+      "y": 455.8333333333333,
+      "i": "text-fddfce69-b55d-4bb1-b366-70731aa51588",
+      "w": 41.04166666666667,
+      "h": 12.777777777777777
+    },
+    "text-9f4ad966-3401-43b6-a98b-f902c438f541": {
+      "x": 42.013888888888886,
+      "y": 483.47222222222246,
+      "i": "text-9f4ad966-3401-43b6-a98b-f902c438f541",
+      "w": 42.77777777777778,
+      "h": 12.777777777777777
+    },
+    "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": {
+      "x": 42.291666666666664,
+      "y": 514.7222222222225,
+      "i": "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452",
+      "w": 39.861111111111114,
+      "h": 12.777777777777777
+    },
+    "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": {
+      "x": 12.5,
+      "y": 511.8055555555555,
+      "i": "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e",
+      "w": 23.263888888888886,
+      "h": 18.33333333333333
+    },
+    "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": {
+      "x": 12.291666666666666,
+      "y": 482.638888888889,
+      "i": "image-eac3265d-62d1-460a-b6e3-6517a40b66cf",
+      "w": 22.708333333333332,
+      "h": 16.666666666666664
+    },
+    "image-e330a00a-c35f-4a55-95bf-e2944099650f": {
+      "x": 45.208333333333314,
+      "y": 758.4722222222222,
+      "i": "image-e330a00a-c35f-4a55-95bf-e2944099650f",
+      "w": 8.472222222222221,
+      "h": 8.75
+    },
+    "text-1bae267a-dc3b-4655-afab-973f30cde3a6": {
+      "x": 26.527777777777786,
+      "y": 558.3333333333334,
+      "i": "text-1bae267a-dc3b-4655-afab-973f30cde3a6",
+      "w": 48.68055555555556,
+      "h": 11.805555555555555
+    },
+    "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": {
+      "x": 17.77777777777778,
+      "y": 579.3055555555555,
+      "i": "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc",
+      "w": 65.90277777777777,
+      "h": 45.97222222222222
+    },
+    "image-18e2e7f0-0348-4229-aad0-e5983d029e36": {
+      "x": 43.888888888888886,
+      "y": 581.3888888888889,
+      "i": "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
+      "w": 13.819444444444443,
+      "h": 13.88888888888889
+    },
+    "text-8fdfe777-d3a8-4d79-b650-31f572c3a003": {
+      "x": 22.847222222222214,
+      "y": 598.1944444444445,
+      "i": "text-8fdfe777-d3a8-4d79-b650-31f572c3a003",
+      "w": 55.83333333333333,
+      "h": 21.38888888888889
+    },
+    "inception-63adbfb8-5280-40d2-89cd-d13ababdffea": {
+      "x": 18.819444444444443,
+      "y": 690.2777777777777,
+      "i": "inception-63adbfb8-5280-40d2-89cd-d13ababdffea",
+      "w": 65.34722222222223,
+      "h": 43.88888888888889
+    },
+    "image-70ae8b11-cd18-4471-8efa-12d59983bb15": {
+      "x": 44.65277777777778,
+      "y": 692.6388888888889,
+      "i": "image-70ae8b11-cd18-4471-8efa-12d59983bb15",
+      "w": 13.819444444444443,
+      "h": 13.88888888888889
+    },
+    "text-da283e81-d095-4802-9c30-69c424730aa8": {
+      "x": 21.250000000000004,
+      "y": 708.3333333333334,
+      "i": "text-da283e81-d095-4802-9c30-69c424730aa8",
+      "w": 60,
+      "h": 21.38888888888889
+    },
+    "inception-196daa14-af2f-4bff-8554-6798af2bc52a": {
+      "x": 18.680555555555546,
+      "y": 635.2777777777777,
+      "i": "inception-196daa14-af2f-4bff-8554-6798af2bc52a",
+      "w": 65.34722222222221,
+      "h": 43.47222222222222
+    },
+    "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0": {
+      "x": 44.79166666666664,
+      "y": 637.6388888888889,
+      "i": "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0",
+      "w": 13.819444444444443,
+      "h": 13.88888888888889
+    },
+    "text-d8c625e8-0af4-4b56-a063-d2107b8342a4": {
+      "x": 22.63888888888885,
+      "y": 654.1666666666666,
+      "i": "text-d8c625e8-0af4-4b56-a063-d2107b8342a4",
+      "w": 59.02777777777777,
+      "h": 21.38888888888889
+    },
+    "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17": {
+      "x": 14.861111111111095,
+      "y": 772.0833333333333,
+      "i": "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17",
+      "w": 69.30555555555556,
+      "h": 21.52777777777778
+    },
+    "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374": {
+      "x": 40.97222222222222,
+      "y": 796.6666666666666,
+      "i": "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374",
+      "w": 19.09722222222222,
+      "h": 6.527777777777777
+    },
+    "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0": {
+      "x": 0,
+      "y": 753.75,
+      "i": "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0",
+      "w": 100,
+      "h": 69.58333333333333
+    }
+  },
+  "mobileHierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-01b09be7-94cd-4006-950c-0f992641739b": [
+      "image-a81603fe-db82-4d5b-adbd-4592ce48df6f"
+    ],
+    "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915": [
+      "image-d99c7903-4341-41b6-97df-75f36da16bc6"
+    ],
+    "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea": [
+      "image-69dd4877-5a25-49f2-a1dc-6188677da336"
+    ],
+    "inception-3b6eced2-438f-4eea-890b-b46f77805e6c": [
+      "image-547ee445-653b-4a56-8734-fb6eadfa278f"
+    ],
+    "text-fbce9c7b-6223-4184-9e2a-8ce074c02202": [],
+    "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77": [],
+    "text-631ca09d-181a-4a66-9988-d531309e8e00": [],
+    "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123": [],
+    "text-991a347d-2a85-4d90-b541-06de6ae39f2d": [],
+    "image-237c8484-57b0-4c22-8587-e49fe48258ab": [],
+    "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf": [
+      "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a",
+      "image-d3c39b00-60a6-41b2-a8ea-8257012376e7",
+      "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635",
+      "text-db61a595-b5c1-44e6-876c-1b40cb8f2186",
+      "image-414680b2-20f3-4ad6-a9d5-2f586e1d0f60",
+      "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9",
+      "text-fddfce69-b55d-4bb1-b366-70731aa51588",
+      "image-25a3d6ea-00d6-4ab3-b6d0-ba904566c840",
+      "text-9f4ad966-3401-43b6-a98b-f902c438f541",
+      "image-5a8c1470-f95e-434c-bd22-f336a2fa6525",
+      "text-b785eb27-518f-4868-a4bd-615e01737013",
+      "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452",
+      "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e",
+      "image-eac3265d-62d1-460a-b6e3-6517a40b66cf"
+    ],
+    "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9": [],
+    "text-fddfce69-b55d-4bb1-b366-70731aa51588": [],
+    "text-9f4ad966-3401-43b6-a98b-f902c438f541": [],
+    "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": [],
+    "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": [],
+    "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": [],
+    "image-e330a00a-c35f-4a55-95bf-e2944099650f": [],
+    "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": [
+      "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
+      "text-8fdfe777-d3a8-4d79-b650-31f572c3a003"
+    ],
+    "inception-63adbfb8-5280-40d2-89cd-d13ababdffea": [
+      "image-70ae8b11-cd18-4471-8efa-12d59983bb15",
+      "text-da283e81-d095-4802-9c30-69c424730aa8"
+    ],
+    "inception-196daa14-af2f-4bff-8554-6798af2bc52a": [
+      "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0",
+      "text-d8c625e8-0af4-4b56-a063-d2107b8342a4"
+    ],
+    "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0": [
+      "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374",
+      "image-e330a00a-c35f-4a55-95bf-e2944099650f",
+      "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17"
+    ]
+  },
+  "mobileEditedBlocks": [
+    "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6",
+    "image-077601f5-bbc2-46af-b31d-034659b08e10",
+    "button-9034147e-8374-401b-a458-33d17b404a5d",
+    "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e",
+    "button-e0c26517-94b2-4078-b5da-29de00c4c6a5",
+    "image-ee3cd434-0398-4804-b282-f64f8ec27841",
+    "text-70e3a88c-ae6e-4f33-af87-4bdcd6a2aa77",
+    "image-69dd4877-5a25-49f2-a1dc-6188677da336",
+    "inception-b31c157d-a6c8-49f1-9390-12f32e1b85ea",
+    "text-631ca09d-181a-4a66-9988-d531309e8e00",
+    "inception-3b6eced2-438f-4eea-890b-b46f77805e6c",
+    "inception-a6d92aa9-587d-4ff9-9dce-6de483f7c915",
+    "image-d99c7903-4341-41b6-97df-75f36da16bc6",
+    "text-fbce9c7b-6223-4184-9e2a-8ce074c02202",
+    "inception-01b09be7-94cd-4006-950c-0f992641739b",
+    "image-a81603fe-db82-4d5b-adbd-4592ce48df6f",
+    "text-3d142160-c578-4875-b900-0aad28e93727",
+    "image-547ee445-653b-4a56-8734-fb6eadfa278f",
+    "text-f5bf0b28-8dee-4dc5-a360-6b3a9e077123",
+    "image-a47bb04d-c081-4ac1-a234-6a9b9e5bc643",
+    "image-de95a6e7-8b0d-48f9-9a05-47473825c212",
+    "text-9847ae8d-5523-40e1-8fea-299c4b8edf95",
+    "text-991a347d-2a85-4d90-b541-06de6ae39f2d",
+    "image-237c8484-57b0-4c22-8587-e49fe48258ab",
+    "inception-cbebcc83-f3b5-4e29-afb6-6337cdc9decf",
+    "text-6bf59f07-7473-4ea9-95bd-63eaccc2934a",
+    "text-4663b8b0-0c1b-4daa-84bc-8a0885c3f635",
+    "text-1bae267a-dc3b-4655-afab-973f30cde3a6",
+    "image-d3c39b00-60a6-41b2-a8ea-8257012376e7",
+    "text-db61a595-b5c1-44e6-876c-1b40cb8f2186",
+    "image-dd42b5b1-47fa-489b-9432-b2001dd8a0b9",
+    "text-fddfce69-b55d-4bb1-b366-70731aa51588",
+    "image-eac3265d-62d1-460a-b6e3-6517a40b66cf",
+    "text-9f4ad966-3401-43b6-a98b-f902c438f541",
+    "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e",
+    "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452",
+    "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc",
+    "inception-63adbfb8-5280-40d2-89cd-d13ababdffea",
+    "text-8fdfe777-d3a8-4d79-b650-31f572c3a003",
+    "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
+    "inception-196daa14-af2f-4bff-8554-6798af2bc52a",
+    "text-d8c625e8-0af4-4b56-a063-d2107b8342a4",
+    "image-dd1eb48e-c8ca-4eb9-8fbb-81cb2288bfa0",
+    "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0",
+    "text-da283e81-d095-4802-9c30-69c424730aa8",
+    "image-70ae8b11-cd18-4471-8efa-12d59983bb15",
+    "image-e330a00a-c35f-4a55-95bf-e2944099650f",
+    "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17",
+    "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374"
+  ]
+}

@@ -8,8 +8,8 @@ import LogoSvg from '../../assets/logo'
 
 const TEMPLATES = [
   {
-    id: 'portfolio-brands-black',
-    imageUrl: '/portfolio-brands-black.jpg',
+    id: 'landing-page-3d-monkeyflow',
+    imageUrl: '/landing-page-3d-monkeyflow.jpg',
     tags: [],
   },
   {
@@ -30,6 +30,11 @@ const TEMPLATES = [
   {
     id: 'portfolio-storytelling-sasha',
     imageUrl: '/portfolio-storytelling-sasha.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-brands-black',
+    imageUrl: '/portfolio-brands-black.jpg',
     tags: [],
   },
 ]
