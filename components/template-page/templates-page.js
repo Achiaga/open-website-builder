@@ -7,11 +7,36 @@ import Template from './template-layout'
 import LogoSvg from '../../assets/logo'
 
 const TEMPLATES = [
-  { id: 'template1', imageUrl: '/template1.jpg', tags: [] },
-  { id: 'template4', imageUrl: '/template4.jpg', tags: [] },
-  { id: 'template5', imageUrl: '/template5.jpg', tags: [] },
-  { id: 'template2', imageUrl: '/template2.jpg', tags: [] },
-  { id: 'template3', imageUrl: '/template3.jpg', tags: [] },
+  {
+    id: 'landing-page-3d-monkeyflow',
+    imageUrl: '/landing-page-3d-monkeyflow.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-designer-tara',
+    imageUrl: '/portfolio-designer-tara.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-product-desgner-john',
+    imageUrl: '/portfolio-product-desgner-john.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-fullstack-developer-johndoe',
+    imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-storytelling-sasha',
+    imageUrl: '/portfolio-storytelling-sasha.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-brands-black',
+    imageUrl: '/portfolio-brands-black.jpg',
+    tags: [],
+  },
 ]
 
 const TemplatePage = () => {

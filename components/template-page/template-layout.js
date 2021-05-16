@@ -1,9 +1,10 @@
-import { Box, Button, Spinner } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
-import Image from 'next/image'
-import Link from 'next/link'
-import { removeLocalData } from '../../builder/web-builder/helpers'
 import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import PropTypes from 'prop-types'
+import { Box, Button, Spinner } from '@chakra-ui/react'
+import { removeLocalData } from '../../builder/web-builder/helpers'
+import { event } from '../../utils/analytics'
 
 const CustomButton = ({ colorScheme, children }) => {
   return (
@@ -25,6 +26,24 @@ const Template = ({ templateInfo }) => {
   function handleSelectTemplate() {
     removeLocalData()
   }
+
+  function editTemplate() {
+    setSelected(true)
+    event({
+      action: 'edit_template',
+      category: 'templates',
+      label: templateInfo.id,
+    })
+  }
+
+  function previewTemplate() {
+    event({
+      action: 'preview_template',
+      category: 'templates',
+      label: templateInfo.id,
+    })
+  }
+
   return (
     <Box
       w="100%"
@@ -56,18 +75,20 @@ const Template = ({ templateInfo }) => {
           _groupHover={{ display: 'flex' }}
           onClick={handleSelectTemplate}
         >
-          <Link href={`/builder?template=${templateInfo.id}`} passHref>
-            <a>
-              <CustomButton onClick={() => setSelected(true)}>
-                {selected ? <Spinner /> : 'Select'}
-              </CustomButton>
-            </a>
-          </Link>
-          <Link href={`/preview/template/${templateInfo.id}`} passHref>
-            <a target="_blank">
-              <CustomButton colorScheme="gray"> Preview</CustomButton>
-            </a>
-          </Link>
+          <div onClick={editTemplate}>
+            <Link href={`/builder?template=${templateInfo.id}`} passHref>
+              <a>
+                <CustomButton>{selected ? <Spinner /> : 'Select'}</CustomButton>
+              </a>
+            </Link>
+          </div>
+          <div onClick={previewTemplate}>
+            <Link href={`/preview/template/${templateInfo.id}`} passHref>
+              <a target="_blank">
+                <CustomButton colorScheme="gray"> Preview</CustomButton>
+              </a>
+            </Link>
+          </div>
         </Box>
       </Box>
       <Box>
