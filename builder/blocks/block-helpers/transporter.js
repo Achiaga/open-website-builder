@@ -46,3 +46,9 @@ export const addDomain = (domain, projectId) => {
 export const requestDomainStatus = (domain) => {
   return apiCall('/api/domain', { domain, key: 'check' })
 }
+export const requestSubDomainAvailability = (subdomain, projectId) => {
+  return apiCall('/api/db', {
+    data: { subdomain, projectId },
+    type: 'subdomain-availability',
+  })
+}
