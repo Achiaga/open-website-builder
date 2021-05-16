@@ -59,7 +59,7 @@ const handleSingup = (user) => async (dispatch) => {
     user,
     builderData,
   })
-  const userData = { user_email, user_id, websiteId: _id }
+  const userData = { user_email, userId: user_id, projectId: _id, publish }
   dispatch(updateInitialState({ resume_data, publish, userData }))
   dispatch(setAccountCreated(true))
 }
@@ -69,28 +69,29 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
   const dbData = await getUserData(user, template)
   const { resume_data, publish, _id, domain, subdomain } = dbData || {}
   const userData = {
-    user_email: user.email,
-    user_id: user.sub,
+    userEmail: user.email,
+    userId: user.sub,
     domain,
     subdomain,
-  }
-  if (templates[template] && resume_data) {
-    batch(() => {
-      dispatch(
-        setTempDBData({ resume_data, publish, userData, domain, subdomain })
-      )
-      dispatch(loadInitialDataNoAccount(template))
-    })
-    return
+    projectId: _id,
+    publish,
   }
   if (!resume_data) {
     batch(() => {
       dispatch(loadInitialDataNoAccount(template))
       dispatch(setUserData(userData))
     })
+  } else if (templates[template] && resume_data) {
+    batch(() => {
+      dispatch(setTempDBData({ resume_data }))
+      dispatch(loadInitialDataNoAccount(template))
+      dispatch(setUserData(userData))
+    })
   } else {
-    userData['websiteId'] = _id
-    dispatch(updateInitialState({ resume_data, publish, userData, domain }))
+    batch(() => {
+      dispatch(updateInitialState({ resume_data }))
+      dispatch(setUserData(userData))
+    })
   }
   dispatch(setLoadingData(false))
 }
@@ -110,14 +111,28 @@ export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
     getUserDataFromLS(),
   ])
   if (!dbData) return dispatch(loadInitialDataNoAccount())
-  const { resume_data, user_id, user_email, publish, _id } = dbData || {}
-  const userData = { user_email, user_id, websiteId: _id }
-  if (!_.isEqual(LSData, resume_data)) {
-    dispatch(setTempDBData({ resume_data, publish, userData }))
-    dispatch(loadInitialDataNoAccount())
-    return
+  const { resume_data, user_id, user_email, publish, _id, subdomain, domain } =
+    dbData || {}
+  const userData = {
+    user_email,
+    userId: user_id,
+    projectId: _id,
+    subdomain,
+    domain,
+    publish,
   }
-  dispatch(updateInitialState({ resume_data, publish, userData }))
+  if (!_.isEqual(LSData, resume_data)) {
+    batch(() => {
+      dispatch(setTempDBData({ resume_data, publish, userData }))
+      dispatch(loadInitialDataNoAccount())
+      dispatch(setUserData(userData))
+    })
+  } else {
+    batch(() => {
+      dispatch(setUserData(userData))
+      dispatch(updateInitialState({ resume_data, publish, userData }))
+    })
+  }
 }
 
 export const handleLoginCallback = (user) => async (dispatch) => {

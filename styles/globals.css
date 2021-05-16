@@ -16,10 +16,7 @@ a {
 * {
   box-sizing: border-box;
 }
-/* Do not remove this is for the builder */
-.react-grid-item.cssTransforms {
-  transition-property: none !important;
-}
+
 .textStyles blockquote {
   border-left: 4px solid #ccc;
   margin-bottom: 5px;
@@ -149,33 +146,3 @@ a {
     font-size: 13px;
   }
 }
-/* @media (max-width: 800px) {
-  .mobile {
-    display: grid !important;
-    grid-template-rows: repeat(auto-fill, 5px);
-  }
-  .desktop {
-    display: none !important;
-    font-size: 13px;
-  }
-}
-@media (max-width: 500px) {
-  .mobile {
-    display: grid !important;
-    grid-template-rows: repeat(auto-fill, 6px);
-  }
-  .desktop {
-    display: none !important;
-    font-size: 13px;
-  }
-}
-@media (max-width: 300px) {
-  .mobile {
-    display: grid !important;
-    grid-template-rows: repeat(auto-fill, 7px);
-  }
-  .desktop {
-    display: none !important;
-    font-size: 13px;
-  }
-} */

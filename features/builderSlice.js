@@ -64,7 +64,7 @@ export const builderSlice = createSlice({
       state.user = action.payload
     },
     setWebsiteId: (state, action) => {
-      state.user.websiteId = action.payload
+      state.user.projectId = action.payload
     },
     setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
@@ -393,7 +393,7 @@ export function denormalizeBuilderData(data) {
   return deNormalizedData
 }
 
-export const publishWebsite = (user) => async (dispatch, getState) => {
+export const publishWebsite = () => async (dispatch, getState) => {
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const { domain } = userData
@@ -405,38 +405,39 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
     await uploadFileToS3(staticSiteCode, domain)
     dispatch(setPublishStatus('loading'))
   }
-  const websiteId = getWebsiteId(getState())
-  const res = await saveData({ user, builderData, publish: true })
+  console.log({ userData, state: getState() })
+  await saveData({ ...userData, builderData, publish: true })
   batch(() => {
-    !websiteId && dispatch(setWebsiteId(res._id))
     dispatch(setPublishStatus('success'))
   })
 }
 
-export const saveWebsite = (user) => async (dispatch, getState) => {
+export const saveWebsite = () => async (dispatch, getState) => {
   dispatch(setSaveStatus('loading'))
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
-  const projectId = getWebsiteId(getState())
   const userData = getUserData(getState())
-  const res = await saveData({ user, builderData, projectId })
+  const res = await saveData({ builderData, ...userData })
   const updatedUserData = {
     isPublish: res.publish,
-    user_email: res.user_email,
-    user_id: res.user_id,
-    websiteId: res._id || userData?.websiteId,
+    projectId: res._id || userData?.projectId,
   }
   batch(() => {
-    dispatch(setUserData(updatedUserData))
+    dispatch(setUserData({ ...userData, ...updatedUserData }))
     dispatch(setSaveStatus('success'))
   })
 }
 
 export const keepTemplate = () => async (dispatch, getState) => {
   const builderData = getBuilderData(getState())
-  const { publish, userData } = getTempDBData(getState())
+  const userData = getUserData(getState())
   await saveData({
     builderData,
-    user: { sub: userData.user_id, email: userData.user_email, publish },
+    user: {
+      sub: userData.userId,
+      email: userData.userEmail,
+    },
+    publish: userData.publish,
+    projectId: userData.projectId,
   })
   dispatch(setSaveStatus('null'))
   dispatch(setTempDBData(null))
@@ -683,8 +684,8 @@ export const getBuilderData = (state) => state.builder.builderData
 export const getHasBuilderData = (state) => !!state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
-export const getUserId = (state) => state.builder.user.user_id
-export const getWebsiteId = (state) => state.builder.user?.websiteId
+export const getUserId = (state) => state.builder.user.userId
+export const getWebsiteId = (state) => state.builder.user?.projectId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   // if (getBuilderDevice(state) === 'mobile') {

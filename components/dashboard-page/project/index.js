@@ -38,7 +38,7 @@ const ProjectCard = ({ project }) => {
         w="100%"
       >
         <Text as="p">{project._id}</Text>
-        {isPublished && (
+        {isPublished ? (
           <Tag
             size={'md'}
             borderRadius="full"
@@ -46,6 +46,15 @@ const ProjectCard = ({ project }) => {
             colorScheme="green"
           >
             Published
+          </Tag>
+        ) : (
+          <Tag
+            size={'md'}
+            borderRadius="full"
+            variant="solid"
+            colorScheme="gray"
+          >
+            No Published
           </Tag>
         )}
         <Box>

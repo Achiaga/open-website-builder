@@ -32,7 +32,7 @@ function getFontSize(windowWidth) {
   return 10
 }
 
-export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
+export const ResumeWebsite = ({ userBlocksData, projectId }) => {
   const [windowWidth, setWindowWidth] = useState(1440)
 
   function handleWindowResize() {
@@ -52,7 +52,7 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
 
   return (
     <BlocksContext.Provider
-      value={{ builder: userBlocksData, rowHeight, mobileRowHeight, websiteId }}
+      value={{ builder: userBlocksData, rowHeight, mobileRowHeight, projectId }}
     >
       <div>
         <div

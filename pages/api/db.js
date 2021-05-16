@@ -20,7 +20,7 @@ async function updateWebsiteData(data, res) {
 
     const updateDoc = {
       $set: {
-        user_id: data.user_id,
+        user_id: data.userId,
         resume_data: data.resume_data,
       },
     }
@@ -77,9 +77,9 @@ async function getUserData(userId, res) {
     respondAPIQuery(res, { error })
   }
 }
-export async function requestWebsiteData(websiteId, res) {
+export async function requestWebsiteData(projectId, res) {
   try {
-    const websiteData = await getWebsiteData(websiteId)
+    const websiteData = await getWebsiteData(projectId)
     respondAPIQuery(res, websiteData)
   } catch (error) {
     console.error('requestWebsiteData', error)
@@ -87,21 +87,21 @@ export async function requestWebsiteData(websiteId, res) {
   }
 }
 
-export async function getWebsiteData(websiteId) {
-  if (!websiteId) return {}
+export async function getWebsiteData(projectId) {
+  if (!projectId) return {}
   const client = await getDBCredentials()
   try {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
     const userData = await websiteCollection.findOne({
-      _id: ObjectId(websiteId),
+      _id: ObjectId(projectId),
     })
     const websiteData = userData.resume_data
     await client.close()
     return { websiteData, isPublish: userData.publish }
   } catch (err) {
-    console.error('getWebsiteData error', websiteId, err)
+    console.error('getWebsiteData error', projectId, err)
     await client.close()
   }
 }
@@ -177,7 +177,7 @@ export async function requestUserData(userId, res) {
     respondAPIQuery(res, { error })
   }
 }
-export async function getUserDataFromWebsiteId(websiteId) {
+export async function getUserDataFromWebsiteId(projectId) {
   try {
     const client = await getDBCredentials()
     try {
@@ -185,7 +185,7 @@ export async function getUserDataFromWebsiteId(websiteId) {
       const database = client.db(process?.env?.DB_NAME)
       const websiteCollection = database.collection(process.env.DB_COLLECTION)
       const cusrosUserData = await websiteCollection.find({
-        _id: ObjectId(websiteId),
+        _id: ObjectId(projectId),
       })
       const data = await cusrosUserData.toArray()
       await client.close()

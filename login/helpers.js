@@ -7,8 +7,8 @@ export async function saveData({
   projectId,
 }) {
   const userData = {
-    user_id: user?.sub,
-    user_email: user?.email,
+    userId: user?.sub,
+    userEmail: user?.email,
     resume_data: builderData,
     publish: publish,
     projectId,
