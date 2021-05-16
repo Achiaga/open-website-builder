@@ -2,12 +2,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Text, Button, Spinner } from '@chakra-ui/react'
+import { Box, Text, Button, Spinner, Tag } from '@chakra-ui/react'
 
 import { removeProject } from '../../../features/userSlice'
 import { getUserProjects } from '../../../features/userSlice'
 import DomainsWrapper from './domains'
-import Subdomain from './subdomain'
+import SubdomainWrapper from './subdomain'
 
 const ProjectCard = ({ project }) => {
   const { user } = useUser()
@@ -39,9 +39,14 @@ const ProjectCard = ({ project }) => {
       >
         <Text as="p">{project._id}</Text>
         {isPublished && (
-          <Box bg="green.500" px="0.5rem" borderRadius="1rem" color="gray.600">
+          <Tag
+            size={'md'}
+            borderRadius="full"
+            variant="solid"
+            colorScheme="green"
+          >
             Published
-          </Box>
+          </Tag>
         )}
         <Box>
           <Link href="/builder" passHref>
@@ -65,7 +70,10 @@ const ProjectCard = ({ project }) => {
           </Button>
         </Box>
       </Box>
-      <Subdomain projectId={project._id} />
+      <SubdomainWrapper
+        projectId={project._id}
+        actualSubdomain={project.subdomain}
+      />
       <DomainsWrapper domain={project.domain} projectId={project._id} />
     </Box>
   )

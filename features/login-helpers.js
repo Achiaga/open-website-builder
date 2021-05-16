@@ -67,11 +67,18 @@ const handleSingup = (user) => async (dispatch) => {
 export const loadDataFromDB = (user, template) => async (dispatch) => {
   dispatch(setLoadingData(true))
   const dbData = await getUserData(user, template)
-  const { resume_data, publish, _id, domain } = dbData || {}
-  const userData = { user_email: user.email, user_id: user.sub, domain }
+  const { resume_data, publish, _id, domain, subdomain } = dbData || {}
+  const userData = {
+    user_email: user.email,
+    user_id: user.sub,
+    domain,
+    subdomain,
+  }
   if (templates[template] && resume_data) {
     batch(() => {
-      dispatch(setTempDBData({ resume_data, publish, userData, domain }))
+      dispatch(
+        setTempDBData({ resume_data, publish, userData, domain, subdomain })
+      )
       dispatch(loadInitialDataNoAccount(template))
     })
     return
