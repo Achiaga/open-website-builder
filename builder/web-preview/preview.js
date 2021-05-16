@@ -6,6 +6,7 @@ import { GRID_COLUMNS } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
 
 import { GeneratePreviewBlock } from './helpers'
+import { MobileWindowWidth } from '../web-builder/web-builder'
 
 export const BlocksContext = createContext()
 
@@ -27,9 +28,7 @@ export const { MediaContextProvider, Media } = createMedia({
 })
 
 function getFontSize(windowWidth) {
-  if (windowWidth >= 1200) return 13
-  if (windowWidth >= 1100) return 10
-  if (windowWidth > 600 && windowWidth < 1000) return 13
+  if (windowWidth >= 1100) return 13
   return 10
 }
 
@@ -47,13 +46,13 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
   }, [])
 
   const rowHeight = windowWidth / GRID_COLUMNS
-  const mobileRowHeight = 400 / (GRID_COLUMNS / 2)
+  const mobileRowHeight = windowWidth / 100
   const fontSize = getFontSize(windowWidth)
-  const mobileFont = getFontSize(400)
+  const mobileFont = getFontSize(MobileWindowWidth)
 
   return (
     <BlocksContext.Provider
-      value={{ builder: userBlocksData, rowHeight, websiteId }}
+      value={{ builder: userBlocksData, rowHeight, mobileRowHeight, websiteId }}
     >
       <div>
         <div
@@ -61,7 +60,7 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
           style={{
             display: 'grid',
             overflowX: 'hidden',
-            gridTemplateColumns: `repeat(${GRID_COLUMNS / 2}, 1fr)`,
+            gridTemplateColumns: `repeat(100, 1fr)`,
             gridTemplateRows: `repeat( auto-fill,  ${mobileRowHeight}px )`,
             height:
               (getPageRows(userBlocksData.mobileLayout) - 1) * mobileRowHeight,

@@ -27,6 +27,7 @@ import { saveData } from '../login/helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
 import { uploadFileToS3 } from '../builder/blocks/block-helpers/transporter'
+import { MobileWindowWidth } from '../builder/web-builder/web-builder'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -548,7 +549,7 @@ export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   const gridRowHeight = getGridRowHeight(getState())
   const isMobile = getIsMobileBuilder(getState())
   const gridsWidth = isMobile ? 100 : GRID_COLUMNS
-  const windowWidth = isMobile ? 400 : window?.innerWidth
+  const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
   const gridColumnWidth = windowWidth / gridsWidth
   const newX = blockPos.x / gridColumnWidth
   const newY = blockPos.y / gridRowHeight
@@ -578,7 +579,7 @@ export const handleResizeStop =
     const gridRowHeight = getGridRowHeight(getState())
     const isMobile = getIsMobileBuilder(getState())
     const gridsWidth = isMobile ? 100 : GRID_COLUMNS
-    const windowWidth = isMobile ? 400 : window?.innerWidth
+    const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
     const gridColumnWidth = windowWidth / gridsWidth
     let width = blockLayout.w + delta.width / gridColumnWidth
 

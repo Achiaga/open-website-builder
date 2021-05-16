@@ -29,7 +29,7 @@ export function GeneratePreviewBlock({ layoutItem }) {
       key={i}
       style={{
         gridColumn: `${Math.round(x) + 1} /  span ${Math.round(w)}`,
-        gridRow: `${Math.round(y) + 1} / span ${Math.round(h)}`,
+        gridRow: `${Math.round(y) + 1} /  span ${Math.round(h)}  `,
         border: data?.border,
         boxShadow: data?.boxShadow,
         borderRadius: data?.borderRadius,

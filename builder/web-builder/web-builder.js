@@ -228,6 +228,8 @@ GridLayoutWrapper.propTypes = {
   children: PropTypes.any,
 }
 
+export const MobileWindowWidth = 375
+
 const WebBuilder = () => {
   const dispatch = useDispatch()
 
@@ -238,9 +240,10 @@ const WebBuilder = () => {
   const lastHoveredEl = useRef()
   const gridRowHeight = useSelector(getGridRowHeight)
   const isMobile = useSelector(getIsMobileBuilder)
-  const windowWidth = isMobile ? 400 : window?.innerWidth
+  const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
   const columns = isMobile ? GRID_COLUMNS / 2 : GRID_COLUMNS
   const gridColumnWidth = windowWidth / columns
+
   useEffect(() => {
     handleWindowResize()
     window.addEventListener('resize', handleWindowResize)
