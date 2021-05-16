@@ -37,6 +37,11 @@ const TEMPLATES = [
     imageUrl: '/portfolio-brands-black.jpg',
     tags: [],
   },
+  {
+    id: 'empty',
+    imageUrl: '/empty.jpg',
+    tags: [],
+  },
 ]
 
 const TemplatePage = () => {

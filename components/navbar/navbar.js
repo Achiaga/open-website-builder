@@ -24,7 +24,7 @@ const LoginButton = ({ color }) => {
   )
 }
 
-const noUserAccess = ['/blog']
+const noUserAccess = ['/blog', '/guides']
 
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
@@ -98,6 +98,22 @@ const Navbar = ({ isSticky = true, color }) => {
           id="pricing"
           fontSize="sm"
         />
+        {/* <NavButton
+          display={['none', 'block']}
+          content="Blog"
+          redirect="/blog"
+          color={color || 'gray.500'}
+          id="blog"
+          fontSize="sm"
+        />
+        <NavButton
+          display={['none', 'block']}
+          content="Guides"
+          redirect="/guides"
+          color={color || 'gray.500'}
+          id="guide"
+          fontSize="sm"
+        /> */}
       </Flex>
       <Flex
         pos="relative"
