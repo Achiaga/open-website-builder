@@ -23,11 +23,11 @@ import {
   updateInitialState,
   normalizeBuilderData,
 } from './login-helpers'
-import { saveData } from '../login/helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
 import { uploadFileToS3 } from '../builder/blocks/block-helpers/transporter'
 import { MobileWindowWidth } from '../builder/web-builder/web-builder'
+import { requestSaveWebsite } from '../utils/user-data'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -405,49 +405,50 @@ export const publishWebsite = () => async (dispatch, getState) => {
     await uploadFileToS3(staticSiteCode, domain)
     dispatch(setPublishStatus('loading'))
   }
-  console.log({ userData, state: getState() })
-  await saveData({ ...userData, builderData, publish: true })
-  batch(() => {
-    dispatch(setPublishStatus('success'))
-  })
+  await dispatch(saveData(true))
 }
 
-export const saveWebsite = () => async (dispatch, getState) => {
+export const saveData = (publish) => async (dispatch, getState) => {
   dispatch(setSaveStatus('loading'))
-  const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const userData = getUserData(getState())
-  const res = await saveData({ builderData, ...userData })
-  const updatedUserData = {
-    isPublish: res.publish,
-    projectId: res._id || userData?.projectId,
-  }
+  const builderData = denormalizeBuilderData(getBuilderData(getState()))
+  const res = await requestSaveWebsite({
+    resume_data: builderData,
+    ...userData,
+  })
+  const projectId = res?.upsertedId?._id
+
   batch(() => {
-    dispatch(setUserData({ ...userData, ...updatedUserData }))
+    dispatch(
+      setUserData({
+        ...userData,
+        ...(projectId ? { projectId: projectId } : {}),
+        isPublish: publish,
+      })
+    )
+    publish && dispatch(setPublishStatus('success'))
     dispatch(setSaveStatus('success'))
+    dispatch(setLoadingData(false))
   })
 }
 
-export const keepTemplate = () => async (dispatch, getState) => {
-  const builderData = getBuilderData(getState())
-  const userData = getUserData(getState())
-  await saveData({
-    builderData,
-    user: {
-      sub: userData.userId,
-      email: userData.userEmail,
-    },
-    publish: userData.publish,
-    projectId: userData.projectId,
+export const saveWebsite = () => async (dispatch) => {
+  batch(() => {
+    dispatch(saveData())
   })
-  dispatch(setSaveStatus('null'))
+}
+
+export const keepTemplate = () => async (dispatch) => {
+  dispatch(saveData())
   dispatch(setTempDBData(null))
-  dispatch(setLoadingData(false))
 }
 export const keepDBData = () => (dispatch, getState) => {
   const tempInitialData = getTempDBData(getState())
-  dispatch(updateInitialState(tempInitialData))
-  dispatch(setTempDBData(null))
-  dispatch(setLoadingData(false))
+  batch(() => {
+    dispatch(updateInitialState(tempInitialData))
+    dispatch(setTempDBData(null))
+    dispatch(setLoadingData(false))
+  })
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
   batch(() => {

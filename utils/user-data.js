@@ -7,7 +7,7 @@ export const request = (type, data) => {
   })
 }
 
-export const saveWebsite = (data) => {
+export const requestSaveWebsite = (data) => {
   try {
     return request('save', data)
   } catch (err) {

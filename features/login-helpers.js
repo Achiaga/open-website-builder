@@ -8,9 +8,9 @@ import {
   setAccountCreated,
   setTempDBData,
   setLoadingData,
+  saveData,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
-import { saveData } from '../login/helpers'
 import { getUserDataById } from '../utils/user-data'
 
 async function getUserData(user) {
@@ -53,14 +53,11 @@ const isLogin = (user) => {
   return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }
 
-const handleSingup = (user) => async (dispatch) => {
+const handleSignup = (user) => async (dispatch) => {
   const builderData = await getUserDataFromLS()
-  const { resume_data, user_id, user_email, publish, _id } = await saveData({
-    user,
-    builderData,
-  })
-  const userData = { user_email, userId: user_id, projectId: _id, publish }
-  dispatch(updateInitialState({ resume_data, publish, userData }))
+  dispatch(saveData())
+  // const userData = { user_email, userId: user_id, projectId: _id, publish }
+  // dispatch(updateInitialState({ resume_data, publish, userData }))
   dispatch(setAccountCreated(true))
 }
 
@@ -139,6 +136,6 @@ export const handleLoginCallback = (user) => async (dispatch) => {
   if (isLogin(user)) {
     return dispatch(handleLoginCallbackLoadData(user))
   }
-  //If the it is not login is singup and we handle thate here
-  return dispatch(handleSingup(user))
+  //If the it is not login is signup and we handle that here
+  return dispatch(handleSignup(user))
 }

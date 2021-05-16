@@ -20,7 +20,7 @@ async function updateWebsiteData(data, res) {
 
     const updateDoc = {
       $set: {
-        user_id: data.userId,
+        ...(data.userId ? { user_id: data.userId } : {}),
         resume_data: data.resume_data,
       },
     }
