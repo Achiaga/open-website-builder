@@ -161,20 +161,20 @@ function DropDownSelector({
 
 DropDownSelector.propTypes = {
   icon: PropTypes.any,
-  isOpen: PropTypes.string.isRequired,
-  tooltip: PropTypes.string.isRequired,
-  isBlockAtTop: PropTypes.bool.isRequired,
-  isBlockAtLeft: PropTypes.bool.isRequired,
-  handleOpenToolbar: PropTypes.func.isRequired,
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
+  isOpen: PropTypes.string,
+  tooltip: PropTypes.string,
+  isBlockAtTop: PropTypes.bool,
+  isBlockAtLeft: PropTypes.bool,
+  handleOpenToolbar: PropTypes.func,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
   value: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      title: PropTypes.any.isRequired,
-    }).isRequired
-  ).isRequired,
+      value: PropTypes.string,
+      title: PropTypes.any,
+    })
+  ),
 }
 
 function ColorDropDownSelector({
@@ -282,20 +282,20 @@ function ColorDropDownSelector({
 }
 
 ColorDropDownSelector.propTypes = {
-  isOpen: PropTypes.string.isRequired,
-  isBlockAtTop: PropTypes.bool.isRequired,
-  isBlockAtLeft: PropTypes.bool.isRequired,
-  isBlockAtRight: PropTypes.bool.isRequired,
-  handleOpenToolbar: PropTypes.func.isRequired,
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
+  isOpen: PropTypes.string,
+  isBlockAtTop: PropTypes.bool,
+  isBlockAtLeft: PropTypes.bool,
+  isBlockAtRight: PropTypes.bool,
+  handleOpenToolbar: PropTypes.func,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
   value: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      title: PropTypes.any.isRequired,
-    }).isRequired
-  ).isRequired,
+      value: PropTypes.string,
+      title: PropTypes.any,
+    })
+  ),
 }
 
 function EmojiDropDownSelector({
@@ -398,19 +398,19 @@ function EmojiDropDownSelector({
 }
 
 EmojiDropDownSelector.propTypes = {
-  isOpen: PropTypes.string.isRequired,
-  isBlockAtTop: PropTypes.bool.isRequired,
-  isBlockAtLeft: PropTypes.bool.isRequired,
-  isBlockAtRight: PropTypes.bool.isRequired,
-  handleOpenToolbar: PropTypes.func.isRequired,
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
+  isOpen: PropTypes.string,
+  isBlockAtTop: PropTypes.bool,
+  isBlockAtLeft: PropTypes.bool,
+  isBlockAtRight: PropTypes.bool,
+  handleOpenToolbar: PropTypes.func,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
   value: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.any.isRequired,
-    }).isRequired
-  ).isRequired,
+      value: PropTypes.any,
+    })
+  ),
 }
 
 export function TextInput({
@@ -503,16 +503,16 @@ export function TextInput({
   )
 }
 TextInput.propTypes = {
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
   value: PropTypes.string,
   handleCloseInput: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   inputPlaceholder: PropTypes.string,
-  isOpen: PropTypes.string.isRequired,
-  isBlockAtTop: PropTypes.bool.isRequired,
-  isBlockAtLeft: PropTypes.bool.isRequired,
-  isBlockAtRight: PropTypes.bool.isRequired,
+  isOpen: PropTypes.string,
+  isBlockAtTop: PropTypes.bool,
+  isBlockAtLeft: PropTypes.bool,
+  isBlockAtRight: PropTypes.bool,
   handleOpenToolbar: PropTypes.func,
 }
 
@@ -627,16 +627,16 @@ export function TextGradient({
   )
 }
 TextGradient.propTypes = {
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
   value: PropTypes.string,
   handleCloseInput: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   inputPlaceholder: PropTypes.string,
-  isOpen: PropTypes.string.isRequired,
-  isBlockAtTop: PropTypes.bool.isRequired,
-  isBlockAtLeft: PropTypes.bool.isRequired,
-  isBlockAtRight: PropTypes.bool.isRequired,
+  isOpen: PropTypes.string,
+  isBlockAtTop: PropTypes.bool,
+  isBlockAtLeft: PropTypes.bool,
+  isBlockAtRight: PropTypes.bool,
   handleOpenToolbar: PropTypes.func,
 }
 
@@ -686,10 +686,10 @@ export function ButtonSelector({
   )
 }
 ButtonSelector.propTypes = {
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
-  operationType: PropTypes.string.isRequired,
-  placeholder: PropTypes.object.isRequired,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
+  operationType: PropTypes.string,
+  placeholder: PropTypes.object,
 }
 export function ImageSelector({ handleEdit, property, icon, tooltip }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -739,10 +739,10 @@ export function ImageSelector({ handleEdit, property, icon, tooltip }) {
   )
 }
 ImageSelector.propTypes = {
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
-  operationType: PropTypes.string.isRequired,
-  placeholder: PropTypes.object.isRequired,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
+  operationType: PropTypes.string,
+  placeholder: PropTypes.object,
 }
 
 export function DuplicateButton({
@@ -791,10 +791,10 @@ export function DuplicateButton({
   )
 }
 DuplicateButton.propTypes = {
-  handleEdit: PropTypes.func.isRequired,
-  property: PropTypes.string.isRequired,
-  operationType: PropTypes.string.isRequired,
-  placeholder: PropTypes.object.isRequired,
+  handleEdit: PropTypes.func,
+  property: PropTypes.string,
+  operationType: PropTypes.string,
+  placeholder: PropTypes.object,
 }
 
 export const Modifiers = ({
@@ -917,6 +917,6 @@ export const BlockModifiers = ({ data, blockKey, blockType }) => {
 
 BlockModifiers.propTypes = {
   data: PropTypes.any,
-  blockKey: PropTypes.string.isRequired,
-  blockType: PropTypes.string.isRequired,
+  blockKey: PropTypes.string,
+  blockType: PropTypes.string,
 }
