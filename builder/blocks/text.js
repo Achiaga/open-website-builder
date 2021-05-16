@@ -75,7 +75,6 @@ const Styles = ({ children }) => {
       wordWrap="break-word"
       bg="transparent"
       w="100%"
-      fontFamily="Helvetica, Arial, sans-serif"
       sx={{
         blockquote: {
           borderLeft: '4px solid #ccc',
@@ -84,7 +83,6 @@ const Styles = ({ children }) => {
           paddingLeft: '16px',
         },
         h1: {
-          fontFamily: 'Helvetica, Arial, sans-serif',
           fontSize: '6em',
         },
         h2: {
@@ -141,7 +139,6 @@ export const PrevText = (props) => {
           wordWrap: 'break-word',
           backgroundColor: 'transparent',
           width: '100%',
-          fontFamily: 'Helvetica, Arial, sans-serif',
         }}
       >
         <span

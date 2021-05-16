@@ -39,7 +39,6 @@ const header = `
 			}
 
 			.textStyles h1 {
-				font-family: 'Helvetica; Arial; sans-serif';
 				font-size: 6em;
 				margin: 0;
 				font-weight: 300;
