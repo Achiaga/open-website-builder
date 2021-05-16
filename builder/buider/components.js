@@ -11,12 +11,12 @@ const SerachBar = () => {
     <Box
       bg="#e4e5e7"
       w="90%"
-      h="50px"
+      h="40px"
       d="flex"
       borderRadius="10px"
       alignItems="center"
       justifyContent="space-between"
-      mt="3rem"
+      mt="2.5rem"
     >
       <Box p="1rem">
         <HiMenu size="30px" />
@@ -33,7 +33,7 @@ const Speaker = () => {
   return (
     <Box
       pos="absolute"
-      top="12px"
+      top="8px"
       left="50%"
       transform="translate(-50%, 6px)"
       height="8px"
@@ -48,8 +48,8 @@ const Camera = () => {
   return (
     <Box
       pos="absolute"
-      left="40%"
-      top="12px"
+      left="25%"
+      top="8px"
       transform="translate(180px, 4px)"
       width="12px"
       height="12px"
@@ -85,17 +85,17 @@ export const MobileWrapper = ({ children }) => {
       overflowY="hidden"
     >
       <Box
-        width="50%"
+        width="400px"
         m="auto"
         pos="relative"
         height="100%"
         overflow="hidden"
-        borderRadius="5rem"
+        borderRadius="3rem"
         boxShadow="0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111"
         _before={{
           top: '0px',
-          width: '56%',
-          height: '50px',
+          width: '50%',
+          height: '40px',
           backgroundColor: ' #1f1f1f',
           borderRadius: '0px 0px 40px 40px',
           content: "''",
@@ -108,7 +108,7 @@ export const MobileWrapper = ({ children }) => {
         <Camera />
 
         <Box
-          h="140px"
+          h="100px"
           bg="#f7f7f7"
           textAlign="center"
           fontSize="xl"

@@ -249,6 +249,13 @@ export const setBlockEditable = (blockId) => (dispatch) => {
 }
 
 function applyAutoMobileToBlock(block) {
+  if (block.i.includes('text')) {
+    const el = document.getElementById(block.i)
+    const dim = el.getBoundingClientRect()
+    console.log('block.i', dim)
+  }
+  const desktopMobileRatio = window.innerWidth / 400
+  console.log('desktopMobileRatio', desktopMobileRatio)
   const updatedBlock = {
     x: block.x / 2,
     y: block.y,
@@ -536,7 +543,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
   dispatch(saveDataOnLocal())
 }
 
-// NEW FUNCTUIONS ***********************************************
+// NEW FUNCTIONS ***********************************************
 //***************************************************************
 //***************************************************************
 //***************************************************************
@@ -546,7 +553,10 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
 export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   const blockLayout = getBlockLayoutById(blockId)(getState())
   const gridRowHeight = getGridRowHeight(getState())
-  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const isMobile = getIsMobileBuilder(getState())
+  const gridsWidth = isMobile ? 100 : GRID_COLUMNS
+  const windowWidth = isMobile ? 400 : window?.innerWidth
+  const gridColumnWidth = windowWidth / gridsWidth
   const newX = blockPos.x / gridColumnWidth
   const newY = blockPos.y / gridRowHeight
   const newBlockLayout = {
@@ -575,8 +585,10 @@ export const handleResizeStop =
     const gridRowHeight = getGridRowHeight(getState())
     const isMobile = getIsMobileBuilder(getState())
     const gridsWidth = isMobile ? 100 : GRID_COLUMNS
-    const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+    const windowWidth = isMobile ? 400 : window?.innerWidth
+    const gridColumnWidth = windowWidth / gridsWidth
     let width = blockLayout.w + delta.width / gridColumnWidth
+
     const height = blockLayout.h + delta.height / gridRowHeight
     width = width >= gridsWidth ? gridsWidth : width
     let textSize

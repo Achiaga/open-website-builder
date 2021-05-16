@@ -29,11 +29,8 @@ export const { MediaContextProvider, Media } = createMedia({
 function getFontSize(windowWidth) {
   if (windowWidth >= 1200) return 13
   if (windowWidth >= 1100) return 10
-  if (windowWidth >= 1000) return 9
   if (windowWidth > 600 && windowWidth < 1000) return 13
-  if (windowWidth > 400 && windowWidth <= 600) return 7
-  if (windowWidth < 380) return 5.7
-  return 6
+  return 10
 }
 
 export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
@@ -68,7 +65,7 @@ export const ResumeWebsite = ({ userBlocksData, websiteId }) => {
             gridTemplateRows: `repeat( auto-fill,  ${mobileRowHeight}px )`,
             height:
               (getPageRows(userBlocksData.mobileLayout) - 1) * mobileRowHeight,
-            width: '101vw',
+            width: '100vw',
             fontSize: `${mobileFont}px`,
           }}
         >

@@ -60,7 +60,6 @@ const DraggableItem = ({
   gridColumnWidth,
 }) => {
   const [resizeValues, setResizeValues] = useState(null)
-
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
@@ -191,7 +190,7 @@ const MemoBlockItem = React.memo(BlockItem)
 const MemoDrag = React.memo(DraggableItem)
 
 function getFontSize(isMobile) {
-  if (isMobile) return 11
+  if (isMobile) return 10
   return 13
 }
 
@@ -238,8 +237,10 @@ const WebBuilder = () => {
   const hierarchy = useSelector(getHierarchy)
   const lastHoveredEl = useRef()
   const gridRowHeight = useSelector(getGridRowHeight)
-  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
-
+  const isMobile = useSelector(getIsMobileBuilder)
+  const windowWidth = isMobile ? 400 : window?.innerWidth
+  const columns = isMobile ? GRID_COLUMNS / 2 : GRID_COLUMNS
+  const gridColumnWidth = windowWidth / columns
   useEffect(() => {
     handleWindowResize()
     window.addEventListener('resize', handleWindowResize)
@@ -252,10 +253,10 @@ const WebBuilder = () => {
 
   useEffect(() => {
     handleWindowResize()
-  }, [window?.innerWidth])
+  }, [windowWidth])
 
   function handleWindowResize() {
-    dispatch(setGridRowHeight(window?.innerWidth / GRID_COLUMNS))
+    dispatch(setGridRowHeight(windowWidth / columns))
   }
 
   const removeHighlightedElem = useCallback(() => {

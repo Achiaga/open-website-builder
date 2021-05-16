@@ -23,7 +23,6 @@ export function GeneratePreviewBlock({ layoutItem }) {
   const { w, h, x, y, i } = layoutItem || {}
   if (!type || !previewBlocks[type]) return null
   const GenericBlock = previewBlocks[type]
-
   const zIndex = getBlockZIndex(type)
   return (
     <div
