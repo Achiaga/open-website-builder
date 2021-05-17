@@ -23,10 +23,11 @@ import {
   updateInitialState,
   normalizeBuilderData,
 } from './login-helpers'
-import { saveData } from '../login/helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
 import { uploadFileToS3 } from '../builder/blocks/block-helpers/transporter'
+import { MobileWindowWidth } from '../builder/web-builder/web-builder'
+import { requestSaveWebsite } from '../utils/user-data'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
@@ -63,7 +64,7 @@ export const builderSlice = createSlice({
       state.user = action.payload
     },
     setWebsiteId: (state, action) => {
-      state.user.websiteId = action.payload
+      state.user.projectId = action.payload
     },
     setNewDropBlockType: (state, action) => {
       state.newBlock.type = action.payload
@@ -392,7 +393,7 @@ export function denormalizeBuilderData(data) {
   return deNormalizedData
 }
 
-export const publishWebsite = (user) => async (dispatch, getState) => {
+export const publishWebsite = () => async (dispatch, getState) => {
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const { domain } = userData
@@ -404,48 +405,50 @@ export const publishWebsite = (user) => async (dispatch, getState) => {
     await uploadFileToS3(staticSiteCode, domain)
     dispatch(setPublishStatus('loading'))
   }
-  const websiteId = getWebsiteId(getState())
-  const res = await saveData({ user, builderData, publish: true })
-  batch(() => {
-    !websiteId && dispatch(setWebsiteId(res._id))
-    dispatch(setPublishStatus('success'))
-  })
+  await dispatch(saveData(true))
 }
 
-export const saveWebsite = (user) => async (dispatch, getState) => {
+export const saveData = (publish) => async (dispatch, getState) => {
   dispatch(setSaveStatus('loading'))
-  const builderData = denormalizeBuilderData(getBuilderData(getState()))
-  const projectId = getWebsiteId(getState())
   const userData = getUserData(getState())
-  const res = await saveData({ user, builderData, projectId })
-  const updatedUserData = {
-    isPublish: res.publish,
-    user_email: res.user_email,
-    user_id: res.user_id,
-    websiteId: res._id || userData?.websiteId,
-  }
+  const builderData = denormalizeBuilderData(getBuilderData(getState()))
+  const res = await requestSaveWebsite({
+    resume_data: builderData,
+    ...userData,
+  })
+  const projectId = res?.upsertedId?._id
+
   batch(() => {
-    dispatch(setUserData(updatedUserData))
+    dispatch(
+      setUserData({
+        ...userData,
+        ...(projectId ? { projectId: projectId } : {}),
+        isPublish: publish,
+      })
+    )
+    publish && dispatch(setPublishStatus('success'))
     dispatch(setSaveStatus('success'))
+    dispatch(setLoadingData(false))
   })
 }
 
-export const keepTemplate = () => async (dispatch, getState) => {
-  const builderData = getBuilderData(getState())
-  const { publish, userData } = getTempDBData(getState())
-  await saveData({
-    builderData,
-    user: { sub: userData.user_id, email: userData.user_email, publish },
+export const saveWebsite = () => async (dispatch) => {
+  batch(() => {
+    dispatch(saveData())
   })
-  dispatch(setSaveStatus('null'))
+}
+
+export const keepTemplate = () => async (dispatch) => {
+  dispatch(saveData())
   dispatch(setTempDBData(null))
-  dispatch(setLoadingData(false))
 }
 export const keepDBData = () => (dispatch, getState) => {
   const tempInitialData = getTempDBData(getState())
-  dispatch(updateInitialState(tempInitialData))
-  dispatch(setTempDBData(null))
-  dispatch(setLoadingData(false))
+  batch(() => {
+    dispatch(updateInitialState(tempInitialData))
+    dispatch(setTempDBData(null))
+    dispatch(setLoadingData(false))
+  })
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
   batch(() => {
@@ -536,7 +539,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
   dispatch(saveDataOnLocal())
 }
 
-// NEW FUNCTUIONS ***********************************************
+// NEW FUNCTIONS ***********************************************
 //***************************************************************
 //***************************************************************
 //***************************************************************
@@ -546,7 +549,10 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
 export const handleDragStop = (blockPos, blockId) => (dispatch, getState) => {
   const blockLayout = getBlockLayoutById(blockId)(getState())
   const gridRowHeight = getGridRowHeight(getState())
-  const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+  const isMobile = getIsMobileBuilder(getState())
+  const gridsWidth = isMobile ? 100 : GRID_COLUMNS
+  const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
+  const gridColumnWidth = windowWidth / gridsWidth
   const newX = blockPos.x / gridColumnWidth
   const newY = blockPos.y / gridRowHeight
   const newBlockLayout = {
@@ -575,8 +581,10 @@ export const handleResizeStop =
     const gridRowHeight = getGridRowHeight(getState())
     const isMobile = getIsMobileBuilder(getState())
     const gridsWidth = isMobile ? 100 : GRID_COLUMNS
-    const gridColumnWidth = window?.innerWidth / GRID_COLUMNS
+    const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
+    const gridColumnWidth = windowWidth / gridsWidth
     let width = blockLayout.w + delta.width / gridColumnWidth
+
     const height = blockLayout.h + delta.height / gridRowHeight
     width = width >= gridsWidth ? gridsWidth : width
     let textSize
@@ -677,8 +685,8 @@ export const getBuilderData = (state) => state.builder.builderData
 export const getHasBuilderData = (state) => !!state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
-export const getUserId = (state) => state.builder.user.user_id
-export const getWebsiteId = (state) => state.builder.user?.websiteId
+export const getUserId = (state) => state.builder.user.userId
+export const getWebsiteId = (state) => state.builder.user?.projectId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
   // if (getBuilderDevice(state) === 'mobile') {

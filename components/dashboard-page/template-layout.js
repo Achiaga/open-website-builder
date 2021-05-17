@@ -83,9 +83,9 @@ const Template = ({
 }
 
 Template.propTypes = {
-  handleEditTemplate: PropTypes.func.isRequired,
-  handlePreviewTemplate: PropTypes.func.isRequired,
-  templateId: PropTypes.string.isRequired,
+  handleEditTemplate: PropTypes.func,
+  handlePreviewTemplate: PropTypes.func,
+  templateId: PropTypes.string,
 }
 
 export default Template

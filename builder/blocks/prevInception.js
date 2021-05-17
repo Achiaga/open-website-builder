@@ -2,9 +2,14 @@ import { RedirectWrapper } from './text'
 
 export const PrevInception = (props) => {
   const redirectUrl = props?.redirect
+  const gradientColor = props.gradientColor
   const inceptionModifiers = {
-    backgroundColor: props.backgroundColor,
     boxShadow: props.boxShadow,
+    background: gradientColor
+      ? `linear-gradient(225deg, ${gradientColor[0]} 0%, ${gradientColor[1]} 100%)`
+      : props.backgroundColor,
+    borderRadius: props.borderRadius,
+    border: props.border,
   }
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>

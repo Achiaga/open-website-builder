@@ -7,7 +7,7 @@ import { IoClose } from 'react-icons/io5'
 
 const PublishSuccessModal = () => {
   const dispatch = useDispatch()
-  const websiteId = useSelector(getWebsiteId)
+  const projectId = useSelector(getWebsiteId)
 
   function handleClose() {
     dispatch(setPublishStatus(null))
@@ -103,7 +103,7 @@ const PublishSuccessModal = () => {
         </Text>
         <a
           target="_blank"
-          href={`https://www.antfolio.app/${websiteId}`}
+          href={`https://www.antfolio.app/${projectId}`}
           rel="noreferrer"
         >
           <Text
@@ -114,7 +114,7 @@ const PublishSuccessModal = () => {
             textDecoration="underline"
             color="primary.500"
           >
-            https://antfolio.app/{websiteId}
+            https://antfolio.app/{projectId}
           </Text>
         </a>
         <Text

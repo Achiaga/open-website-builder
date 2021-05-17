@@ -1,6 +1,5 @@
 .ql-container {
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
   height: 100%;
   margin: 0px;
@@ -860,7 +859,6 @@
 }
 .ql-toolbar.ql-snow {
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   height: 35px;
   border-radius: 20px;
 }

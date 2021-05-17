@@ -23,8 +23,8 @@ export const respondAPIQuery = (res, data = {}, status = 200) => {
   return
 }
 const newSubscriberEmail = async (req) => {
-  const { websiteId, subscriberEmail } = req.body
-  const { userEmail } = await getUserDataFromWebsiteId(websiteId)
+  const { projectId, subscriberEmail } = req.body
+  const { userEmail } = await getUserDataFromWebsiteId(projectId)
   const accountName = userEmail.split('@')[0]
   return {
     Destination: {

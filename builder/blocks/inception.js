@@ -16,7 +16,6 @@ const BlockInception = (props) => {
       width="100%"
       height="100%"
       border="1px dashed"
-      borderColor="gray.500"
       backgroundImage={`url(${props.imageUrl})`}
       backgroundPosition="50% 50%"
       backgroundRepeat="no-repeat"

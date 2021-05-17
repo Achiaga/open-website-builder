@@ -33,7 +33,7 @@ function Resume({ websiteData, isPublish, resumeId }) {
   if (isEmpty(websiteData)) return <ErrorPage />
   if (!isPublish) return <NewPage />
 
-  return <ResumeWebsite userBlocksData={websiteData} websiteId={resumeId} />
+  return <ResumeWebsite userBlocksData={websiteData} projectId={resumeId} />
 }
 
 export async function getServerSideProps(context) {

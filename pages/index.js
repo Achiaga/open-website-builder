@@ -5,7 +5,7 @@ import { getWebsiteDataBySubdomain } from './api/db'
 import { isFalsy } from './[resumeId]'
 export default function Home({ websiteData, subdomain }) {
   if (websiteData && subdomain) {
-    return <ResumeWebsite userBlocksData={websiteData} websiteId={subdomain} />
+    return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
   }
   return (
     <UserProvider>
