@@ -65,7 +65,7 @@ export function Login() {
   }
   async function handlePublish() {
     if (user) {
-      await dispatch(publishWebsite(user))
+      await dispatch(publishWebsite())
       return
     }
     return router.push('/api/auth/custom-login')

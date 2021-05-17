@@ -414,9 +414,9 @@ export const saveData = (publish) => async (dispatch, getState) => {
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const { projectId } = await requestSaveWebsite({
     resume_data: builderData,
+    isPublish: publish,
     ...userData,
   })
-  console.log({ projectId })
   batch(() => {
     dispatch(
       setUserData({
