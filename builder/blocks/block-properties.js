@@ -138,8 +138,8 @@ const border = {
   icon: <BorderIcon />,
   options: [
     { value: 'none', title: '-' },
-    { value: '1px solid black', title: 'black' },
-    { value: '1px solid rgb(205, 211, 216)', title: 'gray' },
+    { value: '1px solid #000000', title: 'black' },
+    { value: '1px solid #cdd3d8', title: 'gray' },
   ],
 }
 

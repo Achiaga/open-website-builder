@@ -14,11 +14,11 @@ function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function sendEmail(inputEmail, updateSate, websiteId) {
+async function sendEmail(inputEmail, updateSate, projectId) {
   updateSate((status) => ({ ...status, loading: true }))
   try {
     // await timeout(3000)
-    await sendEmailNotifiaction(websiteId, inputEmail)
+    await sendEmailNotifiaction(projectId, inputEmail)
     updateSate((status) => ({ ...status, loading: false, success: true }))
   } catch (err) {
     updateSate((status) => ({ ...status, error: true, loading: false }))
@@ -44,14 +44,14 @@ const inputInitialValue = {
 }
 
 export const PrevContactForm = (props) => {
-  const { websiteId } = useContext(BlocksContext)
+  const { projectId } = useContext(BlocksContext)
   const [inputValue, setInputValue] = useState()
   const [requestStatus, setRequestStatus] = useState(inputInitialValue)
   const { loading, success, error } = requestStatus
   function handleSubmitForm(e) {
     e.preventDefault()
     if (success) return
-    sendEmail(inputValue, setRequestStatus, websiteId)
+    sendEmail(inputValue, setRequestStatus, projectId)
   }
 
   function onChange(e) {

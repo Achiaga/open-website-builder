@@ -47,9 +47,9 @@ export const FontIcon = ({ fontColor }) => {
 }
 
 BgIcon.propTypes = {
-  bgColor: PropTypes.string.isRequired,
+  bgColor: PropTypes.string,
 }
 
 FontIcon.propTypes = {
-  fontColor: PropTypes.string.isRequired,
+  fontColor: PropTypes.string,
 }

@@ -85,7 +85,7 @@ const Builder = () => {
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         backgroundPosition="center center"
-        height="500vw"
+        height="1000vh"
       >
         <SettingsBar />
         <BuilderSidebar />

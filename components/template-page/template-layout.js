@@ -105,8 +105,8 @@ const Template = ({ templateInfo }) => {
 }
 
 Template.propTypes = {
-  handlePreviewTemplate: PropTypes.func.isRequired,
-  templateInfo: PropTypes.any.isRequired,
+  handlePreviewTemplate: PropTypes.func,
+  templateInfo: PropTypes.any,
 }
 
 export default Template
