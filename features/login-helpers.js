@@ -78,23 +78,19 @@ export const loadDataFromDB = (user, template) => async (dispatch) => {
     publish,
   }
   if (!resume_data) {
-    batch(() => {
-      dispatch(loadInitialDataNoAccount(template))
-      dispatch(setUserData(userData))
-    })
+    dispatch(loadInitialDataNoAccount(template))
   } else if (templates[template] && resume_data) {
     batch(() => {
       dispatch(setTempDBData({ resume_data }))
       dispatch(loadInitialDataNoAccount(template))
-      dispatch(setUserData(userData))
     })
   } else {
-    batch(() => {
-      dispatch(updateInitialState({ resume_data }))
-      dispatch(setUserData(userData))
-    })
+    dispatch(updateInitialState({ resume_data }))
   }
-  dispatch(setLoadingData(false))
+  batch(() => {
+    dispatch(setUserData(userData))
+    dispatch(setLoadingData(false))
+  })
 }
 
 export function normalizeBuilderData(data) {
@@ -130,7 +126,6 @@ export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
     domain,
     publish,
   }
-  console.log({ LSData, resume_data })
   if (!_.isEqual(LSData, resume_data) && !isFallbackTemplate(LSData)) {
     batch(() => {
       dispatch(setTempDBData({ resume_data, publish, userData }))

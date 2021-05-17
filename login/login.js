@@ -70,9 +70,6 @@ export function Login() {
     }
     return router.push('/api/auth/custom-login')
   }
-  async function fakehandlePublish() {
-    await dispatch(publishWebsite(user))
-  }
 
   function downloadData() {
     var dataStr =
@@ -157,9 +154,6 @@ export function Login() {
             {isDev && (
               <>
                 <MenuItem onClick={downloadData}>Download Data</MenuItem>
-                <MenuItem onClick={fakehandlePublish}>
-                  {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
-                </MenuItem>
               </>
             )}
           </Box>

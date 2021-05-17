@@ -27,9 +27,16 @@ async function updateWebsiteData(data, res) {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    await websiteCollection.updateOne(filter, updateDoc, options)
+    const updatedValue = await websiteCollection.updateOne(
+      filter,
+      updateDoc,
+      options
+    )
+    const projectId = updatedValue.upsertedId
+      ? updatedValue.upsertedId._id
+      : data.projectId
     await client.close()
-    respondAPIQuery(res, 'updated successfully', 200)
+    respondAPIQuery(res, { projectId }, 200)
   } catch (error) {
     console.error('updateWebsiteData', error)
     respondAPIQuery(res, { error }, 500)
