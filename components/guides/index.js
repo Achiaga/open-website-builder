@@ -155,7 +155,7 @@ const BlogPage = () => {
             <ArticleCard
               title="Setup your custom domain"
               imageUrl="/domain-guide-thumbnail.png"
-              redirectUrl="/guides/custom-domain"
+              redirectUrl="/guides/guides-custom-domain"
               imgWidth="70%"
               bg="white"
             />
