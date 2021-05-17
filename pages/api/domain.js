@@ -141,6 +141,7 @@ async function addDomain(res, domain, projectId) {
   if (checkStatus?.status === 'active') {
     return respondAPIQuery(res, { domainStatus: checkStatus?.status }, 200)
   }
+
   const domainAdded = await addNewDomain(domain)
   const zoneId = domainAdded.result.id
   const { dns1, dns2 } = await createDnsRecord(zoneId, domain, awsBucketUrl)

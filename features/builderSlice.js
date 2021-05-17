@@ -412,12 +412,11 @@ export const saveData = (publish) => async (dispatch, getState) => {
   dispatch(setSaveStatus('loading'))
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
-  const res = await requestSaveWebsite({
+  const { projectId } = await requestSaveWebsite({
     resume_data: builderData,
+    isPublish: publish,
     ...userData,
   })
-  const projectId = res?.upsertedId?._id
-
   batch(() => {
     dispatch(
       setUserData({
