@@ -72,11 +72,7 @@ const DomainsWrapper = ({ domain, projectId }) => {
                   {nameServers[0]} || {nameServers[1]}
                 </Box>
               ) : (
-                <Box>
-                  Add the following name servers to where you bought your domain
-                  <br />
-                  {nameServers[0]} || {nameServers[1]}
-                </Box>
+                <Box>Congrats! Your site is already set up correctly</Box>
               )}
             </Text>
           </Box>
