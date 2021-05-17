@@ -67,12 +67,17 @@ const DomainsWrapper = ({ domain, projectId }) => {
             <Text>
               {isPending ? (
                 <Box>
-                  Add the following name servers to where you bought your domain
-                  <br />
-                  {nameServers[0]} || {nameServers[1]}
+                  <Text pt="0.5rem" pb="0.2rem">
+                    Add the following name servers on your domain name provider:
+                  </Text>
+                  <Text>
+                    {nameServers[0]} || {nameServers[1]}
+                  </Text>
                 </Box>
               ) : (
-                <Box>Congrats! Your site is already set up correctly</Box>
+                <Box pt="0.5rem">
+                  Congrats! Your site is already set up correctly
+                </Box>
               )}
             </Text>
           </Box>
