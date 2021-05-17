@@ -49,7 +49,7 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
   const mobileRowHeight = MobileWindowWidth / 100
   const fontSize = getFontSize(windowWidth)
   const mobileFont = getFontSize(MobileWindowWidth)
-
+  console.log((getPageRows(userBlocksData.mobileLayout) - 1) * mobileRowHeight)
   return (
     <BlocksContext.Provider
       value={{ builder: userBlocksData, rowHeight, mobileRowHeight, projectId }}
@@ -58,12 +58,11 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
         <div
           className="mobile"
           style={{
-            display: 'grid',
+            display: 'block',
             overflowX: 'hidden',
-            gridTemplateColumns: `repeat(100, 1fr)`,
-            gridTemplateRows: `repeat( auto-fill,  ${mobileRowHeight}px )`,
-            height:
-              (getPageRows(userBlocksData.mobileLayout) - 1) * mobileRowHeight,
+            // gridTemplateColumns: `repeat(100, 1fr)`,
+            // gridTemplateRows: `repeat( auto-fill,  ${mobileRowHeight}px )`,
+            height: '100vh',
             width: '100vw',
             fontSize: `${mobileFont}px`,
           }}
@@ -73,6 +72,7 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
               <GeneratePreviewBlock
                 key={layoutItem.i}
                 layoutItem={layoutItem}
+                rowHeight={mobileRowHeight}
               />
             )
           })}
@@ -83,11 +83,12 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
         <div
           className="desktop"
           style={{
-            display: 'grid',
+            display: 'block',
             overflowX: 'hidden',
-            gridTemplateColumns: `repeat(${GRID_COLUMNS}, 1fr)`,
-            gridTemplateRows: `repeat( auto-fill,  ${rowHeight}px )`,
-            height: (getPageRows(userBlocksData.layouts) - 1) * rowHeight,
+            // gridTemplateColumns: `repeat(${GRID_COLUMNS}, 1fr)`,
+            // gridTemplateRows: `repeat( auto-fill,  ${rowHeight}px )`,
+            // height: (getPageRows(userBlocksData.layouts) - 1) * rowHeight,
+            height: '100vh',
             width: '100vw',
             fontSize: `${fontSize}px`,
           }}
@@ -97,6 +98,7 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
               <GeneratePreviewBlock
                 key={layoutItem.i}
                 layoutItem={layoutItem}
+                rowHeight={rowHeight}
               />
             )
           })}

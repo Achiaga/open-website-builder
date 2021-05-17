@@ -11,6 +11,7 @@ const header = `
 				Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 			overflow-x: hidden;
 			background-color: #f8f9fb;
+			font-weight: 300;
 		}
 		
 		a {

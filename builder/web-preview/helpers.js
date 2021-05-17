@@ -15,7 +15,7 @@ function getBlockZIndex(blockType) {
   return zIndexs[blockType]
 }
 
-export function GeneratePreviewBlock({ layoutItem }) {
+export function GeneratePreviewBlock({ layoutItem, rowHeight }) {
   const {
     builder: { blocks },
   } = useContext(BlocksContext)
@@ -24,12 +24,22 @@ export function GeneratePreviewBlock({ layoutItem }) {
   if (!type || !previewBlocks[type]) return null
   const GenericBlock = previewBlocks[type]
   const zIndex = getBlockZIndex(type)
+  console.log(
+    'block',
+    i,
+    y,
+    'gridRow',
+    `${Math.round(y) + 1} /  span ${Math.round(h)}  `
+  )
   return (
     <div
       key={i}
       style={{
-        gridColumn: `${Math.round(x) + 1} /  span ${Math.round(w)}`,
-        gridRow: `${Math.round(y) + 1} /  span ${Math.round(h)}  `,
+        position: 'absolute',
+        left: `${Math.round(x) * rowHeight}px`,
+        width: `${Math.round(w) * rowHeight}px`,
+        top: `${Math.round(y) * rowHeight}px`,
+        height: `${Math.round(h) * rowHeight}px`,
         border: data?.border,
         boxShadow: data?.boxShadow,
         borderRadius: data?.borderRadius,
