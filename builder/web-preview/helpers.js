@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import { previewBlocks } from '../blocks'
 import { BlocksContext } from './preview'
+import { GRID_COLUMNS } from '../web-builder/constants'
 
 const zIndexs = {
   inception: 0,
@@ -15,7 +16,7 @@ function getBlockZIndex(blockType) {
   return zIndexs[blockType]
 }
 
-export function GeneratePreviewBlock({ layoutItem, rowHeight }) {
+export function GeneratePreviewBlock({ layoutItem, desktop }) {
   const {
     builder: { blocks },
   } = useContext(BlocksContext)
@@ -24,22 +25,24 @@ export function GeneratePreviewBlock({ layoutItem, rowHeight }) {
   if (!type || !previewBlocks[type]) return null
   const GenericBlock = previewBlocks[type]
   const zIndex = getBlockZIndex(type)
-  console.log(
-    'block',
-    i,
-    y,
-    'gridRow',
-    `${Math.round(y) + 1} /  span ${Math.round(h)}  `
-  )
+
   return (
     <div
       key={i}
       style={{
         position: 'absolute',
-        left: `${Math.round(x) * rowHeight}px`,
-        width: `${Math.round(w) * rowHeight}px`,
-        top: `${Math.round(y) * rowHeight}px`,
-        height: `${Math.round(h) * rowHeight}px`,
+        left: `calc( ${Math.round(x)} *  ( 100% / ${
+          desktop ? GRID_COLUMNS : 100
+        }) )`,
+        width: `calc( ${Math.round(w)} * ( 100vw / ${
+          desktop ? GRID_COLUMNS : 100
+        }) )`,
+        top: `calc( ${Math.round(y)}  * ( 100vw  / ${
+          desktop ? GRID_COLUMNS : 100
+        }) )`,
+        height: `calc( ${Math.round(h)} * ( 100vw / ${
+          desktop ? GRID_COLUMNS : 100
+        }) )`,
         border: data?.border,
         boxShadow: data?.boxShadow,
         borderRadius: data?.borderRadius,

@@ -1,22 +1,13 @@
-import { useEffect, useState, createContext } from 'react'
+import { createContext } from 'react'
 import PropTypes from 'prop-types'
 import { createMedia } from '@artsy/fresnel'
 
-import { GRID_COLUMNS } from '../web-builder/constants'
 import MadeWith from '../../components/made-with'
 
 import { GeneratePreviewBlock } from './helpers'
 import { MobileWindowWidth } from '../web-builder/web-builder'
 
 export const BlocksContext = createContext()
-
-function getPageRows(layouts) {
-  return layouts.reduce((max, item) => {
-    const heightSum = item.y + item.h
-    if (heightSum > max) return heightSum
-    return max
-  }, 0)
-}
 
 export const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -33,35 +24,17 @@ function getFontSize(windowWidth) {
 }
 
 export const ResumeWebsite = ({ userBlocksData, projectId }) => {
-  const [windowWidth, setWindowWidth] = useState(1440)
-
-  function handleWindowResize() {
-    setWindowWidth(window?.innerWidth)
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize)
-    handleWindowResize()
-    return () => window.removeEventListener('resize', handleWindowResize)
-  }, [])
-
-  const rowHeight = windowWidth / GRID_COLUMNS
-  const mobileRowHeight = MobileWindowWidth / 100
-  const fontSize = getFontSize(windowWidth)
+  const fontSize = getFontSize(1440)
   const mobileFont = getFontSize(MobileWindowWidth)
-  console.log((getPageRows(userBlocksData.mobileLayout) - 1) * mobileRowHeight)
+
   return (
-    <BlocksContext.Provider
-      value={{ builder: userBlocksData, rowHeight, mobileRowHeight, projectId }}
-    >
+    <BlocksContext.Provider value={{ builder: userBlocksData, projectId }}>
       <div>
         <div
           className="mobile"
           style={{
             display: 'block',
             overflowX: 'hidden',
-            // gridTemplateColumns: `repeat(100, 1fr)`,
-            // gridTemplateRows: `repeat( auto-fill,  ${mobileRowHeight}px )`,
             height: '100vh',
             width: '100vw',
             fontSize: `${mobileFont}px`,
@@ -72,7 +45,6 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
               <GeneratePreviewBlock
                 key={layoutItem.i}
                 layoutItem={layoutItem}
-                rowHeight={mobileRowHeight}
               />
             )
           })}
@@ -85,9 +57,6 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
           style={{
             display: 'block',
             overflowX: 'hidden',
-            // gridTemplateColumns: `repeat(${GRID_COLUMNS}, 1fr)`,
-            // gridTemplateRows: `repeat( auto-fill,  ${rowHeight}px )`,
-            // height: (getPageRows(userBlocksData.layouts) - 1) * rowHeight,
             height: '100vh',
             width: '100vw',
             fontSize: `${fontSize}px`,
@@ -98,7 +67,7 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
               <GeneratePreviewBlock
                 key={layoutItem.i}
                 layoutItem={layoutItem}
-                rowHeight={rowHeight}
+                desktop
               />
             )
           })}
