@@ -48,13 +48,20 @@ function cleanRedirect(url) {
   if (url.substr(0, prefix.length) !== prefix) {
     return prefix + url
   }
+  return url
 }
 
 export const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
   const workingRedirectUrl = cleanRedirect(redirectUrl)
+  console.log(workingRedirectUrl)
   return (
-    <a href={workingRedirectUrl} target="_blank" rel="noreferrer">
+    <a
+      href={workingRedirectUrl}
+      target="_blank"
+      rel="noreferrer"
+      style={{ display: 'flex', height: '100%' }}
+    >
       {children}
     </a>
   )

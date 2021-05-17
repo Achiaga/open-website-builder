@@ -155,12 +155,19 @@ const header = `
 		</style>
 	</head>`
 
-export const htmlWrapper = (body) => `
+const flurlyScripts = `
+<script src="https://js.stripe.com/v3/"></script>
+<script
+	src="https://flurly.com/flurly-checkout.js"
+	crossorigin="cors"
+></script>`
+export const htmlWrapper = (body, hasFlurlyLink) => `
 <!DOCTYPE html>
 <html>
 ${header}
 <body>
 ${body}
+${hasFlurlyLink ? flurlyScripts : ''}
 </body>
 </html>
 `
