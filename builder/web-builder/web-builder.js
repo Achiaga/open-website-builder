@@ -228,7 +228,7 @@ GridLayoutWrapper.propTypes = {
   children: PropTypes.any,
 }
 
-export const MobileWindowWidth = 375
+export const MobileWindowWidth = 370
 
 const WebBuilder = () => {
   const dispatch = useDispatch()

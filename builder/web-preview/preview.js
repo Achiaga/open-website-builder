@@ -46,7 +46,7 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
   }, [])
 
   const rowHeight = windowWidth / GRID_COLUMNS
-  const mobileRowHeight = windowWidth / 100
+  const mobileRowHeight = MobileWindowWidth / 100
   const fontSize = getFontSize(windowWidth)
   const mobileFont = getFontSize(MobileWindowWidth)
 
