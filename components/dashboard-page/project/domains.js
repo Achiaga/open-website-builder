@@ -65,7 +65,13 @@ const DomainsWrapper = ({ domain, projectId }) => {
               <br />
             </Box>
             <Text>
-              {isPending && (
+              {isPending ? (
+                <Box>
+                  Add the following name servers to where you bought your domain
+                  <br />
+                  {nameServers[0]} || {nameServers[1]}
+                </Box>
+              ) : (
                 <Box>
                   Add the following name servers to where you bought your domain
                   <br />
