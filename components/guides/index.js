@@ -126,7 +126,7 @@ const ArticleCard = ({
             {title}
           </ArticleTitle>
           {description && (
-            <Text fontWeight="400" fontSize="lg" lineHeight="1.8" mt="1rem">
+            <Text fontWeight="400" fontSize="lg" lineHeight="1.8" mt="0.2rem">
               {description}
             </Text>
           )}
@@ -154,23 +154,25 @@ const BlogPage = () => {
           >
             <ArticleCard
               title="Setup your custom domain"
-              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+              imageUrl="/domain-guide-thumbnail.png"
               redirectUrl="/guides/custom-domain"
               imgWidth="70%"
               bg="white"
             />
             <ArticleCard
-              title="What makes Antfolio unique?"
+              title="Add a 'contact me' form"
               imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
-              redirectUrl="/blog"
+              redirectUrl="/guides"
+              description="Cooming Soon"
               imgWidth="70%"
               bg="white"
             />
             <ArticleCard
-              title="How was Antfolio created?"
+              title="Enable analytics & A/B Testing"
               imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
-              redirectUrl="/blog"
+              redirectUrl="/guides"
               imgWidth="70%"
+              description="Cooming Soon"
               bg="white"
             />
           </Box>

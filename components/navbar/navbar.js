@@ -105,7 +105,7 @@ const Navbar = ({ isSticky = true, color }) => {
           color={color || 'gray.500'}
           id="blog"
           fontSize="sm"
-        />
+        /> */}
         <NavButton
           display={['none', 'block']}
           content="Guides"
@@ -113,7 +113,7 @@ const Navbar = ({ isSticky = true, color }) => {
           color={color || 'gray.500'}
           id="guide"
           fontSize="sm"
-        /> */}
+        />
       </Flex>
       <Flex
         pos="relative"

@@ -17,14 +17,6 @@
         "fontColor": "#000000"
       }
     },
-    "image-077601f5-bbc2-46af-b31d-034659b08e10": {
-      "type": "image",
-      "data": {
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "imageUrl": "https://img-premium.flaticon.com/png/512/38/38519.png?token=exp=1621103694~hmac=9a190811e4ddc237b0ca45fb307664dd"
-      }
-    },
     "button-9034147e-8374-401b-a458-33d17b404a5d": {
       "type": "button",
       "data": {
@@ -316,14 +308,6 @@
         "imageUrl": "https://www.pupy.co/imgs/benefit-full_access.png"
       }
     },
-    "image-e330a00a-c35f-4a55-95bf-e2944099650f": {
-      "type": "image",
-      "data": {
-        "boxShadow": "none",
-        "borderRadius": "0px",
-        "imageUrl": "https://img-premium.flaticon.com/png/512/38/38519.png?token=exp=1621103694~hmac=9a190811e4ddc237b0ca45fb307664dd"
-      }
-    },
     "text-1bae267a-dc3b-4655-afab-973f30cde3a6": {
       "type": "text",
       "data": {
@@ -485,7 +469,6 @@
     "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": [],
     "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": [],
     "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": [],
-    "image-e330a00a-c35f-4a55-95bf-e2944099650f": [],
     "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": [
       "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
       "text-8fdfe777-d3a8-4d79-b650-31f572c3a003"
@@ -518,13 +501,6 @@
       "i": "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6",
       "w": 32.22222222222222,
       "h": 5
-    },
-    "image-077601f5-bbc2-46af-b31d-034659b08e10": {
-      "x": 5,
-      "y": 2.5,
-      "i": "image-077601f5-bbc2-46af-b31d-034659b08e10",
-      "w": 8.194444444444443,
-      "h": 7.777777777777778
     },
     "button-9034147e-8374-401b-a458-33d17b404a5d": {
       "x": 172.91666666666666,
@@ -750,13 +726,6 @@
       "w": 42.36111111111111,
       "h": 27.777777777777775
     },
-    "image-e330a00a-c35f-4a55-95bf-e2944099650f": {
-      "x": 95.69444444444441,
-      "y": 723.0555555555555,
-      "i": "image-e330a00a-c35f-4a55-95bf-e2944099650f",
-      "w": 8.333333333333332,
-      "h": 8.333333333333334
-    },
     "text-1bae267a-dc3b-4655-afab-973f30cde3a6": {
       "x": 66.94444444444446,
       "y": 609.1666666666666,
@@ -863,13 +832,6 @@
       "i": "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6",
       "w": 20,
       "h": 4.305555555555555
-    },
-    "image-077601f5-bbc2-46af-b31d-034659b08e10": {
-      "x": 2.5,
-      "y": 2.5,
-      "i": "image-077601f5-bbc2-46af-b31d-034659b08e10",
-      "w": 7.569444444444444,
-      "h": 7.638888888888888
     },
     "button-9034147e-8374-401b-a458-33d17b404a5d": {
       "x": -55.763888888888886,
@@ -1095,13 +1057,6 @@
       "w": 22.708333333333332,
       "h": 16.666666666666664
     },
-    "image-e330a00a-c35f-4a55-95bf-e2944099650f": {
-      "x": 45.208333333333314,
-      "y": 758.4722222222222,
-      "i": "image-e330a00a-c35f-4a55-95bf-e2944099650f",
-      "w": 8.472222222222221,
-      "h": 8.75
-    },
     "text-1bae267a-dc3b-4655-afab-973f30cde3a6": {
       "x": 26.527777777777786,
       "y": 558.3333333333334,
@@ -1236,7 +1191,6 @@
     "text-4d28cf6a-1087-4a09-88d8-bfffc2c2b452": [],
     "image-e98f39a2-3335-4cbd-a91c-52fabdf8533e": [],
     "image-eac3265d-62d1-460a-b6e3-6517a40b66cf": [],
-    "image-e330a00a-c35f-4a55-95bf-e2944099650f": [],
     "inception-bcc658ac-8d61-41fd-afcf-46d4da04c8bc": [
       "image-18e2e7f0-0348-4229-aad0-e5983d029e36",
       "text-8fdfe777-d3a8-4d79-b650-31f572c3a003"
@@ -1257,7 +1211,6 @@
   },
   "mobileEditedBlocks": [
     "text-a3e356d8-2f00-4fdf-b405-746fb8b2bce6",
-    "image-077601f5-bbc2-46af-b31d-034659b08e10",
     "button-9034147e-8374-401b-a458-33d17b404a5d",
     "text-b0edcceb-e7fa-4de1-b1ad-33f65e8b629e",
     "button-e0c26517-94b2-4078-b5da-29de00c4c6a5",
@@ -1302,7 +1255,6 @@
     "inception-a904bb39-3ae5-4edc-a39f-56de379f7bb0",
     "text-da283e81-d095-4802-9c30-69c424730aa8",
     "image-70ae8b11-cd18-4471-8efa-12d59983bb15",
-    "image-e330a00a-c35f-4a55-95bf-e2944099650f",
     "text-a0144f09-cd24-4c2b-8b6a-5d5a66ba6a17",
     "button-7fcdd04e-a6fa-4401-ba13-c48cdfb35374"
   ]
