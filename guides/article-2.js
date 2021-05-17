@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import Navbar from '../components/navbar'
 import ComparisonTable from './comparison-table'
@@ -43,19 +43,19 @@ const Article2 = () => {
                   title: 'Antfolio',
                   link: 'https://antfolio.app',
                   description:
-                    'Simple and ease to use. Drag and Drop. No-code. No learning curve. Perfect for Landing Pages and Portfolios. Their best quality, beatiful desgins and easy to customize templates, to make it yours.',
+                    'Simple and ease to use, website ready in minutes. No learning curve.',
                 },
                 {
                   title: 'Webflow',
                   link: 'https://webflow.com',
                   description:
-                    'Highly customizable everything. Steep learning curve. No-Code + Code. Perfect for startups who needs all their services on the web and can not affords a team of developers. Super powerful tool that allow business to have complex web apps with minimum tech team.',
+                    'Highly customizable everything, steep learning curve.',
                 },
                 {
-                  title: 'Umso',
-                  link: 'https://www.umso.com/',
+                  title: 'Wix',
+                  link: 'https://wix.com',
                   description:
-                    'Quickest website builder on the market. Super simple forms that by choosing options it will automatically build your website. Perfect for user who don not need customazible website and just need a nice looking product fast.',
+                    'Most popular website builder, lots of tools and very good overall.',
                 },
               ]}
             />
@@ -84,24 +84,6 @@ const Article2 = () => {
           </ContentWrapper>
         </Box>
         <ComparisonTable />
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          py="2rem"
-          mb="5rem"
-        >
-          <Text as="h2" fontSize="4rem">
-            Any Websites Builders We Are Missing?
-          </Text>
-          <Text as="h2" fontSize="1.5rem" color="gray.500" pt="1rem">
-            Send us an email to bender.dev.maker@gmail.com
-          </Text>
-          <Text as="h2" fontSize="1.2rem" color="gray.500" pt="0.5rem">
-            We will add it!
-          </Text>
-        </Box>
       </Box>
     </>
   )

@@ -98,11 +98,12 @@ const BuilderSidebar = () => {
         left="20%"
         right="20%"
         zIndex="9999"
-        bg="white"
+        bg="primary.500"
         p="50px"
         textAlign="center"
         justifyContent="center"
         alignItems="center"
+        border="3px solid black"
         boxShadow="0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3)"
         borderRadius="1rem"
       >
@@ -113,15 +114,15 @@ const BuilderSidebar = () => {
             onClick={() => setIsOpen(false)}
             p="0.25rem"
             borderRadius="0.25rem"
-            right="1rem"
+            right="-1rem"
+            top="0.5rem"
             _hover={{ background: '#F2F2F2;' }}
           >
-            <GrClose size="1.5em" />
+            <GrClose color="white" size="1.5em" />
           </Box>
-          <Box as="span" fontSize="lg">
-            On the <b>Mobile</b> view you can <b>move</b>, <b>resize</b> and
-            <b> remove</b> blocks but not add. <br />
-            To <b>add</b> new blocks go to the <b>Desktop</b> view.
+          <Box as="span" color="white" fontSize="lg" fontWeight="600">
+            On the Mobile view, you can move and resize blocks but you can not
+            remove or add blocks. To add new blocks go to the Desktop view.
           </Box>
         </Box>
       </Box>

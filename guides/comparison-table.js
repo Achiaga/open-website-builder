@@ -87,13 +87,13 @@ const ComparisonTable = () => {
         accessor: 'name',
         Cell: (instance) => instance?.cell?.value || '',
       },
-      // {
-      //   Header: 'Score',
-      //   accessor: 'score',
-      //   Cell: (instance) => instance?.cell?.value || '',
-      //   Filter: SelectColumnFilter,
-      //   filter: 'includes',
-      // },
+      {
+        Header: 'Score',
+        accessor: 'score',
+        Cell: (instance) => instance?.cell?.value || '',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
+      },
 
       {
         Header: 'Ease of  use',
@@ -111,13 +111,13 @@ const ComparisonTable = () => {
         Filter: SelectColumnFilter,
         filter: 'includes',
       },
-      // {
-      //   Header: 'Customizable score',
-      //   accessor: 'customizable',
-      //   Cell: (instance) => instance?.cell?.value || '',
-      //   Filter: SelectColumnFilter,
-      //   filter: 'includes',
-      // },
+      {
+        Header: 'Customizable score',
+        accessor: 'customizable',
+        Cell: (instance) => instance?.cell?.value || '',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
+      },
       {
         Header: 'Free plan',
         accessor: 'free-plan',
