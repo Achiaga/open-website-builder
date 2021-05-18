@@ -106,7 +106,10 @@ export const ListWithLinks = ({ title, items, ordered }) => {
                   {item.title}
                 </Text>
               </a>{' '}
-              - <Text ml={['0.5rem', '1rem']}>{item.description}</Text>
+              {/* -{' '} */}
+              <Text ml={['0.5rem', '1rem']} my={['0.5rem', '1rem']}>
+                {item.description}
+              </Text>
             </ListItem>
           )
         })}

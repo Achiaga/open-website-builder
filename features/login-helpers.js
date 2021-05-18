@@ -8,9 +8,10 @@ import {
   setAccountCreated,
   setTempDBData,
   setLoadingData,
+  saveData,
+  saveDataOnLocal,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
-import { saveData } from '../login/helpers'
 import { getUserDataById } from '../utils/user-data'
 
 async function getUserData(user) {
@@ -36,7 +37,10 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const LSData = await getUserDataFromLS()
   const templateData = templates[template]
   const data = templateData || LSData || templates.fallback
-  dispatch(setInitialBuilderData(data))
+  batch(() => {
+    dispatch(saveDataOnLocal(data))
+    dispatch(setInitialBuilderData(data))
+  })
 }
 export const updateInitialState =
   ({ resume_data, publish, userData }) =>
@@ -53,39 +57,40 @@ const isLogin = (user) => {
   return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }
 
-const handleSingup = (user) => async (dispatch) => {
-  const builderData = await getUserDataFromLS()
-  const { resume_data, user_id, user_email, publish, _id } = await saveData({
-    user,
-    builderData,
-  })
-  const userData = { user_email, user_id, websiteId: _id }
-  dispatch(updateInitialState({ resume_data, publish, userData }))
+const handleSignup = () => async (dispatch) => {
+  // const builderData = await getUserDataFromLS()
+  dispatch(saveData())
+  // const userData = { user_email, userId: user_id, projectId: _id, publish }
+  // dispatch(updateInitialState({ resume_data, publish, userData }))
   dispatch(setAccountCreated(true))
 }
 
 export const loadDataFromDB = (user, template) => async (dispatch) => {
   dispatch(setLoadingData(true))
   const dbData = await getUserData(user, template)
-  const { resume_data, publish, _id, domain } = dbData || {}
-  const userData = { user_email: user.email, user_id: user.sub, domain }
-  if (templates[template] && resume_data) {
-    batch(() => {
-      dispatch(setTempDBData({ resume_data, publish, userData, domain }))
-      dispatch(loadInitialDataNoAccount(template))
-    })
-    return
+  const { resume_data, publish, _id, domain, subdomain } = dbData || {}
+  const userData = {
+    userEmail: user.email,
+    userId: user.sub,
+    domain,
+    subdomain,
+    projectId: _id,
+    publish,
   }
   if (!resume_data) {
+    dispatch(loadInitialDataNoAccount(template))
+  } else if (templates[template] && resume_data) {
     batch(() => {
+      dispatch(setTempDBData({ resume_data }))
       dispatch(loadInitialDataNoAccount(template))
-      dispatch(setUserData(userData))
     })
   } else {
-    userData['websiteId'] = _id
-    dispatch(updateInitialState({ resume_data, publish, userData, domain }))
+    dispatch(updateInitialState({ resume_data }))
   }
-  dispatch(setLoadingData(false))
+  batch(() => {
+    dispatch(setUserData(userData))
+    dispatch(setLoadingData(false))
+  })
 }
 
 export function normalizeBuilderData(data) {
@@ -97,26 +102,47 @@ export function normalizeBuilderData(data) {
   return normalizedData
 }
 
+function isFallbackTemplate(LSData) {
+  return LSData?.blocks[
+    'text-7748f2a1-dd59-4599-9bee-7e109c71984c'
+  ]?.data?.text?.includes(
+    '<h3><strong style="color: rgb(11, 110, 153);">Welcome to your website!</strong></h3>'
+  )
+}
+
 export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
   const [dbData, LSData] = await Promise.all([
     getUserData(user),
     getUserDataFromLS(),
   ])
   if (!dbData) return dispatch(loadInitialDataNoAccount())
-  const { resume_data, user_id, user_email, publish, _id } = dbData || {}
-  const userData = { user_email, user_id, websiteId: _id }
-  if (!_.isEqual(LSData, resume_data)) {
-    dispatch(setTempDBData({ resume_data, publish, userData }))
-    dispatch(loadInitialDataNoAccount())
-    return
+  const { resume_data, user_id, user_email, publish, _id, subdomain, domain } =
+    dbData || {}
+  const userData = {
+    user_email,
+    userId: user_id,
+    projectId: _id,
+    subdomain,
+    domain,
+    publish,
   }
-  dispatch(updateInitialState({ resume_data, publish, userData }))
+  if (!_.isEqual(LSData, resume_data) && !isFallbackTemplate(LSData)) {
+    batch(() => {
+      dispatch(setTempDBData({ resume_data, publish, userData }))
+      dispatch(loadInitialDataNoAccount())
+    })
+  } else {
+    batch(() => {
+      dispatch(updateInitialState({ resume_data, publish, userData }))
+    })
+  }
+  dispatch(setUserData(userData))
 }
 
 export const handleLoginCallback = (user) => async (dispatch) => {
   if (isLogin(user)) {
     return dispatch(handleLoginCallbackLoadData(user))
   }
-  //If the it is not login is singup and we handle thate here
-  return dispatch(handleSingup(user))
+  //If the it is not login is signup and we handle that here
+  return dispatch(handleSignup(user))
 }

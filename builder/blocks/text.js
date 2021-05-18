@@ -48,13 +48,20 @@ function cleanRedirect(url) {
   if (url.substr(0, prefix.length) !== prefix) {
     return prefix + url
   }
+  return url
 }
 
 export const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
   const workingRedirectUrl = cleanRedirect(redirectUrl)
+  console.log(workingRedirectUrl)
   return (
-    <a href={workingRedirectUrl} target="_blank" rel="noreferrer">
+    <a
+      href={workingRedirectUrl}
+      target="_blank"
+      rel="noreferrer"
+      style={{ display: 'flex', height: '100%' }}
+    >
       {children}
     </a>
   )
@@ -131,11 +138,9 @@ export const PrevText = (props) => {
           lineHeight: '1.42',
           height: '100%',
           outline: 'none',
-          // overflowY: 'auto',
           padding: '0px',
           tabSize: '4',
           textAlign: 'left',
-          // whiteSpace: 'pre-wrap',
           wordWrap: 'break-word',
           backgroundColor: 'transparent',
           width: '100%',

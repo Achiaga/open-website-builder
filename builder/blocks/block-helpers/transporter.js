@@ -26,10 +26,10 @@ export const apiCall = async (path, body) => {
   return await JsonResponse
 }
 
-export const sendEmailNotifiaction = (websiteId, subscriberEmail) => {
+export const sendEmailNotifiaction = (projectId, subscriberEmail) => {
   return apiCall('/api/notifications', {
     type: 'newSubscriberEmail',
-    websiteId,
+    projectId,
     subscriberEmail,
   })
 }
@@ -45,4 +45,10 @@ export const addDomain = (domain, projectId) => {
 }
 export const requestDomainStatus = (domain) => {
   return apiCall('/api/domain', { domain, key: 'check' })
+}
+export const requestSubDomainAvailability = (subdomain, projectId) => {
+  return apiCall('/api/db', {
+    data: { subdomain, projectId },
+    type: 'subdomain-availability',
+  })
 }

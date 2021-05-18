@@ -72,6 +72,7 @@ async function addNewDomain(domain) {
     const res = await cloudflarePOST(
       'https://api.cloudflare.com/client/v4/zones',
       {
+        // eslint-disable-next-line no-undef
         account: { id: process.env.CLOUDFLARE_ACCOUNT_ID },
         name: domain,
         jump_start: true,
@@ -138,13 +139,14 @@ async function addDomain(res, domain, projectId) {
   const awsBucketUrl = `www.${domain}.s3-website-us-east-1.amazonaws.com`
   const checkStatus = await checkRecordStatus(domain)
   if (checkStatus?.status === 'active') {
-    return respondAPIQuery(res, { domainStatus: status }, 200)
+    return respondAPIQuery(res, { domainStatus: checkStatus?.status }, 200)
   }
+
   const domainAdded = await addNewDomain(domain)
   const zoneId = domainAdded.result.id
   const { dns1, dns2 } = await createDnsRecord(zoneId, domain, awsBucketUrl)
   const updatedSettings = await configSettings(zoneId)
-  const dbUpdate = await updateProjectDomain(domain, projectId)
+  await updateProjectDomain(domain, projectId)
   respondAPIQuery(
     res,
     {

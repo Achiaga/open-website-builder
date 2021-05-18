@@ -17,7 +17,7 @@ const SaveButton = () => {
 
   async function handleSavePage() {
     if (user) {
-      dispatch(saveWebsite(user))
+      dispatch(saveWebsite())
       return
     }
     return router.push('/api/auth/custom-login')

@@ -1,0 +1,478 @@
+{
+  "blocks": {
+    "image-c3302b17-6e3c-44a1-a3f0-56faead56edd": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=domain-guide-thumbnail.png&q=75&w=3840"
+      }
+    },
+    "text-753cd2cc-322d-4584-8611-95629c8de6fc": {
+      "type": "text",
+      "data": {
+        "text": "<h2><strong>Add a custom domain to your antfolio's website</strong></h2><p><br></p><h4><span style=\"color: rgb(155, 154, 151);\">Don't worry! This sounds scary but it is easy peasy.</span></h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-92506928-5d4f-468d-acb8-6d46a204e2cd": {
+      "type": "text",
+      "data": {
+        "text": "<h6><span style=\"color: rgb(155, 154, 151);\">** In case you have any trouble following this guide, please reach us by Twitter or by email (bender.dev.maker@gmail.com). And we will try our best to solve your problem.</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-6aff92d7-f76c-4231-8a9c-f1a87b253fc5": {
+      "type": "text",
+      "data": {
+        "text": "<h3>First Step</h3><p><br></p><h6><strong>// Dashboard</strong></h6><h5>1- Go to the Project <strong>→</strong> Click on the edit button on the dashboard</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-d9647679-0c23-43f4-9bc3-19e91cd6d268": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-1-1.png&q=75&w=3840"
+      }
+    },
+    "text-fdbe16bf-71bf-44e4-acaa-c956a1a2b888": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>// Builder</strong></h6><h5>2- Save the Project - Open the top left of the screen</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-f5ce0414-5ef5-4ca0-be5a-c09c2132e4b3": {
+      "type": "text",
+      "data": {
+        "text": "<h5>3- Publish the Project</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-070bbedb-6b6b-469a-9d7c-8f73be93f80a": {
+      "type": "text",
+      "data": {
+        "text": "<h5>4- Go to the dashboard</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-6898576d-e924-4322-a49e-fecd81fe71b2": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>//Dashboard</strong></h6><h5>5- Add your custom domain in the <em>custom domain input</em></h5><p><br></p><h4><strong style=\"color: rgb(224, 62, 62);\">** Do not go to the domain yet **</strong></h4><p><span style=\"color: rgb(224, 62, 62);\">Do not enter your new domain on the URL yet. Since your router will remember that it is empty. And you will have to wait a day to see your website on your new domain even though it will up and running and other people can see it.</span></p><h5><br></h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-95edd6f4-7fff-46f3-9f02-a3fb326484bc": {
+      "type": "text",
+      "data": {
+        "text": "<h3>Step 2</h3><p><br></p><h5><strong>//Go to your domain provider - I will do the example with my domain provider: NameCheap</strong></h5><p><br></p><h5>1- Go to your domain provider account in my case I access my Namecheap account.</h5><p><br></p><h5>2- Go to \"manage\" on your domain provider page.</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-9953f6cc-1556-433f-b8db-3eca5e56e763": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-1-2.png&q=75&w=3840"
+      }
+    },
+    "image-5f6f5af5-d87a-49e3-b617-d1309acd38d3": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-1-3.png&q=75&w=3840"
+      }
+    },
+    "image-60b8da4a-1b97-4931-ac6a-d13b91cce6e4": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-1-4.png&q=75&w=3840"
+      }
+    },
+    "image-e06b482b-9934-4c1c-b646-6a15af462dbf": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-1-5.png&q=75&w=3840"
+      }
+    },
+    "image-22d34eec-386c-4c6a-b915-68efbc3d4d13": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-1-6.png&q=75&w=3840"
+      }
+    },
+    "image-f6c657ea-afd0-4585-951f-37ef47f58183": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-2-1.png&q=75&w=3840"
+      }
+    },
+    "image-877379a5-71c2-4f0c-a50d-4b1930e2a195": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-2-2.png&q=75&w=3840"
+      }
+    },
+    "image-7bc1dbb6-5733-4e97-b8cb-57f8048fa0f2": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.antfolio.app/_next/image?url=dashboard-change-domain-2-3.png&q=75&w=3840"
+      }
+    },
+    "text-ba4c3980-b48b-44cd-b7cc-3473f1dc66ef": {
+      "type": "text",
+      "data": {
+        "text": "<h5>2- Change the nameservers to:</h5><h5>naomi.ns.cloudflare.com | yevgen.ns.cloudflare.com</h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-7a23624d-a345-4420-93fe-987e506d0862": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Wait around 2 hours and it should be working.</h4><h4><br></h4><h5>** In case you face any issue or you can't follow this guide because your domain provider is not Namecheap. Please contact us at <span style=\"color: rgb(0, 0, 0);\">bender.dev.maker@gmail.com and we will try to help you. 😁</span></h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    }
+  },
+  "hierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-532b1eb0-8670-41c5-97f1-c41248d6d775": [],
+    "text-484368ee-30aa-439a-b004-8e0b9152a96d": [],
+    "image-9953f6cc-1556-433f-b8db-3eca5e56e763": [],
+    "image-5f6f5af5-d87a-49e3-b617-d1309acd38d3": [],
+    "image-60b8da4a-1b97-4931-ac6a-d13b91cce6e4": [],
+    "image-e06b482b-9934-4c1c-b646-6a15af462dbf": [],
+    "image-22d34eec-386c-4c6a-b915-68efbc3d4d13": [],
+    "image-f6c657ea-afd0-4585-951f-37ef47f58183": [],
+    "image-877379a5-71c2-4f0c-a50d-4b1930e2a195": [],
+    "image-7bc1dbb6-5733-4e97-b8cb-57f8048fa0f2": [],
+    "text-ba4c3980-b48b-44cd-b7cc-3473f1dc66ef": []
+  },
+  "layouts": {
+    "image-c3302b17-6e3c-44a1-a3f0-56faead56edd": {
+      "x": 49.16666666666667,
+      "y": 65.13888888888887,
+      "i": "image-c3302b17-6e3c-44a1-a3f0-56faead56edd",
+      "w": 103.05555555555557,
+      "h": 64.44444444444444
+    },
+    "text-753cd2cc-322d-4584-8611-95629c8de6fc": {
+      "x": 49.166666666666664,
+      "y": 17.083333333333332,
+      "i": "text-753cd2cc-322d-4584-8611-95629c8de6fc",
+      "w": 104.86111111111111,
+      "h": 27.77777777777778
+    },
+    "text-92506928-5d4f-468d-acb8-6d46a204e2cd": {
+      "x": 49.30555555555556,
+      "y": 56.94444444444444,
+      "i": "text-92506928-5d4f-468d-acb8-6d46a204e2cd",
+      "w": 107.08333333333333,
+      "h": 6.111111111111111
+    },
+    "text-6aff92d7-f76c-4231-8a9c-f1a87b253fc5": {
+      "x": 48.888888888888886,
+      "y": 145.13888888888889,
+      "i": "text-6aff92d7-f76c-4231-8a9c-f1a87b253fc5",
+      "w": 104.30555555555556,
+      "h": 16.944444444444443
+    },
+    "image-d9647679-0c23-43f4-9bc3-19e91cd6d268": {
+      "x": 49.166666666666664,
+      "y": 167.08333333333334,
+      "i": "image-d9647679-0c23-43f4-9bc3-19e91cd6d268",
+      "w": 98.47222222222221,
+      "h": 62.083333333333336
+    },
+    "text-fdbe16bf-71bf-44e4-acaa-c956a1a2b888": {
+      "x": 49.44444444444444,
+      "y": 240.83333333333331,
+      "i": "text-fdbe16bf-71bf-44e4-acaa-c956a1a2b888",
+      "w": 89.44444444444444,
+      "h": 6.805555555555555
+    },
+    "text-f5ce0414-5ef5-4ca0-be5a-c09c2132e4b3": {
+      "x": 49.58333333333333,
+      "y": 318.6111111111111,
+      "i": "text-f5ce0414-5ef5-4ca0-be5a-c09c2132e4b3",
+      "w": 90.83333333333333,
+      "h": 3.75
+    },
+    "text-070bbedb-6b6b-469a-9d7c-8f73be93f80a": {
+      "x": 49.58333333333333,
+      "y": 395.41666666666663,
+      "i": "text-070bbedb-6b6b-469a-9d7c-8f73be93f80a",
+      "w": 89.44444444444444,
+      "h": 3.75
+    },
+    "text-6898576d-e924-4322-a49e-fecd81fe71b2": {
+      "x": 49.166666666666664,
+      "y": 470.83333333333337,
+      "i": "text-6898576d-e924-4322-a49e-fecd81fe71b2",
+      "w": 83.19444444444444,
+      "h": 25.555555555555554
+    },
+    "text-95edd6f4-7fff-46f3-9f02-a3fb326484bc": {
+      "x": 49.166666666666664,
+      "y": 625.6944444444445,
+      "i": "text-95edd6f4-7fff-46f3-9f02-a3fb326484bc",
+      "w": 84.16666666666667,
+      "h": 33.888888888888886
+    },
+    "image-9953f6cc-1556-433f-b8db-3eca5e56e763": {
+      "x": 49.30555555555556,
+      "y": 252.77777777777777,
+      "i": "image-9953f6cc-1556-433f-b8db-3eca5e56e763",
+      "w": 98.74999999999999,
+      "h": 56.111111111111114
+    },
+    "image-5f6f5af5-d87a-49e3-b617-d1309acd38d3": {
+      "x": 49.58333333333333,
+      "y": 326.94444444444446,
+      "i": "image-5f6f5af5-d87a-49e3-b617-d1309acd38d3",
+      "w": 98.74999999999999,
+      "h": 56.111111111111114
+    },
+    "image-60b8da4a-1b97-4931-ac6a-d13b91cce6e4": {
+      "x": 49.44444444444444,
+      "y": 404.30555555555554,
+      "i": "image-60b8da4a-1b97-4931-ac6a-d13b91cce6e4",
+      "w": 98.74999999999999,
+      "h": 56.111111111111114
+    },
+    "image-e06b482b-9934-4c1c-b646-6a15af462dbf": {
+      "x": 48.75,
+      "y": 499.16666666666663,
+      "i": "image-e06b482b-9934-4c1c-b646-6a15af462dbf",
+      "w": 98.74999999999999,
+      "h": 56.111111111111114
+    },
+    "image-22d34eec-386c-4c6a-b915-68efbc3d4d13": {
+      "x": 48.888888888888886,
+      "y": 563.8888888888889,
+      "i": "image-22d34eec-386c-4c6a-b915-68efbc3d4d13",
+      "w": 98.74999999999999,
+      "h": 56.111111111111114
+    },
+    "image-f6c657ea-afd0-4585-951f-37ef47f58183": {
+      "x": 48.888888888888886,
+      "y": 662.3611111111111,
+      "i": "image-f6c657ea-afd0-4585-951f-37ef47f58183",
+      "w": 99.8611111111111,
+      "h": 44.44444444444445
+    },
+    "image-877379a5-71c2-4f0c-a50d-4b1930e2a195": {
+      "x": 48.75,
+      "y": 731.1111111111111,
+      "i": "image-877379a5-71c2-4f0c-a50d-4b1930e2a195",
+      "w": 98.6111111111111,
+      "h": 59.16666666666667
+    },
+    "image-7bc1dbb6-5733-4e97-b8cb-57f8048fa0f2": {
+      "x": 49.166666666666664,
+      "y": 797.5,
+      "i": "image-7bc1dbb6-5733-4e97-b8cb-57f8048fa0f2",
+      "w": 98.74999999999999,
+      "h": 61.527777777777786
+    },
+    "text-ba4c3980-b48b-44cd-b7cc-3473f1dc66ef": {
+      "x": 48.61111111111111,
+      "y": 718.6111111111111,
+      "i": "text-ba4c3980-b48b-44cd-b7cc-3473f1dc66ef",
+      "w": 97.63888888888889,
+      "h": 7.5
+    },
+    "text-7a23624d-a345-4420-93fe-987e506d0862": {
+      "x": 49.30555555555556,
+      "y": 868.8888888888889,
+      "w": 98.19444444444444,
+      "h": 31.25,
+      "i": "text-7a23624d-a345-4420-93fe-987e506d0862"
+    }
+  },
+  "mobileLayout": {
+    "image-c3302b17-6e3c-44a1-a3f0-56faead56edd": {
+      "x": 24.583333333333336,
+      "y": 65.13888888888887,
+      "i": "image-c3302b17-6e3c-44a1-a3f0-56faead56edd",
+      "w": 51.527777777777786,
+      "h": 64.44444444444444
+    },
+    "text-753cd2cc-322d-4584-8611-95629c8de6fc": {
+      "x": 24.583333333333332,
+      "y": 17.083333333333332,
+      "i": "text-753cd2cc-322d-4584-8611-95629c8de6fc",
+      "w": 52.43055555555556,
+      "h": 27.77777777777778
+    },
+    "text-92506928-5d4f-468d-acb8-6d46a204e2cd": {
+      "x": 24.65277777777778,
+      "y": 56.94444444444444,
+      "w": 53.541666666666664,
+      "h": 6.111111111111111,
+      "i": "text-92506928-5d4f-468d-acb8-6d46a204e2cd"
+    },
+    "text-6aff92d7-f76c-4231-8a9c-f1a87b253fc5": {
+      "x": 24.444444444444443,
+      "y": 145.13888888888889,
+      "i": "text-6aff92d7-f76c-4231-8a9c-f1a87b253fc5",
+      "w": 52.15277777777778,
+      "h": 16.944444444444443
+    },
+    "image-d9647679-0c23-43f4-9bc3-19e91cd6d268": {
+      "x": 24.583333333333332,
+      "y": 167.08333333333334,
+      "i": "image-d9647679-0c23-43f4-9bc3-19e91cd6d268",
+      "w": 49.23611111111111,
+      "h": 62.083333333333336
+    },
+    "text-fdbe16bf-71bf-44e4-acaa-c956a1a2b888": {
+      "x": 24.72222222222222,
+      "y": 240.83333333333331,
+      "i": "text-fdbe16bf-71bf-44e4-acaa-c956a1a2b888",
+      "w": 44.72222222222222,
+      "h": 6.805555555555555
+    },
+    "text-f5ce0414-5ef5-4ca0-be5a-c09c2132e4b3": {
+      "x": 24.791666666666664,
+      "y": 318.6111111111111,
+      "i": "text-f5ce0414-5ef5-4ca0-be5a-c09c2132e4b3",
+      "w": 45.416666666666664,
+      "h": 3.75
+    },
+    "text-070bbedb-6b6b-469a-9d7c-8f73be93f80a": {
+      "x": 24.791666666666664,
+      "y": 395.41666666666663,
+      "w": 44.72222222222222,
+      "h": 3.75,
+      "i": "text-070bbedb-6b6b-469a-9d7c-8f73be93f80a"
+    },
+    "text-6898576d-e924-4322-a49e-fecd81fe71b2": {
+      "x": 24.583333333333332,
+      "y": 470.83333333333337,
+      "i": "text-6898576d-e924-4322-a49e-fecd81fe71b2",
+      "w": 41.59722222222222,
+      "h": 25.555555555555554
+    },
+    "text-95edd6f4-7fff-46f3-9f02-a3fb326484bc": {
+      "x": 24.583333333333332,
+      "y": 625.6944444444445,
+      "w": 42.083333333333336,
+      "h": 33.888888888888886,
+      "i": "text-95edd6f4-7fff-46f3-9f02-a3fb326484bc"
+    },
+    "image-9953f6cc-1556-433f-b8db-3eca5e56e763": {
+      "x": 24.65277777777778,
+      "y": 252.77777777777777,
+      "i": "image-9953f6cc-1556-433f-b8db-3eca5e56e763",
+      "w": 49.37499999999999,
+      "h": 56.111111111111114
+    },
+    "image-5f6f5af5-d87a-49e3-b617-d1309acd38d3": {
+      "x": 24.791666666666664,
+      "y": 326.94444444444446,
+      "i": "image-5f6f5af5-d87a-49e3-b617-d1309acd38d3",
+      "w": 49.37499999999999,
+      "h": 56.111111111111114
+    },
+    "image-60b8da4a-1b97-4931-ac6a-d13b91cce6e4": {
+      "x": 24.72222222222222,
+      "y": 404.30555555555554,
+      "i": "image-60b8da4a-1b97-4931-ac6a-d13b91cce6e4",
+      "w": 49.37499999999999,
+      "h": 56.111111111111114
+    },
+    "image-e06b482b-9934-4c1c-b646-6a15af462dbf": {
+      "x": 24.375,
+      "y": 499.16666666666663,
+      "w": 49.37499999999999,
+      "h": 56.111111111111114,
+      "i": "image-e06b482b-9934-4c1c-b646-6a15af462dbf"
+    },
+    "image-22d34eec-386c-4c6a-b915-68efbc3d4d13": {
+      "x": 24.444444444444443,
+      "y": 563.8888888888889,
+      "w": 49.37499999999999,
+      "h": 56.111111111111114,
+      "i": "image-22d34eec-386c-4c6a-b915-68efbc3d4d13"
+    },
+    "image-f6c657ea-afd0-4585-951f-37ef47f58183": {
+      "x": 24.444444444444443,
+      "y": 662.3611111111111,
+      "w": 49.93055555555555,
+      "h": 44.44444444444445,
+      "i": "image-f6c657ea-afd0-4585-951f-37ef47f58183"
+    },
+    "image-877379a5-71c2-4f0c-a50d-4b1930e2a195": {
+      "x": 24.375,
+      "y": 731.1111111111111,
+      "w": 49.30555555555555,
+      "h": 59.16666666666667,
+      "i": "image-877379a5-71c2-4f0c-a50d-4b1930e2a195"
+    },
+    "image-7bc1dbb6-5733-4e97-b8cb-57f8048fa0f2": {
+      "x": 24.583333333333332,
+      "y": 797.5,
+      "w": 49.37499999999999,
+      "h": 61.527777777777786,
+      "i": "image-7bc1dbb6-5733-4e97-b8cb-57f8048fa0f2"
+    },
+    "text-ba4c3980-b48b-44cd-b7cc-3473f1dc66ef": {
+      "x": 24.305555555555554,
+      "y": 718.6111111111111,
+      "w": 48.81944444444444,
+      "h": 7.5,
+      "i": "text-ba4c3980-b48b-44cd-b7cc-3473f1dc66ef"
+    },
+    "text-7a23624d-a345-4420-93fe-987e506d0862": {
+      "x": 24.65277777777778,
+      "y": 868.8888888888889,
+      "w": 49.09722222222222,
+      "h": 21.25,
+      "i": "text-7a23624d-a345-4420-93fe-987e506d0862"
+    }
+  },
+  "mobileHierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-532b1eb0-8670-41c5-97f1-c41248d6d775": [],
+    "text-484368ee-30aa-439a-b004-8e0b9152a96d": []
+  },
+  "mobileEditedBlocks": []
+}

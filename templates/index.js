@@ -5,6 +5,8 @@ import template3 from './portfolio-storytelling-sasha.json'
 import template4 from './portfolio-designer-tara.json'
 import template5 from './portfolio-product-desgner-john.json'
 import template6 from './landing-page-3d-monkeyflow.json'
+import template7 from './empty.json'
+import template8 from './guides-custom-domain.json'
 
 export default {
   fallback,
@@ -14,4 +16,6 @@ export default {
   ['portfolio-designer-tara']: template4,
   ['portfolio-product-desgner-john']: template5,
   ['landing-page-3d-monkeyflow']: template6,
+  ['empty']: template7,
+  ['guides-custom-domain']: template8,
 }

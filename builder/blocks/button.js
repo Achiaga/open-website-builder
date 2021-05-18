@@ -18,26 +18,29 @@ export const CustonButton = ({ children, ...props }) => {
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'
   return (
-    <Button
-      w="100%"
-      h="100%"
-      boxShadow={props.boxShadow}
-      border={props.border}
-      borderRadius={props.borderRadius}
-      backgroundColor={backgroundColor}
-      color={fontColor}
-      overflow="hidden"
-      _hover={{
-        backgroundColor: shades.colors[isColorBright ? '600' : '400'],
+    <button
+      style={{
+        width: '100%',
+        height: '100%',
         boxShadow: props.boxShadow,
+        border: props.border,
+        borderRadius: props.borderRadius,
+        backgroundColor: backgroundColor,
+        color: fontColor,
+        overflow: 'hidden',
+        cursor: 'pointer',
       }}
-      _active={{
-        backgroundColor: shades.colors[isColorBright ? '700' : '300'],
-        boxShadow: props.boxShadow,
-      }}
+      // _hover={{
+      //   backgroundColor: shades.colors[isColorBright ? '600' : '400'],
+      //   boxShadow: props.boxShadow,
+      // }}
+      // _active={{
+      //   backgroundColor: shades.colors[isColorBright ? '700' : '300'],
+      //   boxShadow: props.boxShadow,
+      // }}
     >
       {children}
-    </Button>
+    </button>
   )
 }
 

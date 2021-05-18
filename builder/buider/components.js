@@ -6,24 +6,26 @@ import { AiOutlineReload, AiFillSignal } from 'react-icons/ai'
 import { IoBatteryDead } from 'react-icons/io5'
 import { getBuilderDevice } from '../../features/builderSlice'
 
-const SerachBar = () => {
+const SearchBar = () => {
   return (
     <Box
       bg="#e4e5e7"
       w="90%"
-      h="50px"
+      h="40px"
       d="flex"
       borderRadius="10px"
       alignItems="center"
       justifyContent="space-between"
-      mt="3rem"
+      mt="2.5rem"
     >
       <Box p="1rem">
-        <HiMenu size="30px" />
+        <HiMenu size="20px" />
       </Box>
-      <Box as="span">www.antfolio.app</Box>
+      <Box as="span" fontSize="lg">
+        www.antfolio.app
+      </Box>
       <Box p="1rem">
-        <AiOutlineReload size="30px" />
+        <AiOutlineReload size="20px" />
       </Box>
     </Box>
   )
@@ -33,7 +35,7 @@ const Speaker = () => {
   return (
     <Box
       pos="absolute"
-      top="12px"
+      top="4px"
       left="50%"
       transform="translate(-50%, 6px)"
       height="8px"
@@ -48,8 +50,8 @@ const Camera = () => {
   return (
     <Box
       pos="absolute"
-      left="40%"
-      top="12px"
+      left="20%"
+      top="3px"
       transform="translate(180px, 4px)"
       width="12px"
       height="12px"
@@ -85,17 +87,17 @@ export const MobileWrapper = ({ children }) => {
       overflowY="hidden"
     >
       <Box
-        width="50%"
+        width="370px"
         m="auto"
         pos="relative"
         height="100%"
         overflow="hidden"
-        borderRadius="5rem"
-        boxShadow="0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111"
+        borderRadius="3rem"
+        boxShadow="0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 15px #111"
         _before={{
           top: '0px',
-          width: '56%',
-          height: '50px',
+          width: '50%',
+          height: '30px',
           backgroundColor: ' #1f1f1f',
           borderRadius: '0px 0px 40px 40px',
           content: "''",
@@ -108,7 +110,7 @@ export const MobileWrapper = ({ children }) => {
         <Camera />
 
         <Box
-          h="140px"
+          h="100px"
           bg="#f7f7f7"
           textAlign="center"
           fontSize="xl"
@@ -124,17 +126,17 @@ export const MobileWrapper = ({ children }) => {
             w="80%"
             top="1rem"
           >
-            <Box fontWeight="600" fontSize="xl">
+            <Box fontWeight="600" fontSize="sm">
               11:11
             </Box>
             <Box d="flex">
               <Box mr="0.5rem">
-                <IoBatteryDead size="30px" />
+                <IoBatteryDead size="20px" />
               </Box>
-              <AiFillSignal size="25px" />
+              <AiFillSignal size="15px" />
             </Box>
           </Box>
-          <SerachBar />
+          <SearchBar />
         </Box>
         {children}
       </Box>

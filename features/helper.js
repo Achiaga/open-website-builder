@@ -13,5 +13,6 @@ export async function getUserDataFromLS() {
 }
 
 export function generateStaticHTML(body) {
-  return htmlWrapper(body)
+  const hasFlurlyLink = body.includes('https://flurly.com')
+  return htmlWrapper(body, hasFlurlyLink)
 }
