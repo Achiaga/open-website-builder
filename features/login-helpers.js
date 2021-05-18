@@ -62,7 +62,6 @@ const handleSignup = (user) => async (dispatch) => {
     userId: user.sub,
     publish: false,
   }
-  console.log({ user })
   const builderData = await getUserDataFromLS()
   dispatch(setUserData(userData))
   dispatch(updateInitialState({ resume_data: builderData }))
