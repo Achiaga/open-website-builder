@@ -125,7 +125,10 @@ const PublishSuccessModal = () => {
           paddingBottom={'0'}
         >
           - Change it on your settings{' '}
-          <Link href="/dashboard">
+          <Link
+            href="/dashboard"
+            onClick={() => dispatch(setPublishStatus(null))}
+          >
             <Text
               as="u"
               cursor="pointer"
