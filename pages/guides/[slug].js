@@ -4,7 +4,6 @@ import { denormalizeBuilderData } from '../../features/builderSlice'
 
 const Blog = ({ slug }) => {
   const guideBlockData = guides[slug]
-  console.log(guideBlockData)
   return (
     <ResumeWebsite userBlocksData={denormalizeBuilderData(guideBlockData)} />
   )

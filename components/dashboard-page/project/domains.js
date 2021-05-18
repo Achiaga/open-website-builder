@@ -4,7 +4,7 @@ import { Box, Text } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
 import { GoCheck } from 'react-icons/go'
-import { GiSandsOfTime } from 'react-icons/gi'
+import ExclamationIcon from '../../../assets/exclamation-icon'
 import {
   addDomain,
   requestDomainStatus,
@@ -57,7 +57,13 @@ const DomainsWrapper = ({ domain, projectId }) => {
               {isActive ? (
                 <GoCheck color="#3fab3f" size="20px" />
               ) : (
-                <GiSandsOfTime color="#666f7a" size="20px" />
+                <Box
+                  width="10px"
+                  height="10px"
+                  borderRadius="50%"
+                  background="yellow.400"
+                  marginLeft="0.5rem"
+                />
               )}
               <Text fontSize="md" fontWeight="600" ml="0.5rem">
                 {domain || domainInput}
@@ -65,13 +71,43 @@ const DomainsWrapper = ({ domain, projectId }) => {
               <br />
             </Box>
             <Text>
-              {isPending ? (
-                <Box>
-                  <Text pt="0.5rem" pb="0.2rem">
+              {isPending && !isActive ? (
+                <Box
+                  border="1px solid gray"
+                  borderRadius="10px"
+                  mt="1rem"
+                  paddingX="1rem"
+                  paddingY="0.5rem"
+                >
+                  <Box display="flex" alignItems="center" pb="0.4rem">
+                    <ExclamationIcon fill="#2943de" />
+                    <Text
+                      mb="0.2rem"
+                      pb="0.1rem"
+                      ml="0.5rem"
+                      fontWeight="600"
+                      borderBottom="2px solid"
+                      borderColor="#2943de"
+                    >
+                      Info
+                    </Text>
+                  </Box>
+                  <Text pb="0.2rem">
                     Add the following name servers on your domain name provider:
                   </Text>
-                  <Text>
-                    {nameServers[0]} || {nameServers[1]}
+                  <Text>- {nameServers?.[0]}</Text>
+                  <Text>- {nameServers?.[1]}</Text>
+                  <Text pt="1.5rem">
+                    You can follow this{' '}
+                    <a
+                      href="https://www.antfolio.app/guides/guides-custom-domain"
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: 'underline', color: 'blue' }}
+                    >
+                      guide
+                    </a>{' '}
+                    to set up your name server.
                   </Text>
                 </Box>
               ) : (

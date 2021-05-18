@@ -54,7 +54,6 @@ function cleanRedirect(url) {
 export const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
   const workingRedirectUrl = cleanRedirect(redirectUrl)
-  console.log(workingRedirectUrl)
   return (
     <a
       href={workingRedirectUrl}
