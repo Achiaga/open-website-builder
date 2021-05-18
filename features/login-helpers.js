@@ -43,11 +43,10 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   })
 }
 export const updateInitialState =
-  ({ resume_data, publish, userData }) =>
+  ({ resume_data }) =>
   async (dispatch) => {
     batch(() => {
       dispatch(setInitialBuilderData(resume_data || templates.fallback))
-      dispatch(setUserData({ isPublish: publish, ...userData }))
     })
   }
 
@@ -58,10 +57,9 @@ const isLogin = (user) => {
 }
 
 const handleSignup = () => async (dispatch) => {
-  // const builderData = await getUserDataFromLS()
+  const builderData = await getUserDataFromLS()
+  dispatch(updateInitialState({ resume_data: builderData }))
   dispatch(saveData())
-  // const userData = { user_email, userId: user_id, projectId: _id, publish }
-  // dispatch(updateInitialState({ resume_data, publish, userData }))
   dispatch(setAccountCreated(true))
 }
 
@@ -133,7 +131,7 @@ export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
     })
   } else {
     batch(() => {
-      dispatch(updateInitialState({ resume_data, publish, userData }))
+      dispatch(updateInitialState({ resume_data }))
     })
   }
   dispatch(setUserData(userData))

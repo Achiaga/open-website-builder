@@ -58,6 +58,7 @@ const Dashboard = ({ dashboardType }) => {
           justifyContent="flex-start"
           alignItems="flex-start"
           height="100vh"
+          overflowY="scroll"
         >
           <SelectedDashboard dashboardType={dashboardType} user={user} />
         </Box>
