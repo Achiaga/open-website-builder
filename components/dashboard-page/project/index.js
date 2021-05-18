@@ -17,6 +17,7 @@ const ProjectCard = ({ project }) => {
     setIsRemoving(true)
     dispatch(removeProject(project._id, user.sub))
   }
+
   const isPublished = project.publish
   return (
     <Box
