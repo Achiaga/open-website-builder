@@ -20,6 +20,7 @@ async function createProjectDB(
     publish: isPublish,
     resume_data,
     created_at: Date.now(),
+    updates: 0,
   }
   await client.connect()
   const database = client.db(process?.env?.DB_NAME)
@@ -51,6 +52,9 @@ async function updateWebsiteData(data, res) {
         ...(data.isPublish ? { publish: data.isPublish } : {}),
         resume_data: data.resume_data,
         updated_at: Date.now(),
+      },
+      $inc: {
+        updates: +1,
       },
     }
     await client.connect()
@@ -220,10 +224,10 @@ export async function getUserDataFromWebsiteId(projectId) {
       await client.connect()
       const database = client.db(process?.env?.DB_NAME)
       const websiteCollection = database.collection(process.env.DB_COLLECTION)
-      const cusrosUserData = await websiteCollection.find({
+      const cursorsUserData = await websiteCollection.find({
         _id: ObjectId(projectId),
       })
-      const data = await cusrosUserData.toArray()
+      const data = await cursorsUserData.toArray()
       await client.close()
       return { userEmail: data[0].user_email }
     } catch (err) {
@@ -242,10 +246,10 @@ export async function getAllUserData(userId) {
     await client.connect()
     const database = client.db(process?.env?.DB_NAME)
     const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    const cusrosUserData = await websiteCollection.find({
+    const cursorsUserData = await websiteCollection.find({
       user_id: userId,
     })
-    const data = await cusrosUserData.toArray()
+    const data = await cursorsUserData.toArray()
     await client.close()
     return { websitesData: data }
   } catch (err) {
@@ -263,10 +267,10 @@ export async function removeProject({ projectId, userId }, res) {
     await websiteCollection.deleteOne({
       _id: ObjectId(projectId),
     })
-    const cursorUserProejcts = await websiteCollection.find({
+    const cursorUserProjects = await websiteCollection.find({
       user_id: userId,
     })
-    const data = await cursorUserProejcts.toArray()
+    const data = await cursorUserProjects.toArray()
     await client.close()
     respondAPIQuery(res, { websitesData: data })
   } catch (err) {

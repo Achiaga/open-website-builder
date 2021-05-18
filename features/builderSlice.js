@@ -413,6 +413,9 @@ export const saveData = (publish) => async (dispatch, getState) => {
   publish && dispatch(setPublishStatus('loading'))
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
+
+  if (!builderData) return dispatch(setSaveStatus('error'))
+
   const { projectId } = await requestSaveWebsite({
     ...userData,
     resume_data: builderData,
