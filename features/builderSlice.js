@@ -409,13 +409,14 @@ export const publishWebsite = () => async (dispatch, getState) => {
 }
 
 export const saveData = (publish) => async (dispatch, getState) => {
-  dispatch(setSaveStatus('loading'))
+  !publish && dispatch(setSaveStatus('loading'))
+  publish && dispatch(setPublishStatus('loading'))
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const { projectId } = await requestSaveWebsite({
+    ...userData,
     resume_data: builderData,
     isPublish: publish,
-    ...userData,
   })
   batch(() => {
     dispatch(

@@ -53,26 +53,37 @@ const Hero = () => {
               <path d="M54.1 108c-.5 0-.9-.2-1.2-.6-.5-.7-.3-1.6.4-2.1 1.5-1 9.5-5.5 14.6-8.3-17.4-.5-31.3-7.3-41.3-20C9.9 55.7 9.5 24.2 14.2 3.7c.2-.8 1-1.3 1.8-1.1.8.2 1.3 1 1.1 1.8-4.6 19.9-4.2 50.3 11.8 70.8 9.5 12.2 23 18.6 39.9 18.9h.3l-3.2-4c-1.4-1.7-2.7-3.3-4.1-5.1-.7-.9-1.5-1.9-2.3-2.9-.5-.6-.4-1.6.2-2.1.6-.5 1.6-.4 2.1.2 0 0 0 .1.1.1l6.4 7.9c.5.6.9 1.1 1.4 1.7 1.5 1.8 3.1 3.6 4.3 5.5 0 .1.1.1.1.2.1.2.1.3.2.5v.3c0 .2 0 .3-.1.5 0 .1-.1.1-.1.2-.1.2-.2.3-.3.4-.1.1-.2.1-.3.2 0 0-.1 0-.2.1-.9.4-16 8.6-18.2 10.1-.4 0-.7.1-1 .1z"></path>
             </svg>
           </Box>
-          <Link href="/templates" prefetch>
-            <a>
-              <Button
-                fontSize="2xl"
-                minW="7.5rem"
-                w="16rem"
-                h={14}
-                bg="gray.900"
-                color="gray.50"
-                _hover={{
-                  bg: 'transparent',
-                  border: '2px solid black',
-                  color: 'black',
-                }}
-                _active={{ bg: 'gray.300' }}
-              >
-                Start for Free
-              </Button>
-            </a>
-          </Link>
+          <Box>
+            <Link href="/templates" prefetch>
+              <a>
+                <Button
+                  fontSize="2xl"
+                  minW="7.5rem"
+                  w="16rem"
+                  h={14}
+                  bg="gray.900"
+                  color="gray.50"
+                  _hover={{
+                    bg: 'transparent',
+                    border: '2px solid black',
+                    color: 'black',
+                  }}
+                  _active={{ bg: 'gray.300' }}
+                >
+                  Start for Free
+                </Button>
+              </a>
+            </Link>
+            <Box
+              color="gray.400"
+              fontSize="sm"
+              h="10px"
+              lineHeight="0"
+              fontWeight="400"
+            >
+              No credit card, No account required 🎉
+            </Box>
+          </Box>
         </Box>
       </Box>
       <Box w="100%" d="flex" justifyContent="center" pb="6rem" pt="-1rem">

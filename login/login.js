@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { GiSmartphone } from 'react-icons/gi'
 import {
   getAccountCreated,
   getBuilderDevice,
@@ -117,13 +117,25 @@ export function Login() {
             boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
           >
             <MenuItem onClick={handleMobileVersion}>
-              {builderDevice === 'mobile' ? 'Desktop' : 'Mobile'}
+              {builderDevice === 'mobile' ? (
+                'Desktop View'
+              ) : (
+                <Box d="flex" justifyContent="space-between">
+                  <GiSmartphone /> Mobile View
+                </Box>
+              )}
             </MenuItem>
+            <Box borderBottom="1px solid" borderColor="gray.200" />
             <Box>
               <a href="/preview" target="_blank">
                 <MenuItem>Preview</MenuItem>
               </a>
-
+              {user && (
+                <MenuItem onClick={handlePublish}>
+                  {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
+                </MenuItem>
+              )}
+              <Box borderBottom="1px solid" borderColor="gray.200" />
               <Link href="/templates">
                 <a>
                   <MenuItem>Templates</MenuItem>
@@ -132,22 +144,22 @@ export function Login() {
             </Box>
             {user ? (
               <Box>
-                <MenuItem onClick={handlePublish}>
-                  {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
-                </MenuItem>
                 <Link href="/dashboard" passHref>
                   <MenuItem>
                     <a>Dashboard</a>
                   </MenuItem>
                 </Link>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                <Box borderBottom="1px solid" borderColor="gray.200" />
+                <MenuItem onClick={handleLogout} warning>
+                  Logout
+                </MenuItem>
               </Box>
             ) : (
               <Box>
                 <MenuItem onClick={handleLogin}>Login</MenuItem>
                 <Box borderBottom="1px solid" borderColor="gray.200" />
                 <MenuItem onClick={handleRemove} warning>
-                  Delete Project
+                  Clear Builder
                 </MenuItem>
               </Box>
             )}

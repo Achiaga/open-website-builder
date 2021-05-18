@@ -10,9 +10,37 @@ function getDBCredentials() {
   return client
 }
 
+async function createProjectDB(
+  res,
+  client,
+  { userId, isPublish = false, resume_data }
+) {
+  const newDoc = {
+    user_id: userId,
+    publish: isPublish,
+    resume_data,
+    created_at: Date.now(),
+  }
+  await client.connect()
+  const database = client.db(process?.env?.DB_NAME)
+  const websiteCollection = database.collection(process.env.DB_COLLECTION)
+  const createResponse = await websiteCollection.insertOne(newDoc)
+  const projectId = createResponse.insertedId
+  await client.close()
+  respondAPIQuery(res, { projectId }, 200)
+}
+
 async function updateWebsiteData(data, res) {
   try {
     const client = await getDBCredentials()
+
+    if (!data.projectId) {
+      await createProjectDB(res, client, data)
+      return
+    }
+    if (!data.userId) {
+      respondAPIQuery(res, 'user id not specified', 403)
+    }
     const options = {
       upsert: true,
     }
@@ -20,9 +48,9 @@ async function updateWebsiteData(data, res) {
 
     const updateDoc = {
       $set: {
-        ...(data.userId ? { user_id: data.userId } : {}),
         ...(data.isPublish ? { publish: data.isPublish } : {}),
         resume_data: data.resume_data,
+        updated_at: Date.now(),
       },
     }
     await client.connect()
