@@ -56,8 +56,15 @@ const isLogin = (user) => {
   return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }
 
-const handleSignup = () => async (dispatch) => {
+const handleSignup = (user) => async (dispatch) => {
+  const userData = {
+    userEmail: user.email,
+    userId: user.sub,
+    publish: false,
+  }
+  console.log({ user })
   const builderData = await getUserDataFromLS()
+  dispatch(setUserData(userData))
   dispatch(updateInitialState({ resume_data: builderData }))
   dispatch(saveData())
   dispatch(setAccountCreated(true))
