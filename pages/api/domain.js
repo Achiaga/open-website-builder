@@ -78,7 +78,7 @@ async function addNewDomain(domain) {
         jump_start: true,
       }
     )
-    return res.data
+    return { success: res.data, error: res.success }
   } catch (err) {
     console.error('addNewDomain', err.response.data)
     throw err
@@ -142,7 +142,8 @@ async function addDomain(res, domain, projectId) {
     return respondAPIQuery(res, { domainStatus: checkStatus?.status }, 200)
   }
 
-  const domainAdded = await addNewDomain(domain)
+  const { success: domainAdded, error } = await addNewDomain(domain)
+  if (error) return respondAPIQuery(res, { domainStatus: 'no-available' }, 200)
   const zoneId = domainAdded.result.id
   const { dns1, dns2 } = await createDnsRecord(zoneId, domain, awsBucketUrl)
   const updatedSettings = await configSettings(zoneId)

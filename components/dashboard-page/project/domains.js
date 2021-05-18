@@ -40,6 +40,7 @@ const DomainsWrapper = ({ domain, projectId }) => {
   const isPending = domainStatus === 'pending'
   const isAddingDomain = domainStatus === 'adding'
   const checkingStatus = domainStatus === 'checking'
+  const isDuplicated = domainStatus === 'no-available'
   if (checkingStatus) return <Box>Loading Domain status...</Box>
 
   return (
@@ -70,6 +71,7 @@ const DomainsWrapper = ({ domain, projectId }) => {
               </Text>
               <br />
             </Box>
+
             <Text>
               {isPending && !isActive ? (
                 <Box
@@ -135,6 +137,7 @@ const DomainsWrapper = ({ domain, projectId }) => {
           </Box>
         )}
       </Box>
+      {isDuplicated && <Box>Sorry this domain is already in use</Box>}
     </Box>
   )
 }

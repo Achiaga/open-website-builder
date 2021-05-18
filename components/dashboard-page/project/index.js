@@ -28,7 +28,6 @@ const ProjectCard = ({ project }) => {
       boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
       height="5rem"
       borderRadius="5px"
-      padding="1rem"
       h="100%"
       w
     >
@@ -37,6 +36,8 @@ const ProjectCard = ({ project }) => {
         justifyContent="space-between"
         alignItems="center"
         w="100%"
+        padding="1rem"
+        pl="2rem"
       >
         <Text as="p">{project._id}</Text>
         {isPublished ? (
@@ -80,11 +81,15 @@ const ProjectCard = ({ project }) => {
           </Button>
         </Box>
       </Box>
-      <SubdomainWrapper
-        projectId={project._id}
-        actualSubdomain={project.subdomain}
-      />
-      <DomainsWrapper domain={project.domain} projectId={project._id} />
+      <Box width="100%" mt="0.5rem" padding="0.5rem" px="2rem">
+        <SubdomainWrapper
+          projectId={project._id}
+          actualSubdomain={project.subdomain}
+        />
+      </Box>
+      <Box width="100%" mt="0.5rem" padding="0.5rem" px="2rem">
+        <DomainsWrapper domain={project.domain} projectId={project._id} />
+      </Box>
     </Box>
   )
 }
