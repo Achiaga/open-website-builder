@@ -14,7 +14,7 @@ import { Card } from './Card'
 
 export const PricingCard = (props) => {
   const { data, button, ...rest } = props
-  const { features, price, name, description, subHeader } = data
+  const { features, price, label, name, description, subHeader } = data
 
   return (
     <Card
@@ -62,26 +62,34 @@ export const PricingCard = (props) => {
           color="primary.500"
           pos="relative"
         >
-          {price}
-          <Text
-            fontSize="2xl"
-            pos="absolute"
-            left="0"
-            top="0"
-            color="gray.500"
-            transform="translate(-150%,-30%)"
-          >
-            $
-          </Text>
+          {label ? (
+            label
+          ) : (
+            <>
+              {price}
+              <Text
+                fontSize="2xl"
+                pos="absolute"
+                left="0"
+                top="0"
+                color="gray.500"
+                transform="translate(-150%,-30%)"
+              >
+                $
+              </Text>
+            </>
+          )}
         </Heading>
-        <Text
-          fontSize="md"
-          pos={['relative', 'absolute']}
-          pl={['1rem', '0']}
-          right="0"
-        >
-          {price ? '/ month' : 'free forever'}
-        </Text>
+        {!label && (
+          <Text
+            fontSize="md"
+            pos={['relative', 'absolute']}
+            pl={['1rem', '0']}
+            right="0"
+          >
+            {price ? '/ month' : 'free forever'}
+          </Text>
+        )}
       </Flex>
       <List spacing="4" mb="8" maxW="28ch" mx="auto" height={['auto', '300px']}>
         <Text fontSize="xl" mb="1rem" color="gray.500" fontWeight="600">

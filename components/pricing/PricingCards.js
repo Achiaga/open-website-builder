@@ -3,12 +3,15 @@ import { PricingCard } from './PricingCard'
 import { SubscriptionModal, BusinessSubscriptionModal } from '../modals'
 import { useEffect } from 'react'
 import { event } from '../../utils/analytics'
+import Link from 'next/link'
+import { useUser } from '@auth0/nextjs-auth0'
 
 const ActionButton = (props) => (
   <Button size="lg" w="full" fontWeight="bold" {...props} />
 )
 
 const PricingCards = () => {
+  const { user } = useUser()
   const {
     isOpen: isProOpen,
     onOpen: onProOpen,
@@ -56,9 +59,11 @@ const PricingCards = () => {
             features: ['1 Portfolio', 'Unlimited blocks'],
           }}
           button={
-            <ActionButton variant="outline" colorScheme="primary">
-              Get started
-            </ActionButton>
+            <Link href={user ? '/templates' : '/api/auth/custom-login'}>
+              <ActionButton variant="outline" colorScheme="primary">
+                Get started
+              </ActionButton>
+            </Link>
           }
         />
         <PricingCard
@@ -88,8 +93,9 @@ const PricingCards = () => {
         />
         <PricingCard
           data={{
-            price: 60,
-            name: 'Enterprise',
+            label: 'Custom',
+            price: false,
+            name: 'White Label',
             description:
               'Have custom requirements, or want to offer Antfolio to your clients?',
             subHeader: 'Coming soon',

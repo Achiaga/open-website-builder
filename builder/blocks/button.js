@@ -14,9 +14,11 @@ function getBackgroundColor(color) {
 
 export const CustonButton = ({ children, ...props }) => {
   const backgroundColor = getBackgroundColor(props?.backgroundColor)
+  const gradient = props.gradientColor || []
   const shades = getColorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'
+  console.log(gradient)
   return (
     <button
       style={{
@@ -25,7 +27,9 @@ export const CustonButton = ({ children, ...props }) => {
         boxShadow: props.boxShadow,
         border: props.border,
         borderRadius: props.borderRadius,
-        backgroundColor: backgroundColor,
+        background: !gradient[1]
+          ? backgroundColor
+          : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
         color: fontColor,
         overflow: 'hidden',
         cursor: 'pointer',
@@ -48,7 +52,9 @@ export const ButtonGeneric = (props) => {
   const dispatch = useDispatch()
   const [textInput, setTextInput] = useState(props.text || 'button')
   const redirectUrl = props?.redirect
-  const { borderRadius, border, boxShadow, backgroundColor } = props
+  console.log(props)
+  const { borderRadius, border, boxShadow, backgroundColor, gradientColor } =
+    props
 
   function handleChange(e) {
     setTextInput(e.target.value)
@@ -66,6 +72,7 @@ export const ButtonGeneric = (props) => {
         borderRadius={borderRadius}
         border={border}
         backgroundColor={backgroundColor}
+        gradientColor={gradientColor}
         boxShadow={boxShadow}
       >
         <Input
@@ -83,7 +90,14 @@ export const ButtonGeneric = (props) => {
 
 export const PreviewButton = (props) => {
   const redirectUrl = props?.redirect
-  const { borderRadius, border, boxShadow, backgroundColor, text } = props
+  const {
+    borderRadius,
+    border,
+    boxShadow,
+    backgroundColor,
+    gradientColor,
+    text,
+  } = props
 
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
@@ -91,6 +105,7 @@ export const PreviewButton = (props) => {
         borderRadius={borderRadius}
         border={border}
         backgroundColor={backgroundColor}
+        gradientColor={gradientColor}
         boxShadow={boxShadow}
       >
         {text || ''}
