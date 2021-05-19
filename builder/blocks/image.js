@@ -34,6 +34,8 @@ export const GenericImage = (props) => {
         width: '100%',
         height: '100%',
         background: props.backgroundColor,
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       <div
@@ -47,6 +49,19 @@ export const GenericImage = (props) => {
           cursor:
             isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto',
           ...modifiers,
+        }}
+      />
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: '#000000',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          opacity: props.opacity || 0,
+          overflow: 'hidden',
+          borderRadius: props.borderRadius,
         }}
       />
     </div>

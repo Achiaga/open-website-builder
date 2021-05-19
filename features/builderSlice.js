@@ -25,7 +25,7 @@ import {
 } from './login-helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
-import { uploadFileToS3 } from '../builder/blocks/block-helpers/transporter'
+import { uploadWebsiteToS3 } from '../builder/blocks/block-helpers/transporter'
 import { MobileWindowWidth } from '../builder/web-builder/web-builder'
 import { requestSaveWebsite } from '../utils/user-data'
 
@@ -402,7 +402,7 @@ export const publishWebsite = () => async (dispatch, getState) => {
       <ResumeWebsite userBlocksData={builderData} />
     )
     const staticSiteCode = generateStaticHTML(html)
-    await uploadFileToS3(staticSiteCode, domain)
+    await uploadWebsiteToS3(staticSiteCode, domain)
     dispatch(setPublishStatus('loading'))
   }
   await dispatch(saveData(true))

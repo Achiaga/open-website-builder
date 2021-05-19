@@ -377,6 +377,7 @@ export const UnpslashImages = ({ onSelect, selectedImg }) => {
     unsplash.search
       .getPhotos({
         query: searchTerm || 'happy person',
+        per_page: 20,
       })
       .then((result) => {
         if (result.errors) {

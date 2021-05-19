@@ -158,6 +158,14 @@ async function uploadWebsiteFiles(req, res, s3) {
   respondAPIQuery(res, 'Website published Successfully', 200)
 }
 
+function replaceSpecialChars(cipherText) {
+  return cipherText
+    .toString()
+    .replace(/\+/g, 'p1L2u3S')
+    .replace(/\//g, 's1L2a3S4h')
+    .replace(/=/g, 'e1Q2u3A4l')
+}
+
 async function uploadImageToS3(req, res, s3) {
   const { file, name, type, userId } = req.body
   const buf = Buffer.from(
@@ -165,7 +173,9 @@ async function uploadImageToS3(req, res, s3) {
     'base64'
   )
   const encryptedUserId = CryptoJS.AES.encrypt(userId, 'Secret Passphrase')
-  const fileName = `${encryptedUserId}__${name}`
+  const fileName = `${replaceSpecialChars(
+    encryptedUserId
+  )}/${replaceSpecialChars(name)}`
   try {
     const value = await s3
       .putObject({
@@ -180,11 +190,7 @@ async function uploadImageToS3(req, res, s3) {
       .promise()
     respondAPIQuery(
       res,
-      {
-        url: `https://antfolio.s3.amazonaws.com/user-images/${encodeURIComponent(
-          fileName
-        )}`,
-      },
+      { url: `https://antfolio.s3.amazonaws.com/user-images/${fileName}` },
       200
     )
   } catch (err) {
