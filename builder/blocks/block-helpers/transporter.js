@@ -34,7 +34,7 @@ export const sendEmailNotifiaction = (projectId, subscriberEmail) => {
   })
 }
 
-export const uploadFileToS3 = (html, domain) => {
+export const uploadWebsiteToS3 = (html, domain) => {
   return apiCall('/api/aws', { html, domain, key: 'website' })
 }
 export const uploadImageToS3 = (file, name, type, userId) => {
