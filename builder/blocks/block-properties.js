@@ -16,6 +16,7 @@ import DuplicateIcon from '../../assets/duplicate-icon'
 import { FontIcon, BgIcon } from '../../assets/fontIcon'
 
 import { DELETE, DUPLICATE } from './constants'
+import { MdOpacity } from 'react-icons/md'
 
 // Text
 
@@ -154,6 +155,19 @@ const borderRadius = {
     { value: '20px', title: 'md' },
     { value: '100px', title: 'lg' },
     { value: '100%', title: 'circle' },
+  ],
+}
+const opacitySelector = {
+  type: 'dropdown',
+  property: 'opacity',
+  tooltip: 'Image opacity',
+  icon: <MdOpacity />,
+  options: [
+    { value: '0', title: '-' },
+    { value: '0.2', title: 'low' },
+    { value: '0.4', title: 'medium' },
+    { value: '0.6', title: 'high' },
+    { value: '0.8', title: 'dark' },
   ],
 }
 
@@ -374,6 +388,7 @@ export const Properties = {
     borderRadius,
     boxShadow,
     imageSelector,
+    opacitySelector,
     redirectInput,
     duplicateProperty,
   ],
