@@ -16,7 +16,7 @@ import noScroll from 'no-scroll'
 function getSelectedImgUrl(imgObj, tabIndex) {
   if (tabIndex === 0) {
     trackDownloads(imgObj?.image)
-    return imgObj?.image?.urls?.regular
+    return imgObj?.image?.urls?.full
   }
   return imgObj?.image
 }
