@@ -181,7 +181,9 @@ async function uploadImageToS3(req, res, s3) {
     respondAPIQuery(
       res,
       {
-        url: `https://antfolio.s3.amazonaws.com/user-images/${fileName}`,
+        url: `https://antfolio.s3.amazonaws.com/user-images/${encodeURIComponent(
+          fileName
+        )}`,
       },
       200
     )

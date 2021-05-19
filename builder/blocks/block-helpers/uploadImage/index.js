@@ -65,12 +65,15 @@ export const UploadImage = ({ onSelect }) => {
           '.filepond--root ': {
             'max-height': '10em !important',
           },
+          '.filepond--credits': {
+            display: 'none',
+          },
         }}
       >
         <FilePond
           allowMultiple={true}
           maxFiles={1}
-          server=""
+          server="/api"
           labelIdle='Drag & Drop your file or <span class="filepond--label-action">Browse</span>'
         />
       </Box>
