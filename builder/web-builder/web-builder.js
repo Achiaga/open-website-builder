@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Box } from '@chakra-ui/react'
+import { Box, forwardRef } from '@chakra-ui/react'
 import Draggable from 'react-draggable'
 import { v4 as uuid } from 'uuid'
 
@@ -58,6 +58,7 @@ const DraggableItem = ({
   handleHiglightSection,
   removeHighlightedElem,
   gridColumnWidth,
+  builderRef,
 }) => {
   const [resizeValues, setResizeValues] = useState(null)
   const dispatch = useDispatch()
@@ -70,8 +71,8 @@ const DraggableItem = ({
   const { x, y, w, h } = blockLayout
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
-  const xPos = x * gridColumnWidth
-  const yPos = y * gridRowHeight
+  const xPos = gridColumnWidth * x
+  const yPos = gridRowHeight * y
   const blockType = blockData?.type
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
@@ -132,7 +133,7 @@ const DraggableItem = ({
 
   const zIndexValue = getZIndexValue(blockType, isSelected)
   const isDragging = blockPostRef?.isDragging
-  const right = isMobile ? 719 : window.innerWidth
+  const right = isMobile ? MobileWindowWidth : window.innerWidth
   return (
     <>
       <Draggable
@@ -161,9 +162,10 @@ const DraggableItem = ({
             <RayTracing
               width={width}
               gridColumnWidth={gridColumnWidth}
-              blockPostRef2={blockPostRef}
+              blockPostRef={blockPostRef}
               blockId={blockId}
               isDragging={isDragging}
+              builderRef={builderRef}
             />
 
             <MemoBlockItem
@@ -194,36 +196,39 @@ function getFontSize(isMobile) {
   return 13
 }
 
-const GridLayoutWrapper = ({ children, higlightOnDrop, handleDropNewItem }) => {
-  const isMobile = useSelector(getIsMobileBuilder)
-  const fontSize = getFontSize(isMobile)
-  const dispatch = useDispatch()
-  return (
-    <Box
-      minHeight="100vh"
-      w="100%"
-      height="100%"
-      flexDir="row"
-      onClick={() => dispatch(setBlockEditable(null))}
-      id="main-builder"
-      pos="relative"
-      className="droppable-element"
-      onDragOver={higlightOnDrop}
-      bg="gray.50"
-      onDrop={(e) => {
-        const origin = e.dataTransfer.getData('text/plain')
-        e.preventDefault()
-        if (origin === 'safe') {
-          handleDropNewItem(e)
-        }
-      }}
-      fontSize={fontSize}
-      zIndex="1"
-    >
-      {children}
-    </Box>
-  )
-}
+const GridLayoutWrapper = forwardRef(
+  ({ children, higlightOnDrop, handleDropNewItem }, ref) => {
+    const isMobile = useSelector(getIsMobileBuilder)
+    const fontSize = getFontSize(isMobile)
+    const dispatch = useDispatch()
+    return (
+      <Box
+        ref={ref}
+        minHeight="100vh"
+        w="100%"
+        height="100%"
+        flexDir="row"
+        onClick={() => dispatch(setBlockEditable(null))}
+        id="main-builder"
+        pos="relative"
+        className="droppable-element"
+        onDragOver={higlightOnDrop}
+        bg="gray.50"
+        onDrop={(e) => {
+          const origin = e.dataTransfer.getData('text/plain')
+          e.preventDefault()
+          if (origin === 'safe') {
+            handleDropNewItem(e)
+          }
+        }}
+        fontSize={fontSize}
+        zIndex="1"
+      >
+        {children}
+      </Box>
+    )
+  }
+)
 GridLayoutWrapper.propTypes = {
   children: PropTypes.any,
 }
@@ -243,6 +248,8 @@ const WebBuilder = () => {
   const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
   const columns = isMobile ? GRID_COLUMNS / 2 : GRID_COLUMNS
   const gridColumnWidth = windowWidth / columns
+
+  const builderRef = useRef()
 
   useEffect(() => {
     handleWindowResize()
@@ -318,6 +325,7 @@ const WebBuilder = () => {
 
   return (
     <GridLayoutWrapper
+      ref={builderRef}
       higlightOnDrop={higlightOnDrop}
       handleDropNewItem={handleDropNewItem}
     >
@@ -327,6 +335,7 @@ const WebBuilder = () => {
         removeHighlightedElem={removeHighlightedElem}
         gridRowHeight={gridRowHeight}
         gridColumnWidth={gridColumnWidth}
+        builderRef={builderRef}
       />
     </GridLayoutWrapper>
   )
@@ -338,6 +347,7 @@ const LayoutsRender = ({
   removeHighlightedElem,
   gridRowHeight,
   gridColumnWidth,
+  builderRef,
 }) => {
   return layouts.map((i) => {
     return (
@@ -347,6 +357,7 @@ const LayoutsRender = ({
         handleHiglightSection={handleHiglightSection}
         removeHighlightedElem={removeHighlightedElem}
         gridColumnWidth={gridColumnWidth}
+        builderRef={builderRef}
       />
     )
   })

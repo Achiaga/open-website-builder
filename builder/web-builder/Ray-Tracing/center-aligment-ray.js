@@ -53,7 +53,7 @@ function getHorizontalLineDim(draggingBlockPos, closestItem) {
     left: closestItem.x + closestItem.w / 2,
   }
 }
-function getVerticlaLineDim(draggingBlockPos, closestItem) {
+function getVerticalLineDim(draggingBlockPos, closestItem) {
   if (isDragBlockInside(draggingBlockPos, closestItem))
     return {
       top: closestItem.y,
@@ -78,11 +78,11 @@ function getVerticlaLineDim(draggingBlockPos, closestItem) {
   }
 }
 
-const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
+const CenterAlignmentRay = ({ draggingBlockPos, closestItem, builderRef }) => {
   const hrLineDim = getHorizontalLineDim(draggingBlockPos, closestItem)
-  const vrLineDim = getVerticlaLineDim(draggingBlockPos, closestItem)
+  const vrLineDim = getVerticalLineDim(draggingBlockPos, closestItem)
   return (
-    <Portal id="main-builder">
+    <Portal id="main-builder" containerRef={builderRef}>
       {closestItem.middleX && (
         <Box
           pos="absolute"
@@ -164,4 +164,4 @@ const CenterAligmentRay = ({ draggingBlockPos, closestItem }) => {
   )
 }
 
-export default CenterAligmentRay
+export default CenterAlignmentRay

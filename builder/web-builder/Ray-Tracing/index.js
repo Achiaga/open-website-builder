@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/layout'
 import { Portal } from '@chakra-ui/portal'
 import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
-import CenterAligmentRay from './center-aligment-ray'
+import CenterAlignmentRay from './center-aligment-ray'
 import VerticalAlignment from './vertical-alignment'
 import LeftRay from './left-ray'
 
@@ -200,18 +200,19 @@ function getClosestElement(
 
   if (hasNoHorizontalBlocks(closest)) return getSidesBorderPos(draggingBlock)
 
-  return closest
+  return null
 }
 
 export const RayTracing = ({
   width,
   gridColumnWidth,
-  blockPostRef2,
+  blockPostRef,
   blockId,
   isDragging,
+  builderRef,
 }) => {
   if (!isDragging) return null
-  const draggingBlockPos = blockPostRef2 || {}
+  const draggingBlockPos = blockPostRef || {}
   const layouts = useSelector(getLayout)
   const gridRowHeight = useSelector(getGridRowHeight)
   const windowWidth = window.innerWidth
@@ -231,22 +232,26 @@ export const RayTracing = ({
   )
   const isMidScreen =
     leftDis - 1 <= windowWidth / 2 && leftDis + 1 >= windowWidth / 2
+  if (!closestItem) return null
+
   return (
     <>
       {(closestItem.left || closestItem.right) && (
         <VerticalAlignment
           closestItem={closestItem}
           draggingBlockPos={draggingBlockPos}
+          builderRef={builderRef}
         />
       )}
       {closestItem.middle && (
-        <CenterAligmentRay
+        <CenterAlignmentRay
           draggingBlockPos={draggingBlockPos}
           closestItem={closestItem}
+          builderRef={builderRef}
         />
       )}
       {isMidScreen && (
-        <Portal id="main-builder">
+        <Portal id="main-builder" containerRef={builderRef}>
           <Box
             pos="absolute"
             left="50%"
@@ -259,7 +264,11 @@ export const RayTracing = ({
           />
         </Portal>
       )}
-      <LeftRay closestItem={closestItem} draggingBlockPos={draggingBlockPos} />
+      <LeftRay
+        closestItem={closestItem}
+        draggingBlockPos={draggingBlockPos}
+        containerRef={builderRef}
+      />
     </>
   )
 }

@@ -18,9 +18,10 @@ export async function getServerSideProps(context) {
   const isLocal = process.env.NODE_ENV === 'development'
 
   const host = context.req.headers.host
+  const splittedHost = host.split('.')
   const hasSubdomain =
-    host.split('.').length > 2 || (isLocal && host.split('.').length > 1)
-  const subdomain = host.split('.')[0]
+    splittedHost.length > 2 || (isLocal && splittedHost.length > 1)
+  const subdomain = splittedHost[0]
 
   if (!hasSubdomain) return { props: {} }
   try {
