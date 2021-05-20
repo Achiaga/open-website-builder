@@ -164,6 +164,7 @@ function replaceSpecialChars(cipherText) {
     .replace(/\+/g, 'p1L2u3S')
     .replace(/\//g, 's1L2a3S4h')
     .replace(/=/g, 'e1Q2u3A4l')
+    .replace(/\s/g, ""
 }
 
 async function uploadImageToS3(req, res, s3) {
