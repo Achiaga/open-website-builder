@@ -13,7 +13,7 @@ import Footer from './footer'
 
 import { initLiveChatScript } from '../../utils/analytics'
 
-function loadScript() {
+async function loadScript() {
   window && window.eval(initLiveChatScript)
 }
 
