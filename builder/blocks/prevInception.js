@@ -8,7 +8,7 @@ export const PrevInception = (props) => {
   if (gradientColor) {
     background = `linear-gradient(225deg, ${gradientColor[0]} 0%, ${gradientColor[1]} 100%)`
   } else if (props.backgroundColor && !props.imageUrl) {
-    background = props.background
+    background = props.backgroundColor
   }
   const inceptionModifiers = {
     boxShadow: props.boxShadow,
