@@ -1,17 +1,31 @@
 import { UserProvider } from '@auth0/nextjs-auth0'
-import { ResumeWebsite } from '../builder/web-preview/preview'
-import LandingPage from '../components/landing-page'
+import dynamic from 'next/dynamic'
+
 import { getWebsiteDataBySubdomain } from './api/db'
-import { isFalsy } from './[resumeId]'
-export default function Home({ websiteData, subdomain }) {
-  if (websiteData && subdomain) {
-    return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
-  }
+
+export function isFalsy(resumeId) {
+  return !resumeId || resumeId === 'undefined' || resumeId === 'null'
+}
+
+const Website = ({ websiteData, subdomain }) => {
+  const ResumeWebsite = dynamic(() => import('../builder/web-preview/preview'))
+  return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
+}
+
+const LandingPageWrapper = () => {
+  const LandingPage = dynamic(() => import('../components/landing-page'))
   return (
     <UserProvider>
       <LandingPage />
     </UserProvider>
   )
+}
+
+export default function Home({ websiteData, subdomain }) {
+  if (websiteData && subdomain) {
+    return <Website websiteData={websiteData} subdomain={subdomain} />
+  }
+  return <LandingPageWrapper />
 }
 
 export async function getServerSideProps(context) {

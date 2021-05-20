@@ -1,4 +1,4 @@
-import { ResumeWebsite } from '../../../builder/web-preview/preview'
+import ResumeWebsite from '../../../builder/web-preview/preview'
 import { denormalizeBuilderData } from '../../../features/builderSlice'
 import templates from '../../../templates'
 

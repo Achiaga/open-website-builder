@@ -28,13 +28,8 @@ const noUserAccess = ['/blog', '/guides']
 
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
-  // const { locale } = router
   const [t] = useTranslation()
 
-  // const changeLanguage = (e) => {
-  //   const locale = e.target.value
-  //   router.push(router.pathname, router.asPath, { locale })
-  // }
   const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
     router.pathname
   )
@@ -72,7 +67,6 @@ const Navbar = ({ isSticky = true, color }) => {
           </Box>
         </Link>
       </Box>
-      {/* {isSticky && <BackgroundCircles />} */}
       <Flex
         display="flex"
         w="100%"
@@ -126,24 +120,7 @@ const Navbar = ({ isSticky = true, color }) => {
         fontSize={['sm', 'sm']}
       >
         {!hideLoginButton && <LoginButton color={color} />}
-        {/* <Select
-          border="none"
-          bg="none"
-          w="4.5rem"
-          mr={4}
-          fontSize="lg"
-          cursor="pointer"
-          fontWeight="500"
-          onChange={changeLanguage}
-          defaultValue={locale}
-        >
-          <option color={color || 'gray.500'} value="en">
-            en
-          </option>
-          <option color={color || 'gray.500'} value="es">
-            es
-          </option>
-        </Select> */}
+
         <Link href={'/templates'}>
           <a>
             <Button

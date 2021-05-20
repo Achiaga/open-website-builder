@@ -23,7 +23,7 @@ function getFontSize(windowWidth) {
   return 10
 }
 
-export const ResumeWebsite = ({ userBlocksData, projectId }) => {
+const ResumeWebsite = ({ userBlocksData, projectId }) => {
   const fontSize = getFontSize(1440)
   const mobileFont = getFontSize(MobileWindowWidth)
 
@@ -82,3 +82,5 @@ export const ResumeWebsite = ({ userBlocksData, projectId }) => {
 ResumeWebsite.propTypes = {
   userBlocksData: PropTypes.any,
 }
+
+export default ResumeWebsite

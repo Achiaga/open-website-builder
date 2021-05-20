@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={customTheme}>

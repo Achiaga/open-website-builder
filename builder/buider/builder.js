@@ -44,7 +44,6 @@ const Builder = () => {
   const router = useRouter()
   const { user, isLoading } = useUser()
   const dispatch = useDispatch()
-
   function confirmExit() {
     return ''
   }

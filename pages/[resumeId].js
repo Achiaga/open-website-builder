@@ -1,4 +1,4 @@
-import { ResumeWebsite } from '../builder/web-preview/preview'
+import ResumeWebsite from '../builder/web-preview/preview'
 import ErrorPage from '../components/error-page'
 import NewPage from '../components/not-deploy-page'
 

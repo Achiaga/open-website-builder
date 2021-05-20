@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Box, Text, Button } from '@chakra-ui/react'
 
 const Hero = () => {
+  console.log('Hero')
   return (
     <Box
       position="relative"

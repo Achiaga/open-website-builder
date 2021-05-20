@@ -28,9 +28,11 @@ window.smartsupp||(function(d) {
 	c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);`
 
+const isDevEnv = process?.env?.NODE_ENV === 'development'
+
 // log the pageview with their URL
 export const pageview = (url) => {
-  if (process?.env?.NODE_ENV === 'development') return
+  if (isDevEnv) return
   window.gtag('config', process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
     page_path: url,
   })
@@ -38,6 +40,6 @@ export const pageview = (url) => {
 
 // log specific events happening.
 export const event = ({ action, params }) => {
-  if (process?.env?.NODE_ENV === 'development') return
+  if (isDevEnv) return
   window.gtag('event', action, params)
 }
