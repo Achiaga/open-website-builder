@@ -1,5 +1,5 @@
 import { batch } from 'react-redux'
-import _ from 'lodash'
+import isEqual from 'lodash/isEqual'
 import templates from '../templates'
 import {
   setInitialBuilderData,
@@ -130,7 +130,7 @@ export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
     domain,
     publish,
   }
-  if (!_.isEqual(LSData, resume_data) && !isFallbackTemplate(LSData)) {
+  if (!isEqual(LSData, resume_data) && !isFallbackTemplate(LSData)) {
     batch(() => {
       dispatch(setTempDBData({ resume_data, publish, userData }))
       dispatch(loadInitialDataNoAccount())

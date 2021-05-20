@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { UserProvider } from '@auth0/nextjs-auth0'
-import { Builder } from '../builder'
+import dynamic from 'next/dynamic'
+const Builder = dynamic(() => import('../builder').then((mod) => mod.Builder))
 
 const BuilderPage = () => {
   return (

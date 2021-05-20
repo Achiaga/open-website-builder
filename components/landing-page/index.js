@@ -23,14 +23,7 @@ const LandingPage = () => {
   }, [])
 
   return (
-    <Box
-      minHeight="100vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      maxWidth="100vw"
-    >
+    <>
       <Head>
         <meta
           name="google-site-verification"
@@ -42,23 +35,32 @@ const LandingPage = () => {
       </Head>
 
       <Box
+        minHeight="100vh"
         display="flex"
-        flex="1"
         flexDirection="column"
-        justifyContent="start"
+        justifyContent="center"
         alignItems="center"
-        w="full"
+        maxWidth="100vw"
       >
-        <Navbar color="gray.500" />
-        <Hero />
-        <VideoDemo />
-        <Comparison />
-        <Features />
-        <Steps />
-        <CardInfo />
-        <Footer />
+        <Box
+          display="flex"
+          flex="1"
+          flexDirection="column"
+          justifyContent="start"
+          alignItems="center"
+          w="full"
+        >
+          <Navbar color="gray.500" />
+          <Hero />
+          <VideoDemo />
+          <Comparison />
+          <Features />
+          <Steps />
+          <CardInfo />
+          <Footer />
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }
 

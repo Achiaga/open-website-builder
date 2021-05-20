@@ -7,10 +7,10 @@ export function isFalsy(resumeId) {
   return !resumeId || resumeId === 'undefined' || resumeId === 'null'
 }
 
-// const Website = ({ websiteData, subdomain }) => {
-//   const ResumeWebsite = dynamic(() => import('../builder/web-preview/preview'))
-//   return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
-// }
+const Website = ({ websiteData, subdomain }) => {
+  const ResumeWebsite = dynamic(() => import('../builder/web-preview/preview'))
+  return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
+}
 
 const LandingPageWrapper = () => {
   const LandingPage = dynamic(() => import('../components/landing-page'))
@@ -22,9 +22,9 @@ const LandingPageWrapper = () => {
 }
 
 function Home({ websiteData, subdomain }) {
-  // if (websiteData && subdomain) {
-  //   return <Website websiteData={websiteData} subdomain={subdomain} />
-  // }
+  if (websiteData && subdomain) {
+    return <Website websiteData={websiteData} subdomain={subdomain} />
+  }
   return <LandingPageWrapper />
 }
 
