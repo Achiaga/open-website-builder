@@ -16,7 +16,6 @@ export const PrevInception = (props) => {
     borderRadius: props.borderRadius,
     border: props.border,
   }
-  console.log(inceptionModifiers, gradientColor)
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
       <div

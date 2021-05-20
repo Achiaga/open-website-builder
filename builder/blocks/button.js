@@ -18,33 +18,42 @@ export const CustonButton = ({ children, ...props }) => {
   const shades = getColorShades(backgroundColor)
   const isColorBright = getIsColorBright(backgroundColor)
   const fontColor = isColorBright ? 'gray.500' : 'white'
-  console.log(gradient)
+
   return (
-    <button
+    <div
+      className="textStyles"
       style={{
         width: '100%',
         height: '100%',
-        boxShadow: props.boxShadow,
-        border: props.border,
-        borderRadius: props.borderRadius,
-        background: !gradient[1]
-          ? backgroundColor
-          : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
-        color: fontColor,
-        overflow: 'hidden',
-        cursor: 'pointer',
       }}
-      // _hover={{
-      //   backgroundColor: shades.colors[isColorBright ? '600' : '400'],
-      //   boxShadow: props.boxShadow,
-      // }}
-      // _active={{
-      //   backgroundColor: shades.colors[isColorBright ? '700' : '300'],
-      //   boxShadow: props.boxShadow,
-      // }}
     >
-      {children}
-    </button>
+      <button
+        style={{
+          width: '100%',
+          height: '100%',
+          boxShadow: props.boxShadow,
+          border: props.border,
+          borderRadius: props.borderRadius,
+          background: !gradient[1]
+            ? backgroundColor
+            : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
+          color: fontColor,
+          overflow: 'hidden',
+          cursor: 'pointer',
+          padding: '0px 1rem',
+        }}
+        // _hover={{
+        //   backgroundColor: shades.colors[isColorBright ? '600' : '400'],
+        //   boxShadow: props.boxShadow,
+        // }}
+        // _active={{
+        //   backgroundColor: shades.colors[isColorBright ? '700' : '300'],
+        //   boxShadow: props.boxShadow,
+        // }}
+      >
+        {children}
+      </button>
+    </div>
   )
 }
 
@@ -52,7 +61,7 @@ export const ButtonGeneric = (props) => {
   const dispatch = useDispatch()
   const [textInput, setTextInput] = useState(props.text || 'button')
   const redirectUrl = props?.redirect
-  console.log(props)
+
   const { borderRadius, border, boxShadow, backgroundColor, gradientColor } =
     props
 

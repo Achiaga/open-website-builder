@@ -48,6 +48,17 @@ a {
   padding: 0 !important;
   font-weight: 300 !important;
 }
+.textStyles button {
+  font-size: 1.5em !important;
+}
+.textStyles button:hover {
+  filter: brightness(1.1);
+}
+.textStyles button:active {
+  filter: brightness(0.9);
+  margin-top: 1px !important;
+  box-shadow: none !important;
+}
 .textStyles h5 {
   font-size: 1.5em;
   margin: 0 !important;
@@ -88,9 +99,11 @@ a {
   .textStyles h4 {
     font-size: 4em;
   }
+  .textStyles button,
   .textStyles h5 {
     font-size: 3em;
   }
+
   .textStyles h6 {
     font-size: 2.5em;
   }
@@ -115,6 +128,7 @@ a {
   .textStyles h4 {
     font-size: 4em;
   }
+  .textStyles button,
   .textStyles h5 {
     font-size: 3em;
   }
@@ -142,6 +156,7 @@ a {
   .textStyles h4 {
     font-size: 3em;
   }
+  .textStyles button,
   .textStyles h5 {
     font-size: 2.5em;
   }
@@ -170,6 +185,7 @@ a {
   .textStyles h4 {
     font-size: 2.5em;
   }
+  .textStyles button,
   .textStyles h5 {
     font-size: 2em;
   }
@@ -197,6 +213,7 @@ a {
   .textStyles h4 {
     font-size: 2em;
   }
+  .textStyles button,
   .textStyles h5 {
     font-size: 1.7em;
   }
@@ -224,6 +241,7 @@ a {
   .textStyles h4 {
     font-size: 1.7em;
   }
+  .textStyles button,
   .textStyles h5 {
     font-size: 1.2em;
   }
