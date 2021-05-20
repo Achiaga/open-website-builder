@@ -1,12 +1,12 @@
 import { Box } from '@chakra-ui/react'
-import { useTranslation } from '../../hooks/translation'
+import { useTranslation } from '../../../hooks/translation'
 import Link from 'next/link'
 
-import LogoSvg from '../../assets/logo'
-import Button from '../commun/button'
-import Twitter from '../../assets/twitter'
-import Youtube from '../../assets/youtube'
-import Linkedin from '../../assets/linkedin'
+import LogoSvg from '../../../assets/logo'
+import Button from '../../commun/button'
+import Twitter from '../../../assets/twitter'
+import Youtube from '../../../assets/youtube'
+import Linkedin from '../../../assets/linkedin'
 
 const Features = () => {
   const [t] = useTranslation()

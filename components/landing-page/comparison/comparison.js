@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../hooks/translation'
+import { useTranslation } from '../../../hooks/translation'
 
-import CheckIcon from '../../assets/check-icon'
-import CloseIcon from '../../assets/close-icon'
+import CheckIcon from '../../../assets/check-icon'
+import CloseIcon from '../../../assets/close-icon'
 import BackgroundCircles from './background'
 import ImageMobileSlider from './img-slider'
 

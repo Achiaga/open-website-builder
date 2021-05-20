@@ -1,5 +1,5 @@
 import { List, ListItem, Box, Text } from '@chakra-ui/react'
-import CheckList from '../../assets/check-list'
+import CheckList from '../../../assets/check-list'
 
 const NewCard = ({ title, body, listCard }) => {
   return (

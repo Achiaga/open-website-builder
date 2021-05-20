@@ -1,33 +1,25 @@
 import Head from 'next/head'
-
+import { useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
-import dynamic from 'next/dynamic'
 
 import Navbar from '../navbar'
-import Hero from '../hero'
-import VideoDemo from '../video-demo'
-import Comparison from '../comparison'
-import Features from '../features'
-import Steps from '../steps'
-import CardInfo from '../card-info'
-import Footer from '../footer'
-import { useEffect } from 'react'
+import Hero from './hero'
+import VideoDemo from './video-demo'
+import Comparison from './comparison'
+import Features from './features'
+import Steps from './steps'
+import CardInfo from './card-info'
+import Footer from './footer'
+
+import { initLiveChatScript } from '../../utils/analytics'
 
 function loadScript() {
-  const initLiveChatScript = dynamic(() =>
-    import('../../utils/analytics').then((mod) => mod.initLiveChatScript)
-  )
-
-  var script = document.createElement('script')
-  script.type = 'text/javascript'
-  script.innerHTML = initLiveChatScript
-  document.getElementsByTagName('head')[0].appendChild(script)
+  window && window.eval(initLiveChatScript)
 }
 
 const LandingPage = () => {
   useEffect(() => {
-    setTimeout(() => loadScript, 0)
-    console.log('script')
+    setTimeout(() => loadScript(), 0)
   }, [])
 
   return (

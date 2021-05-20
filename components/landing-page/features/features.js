@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../hooks/translation'
-import { event } from '../../utils/analytics'
+import { useTranslation } from '../../../hooks/translation'
+import { event } from '../../../utils/analytics'
 import Link from 'next/link'
 
-import Button from '../commun/button'
-import CircleBg from '../../assets/features-circle'
+import Button from '../../commun/button'
+import CircleBg from '../../../assets/features-circle'
 
 const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
   return (

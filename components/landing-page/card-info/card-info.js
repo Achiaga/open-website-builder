@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from '../../hooks/translation'
+import { useTranslation } from '../../../hooks/translation'
 
 import BackgroundCircle from './background'
 import OldCard from './old-card'

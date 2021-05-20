@@ -1,5 +1,5 @@
 import { List, ListItem, Box, Text } from '@chakra-ui/react'
-import HandDown from '../../assets/hand-down'
+import HandDown from '../../../assets/hand-down'
 
 const OldCard = ({ title, body, listCard }) => {
   return (

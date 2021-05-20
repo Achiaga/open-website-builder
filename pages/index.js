@@ -7,10 +7,10 @@ export function isFalsy(resumeId) {
   return !resumeId || resumeId === 'undefined' || resumeId === 'null'
 }
 
-const Website = ({ websiteData, subdomain }) => {
-  const ResumeWebsite = dynamic(() => import('../builder/web-preview/preview'))
-  return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
-}
+// const Website = ({ websiteData, subdomain }) => {
+//   const ResumeWebsite = dynamic(() => import('../builder/web-preview/preview'))
+//   return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
+// }
 
 const LandingPageWrapper = () => {
   const LandingPage = dynamic(() => import('../components/landing-page'))
@@ -21,12 +21,14 @@ const LandingPageWrapper = () => {
   )
 }
 
-export default function Home({ websiteData, subdomain }) {
-  if (websiteData && subdomain) {
-    return <Website websiteData={websiteData} subdomain={subdomain} />
-  }
+function Home({ websiteData, subdomain }) {
+  // if (websiteData && subdomain) {
+  //   return <Website websiteData={websiteData} subdomain={subdomain} />
+  // }
   return <LandingPageWrapper />
 }
+
+export default Home
 
 export async function getServerSideProps(context) {
   const isLocal = process.env.NODE_ENV === 'development'
