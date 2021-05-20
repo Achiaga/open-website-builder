@@ -417,6 +417,7 @@ export const Properties = {
     borderRadius,
     boxShadow,
     backgroundColor,
+    gradientColor,
     redirectInput,
     duplicateProperty,
   ],

@@ -10,7 +10,7 @@ export const BgIcon = ({ bgColor, gradientColor1, gradientColor2 }) => {
         width: '20px',
         height: '20px',
         textAlign: 'center',
-        fontSize: '14px',
+        fontSize: '12px',
         borderRadius: '3px',
         fontWeight: '500',
         boxShadow: 'rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset',
@@ -19,7 +19,7 @@ export const BgIcon = ({ bgColor, gradientColor1, gradientColor2 }) => {
           : bgColor,
       }}
     >
-      {!gradientColor1 && 'A'}
+      {gradientColor1 ? 'G' : 'B'}
     </div>
   )
 }

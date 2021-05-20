@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
 import { useState } from 'react'
 import { GoCheck } from 'react-icons/go'
+import { BiLinkExternal } from 'react-icons/bi'
 import { requestSubDomainAvailability } from '../../../builder/blocks/block-helpers/transporter'
 
 const SubdomainWrapper = ({ projectId, actualSubdomain }) => {
@@ -41,9 +42,17 @@ const SubdomainWrapper = ({ projectId, actualSubdomain }) => {
           <Box d="flex" alignItems="center" justifyContent="flex-start">
             <GoCheck color="#3fab3f" size="20px" />
             <Box fontSize="md" fontWeight="600" ml="0.5rem" as="span">
-              <Box d="flex">
+              <Box d="flex" alignItems="center">
                 {subdomain || actualSubdomain}
                 <Box color="gray.300">.antfolio.app</Box>
+                <a
+                  href={`${subdomain || actualSubdomain}.antfolio.app`}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ paddingLeft: '1rem' }}
+                >
+                  <BiLinkExternal />
+                </a>
               </Box>
             </Box>
           </Box>

@@ -181,7 +181,7 @@ const RightSideContent = () => {
           ) : isSuccess ? (
             t.button_success
           ) : (
-            t.business_subscription_modal.access
+            'Contact Us'
           )}
         </Button>
         <Text
@@ -194,7 +194,7 @@ const RightSideContent = () => {
           mt={['1rem', '1rem']}
           fontWeight="400"
         >
-          💌 {t.business_subscription_modal.noSpam}
+          We are happy to have you onboard. 🎉
         </Text>
       </Box>
     </Box>
