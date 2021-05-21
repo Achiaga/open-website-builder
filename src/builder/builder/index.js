@@ -5,18 +5,25 @@ import { useEffect } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 
-import { BuilderSidebar } from '../sidebar'
 import {
   getHasBuilderData,
   getIsLoadingData,
 } from '../../features/builderSlice'
-import { SettingsBar } from '../sidebar/settingsBar'
 import { loadInitialData } from '../../features/builderSlice'
 
-import { MobileWrapper } from './components'
+import dynamic from 'next/dynamic'
 
-import MobileVersion from '../web-builder/mobile-version'
-import WebBuilder from '../web-builder/web-builder'
+const WebBuilder = dynamic(() => import('../web-builder/web-builder'))
+const MobileVersion = dynamic(() => import('../web-builder/mobile-version'))
+const MobileWrapper = dynamic(() =>
+  import('./components').then((mod) => mod.MobileWrapper)
+)
+const BuilderSidebar = dynamic(() =>
+  import('../sidebar').then((mod) => mod.BuilderSidebar)
+)
+const SettingsBar = dynamic(() =>
+  import('../sidebar/settingsBar').then((mod) => mod.SettingsBar)
+)
 
 function getParams() {
   const urlParams = new URLSearchParams(window.location.search)
