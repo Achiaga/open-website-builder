@@ -1,6 +1,6 @@
 import { guides } from '../../articles'
-import ResumeWebsite from '../../preview/web-preview/preview'
-import { denormalizeBuilderData } from '../../features/builderSlice'
+import ResumeWebsite from '../../src/preview/web-preview/preview'
+import { denormalizeBuilderData } from '../../src/features/builderSlice'
 
 const Blog = ({ slug }) => {
   const guideBlockData = guides[slug]

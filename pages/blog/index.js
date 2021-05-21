@@ -1,4 +1,4 @@
-import BlogPage from '../../components/blog'
+import BlogPage from '../../src/components/blog'
 
 const Blog = () => {
   return <BlogPage />

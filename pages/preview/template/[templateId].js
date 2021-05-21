@@ -1,5 +1,5 @@
-import ResumeWebsite from '../../../preview/web-preview/preview'
-import { denormalizeBuilderData } from '../../../features/builderSlice'
+import ResumeWebsite from '../../../src/preview/web-preview/preview'
+import { denormalizeBuilderData } from '../../../src/features/builderSlice'
 import templates from '../../../templates'
 
 function TemplatePreview(blocksData) {

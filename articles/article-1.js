@@ -1,6 +1,6 @@
 import { Box, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
 import Image from 'next/image'
-import Navbar from '../components/navbar'
+import Navbar from '../src/components/navbar'
 import { FiZap } from 'react-icons/fi'
 const BannerImage = ({ height, width, imageUrl }) => {
   return (

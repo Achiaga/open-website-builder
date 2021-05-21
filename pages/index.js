@@ -8,12 +8,14 @@ export function isFalsy(resumeId) {
 }
 
 const Website = ({ websiteData, subdomain }) => {
-  const ResumeWebsite = dynamic(() => import('../preview/web-preview/preview'))
+  const ResumeWebsite = dynamic(() =>
+    import('../src/preview/web-preview/preview')
+  )
   return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
 }
 
 const LandingPageWrapper = () => {
-  const LandingPage = dynamic(() => import('../components/landing-page'))
+  const LandingPage = dynamic(() => import('../src/components/landing-page'))
   return (
     <UserProvider>
       <LandingPage />
@@ -31,6 +33,7 @@ function Home({ websiteData, subdomain }) {
 export default Home
 
 export async function getServerSideProps(context) {
+  // eslint-disable-next-line no-undef
   const isLocal = process.env.NODE_ENV === 'development'
 
   const host = context.req.headers.host

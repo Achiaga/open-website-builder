@@ -1,5 +1,5 @@
 import { UserProvider } from '@auth0/nextjs-auth0'
-import PricingPage from '../components/pricing'
+import PricingPage from '../src/components/pricing'
 
 const TemplatePage = () => {
   return (

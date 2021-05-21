@@ -1,6 +1,6 @@
-import ErrorPage from '../components/error-page'
-import NewPage from '../components/not-deploy-page'
-import ResumeWebsite from '../preview/web-preview/preview'
+import ErrorPage from '../src/components/error-page'
+import NewPage from '../src/components/not-deploy-page'
+import ResumeWebsite from '../src/preview/web-preview/preview'
 
 import { getWebsiteData } from './api/db'
 

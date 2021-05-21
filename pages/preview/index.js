@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
-import { getUserDataFromLS } from '../../features/helper'
-import ResumeWebsite from '../../preview/web-preview/preview'
+import { getUserDataFromLS } from '../../src/features/helper'
+import ResumeWebsite from '../../src/preview/web-preview/preview'
 
 function ResumePreview() {
   const [blocksData, setBlocksData] = useState(null)
