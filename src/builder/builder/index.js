@@ -5,17 +5,18 @@ import { useEffect } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 
-import WebBuilder from '../web-builder/web-builder'
 import { BuilderSidebar } from '../sidebar'
 import {
   getHasBuilderData,
   getIsLoadingData,
 } from '../../features/builderSlice'
 import { SettingsBar } from '../sidebar/settingsBar'
-import MobileVersion from '../web-builder/mobile-version'
 import { loadInitialData } from '../../features/builderSlice'
 
 import { MobileWrapper } from './components'
+
+import MobileVersion from '../web-builder/mobile-version'
+import WebBuilder from '../web-builder/web-builder'
 
 function getParams() {
   const urlParams = new URLSearchParams(window.location.search)

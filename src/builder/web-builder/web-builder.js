@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Box, forwardRef } from '@chakra-ui/react'
-import Draggable from 'react-draggable'
 import { v4 as uuid } from 'uuid'
 
 import { getParentBlock, highlightFutureParentBlock } from './helpers'
@@ -27,6 +26,10 @@ import {
 import { BuilderBlock, ResizingCounter } from '../blocks'
 import { RayTracing } from './Ray-Tracing'
 import ResizeWrapper from './resizable-wrapper'
+
+import dynamic from 'next/dynamic'
+
+const Draggable = dynamic(() => import('react-draggable'))
 
 const blocksZIndex = {
   inception: 0,

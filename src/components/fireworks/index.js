@@ -1,5 +1,7 @@
 import React from 'react'
-import ReactCanvasConfetti from 'react-canvas-confetti'
+import dynamic from 'next/dynamic'
+
+const ReactCanvasConfetti = dynamic(() => import('react-canvas-confetti'))
 
 const canvasStyles = {
   position: 'fixed',

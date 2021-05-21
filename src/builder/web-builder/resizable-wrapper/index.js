@@ -1,5 +1,10 @@
-import { Resizable } from 're-resizable'
 import { useEffect, useState } from 'react'
+
+import dynamic from 'next/dynamic'
+
+const Resizable = dynamic(() =>
+  import('re-resizable').then((mod) => mod.Resizable)
+)
 
 const ReizeHandlesInitialValue = {
   top: false,
