@@ -31,7 +31,7 @@ const LandingPage = () => {
         />
         <title>Antfolio - Build a beautiful website in 15 minutes</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.antfolio.app" />
+        <link rel="canonical" href="https://www.antfolio.app/" />
       </Head>
 
       <Box

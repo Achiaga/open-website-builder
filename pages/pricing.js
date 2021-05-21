@@ -1,7 +1,9 @@
 import { UserProvider } from '@auth0/nextjs-auth0'
-import PricingPage from '../src/components/pricing'
+import dynamic from 'next/dynamic'
 
-const TemplatePage = () => {
+const PricingPage = dynamic(() => import('../src/components/pricing'))
+
+const Pricing = () => {
   return (
     <UserProvider>
       <PricingPage />
@@ -9,4 +11,4 @@ const TemplatePage = () => {
   )
 }
 
-export default TemplatePage
+export default Pricing

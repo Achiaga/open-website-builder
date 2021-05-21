@@ -23,13 +23,20 @@ import {
   getLayout,
   getIsMobileBuilder,
 } from '../../features/builderSlice'
-import { BuilderBlock, ResizingCounter } from '../blocks'
-import { RayTracing } from './Ray-Tracing'
-import ResizeWrapper from './resizable-wrapper'
 
 import dynamic from 'next/dynamic'
 
 const Draggable = dynamic(() => import('react-draggable'))
+const ResizeWrapper = dynamic(() => import('./resizable-wrapper'))
+const BuilderBlock = dynamic(() =>
+  import('../blocks').then((mod) => mod.BuilderBlock)
+)
+const ResizingCounter = dynamic(() =>
+  import('../blocks').then((mod) => mod.ResizingCounter)
+)
+const RayTracing = dynamic(() =>
+  import('./Ray-Tracing').then((mod) => mod.RayTracing)
+)
 
 const blocksZIndex = {
   inception: 0,
