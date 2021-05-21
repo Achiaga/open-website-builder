@@ -1,7 +1,7 @@
 import { Box, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import Navbar from '../src/components/navbar'
-import { FiZap } from 'react-icons/fi'
+// import { FiZap } from 'react-icons/fi'
 const BannerImage = ({ height, width, imageUrl }) => {
   return (
     <Box
@@ -77,7 +77,7 @@ const TLDR = ({ items }) => {
         {items.map((item, index) => {
           return (
             <ListItem d="flex" key={index} alignItems="center">
-              <ListIcon as={FiZap} color="primary.500" />
+              {/* <ListIcon as={'FiZap'} color="primary.500" /> */}
               <Text>{item}</Text>
             </ListItem>
           )

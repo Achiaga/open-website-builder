@@ -3,7 +3,7 @@ import { Box, Text } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { getWebsiteId, setPublishStatus } from '../features/builderSlice'
 import Fireworks from '../components/fireworks'
-import { IoClose } from 'react-icons/io5'
+// import { IoClose } from 'react-icons/io5'
 
 const PublishSuccessModal = () => {
   const dispatch = useDispatch()
@@ -48,7 +48,7 @@ const PublishSuccessModal = () => {
           }}
           onClick={handleClose}
         >
-          <IoClose size="30px" />
+          {/* <IoClose size="30px" /> */}
         </Box>
         <Box
           color="primary.500"

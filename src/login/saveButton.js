@@ -2,7 +2,7 @@ import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSaveStatus, saveWebsite } from '../features/builderSlice'
-import { IoCheckmark } from 'react-icons/io5'
+// import { IoCheckmark } from 'react-icons/io5'
 
 import Card from './card'
 import { Spinner } from '@chakra-ui/spinner'
@@ -59,7 +59,7 @@ const SaveButton = () => {
     >
       {isSaved ? (
         <Box d="flex" w="fit-content">
-          <IoCheckmark size="20px" color="#43E28E" />
+          {/* <IoCheckmark size="20px" color="#43E28E" /> */}
           Saved{' '}
         </Box>
       ) : (

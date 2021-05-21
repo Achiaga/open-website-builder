@@ -9,7 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import { GoCheck } from 'react-icons/go'
+// import { GoCheck } from 'react-icons/go'
 import { Card } from './Card'
 
 export const PricingCard = (props) => {
@@ -89,13 +89,13 @@ export const PricingCard = (props) => {
         </Text>
         {features.map((feature, index) => (
           <ListItem fontWeight="300" key={index}>
-            <ListIcon
+            {/* <ListIcon
               fontSize="xl"
               as={GoCheck}
               marginEnd={2}
               color="primary.500"
               mr="1rem"
-            />
+            /> */}
             {feature}
           </ListItem>
         ))}

@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react'
 import { useFilters, useSortBy, useTable } from 'react-table'
 import { Box } from '@chakra-ui/layout'
-import { BsFillCaretUpFill, BsCaretDownFill } from 'react-icons/bs'
+// import { BsFillCaretUpFill, BsCaretDownFill } from 'react-icons/bs'
 
 function DefaultColumnFilter() {
   return <Box minH="30px" />
@@ -17,21 +17,16 @@ function Table({ columns, data }) {
     []
   )
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-      defaultColumn,
-    },
-    useFilters,
-    useSortBy
-  )
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable(
+      {
+        columns,
+        data,
+        defaultColumn,
+      },
+      useFilters,
+      useSortBy
+    )
 
   // Render the UI for your table
   return (
@@ -54,14 +49,17 @@ function Table({ columns, data }) {
                   <Box d="flex" flexDir="row" ml="1rem">
                     {column.isSorted ? (
                       column.isSortedDesc ? (
-                        <BsCaretDownFill size="10px" />
+                        // <BsCaretDownFill size="10px" />
+                        <div />
                       ) : (
-                        <BsFillCaretUpFill size="10px" />
+                        // <BsFillCaretUpFill size="10px" />
+                        <div />
                       )
                     ) : (
                       <Box d="flex" flexDir="column">
-                        <BsFillCaretUpFill size="10px" />
-                        <BsCaretDownFill size="10px" />
+                        {/* <BsFillCaretUpFill size="10px" /> */}
+                        {/* <BsCaretDownFill size="10px" /> */}
+                        <div />
                       </Box>
                     )}
                   </Box>

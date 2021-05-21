@@ -3,7 +3,7 @@ import { Input } from '@chakra-ui/input'
 import { Box, Text } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
-import { GoCheck } from 'react-icons/go'
+// import { GoCheck } from 'react-icons/go'
 import ExclamationIcon from '../../../../assets/exclamation-icon'
 import {
   addDomain,
@@ -56,8 +56,9 @@ const DomainsWrapper = ({ domain, projectId }) => {
           <Box d="flex" justifyContent="center" flexDir="column">
             <Box d="flex" alignItems="center">
               {isActive ? (
-                <GoCheck color="#3fab3f" size="20px" />
+                <div />
               ) : (
+                // <GoCheck color="#3fab3f" size="20px" />
                 <Box
                   width="10px"
                   height="10px"

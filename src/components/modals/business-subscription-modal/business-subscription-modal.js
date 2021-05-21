@@ -17,7 +17,7 @@ import { event } from '../../../utils/analytics'
 import { useTranslation } from '../../../../hooks/translation'
 import { addUserToBetaList } from '../../../../helpers/transport'
 import LogoSvg from '../../../../assets/logo'
-import { MdCheckCircle } from 'react-icons/md'
+// import { MdCheckCircle } from 'react-icons/md'
 import { BUSINESS } from '../../../../constants'
 
 const LeftSideContent = () => {
@@ -53,11 +53,11 @@ const LeftSideContent = () => {
         <br />
         <List spacing={3}>
           <ListItem color="gray.500">
-            <ListIcon as={MdCheckCircle} color="green.500" />
+            {/* <ListIcon as={MdCheckCircle} color="green.500" /> */}
             {t.business_subscription_modal.listItem1}
           </ListItem>
           <ListItem color="gray.500">
-            <ListIcon as={MdCheckCircle} color="green.500" />
+            {/* <ListIcon as={MdCheckCircle} color="green.500" /> */}
             {t.business_subscription_modal.listItem2}
           </ListItem>
         </List>

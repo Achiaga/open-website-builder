@@ -10,7 +10,7 @@ import SidebarTab from './sidebar-tab'
 import { UnpslashImages, ImagesGrid, UrlImagesTab } from './ImagesGrid'
 import { UploadImage } from './uploadImage'
 import { AntfolioImages, AntfolioIcons, AntfolioProps } from './assets'
-import { GrClose } from 'react-icons/gr'
+// import { GrClose } from 'react-icons/gr'
 import noScroll from 'no-scroll'
 
 function getSelectedImgUrl(imgObj, tabIndex) {
@@ -84,7 +84,8 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
               textAlign="center"
               onClick={onClose}
             >
-              <GrClose size="1em" />
+              <div />
+              {/* <GrClose size="1em" /> */}
             </Box>
 
             <Box

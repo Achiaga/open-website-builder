@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Box, Text, Button } from '@chakra-ui/react'
 
 import LogoSvg from '../../../assets/logo'
-import { RiDashboardLine } from 'react-icons/ri'
+// import { RiDashboardLine } from 'react-icons/ri'
 
 const ButtonSidebar = ({ children, ...props }) => {
   return (
@@ -82,7 +82,7 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
       <Box w="full" px="1rem" pt="0.5rem">
         <Link href="/dashboard/projects">
           <ButtonSidebar id="projects" isActive={dashboardType === 'projects'}>
-            <RiDashboardLine fontSize="1rem" />
+            {/* <RiDashboardLine fontSize="1rem" /> */}
             <Text as="h4" fontSize="1rem" pl="0.75em">
               Projects
             </Text>

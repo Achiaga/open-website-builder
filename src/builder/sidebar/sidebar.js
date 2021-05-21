@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box, Grid, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { GrAdd, GrClose } from 'react-icons/gr'
+// import { GrAdd, GrClose } from 'react-icons/gr'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -87,7 +87,7 @@ const BuilderSidebar = () => {
         }}
         onClick={() => setIsOpen(true)}
       >
-        <GrAdd size="2.2em" />
+        {/* <GrAdd size="2.2em" /> */}
       </Box>
     )
   if (isMobile && isOpen)
@@ -118,7 +118,7 @@ const BuilderSidebar = () => {
             top="0.5rem"
             _hover={{ background: '#F2F2F2;' }}
           >
-            <GrClose color="white" size="1.5em" />
+            {/* <GrClose color="white" size="1.5em" /> */}
           </Box>
           <Box as="span" color="white" fontSize="lg" fontWeight="600">
             On the Mobile view, you can move and resize blocks but you can not
@@ -156,7 +156,7 @@ const BuilderSidebar = () => {
           borderRadius="0.25rem"
           _hover={{ background: '#F2F2F2;' }}
         >
-          <GrClose size="1em" />
+          {/* <GrClose size="1em" /> */}
         </Box>
       </Box>
       <Box

@@ -6,7 +6,7 @@ import { List, ListIcon, ListItem, Grid, Text, Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { unsplash } from '../../../utils/unsplash'
 import useDebouncedValue from './useDebounce'
-import { MdCheckCircle } from 'react-icons/md'
+// import { MdCheckCircle } from 'react-icons/md'
 
 export const GoProTab = () => {
   return (
@@ -65,7 +65,7 @@ export const GoProTab = () => {
           color="black"
           textAlign="left"
         >
-          <ListItem>
+          {/* <ListItem>
             <ListIcon as={MdCheckCircle} color="green.500" />
             The best free icons
           </ListItem>
@@ -84,7 +84,7 @@ export const GoProTab = () => {
           <ListItem>
             <ListIcon as={MdCheckCircle} color="green.500" />
             Integrations
-          </ListItem>
+          </ListItem> */}
         </List>
       </Box>
       <Box

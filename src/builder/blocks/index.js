@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { BlockModifiers } from './block-modifiers'
 import Image from './image'
-import { BsArrowsMove } from 'react-icons/bs'
+// import { BsArrowsMove } from 'react-icons/bs'
 import GenericText from './text'
 import BlockInception from './inception'
 import { useDispatch, useSelector } from 'react-redux'
@@ -75,7 +75,8 @@ const DragHandle = () => {
       bg="white"
       zIndex="9999"
     >
-      <BsArrowsMove size="20px" />
+      <div />
+      {/* <BsArrowsMove size="20px" /> */}
     </Box>
   )
 }
