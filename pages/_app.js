@@ -17,20 +17,20 @@ import '../styles/tableStyles.css'
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
-  useEffect(() => {
-    initHorjar()
-  }, [])
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      pageview(url)
-    }
+  // useEffect(() => {
+  //   nitHorjar()
+  // }, [])
+  // useEffect(() => {
+  //   const handleRouteChange = (url) => {
+  //     pageview(url)
+  //   }
 
-    router.events.on('routeChangeComplete', handleRouteChange)
+  //   router.events.on('routeChangeComplete', handleRouteChange)
 
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange)
+  //   }
+  // }, [router.events])
 
   return (
     <Provider store={store}>
