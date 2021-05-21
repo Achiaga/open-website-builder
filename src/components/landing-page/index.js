@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 
 import Navbar from '../navbar'
@@ -11,16 +11,16 @@ import Steps from './steps'
 import CardInfo from './card-info'
 import Footer from './footer'
 
-import { initLiveChatScript } from '../../utils/analytics'
+// import { initLiveChatScript } from '../../utils/analytics'
 
-async function loadScript() {
-  window && window.eval(initLiveChatScript)
-}
+// async function loadScript() {
+//   window && window.eval(initLiveChatScript)
+// }
 
 const LandingPage = () => {
-  useEffect(() => {
-    setTimeout(() => loadScript(), 0)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => loadScript(), 0)
+  // }, [])
 
   return (
     <>
