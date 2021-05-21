@@ -1,13 +1,17 @@
 import { Box, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 
-import { FilePond } from 'react-filepond'
-
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css'
 import { uploadImageToS3 } from '../transporter'
 import { useSelector } from 'react-redux'
 import { getUserId } from '../../../../features/builderSlice'
+
+import dynamic from 'next/dynamic'
+
+const FilePond = dynamic(() =>
+  import('react-filepond').then((mod) => mod.FilePond)
+)
 
 async function uploadFile(blob, userId, onSelect) {
   const { name, type } = blob

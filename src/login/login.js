@@ -1,9 +1,9 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { GiSmartphone } from 'react-icons/gi'
 import {
   getAccountCreated,
   getBuilderDevice,
@@ -24,7 +24,8 @@ import AccountCreatedModal from './accountCreatedModal'
 import OverwriteDBWarning from './overwriteDBWarning'
 import { Spinner } from '@chakra-ui/spinner'
 import { removeLocalData } from '../builder/web-builder/helpers'
-import templates from '../../templates'
+
+const templatesFallback = dynamic(() => import('../../templates/fallback.json'))
 
 // eslint-disable-next-line no-undef
 const isDev = process.env.NODE_ENV === 'development'
@@ -93,7 +94,7 @@ export function Login() {
   }
   function handleRemove() {
     removeLocalData().then(() => {
-      dispatch(setInitialBuilderData(templates.fallback))
+      dispatch(setInitialBuilderData(templatesFallback))
     })
   }
 
@@ -121,7 +122,7 @@ export function Login() {
                 'Desktop View'
               ) : (
                 <Box d="flex" justifyContent="space-between">
-                  <GiSmartphone /> Mobile View
+                  Mobile View
                 </Box>
               )}
             </MenuItem>

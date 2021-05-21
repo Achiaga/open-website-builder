@@ -1,4 +1,6 @@
-import colorNamer from 'color-namer'
+import dynamic from 'next/dynamic'
+
+const colorNamer = dynamic(() => import('color-namer'))
 
 function hexToRgb(hex) {
   const sanitizedHex = hex?.replace('##', '#')
