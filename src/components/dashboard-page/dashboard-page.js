@@ -41,6 +41,8 @@ const Dashboard = ({ dashboardType }) => {
       <Head>
         <title>Antfolio - Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://www.antfolio.app/dashboard" />
+        <meta name="robots" content="noindex" />
       </Head>
       <Box
         display="flex"
