@@ -1,7 +1,7 @@
 import { batch } from 'react-redux'
 import dynamic from 'next/dynamic'
-import isEqual from 'lodash/isEqual'
 
+const isEqual = dynamic(() => import('lodash/isEqual'))
 const templates = dynamic(() => import('../../templates'))
 
 import {
