@@ -394,6 +394,7 @@ export function denormalizeBuilderData(data) {
 }
 
 export const publishWebsite = () => async (dispatch, getState) => {
+  dispatch(setPublishStatus('loading'))
   const userData = getUserData(getState())
   const builderData = denormalizeBuilderData(getBuilderData(getState()))
   const { domain } = userData
@@ -403,7 +404,6 @@ export const publishWebsite = () => async (dispatch, getState) => {
     )
     const staticSiteCode = generateStaticHTML(html)
     await uploadWebsiteToS3(staticSiteCode, domain)
-    dispatch(setPublishStatus('loading'))
   }
   await dispatch(saveData(true))
 }
