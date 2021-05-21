@@ -1,9 +1,9 @@
 import { Box, Text } from '@chakra-ui/layout'
 import { useDispatch } from 'react-redux'
 
-import { IoCheckmark } from 'react-icons/io5'
+// import { IoCheckmark } from 'react-icons/io5'
 import { setAccountCreated } from '../features/builderSlice'
-import { IoClose } from 'react-icons/io5'
+// import { IoClose } from 'react-icons/io5'
 
 const AccountCreatedModal = () => {
   const dispatch = useDispatch()
@@ -57,7 +57,7 @@ const AccountCreatedModal = () => {
             }}
             onClick={handleClose}
           >
-            <IoClose size="30px" />
+            {/* <IoClose size="30px" /> */}
           </Box>
           <Box
             borderRadius="50%"
@@ -66,7 +66,7 @@ const AccountCreatedModal = () => {
             mb="3rem"
             p="1rem"
           >
-            <IoCheckmark color="#3fab3f" size="88px" />
+            {/* <IoCheckmark color="#3fab3f" size="88px" /> */}
           </Box>
           <Text fontSize="2xl" pb="1rem">
             Account created

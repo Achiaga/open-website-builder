@@ -3,7 +3,7 @@ import { Input } from '@chakra-ui/input'
 import { Box } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
 import { useState } from 'react'
-import { GoCheck } from 'react-icons/go'
+// import { GoCheck } from 'react-icons/go'
 import { requestSubDomainAvailability } from '../../../builder/blocks/block-helpers/transporter'
 
 const SubdomainWrapper = ({ projectId, actualSubdomain }) => {
@@ -39,7 +39,7 @@ const SubdomainWrapper = ({ projectId, actualSubdomain }) => {
       >
         {success || actualSubdomain ? (
           <Box d="flex" alignItems="center" justifyContent="flex-start">
-            <GoCheck color="#3fab3f" size="20px" />
+            {/* <GoCheck color="#3fab3f" size="20px" /> */}
             <Box fontSize="md" fontWeight="600" ml="0.5rem" as="span">
               <Box d="flex">
                 {subdomain || actualSubdomain}

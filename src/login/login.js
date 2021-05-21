@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
+// import { GiSmartphone } from 'react-icons/gi/index'
 import {
   getAccountCreated,
   getBuilderDevice,
@@ -14,7 +15,7 @@ import {
   setInitialBuilderData,
   getBuilderData,
 } from '../features/builderSlice'
-import { IoMenu } from 'react-icons/io5'
+// import { IoMenu } from 'react-icons/io5'
 import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
 import PublishSuccessModal from './publishModal'
@@ -106,7 +107,7 @@ export function Login() {
       <SaveButton />
       <Box w="full">
         <Card alignItems="center" onClick={handleMenuOption}>
-          <IoMenu size={24} />
+          {/* <IoMenu size={24} /> */}
         </Card>
         {isMenuOpen && (
           <Box
@@ -122,7 +123,7 @@ export function Login() {
                 'Desktop View'
               ) : (
                 <Box d="flex" justifyContent="space-between">
-                  Mobile View
+                  {/* <GiSmartphone /> Mobile View */}
                 </Box>
               )}
             </MenuItem>

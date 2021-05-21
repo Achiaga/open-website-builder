@@ -20,4 +20,8 @@ module.exports = withBundleAnalyzer({
       'antfolio.s3.amazonaws.com',
     ],
   },
+  webpack: (config) => {
+    config.resolve.extensions = ['.mjs', '.js', '.jsx', '.json']
+    return config
+  },
 })

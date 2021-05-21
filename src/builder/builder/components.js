@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
 import { Box } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { HiMenu } from 'react-icons/hi'
-import { AiOutlineReload, AiFillSignal } from 'react-icons/ai'
-import { IoBatteryDead } from 'react-icons/io5'
+// import { HiMenu } from 'react-icons/hi'
+// import { AiOutlineReload, AiFillSignal } from 'react-icons/ai'
+// import { IoBatteryDead } from 'react-icons/io5'
 import { getBuilderDevice } from '../../features/builderSlice'
 
 const SearchBar = () => {
@@ -18,15 +18,11 @@ const SearchBar = () => {
       justifyContent="space-between"
       mt="2.5rem"
     >
-      <Box p="1rem">
-        <HiMenu size="20px" />
-      </Box>
+      <Box p="1rem">{/* <HiMenu size="20px" /> */}</Box>
       <Box as="span" fontSize="lg">
         www.antfolio.app
       </Box>
-      <Box p="1rem">
-        <AiOutlineReload size="20px" />
-      </Box>
+      <Box p="1rem">{/* <AiOutlineReload size="20px" /> */}</Box>
     </Box>
   )
 }
@@ -130,10 +126,8 @@ export const MobileWrapper = ({ children }) => {
               11:11
             </Box>
             <Box d="flex">
-              <Box mr="0.5rem">
-                <IoBatteryDead size="20px" />
-              </Box>
-              <AiFillSignal size="15px" />
+              <Box mr="0.5rem">{/* <IoBatteryDead size="20px" /> */}</Box>
+              {/* <AiFillSignal size="15px" /> */}
             </Box>
           </Box>
           <SearchBar />

@@ -1,11 +1,11 @@
-import { RiDeleteBin6Line } from 'react-icons/ri'
-import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi'
-import { HiLink } from 'react-icons/hi'
-import {
-  AiOutlineVerticalAlignBottom,
-  AiOutlineVerticalAlignMiddle,
-  AiOutlineVerticalAlignTop,
-} from 'react-icons/ai'
+// import { RiDeleteBin6Line } from 'react-icons/ri'
+// import { FiAlignCenter, FiAlignLeft, FiAlignRight } from 'react-icons/fi'
+// import { HiLink } from 'react-icons/hi'
+// import {
+//   AiOutlineVerticalAlignBottom,
+//   AiOutlineVerticalAlignMiddle,
+//   AiOutlineVerticalAlignTop,
+// } from 'react-icons/ai'
 import BorderIcon from '../../../assets/border-icon'
 import ShadowIcon from '../../../assets/shadow-icon'
 import BorderRadiusIcon from '../../../assets/border-radius-icon'
@@ -16,7 +16,7 @@ import DuplicateIcon from '../../../assets/duplicate-icon'
 import { FontIcon, BgIcon } from '../../../assets/fontIcon'
 
 import { DELETE, DUPLICATE } from './constants'
-import { MdOpacity } from 'react-icons/md'
+// import { MdOpacity } from 'react-icons/md'
 
 // Text
 
@@ -40,9 +40,12 @@ const textAlign = {
   property: 'textAlign',
   tooltip: 'Align Item Horizontally',
   options: [
-    { value: 'left', title: <FiAlignLeft /> },
-    { value: 'center', title: <FiAlignCenter /> },
-    { value: 'right', title: <FiAlignRight /> },
+    { value: 'left', title: <div /> },
+    { value: 'center', title: <div /> },
+    { value: 'right', title: <div /> },
+    // { value: 'left', title: <FiAlignLeft /> },
+    // { value: 'center', title: <FiAlignCenter /> },
+    // { value: 'right', title: <FiAlignRight /> },
   ],
 }
 const alignItems = {
@@ -50,9 +53,12 @@ const alignItems = {
   property: 'alignItems',
   tooltip: 'Align Item Vertically',
   options: [
-    { value: 'start', title: <AiOutlineVerticalAlignTop /> },
-    { value: 'center', title: <AiOutlineVerticalAlignMiddle /> },
-    { value: 'end', title: <AiOutlineVerticalAlignBottom /> },
+    { value: 'start', title: <div /> },
+    { value: 'center', title: <div /> },
+    { value: 'end', title: <div /> },
+    // { value: 'start', title: <AiOutlineVerticalAlignTop /> },
+    // { value: 'center', title: <AiOutlineVerticalAlignMiddle /> },
+    // { value: 'end', title: <AiOutlineVerticalAlignBottom /> },
   ],
 }
 const fontWeight = {
@@ -161,7 +167,8 @@ const opacitySelector = {
   type: 'dropdown',
   property: 'opacity',
   tooltip: 'Image opacity',
-  icon: <MdOpacity />,
+  // icon: <MdOpacity />,
+  icon: <div />,
   options: [
     { value: '0', title: '-' },
     { value: '0.2', title: 'low' },
@@ -334,7 +341,8 @@ const emoji = {
 export const deleteProperty = {
   type: 'button',
   tooltip: 'Delete ( Blocks attached to this block will be delted).',
-  placeholder: <RiDeleteBin6Line color="black" size="0.9rem" />,
+  placeholder: <div />,
+  // placeholder: <RiDeleteBin6Line color="black" size="0.9rem" />,
   property: '',
   operationType: DELETE,
 }
@@ -356,7 +364,8 @@ const imageSelector = {
 
 export const redirectInput = {
   type: 'text',
-  icon: <HiLink size="1.1rem" />,
+  icon: <div />,
+  // icon: <HiLink size="1.1rem" />,
   tooltip: 'Add a Link you want the user to be redirect to when click on it.',
   inputPlaceholder: 'Add a link to redirect when click',
   property: 'redirect',
