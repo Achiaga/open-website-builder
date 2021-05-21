@@ -8,7 +8,7 @@ export function isFalsy(resumeId) {
 }
 
 const Website = ({ websiteData, subdomain }) => {
-  const ResumeWebsite = dynamic(() => import('../builder/web-preview/preview'))
+  const ResumeWebsite = dynamic(() => import('../preview/web-preview/preview'))
   return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
 }
 

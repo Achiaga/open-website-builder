@@ -23,7 +23,7 @@ import {
   updateInitialState,
   normalizeBuilderData,
 } from './login-helpers'
-import ResumeWebsite from '../builder/web-preview/preview'
+import ResumeWebsite from '../preview/web-preview/preview'
 import { generateStaticHTML } from './helper'
 import { uploadWebsiteToS3 } from '../builder/blocks/block-helpers/transporter'
 import { MobileWindowWidth } from '../builder/web-builder/web-builder'

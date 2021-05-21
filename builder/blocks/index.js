@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 import { BlockModifiers } from './block-modifiers'
 import Image from './image'
 import { BsArrowsMove } from 'react-icons/bs'
-import GenericText, { PrevText } from './text'
+import GenericText from './text'
 import BlockInception from './inception'
-import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlocks,
@@ -14,8 +13,8 @@ import {
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
-import { GenericContactForm, PrevContactForm } from './form'
-import { ButtonGeneric, PreviewButton } from './button'
+import { GenericContactForm } from './form'
+import { ButtonGeneric } from './button'
 
 const blocksType = {
   image: Image,
@@ -23,13 +22,6 @@ const blocksType = {
   inception: BlockInception,
   form: GenericContactForm,
   button: ButtonGeneric,
-}
-export const previewBlocks = {
-  image: Image,
-  text: PrevText,
-  inception: PrevInception,
-  form: PrevContactForm,
-  button: PreviewButton,
 }
 
 export const ResizingCounter = ({ width, height, pos }) => {

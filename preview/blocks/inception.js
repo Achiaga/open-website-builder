@@ -1,4 +1,4 @@
-import { RedirectWrapper } from './text'
+import { RedirectWrapper } from '../../builder/blocks/text'
 
 export const PrevInception = (props) => {
   const redirectUrl = props?.redirect

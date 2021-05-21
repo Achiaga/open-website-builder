@@ -1,48 +1,9 @@
-import { Button } from '@chakra-ui/button'
 import { Input } from '@chakra-ui/input'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
-import getColorShades, { getIsColorBright } from './block-helpers/color-shades'
+import { CustomButton } from '../../preview/blocks/button'
 import { RedirectWrapper } from './text'
-
-function getBackgroundColor(color) {
-  if (!color) return '#000000'
-  if (color === 'transparent') return '#ffffff00'
-  return color
-}
-
-export const CustonButton = ({ children, ...props }) => {
-  const backgroundColor = getBackgroundColor(props?.backgroundColor)
-  const shades = getColorShades(backgroundColor)
-  const isColorBright = getIsColorBright(backgroundColor)
-  const fontColor = isColorBright ? 'gray.500' : 'white'
-  return (
-    <button
-      style={{
-        width: '100%',
-        height: '100%',
-        boxShadow: props.boxShadow,
-        border: props.border,
-        borderRadius: props.borderRadius,
-        backgroundColor: backgroundColor,
-        color: fontColor,
-        overflow: 'hidden',
-        cursor: 'pointer',
-      }}
-      // _hover={{
-      //   backgroundColor: shades.colors[isColorBright ? '600' : '400'],
-      //   boxShadow: props.boxShadow,
-      // }}
-      // _active={{
-      //   backgroundColor: shades.colors[isColorBright ? '700' : '300'],
-      //   boxShadow: props.boxShadow,
-      // }}
-    >
-      {children}
-    </button>
-  )
-}
 
 export const ButtonGeneric = (props) => {
   const dispatch = useDispatch()
@@ -62,7 +23,7 @@ export const ButtonGeneric = (props) => {
 
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
-      <CustonButton
+      <CustomButton
         borderRadius={borderRadius}
         border={border}
         backgroundColor={backgroundColor}
@@ -76,25 +37,7 @@ export const ButtonGeneric = (props) => {
           border="none"
           textAlign="center"
         />
-      </CustonButton>
-    </RedirectWrapper>
-  )
-}
-
-export const PreviewButton = (props) => {
-  const redirectUrl = props?.redirect
-  const { borderRadius, border, boxShadow, backgroundColor, text } = props
-
-  return (
-    <RedirectWrapper redirectUrl={redirectUrl}>
-      <CustonButton
-        borderRadius={borderRadius}
-        border={border}
-        backgroundColor={backgroundColor}
-        boxShadow={boxShadow}
-      >
-        {text || ''}
-      </CustonButton>
+      </CustomButton>
     </RedirectWrapper>
   )
 }

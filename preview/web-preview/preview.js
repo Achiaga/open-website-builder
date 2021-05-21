@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import MadeWith from '../../components/made-with'
 
 import { GeneratePreviewBlock } from './helpers'
-import { MobileWindowWidth } from '../web-builder/web-builder'
+import { MobileWindowWidth } from '../../builder/web-builder/web-builder'
 
 export const BlocksContext = createContext()
 

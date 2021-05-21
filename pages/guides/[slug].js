@@ -1,5 +1,5 @@
 import { guides } from '../../articles'
-import ResumeWebsite from '../../builder/web-preview/preview'
+import ResumeWebsite from '../../preview/web-preview/preview'
 import { denormalizeBuilderData } from '../../features/builderSlice'
 
 const Blog = ({ slug }) => {

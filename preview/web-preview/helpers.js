@@ -1,10 +1,14 @@
 import { useContext } from 'react'
 
-import { previewBlocks } from '../blocks'
 import { BlocksContext } from './preview'
-import { GRID_COLUMNS } from '../web-builder/constants'
+import { GRID_COLUMNS } from '../../builder/web-builder/constants'
+import { PreviewButton } from '../blocks/button'
+import { PrevInception } from '../blocks/inception'
+import { PrevText } from '../blocks/text'
+import { PrevContactForm } from '../blocks/form'
+import GenericImage from '../../builder/blocks/image'
 
-const zIndexs = {
+const zIndexes = {
   inception: 0,
   image: 1,
   text: 2,
@@ -12,8 +16,16 @@ const zIndexs = {
   form: 4,
 }
 
+export const previewBlocks = {
+  image: GenericImage,
+  text: PrevText,
+  inception: PrevInception,
+  form: PrevContactForm,
+  button: PreviewButton,
+}
+
 function getBlockZIndex(blockType) {
-  return zIndexs[blockType]
+  return zIndexes[blockType]
 }
 
 export function GeneratePreviewBlock({ layoutItem, desktop }) {
