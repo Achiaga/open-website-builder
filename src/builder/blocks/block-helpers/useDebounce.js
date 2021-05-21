@@ -1,5 +1,6 @@
 import { useRef, useState, useMemo, useEffect } from 'react'
-import debounce from 'lodash.debounce'
+import dynamic from 'next/dynamic'
+const debounce = dynamic(() => import('lodash.debounce'))
 
 /**
  * Debounces a value while still providing access to the latest non-debouned value.

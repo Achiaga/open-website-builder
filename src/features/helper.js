@@ -1,4 +1,6 @@
-import localforage from 'localforage'
+import dynamic from 'next/dynamic'
+const localforage = dynamic(() => import('localforage'))
+
 import { htmlWrapper } from './StaticSiteGenerator'
 
 export async function getUserDataFromLS() {

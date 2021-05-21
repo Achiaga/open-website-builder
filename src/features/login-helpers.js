@@ -1,6 +1,9 @@
 import { batch } from 'react-redux'
-import isEqual from 'lodash/isEqual'
-import templates from '../../templates'
+import dynamic from 'next/dynamic'
+
+const isEqual = dynamic(() => import('lodash/isEqual'))
+const templates = dynamic(() => import('../../templates'))
+
 import {
   setInitialBuilderData,
   setUserData,

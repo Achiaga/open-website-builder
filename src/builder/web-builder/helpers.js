@@ -1,4 +1,5 @@
-import localforage from 'localforage'
+import dynamic from 'next/dynamic'
+const localforage = dynamic(() => import('localforage'))
 import { findAllChildren } from '../../features/builderSlice'
 
 import { blocksProperties } from './default-data'

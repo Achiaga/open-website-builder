@@ -7,7 +7,9 @@ import {
   getSelectedBlockId,
   handleResizeTextBlock,
 } from '../../features/builderSlice'
-import Editor from './editor'
+import dynamic from 'next/dynamic'
+
+const Editor = dynamic(() => import('./editor'))
 
 export const GenericText = (props) => {
   const { parentBlockId, ...data } = props

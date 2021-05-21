@@ -106,7 +106,7 @@ function QuillToolbar() {
   )
 }
 
-export const CustomToolbar = ({ blockId }) => {
+const CustomToolbar = ({ blockId }) => {
   const dispatch = useDispatch()
 
   function handleEdit(_, __, operationType = EDIT) {
