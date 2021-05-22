@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 
 import Navbar from '../src/components/navbar'
 import ComparisonTable from './comparison-table'

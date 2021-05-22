@@ -1,8 +1,10 @@
-import { Box, Button, useDisclosure } from '@chakra-ui/react'
 import { PricingCard } from './PricingCard'
 import { SubscriptionModal, BusinessSubscriptionModal } from '../modals'
 import { useEffect } from 'react'
 import { event } from '../../utils/analytics'
+import { useDisclosure } from '@chakra-ui/hooks'
+import { Button } from '@chakra-ui/button'
+import { Box } from '@chakra-ui/layout'
 
 const ActionButton = (props) => (
   <Button size="lg" w="full" fontWeight="bold" {...props} />

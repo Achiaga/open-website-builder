@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { Box } from '@chakra-ui/layout'
+
+import SlideIcon from '../../../../assets/slide-icon'
 import {
-  Box,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-} from '@chakra-ui/react'
-
-import SlideIcon from '../../../../assets/slide-icon'
+} from '@chakra-ui/slider'
 
 const INITIAL_SLIDE_VALUE = 50
 

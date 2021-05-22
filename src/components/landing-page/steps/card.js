@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 
 const Card = ({ step, title, body, subbody }) => {
   return (

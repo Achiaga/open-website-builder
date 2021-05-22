@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 import BgCircle from '../../assets/navbar-circle'
 
 const BackgroundCircles = () => {

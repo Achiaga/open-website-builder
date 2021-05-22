@@ -1,6 +1,5 @@
 import { Button } from '@chakra-ui/button'
-import { Box } from '@chakra-ui/react'
-
+import { Box } from '@chakra-ui/layout'
 import { Input } from '@chakra-ui/input'
 import { useEffect, useState } from 'react'
 

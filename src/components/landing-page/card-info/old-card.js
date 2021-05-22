@@ -1,4 +1,4 @@
-import { List, ListItem, Box, Text } from '@chakra-ui/react'
+import { List, ListItem, Box, Text } from '@chakra-ui/layout'
 import HandDown from '../../../../assets/hand-down'
 
 const OldCard = ({ title, body, listCard }) => {

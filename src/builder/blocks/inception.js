@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 
-import { Box } from '@chakra-ui/react'
-
+import { Box } from '@chakra-ui/layout'
 const BlockInception = (props) => {
   const border = props.border === 'none' ? '1px dashed black' : props.border
   const gradient = props.gradientColor || []

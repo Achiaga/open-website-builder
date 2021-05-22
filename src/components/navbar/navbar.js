@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/layout'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useTranslation } from '../../../hooks/translation'

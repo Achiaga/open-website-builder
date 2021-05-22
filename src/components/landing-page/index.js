@@ -1,6 +1,6 @@
 import Head from 'next/head'
 // import { useEffect } from 'react'
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 
 import Navbar from '../navbar'
 import Hero from './hero'

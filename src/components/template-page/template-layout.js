@@ -2,9 +2,11 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
-import { Box, Button, Spinner } from '@chakra-ui/react'
 import { removeLocalData } from '../../builder/web-builder/helpers'
 import { event } from '../../utils/analytics'
+import { Button } from '@chakra-ui/button'
+import { Box } from '@chakra-ui/layout'
+import { Spinner } from '@chakra-ui/spinner'
 
 const CustomButton = ({ colorScheme, children }) => {
   return (

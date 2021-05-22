@@ -1,4 +1,4 @@
-import { batch } from 'react-redux'
+import batch from 'react-redux/lib/utils/batch'
 import dynamic from 'next/dynamic'
 
 const isEqual = dynamic(() => import('lodash/isEqual'))

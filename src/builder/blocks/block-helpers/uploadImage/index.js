@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 import { useEffect } from 'react'
 
 import { uploadImageToS3 } from '../transporter'

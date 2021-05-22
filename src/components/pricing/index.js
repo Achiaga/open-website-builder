@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 import Navbar from '../navbar'
 import PricingCards from './PricingCards'
 

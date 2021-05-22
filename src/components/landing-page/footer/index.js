@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 import { useTranslation } from '../../../../hooks/translation'
 import Link from 'next/link'
 

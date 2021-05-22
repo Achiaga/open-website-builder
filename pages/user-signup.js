@@ -1,6 +1,5 @@
+import { Box } from '@chakra-ui/layout'
 import Head from 'next/head'
-
-import { Box } from '@chakra-ui/react'
 
 const SignupPage = () => {
   return (

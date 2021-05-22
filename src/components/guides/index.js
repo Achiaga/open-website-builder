@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 import Image from 'next/image'
 import Navbar from '../navbar'
 import ArrowRight from '../../../assets/arrow-right'

@@ -1,6 +1,5 @@
 // import { useEffect } from 'react'
 // import { useRouter } from 'next/router'
-import { ThemeProvider, CSSReset } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -13,6 +12,8 @@ import '../styles/globals.css'
 import '../src/builder/web-builder/styles.css'
 import '../styles/QuillStyle.css'
 import '../styles/tableStyles.css'
+import { ThemeProvider } from '@chakra-ui/system'
+import CSSReset from '@chakra-ui/css-reset'
 
 function MyApp({ Component, pageProps }) {
   // const router = useRouter()

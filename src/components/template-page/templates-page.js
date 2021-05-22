@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Box, Text, Grid } from '@chakra-ui/react'
 
 import Template from './template-layout'
 
 import LogoSvg from '../../../assets/logo'
+import { Box, Grid, Text } from '@chakra-ui/layout'
 
 const TEMPLATES = [
   {

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 import PropTypes from 'prop-types'
 // import { HiMenu } from 'react-icons/hi'
 // import { AiOutlineReload, AiFillSignal } from 'react-icons/ai'

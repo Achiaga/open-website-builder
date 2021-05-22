@@ -3,11 +3,10 @@ import {
   Flex,
   Heading,
   List,
-  ListIcon,
   ListItem,
   Text,
   VStack,
-} from '@chakra-ui/react'
+} from '@chakra-ui/layout'
 import * as React from 'react'
 // import { GoCheck } from 'react-icons/go'
 import { Card } from './Card'

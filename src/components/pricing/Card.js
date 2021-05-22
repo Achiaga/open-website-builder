@@ -1,4 +1,4 @@
-import { Box, useColorModeValue as mode } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 
 export const Card = (props) => {
   const { children, ...rest } = props
@@ -7,7 +7,7 @@ export const Card = (props) => {
       position="relative"
       p="2rem 3.125vw"
       overflow="hidden"
-      bg={mode('white', 'gray.700')}
+      bg={'gray.50'}
       shadow="lg"
       maxW="md"
       {...rest}

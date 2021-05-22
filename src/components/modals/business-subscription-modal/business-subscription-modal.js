@@ -1,14 +1,5 @@
 import { useState } from 'react'
-import {
-  Box,
-  Text,
-  Input,
-  Spinner,
-  ListItem,
-  ListIcon,
-  List,
-} from '@chakra-ui/react'
-import { ModalContent, ModalCloseButton } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 
 import Modal from '../../modal'
 import Button from '../../commun/button'
@@ -19,6 +10,16 @@ import { addUserToBetaList } from '../../../../helpers/transport'
 import LogoSvg from '../../../../assets/logo'
 // import { MdCheckCircle } from 'react-icons/md'
 import { BUSINESS } from '../../../../constants'
+import { Box, List, ListItem, Text } from '@chakra-ui/layout'
+import { Input } from '@chakra-ui/input'
+import { Spinner } from '@chakra-ui/spinner'
+
+const ModalCloseButton = dynamic(() =>
+  import('@chakra-ui/modal').then((mod) => mod.ModalCloseButton)
+)
+const ModalContent = dynamic(() =>
+  import('@chakra-ui/modal').then((mod) => mod.ModalContent)
+)
 
 const LeftSideContent = () => {
   const [t] = useTranslation()

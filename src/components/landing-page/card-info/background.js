@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 import FooterCircle from '../../../../assets/footer-circle'
 
 const BackgroundCircle = () => {

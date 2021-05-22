@@ -1,4 +1,4 @@
-import { Box, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
+import { Box, List, ListItem, Text } from '@chakra-ui/layout'
 import Image from 'next/image'
 import Navbar from '../src/components/navbar'
 // import { FiZap } from 'react-icons/fi'
