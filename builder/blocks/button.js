@@ -19,6 +19,7 @@ export const CustomButton = ({ children, ...props }) => {
     >
       <button
         style={{
+          fontSize: 'inherit',
           width: '100%',
           height: '100%',
           boxShadow: props.boxShadow,
@@ -52,7 +53,7 @@ export const ButtonGeneric = (props) => {
     gradientColor,
     fontColor,
   } = props
-
+  console.log(props)
   function handleChange(e) {
     setTextInput(e.target.value)
   }
@@ -74,6 +75,7 @@ export const ButtonGeneric = (props) => {
         color={fontColor}
       >
         <Input
+          fontSize="inherit"
           p="0"
           onChange={handleChange}
           value={textInput || ''}
@@ -91,7 +93,6 @@ export const PreviewButton = (props) => {
   const {
     borderRadius,
     border,
-    boxShadow,
     backgroundColor,
     gradientColor,
     text,
@@ -105,7 +106,6 @@ export const PreviewButton = (props) => {
         border={border}
         backgroundColor={backgroundColor}
         gradientColor={gradientColor}
-        boxShadow={boxShadow}
         color={fontColor}
       >
         {text || ''}

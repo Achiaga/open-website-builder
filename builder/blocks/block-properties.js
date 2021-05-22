@@ -123,9 +123,9 @@ export const color = {
       icon: <FontIcon fontColor="rgb(224,62,62)" />,
     },
     {
-      value: '#FFFFFF',
+      value: '#ffffff',
       title: 'white',
-      icon: <FontIcon fontColor="#FFFFFF" />,
+      icon: <FontIcon fontColor="#ffffff" />,
     },
   ],
 }

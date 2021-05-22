@@ -11,7 +11,7 @@ import {
 import TextIcon from '../../assets/text-icon'
 import MediaIcon from '../../assets/media-icon'
 import SectionIcon from '../../assets/section-icon'
-import FormIcon from '../../assets/form-icon'
+// import FormIcon from '../../assets/form-icon'
 import ButtonIcon from '../../assets/button-icon'
 
 const ToolSection = ({ Icon, text, type, ...props }) => {
@@ -177,7 +177,7 @@ const BuilderSidebar = () => {
         <ToolSection Icon={TextIcon} text="Text" type="text" />
         <ToolSection Icon={MediaIcon} text="Image" type="image" />
         <ToolSection Icon={SectionIcon} text="Section" type="inception" />
-        <ToolSection Icon={FormIcon} text="Form" type="form" />
+        {/* <ToolSection Icon={FormIcon} text="Form" type="form" /> */}
         <ToolSection Icon={ButtonIcon} text="Button" type="button" />
       </Grid>
     </Box>

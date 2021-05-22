@@ -11,7 +11,7 @@ export const PrevInception = (props) => {
     background = props.backgroundColor
   }
   const inceptionModifiers = {
-    boxShadow: props.boxShadow,
+    // boxShadow: props.boxShadow,
     ...(background ? { background } : {}),
     borderRadius: props.borderRadius,
     border: props.border,
