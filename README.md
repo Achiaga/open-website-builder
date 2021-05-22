@@ -1,6 +1,7 @@
 ## Antfolio
 
-<img width="1440" alt="Screenshot 2021-04-21 at 08 35 03" src="https://user-images.githubusercontent.com/44972334/115507501-853ddb00-a27c-11eb-8b40-9e5c43af5448.png">
+<img width="1440" alt="Screenshot 2021-05-22 at 21 41 25" src="https://user-images.githubusercontent.com/44972334/119239038-8a759a80-bb46-11eb-93c7-1fe56e6abfe0.png">
+
 
 antfolio.app
 
