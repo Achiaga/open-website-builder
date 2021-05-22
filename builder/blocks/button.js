@@ -1,23 +1,13 @@
-import { Button } from '@chakra-ui/button'
 import { Input } from '@chakra-ui/input'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
-import getColorShades, { getIsColorBright } from './block-helpers/color-shades'
 import { RedirectWrapper } from './text'
 
-function getBackgroundColor(color) {
-  if (!color) return '#000000'
-  if (color === 'transparent') return '#ffffff00'
-  return color
-}
-
-export const CustonButton = ({ children, ...props }) => {
-  const backgroundColor = getBackgroundColor(props?.backgroundColor)
+export const CustomButton = ({ children, ...props }) => {
   const gradient = props.gradientColor || []
-  const shades = getColorShades(backgroundColor)
-  const isColorBright = getIsColorBright(backgroundColor)
-  const fontColor = isColorBright ? 'gray.500' : 'white'
+
+  const fontColor = props.color
 
   return (
     <div
@@ -35,21 +25,13 @@ export const CustonButton = ({ children, ...props }) => {
           border: props.border,
           borderRadius: props.borderRadius,
           background: !gradient[1]
-            ? backgroundColor
+            ? props.backgroundColor
             : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
           color: fontColor,
           overflow: 'hidden',
           cursor: 'pointer',
           padding: '0px 1rem',
         }}
-        // _hover={{
-        //   backgroundColor: shades.colors[isColorBright ? '600' : '400'],
-        //   boxShadow: props.boxShadow,
-        // }}
-        // _active={{
-        //   backgroundColor: shades.colors[isColorBright ? '700' : '300'],
-        //   boxShadow: props.boxShadow,
-        // }}
       >
         {children}
       </button>
@@ -62,8 +44,14 @@ export const ButtonGeneric = (props) => {
   const [textInput, setTextInput] = useState(props.text || 'button')
   const redirectUrl = props?.redirect
 
-  const { borderRadius, border, boxShadow, backgroundColor, gradientColor } =
-    props
+  const {
+    borderRadius,
+    border,
+    boxShadow,
+    backgroundColor,
+    gradientColor,
+    fontColor,
+  } = props
 
   function handleChange(e) {
     setTextInput(e.target.value)
@@ -77,12 +65,13 @@ export const ButtonGeneric = (props) => {
 
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
-      <CustonButton
+      <CustomButton
         borderRadius={borderRadius}
         border={border}
         backgroundColor={backgroundColor}
         gradientColor={gradientColor}
         boxShadow={boxShadow}
+        color={fontColor}
       >
         <Input
           p="0"
@@ -92,7 +81,7 @@ export const ButtonGeneric = (props) => {
           border="none"
           textAlign="center"
         />
-      </CustonButton>
+      </CustomButton>
     </RedirectWrapper>
   )
 }
@@ -106,19 +95,21 @@ export const PreviewButton = (props) => {
     backgroundColor,
     gradientColor,
     text,
+    fontColor,
   } = props
 
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
-      <CustonButton
+      <CustomButton
         borderRadius={borderRadius}
         border={border}
         backgroundColor={backgroundColor}
         gradientColor={gradientColor}
         boxShadow={boxShadow}
+        color={fontColor}
       >
         {text || ''}
-      </CustonButton>
+      </CustomButton>
     </RedirectWrapper>
   )
 }

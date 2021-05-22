@@ -5,14 +5,9 @@ import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { useContext, useEffect, useState } from 'react'
 import { sendEmailNotifiaction } from './block-helpers/transporter'
-import colorShades, { getIsColorBright } from './block-helpers/color-shades'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
 import { BlocksContext } from '../web-preview/preview'
-
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
 
 async function sendEmail(inputEmail, updateSate, projectId) {
   updateSate((status) => ({ ...status, loading: true }))
@@ -80,7 +75,7 @@ export const PrevContactForm = (props) => {
           }
           background="transparent"
         />
-        <CustonButton
+        <CustomButton
           type="submit"
           borderTopLeftRadius="0"
           borderBottomLeftRadius="0"
@@ -92,7 +87,7 @@ export const PrevContactForm = (props) => {
           minW="fit-content"
         >
           {getButtonContent(loading, success, props.buttonText)}
-        </CustonButton>
+        </CustomButton>
         {error && (
           <Box
             color="red.500"
@@ -115,26 +110,8 @@ function getBackgroundColor(color) {
   return color
 }
 
-export const CustonButton = ({ children, ...props }) => {
-  const backgroundColor = getBackgroundColor(props?.backgroundColor)
-  const shades = colorShades(backgroundColor)
-  const isColorBright = getIsColorBright(backgroundColor)
-  const fontColor = isColorBright ? 'gray.500' : 'white'
-
-  return (
-    <Button
-      {...props}
-      color={fontColor}
-      _hover={{
-        backgroundColor: shades.colors[isColorBright ? '600' : '400'],
-      }}
-      _active={{
-        backgroundColor: shades.colors[isColorBright ? '700' : '300'],
-      }}
-    >
-      {children}
-    </Button>
-  )
+export const CustomButton = ({ children, ...props }) => {
+  return <Button {...props}>{children}</Button>
 }
 
 export const GenericContactForm = (props) => {
@@ -183,7 +160,7 @@ export const GenericContactForm = (props) => {
         value={textInput}
         onChange={handleInputChange}
       />
-      <CustonButton
+      <CustomButton
         type="submit"
         borderRadius={borderRadius}
         borderTopLeftRadius="0"
@@ -201,7 +178,7 @@ export const GenericContactForm = (props) => {
           border="none"
           textAlign="center"
         />
-      </CustonButton>
+      </CustomButton>
     </Box>
   )
 }

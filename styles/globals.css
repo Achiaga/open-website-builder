@@ -29,25 +29,25 @@ a {
   font-size: 6em;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 .textStyles h2 {
   font-size: 4em;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 .textStyles h3 {
   font-size: 3em;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 .textStyles h4 {
   font-size: 2em;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 .textStyles button {
   font-size: 1.5em !important;
@@ -64,13 +64,13 @@ a {
   font-size: 1.5em;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 .textStyles h6 {
   font-size: 1.2em;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 .textStyles .ql-align-center {
   text-align: center;

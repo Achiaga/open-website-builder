@@ -35,7 +35,7 @@ export function GeneratePreviewBlock({ layoutItem, desktop }) {
         width: `calc( ${w} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
         top: `calc( ${y}  * ( 100vw  / ${desktop ? GRID_COLUMNS : 100}) )`,
         height: `calc( ${h} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
-        border: data?.border,
+        // border: data?.border,
         boxShadow: data?.boxShadow,
         borderRadius: data?.borderRadius,
         zIndex: zIndex,

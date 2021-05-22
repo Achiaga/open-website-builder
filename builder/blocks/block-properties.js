@@ -192,12 +192,12 @@ const boxShadow = {
       title: 'md',
     },
     {
-      value: 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;',
+      value: 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px',
       title: 'lg',
     },
     {
       value:
-        'rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;',
+        'rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset',
       title: 'in',
     },
   ],
@@ -416,6 +416,7 @@ export const Properties = {
     border,
     borderRadius,
     boxShadow,
+    color,
     backgroundColor,
     gradientColor,
     redirectInput,

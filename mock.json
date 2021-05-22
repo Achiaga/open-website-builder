@@ -36,7 +36,7 @@
         "text": "Test block textasdf",
         "fontWeight": "500",
         "borderRadius": "20px",
-        "boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;",
+        "boxShadow": "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px",
         "fontColor": "rgb(217,115,13)",
         "textAlign": "center",
         "alignItems": "center",
