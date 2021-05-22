@@ -53,12 +53,13 @@ export const ButtonGeneric = (props) => {
     gradientColor,
     fontColor,
   } = props
-  console.log(props)
+
   function handleChange(e) {
     setTextInput(e.target.value)
   }
   useEffect(() => {
     const updatedBlock = { ...props, text: textInput }
+    delete updatedBlock.parentBlockId
     dispatch(
       editBlockConfig({ newData: updatedBlock, blockId: props.parentBlockId })
     )

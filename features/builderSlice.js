@@ -8,7 +8,7 @@ import ReactDOMServer from 'react-dom/server'
 
 import {
   addBlock,
-  removeblockFromState,
+  removeBlockFromState,
   findBlockParentId,
   getParentBlock,
   isBlockInHierarchy,
@@ -104,6 +104,10 @@ export const builderSlice = createSlice({
         ...state.builderData.hierarchy,
         ...hierarchy,
       }
+      state.builderData.mobileHierarchy = {
+        ...state.builderData.mobileHierarchy,
+        ...hierarchy,
+      }
     },
     setMobileLayout: (state, action) => {
       state.builderData.mobileLayout = cleanLayouts(action.payload)
@@ -188,7 +192,7 @@ export const editBlockConfig =
   ({ blockId, newData, operationType }) =>
   (dispatch) => {
     if (operationType === DELETE) {
-      dispatch(removeblock({ blockId, newData }))
+      dispatch(removeBlock({ blockId, newData }))
     } else if (operationType === DUPLICATE) {
       dispatch(duplicateBlock(blockId))
     } else {
@@ -203,7 +207,7 @@ const removeMobileblock = (blockId) => (dispatch, getState) => {
   const layouts = getMobileLayout(state)
   const hierarchy = getMobileHierarchy(state)
   const mobileEditedBlocks = getMobileEditedBlocks(getState())
-  const newBuilderData = removeblockFromState(
+  const newBuilderData = removeBlockFromState(
     blockId,
     layouts,
     blocks,
@@ -218,14 +222,14 @@ const removeMobileblock = (blockId) => (dispatch, getState) => {
   })
 }
 
-export const removeblock =
+export const removeBlock =
   ({ blockId }) =>
   (dispatch, getState) => {
     const state = getState()
     const { blocks } = getBuilderData(getState())
     const layouts = getLayout(state)
     const hierarchy = getHierarchy(state)
-    const newBuilderData = removeblockFromState(
+    const newBuilderData = removeBlockFromState(
       blockId,
       layouts,
       blocks,
@@ -478,7 +482,9 @@ const addDuplicatedToHierarchy = (
 const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
   const oldLayouts = getLayout(state)
   const oldHierarchy = getHierarchy(state)
-  let newHierarchy = { [newBlockId]: [] }
+  const oldMobileHierarchy = getMobileHierarchy(state)
+  let newHierarchy = {}
+  let newMobileHierarchy = {}
   const newLayoutItems = {}
   const newBlocks = {}
   const relationsTable = { [blockId]: newBlockId }
@@ -499,6 +505,12 @@ const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
         oldHierarchy,
         relationsTable
       )
+      newMobileHierarchy = addDuplicatedToHierarchy(
+        newMobileHierarchy,
+        childId,
+        oldMobileHierarchy,
+        relationsTable
+      )
     }
   }
 
@@ -507,13 +519,14 @@ const bulkDuplicate = (allChilds, blockId, newBlockId, state) => {
 
 // This is only for internal use
 export const duplicateBlock = (blockId) => (dispatch, getState) => {
-  const blockData = getBlockData(blockId)(getState())
+  const state = getState()
+  const blockData = getBlockData(blockId)(state)
   const blockType = blockData.type
-  const oldLayouts = getLayout(getState())
+  const oldLayouts = getLayout(state)
 
-  const oldHierarchy = getHierarchy(getState())
+  const oldHierarchy = getHierarchy(state)
   const allChilds = [...new Set(findAllChildren(oldHierarchy, blockId))]
-  const mobileLayout = getMobileLayout(getState())
+  const mobileLayout = getMobileLayout(state)
   const duplicatedBlockLayout = { ...oldLayouts[blockId] }
 
   const newBlockId = `${blockType}-${uuid()}`
@@ -525,9 +538,10 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
     allChilds,
     blockId,
     newBlockId,
-    getState()
+    state
   )
   const mobileLayouts = bulkApplyAutoMobileLayout(newLayoutItems, mobileLayout)
+
   batch(() => {
     dispatch(addDuplicatedBlock(duplicatedBlockLayout, blockData))
     dispatch(
@@ -536,6 +550,7 @@ export const duplicateBlock = (blockId) => (dispatch, getState) => {
         blocks: newBlocks,
         hierarchy: newHierarchy,
         mobileLayouts,
+        mobileHierarchy: newHierarchy,
       })
     )
   })
