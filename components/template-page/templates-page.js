@@ -18,13 +18,28 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'portfolio-product-desgner-john',
-    imageUrl: '/portfolio-product-desgner-john.jpg',
+    id: 'courses-sketch-ninja-design',
+    imageUrl: '/courses-sketch-ninja-design.jpg',
     tags: [],
   },
   {
     id: 'portfolio-fullstack-developer-johndoe',
     imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
+    tags: [],
+  },
+  {
+    id: 'tailwind-templates',
+    imageUrl: '/tailwind-templates.jpg',
+    tags: [],
+  },
+  {
+    id: 'books-plack',
+    imageUrl: '/books-plack.jpg',
+    tags: [],
+  },
+  {
+    id: 'portfolio-product-desgner-john',
+    imageUrl: '/portfolio-product-desgner-john.jpg',
     tags: [],
   },
   {
