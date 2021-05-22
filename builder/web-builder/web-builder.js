@@ -210,6 +210,7 @@ const GridLayoutWrapper = forwardRef(
         flexDir="row"
         onClick={() => dispatch(setBlockEditable(null))}
         id="main-builder"
+        overflow="hidden"
         pos="relative"
         className="droppable-element"
         onDragOver={higlightOnDrop}
