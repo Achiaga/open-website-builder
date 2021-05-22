@@ -1,0 +1,774 @@
+{
+  "blocks": {
+    "image-b350d4e1-6f93-4423-bc95-60d407f4d4a8": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1597131527856-13cdb8dc050e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2500&q=100",
+        "opacity": "0.6"
+      }
+    },
+    "text-ecf8d549-5a29-42c3-a0c7-2023a1450dde": {
+      "type": "text",
+      "data": {
+        "text": "<h2 class=\"ql-align-center\"><span style=\"color: rgb(255, 255, 255);\">Best&nbsp;</span><strong style=\"color: rgb(255, 255, 255);\">TailwindCSS Templates</strong></h2><h2 class=\"ql-align-center\"><span style=\"color: rgb(255, 255, 255);\">Marketplace</span></h2>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "image-4a578bf0-b9fd-4934-b490-8efb2af38f95": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.mockupworld.co/wp-content/uploads/dynamic/2020/11/free-macbook-pro-mockup-set-psd-1-1072x0-c-default.jpg"
+      }
+    },
+    "button-8c0476d7-4494-476a-90be-bdf85ef3ecef": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-8c0476d7-4494-476a-90be-bdf85ef3ecef",
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#000000",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Buy $9.00",
+        "gradientColor": ["rgb(221,214,254)", "rgb(221,214,254)"]
+      }
+    },
+    "text-6c353b47-9116-4e60-bb8b-a9ce6224be93": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Lyra - Landing Page</h4><p><br></p><h6><span style=\"color: rgb(156, 163, 175);\">Lyra is Landing Page template that includes a Checkout page. It's a modern design theme.</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104": {
+      "type": "text",
+      "data": {
+        "text": "<h6><span style=\"color: rgb(155, 154, 151);\">All functionalities are working with the CDN</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "image-e755a080-4b00-4fa9-9f47-13af6f5144c9": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.mockupworld.co/wp-content/uploads/dynamic/2020/03/free-macbook-air-2020-mockup-psd-1072x0-c-default.jpg"
+      }
+    },
+    "button-c4151b0e-be9f-4df0-8e43-1db6466d194d": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-3b3aad9f-c4cd-4db8-907a-f3809769d8be",
+        "border": "1px solid #000000",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "demo"
+      }
+    },
+    "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Lyra - Landing Page</h4><p><br></p><h6><span style=\"color: rgb(156, 163, 175);\">Lyra is Landing Page template that includes a Checkout page. It's a modern design theme.</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-82610e77-e022-434e-9ffc-d1170d160462": {
+      "type": "text",
+      "data": {
+        "text": "<h6><span style=\"color: rgb(155, 154, 151);\">All functionalities are working with the CDN</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "imageUrl": "https://www.mockupworld.co/wp-content/uploads/dynamic/2020/08/free-macbook-pro-16-inch-mockup-psd-1072x0-c-default.jpg"
+      }
+    },
+    "button-bd7dd056-c2da-4d54-b3a7-65c944d44051": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-3b3aad9f-c4cd-4db8-907a-f3809769d8be",
+        "border": "1px solid #000000",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "demo"
+      }
+    },
+    "button-0d5d8c16-fd27-465a-8857-6fe6959ace54": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-8c0476d7-4494-476a-90be-bdf85ef3ecef",
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#000000",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Buy $9.00",
+        "gradientColor": ["rgb(209,250,229)", "rgb(209,250,229)"]
+      }
+    },
+    "text-70214c4e-1139-4931-9573-3ae04d90bf3d": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Lyra - Landing Page</h4><p><br></p><h6><span style=\"color: rgb(156, 163, 175);\">Lyra is Landing Page template that includes a Checkout page. It's a modern design theme.</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798": {
+      "type": "text",
+      "data": {
+        "text": "<h6><span style=\"color: rgb(155, 154, 151);\">All functionalities are working with the CDN</span></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "button-f3f79546-a719-4820-8390-4bdd460eda4c": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-8c0476d7-4494-476a-90be-bdf85ef3ecef",
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#000000",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Buy $9.00",
+        "gradientColor": ["rgb(221,214,254)", "rgb(221,214,254)"]
+      }
+    },
+    "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-8c0476d7-4494-476a-90be-bdf85ef3ecef",
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#000000",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "Buy $9.00",
+        "gradientColor": ["rgb(221,214,254)", "rgb(221,214,254)"]
+      }
+    },
+    "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233": {
+      "type": "button",
+      "data": {
+        "parentBlockId": "button-3b3aad9f-c4cd-4db8-907a-f3809769d8be",
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "text": "demo",
+        "fontColor": "#000000",
+        "gradientColor": ["rgb(209,250,229)", "rgb(209,250,229)"]
+      }
+    },
+    "inception-998baa90-6abc-42ed-bb04-1cff5e63966d": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "text-120f2b96-f88b-42ec-96d0-999d670d35fa": {
+      "type": "text",
+      "data": {
+        "text": "<h3><strong>License</strong></h3><h5><strong>Our templates are made to be used easily. Our license reflects that.</strong></h5>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-0fadc826-0a73-42dc-861c-7d412103fc6f": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>What is permitted 👍</strong></h5><p><br></p><h6>All templates can be used for commercial and non-commercial purposes.</h6><p><br></p><h6>You can use the templates on unlimited websites.</h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-63de1435-e0a7-40db-b951-016969ba214e": {
+      "type": "text",
+      "data": {
+        "text": "<h5><strong>What is not permitted 👎</strong></h5><p><br></p><h6>Compiling Templates from Tailplate to replicate a similar or competing service.</h6><h6><br></h6><h6>Reselling the templates on other marketplaces.</h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-dd6a45af-f8e4-44c9-bc35-bd83f20008f4": {
+      "type": "text",
+      "data": {
+        "text": "<h5 class=\"ql-align-center\">example@business.com</h5><p class=\"ql-align-center\"><br></p>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    }
+  },
+  "hierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7": [
+      "image-4a578bf0-b9fd-4934-b490-8efb2af38f95",
+      "button-8c0476d7-4494-476a-90be-bdf85ef3ecef",
+      "button-2f2ff3c9-ed98-4e6d-9082-e75915f3f574",
+      "button-3b3aad9f-c4cd-4db8-907a-f3809769d8be",
+      "button-509d3912-080f-4b63-ad84-4cd47adfd288",
+      "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104",
+      "button-6c6a4d7d-f892-479a-9652-af9feccbd344",
+      "text-6c353b47-9116-4e60-bb8b-a9ce6224be93",
+      "button-77506ffe-945e-42e5-994e-71f5d85c34fe"
+    ],
+    "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe": [
+      "image-e755a080-4b00-4fa9-9f47-13af6f5144c9",
+      "button-b68c32c4-88cc-4022-b56c-22d4511dc2cb",
+      "button-c4151b0e-be9f-4df0-8e43-1db6466d194d",
+      "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2",
+      "text-82610e77-e022-434e-9ffc-d1170d160462",
+      "button-f3f79546-a719-4820-8390-4bdd460eda4c",
+      "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233"
+    ],
+    "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d": [
+      "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2",
+      "button-7f46ebab-c815-439c-9c18-4e7e344d8a21",
+      "button-bd7dd056-c2da-4d54-b3a7-65c944d44051",
+      "button-0d5d8c16-fd27-465a-8857-6fe6959ace54",
+      "text-70214c4e-1139-4931-9573-3ae04d90bf3d",
+      "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798",
+      "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4"
+    ],
+    "button-f3f79546-a719-4820-8390-4bdd460eda4c": [],
+    "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4": [],
+    "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233": [],
+    "inception-998baa90-6abc-42ed-bb04-1cff5e63966d": [
+      "text-120f2b96-f88b-42ec-96d0-999d670d35fa",
+      "text-0fadc826-0a73-42dc-861c-7d412103fc6f",
+      "text-63de1435-e0a7-40db-b951-016969ba214e"
+    ]
+  },
+  "layouts": {
+    "image-b350d4e1-6f93-4423-bc95-60d407f4d4a8": {
+      "x": 0,
+      "y": 0,
+      "w": 200,
+      "h": 114.44444444444443,
+      "i": "image-b350d4e1-6f93-4423-bc95-60d407f4d4a8"
+    },
+    "text-ecf8d549-5a29-42c3-a0c7-2023a1450dde": {
+      "x": 47.5,
+      "y": 46.94444444444444,
+      "w": 104.72222222222221,
+      "h": 20.27777777777778,
+      "i": "text-ecf8d549-5a29-42c3-a0c7-2023a1450dde"
+    },
+    "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7": {
+      "x": 77.63888888888889,
+      "y": 131.38888888888889,
+      "w": 44.30555555555554,
+      "h": 63.19444444444444,
+      "i": "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7"
+    },
+    "image-4a578bf0-b9fd-4934-b490-8efb2af38f95": {
+      "x": 77.63888888888891,
+      "y": 131.38888888888889,
+      "w": 44.166666666666664,
+      "h": 23.61111111111111,
+      "i": "image-4a578bf0-b9fd-4934-b490-8efb2af38f95"
+    },
+    "button-8c0476d7-4494-476a-90be-bdf85ef3ecef": {
+      "x": 79.72222222222226,
+      "y": 157.5,
+      "w": 17.083333333333332,
+      "h": 5.833333333333333,
+      "i": "button-8c0476d7-4494-476a-90be-bdf85ef3ecef"
+    },
+    "text-6c353b47-9116-4e60-bb8b-a9ce6224be93": {
+      "x": 79.86111111111111,
+      "y": 166.25,
+      "w": 40.138888888888886,
+      "h": 16.666666666666668,
+      "i": "text-6c353b47-9116-4e60-bb8b-a9ce6224be93"
+    },
+    "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104": {
+      "x": 95,
+      "y": 185.13888888888889,
+      "w": 23.333333333333332,
+      "h": 6.111111111111111,
+      "i": "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104"
+    },
+    "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe": {
+      "x": 130.41666666666666,
+      "y": 131.38888888888889,
+      "w": 44.44444444444443,
+      "h": 63.19444444444444,
+      "i": "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe"
+    },
+    "image-e755a080-4b00-4fa9-9f47-13af6f5144c9": {
+      "x": 130.4166666666667,
+      "y": 131.38888888888894,
+      "w": 44.166666666666664,
+      "h": 23.61111111111111,
+      "i": "image-e755a080-4b00-4fa9-9f47-13af6f5144c9"
+    },
+    "button-c4151b0e-be9f-4df0-8e43-1db6466d194d": {
+      "x": 151.66666666666666,
+      "y": 157.5,
+      "w": 15.972222222222221,
+      "h": 5.833333333333333,
+      "i": "button-c4151b0e-be9f-4df0-8e43-1db6466d194d"
+    },
+    "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2": {
+      "x": 133.05555555555557,
+      "y": 165.55555555555554,
+      "w": 40.138888888888886,
+      "h": 16.666666666666668,
+      "i": "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2"
+    },
+    "text-82610e77-e022-434e-9ffc-d1170d160462": {
+      "x": 147.77777777777777,
+      "y": 185.13888888888889,
+      "w": 23.333333333333332,
+      "h": 6.111111111111111,
+      "i": "text-82610e77-e022-434e-9ffc-d1170d160462"
+    },
+    "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d": {
+      "x": 23.47222222222222,
+      "y": 131.38888888888889,
+      "w": 44.30555555555554,
+      "h": 63.19444444444444,
+      "i": "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d"
+    },
+    "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2": {
+      "x": 23.61111111111114,
+      "y": 131.38888888888897,
+      "w": 44.02777777777778,
+      "h": 23.61111111111111,
+      "i": "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2"
+    },
+    "button-bd7dd056-c2da-4d54-b3a7-65c944d44051": {
+      "x": 44.72222222222222,
+      "y": 157.5,
+      "w": 15.972222222222221,
+      "h": 5.833333333333333,
+      "i": "button-bd7dd056-c2da-4d54-b3a7-65c944d44051"
+    },
+    "button-0d5d8c16-fd27-465a-8857-6fe6959ace54": {
+      "x": 25.972222222222246,
+      "y": 185.27777777777777,
+      "w": 12.083333333333332,
+      "h": 5.833333333333333,
+      "i": "button-0d5d8c16-fd27-465a-8857-6fe6959ace54"
+    },
+    "text-70214c4e-1139-4931-9573-3ae04d90bf3d": {
+      "x": 26.111111111111104,
+      "y": 165.55555555555554,
+      "w": 40.138888888888886,
+      "h": 16.666666666666668,
+      "i": "text-70214c4e-1139-4931-9573-3ae04d90bf3d"
+    },
+    "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798": {
+      "x": 40.83333333333334,
+      "y": 185.13888888888889,
+      "w": 23.333333333333332,
+      "h": 6.111111111111111,
+      "i": "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798"
+    },
+    "button-f3f79546-a719-4820-8390-4bdd460eda4c": {
+      "x": 132.50000000000003,
+      "y": 157.5,
+      "w": 17.083333333333332,
+      "h": 5.833333333333333,
+      "i": "button-f3f79546-a719-4820-8390-4bdd460eda4c"
+    },
+    "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4": {
+      "x": 25.555555555555586,
+      "y": 157.5,
+      "w": 17.083333333333332,
+      "h": 5.833333333333333,
+      "i": "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4"
+    },
+    "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233": {
+      "x": 132.63888888888889,
+      "y": 185.55555555555554,
+      "w": 13.333333333333332,
+      "h": 5.972222222222222,
+      "i": "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233"
+    },
+    "inception-998baa90-6abc-42ed-bb04-1cff5e63966d": {
+      "x": 38.05555555555556,
+      "y": 215.13888888888889,
+      "w": 123.75,
+      "h": 49.72222222222222,
+      "i": "inception-998baa90-6abc-42ed-bb04-1cff5e63966d"
+    },
+    "text-120f2b96-f88b-42ec-96d0-999d670d35fa": {
+      "x": 42.638888888888886,
+      "y": 217.91666666666666,
+      "w": 68.75,
+      "h": 15.13888888888889,
+      "i": "text-120f2b96-f88b-42ec-96d0-999d670d35fa"
+    },
+    "text-0fadc826-0a73-42dc-861c-7d412103fc6f": {
+      "x": 42.638888888888886,
+      "y": 240,
+      "w": 51.11111111111111,
+      "h": 17.916666666666668,
+      "i": "text-0fadc826-0a73-42dc-861c-7d412103fc6f"
+    },
+    "text-63de1435-e0a7-40db-b951-016969ba214e": {
+      "x": 107.5,
+      "y": 239.72222222222223,
+      "w": 46.388888888888886,
+      "h": 18.47222222222222,
+      "i": "text-63de1435-e0a7-40db-b951-016969ba214e"
+    },
+    "text-dd6a45af-f8e4-44c9-bc35-bd83f20008f4": {
+      "x": 80.27777777777777,
+      "y": 280.4166666666667,
+      "w": 39.30555555555556,
+      "h": 6.25,
+      "i": "text-dd6a45af-f8e4-44c9-bc35-bd83f20008f4"
+    }
+  },
+  "mobileLayout": {
+    "inception-536a9301-2743-4a16-9181-d8d244745aee": {
+      "x": 31.180555555555554,
+      "y": 313.05555555555554,
+      "i": "inception-536a9301-2743-4a16-9181-d8d244745aee",
+      "w": 13.888888888888888,
+      "h": 6.944444444444445
+    },
+    "text-db459b30-45af-48a8-ad30-a936e6f41d0a": {
+      "x": 40.06944444444444,
+      "y": 230.83333333333331,
+      "i": "text-db459b30-45af-48a8-ad30-a936e6f41d0a",
+      "w": 19.791666666666668,
+      "h": 7.638888888888888
+    },
+    "image-b350d4e1-6f93-4423-bc95-60d407f4d4a8": {
+      "x": 0,
+      "y": 0,
+      "w": 100,
+      "h": 114.44444444444443,
+      "i": "image-b350d4e1-6f93-4423-bc95-60d407f4d4a8"
+    },
+    "text-ecf8d549-5a29-42c3-a0c7-2023a1450dde": {
+      "x": 23.75,
+      "y": 46.94444444444444,
+      "w": 52.36111111111111,
+      "h": 20.27777777777778,
+      "i": "text-ecf8d549-5a29-42c3-a0c7-2023a1450dde"
+    },
+    "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7": {
+      "x": 38.81944444444444,
+      "y": 131.38888888888889,
+      "w": 22.15277777777777,
+      "h": 63.19444444444444,
+      "i": "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7"
+    },
+    "image-4a578bf0-b9fd-4934-b490-8efb2af38f95": {
+      "x": 38.81944444444446,
+      "y": 131.38888888888889,
+      "w": 22.083333333333332,
+      "h": 23.61111111111111,
+      "i": "image-4a578bf0-b9fd-4934-b490-8efb2af38f95"
+    },
+    "button-8c0476d7-4494-476a-90be-bdf85ef3ecef": {
+      "x": 39.86111111111113,
+      "y": 157.5,
+      "w": 8.541666666666666,
+      "h": 5.833333333333333,
+      "i": "button-8c0476d7-4494-476a-90be-bdf85ef3ecef"
+    },
+    "text-6c353b47-9116-4e60-bb8b-a9ce6224be93": {
+      "x": 39.93055555555556,
+      "y": 166.25,
+      "w": 20.069444444444443,
+      "h": 16.666666666666668,
+      "i": "text-6c353b47-9116-4e60-bb8b-a9ce6224be93"
+    },
+    "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104": {
+      "x": 47.5,
+      "y": 185.13888888888889,
+      "w": 11.666666666666666,
+      "h": 6.111111111111111,
+      "i": "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104"
+    },
+    "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe": {
+      "x": 65.20833333333333,
+      "y": 131.38888888888889,
+      "w": 22.222222222222214,
+      "h": 63.19444444444444,
+      "i": "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe"
+    },
+    "image-e755a080-4b00-4fa9-9f47-13af6f5144c9": {
+      "x": 65.20833333333336,
+      "y": 131.38888888888894,
+      "w": 22.083333333333332,
+      "h": 23.61111111111111,
+      "i": "image-e755a080-4b00-4fa9-9f47-13af6f5144c9"
+    },
+    "button-c4151b0e-be9f-4df0-8e43-1db6466d194d": {
+      "x": 75.83333333333333,
+      "y": 157.5,
+      "w": 7.986111111111111,
+      "h": 5.833333333333333,
+      "i": "button-c4151b0e-be9f-4df0-8e43-1db6466d194d"
+    },
+    "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2": {
+      "x": 66.52777777777779,
+      "y": 165.55555555555554,
+      "w": 20.069444444444443,
+      "h": 16.666666666666668,
+      "i": "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2"
+    },
+    "text-82610e77-e022-434e-9ffc-d1170d160462": {
+      "x": 73.88888888888889,
+      "y": 185.13888888888889,
+      "w": 11.666666666666666,
+      "h": 6.111111111111111,
+      "i": "text-82610e77-e022-434e-9ffc-d1170d160462"
+    },
+    "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d": {
+      "x": 11.73611111111111,
+      "y": 131.38888888888889,
+      "w": 22.15277777777777,
+      "h": 63.19444444444444,
+      "i": "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d"
+    },
+    "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2": {
+      "x": 11.80555555555557,
+      "y": 131.38888888888897,
+      "w": 22.01388888888889,
+      "h": 23.61111111111111,
+      "i": "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2"
+    },
+    "button-bd7dd056-c2da-4d54-b3a7-65c944d44051": {
+      "x": 22.36111111111111,
+      "y": 157.5,
+      "w": 7.986111111111111,
+      "h": 5.833333333333333,
+      "i": "button-bd7dd056-c2da-4d54-b3a7-65c944d44051"
+    },
+    "button-0d5d8c16-fd27-465a-8857-6fe6959ace54": {
+      "x": 12.986111111111123,
+      "y": 185.27777777777777,
+      "w": 6.041666666666666,
+      "h": 5.833333333333333,
+      "i": "button-0d5d8c16-fd27-465a-8857-6fe6959ace54"
+    },
+    "text-70214c4e-1139-4931-9573-3ae04d90bf3d": {
+      "x": 13.055555555555552,
+      "y": 165.55555555555554,
+      "w": 20.069444444444443,
+      "h": 16.666666666666668,
+      "i": "text-70214c4e-1139-4931-9573-3ae04d90bf3d"
+    },
+    "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798": {
+      "x": 20.41666666666667,
+      "y": 185.13888888888889,
+      "w": 11.666666666666666,
+      "h": 6.111111111111111,
+      "i": "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798"
+    },
+    "image-5d80966c-1f47-41ae-8625-18a0ffaa6d57": {
+      "x": 48.125000000000014,
+      "y": 197.36111111111111,
+      "w": 22.083333333333332,
+      "h": 23.61111111111111,
+      "i": "image-5d80966c-1f47-41ae-8625-18a0ffaa6d57"
+    },
+    "button-34e8d897-40e1-4210-9087-546555ca1bc4": {
+      "x": 49.16666666666668,
+      "y": 223.47222222222223,
+      "w": 8.541666666666666,
+      "h": 5.833333333333333,
+      "i": "button-34e8d897-40e1-4210-9087-546555ca1bc4"
+    },
+    "button-e56f9b44-e61b-488f-8c8a-bcb8143bec7b": {
+      "x": 58.75,
+      "y": 223.47222222222223,
+      "w": 7.986111111111111,
+      "h": 5.833333333333333,
+      "i": "button-e56f9b44-e61b-488f-8c8a-bcb8143bec7b"
+    },
+    "button-14a52441-a296-4310-bd77-563bc2dc0cb9": {
+      "x": 49.375000000000014,
+      "y": 251.25,
+      "w": 6.041666666666666,
+      "h": 5.833333333333333,
+      "i": "button-14a52441-a296-4310-bd77-563bc2dc0cb9"
+    },
+    "text-d56a9617-9815-4e44-89f8-5d75a7ca0c8a": {
+      "x": 49.44444444444444,
+      "y": 231.52777777777777,
+      "w": 20.069444444444443,
+      "h": 16.666666666666668,
+      "i": "text-d56a9617-9815-4e44-89f8-5d75a7ca0c8a"
+    },
+    "text-322c2a24-aab8-4127-b75d-8c75e7519cb7": {
+      "x": 56.80555555555556,
+      "y": 251.11111111111111,
+      "w": 11.666666666666666,
+      "h": 6.111111111111111,
+      "i": "text-322c2a24-aab8-4127-b75d-8c75e7519cb7"
+    },
+    "button-f3f79546-a719-4820-8390-4bdd460eda4c": {
+      "x": 66.25000000000001,
+      "y": 157.5,
+      "w": 8.541666666666666,
+      "h": 5.833333333333333,
+      "i": "button-f3f79546-a719-4820-8390-4bdd460eda4c"
+    },
+    "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4": {
+      "x": 12.777777777777793,
+      "y": 157.5,
+      "w": 8.541666666666666,
+      "h": 5.833333333333333,
+      "i": "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4"
+    },
+    "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233": {
+      "x": 66.31944444444444,
+      "y": 185.55555555555554,
+      "w": 6.666666666666666,
+      "h": 5.972222222222222,
+      "i": "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233"
+    },
+    "inception-998baa90-6abc-42ed-bb04-1cff5e63966d": {
+      "x": 19.02777777777778,
+      "y": 215.13888888888889,
+      "w": 61.875,
+      "h": 49.72222222222222,
+      "i": "inception-998baa90-6abc-42ed-bb04-1cff5e63966d"
+    },
+    "text-120f2b96-f88b-42ec-96d0-999d670d35fa": {
+      "x": 21.319444444444443,
+      "y": 217.91666666666666,
+      "w": 34.375,
+      "h": 15.13888888888889,
+      "i": "text-120f2b96-f88b-42ec-96d0-999d670d35fa"
+    },
+    "text-0fadc826-0a73-42dc-861c-7d412103fc6f": {
+      "x": 21.319444444444443,
+      "y": 240,
+      "w": 25.555555555555554,
+      "h": 17.916666666666668,
+      "i": "text-0fadc826-0a73-42dc-861c-7d412103fc6f"
+    },
+    "text-63de1435-e0a7-40db-b951-016969ba214e": {
+      "x": 53.75,
+      "y": 239.72222222222223,
+      "w": 23.194444444444443,
+      "h": 18.47222222222222,
+      "i": "text-63de1435-e0a7-40db-b951-016969ba214e"
+    },
+    "text-dd6a45af-f8e4-44c9-bc35-bd83f20008f4": {
+      "x": 40.138888888888886,
+      "y": 280.4166666666667,
+      "w": 19.65277777777778,
+      "h": 6.25,
+      "i": "text-dd6a45af-f8e4-44c9-bc35-bd83f20008f4"
+    }
+  },
+  "mobileHierarchy": {
+    "inception-08b007e3-1549-4e10-bb25-fae15a6e7829": [],
+    "inception-9eba762d-f0b1-4900-90a5-c6104954d2d7": [
+      "image-4a578bf0-b9fd-4934-b490-8efb2af38f95",
+      "button-8c0476d7-4494-476a-90be-bdf85ef3ecef",
+      "button-2f2ff3c9-ed98-4e6d-9082-e75915f3f574",
+      "button-3b3aad9f-c4cd-4db8-907a-f3809769d8be",
+      "button-509d3912-080f-4b63-ad84-4cd47adfd288",
+      "text-59ff322b-7ab7-4931-9c37-a2f6c32d5104",
+      "button-6c6a4d7d-f892-479a-9652-af9feccbd344",
+      "text-6c353b47-9116-4e60-bb8b-a9ce6224be93",
+      "button-77506ffe-945e-42e5-994e-71f5d85c34fe"
+    ],
+    "inception-69d70833-3511-40e2-9992-6a83b2d5cdfe": [
+      "image-e755a080-4b00-4fa9-9f47-13af6f5144c9",
+      "button-b68c32c4-88cc-4022-b56c-22d4511dc2cb",
+      "button-c4151b0e-be9f-4df0-8e43-1db6466d194d",
+      "text-5b2ed372-3b93-471a-8cd3-9aa4966243b2",
+      "text-82610e77-e022-434e-9ffc-d1170d160462",
+      "button-f3f79546-a719-4820-8390-4bdd460eda4c",
+      "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233"
+    ],
+    "inception-7ef05e0f-a330-41f2-a420-7975ee2c035d": [
+      "image-d22a5d08-42b1-4c9c-84fb-52209257e5a2",
+      "button-7f46ebab-c815-439c-9c18-4e7e344d8a21",
+      "button-bd7dd056-c2da-4d54-b3a7-65c944d44051",
+      "button-0d5d8c16-fd27-465a-8857-6fe6959ace54",
+      "text-70214c4e-1139-4931-9573-3ae04d90bf3d",
+      "text-92f2c7c5-e9c9-4939-a56f-1de84d8ca798",
+      "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4"
+    ],
+    "button-f3f79546-a719-4820-8390-4bdd460eda4c": [],
+    "button-8bcaa65e-700e-489c-ac9f-0585562fa4a4": [],
+    "button-1b04bddb-4cdd-46f0-b0f6-ac0973c26233": [],
+    "inception-998baa90-6abc-42ed-bb04-1cff5e63966d": [
+      "text-120f2b96-f88b-42ec-96d0-999d670d35fa",
+      "text-0fadc826-0a73-42dc-861c-7d412103fc6f",
+      "text-63de1435-e0a7-40db-b951-016969ba214e"
+    ]
+  },
+  "mobileEditedBlocks": []
+}

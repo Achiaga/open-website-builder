@@ -8,6 +8,8 @@ import template6 from './landing-page-3d-monkeyflow.json'
 import template7 from './empty.json'
 import template8 from './guides-custom-domain.json'
 import template9 from './courses-sketch-ninja-design.json'
+import template10 from './books-plack.json'
+import template11 from './tailwind-templates.json'
 
 export default {
   fallback,
@@ -20,4 +22,6 @@ export default {
   ['empty']: template7,
   ['guides-custom-domain']: template8,
   ['courses-sketch-ninja-design']: template9,
+  ['books-plack']: template10,
+  ['tailwind-templates']: template11,
 }
