@@ -19,7 +19,6 @@ const ButtonSidebar = ({ children, ...props }) => {
       paddingY="1.25rem"
       paddingLeft="0.75rem"
       height="2rem"
-      fontFamily="Montserrat"
       fontWeight="400"
       marginY="0.25rem"
       _hover={{
@@ -69,13 +68,7 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
             <LogoSvg width="2.5rem" />
           </Button>
         </Link>
-        <Text
-          as="h1"
-          pl="1rem"
-          fontWeight="600"
-          fontSize="1.25rem"
-          fontFamily="Montserrat"
-        >
+        <Text as="h1" pl="1rem" fontWeight="600" fontSize="1.25rem">
           Antfolio
         </Text>
       </Box>

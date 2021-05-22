@@ -30,13 +30,7 @@ const ErrorPage = () => {
             <LogoSvg width="2.5rem" />
           </Button>
         </Link>
-        <Text
-          as="h1"
-          pl="0rem"
-          fontWeight="600"
-          fontSize="1.25rem"
-          fontFamily="Montserrat"
-        >
+        <Text as="h1" pl="0rem" fontWeight="600" fontSize="1.25rem">
           Antfolio
         </Text>
       </Box>

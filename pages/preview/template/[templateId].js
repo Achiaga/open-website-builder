@@ -1,7 +1,11 @@
 import ResumeWebsite from '../../../src/preview/web-preview/preview'
-import { denormalizeBuilderData } from '../../../src/features/builderSlice'
 import dynamic from 'next/dynamic'
 const templates = dynamic(() => import('../../../templates'))
+const denormalizeBuilderData = dynamic(() =>
+  import('../../../src/features/builderSlice').then(
+    (mod) => mod.denormalizeBuilderData
+  )
+)
 
 function TemplatePreview(blocksData) {
   if (!blocksData) return <div>Looks like this template does not exists</div>

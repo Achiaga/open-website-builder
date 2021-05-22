@@ -52,7 +52,6 @@ const PublishSuccessModal = () => {
         </Box>
         <Box
           color="primary.500"
-          fontFamily="Montserrat"
           paddingBottom={'2'}
           mb="1rem"
           textAlign="center"
@@ -92,13 +91,7 @@ const PublishSuccessModal = () => {
             🥳 🚀 ✨
           </Text>
         </Box>
-        <Text
-          as="h3"
-          color="black"
-          fontFamily="Montserrat"
-          fontSize={'md'}
-          fontWeight="semibold"
-        >
+        <Text as="h3" color="black" fontSize={'md'} fontWeight="semibold">
           This is your website Url:
         </Text>
         <a
@@ -107,7 +100,6 @@ const PublishSuccessModal = () => {
           rel="noreferrer"
         >
           <Text
-            fontFamily="Montserrat"
             fontSize={'xl'}
             cursor="pointer"
             pb="2rem"
@@ -117,13 +109,7 @@ const PublishSuccessModal = () => {
             https://antfolio.app/{projectId}
           </Text>
         </a>
-        <Text
-          as="h3"
-          color="black"
-          fontFamily="Montserrat"
-          fontSize={'md'}
-          paddingBottom={'0'}
-        >
+        <Text as="h3" color="black" fontSize={'md'} paddingBottom={'0'}>
           - Change it on your settings{' '}
           <Link
             href="/dashboard"

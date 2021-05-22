@@ -16,21 +16,20 @@ import {
   saveOnLocal,
   cleanLayouts,
 } from '../builder/web-builder/helpers'
-import {
-  handleLoginCallback,
-  loadInitialDataNoAccount,
-  loadDataFromDB,
-  updateInitialState,
-  normalizeBuilderData,
-} from './login-helpers'
-import ResumeWebsite from '../preview/web-preview/preview'
-import { generateStaticHTML } from './helper'
+
 import { uploadWebsiteToS3 } from '../builder/blocks/block-helpers/transporter'
 import { MobileWindowWidth } from '../builder/web-builder/web-builder'
 import { requestSaveWebsite } from '../utils/user-data'
+import dynamic from 'next/dynamic'
 
 export const AUTH0_CUSTOM_CLAIM_PATH =
   'https://standout-resume.now.sh/extraData'
+
+const LoginHelpers = dynamic(() => import('./login-helpers').then((mod) => mod))
+const generateStaticHTML = dynamic(() =>
+  import('./helper').then((mod) => mod.generateStaticHTML)
+)
+const ResumeWebsite = dynamic(() => import('../preview/web-preview/preview'))
 
 const initialState = {
   builderData: null,
@@ -49,7 +48,7 @@ export const builderSlice = createSlice({
       state.builderData.blocks = action.payload
     },
     setInitialBuilderData: (state, action) => {
-      state.builderData = normalizeBuilderData(action.payload)
+      state.builderData = LoginHelpers.normalizeBuilderData(action.payload)
     },
     setLoadingData: (state, action) => {
       state.loadingData = action.payload
@@ -178,10 +177,11 @@ export const {
 
 export const loadInitialData = (user, params) => async (dispatch) => {
   const { origin, template } = params
-  if (!user) return dispatch(loadInitialDataNoAccount(template))
-  if (user && origin === 'login') return dispatch(handleLoginCallback(user))
+  if (!user) return dispatch(LoginHelpers.loadInitialDataNoAccount(template))
+  if (user && origin === 'login')
+    return dispatch(LoginHelpers.handleLoginCallback(user))
   if (user && origin !== 'login')
-    return dispatch(loadDataFromDB(user, template))
+    return dispatch(LoginHelpers.loadDataFromDB(user, template))
 }
 
 export const editBlockConfig =
@@ -395,7 +395,9 @@ export function denormalizeBuilderData(data) {
 
 export const publishWebsite = () => async (dispatch, getState) => {
   const userData = getUserData(getState())
-  const builderData = denormalizeBuilderData(getBuilderData(getState()))
+  const builderData = LoginHelpers.normalizeBuilderData(
+    getBuilderData(getState())
+  )
   const { domain } = userData
   if (domain) {
     const html = ReactDOMServer.renderToStaticMarkup(
@@ -412,7 +414,9 @@ export const saveData = (publish) => async (dispatch, getState) => {
   !publish && dispatch(setSaveStatus('loading'))
   publish && dispatch(setPublishStatus('loading'))
   const userData = getUserData(getState())
-  const builderData = denormalizeBuilderData(getBuilderData(getState()))
+  const builderData = LoginHelpers.normalizeBuilderData(
+    getBuilderData(getState())
+  )
 
   if (!builderData) return dispatch(setSaveStatus('error'))
 
@@ -448,7 +452,7 @@ export const keepTemplate = () => async (dispatch) => {
 export const keepDBData = () => (dispatch, getState) => {
   const tempInitialData = getTempDBData(getState())
   batch(() => {
-    dispatch(updateInitialState(tempInitialData))
+    dispatch(LoginHelpers.updateInitialState(tempInitialData))
     dispatch(setTempDBData(null))
     dispatch(setLoadingData(false))
   })

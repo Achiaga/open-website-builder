@@ -12,7 +12,6 @@ const NewCard = ({ title, body, listCard }) => {
     >
       <Text
         as="h4"
-        fontFamily="Montserrat"
         color="primary.500"
         fontSize="24px"
         fontStyle="normal"
@@ -26,7 +25,6 @@ const NewCard = ({ title, body, listCard }) => {
       <Text
         as="p"
         pt="1rem"
-        fontFamily="Montserrat"
         fontSize="16px"
         fontStyle="normal"
         fontWeight="400"

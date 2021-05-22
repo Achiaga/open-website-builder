@@ -1,18 +1,4 @@
 import PropTypes from 'prop-types'
-import { Box } from '@chakra-ui/react'
-import { m } from 'framer-motion'
-
-function validateUrl(string) {
-  try {
-    new URL(string)
-  } catch (err) {
-    console.error(err)
-    if (string.includes('https://')) return 'upsy, something went wrong'
-    return `https://${string}`
-  }
-
-  return string
-}
 
 export const GenericImage = (props) => {
   const modifiers = {

@@ -118,7 +118,7 @@ const Projects = ({ user }) => {
   const userProjects = useSelector(getUserProjects)
   return (
     <Box marginLeft="7rem" marginTop="5rem" width="60%">
-      <Text as="h1" fontSize="2.3rem" fontWeight="400" fontFamily="Montserrat">
+      <Text as="h1" fontSize="2.3rem" fontWeight="400">
         Welcome{' '}
         <Text as="span" fontWeight="500" pl="0.5rem">
           {user.nickname}
@@ -126,13 +126,7 @@ const Projects = ({ user }) => {
         !
       </Text>
       <Box width="full" mb="1.25rem">
-        <Text
-          as="h2"
-          mt="3rem"
-          fontSize="1.35rem"
-          fontWeight="400"
-          fontFamily="Montserrat"
-        >
+        <Text as="h2" mt="3rem" fontSize="1.35rem" fontWeight="400">
           Projects
         </Text>
         <ProjectsCards userProjects={userProjects} />

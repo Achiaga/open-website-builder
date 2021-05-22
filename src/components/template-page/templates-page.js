@@ -77,7 +77,6 @@ const TemplatePage = () => {
           fontWeight="bold"
           color="gray.500"
           pt={[2, 0]}
-          fontFamily="Montserrat"
           fontSize={['4xl', '5xl']}
           lineHeight={['3rem', '120%']}
           paddingBottom={['0.5rem', '0']}
@@ -97,7 +96,6 @@ const TemplatePage = () => {
           mt={[0, 2]}
           textAlign={['center', 'left']}
           color="gray.500"
-          fontFamily="Montserrat"
           fontSize={['lg', 'xl']}
           px={[8, 0]}
           as="h4"
@@ -108,7 +106,6 @@ const TemplatePage = () => {
           mt={[6, 1]}
           textAlign={['center', 'left']}
           color="gray.500"
-          fontFamily="Montserrat"
           fontSize={['lg', 'xl']}
           as="h4"
         >

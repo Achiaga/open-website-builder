@@ -104,7 +104,6 @@ const Comparison = () => {
           fontWeight="bold"
           textAlign={'center'}
           color="black"
-          fontFamily="Montserrat"
           fontSize={['2.2rem', '50px']}
           lineHeight={['3rem', '4rem']}
           w={['auto', '60rem']}

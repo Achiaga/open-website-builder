@@ -117,7 +117,6 @@ const Features = () => {
         fontWeight="bold"
         textAlign="center"
         color="black"
-        fontFamily="Montserrat"
         fontSize={['2.5rem', '50px']}
         lineHeight={['3rem', '4rem']}
         w={['auto', '50rem']}

@@ -3,17 +3,11 @@ import { Box, Text, Button } from '@chakra-ui/react'
 const Settings = () => {
   return (
     <Box marginLeft="7rem" marginTop="5rem">
-      <Text as="h1" fontSize="2.3rem" fontWeight="400" fontFamily="Montserrat">
+      <Text as="h1" fontSize="2.3rem" fontWeight="400">
         Settings
       </Text>
       <Box width="full" mb="1.25rem">
-        <Text
-          as="h2"
-          mt="3rem"
-          fontSize="1.35rem"
-          fontWeight="400"
-          fontFamily="Montserrat"
-        >
+        <Text as="h2" mt="3rem" fontSize="1.35rem" fontWeight="400">
           User
         </Text>
       </Box>

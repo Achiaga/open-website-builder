@@ -22,7 +22,6 @@ const Steps = () => {
         fontWeight="bold"
         color="primary.500"
         textAlign="center"
-        fontFamily="Montserrat"
         fontSize={['2.5rem', '50px']}
         lineHeight={['3rem', '4rem']}
         paddingX={['0.75rem', '0']}

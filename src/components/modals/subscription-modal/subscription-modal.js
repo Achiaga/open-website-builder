@@ -21,7 +21,6 @@ const LeftSideContent = () => {
       px={[6, 12]}
       fontSize="md"
       fontWeight="normal"
-      fontFamily="Montserrat"
       display="flex"
       flexDirection="column"
       justifyContent="center"
@@ -103,7 +102,6 @@ const RightSideContent = () => {
       bg="primary.100"
       fontSize="lg"
       fontWeight="semibold"
-      fontFamily="Montserrat"
       display="flex"
       flexDirection="column"
       justifyContent="center"
