@@ -1,6 +1,6 @@
 // import { useEffect } from 'react'
 // import { useRouter } from 'next/router'
-import { ThemeProvider } from '@chakra-ui/react'
+import { ThemeProvider, CSSReset } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ThemeProvider theme={customTheme}>
+        <CSSReset />
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>
