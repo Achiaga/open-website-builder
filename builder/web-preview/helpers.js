@@ -31,18 +31,10 @@ export function GeneratePreviewBlock({ layoutItem, desktop }) {
       key={i}
       style={{
         position: 'absolute',
-        left: `calc( ${Math.round(x)} *  ( 100% / ${
-          desktop ? GRID_COLUMNS : 100
-        }) )`,
-        width: `calc( ${Math.round(w)} * ( 100vw / ${
-          desktop ? GRID_COLUMNS : 100
-        }) )`,
-        top: `calc( ${Math.round(y)}  * ( 100vw  / ${
-          desktop ? GRID_COLUMNS : 100
-        }) )`,
-        height: `calc( ${Math.round(h)} * ( 100vw / ${
-          desktop ? GRID_COLUMNS : 100
-        }) )`,
+        left: `calc( ${x} *  ( 100% / ${desktop ? GRID_COLUMNS : 100}) )`,
+        width: `calc( ${w} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
+        top: `calc( ${y}  * ( 100vw  / ${desktop ? GRID_COLUMNS : 100}) )`,
+        height: `calc( ${h} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
         border: data?.border,
         boxShadow: data?.boxShadow,
         borderRadius: data?.borderRadius,
