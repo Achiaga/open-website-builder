@@ -78,7 +78,7 @@ const Hero = () => {
               color="gray.400"
               fontSize="sm"
               h="10px"
-              lineHeight="0"
+              lineHeight={['2rem', '0']}
               fontWeight="400"
             >
               No credit card, No account required 🎉
