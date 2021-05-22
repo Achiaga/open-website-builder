@@ -15,7 +15,7 @@ const Website = ({ websiteData, subdomain }) => {
 }
 
 const LandingPageWrapper = () => {
-  const LandingPage = dynamic(() => import('../src/components/landing-page'))
+  const LandingPage = dynamic(() => import('../src/pages/landing-page'))
   return (
     <UserProvider>
       <LandingPage />

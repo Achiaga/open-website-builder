@@ -2,7 +2,7 @@ import Head from 'next/head'
 // import { useEffect } from 'react'
 import { Box } from '@chakra-ui/layout'
 
-import Navbar from '../navbar'
+import Navbar from '../../components/navbar'
 import Hero from './hero'
 import VideoDemo from './video-demo'
 import Comparison from './comparison'

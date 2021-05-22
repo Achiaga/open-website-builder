@@ -4,7 +4,7 @@ import { useTranslation } from '../../../../hooks/translation'
 import { event } from '../../../utils/analytics'
 import Link from 'next/link'
 
-import Button from '../../commun/button'
+import Button from '../../../components/commun/button'
 import CircleBg from '../../../../assets/features-circle'
 
 const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
