@@ -144,15 +144,6 @@ async function uploadWebsiteFiles(req, res, s3) {
       s3,
       simpleBucketName
     )
-    console.log({
-      value,
-      newBucket,
-      uploadedWebsite,
-      policy,
-      hosting,
-      redirectHosting,
-      newSimpleBucket,
-    })
   }
 
   respondAPIQuery(res, 'Website published Successfully', 200)

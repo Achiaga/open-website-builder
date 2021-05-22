@@ -29,14 +29,14 @@ function removeAllBlockChildren(
   oldBlocks,
   oldHierarchy,
   oldEditedBlocks,
-  blocksToRemve
+  blocksToRemove
 ) {
   const blocks = { ...oldBlocks }
   let layouts = { ...oldLayout }
   const hierarchy = { ...oldHierarchy }
 
   let mobileEditedBlocks = [...(oldEditedBlocks || [])]
-  for (const blockId of blocksToRemve) {
+  for (const blockId of blocksToRemove) {
     delete blocks[blockId]
     delete hierarchy[blockId]
     delete layouts[blockId]
@@ -45,7 +45,7 @@ function removeAllBlockChildren(
   return { layouts, blocks, hierarchy, mobileEditedBlocks }
 }
 
-export function removeblockFromState(
+export function removeBlockFromState(
   blockId,
   oldLayout,
   oldBlocks,
@@ -175,7 +175,7 @@ function addChildToNewParent(hierarchy, newParentId, newItemId) {
   return updatedHierarchy
 }
 
-function shoudlRemoveChildFromOldParent(oldParentId, newParent) {
+function shouldRemoveChildFromOldParent(oldParentId, newParent) {
   return (
     (oldParentId && newParent?.i !== oldParentId) ||
     (oldParentId && !newParent?.i)
@@ -203,8 +203,8 @@ export function getParentBlock(newLayout, newItem, hierarchy) {
 }
 
 // this function protects us from infinity loops that break space & time
-// this functions checks if the item you are goint to add to the new parent already has
-// the parent inside their childre
+// this functions checks if the item you are going to add to the new parent already has
+// the parent inside their children
 // If this happens it will create an infinite loop of who owns who
 function breaksSpaceTime(hierarchy, newItemId, newParentId) {
   const newItemChildrens = hierarchy?.[newItemId] || []
@@ -215,7 +215,7 @@ export function getUpdatedHierarchy(newLayout, newItem, hierarchy) {
   let updatedHierarchy = { ...(hierarchy || {}) }
   const newParent = getParentBlock(newLayout, newItem, hierarchy)
   const oldParentId = isBlockInHierarchy(updatedHierarchy, newItem?.i)
-  if (shoudlRemoveChildFromOldParent(oldParentId, newParent)) {
+  if (shouldRemoveChildFromOldParent(oldParentId, newParent)) {
     updatedHierarchy = removeChildFromOldParent(
       updatedHierarchy,
       oldParentId,

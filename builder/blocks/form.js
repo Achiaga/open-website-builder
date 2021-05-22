@@ -104,12 +104,6 @@ export const PrevContactForm = (props) => {
   )
 }
 
-function getBackgroundColor(color) {
-  if (!color) return '#000000'
-  if (color === 'transparent') return '#ffffff00'
-  return color
-}
-
 export const CustomButton = ({ children, ...props }) => {
   return <Button {...props}>{children}</Button>
 }
@@ -135,6 +129,7 @@ export const GenericContactForm = (props) => {
       buttonText: buttonText,
       inputPlaceholder: textInput,
     }
+    delete updatedBlock.parentBlockId
     dispatch(
       editBlockConfig({ newData: updatedBlock, blockId: props.parentBlockId })
     )
