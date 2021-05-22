@@ -25,6 +25,7 @@ export const blocksProperties = {
     backgroundColor: '#000000',
     buttonText: 'Send',
     inputPlaceholder: 'eg: your@email.com',
+    fontColor: '#ffffff',
   },
   form: {
     border: 'none',

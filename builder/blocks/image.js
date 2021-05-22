@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
-import { Box } from '@chakra-ui/react'
-import { m } from 'framer-motion'
+import { RedirectWrapper } from './text'
 
 function validateUrl(string) {
   try {
@@ -15,56 +14,52 @@ function validateUrl(string) {
 }
 
 export const GenericImage = (props) => {
-  const modifiers = {
-    boxShadow: props.boxShadow,
-    borderRadius: props.borderRadius,
-  }
   const { isPreview, redirect } = props
 
-  // function handleClick(e) {
-  //   e.stopPropagation()
-  //   if (isPreview && redirect) {
-  //     window.open(validateUrl(redirect), '_blank')
-  //   }
-  // }
-
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        background: props.backgroundColor,
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <RedirectWrapper redirectUrl={redirect}>
       <div
         style={{
           width: '100%',
           height: '100%',
-          backgroundImage: `url(${props.imageUrl})`,
-          backgroundPosition: '50% 50%',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          cursor:
-            isPreview && redirect ? 'pointer' : !isPreview ? 'pointer' : 'auto',
-          ...modifiers,
-        }}
-      />
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          backgroundColor: '#000000',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          opacity: props.opacity || 0,
+          backgroundColor: props.backgroundColor,
+          position: 'relative',
           overflow: 'hidden',
+          boxShadow: !isPreview && props.boxShadow,
           borderRadius: props.borderRadius,
         }}
-      />
-    </div>
+      >
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url(${props.imageUrl})`,
+            backgroundPosition: '50% 50%',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            cursor:
+              isPreview && redirect
+                ? 'pointer'
+                : !isPreview
+                ? 'pointer'
+                : 'auto',
+          }}
+        />
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#000000',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            opacity: props.opacity || 0,
+            overflow: 'hidden',
+            borderRadius: props.borderRadius,
+          }}
+        />
+      </div>
+    </RedirectWrapper>
   )
 }
 GenericImage.displayName = 'ImageBlock'
