@@ -23,6 +23,11 @@ const TEMPLATES = [
     tags: [],
   },
   {
+    id: 'courses-sketch-ninja-design',
+    imageUrl: '/courses-sketch-ninja-design.jpg',
+    tags: [],
+  },
+  {
     id: 'portfolio-fullstack-developer-johndoe',
     imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
     tags: [],
