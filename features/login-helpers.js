@@ -1,6 +1,5 @@
 import { batch } from 'react-redux'
-import _ from 'lodash'
-import templates from '../templates'
+
 import {
   setInitialBuilderData,
   setUserData,
@@ -13,6 +12,10 @@ import {
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { getUserDataById } from '../utils/user-data'
+import dynamic from 'next/dynamic'
+
+const isEqual = dynamic(() => import('lodash/isEqual'))
+const templates = dynamic(() => import('../templates'))
 
 async function getUserData(user) {
   try {
@@ -130,7 +133,7 @@ export const handleLoginCallbackLoadData = (user) => async (dispatch) => {
     domain,
     publish,
   }
-  if (!_.isEqual(LSData, resume_data) && !isFallbackTemplate(LSData)) {
+  if (!isEqual(LSData, resume_data) && !isFallbackTemplate(LSData)) {
     batch(() => {
       dispatch(setTempDBData({ resume_data, publish, userData }))
       dispatch(loadInitialDataNoAccount())
