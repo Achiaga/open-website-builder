@@ -12,15 +12,15 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
   return (
     <Box
       d="flex"
-      flexDir={index % 2 ? 'row' : 'row-reverse'}
+      flexDir={['column', index % 2 ? 'row' : 'row-reverse']}
       alignItems="center"
       justifyContent="center"
       w="100%"
       px={['32px', '5vw']}
-      py={['1rem', '4.5rem']}
+      py={['2rem', '4.5rem']}
     >
       <Box
-        display={['none', 'flex']}
+        display={['flex', 'flex']}
         justifyContent="center"
         alignItems="center"
         w={['100%', '100%']}
@@ -32,8 +32,8 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
             boxShadow="0px 10px 50px 0px #00000033"
             borderRadius="10px"
             overflow="hidden"
-            w="93%"
-            height={['60vw', '19vw']}
+            w="100%"
+            height={['auto', '21vw']}
           >
             <video autoPlay muted loop>
               <source src={imageUrl} type="video/mp4" />
@@ -64,6 +64,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
           fontStyle="normal"
           fontWeight="700"
           textAlign="left"
+          mb={['1rem', 0]}
         >
           {title}
         </Text>
@@ -71,7 +72,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
           as="span"
           color={'gray.500'}
           fontSize="xl"
-          textAlign={['justify', 'left']}
+          textAlign={['left', 'left']}
           w={['100%', '90%']}
         >
           {description}
@@ -100,7 +101,7 @@ const Features = () => {
       justifyContent="center"
       alignItems="center"
       w="100%"
-      mt={['2rem', '10rem']}
+      mt={['2rem', '15rem']}
       mb={['2rem', '15rem']}
       mx={['auto', 0]}
     >
