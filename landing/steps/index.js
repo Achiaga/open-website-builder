@@ -8,6 +8,7 @@ const Steps = () => {
 
   return (
     <Box
+      color="gray.500"
       position="relative"
       display="flex"
       flexDirection="column"

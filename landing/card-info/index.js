@@ -10,6 +10,7 @@ const CardInfo = () => {
 
   return (
     <Box
+      color="gray.500"
       position="relative"
       display="flex"
       justifyContent="center"
@@ -29,7 +30,7 @@ const CardInfo = () => {
         fontSize={['2.5rem', '50px']}
         lineHeight={['3rem', '4rem']}
       >
-        {t.card_info.title}
+        Creating a website used to be a pain.
         <br />
         <Text as="span" color="primary.500">
           {t.card_info.title_color}
@@ -42,7 +43,7 @@ const CardInfo = () => {
         color="gray.600"
         d={['none', 'flex']}
       >
-        {t.card_info.subtitle}
+        With Antfolio creating a website is as easy as creating a PowerPoint
       </Text>
       <Box
         position="relative"

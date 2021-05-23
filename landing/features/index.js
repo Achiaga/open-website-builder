@@ -71,6 +71,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
         <Box
           as="span"
           color={'gray.500'}
+          fontWeight="500"
           fontSize="xl"
           textAlign={['left', 'left']}
           w={['100%', '90%']}
