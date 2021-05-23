@@ -1,6 +1,6 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 
-const Card = ({ step, title, body, subbody }) => {
+const Card = ({ step, title, body, subBody }) => {
   return (
     <Box w="100%" d="flex" justifyContent="center">
       <Box
@@ -33,7 +33,7 @@ const Card = ({ step, title, body, subbody }) => {
         <Text as="p" fontSize={['16px', '14px', '20px']} fontWeight="400">
           {body}
         </Text>
-        {subbody && (
+        {subBody && (
           <Text
             as="p"
             fontSize="12px"
@@ -42,7 +42,7 @@ const Card = ({ step, title, body, subbody }) => {
             paddingTop="1.5rem"
             paddingBottom="2rem"
           >
-            {subbody}
+            {subBody}
           </Text>
         )}
       </Box>

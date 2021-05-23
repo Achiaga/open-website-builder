@@ -1,11 +1,11 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 import { useTranslation } from '../../hooks/translation'
 
 import BackgroundCircle from './background'
 import OldCard from './old-card'
 import NewCard from './new-card'
 
-const Steps = () => {
+const CardInfo = () => {
   const [t] = useTranslation()
 
   return (
@@ -79,4 +79,4 @@ const Steps = () => {
   )
 }
 
-export default Steps
+export default CardInfo

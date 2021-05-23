@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 import { useTranslation } from '../../hooks/translation'
 import { event } from '../../utils/analytics'
 import Link from 'next/link'
 
-import Button from '../commun/button'
+import Button from '../../components/commun/button'
 import CircleBg from '../../assets/features-circle'
 import BackgroundCircles from './background'
 

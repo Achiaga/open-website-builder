@@ -1,16 +1,18 @@
 import Head from 'next/head'
 
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/layout'
 
-import { initLiveChatScript } from '../../utils/analytics'
+import { initLiveChatScript } from '../utils/analytics'
 
-import Navbar from '../navbar'
-import Hero from '../hero'
-import VideoDemo from '../video-demo'
-import Features from '../features'
-import Steps from '../steps'
-import CardInfo from '../card-info'
-import Footer from '../footer'
+import Hero from './hero'
+import VideoDemo from './video-demo'
+import Features from './features'
+import Steps from './steps'
+import CardInfo from './card-info'
+import Footer from './footer'
+import dynamic from 'next/dynamic'
+
+const Navbar = dynamic(() => import('../components/navbar'))
 
 const LandingPage = () => {
   return (

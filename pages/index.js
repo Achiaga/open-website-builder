@@ -1,6 +1,6 @@
 import { UserProvider } from '@auth0/nextjs-auth0'
 import { ResumeWebsite } from '../builder/web-preview/preview'
-import LandingPage from '../components/landing-page'
+import LandingPage from '../landing'
 import { getWebsiteDataBySubdomain } from './api/db'
 import { isFalsy } from './[resumeId]'
 

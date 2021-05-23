@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
 import { useTranslation } from '../../hooks/translation'
 
 import Card from './card'
@@ -50,7 +50,7 @@ const Steps = () => {
           step={t.steps.step_2}
           title={t.steps.step_2_title}
           body={t.steps.step_2_body}
-          subbody={t.steps.step_2_body_2}
+          subBody={t.steps.step_2_body_2}
         />
         <Card
           step={t.steps.step_3}

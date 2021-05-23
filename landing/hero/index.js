@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
-import { Box, Text, Button } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/layout'
+import { Button } from '@chakra-ui/button'
 
 const Hero = () => {
   return (
