@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import { Box } from '@chakra-ui/layout'
 
-import { initLiveChatScript } from '../utils/analytics'
+import { initLiveChatScript, initGoogleAnalytics } from '../utils/analytics'
 
 import Hero from './hero'
 import VideoDemo from './video-demo'
@@ -11,10 +11,15 @@ import Steps from './steps'
 import CardInfo from './card-info'
 import Footer from './footer'
 import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
 
 const Navbar = dynamic(() => import('../components/navbar'))
 
 const LandingPage = () => {
+  useEffect(() => {
+    setTimeout(() => window.eval(initLiveChatScript), 10)
+    setTimeout(() => window.eval(initGoogleAnalytics), 10)
+  }, [])
   return (
     <Box
       minHeight="100vh"
@@ -26,19 +31,8 @@ const LandingPage = () => {
       fontFamily="Montserrat"
     >
       <Head>
-        <meta
-          name="google-site-verification"
-          content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
-        />
-        <title>Antfolio - Build a beautiful website faster than ever!</title>
+        <title>Antfolio - Build beautiful websites faster than ever!</title>
         <link rel="icon" href="/favicon.ico" />
-        <script
-          defer
-          async
-          dangerouslySetInnerHTML={{
-            __html: initLiveChatScript,
-          }}
-        />
         <link rel="canonical" href="https://www.antfolio.app" />
       </Head>
 

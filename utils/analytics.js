@@ -27,6 +27,14 @@ window.smartsupp||(function(d) {
 	c.type='text/javascript';c.charset='utf-8';c.async=true;
 	c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);`
+export const initGoogleAnalytics = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+  page_path: window.location.pathname,
+});
+`
 
 // log the pageview with their URL
 export const pageview = (url) => {
