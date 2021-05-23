@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import ErrorPage from '../components/error-page'
 import NewPage from '../components/not-deploy-page'
@@ -29,11 +30,30 @@ export function isEmpty(obj) {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
+export function hasFlurlyLink(blocks) {
+  return JSON.stringify(blocks).includes('https://flurly.com')
+}
+
 function Resume({ websiteData, isPublish, resumeId }) {
   if (isEmpty(websiteData)) return <ErrorPage />
   if (!isPublish) return <NewPage />
 
-  return <ResumeWebsite userBlocksData={websiteData} projectId={resumeId} />
+  const hasFlurly = hasFlurlyLink(websiteData.blocks)
+  return (
+    <>
+      {hasFlurly && (
+        <Head>
+          <script src="https://js.stripe.com/v3/"></script>
+          <script src="https://flurly.com/flurly-checkout.js"></script>
+        </Head>
+      )}
+      <ResumeWebsite
+        userBlocksData={websiteData}
+        projectId={resumeId}
+        pageLoad
+      />
+    </>
+  )
 }
 
 export async function getServerSideProps(context) {
