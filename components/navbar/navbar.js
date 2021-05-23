@@ -14,7 +14,7 @@ const LoginButton = ({ color }) => {
   const { user } = useUser()
   return (
     <NavButton
-      display={['none', 'block']}
+      display={['none', 'none', 'block']}
       content={user ? 'Dashboard' : 'Login'}
       redirect={user ? '/dashboard' : '/api/auth/custom-login'}
       id={user ? '/dashboard' : '/api/auth/custom-login'}
@@ -28,13 +28,8 @@ const noUserAccess = ['/blog', '/guides']
 
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
-  // const { locale } = router
   const [t] = useTranslation()
 
-  // const changeLanguage = (e) => {
-  //   const locale = e.target.value
-  //   router.push(router.pathname, router.asPath, { locale })
-  // }
   const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
     router.pathname
   )
@@ -52,8 +47,8 @@ const Navbar = ({ isSticky = true, color }) => {
       top="0"
       w="100%"
       h={[50, '60px']}
-      pr={[4, 28]}
-      pl={[4, 24]}
+      pr={[4, 4, 28]}
+      pl={[4, 4, 24]}
       pt={[8, 1]}
       flexDirection="row"
       alignItems="center"
@@ -83,7 +78,7 @@ const Navbar = ({ isSticky = true, color }) => {
         background-color="transparent"
       >
         <NavButton
-          display={['none', 'block']}
+          display={['none', 'none', 'block']}
           content="Templates"
           color={color || 'gray.500'}
           redirect="/templates"
@@ -91,7 +86,7 @@ const Navbar = ({ isSticky = true, color }) => {
           fontSize="sm"
         />
         <NavButton
-          display={['none', 'block']}
+          display={['none', 'none', 'block']}
           content="Pricing"
           redirect="/pricing"
           color={color || 'gray.500'}
@@ -107,7 +102,7 @@ const Navbar = ({ isSticky = true, color }) => {
           fontSize="sm"
         /> */}
         <NavButton
-          display={['none', 'block']}
+          display={['none', 'none', 'block']}
           content="Guides"
           redirect="/guides"
           color={color || 'gray.500'}
@@ -126,24 +121,7 @@ const Navbar = ({ isSticky = true, color }) => {
         fontSize={['sm', 'sm']}
       >
         {!hideLoginButton && <LoginButton color={color} />}
-        {/* <Select
-          border="none"
-          bg="none"
-          w="4.5rem"
-          mr={4}
-          fontSize="lg"
-          cursor="pointer"
-          fontWeight="500"
-          onChange={changeLanguage}
-          defaultValue={locale}
-        >
-          <option color={color || 'gray.500'} value="en">
-            en
-          </option>
-          <option color={color || 'gray.500'} value="es">
-            es
-          </option>
-        </Select> */}
+
         <Link href={'/templates'}>
           <a>
             <Button

@@ -56,7 +56,7 @@ const PricingCards = () => {
             name: 'Starter',
             description: 'For individuals and teams getting started.',
             subHeader: 'Includes',
-            features: ['1 Portfolio', 'Unlimited blocks'],
+            features: ['1 Website', 'Unlimited blocks'],
           }}
           button={
             <Link href={user ? '/templates' : '/api/auth/custom-login'}>
@@ -75,14 +75,13 @@ const PricingCards = () => {
             description: 'For power users and small teams',
             subHeader: 'Everything in Starter, plus',
             features: [
-              'Unlimited portfolios',
-              'Animations',
+              'Unlimited Websites',
+              'Custom Domain',
               'Upload images',
               'No watermark',
               'Integrations',
               'Contact forms',
-              'Premiun Templates',
-              'SEO',
+              'SEO +  Super fast websites',
             ],
           }}
           button={

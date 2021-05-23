@@ -6,21 +6,14 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          <meta
+            name="google-site-verification"
+            content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
           />
           <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
-          `,
-            }}
+            async
+            defer
+            src={`https://www.googletagmanager.com/gtag/js?id=${process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
         </Head>
         <body>

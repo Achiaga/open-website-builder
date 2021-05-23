@@ -43,7 +43,6 @@ export const CustomButton = ({ children, ...props }) => {
 export const ButtonGeneric = (props) => {
   const dispatch = useDispatch()
   const [textInput, setTextInput] = useState(props.text || 'button')
-  const redirectUrl = props?.redirect
 
   const {
     borderRadius,
@@ -66,26 +65,24 @@ export const ButtonGeneric = (props) => {
   }, [textInput])
 
   return (
-    <RedirectWrapper redirectUrl={redirectUrl}>
-      <CustomButton
-        borderRadius={borderRadius}
-        border={border}
-        backgroundColor={backgroundColor}
-        gradientColor={gradientColor}
-        boxShadow={boxShadow}
-        color={fontColor}
-      >
-        <Input
-          fontSize="inherit"
-          p="0"
-          onChange={handleChange}
-          value={textInput || ''}
-          w="100%"
-          border="none"
-          textAlign="center"
-        />
-      </CustomButton>
-    </RedirectWrapper>
+    <CustomButton
+      borderRadius={borderRadius}
+      border={border}
+      backgroundColor={backgroundColor}
+      gradientColor={gradientColor}
+      boxShadow={boxShadow}
+      color={fontColor}
+    >
+      <Input
+        fontSize="inherit"
+        p="0"
+        onChange={handleChange}
+        value={textInput || ''}
+        w="100%"
+        border="none"
+        textAlign="center"
+      />
+    </CustomButton>
   )
 }
 
