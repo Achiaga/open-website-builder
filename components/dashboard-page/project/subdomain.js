@@ -46,7 +46,7 @@ const SubdomainWrapper = ({ projectId, actualSubdomain }) => {
                 {subdomain || actualSubdomain}
                 <Box color="gray.300">.antfolio.app</Box>
                 <a
-                  href={`${subdomain || actualSubdomain}.antfolio.app`}
+                  href={`https://${subdomain || actualSubdomain}.antfolio.app`}
                   target="_blank"
                   rel="noreferrer"
                   style={{ paddingLeft: '1rem' }}
