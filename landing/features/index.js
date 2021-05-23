@@ -12,19 +12,19 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
   return (
     <Box
       d="flex"
-      flexDir={['column', index % 2 ? 'row' : 'row-reverse']}
+      flexDir={['column', 'column', index % 2 ? 'row' : 'row-reverse']}
       alignItems="center"
       justifyContent="center"
       w="100%"
       px={['32px', '5vw']}
-      py={['2rem', '4.5rem']}
+      py={['2rem', '2rem', '4.5rem']}
     >
       <Box
         display={['flex', 'flex']}
         justifyContent="center"
         alignItems="center"
         w={['100%', '100%']}
-        height={['60vw', '28vw']}
+        height={['60vw', '60vw', '28vw']}
         pos="relative"
       >
         {isVideo ? (
@@ -33,7 +33,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
             borderRadius="10px"
             overflow="hidden"
             w="100%"
-            height={['auto', '23vw']}
+            height={['auto', 'auto', '23vw']}
           >
             <video autoPlay muted loop>
               <source src={imageUrl} type="video/mp4" />
@@ -51,8 +51,8 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
       </Box>
       <Box
         w="100%"
-        px={[0, '2rem']}
-        pl={[0, index % 2 ? '4rem' : '6rem']}
+        px={[0, 0, '2rem']}
+        pl={[0, 0, index % 2 ? '4rem' : '6rem']}
         d="flex"
         flexDir="column"
       >
@@ -60,7 +60,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
           as="h4"
           color={'primary.500'}
           whiteSpace="nowrap"
-          fontSize={['3xl', '5xl']}
+          fontSize={['3xl', '3xl', '5xl']}
           fontStyle="normal"
           fontWeight="700"
           textAlign="left"
