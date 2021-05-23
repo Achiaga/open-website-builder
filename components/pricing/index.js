@@ -7,9 +7,7 @@ const PricingPage = () => {
   return (
     <Box height="100vh">
       <Head>
-        <title>
-          Antfolio - Pricing - Build your online portfolio in 15 minutes
-        </title>
+        <title>Antfolio - Pricing - Build your website in 15 minutes</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://www.antfolio.app/pricing" />
       </Head>
@@ -50,7 +48,7 @@ const PricingPage = () => {
               fontWeight="500"
             >
               Antfolio helps indiviual and startups of all sizes build better
-              portfolios.
+              websites faster.
             </Text>
           </Box>
           <Box top="0" mt={['-10%', '-5%']} w="100vw">

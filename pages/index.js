@@ -3,6 +3,7 @@ import { ResumeWebsite } from '../builder/web-preview/preview'
 import LandingPage from '../components/landing-page'
 import { getWebsiteDataBySubdomain } from './api/db'
 import { isFalsy } from './[resumeId]'
+
 export default function Home({ websiteData, subdomain }) {
   if (websiteData && subdomain) {
     return <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />

@@ -7,7 +7,6 @@ import { initLiveChatScript } from '../../utils/analytics'
 import Navbar from '../navbar'
 import Hero from '../hero'
 import VideoDemo from '../video-demo'
-import Comparison from '../comparison'
 import Features from '../features'
 import Steps from '../steps'
 import CardInfo from '../card-info'
@@ -22,13 +21,14 @@ const LandingPage = () => {
       justifyContent="center"
       alignItems="center"
       maxWidth="100vw"
+      fontFamily="Montserrat"
     >
       <Head>
         <meta
           name="google-site-verification"
           content="UadvCpBK-LYrfPuloDtGWCqlJeQKDZUy3XtQH0wOZ8E"
         />
-        <title>Antfolio - Build a beautiful website in 15 minutes</title>
+        <title>Antfolio - Build a beautiful website faster than ever!</title>
         <link rel="icon" href="/favicon.ico" />
         <script
           defer
@@ -50,7 +50,6 @@ const LandingPage = () => {
         <Navbar color="gray.500" />
         <Hero />
         <VideoDemo />
-        <Comparison />
         <Features />
         <Steps />
         <CardInfo />

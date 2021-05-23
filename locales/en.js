@@ -2,15 +2,7 @@ export default {
   navbar: {
     startNowButton: 'Start Now',
   },
-  hero: {
-    title_1: 'Build your ',
-    title_color_2: 'Online ',
-    title_color_3: 'Portfolio ',
-    title_4: 'in 15 mins',
-    subtitle:
-      "Your next portfolio won't be a PDF, it will be a website. Free, simple, breath-taking web resume. ",
-    button: 'Create your Portfolio',
-  },
+
   comparison: {
     title_1: 'Create an awe-inspiring ',
     title_color_2: 'websites ',
@@ -38,7 +30,7 @@ export default {
       'Simple, fast, and fully customizable. With Antfolio you will be able to create and fully customizable portfolio in minutes and without any coding or design knowledge. No Matter your background, we got you covered. We even give you a free domain.',
     feature_2: 'Free Templates',
     feature_text_2:
-      'Need inspiration? Choose one of our beautiful portfolio templates and personalize it to your style. Antfolio lets you change the layout, colors, font size. It is easier than creating a PowerPoint.',
+      'Need inspiration? Choose one of our beautiful templates and personalize it to your style. You can change everything. It is easier than creating a PowerPoint.',
     feature_3: 'WOW Effect',
     feature_text_3:
       'Create a lasting impression by astonishing anyone who checks your portfolio. With our beautiful templates and your creativity, you will be able to create impressive portfolios, that people will remember.',

@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import Button from '../commun/button'
 import CircleBg from '../../assets/features-circle'
+import BackgroundCircles from './background'
 
 const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
   return (
@@ -99,10 +100,35 @@ const Features = () => {
       justifyContent="center"
       alignItems="center"
       w="100%"
-      mt="4rem"
+      mt={['2rem', '10rem']}
       mb={['2rem', '15rem']}
       mx={['auto', 0]}
     >
+      <BackgroundCircles />
+      <Text
+        as="h1"
+        position="relative"
+        fontWeight="bold"
+        textAlign={'center'}
+        color="black"
+        fontSize={['2.2rem', '50px']}
+        lineHeight={['3rem', '4rem']}
+        w={['auto', '60rem']}
+        pb={['0.75rem', '0']}
+        mx="auto"
+      >
+        Create your{' '}
+        <Text as="span" color="primary.500">
+          Dream{' '}
+        </Text>
+        Website
+        <Text as="span" d={['none', 'flex']} justifyContent="center">
+          with{' '}
+          <Text as="span" color="primary.500" d={['none', 'block']} ml="14px">
+            Ease
+          </Text>
+        </Text>
+      </Text>
       <Box
         display={['none', 'block']}
         position="absolute"
@@ -111,41 +137,6 @@ const Features = () => {
       >
         <CircleBg />
       </Box>
-      <Text
-        as="h1"
-        position="relative"
-        fontWeight="bold"
-        textAlign="center"
-        color="black"
-        fontFamily="Montserrat"
-        fontSize={['2.5rem', '50px']}
-        lineHeight={['3rem', '4rem']}
-        w={['auto', '50rem']}
-        mx="auto"
-      >
-        {t.features.title_1}
-        <Text as="span" color="primary.500">
-          {t.features.title_color_2}
-        </Text>
-        {t.features.title_3}
-        <Text as="span" color="primary.500">
-          {t.features.title_color_4}
-        </Text>
-        <Text as="span" d={['none', 'block']} justifyContent="center">
-          {t.features.title_5}
-        </Text>
-      </Text>
-      <Text
-        as="h2"
-        textAlign="center"
-        position="relative"
-        fontSize={['22px', '24px']}
-        my={['2rem', '1rem']}
-        px={['2rem', '0rem']}
-        color="gray.600"
-      >
-        {t.features.subtitle}
-      </Text>
       <Box display={['block', 'none']}>
         <Image
           src="/callToAction.png"
@@ -166,29 +157,34 @@ const Features = () => {
         flexDirection={'column'}
       >
         <Feature
-          title={t.features.feature_1}
-          description={t.features.feature_text_1}
+          title={'Easy to Use'}
+          description={
+            'Simple, fast, and fully customizable Drag and Drop builder. No Matter your background, we got you covered. We even give you a free domain.'
+          }
           imageUrl="/features_simple.png"
           index={1}
+        />
+        <Feature
+          title={'Blazing Fast'}
+          description={
+            'Google ranks websites based on speed and Antfolio websites are really fast, they load in less than 0.5 seconds'
+          }
+          imageUrl="/speed-index.png"
+          index={2}
         />
         <Feature
           title={t.features.feature_2}
           description={t.features.feature_text_2}
           imageUrl="/features_template.png"
-          index={2}
-        />
-        <Feature
-          title={t.features.feature_3}
-          description={t.features.feature_text_3}
-          imageUrl="/wow-effect.mp4"
           index={3}
-          isVideo
         />
 
         <Feature
-          title={t.features.feature_4}
-          description={t.features.feature_text_4}
-          imageUrl="/always-online.png"
+          title={'Custom Domain'}
+          description={
+            'Add a custom domain (or subdomain) to any of your Websites. Site hosting and SSL certificates out of the box with Antfolio.'
+          }
+          imageUrl="/custom-domain.png"
           index={4}
         />
         <Feature

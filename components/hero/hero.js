@@ -18,24 +18,43 @@ const Hero = () => {
         justifyContent="center"
         alignItems="center"
         fontWeight="extrabold"
-        fontSize={['3.5rem', '7rem']}
+        fontSize={['3.5rem', '6.3rem']}
         lineHeight="120%"
         h="100vh"
         textAlign="center"
       >
-        <Text
-          as="h1"
-          background="linear-gradient(
+        <Text as="h1" d="flex" color="gray.800" flexDir={(['column'], ['row'])}>
+          Build
+          <Text
+            as="h1"
+            background="linear-gradient(
             135deg
             ,  #43E28E  0%,#506bf0 100%)"
-          backgroundClip="text"
-          textFillColor="transparent"
-        >
-          Simple, Easy & Beautiful
+            backgroundClip="text"
+            textFillColor="transparent"
+            mx="1rem"
+            fontSize={['4rem', '6.5rem']}
+          >
+            Beautiful
+          </Text>
+          Websites
         </Text>
-        <Text as="h1" d="flex" fontSize={['3.5rem', '6rem']}>
-          No-Code Website Builder
-        </Text>
+        <Box d="flex" flexDir={['column', 'row']}>
+          <Text
+            as="h1"
+            background="linear-gradient(
+            135deg
+            ,  #43E28E  0%,#506bf0 100%)"
+            backgroundClip="text"
+            textFillColor="transparent"
+            fontSize={['4rem', '6.5rem']}
+          >
+            Faster
+          </Text>
+          <Text as="h1" d="flex" color="gray.800" ml="1rem">
+            than ever!
+          </Text>
+        </Box>
 
         <Box pos="relative" mt="4rem">
           <Box
@@ -90,15 +109,15 @@ const Hero = () => {
         <Text
           as="h2"
           d="flex"
-          fontSize="20px"
+          fontSize={['20px', '26px']}
           fontWeight="semibold"
           color="gray.400"
+          mt={['1rem', '0rem']}
           w={['90%', '60%']}
           textAlign={['justify', 'center']}
         >
-          Antfolio combines the best website building experience with an
-          obsessive focus on simplicity. Our platform enables anyone to create
-          beautiful websites without any code knowledge.
+          Antfolio is the fastest and easiest way to build beautiful websites
+          with no-code. Have you blazing fast website live in minutes.
         </Text>
       </Box>
     </Box>
