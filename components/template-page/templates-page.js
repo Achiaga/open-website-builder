@@ -38,8 +38,8 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'portfolio-product-desgner-john',
-    imageUrl: '/portfolio-product-desgner-john.jpg',
+    id: 'portfolio-product-designer-john',
+    imageUrl: '/portfolio-product-designer-john.jpg',
     tags: [],
   },
   {
