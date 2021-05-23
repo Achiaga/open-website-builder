@@ -17,8 +17,8 @@ const Navbar = dynamic(() => import('../components/navbar'))
 
 const LandingPage = () => {
   useEffect(() => {
-    setTimeout(() => window.eval(initLiveChatScript), 10)
-    setTimeout(() => window.eval(initGoogleAnalytics), 10)
+    setTimeout(() => window.eval(initLiveChatScript), 400)
+    setTimeout(() => window.eval(initGoogleAnalytics), 400)
   }, [])
   return (
     <Box
