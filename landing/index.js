@@ -34,6 +34,7 @@ const LandingPage = () => {
         <link rel="icon" href="/favicon.ico" />
         <script
           defer
+          async
           dangerouslySetInnerHTML={{
             __html: initLiveChatScript,
           }}

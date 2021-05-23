@@ -9,6 +9,7 @@ const Hero = () => {
       position="relative"
       display="flex"
       w={'100vw'}
+      minW="100vw"
       pl={0}
       justifyContent="center"
       flexDir="column"

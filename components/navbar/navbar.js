@@ -28,13 +28,8 @@ const noUserAccess = ['/blog', '/guides']
 
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
-  // const { locale } = router
   const [t] = useTranslation()
 
-  // const changeLanguage = (e) => {
-  //   const locale = e.target.value
-  //   router.push(router.pathname, router.asPath, { locale })
-  // }
   const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
     router.pathname
   )
