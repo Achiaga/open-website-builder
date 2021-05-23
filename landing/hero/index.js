@@ -20,7 +20,7 @@ const Hero = () => {
         justifyContent="center"
         alignItems="center"
         fontWeight="extrabold"
-        fontSize={['3.5rem', '4.5rem', '6rem']}
+        fontSize={['3.5rem', '4.5rem', '5rem', '5rem', '6rem']}
         lineHeight="120%"
         h="100vh"
         textAlign="center"
@@ -29,7 +29,7 @@ const Hero = () => {
           as="h1"
           d="flex"
           color="gray.800"
-          flexDir={['column', 'column', 'column', 'column', 'row']}
+          flexDir={['column', 'column', 'column', 'row']}
         >
           Build
           <Text
@@ -40,7 +40,7 @@ const Hero = () => {
             backgroundClip="text"
             textFillColor="transparent"
             mx="1rem"
-            fontSize={['4rem', '5rem', '6rem']}
+            fontSize={['4rem', '5rem', '5.5rem', '5rem', '6rem']}
           >
             Beautiful
           </Text>
@@ -54,7 +54,7 @@ const Hero = () => {
             ,  #43E28E  0%,#506bf0 100%)"
             backgroundClip="text"
             textFillColor="transparent"
-            fontSize={['4rem', '5rem', '6rem']}
+            fontSize={['4rem', '5rem', '5.5rem', '5rem', '6rem']}
           >
             Faster
           </Text>
