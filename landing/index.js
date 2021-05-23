@@ -10,10 +10,12 @@ import Features from './features'
 import Steps from './steps'
 import CardInfo from './card-info'
 import Footer from './footer'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 
-const Navbar = dynamic(() => import('../components/navbar'))
+import Navbar from '../components/navbar'
+
+// const Navbar = dynamic(() => import('../components/navbar'))
 
 const LandingPage = () => {
   useEffect(() => {

@@ -12,10 +12,13 @@ import {
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { getUserDataById } from '../utils/user-data'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 
-const isEqual = dynamic(() => import('lodash/isEqual'))
-const templates = dynamic(() => import('../templates'))
+import templates from '../templates'
+import isEqual from 'lodash/isEqual'
+
+// const isEqual = dynamic(() => import('lodash/isEqual'))
+// const templates = dynamic(() => import('../templates'))
 
 async function getUserData(user) {
   try {
