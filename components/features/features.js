@@ -24,7 +24,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
         justifyContent="center"
         alignItems="center"
         w={['100%', '100%']}
-        height={['60vw', '22vw']}
+        height={['60vw', '28vw']}
         pos="relative"
       >
         {isVideo ? (
@@ -159,7 +159,7 @@ const Features = () => {
         <Feature
           title={'Easy to Use'}
           description={
-            'Simple, fast, and fully customizable Drag and Drop builder. No Matter your background, we got you covered. We even give you a free domain.'
+            'Simple, fast, and powerful Drag and Drop builder. No matter your background, we got you covered. Impress you customers with awesome landing pages.'
           }
           imageUrl="/features_simple.png"
           index={1}
@@ -175,7 +175,7 @@ const Features = () => {
         <Feature
           title={t.features.feature_2}
           description={t.features.feature_text_2}
-          imageUrl="/features_template.png"
+          imageUrl="/templates.png"
           index={3}
         />
 
@@ -188,10 +188,22 @@ const Features = () => {
           index={4}
         />
         <Feature
+          title={'Icons & Illustrations'}
+          description={t.features.feature_text_5}
+          imageUrl="/illustrations-demo.png"
+          index={5}
+        />
+        <Feature
+          title={'Integrations'}
+          description={t.features.feature_text_5}
+          imageUrl="/integrations.png"
+          index={6}
+        />
+        <Feature
           title={t.features.feature_5}
           description={t.features.feature_text_5}
           imageUrl="/short_features_video.mp4"
-          index={5}
+          index={7}
           isVideo
         />
         <Link href={`/builder`}>
