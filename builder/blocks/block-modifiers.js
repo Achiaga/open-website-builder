@@ -1,12 +1,3 @@
-import {
-  Box,
-  Text,
-  Button,
-  Input,
-  Tooltip,
-  Grid,
-  useDisclosure,
-} from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Portal } from '../usePortal'
@@ -17,6 +8,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBlockOffsets } from './block-positionn-helpers'
 import { BgIcon } from '../../assets/fontIcon'
 import ImageSelectorModal from './block-helpers/ImageSelectorModal'
+
+import dynamic from 'next/dynamic'
+import { Box, Grid, Text } from '@chakra-ui/layout'
+import { Button } from '@chakra-ui/button'
+import { Input } from '@chakra-ui/input'
+import { useDisclosure } from '@chakra-ui/hooks'
+
+const Tooltip = dynamic(() =>
+  import('@chakra-ui/tooltip').then((mod) => mod.Tooltip)
+)
 
 export const CustomToolTip = ({ label, children }) => {
   return (
