@@ -33,7 +33,7 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
             borderRadius="10px"
             overflow="hidden"
             w="100%"
-            height={['auto', '21vw']}
+            height={['auto', '23vw']}
           >
             <video autoPlay muted loop>
               <source src={imageUrl} type="video/mp4" />
@@ -196,35 +196,41 @@ const Features = () => {
         />
         <Feature
           title={'Integrations'}
-          description={t.features.feature_text_5}
+          description={
+            'Collect payments, leads, build an Email List, add site analytics, provide live chat support, and much more.'
+          }
           imageUrl="/integrations.png"
           index={6}
         />
         <Feature
           title={t.features.feature_5}
-          description={t.features.feature_text_5}
+          description={
+            'If you can make a slide deck, you can make a website!, With just one click you can launch your website to the world.'
+          }
           imageUrl="/short_features_video.mp4"
           index={7}
           isVideo
         />
         <Link href={`/builder`}>
-          <Button
-            fontSize="xl"
-            minW="7.5rem"
-            w="12rem"
-            h={14}
-            ml={['1rem', '0']}
-            mt="2rem"
-            background={'black'}
-            onClick={handleButton}
-            _hover={{
-              border: '2px solid black',
-              background: 'transparent',
-              color: 'black',
-            }}
-          >
-            {t.features.button}
-          </Button>
+          <a>
+            <Button
+              fontSize="xl"
+              minW="7.5rem"
+              w="12rem"
+              h={14}
+              ml={['1rem', '0']}
+              mt="2rem"
+              background={'black'}
+              onClick={handleButton}
+              _hover={{
+                border: '2px solid black',
+                background: 'transparent',
+                color: 'black',
+              }}
+            >
+              {t.features.button}
+            </Button>
+          </a>
         </Link>
       </Box>
     </Box>

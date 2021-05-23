@@ -23,7 +23,12 @@ const Hero = () => {
         h="100vh"
         textAlign="center"
       >
-        <Text as="h1" d="flex" color="gray.800" flexDir={['column', 'row']}>
+        <Text
+          as="h1"
+          d="flex"
+          color="gray.800"
+          flexDir={['column', 'column', 'column', 'column', 'row']}
+        >
           Build
           <Text
             as="h1"
@@ -39,7 +44,7 @@ const Hero = () => {
           </Text>
           Websites
         </Text>
-        <Box d="flex" flexDir={['column', 'row']}>
+        <Box d="flex" flexDir={['column', 'column', 'column', 'row']}>
           <Text
             as="h1"
             background="linear-gradient(
@@ -117,7 +122,7 @@ const Hero = () => {
           textAlign={['center', 'center']}
         >
           Antfolio is the fastest and easiest way to build beautiful websites
-          with no-code. Have you blazing fast website live in minutes.
+          with no-code. Have your blazing fast website live in minutes.
         </Text>
       </Box>
     </Box>
