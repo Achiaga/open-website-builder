@@ -1,6 +1,5 @@
 import { createContext } from 'react'
 import PropTypes from 'prop-types'
-import { createMedia } from '@artsy/fresnel'
 
 import MadeWith from '../../components/made-with'
 
@@ -8,15 +7,6 @@ import { GeneratePreviewBlock } from './helpers'
 import { MobileWindowWidth } from '../web-builder/web-builder'
 
 export const BlocksContext = createContext()
-
-export const { MediaContextProvider, Media } = createMedia({
-  breakpoints: {
-    sm: 0,
-    md: 768,
-    lg: 1024,
-    xl: 1192,
-  },
-})
 
 function getFontSize(windowWidth) {
   if (windowWidth >= 1100) return 13
