@@ -33,7 +33,7 @@ const Hero = () => {
         >
           Build
           <Text
-            as="h1"
+            as="span"
             background="linear-gradient(
             135deg
             ,  #43E28E  0%,#506bf0 100%)"
@@ -46,7 +46,7 @@ const Hero = () => {
           </Text>
           Websites
         </Text>
-        <Box d="flex" flexDir={['column', 'column', 'column', 'row']}>
+        <Box as="span" d="flex" flexDir={['column', 'column', 'column', 'row']}>
           <Text
             as="h1"
             background="linear-gradient(
@@ -58,7 +58,7 @@ const Hero = () => {
           >
             Faster
           </Text>
-          <Text as="h1" d="flex" color="gray.800" ml="1rem">
+          <Text as="span" d="flex" color="gray.800" ml="1rem">
             than ever!
           </Text>
         </Box>
