@@ -10,6 +10,7 @@ import template8 from './guides-custom-domain.json'
 import template9 from './courses-sketch-ninja-design.json'
 import template10 from './books-plack.json'
 import template11 from './tailwind-templates.json'
+import template12 from './card-angelina.json'
 
 export default {
   fallback,
@@ -24,4 +25,5 @@ export default {
   ['courses-sketch-ninja-design']: template9,
   ['books-plack']: template10,
   ['tailwind-templates']: template11,
+  ['card-angelina']: template12,
 }

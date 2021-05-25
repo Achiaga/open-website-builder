@@ -18,13 +18,13 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'courses-sketch-ninja-design',
-    imageUrl: '/courses-sketch-ninja-design.jpg',
+    id: 'card-angelina',
+    imageUrl: '/card-angelina.jpg',
     tags: [],
   },
   {
-    id: 'portfolio-fullstack-developer-johndoe',
-    imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
+    id: 'courses-sketch-ninja-design',
+    imageUrl: '/courses-sketch-ninja-design.jpg',
     tags: [],
   },
   {
@@ -33,13 +33,18 @@ const TEMPLATES = [
     tags: [],
   },
   {
+    id: 'portfolio-product-designer-john',
+    imageUrl: '/portfolio-product-designer-john.jpg',
+    tags: [],
+  },
+  {
     id: 'books-plack',
     imageUrl: '/books-plack.jpg',
     tags: [],
   },
   {
-    id: 'portfolio-product-designer-john',
-    imageUrl: '/portfolio-product-designer-john.jpg',
+    id: 'portfolio-fullstack-developer-johndoe',
+    imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
     tags: [],
   },
   {

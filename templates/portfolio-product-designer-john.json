@@ -1,1 +1,448 @@
-{"blocks":{"text-664e08d1-3e6a-4c49-99aa-8d876f699425":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(0, 0, 0);\">Portfolio Z</span></h4>","fontSize":"40","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000","backgroundColor":"#FFFFFF"}},"text-63091382-6d81-4359-9cca-66d30aa51351":{"type":"text","data":{"text":"<h4>Contact Me</h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-465d5a63-7e63-4c3a-aae4-d923494ed6f6":{"type":"text","data":{"text":"<h2><span style=\"color: rgb(0, 0, 0);\">Hello, I am John.</span></h2><h2><span style=\"color: rgb(0, 0, 0);\">A product designer.</span></h2><p><br></p><p><br></p><p><br></p><h4><span style=\"color: rgb(0, 0, 0);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit dapibus porta lorem morbi hendrerit. Maecenas et, at quis purus.</span></h4><p><br></p><p><br></p><p><br></p><h4><span style=\"color: rgb(26, 26, 26);\">Contact me</span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"image-7d0c1ad9-9242-4412-ae66-0021fed32b3f":{"type":"image","data":{"boxShadow":"none","borderRadius":"0px","imageUrl":"https://images.unsplash.com/photo-1583931941487-71de4804fd64?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"}},"text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab":{"type":"text","data":{"text":"<h3>About me</h3>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque tempor, malesuada adipiscing congue diam. Quis orci amet porttitor blandit amet nullam sit. Elit, purus blandit non ut non quam curabitur.</span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-00692428-6d45-4d4d-bd00-782dfb01bf60":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque tempor, malesuada adipiscing congue diam. Quis orci amet porttitor blandit amet nullam sit. Elit, purus blandit non ut non quam curabitur.</span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b":{"type":"text","data":{"text":"<h3><strong>Portfolio</strong></h3>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-bf317183-fbe6-4b9e-89ab-41d12570b301":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(155, 154, 151);\"><span class=\"ql-cursor\">﻿</span>Lorem ipsum dolor sit amet, consectetur adipiscing</span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1":{"type":"inception","data":{"border":"none","boxShadow":"none","borderRadius":"20px","backgroundColor":"rgb(220, 220, 220)","redirect":"www.antfolio.app"}},"text-18fccd88-9ac0-44e2-97c0-880214d5a71d":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(132, 132, 132);\">Facebook</span></h4><h4><span style=\"color: rgb(0, 0, 0);\">Marketing Website Design</span></h4><p><br></p><h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe":{"type":"image","data":{"boxShadow":"none","borderRadius":"10px","imageUrl":"https://cdn.icon-icons.com/icons2/2108/PNG/512/facebook_icon_130940.png"}},"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e":{"type":"inception","data":{"border":"none","boxShadow":"none","borderRadius":"20px","backgroundColor":"rgb(220, 220, 220)"}},"text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(155, 154, 151);\">Tweeter</span></h4><h4>UX Researcher</h4><p><br></p><h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"image-a3fd17df-8700-4f8b-bc2f-881838d3c28e":{"type":"image","data":{"boxShadow":"none","borderRadius":"10px","imageUrl":"https://image.flaticon.com/icons/png/512/124/124021.png"}},"inception-a2dedf73-ff3b-4745-b938-18217315b5b5":{"type":"inception","data":{"border":"none","boxShadow":"none","borderRadius":"20px","backgroundColor":"rgb(220, 220, 220)"}},"text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(132, 132, 132);\">Snapchat</span></h4><h4>UI Porduct Explorations</h4><p><br></p><h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"image-3aaeb41c-785b-4192-8318-1c5947abdf60":{"type":"image","data":{"boxShadow":"none","borderRadius":"10px","imageUrl":"https://www.trecebits.com/wp-content/uploads/2017/05/snapchat-comun.jpg"}},"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac":{"type":"inception","data":{"border":"none","boxShadow":"none","borderRadius":"20px","backgroundColor":"rgb(220, 220, 220)"}},"text-5ed039df-75be-4e07-8e7e-b1df18a50acf":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(132, 132, 132);\">Youtuber</span></h4><h4>Youtube Design</h4><p><br></p><h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur asul moler adipiscing elit. Eu gravida etiam.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"image-f5184a83-320d-452a-9770-2f348e28482e":{"type":"image","data":{"boxShadow":"none","borderRadius":"10px","imageUrl":"https://assets.website-files.com/5fd908fb4e197900bca2f9f3/601e18c1d9d9610fb9e9b31f_youtube-portfoliox-webflow-template%201.svg"}},"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c":{"type":"text","data":{"text":"<h3><strong>Blog</strong></h3>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"inception-af95907f-1511-4676-b23f-b9c32f918306":{"type":"inception","data":{"border":"1px solid black","boxShadow":"none","borderRadius":"20px","backgroundColor":"#FFFFFF"}},"text-993d289e-27df-4ccd-9dcc-4b1e9189b133":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(0, 0, 0);\">What did I learn from doing 50+ design sprints?</span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0":{"type":"text","data":{"text":"<h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et tortor velit morbi integer sed orci, suspendisse quis. Turpis quis id eget feugiat.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121":{"type":"text","data":{"text":"<h4>Desing</h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0":{"type":"inception","data":{"border":"1px solid black","boxShadow":"none","borderRadius":"20px","backgroundColor":"#FFFFFF"}},"text-3ba1160d-1cb6-4e48-a63b-a208b6778859":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(0, 0, 0);\">Figma - What design tool to choose in 2021? </span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-ab4c0891-db48-4210-b548-4a86b5b24bf7":{"type":"text","data":{"text":"<h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et tortor velit morbi integer sed orci, suspendisse quis. Turpis quis id eget feugiat.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70":{"type":"text","data":{"text":"<h4>Desing</h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"inception-5cb4ff64-9673-476f-af28-27a91839740c":{"type":"inception","data":{"border":"1px solid black","boxShadow":"none","borderRadius":"20px","backgroundColor":"#FFFFFF"}},"text-86b1afc2-66ba-4f01-b12a-b463517b2269":{"type":"text","data":{"text":"<h4><span style=\"color: rgb(0, 0, 0);\">7 great icon collections you can download for free</span></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-d8068859-f435-4295-aeaa-bcb663e30789":{"type":"text","data":{"text":"<h5><span style=\"color: rgb(132, 132, 132);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et tortor velit morbi integer sed orci, suspendisse quis. Turpis quis id eget feugiat.</span></h5>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-4729991d-704c-470c-8aa7-ebeaff0d467d":{"type":"text","data":{"text":"<h4>Design</h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-5949fef7-02df-4e1a-b201-892e87a2a5fd":{"type":"text","data":{"text":"<h4><u style=\"color: rgb(155, 154, 151);\">Browse all articles</u></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"inception-05c00d22-dcd3-4d81-8f22-df7164f49253":{"type":"inception","data":{"border":"none","boxShadow":"none","borderRadius":"0px","backgroundColor":"transparent"}},"text-2b3149f5-6c30-44a2-912d-7289d93fc64f":{"type":"text","data":{"text":"<h4>Project Z</h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-41b83a22-3064-44fa-a9f1-be186152efa5":{"type":"text","data":{"text":"<h4><a href=\"https://antfolio.app\" rel=\"noopener noreferrer\" target=\"_blank\">antfolio.app</a></h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"text-ac937d69-1764-4861-a8dc-453048554577":{"type":"text","data":{"text":"<h4>Contat me</h4>","fontSize":"24","textAlign":"center","alignItems":"center","fontWeight":"400","boxShadow":"none","borderRadius":"0px","fontColor":"#000000"}},"image-f467acc0-5f9c-4d3e-9c77-d4312c00a346":{"type":"image","data":{"boxShadow":"none","borderRadius":"0px","imageUrl":"https://www.antfolio.app/favicon.ico"}}},"layouts":{"text-664e08d1-3e6a-4c49-99aa-8d876f699425":{"x":28.47222222222222,"y":3.777777777777784,"i":"text-664e08d1-3e6a-4c49-99aa-8d876f699425","w":20.998263888888886,"h":8.333332803514269},"text-63091382-6d81-4359-9cca-66d30aa51351":{"x":147.91666666666666,"y":3.75,"i":"text-63091382-6d81-4359-9cca-66d30aa51351","w":22.916666666666668,"h":8.333333333333334},"text-465d5a63-7e63-4c3a-aae4-d923494ed6f6":{"x":27.916666666666664,"y":23.055555555555554,"i":"text-465d5a63-7e63-4c3a-aae4-d923494ed6f6","w":71.25,"h":58.61111111111111},"image-7d0c1ad9-9242-4412-ae66-0021fed32b3f":{"x":115.41666666666666,"y":17.77777777777778,"i":"image-7d0c1ad9-9242-4412-ae66-0021fed32b3f","w":54.58333333333334,"h":68.47222222222223},"text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab":{"x":28.88888888888889,"y":103.05555555555556,"i":"text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab","w":28.194444444444443,"h":10.972222222222221},"text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8":{"x":28.75,"y":118.61111111111111,"i":"text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8","w":69.16666666666667,"h":33.333333333333336},"text-00692428-6d45-4d4d-bd00-782dfb01bf60":{"x":104.02777777777777,"y":118.61111111111111,"i":"text-00692428-6d45-4d4d-bd00-782dfb01bf60","w":69.16666666666667,"h":33.333333333333336},"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b":{"x":29.583333333333332,"y":165,"i":"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b","w":28.194444444444443,"h":10.972222222222221},"text-bf317183-fbe6-4b9e-89ab-41d12570b301":{"x":30,"y":175.83333333333334,"i":"text-bf317183-fbe6-4b9e-89ab-41d12570b301","w":91.25,"h":8.333333333333334},"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1":{"x":30.416666666666664,"y":192.08333333333331,"i":"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1","w":62.361111111111114,"h":50.55555555555555},"text-18fccd88-9ac0-44e2-97c0-880214d5a71d":{"x":33.19444444444444,"y":217.08333333333331,"i":"text-18fccd88-9ac0-44e2-97c0-880214d5a71d","w":57.361111111111114,"h":23.333333333333332},"image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe":{"x":34.30555555555556,"y":197.91666666666666,"i":"image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe","w":15,"h":15.69444444444444},"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e":{"x":112.22222222222221,"y":191.80555555555554,"i":"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e","w":62.5,"h":50.69444444444444},"text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be":{"x":115,"y":216.80555555555554,"i":"text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be","w":57.5,"h":23.333333333333332},"image-a3fd17df-8700-4f8b-bc2f-881838d3c28e":{"x":116.11111111111111,"y":197.63888888888889,"i":"image-a3fd17df-8700-4f8b-bc2f-881838d3c28e","w":15,"h":15.69444444444444},"inception-a2dedf73-ff3b-4745-b938-18217315b5b5":{"x":30.97222222222222,"y":250.69444444444443,"i":"inception-a2dedf73-ff3b-4745-b938-18217315b5b5","w":62.361111111111114,"h":50.55555555555555},"text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e":{"x":33.74999999999999,"y":275.6944444444443,"i":"text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e","w":59.72222222222222,"h":23.333333333333332},"image-3aaeb41c-785b-4192-8318-1c5947abdf60":{"x":34.8611111111111,"y":256.52777777777766,"i":"image-3aaeb41c-785b-4192-8318-1c5947abdf60","w":15.833333333333334,"h":15.138888888888884},"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac":{"x":112.63888888888889,"y":250.00000000000003,"i":"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac","w":62.361111111111114,"h":50.55555555555555},"text-5ed039df-75be-4e07-8e7e-b1df18a50acf":{"x":115.41666666666666,"y":274.99999999999994,"i":"text-5ed039df-75be-4e07-8e7e-b1df18a50acf","w":58.75,"h":23.333333333333332},"image-f5184a83-320d-452a-9770-2f348e28482e":{"x":116.52777777777777,"y":255.83333333333326,"i":"image-f5184a83-320d-452a-9770-2f348e28482e","w":15,"h":15.69444444444444},"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c":{"x":29.166666666666664,"y":320.4166666666667,"i":"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c","w":28.194444444444443,"h":10.972222222222221},"inception-af95907f-1511-4676-b23f-b9c32f918306":{"x":82.63888888888889,"y":321.1111111111111,"i":"inception-af95907f-1511-4676-b23f-b9c32f918306","w":91.11111111111111,"h":29.305555555555554},"text-993d289e-27df-4ccd-9dcc-4b1e9189b133":{"x":84.86111111111111,"y":322.63888888888886,"i":"text-993d289e-27df-4ccd-9dcc-4b1e9189b133","w":80,"h":8.333333333333334},"text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0":{"x":85.55555555555556,"y":328.88888888888886,"i":"text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0","w":85,"h":14.583333333333332},"text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121":{"x":85.69444444444444,"y":341.6666666666667,"i":"text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121","w":17.22222222222222,"h":8.333333333333334},"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0":{"x":83.19444444444444,"y":353.47222222222223,"i":"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0","w":90.55555555555556,"h":29.166666666666664},"text-3ba1160d-1cb6-4e48-a63b-a208b6778859":{"x":85.41666666666667,"y":355,"i":"text-3ba1160d-1cb6-4e48-a63b-a208b6778859","w":77.77777777777777,"h":8.333333333333334},"text-ab4c0891-db48-4210-b548-4a86b5b24bf7":{"x":85.27777777777777,"y":361.94444444444446,"i":"text-ab4c0891-db48-4210-b548-4a86b5b24bf7","w":83.33333333333334,"h":14.583333333333332},"text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70":{"x":85.41666666666667,"y":373.88888888888886,"i":"text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70","w":17.22222222222222,"h":8.333333333333334},"inception-5cb4ff64-9673-476f-af28-27a91839740c":{"x":83.75,"y":386.1111111111111,"i":"inception-5cb4ff64-9673-476f-af28-27a91839740c","w":90.55555555555556,"h":30.277777777777775},"text-86b1afc2-66ba-4f01-b12a-b463517b2269":{"x":86.80555555555556,"y":387.63888888888886,"i":"text-86b1afc2-66ba-4f01-b12a-b463517b2269","w":86.38888888888889,"h":8.333333333333334},"text-d8068859-f435-4295-aeaa-bcb663e30789":{"x":87.22222222222221,"y":394.72222222222223,"i":"text-d8068859-f435-4295-aeaa-bcb663e30789","w":81.94444444444444,"h":14.583333333333332},"text-4729991d-704c-470c-8aa7-ebeaff0d467d":{"x":87.63888888888889,"y":407.5,"i":"text-4729991d-704c-470c-8aa7-ebeaff0d467d","w":17.22222222222222,"h":8.333333333333334},"text-5949fef7-02df-4e1a-b201-892e87a2a5fd":{"x":83.61111111111111,"y":418.6111111111111,"i":"text-5949fef7-02df-4e1a-b201-892e87a2a5fd","w":33.47222222222222,"h":8.333333333333334},"inception-05c00d22-dcd3-4d81-8f22-df7164f49253":{"x":21.944444444444443,"y":444.30555555555554,"i":"inception-05c00d22-dcd3-4d81-8f22-df7164f49253","w":153.61111111111111,"h":14.583333333333332},"text-2b3149f5-6c30-44a2-912d-7289d93fc64f":{"x":21.80555555555555,"y":447.5,"i":"text-2b3149f5-6c30-44a2-912d-7289d93fc64f","w":32.638888888888886,"h":8.333333333333334},"text-41b83a22-3064-44fa-a9f1-be186152efa5":{"x":96.94444444444444,"y":447.91666666666663,"i":"text-41b83a22-3064-44fa-a9f1-be186152efa5","w":25,"h":8.333333333333334},"text-ac937d69-1764-4861-a8dc-453048554577":{"x":153.75,"y":447.91666666666663,"i":"text-ac937d69-1764-4861-a8dc-453048554577","w":21.25,"h":8.333333333333334},"image-f467acc0-5f9c-4d3e-9c77-d4312c00a346":{"x":85.55555555555556,"y":446.66666666666663,"i":"image-f467acc0-5f9c-4d3e-9c77-d4312c00a346","w":10,"h":10}},"mobileLayout":{"text-664e08d1-3e6a-4c49-99aa-8d876f699425":{"x":2.7036411411411407,"y":2.9294290762167274,"i":"text-664e08d1-3e6a-4c49-99aa-8d876f699425","w":30.187453078078075,"h":7.5675675675675675},"text-63091382-6d81-4359-9cca-66d30aa51351":{"x":66.64414414414414,"y":3.134384384384384,"i":"text-63091382-6d81-4359-9cca-66d30aa51351","w":29.66591591591591,"h":7.5675675675675675},"text-465d5a63-7e63-4c3a-aae4-d923494ed6f6":{"x":9.249249249249248,"y":20.275275275275266,"i":"text-465d5a63-7e63-4c3a-aae4-d923494ed6f6","w":82.54504504504504,"h":105.94595419394003},"image-7d0c1ad9-9242-4412-ae66-0021fed32b3f":{"x":8.43093093093093,"y":138.86261261261257,"i":"image-7d0c1ad9-9242-4412-ae66-0021fed32b3f","w":79.51951951951952,"h":66.34384384384384},"text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab":{"x":29.894894894894893,"y":239.9311811811812,"i":"text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab","w":39.275525525525524,"h":11.35135135135135},"text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8":{"x":7.27759009009009,"y":264.38063063063066,"i":"text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8","w":85.8933933933934,"h":52.9729564769848},"text-00692428-6d45-4d4d-bd00-782dfb01bf60":{"x":7.180930930930932,"y":329.73723723723725,"i":"text-00692428-6d45-4d4d-bd00-782dfb01bf60","w":86.44144144144143,"h":52.97297297297297},"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b":{"x":32.36204954954955,"y":434.3418418418418,"i":"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b","w":37.6539039039039,"h":11.35135135135135},"text-bf317183-fbe6-4b9e-89ab-41d12570b301":{"x":7.439939939939922,"y":392.5,"i":"text-bf317183-fbe6-4b9e-89ab-41d12570b301","w":81.94819819819821,"h":15.135135135135135},"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1":{"x":7.37894144144144,"y":462.61136136136133,"i":"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1","w":83.3108108108108,"h":69.65465465465465},"text-18fccd88-9ac0-44e2-97c0-880214d5a71d":{"x":11.684496996997,"y":487.88413413413383,"i":"text-18fccd88-9ac0-44e2-97c0-880214d5a71d","w":75.98723723723724,"h":35.94596244193412},"image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe":{"x":40.749812312312315,"y":467.51251251251216,"i":"image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe","w":15,"h":15.69444444444444},"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e":{"x":7.252252252252251,"y":638.6936936936937,"i":"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e","w":84.253003003003,"h":76.68168168168168},"image-a3fd17df-8700-4f8b-bc2f-881838d3c28e":{"x":38.02927927927927,"y":643.9264264264262,"i":"image-a3fd17df-8700-4f8b-bc2f-881838d3c28e","w":18.611111111111114,"h":18.19444444444444},"text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be":{"x":11.68918918918919,"y":669.3543543543542,"i":"text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be","w":75.19144144144144,"h":35.945945945945944},"inception-a2dedf73-ff3b-4745-b938-18217315b5b5":{"x":6.545608108108108,"y":551.808058058058,"i":"inception-a2dedf73-ff3b-4745-b938-18217315b5b5","w":84.79354354354355,"h":69.65465465465465},"text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e":{"x":11.962274774774775,"y":578.8551051051049,"i":"text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e","w":73.5548048048048,"h":35.945945945945944},"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac":{"x":6.587837837837838,"y":733.75,"i":"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac","w":86.01351351351352,"h":75.33033033033033},"text-5ed039df-75be-4e07-8e7e-b1df18a50acf":{"x":9.635885885885887,"y":760.1651651651651,"i":"text-5ed039df-75be-4e07-8e7e-b1df18a50acf","w":79.47072072072072,"h":35.945945945945944},"image-3aaeb41c-785b-4192-8318-1c5947abdf60":{"x":38.06212462462462,"y":555.8283283283282,"i":"image-3aaeb41c-785b-4192-8318-1c5947abdf60","w":19.166666666666668,"h":18.33333333333333},"image-f5184a83-320d-452a-9770-2f348e28482e":{"x":39.7972972972973,"y":738.3333333333336,"i":"image-f5184a83-320d-452a-9770-2f348e28482e","w":16.388888888888882,"h":15.833333333333325},"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c":{"x":39.335585585585584,"y":833.6511511511512,"i":"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c","w":18.47222222222222,"h":10.972222222222221},"inception-af95907f-1511-4676-b23f-b9c32f918306":{"x":7.477477477477477,"y":857.4787287287287,"i":"inception-af95907f-1511-4676-b23f-b9c32f918306","w":85.58558558558558,"h":69.15540540540539},"text-993d289e-27df-4ccd-9dcc-4b1e9189b133":{"x":9.699699699699702,"y":863.8025525525522,"i":"text-993d289e-27df-4ccd-9dcc-4b1e9189b133","w":80.82957957957957,"h":15.135135135135135},"text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0":{"x":11.891891891891891,"y":897.225975975976,"i":"text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0","w":77.34984984984985,"h":22.7027027027027},"text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121":{"x":10.957207207207208,"y":884.4557057057057,"i":"text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121","w":22.62012012012012,"h":7.5675675675675675},"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0":{"x":7.199699699699699,"y":940.7107107107106,"i":"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0","w":85.63063063063062,"h":77.0457957957958},"text-3ba1160d-1cb6-4e48-a63b-a208b6778859":{"x":11.058558558558563,"y":949.6358858858858,"i":"text-3ba1160d-1cb6-4e48-a63b-a208b6778859","w":77.52252252252252,"h":15.135135135135135},"text-ab4c0891-db48-4210-b548-4a86b5b24bf7":{"x":11.058558558558559,"y":986.0472972972968,"i":"text-ab4c0891-db48-4210-b548-4a86b5b24bf7","w":78.44969969969969,"h":22.7027027027027},"inception-5cb4ff64-9673-476f-af28-27a91839740c":{"x":5.416666666666667,"y":1031.2062062062064,"i":"inception-5cb4ff64-9673-476f-af28-27a91839740c","w":89.40690690690691,"h":66.62912912912913},"text-86b1afc2-66ba-4f01-b12a-b463517b2269":{"x":10.611861861861861,"y":1035.9384384384382,"i":"text-86b1afc2-66ba-4f01-b12a-b463517b2269","w":76.4527027027027,"h":15.135135135135135},"text-5949fef7-02df-4e1a-b201-892e87a2a5fd":{"x":27.548798798798803,"y":1108.7950450450448,"i":"text-5949fef7-02df-4e1a-b201-892e87a2a5fd","w":47.46246246246247,"h":7.5675675675675675},"inception-05c00d22-dcd3-4d81-8f22-df7164f49253":{"x":0,"y":1126.4414414414416,"i":"inception-05c00d22-dcd3-4d81-8f22-df7164f49253","w":100,"h":46.46771771771772},"text-2b3149f5-6c30-44a2-912d-7289d93fc64f":{"x":3.4318693693693665,"y":1130.1614114114116,"i":"text-2b3149f5-6c30-44a2-912d-7289d93fc64f","w":35.00375375375375,"h":7.5675675675675675},"text-41b83a22-3064-44fa-a9f1-be186152efa5":{"x":42.77777777777778,"y":1151.5277777777778,"i":"text-41b83a22-3064-44fa-a9f1-be186152efa5","w":34.29054054054055,"h":7.5675675675675675},"text-ac937d69-1764-4861-a8dc-453048554577":{"x":65.85960960960962,"y":1130.5555555555559,"i":"text-ac937d69-1764-4861-a8dc-453048554577","w":29.024024024024023,"h":7.5675675675675675},"image-f467acc0-5f9c-4d3e-9c77-d4312c00a346":{"x":29.39189189189189,"y":1150.2777777777776,"i":"image-f467acc0-5f9c-4d3e-9c77-d4312c00a346","w":10,"h":10},"text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70":{"x":11.013513513513512,"y":975.0600600600599,"i":"text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70","w":27.218468468468473,"h":7.5675675675675675},"text-d8068859-f435-4295-aeaa-bcb663e30789":{"x":9.15915915915916,"y":1066.4414414414414,"i":"text-d8068859-f435-4295-aeaa-bcb663e30789","w":80.54054054054055,"h":22.7027027027027},"text-4729991d-704c-470c-8aa7-ebeaff0d467d":{"x":9.166666666666659,"y":1055.367867867868,"i":"text-4729991d-704c-470c-8aa7-ebeaff0d467d","w":24.009009009009013,"h":7.5675675675675675}},"hierarchy":{"text-00692428-6d45-4d4d-bd00-782dfb01bf60":[],"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b":[],"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1":["text-18fccd88-9ac0-44e2-97c0-880214d5a71d","image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe"],"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e":["text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be","image-a3fd17df-8700-4f8b-bc2f-881838d3c28e"],"inception-a2dedf73-ff3b-4745-b938-18217315b5b5":["text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e","image-3aaeb41c-785b-4192-8318-1c5947abdf60"],"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac":["text-5ed039df-75be-4e07-8e7e-b1df18a50acf","image-f5184a83-320d-452a-9770-2f348e28482e"],"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c":[],"inception-af95907f-1511-4676-b23f-b9c32f918306":["text-993d289e-27df-4ccd-9dcc-4b1e9189b133","text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0","text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121"],"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0":["text-3ba1160d-1cb6-4e48-a63b-a208b6778859","text-ab4c0891-db48-4210-b548-4a86b5b24bf7","text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70"],"inception-5cb4ff64-9673-476f-af28-27a91839740c":["text-86b1afc2-66ba-4f01-b12a-b463517b2269","text-d8068859-f435-4295-aeaa-bcb663e30789","text-4729991d-704c-470c-8aa7-ebeaff0d467d"],"inception-05c00d22-dcd3-4d81-8f22-df7164f49253":["text-2b3149f5-6c30-44a2-912d-7289d93fc64f","text-41b83a22-3064-44fa-a9f1-be186152efa5","text-ac937d69-1764-4861-a8dc-453048554577","image-f467acc0-5f9c-4d3e-9c77-d4312c00a346"]},"mobileHierarchy":{"text-00692428-6d45-4d4d-bd00-782dfb01bf60":[],"text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b":[],"inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1":["text-18fccd88-9ac0-44e2-97c0-880214d5a71d","image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe"],"inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e":["text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be","image-a3fd17df-8700-4f8b-bc2f-881838d3c28e"],"inception-a2dedf73-ff3b-4745-b938-18217315b5b5":["text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e","image-3aaeb41c-785b-4192-8318-1c5947abdf60"],"inception-137651a3-8fb4-4be2-9dff-e9bdc74badac":["text-5ed039df-75be-4e07-8e7e-b1df18a50acf","image-f5184a83-320d-452a-9770-2f348e28482e"],"text-f0ad16ad-d734-44a4-ba05-34fc9703af6c":[],"inception-af95907f-1511-4676-b23f-b9c32f918306":["text-993d289e-27df-4ccd-9dcc-4b1e9189b133","text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0","text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121"],"inception-43130ab8-4a3c-42e4-863f-80548aecbdd0":["text-3ba1160d-1cb6-4e48-a63b-a208b6778859","text-ab4c0891-db48-4210-b548-4a86b5b24bf7","text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70"],"inception-5cb4ff64-9673-476f-af28-27a91839740c":["text-86b1afc2-66ba-4f01-b12a-b463517b2269","text-d8068859-f435-4295-aeaa-bcb663e30789","text-4729991d-704c-470c-8aa7-ebeaff0d467d"],"inception-05c00d22-dcd3-4d81-8f22-df7164f49253":["text-2b3149f5-6c30-44a2-912d-7289d93fc64f","text-41b83a22-3064-44fa-a9f1-be186152efa5","text-ac937d69-1764-4861-a8dc-453048554577","image-f467acc0-5f9c-4d3e-9c77-d4312c00a346"]},"mobileEditedBlocks":["text-664e08d1-3e6a-4c49-99aa-8d876f699425","text-63091382-6d81-4359-9cca-66d30aa51351","text-465d5a63-7e63-4c3a-aae4-d923494ed6f6","image-7d0c1ad9-9242-4412-ae66-0021fed32b3f","text-33e21d3e-d68f-40d2-97d7-bb8bdcb5b2ab","text-7f5c6d38-adbe-4f02-b370-8e2a15425ad8","image-a3fd17df-8700-4f8b-bc2f-881838d3c28e","inception-9a3e6d5d-c521-4a0f-92f8-71961a206ae1","text-ac937d69-1764-4861-a8dc-453048554577","inception-05c00d22-dcd3-4d81-8f22-df7164f49253","text-41b83a22-3064-44fa-a9f1-be186152efa5","text-2b3149f5-6c30-44a2-912d-7289d93fc64f","image-f467acc0-5f9c-4d3e-9c77-d4312c00a346","inception-5cb4ff64-9673-476f-af28-27a91839740c","text-86b1afc2-66ba-4f01-b12a-b463517b2269","text-5949fef7-02df-4e1a-b201-892e87a2a5fd","inception-137651a3-8fb4-4be2-9dff-e9bdc74badac","inception-43130ab8-4a3c-42e4-863f-80548aecbdd0","text-b8bf9ed9-8b09-4d84-af1c-d6a3f6faa121","inception-af95907f-1511-4676-b23f-b9c32f918306","text-5ed039df-75be-4e07-8e7e-b1df18a50acf","image-f5184a83-320d-452a-9770-2f348e28482e","inception-a9544d4b-6a00-414d-be62-c3d4f58dba7e","text-2faa8e47-bb18-4cc5-b9b9-e2605bf255be","text-f0ad16ad-d734-44a4-ba05-34fc9703af6c","text-ab4c0891-db48-4210-b548-4a86b5b24bf7","text-3ba1160d-1cb6-4e48-a63b-a208b6778859","text-0d8cfe16-e16f-4f5d-a323-f20c012b3fa0","text-993d289e-27df-4ccd-9dcc-4b1e9189b133","inception-a2dedf73-ff3b-4745-b938-18217315b5b5","text-2d6d719e-dbf1-41fa-9cd7-edc27977d01e","image-3aaeb41c-785b-4192-8318-1c5947abdf60","text-18fccd88-9ac0-44e2-97c0-880214d5a71d","image-5b3be3b1-012e-4008-9ef8-b9e3886ba5fe","text-00692428-6d45-4d4d-bd00-782dfb01bf60","text-bf317183-fbe6-4b9e-89ab-41d12570b301","text-65dd8c69-9c2a-42ed-856b-9e901eadbe9b","text-4729991d-704c-470c-8aa7-ebeaff0d467d","text-d8068859-f435-4295-aeaa-bcb663e30789","text-cad59b69-3f1a-4d2b-b32d-c6b9989aab70"]}
+{
+  "blocks": {
+    "inception-263bac39-183c-43af-bcb8-fbba1617a54a": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#292929"
+      }
+    },
+    "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(255, 195, 0)",
+        "opacity": "0"
+      }
+    },
+    "inception-58937448-73b4-4371-b2d2-18ab665aa7bc": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#292929"
+      }
+    },
+    "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1": {
+      "type": "text",
+      "data": {
+        "text": "<h2><strong style=\"color: rgb(255, 255, 255);\">Hi, my name is&nbsp;</strong><strong style=\"color: rgb(223, 171, 1);\">Jackob Entel</strong></h2><h2><strong style=\"color: rgb(255, 255, 255);\">{ Software Developer; }</strong></h2>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "button-75f170c9-deed-4338-88df-4d42cfa158fe": {
+      "type": "button",
+      "data": {
+        "border": "none",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "0px",
+        "backgroundColor": "rgb(255, 195, 0)",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "fontColor": "#000000",
+        "text": "Github",
+        "gradientColor": [""],
+        "redirect": "github.com"
+      }
+    },
+    "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c": {
+      "type": "image",
+      "data": {
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "0px",
+        "imageUrl": "https://images.unsplash.com/photo-1581803118522-7b72a50f7e9f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyMjU5ODR8MHwxfHNlYXJjaHwzfHxtYW58ZW58MHx8fHwxNjIxOTM5NDU5&ixlib=rb-1.2.1&q=85"
+      }
+    },
+    "text-079e6ea0-d8fd-435c-ad85-98e369da767b": {
+      "type": "text",
+      "data": {
+        "text": "<h4>Backend Developer with 7 years experience.</h4><p><br></p><h4>I'm into traveling, photography, reading. Tech enthusiast, overthinker, and adventure seeker.</h4><p><br></p><h4>#GeekGang</h4><h4>📍 Location: Brasov, Romania</h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "button-3ce83c64-4940-41b0-89f5-e701adb2a48e": {
+      "type": "button",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "#292929",
+        "buttonText": "Send",
+        "inputPlaceholder": "eg: your@email.com",
+        "fontColor": "#ffffff",
+        "text": "Linkedin"
+      }
+    },
+    "text-c9d9edcf-12ca-4936-bdec-da773d37d091": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Javascript</strong></h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-792baa5b-c840-4341-a3d2-42e55955b23c": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Github</strong></h4><p><em style=\"color: rgb(96, 96, 96);\">open source projects</em></p>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Microservices</strong></h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-d45f54b6-8a25-4b02-b491-5149c28342a2": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Nodejs</strong></h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Docker</strong></h4>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-479c9c98-8a82-46ae-866b-743cd30045cb": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">jackob.com</strong></h4><p><em style=\"color: rgb(96, 96, 96);\">personal website</em></p>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Unsplash</strong></h4><p><em style=\"color: rgb(96, 96, 96);\">pictures portfolio</em></p>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "text-781b88c0-83cc-4902-af01-92accbef8bd8": {
+      "type": "text",
+      "data": {
+        "text": "<h4><strong style=\"color: rgb(255, 255, 255);\">Twitter</strong></h4><p><em style=\"color: rgb(96, 96, 96);\">contact me</em></p>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    }
+  },
+  "layouts": {
+    "inception-263bac39-183c-43af-bcb8-fbba1617a54a": {
+      "x": 0,
+      "y": 0,
+      "i": "inception-263bac39-183c-43af-bcb8-fbba1617a54a",
+      "w": 200,
+      "h": 114.44444444444446
+    },
+    "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392": {
+      "x": 0,
+      "y": 114.16666666666666,
+      "i": "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392",
+      "w": 200,
+      "h": 114.44444444444446
+    },
+    "inception-58937448-73b4-4371-b2d2-18ab665aa7bc": {
+      "x": 0,
+      "y": 228.19444444444443,
+      "i": "inception-58937448-73b4-4371-b2d2-18ab665aa7bc",
+      "w": 200,
+      "h": 86.11111111111111
+    },
+    "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1": {
+      "x": 16.388888888888886,
+      "y": 36.52777777777778,
+      "i": "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1",
+      "w": 97.63888888888889,
+      "h": 20.27777777777778
+    },
+    "button-75f170c9-deed-4338-88df-4d42cfa158fe": {
+      "x": 16.25,
+      "y": 64.72222222222223,
+      "i": "button-75f170c9-deed-4338-88df-4d42cfa158fe",
+      "w": 24.166666666666668,
+      "h": 6.666666666666667
+    },
+    "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c": {
+      "x": 19.02777777777778,
+      "y": 133.8888888888889,
+      "i": "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c",
+      "w": 52.22222222222222,
+      "h": 64.30555555555556
+    },
+    "text-079e6ea0-d8fd-435c-ad85-98e369da767b": {
+      "x": 86.80555555555556,
+      "y": 143.19444444444443,
+      "i": "text-079e6ea0-d8fd-435c-ad85-98e369da767b",
+      "w": 90.83333333333333,
+      "h": 30
+    },
+    "button-3ce83c64-4940-41b0-89f5-e701adb2a48e": {
+      "x": 86.94444444444444,
+      "y": 180.27777777777777,
+      "i": "button-3ce83c64-4940-41b0-89f5-e701adb2a48e",
+      "w": 20.13888888888889,
+      "h": 6.944444444444445
+    },
+    "text-c9d9edcf-12ca-4936-bdec-da773d37d091": {
+      "x": 12.63888888888889,
+      "y": 244.30555555555554,
+      "i": "text-c9d9edcf-12ca-4936-bdec-da773d37d091",
+      "w": 29.02777777777778,
+      "h": 5
+    },
+    "text-792baa5b-c840-4341-a3d2-42e55955b23c": {
+      "x": 160.55555555555554,
+      "y": 244.16666666666666,
+      "i": "text-792baa5b-c840-4341-a3d2-42e55955b23c",
+      "w": 29.02777777777778,
+      "h": 7.5
+    },
+    "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe": {
+      "x": 12.36111111111111,
+      "y": 258.47222222222223,
+      "i": "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe",
+      "w": 29.02777777777778,
+      "h": 5
+    },
+    "text-d45f54b6-8a25-4b02-b491-5149c28342a2": {
+      "x": 12.36111111111111,
+      "y": 271.5277777777778,
+      "i": "text-d45f54b6-8a25-4b02-b491-5149c28342a2",
+      "w": 29.02777777777778,
+      "h": 5
+    },
+    "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0": {
+      "x": 12.5,
+      "y": 285.8333333333333,
+      "i": "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0",
+      "w": 29.02777777777778,
+      "h": 5
+    },
+    "text-479c9c98-8a82-46ae-866b-743cd30045cb": {
+      "x": 160.69444444444443,
+      "y": 258.19444444444434,
+      "i": "text-479c9c98-8a82-46ae-866b-743cd30045cb",
+      "w": 29.02777777777778,
+      "h": 7.5
+    },
+    "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05": {
+      "x": 160.55555555555554,
+      "y": 271.94444444444446,
+      "i": "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05",
+      "w": 29.02777777777778,
+      "h": 7.5
+    },
+    "text-781b88c0-83cc-4902-af01-92accbef8bd8": {
+      "x": 160.69444444444443,
+      "y": 285.69444444444446,
+      "i": "text-781b88c0-83cc-4902-af01-92accbef8bd8",
+      "w": 29.02777777777778,
+      "h": 7.5
+    }
+  },
+  "mobileLayout": {
+    "inception-263bac39-183c-43af-bcb8-fbba1617a54a": {
+      "x": 0,
+      "y": 0,
+      "w": 100,
+      "h": 114.44444444444446,
+      "i": "inception-263bac39-183c-43af-bcb8-fbba1617a54a"
+    },
+    "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392": {
+      "x": 0,
+      "y": 114.16666666666666,
+      "i": "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392",
+      "w": 100,
+      "h": 154.71471471471472
+    },
+    "inception-58937448-73b4-4371-b2d2-18ab665aa7bc": {
+      "x": 0,
+      "y": 268.734984984985,
+      "w": 100,
+      "h": 86.11111111111111,
+      "i": "inception-58937448-73b4-4371-b2d2-18ab665aa7bc"
+    },
+    "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1": {
+      "x": 6.843093093093091,
+      "y": 18.960210210210214,
+      "w": 87.46809309309309,
+      "h": 60.54054054054054,
+      "i": "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1"
+    },
+    "button-75f170c9-deed-4338-88df-4d42cfa158fe": {
+      "x": 6.773648648648648,
+      "y": 88.77627627627629,
+      "w": 25.056306306306304,
+      "h": 10.72072072072072,
+      "i": "button-75f170c9-deed-4338-88df-4d42cfa158fe"
+    },
+    "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c": {
+      "x": 11.67605105105105,
+      "y": 211.996996996997,
+      "i": "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c",
+      "w": 76.38138138138137,
+      "h": 49.17042042042043
+    },
+    "text-079e6ea0-d8fd-435c-ad85-98e369da767b": {
+      "x": 3.502252252252247,
+      "y": 122.38363363363364,
+      "i": "text-079e6ea0-d8fd-435c-ad85-98e369da767b",
+      "w": 94.06531531531532,
+      "h": 60.54054054054054
+    },
+    "button-3ce83c64-4940-41b0-89f5-e701adb2a48e": {
+      "x": 3.742492492492494,
+      "y": 190.81831831831832,
+      "i": "button-3ce83c64-4940-41b0-89f5-e701adb2a48e",
+      "w": 24.66403903903904,
+      "h": 12.07957957957958
+    },
+    "text-c9d9edcf-12ca-4936-bdec-da773d37d091": {
+      "x": 6.319444444444445,
+      "y": 284.8460960960961,
+      "w": 31.270645645645644,
+      "h": 7.5675675675675675,
+      "i": "text-c9d9edcf-12ca-4936-bdec-da773d37d091"
+    },
+    "text-792baa5b-c840-4341-a3d2-42e55955b23c": {
+      "x": 65.4129129129129,
+      "y": 284.70720720720726,
+      "w": 29.919294294294296,
+      "h": 11.35135135135135,
+      "i": "text-792baa5b-c840-4341-a3d2-42e55955b23c"
+    },
+    "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe": {
+      "x": 6.180555555555555,
+      "y": 299.01276276276275,
+      "w": 39.10848348348348,
+      "h": 7.5675675675675675,
+      "i": "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe"
+    },
+    "text-d45f54b6-8a25-4b02-b491-5149c28342a2": {
+      "x": 6.180555555555555,
+      "y": 312.0683183183184,
+      "w": 28.29767267267267,
+      "h": 7.5675675675675675,
+      "i": "text-d45f54b6-8a25-4b02-b491-5149c28342a2"
+    },
+    "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0": {
+      "x": 6.25,
+      "y": 326.37387387387383,
+      "w": 29.378753753753756,
+      "h": 7.5675675675675675,
+      "i": "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0"
+    },
+    "text-479c9c98-8a82-46ae-866b-743cd30045cb": {
+      "x": 65.75262762762763,
+      "y": 299.00525525525524,
+      "w": 31.540915915915914,
+      "h": 11.35135135135135,
+      "i": "text-479c9c98-8a82-46ae-866b-743cd30045cb"
+    },
+    "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05": {
+      "x": 65.68318318318317,
+      "y": 313.29579579579587,
+      "w": 28.838213213213212,
+      "h": 11.35135135135135,
+      "i": "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05"
+    },
+    "text-781b88c0-83cc-4902-af01-92accbef8bd8": {
+      "x": 65.21208708708708,
+      "y": 326.5052552552553,
+      "w": 25.59496996996997,
+      "h": 11.35135135135135,
+      "i": "text-781b88c0-83cc-4902-af01-92accbef8bd8"
+    }
+  },
+  "hierarchy": {
+    "inception-263bac39-183c-43af-bcb8-fbba1617a54a": [
+      "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1",
+      "button-75f170c9-deed-4338-88df-4d42cfa158fe"
+    ],
+    "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392": [
+      "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c",
+      "text-079e6ea0-d8fd-435c-ad85-98e369da767b",
+      "button-3ce83c64-4940-41b0-89f5-e701adb2a48e"
+    ],
+    "inception-58937448-73b4-4371-b2d2-18ab665aa7bc": [
+      "text-c9d9edcf-12ca-4936-bdec-da773d37d091",
+      "text-792baa5b-c840-4341-a3d2-42e55955b23c",
+      "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe",
+      "text-d45f54b6-8a25-4b02-b491-5149c28342a2",
+      "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0",
+      "text-479c9c98-8a82-46ae-866b-743cd30045cb",
+      "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05",
+      "text-781b88c0-83cc-4902-af01-92accbef8bd8",
+      "image-01a08e09-42ab-4426-8ff4-df72f4a5c637"
+    ]
+  },
+  "mobileHierarchy": {
+    "inception-263bac39-183c-43af-bcb8-fbba1617a54a": [
+      "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1",
+      "button-75f170c9-deed-4338-88df-4d42cfa158fe"
+    ],
+    "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392": [
+      "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c",
+      "text-079e6ea0-d8fd-435c-ad85-98e369da767b",
+      "button-3ce83c64-4940-41b0-89f5-e701adb2a48e"
+    ],
+    "inception-58937448-73b4-4371-b2d2-18ab665aa7bc": [
+      "text-c9d9edcf-12ca-4936-bdec-da773d37d091",
+      "text-792baa5b-c840-4341-a3d2-42e55955b23c",
+      "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe",
+      "text-d45f54b6-8a25-4b02-b491-5149c28342a2",
+      "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0",
+      "text-479c9c98-8a82-46ae-866b-743cd30045cb",
+      "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05",
+      "text-781b88c0-83cc-4902-af01-92accbef8bd8",
+      "image-01a08e09-42ab-4426-8ff4-df72f4a5c637"
+    ]
+  },
+  "mobileEditedBlocks": [
+    "text-bb5d733c-cc2d-4ea1-9e9a-2bf3fea90af1",
+    "button-75f170c9-deed-4338-88df-4d42cfa158fe",
+    "inception-263bac39-183c-43af-bcb8-fbba1617a54a",
+    "text-079e6ea0-d8fd-435c-ad85-98e369da767b",
+    "inception-58937448-73b4-4371-b2d2-18ab665aa7bc",
+    "text-c9d9edcf-12ca-4936-bdec-da773d37d091",
+    "text-b9089802-a3bf-4c26-8bae-6159f8e2dafe",
+    "text-d45f54b6-8a25-4b02-b491-5149c28342a2",
+    "text-1acaa010-7aa6-46ab-939f-8d0de187b4f0",
+    "text-792baa5b-c840-4341-a3d2-42e55955b23c",
+    "text-479c9c98-8a82-46ae-866b-743cd30045cb",
+    "text-7015fe22-75ea-4bde-bd53-cd6fe02a0a05",
+    "text-781b88c0-83cc-4902-af01-92accbef8bd8",
+    "inception-2f024fe7-3ef4-4510-99be-fb4ed456b392",
+    "button-3ce83c64-4940-41b0-89f5-e701adb2a48e",
+    "image-ea012d98-25c0-4817-a6cf-5f0a88d4964c"
+  ]
+}
