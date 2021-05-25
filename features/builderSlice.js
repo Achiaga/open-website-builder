@@ -624,6 +624,7 @@ export const saveDataOnLocal = () => async (dispatch, getState) => {
   dispatch(setSaveStatus(null))
   setTimeout(() => {
     const builderData = getBuilderData(getState())
+    console.log(JSON.stringify(builderData))
     saveOnLocal(builderData)
   }, 0)
 }

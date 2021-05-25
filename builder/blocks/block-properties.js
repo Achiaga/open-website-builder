@@ -398,6 +398,7 @@ export const Properties = {
     borderRadius,
     boxShadow,
     imageSelector,
+    opacitySelector,
     backgroundColor,
     gradientColor,
     redirectInput,
