@@ -28,13 +28,13 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'portfolio-fullstack-developer-johndoe',
-    imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
+    id: 'tailwind-templates',
+    imageUrl: '/tailwind-templates.jpg',
     tags: [],
   },
   {
-    id: 'tailwind-templates',
-    imageUrl: '/tailwind-templates.jpg',
+    id: 'portfolio-product-designer-john',
+    imageUrl: '/portfolio-product-designer-john.jpg',
     tags: [],
   },
   {
@@ -43,8 +43,8 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'portfolio-product-designer-john',
-    imageUrl: '/portfolio-product-designer-john.jpg',
+    id: 'portfolio-fullstack-developer-johndoe',
+    imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
     tags: [],
   },
   {
