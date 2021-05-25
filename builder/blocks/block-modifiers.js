@@ -9,15 +9,15 @@ import { getBlockOffsets } from './block-positionn-helpers'
 import { BgIcon } from '../../assets/fontIcon'
 import ImageSelectorModal from './block-helpers/ImageSelectorModal'
 
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import { Box, Grid, Text } from '@chakra-ui/layout'
 import { Button } from '@chakra-ui/button'
 import { Input } from '@chakra-ui/input'
 import { useDisclosure } from '@chakra-ui/hooks'
-
-const Tooltip = dynamic(() =>
-  import('@chakra-ui/tooltip').then((mod) => mod.Tooltip)
-)
+import { Tooltip } from '@chakra-ui/tooltip'
+// const Tooltip = dynamic(() =>
+//   import('@chakra-ui/tooltip').then((mod) => mod.Tooltip)
+// )
 
 export const CustomToolTip = ({ label, children }) => {
   return (
