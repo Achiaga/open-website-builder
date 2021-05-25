@@ -29,7 +29,21 @@ export const PrevInception = (props) => {
           backgroundSize: 'cover',
           ...inceptionModifiers,
         }}
-      />
+      >
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#000000',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            opacity: props.opacity || 0,
+            overflow: 'hidden',
+            borderRadius: props.borderRadius,
+          }}
+        />
+      </div>
     </RedirectWrapper>
   )
 }
