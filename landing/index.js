@@ -14,6 +14,7 @@ import Footer from './footer'
 import { useEffect } from 'react'
 
 import Navbar from '../components/navbar'
+import { NextSeo } from 'next-seo'
 
 // const Navbar = dynamic(() => import('../components/navbar'))
 
@@ -22,7 +23,7 @@ const previewImage = 'https://www.antfolio.app/blogImgSmall2.png'
 const siteName = 'Antfolio'
 const pageTitle = 'Build Beautiful Websites Faster than ever!'
 const description =
-  'ntfolio is the fastest and easiest way to build beautiful websites with no-code. Have your blazing fast website live in minutes.'
+  'Antfolio is the fastest and easiest way to build beautiful websites with no-code. Have your blazing fast website live in minutes.'
 
 const LandingPage = () => {
   useEffect(() => {
@@ -31,28 +32,30 @@ const LandingPage = () => {
   }, [])
   return (
     <>
-      <Head>
-        <title>Antfolio - Build beautiful websites faster than ever!</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://www.antfolio.app" />
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" key="twcard" />
-        <meta name="twitter:creator" content={'@antfolio_app'} key="twhandle" />
-        <meta name="twitter:image" content={previewImage} key="twimage" />
-        <meta name="twitter:title" content={pageTitle} key="twtitle" />
-        <meta
-          name="twitter:description"
-          content={description}
-          key="twdescription"
-        />
-
-        {/* Open Graph */}
-        <meta property="og:url" content={currentURL} key="ogurl" />
-        <meta property="og:image" content={previewImage} key="ogimage" />
-        <meta property="og:site_name" content={siteName} key="ogsitename" />
-        <meta property="og:title" content={pageTitle} key="ogtitle" />
-        <meta property="og:description" content={description} key="ogdesc" />
-      </Head>
+      <NextSeo
+        title={pageTitle}
+        description={description}
+        canonical={currentURL}
+        openGraph={{
+          url: currentURL,
+          title: pageTitle,
+          description: description,
+          images: [
+            {
+              url: previewImage,
+              width: 1200,
+              height: 628,
+              alt: 'Antfolio social image',
+            },
+          ],
+          site_name: siteName,
+        }}
+        twitter={{
+          handle: '@antfolio_app',
+          site: siteName,
+          cardType: 'summary_large_image',
+        }}
+      />
       <Box
         minHeight="100vh"
         display="flex"

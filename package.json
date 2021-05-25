@@ -30,6 +30,7 @@
     "lodash.debounce": "^4.0.8",
     "mongodb": "^3.6.5",
     "next": "10.0.6",
+    "next-seo": "^4.24.0",
     "no-scroll": "^2.1.1",
     "quill-emoji": "^0.2.0",
     "re-position": "^0.7.0",
