@@ -19,7 +19,7 @@ import { NextSeo } from 'next-seo'
 // const Navbar = dynamic(() => import('../components/navbar'))
 
 const currentURL = 'https://www.antfolio.app'
-const previewImage = 'https://www.antfolio.app/blogImgSmall2.png'
+const previewImage = 'https://www.antfolio.app/social-image.png'
 const siteName = 'Antfolio'
 const pageTitle = 'Build Beautiful Websites Faster than ever!'
 const description =
