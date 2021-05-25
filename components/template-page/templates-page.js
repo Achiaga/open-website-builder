@@ -18,6 +18,11 @@ const TEMPLATES = [
     tags: [],
   },
   {
+    id: 'card-angelina',
+    imageUrl: '/card-angelina.jpg',
+    tags: [],
+  },
+  {
     id: 'courses-sketch-ninja-design',
     imageUrl: '/courses-sketch-ninja-design.jpg',
     tags: [],

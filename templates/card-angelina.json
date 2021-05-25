@@ -1,0 +1,679 @@
+{
+  "blocks": {
+    "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "backgroundColor": "transparent",
+        "imageUrl": "https://images.unsplash.com/photo-1548588627-f978862b85e1?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyMjU5ODR8MHwxfHNlYXJjaHwxfHxtb250YWlufGVufDB8fHx8MTYyMTkyOTc5NQ&ixlib=rb-1.2.1&q=85",
+        "opacity": "0.6",
+        "gradientColor": [""]
+      }
+    },
+    "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "inception-0586707e-1152-4a7a-a803-30d4be426294": {
+      "type": "inception",
+      "data": {
+        "border": "none",
+        "boxShadow": "none",
+        "borderRadius": "10px",
+        "backgroundColor": "#FFFFFF",
+        "gradientColor": ["#C38874", "#829db5"]
+      }
+    },
+    "image-5dccda91-44e2-4f6d-9776-d00cad027133": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "100%",
+        "imageUrl": "https://images.unsplash.com/photo-1517677129300-07b130802f46?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyMjU5ODR8MHwxfHNlYXJjaHw3fHxoYXBweSUyMHBlcnNvbnxlbnwwfHx8fDE2MjE5Mjk3OTE&ixlib=rb-1.2.1&q=85"
+      }
+    },
+    "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a": {
+      "type": "text",
+      "data": {
+        "text": "<h3 class=\"ql-align-center\"><strong style=\"color: rgb(255, 255, 255);\">Jack O'Neill</strong></h3><p class=\"ql-align-center\"><br></p><p class=\"ql-align-center\"><span style=\"color: rgb(255, 255, 255);\">Lorem ipsum dolor mauris cursus at ultrices, blandit magna tellus. Morbi mollis dui a neque luctus felis sed amet. Etiam consequat lorem ipsum dolor.</span></p>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "inception-d9128af5-19e1-4764-8979-242895b071a2": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "transparent",
+        "redirect": "https://twitter.com/antfolio_app"
+      }
+    },
+    "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>Twitter</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/twitter-dark.png"
+      }
+    },
+    "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "transparent",
+        "redirect": "https://antfolio.app"
+      }
+    },
+    "text-8b4fef26-00a2-4099-b080-b782c15c28d6": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>Website</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-27b25191-86ab-46d8-a27c-d37561ac6da6": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/rss.png"
+      }
+    },
+    "inception-bf330436-a827-456e-8795-79454870d866": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "transparent",
+        "redirect": "https://twitter.com/antfolio_app"
+      }
+    },
+    "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>Dribble</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/dribbble-dark.png"
+      }
+    },
+    "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "transparent",
+        "redirect": "https://twitter.com/antfolio_app"
+      }
+    },
+    "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>Discord</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-dba784e7-f07c-4d3e-9382-2436d551a822": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/discord-dark.png"
+      }
+    },
+    "inception-f74cd358-43ea-4dcd-9951-50552ce453d5": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "transparent",
+        "redirect": "https://www.linkedin.com/company/antfolio-app"
+      }
+    },
+    "text-151f39a9-2de4-4d7a-9783-5f4f07359747": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>Linkedin</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/linkedin-dark.png"
+      }
+    },
+    "inception-7387ab2f-0776-499b-93bf-68ba73a9999e": {
+      "type": "inception",
+      "data": {
+        "border": "1px solid #cdd3d8",
+        "boxShadow": "none",
+        "borderRadius": "100px",
+        "backgroundColor": "transparent",
+        "redirect": "https://www.youtube.com/channel/UCgBOJ-yayl77XIXvgm0hCzw"
+      }
+    },
+    "text-894b5741-bfd7-4849-8717-030bc48892ed": {
+      "type": "text",
+      "data": {
+        "text": "<h6><strong>Youtube</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    },
+    "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e": {
+      "type": "image",
+      "data": {
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "imageUrl": "https://antfolio.s3.amazonaws.com/youtube-dark.png"
+      }
+    },
+    "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1": {
+      "type": "text",
+      "data": {
+        "text": "<h6 class=\"ql-align-center\"><strong style=\"color: rgb(155, 154, 151);\">Made with love by Antfolio ❤️</strong></h6>",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "fontColor": "#000000"
+      }
+    }
+  },
+  "hierarchy": {
+    "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed": [
+      "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414"
+    ],
+    "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414": [
+      "inception-0586707e-1152-4a7a-a803-30d4be426294",
+      "inception-d9128af5-19e1-4764-8979-242895b071a2",
+      "inception-f608adad-e973-4404-ac13-a3818c230f3a",
+      "inception-7387ab2f-0776-499b-93bf-68ba73a9999e",
+      "inception-f74cd358-43ea-4dcd-9951-50552ce453d5",
+      "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98",
+      "inception-bf330436-a827-456e-8795-79454870d866",
+      "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561",
+      "inception-58041783-2a4f-470d-a68b-17da1e2881b2",
+      "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1"
+    ],
+    "inception-0586707e-1152-4a7a-a803-30d4be426294": [
+      "image-5dccda91-44e2-4f6d-9776-d00cad027133",
+      "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a"
+    ],
+    "inception-d9128af5-19e1-4764-8979-242895b071a2": [
+      "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b",
+      "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074"
+    ],
+    "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561": [
+      "text-8b4fef26-00a2-4099-b080-b782c15c28d6",
+      "image-27b25191-86ab-46d8-a27c-d37561ac6da6"
+    ],
+    "inception-bf330436-a827-456e-8795-79454870d866": [
+      "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621",
+      "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003"
+    ],
+    "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98": [
+      "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4",
+      "image-dba784e7-f07c-4d3e-9382-2436d551a822"
+    ],
+    "inception-f74cd358-43ea-4dcd-9951-50552ce453d5": [
+      "text-151f39a9-2de4-4d7a-9783-5f4f07359747",
+      "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540"
+    ],
+    "inception-7387ab2f-0776-499b-93bf-68ba73a9999e": [
+      "text-894b5741-bfd7-4849-8717-030bc48892ed",
+      "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e"
+    ]
+  },
+  "layouts": {
+    "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed": {
+      "x": 0,
+      "y": 0.1388888888888889,
+      "w": 200,
+      "h": 114.58333333333334,
+      "i": "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed"
+    },
+    "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414": {
+      "x": 67.91666666666667,
+      "y": 12.222222222222221,
+      "w": 64.02777777777777,
+      "h": 90.69444444444444,
+      "i": "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414"
+    },
+    "inception-0586707e-1152-4a7a-a803-30d4be426294": {
+      "x": 67.91666666666666,
+      "y": 12.36111111111111,
+      "w": 64.16666666666666,
+      "h": 49.58333333333333,
+      "i": "inception-0586707e-1152-4a7a-a803-30d4be426294"
+    },
+    "image-5dccda91-44e2-4f6d-9776-d00cad027133": {
+      "x": 90,
+      "y": 16.666666666666668,
+      "w": 20,
+      "h": 20,
+      "i": "image-5dccda91-44e2-4f6d-9776-d00cad027133"
+    },
+    "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a": {
+      "x": 74.86111111111111,
+      "y": 40,
+      "w": 50.416666666666664,
+      "h": 17.63888888888889,
+      "i": "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a"
+    },
+    "inception-d9128af5-19e1-4764-8979-242895b071a2": {
+      "x": 71.52777777777777,
+      "y": 64.16666666666666,
+      "w": 26.38888888888889,
+      "h": 5.972222222222222,
+      "i": "inception-d9128af5-19e1-4764-8979-242895b071a2"
+    },
+    "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b": {
+      "x": 74.72222222222221,
+      "y": 65.55555555555556,
+      "w": 10.555555555555555,
+      "h": 3.0555555555555554,
+      "i": "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b"
+    },
+    "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074": {
+      "x": 91.38888888888889,
+      "y": 65.69444444444443,
+      "w": 3.0555555555555554,
+      "h": 3.0555555555555554,
+      "i": "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074"
+    },
+    "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561": {
+      "x": 71.52777777777777,
+      "y": 73.19444444444444,
+      "w": 26.38888888888889,
+      "h": 5.972222222222222,
+      "i": "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561"
+    },
+    "text-8b4fef26-00a2-4099-b080-b782c15c28d6": {
+      "x": 74.72222222222221,
+      "y": 74.58333333333333,
+      "w": 11.38888888888889,
+      "h": 3.0555555555555554,
+      "i": "text-8b4fef26-00a2-4099-b080-b782c15c28d6"
+    },
+    "image-27b25191-86ab-46d8-a27c-d37561ac6da6": {
+      "x": 91.38888888888889,
+      "y": 74.7222222222222,
+      "w": 3.0555555555555554,
+      "h": 3.0555555555555554,
+      "i": "image-27b25191-86ab-46d8-a27c-d37561ac6da6"
+    },
+    "inception-bf330436-a827-456e-8795-79454870d866": {
+      "x": 71.66666666666667,
+      "y": 82.77777777777777,
+      "w": 26.38888888888889,
+      "h": 5.972222222222222,
+      "i": "inception-bf330436-a827-456e-8795-79454870d866"
+    },
+    "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621": {
+      "x": 74.86111111111111,
+      "y": 84.16666666666667,
+      "w": 10.555555555555555,
+      "h": 3.0555555555555554,
+      "i": "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621"
+    },
+    "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003": {
+      "x": 91.52777777777777,
+      "y": 84.30555555555554,
+      "w": 3.0555555555555554,
+      "h": 3.0555555555555554,
+      "i": "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003"
+    },
+    "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98": {
+      "x": 101.38888888888889,
+      "y": 82.77777777777777,
+      "w": 26.38888888888889,
+      "h": 5.972222222222222,
+      "i": "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98"
+    },
+    "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4": {
+      "x": 104.58333333333333,
+      "y": 84.16666666666667,
+      "w": 10.555555555555555,
+      "h": 3.0555555555555554,
+      "i": "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4"
+    },
+    "image-dba784e7-f07c-4d3e-9382-2436d551a822": {
+      "x": 121.25,
+      "y": 84.30555555555554,
+      "w": 3.0555555555555554,
+      "h": 3.0555555555555554,
+      "i": "image-dba784e7-f07c-4d3e-9382-2436d551a822"
+    },
+    "inception-f74cd358-43ea-4dcd-9951-50552ce453d5": {
+      "x": 101.38888888888889,
+      "y": 73.05555555555556,
+      "w": 26.38888888888889,
+      "h": 5.972222222222222,
+      "i": "inception-f74cd358-43ea-4dcd-9951-50552ce453d5"
+    },
+    "text-151f39a9-2de4-4d7a-9783-5f4f07359747": {
+      "x": 104.58333333333333,
+      "y": 74.44444444444444,
+      "w": 10.972222222222221,
+      "h": 3.0555555555555554,
+      "i": "text-151f39a9-2de4-4d7a-9783-5f4f07359747"
+    },
+    "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540": {
+      "x": 121.25,
+      "y": 74.58333333333331,
+      "w": 3.0555555555555554,
+      "h": 3.0555555555555554,
+      "i": "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540"
+    },
+    "inception-7387ab2f-0776-499b-93bf-68ba73a9999e": {
+      "x": 101.11111111111111,
+      "y": 64.16666666666666,
+      "w": 26.38888888888889,
+      "h": 5.972222222222222,
+      "i": "inception-7387ab2f-0776-499b-93bf-68ba73a9999e"
+    },
+    "text-894b5741-bfd7-4849-8717-030bc48892ed": {
+      "x": 104.30555555555556,
+      "y": 65.55555555555556,
+      "w": 10.555555555555555,
+      "h": 3.0555555555555554,
+      "i": "text-894b5741-bfd7-4849-8717-030bc48892ed"
+    },
+    "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e": {
+      "x": 120.97222222222221,
+      "y": 65.69444444444444,
+      "w": 3.0555555555555554,
+      "h": 3.0555555555555554,
+      "i": "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e"
+    },
+    "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1": {
+      "x": 82.63888888888889,
+      "y": 96.80555555555556,
+      "w": 34.86111111111111,
+      "h": 3.0555555555555554,
+      "i": "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1"
+    }
+  },
+  "mobileLayout": {
+    "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed": {
+      "x": 0,
+      "y": 0,
+      "w": 100,
+      "h": 185.1238738738739,
+      "i": "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed"
+    },
+    "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414": {
+      "x": 15.579954954954957,
+      "y": 22.894144144144143,
+      "w": 69.0409159159159,
+      "h": 146.6403903903904,
+      "i": "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414"
+    },
+    "inception-0586707e-1152-4a7a-a803-30d4be426294": {
+      "x": 15.309684684684687,
+      "y": 9.921171171171169,
+      "w": 69.38063063063063,
+      "h": 60.123873873873876,
+      "i": "inception-0586707e-1152-4a7a-a803-30d4be426294"
+    },
+    "image-5dccda91-44e2-4f6d-9776-d00cad027133": {
+      "x": 40.13513513513515,
+      "y": 13.145645645645645,
+      "w": 20.27027027027027,
+      "h": 20.27027027027027,
+      "i": "image-5dccda91-44e2-4f6d-9776-d00cad027133"
+    },
+    "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a": {
+      "x": 21.214339339339343,
+      "y": 35.66816816816815,
+      "w": 57.91103603603604,
+      "h": 30.27027027027027,
+      "i": "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a"
+    },
+    "inception-d9128af5-19e1-4764-8979-242895b071a2": {
+      "x": 21.439564564564563,
+      "y": 74.83858858858864,
+      "w": 56.978228228228225,
+      "h": 9.485735735735737,
+      "i": "inception-d9128af5-19e1-4764-8979-242895b071a2"
+    },
+    "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b": {
+      "x": 28.712462462462465,
+      "y": 77.0382882882883,
+      "w": 14.466966966966966,
+      "h": 4.594594594594595,
+      "i": "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b"
+    },
+    "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074": {
+      "x": 67.31606606606604,
+      "y": 77.17717717717716,
+      "w": 4.771021021021021,
+      "h": 4.9474474474474475,
+      "i": "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074"
+    },
+    "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561": {
+      "x": 21.980105105105103,
+      "y": 100.8933933933934,
+      "w": 56.978228228228225,
+      "h": 8.134384384384385,
+      "i": "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561"
+    },
+    "text-8b4fef26-00a2-4099-b080-b782c15c28d6": {
+      "x": 28.982732732732735,
+      "y": 102.55255255255256,
+      "w": 16.35885885885886,
+      "h": 4.594594594594595,
+      "i": "text-8b4fef26-00a2-4099-b080-b782c15c28d6"
+    },
+    "image-27b25191-86ab-46d8-a27c-d37561ac6da6": {
+      "x": 67.04579579579581,
+      "y": 102.42117117117114,
+      "w": 4.771021021021021,
+      "h": 4.9474474474474475,
+      "i": "image-27b25191-86ab-46d8-a27c-d37561ac6da6"
+    },
+    "inception-bf330436-a827-456e-8795-79454870d866": {
+      "x": 21.509009009009013,
+      "y": 114.26051051051051,
+      "w": 58.059309309309306,
+      "h": 8.674924924924925,
+      "i": "inception-bf330436-a827-456e-8795-79454870d866"
+    },
+    "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621": {
+      "x": 29.322447447447438,
+      "y": 116.18993993993993,
+      "w": 15.818318318318315,
+      "h": 4.594594594594595,
+      "i": "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621"
+    },
+    "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003": {
+      "x": 67.11524024024025,
+      "y": 116.3288288288288,
+      "w": 4.771021021021021,
+      "h": 4.9474474474474475,
+      "i": "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003"
+    },
+    "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98": {
+      "x": 21.50525525525528,
+      "y": 141.82807807807808,
+      "w": 56.978228228228225,
+      "h": 8.134384384384385,
+      "i": "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98"
+    },
+    "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4": {
+      "x": 28.50788288288288,
+      "y": 143.48723723723734,
+      "w": 20.412912912912915,
+      "h": 4.594594594594595,
+      "i": "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4"
+    },
+    "image-dba784e7-f07c-4d3e-9382-2436d551a822": {
+      "x": 67.11148648648647,
+      "y": 143.62612612612614,
+      "w": 4.771021021021021,
+      "h": 4.9474474474474475,
+      "i": "image-dba784e7-f07c-4d3e-9382-2436d551a822"
+    },
+    "inception-f74cd358-43ea-4dcd-9951-50552ce453d5": {
+      "x": 21.234984984985008,
+      "y": 127.78153153153153,
+      "w": 57.518768768768766,
+      "h": 9.215465465465465,
+      "i": "inception-f74cd358-43ea-4dcd-9951-50552ce453d5"
+    },
+    "text-151f39a9-2de4-4d7a-9783-5f4f07359747": {
+      "x": 28.77815315315315,
+      "y": 129.98123123123122,
+      "w": 17.980480480480477,
+      "h": 4.594594594594595,
+      "i": "text-151f39a9-2de4-4d7a-9783-5f4f07359747"
+    },
+    "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540": {
+      "x": 67.11148648648647,
+      "y": 129.84984984984987,
+      "w": 4.771021021021021,
+      "h": 4.947447447447447,
+      "i": "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540"
+    },
+    "inception-7387ab2f-0776-499b-93bf-68ba73a9999e": {
+      "x": 21.97635135135134,
+      "y": 89.1629129129129,
+      "w": 56.978228228228225,
+      "h": 8.404654654654655,
+      "i": "inception-7387ab2f-0776-499b-93bf-68ba73a9999e"
+    },
+    "text-894b5741-bfd7-4849-8717-030bc48892ed": {
+      "x": 28.708708708708716,
+      "y": 91.09234234234233,
+      "w": 15.818318318318319,
+      "h": 4.594594594594595,
+      "i": "text-894b5741-bfd7-4849-8717-030bc48892ed"
+    },
+    "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e": {
+      "x": 67.04204204204203,
+      "y": 90.96096096096095,
+      "w": 4.771021021021021,
+      "h": 4.9474474474474475,
+      "i": "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e"
+    },
+    "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1": {
+      "x": 14.832957957957984,
+      "y": 159.63963963963963,
+      "w": 70.13325825825825,
+      "h": 4.594594594594595,
+      "i": "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1"
+    }
+  },
+  "mobileHierarchy": {
+    "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed": [
+      "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414"
+    ],
+    "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414": [
+      "inception-0586707e-1152-4a7a-a803-30d4be426294",
+      "inception-d9128af5-19e1-4764-8979-242895b071a2",
+      "inception-f608adad-e973-4404-ac13-a3818c230f3a",
+      "inception-7387ab2f-0776-499b-93bf-68ba73a9999e",
+      "inception-f74cd358-43ea-4dcd-9951-50552ce453d5",
+      "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98",
+      "inception-bf330436-a827-456e-8795-79454870d866",
+      "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561",
+      "inception-58041783-2a4f-470d-a68b-17da1e2881b2",
+      "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1"
+    ],
+    "inception-0586707e-1152-4a7a-a803-30d4be426294": [
+      "image-5dccda91-44e2-4f6d-9776-d00cad027133",
+      "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a"
+    ],
+    "inception-d9128af5-19e1-4764-8979-242895b071a2": [
+      "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b",
+      "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074"
+    ],
+    "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561": [
+      "text-8b4fef26-00a2-4099-b080-b782c15c28d6",
+      "image-27b25191-86ab-46d8-a27c-d37561ac6da6"
+    ],
+    "inception-bf330436-a827-456e-8795-79454870d866": [
+      "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621",
+      "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003"
+    ],
+    "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98": [
+      "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4",
+      "image-dba784e7-f07c-4d3e-9382-2436d551a822"
+    ],
+    "inception-f74cd358-43ea-4dcd-9951-50552ce453d5": [
+      "text-151f39a9-2de4-4d7a-9783-5f4f07359747",
+      "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540"
+    ],
+    "inception-7387ab2f-0776-499b-93bf-68ba73a9999e": [
+      "text-894b5741-bfd7-4849-8717-030bc48892ed",
+      "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e"
+    ]
+  },
+  "mobileEditedBlocks": [
+    "inception-27a962f0-128c-4ef2-bfe3-268b5aeef414",
+    "inception-0586707e-1152-4a7a-a803-30d4be426294",
+    "inception-328b25bb-8b2f-4048-85a9-a5778b01ceed",
+    "image-5dccda91-44e2-4f6d-9776-d00cad027133",
+    "text-a4ac5aa0-3184-4fcd-a5bb-d12a09479c0a",
+    "text-36bbe6f4-8e2f-4a0e-8fca-005718bfc6c1",
+    "inception-2c29fab0-2d99-445b-8500-4c8ab5e0ff98",
+    "image-dba784e7-f07c-4d3e-9382-2436d551a822",
+    "text-32c095ec-c59a-4814-ac28-c9214b9dc5f4",
+    "inception-f74cd358-43ea-4dcd-9951-50552ce453d5",
+    "inception-bf330436-a827-456e-8795-79454870d866",
+    "inception-47fe74fd-89ec-4f68-ba97-c5dbe9fb8561",
+    "inception-7387ab2f-0776-499b-93bf-68ba73a9999e",
+    "inception-d9128af5-19e1-4764-8979-242895b071a2",
+    "image-9b8f8b84-573a-4165-9919-b2f0ddfb4540",
+    "image-5d6fd7cf-0cd3-471b-bd38-68366dbee003",
+    "image-27b25191-86ab-46d8-a27c-d37561ac6da6",
+    "image-3eacee32-0d6f-4ac4-a7c9-ef9be9ef1c7e",
+    "image-bae26f43-2a4b-46ca-82ef-bb5aeb898074",
+    "text-4f675262-95a8-4f1d-bb33-f6d5513d1e5b",
+    "text-894b5741-bfd7-4849-8717-030bc48892ed",
+    "text-8b4fef26-00a2-4099-b080-b782c15c28d6",
+    "text-01ffa0cf-0c26-4e7b-afd6-6b19c9ba5621",
+    "text-151f39a9-2de4-4d7a-9783-5f4f07359747"
+  ]
+}
