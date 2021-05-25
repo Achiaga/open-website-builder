@@ -37,6 +37,7 @@ const LandingPage = () => {
         description={description}
         canonical={currentURL}
         openGraph={{
+          type: 'website',
           url: currentURL,
           title: pageTitle,
           description: description,
