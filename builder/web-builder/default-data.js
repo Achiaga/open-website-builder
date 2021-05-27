@@ -23,8 +23,17 @@ export const blocksProperties = {
     boxShadow: 'none',
     borderRadius: '0px',
     backgroundColor: '#000000',
-    buttonText: 'Send',
+    text: 'Button',
     inputPlaceholder: 'eg: your@email.com',
+    fontColor: '#ffffff',
+  },
+  'button-flurly': {
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0px',
+    backgroundColor: '#39b2ab',
+    text: 'Buy $9.0',
+    inputPlaceholder: 'eg: Buy $9.0',
     fontColor: '#ffffff',
   },
   form: {

@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/layout'
-import { Text } from '@chakra-ui/react'
 
 const SidebarTab = ({ tabIndex, index, label, pro = false, onClick }) => {
   return (

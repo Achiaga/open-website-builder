@@ -67,7 +67,8 @@ export const builderSlice = createSlice({
       state.user.projectId = action.payload
     },
     setNewDropBlockType: (state, action) => {
-      state.newBlock.type = action.payload
+      state.newBlock.type = action.payload.type
+      state.newBlock.subType = action.payload.subType
     },
     setNewDropBlock: (state, action) => {
       state.newBlock.type = action.payload.type
@@ -370,7 +371,11 @@ export const addNewBlock = (blockLayout) => (dispatch, getState) => {
   const state = getState()
   const newLayout = getLayout(state)
   const hierarchy = getHierarchy(state)
-  const newBlockData = addBlock(blockLayout.i, getNewBlockType(state))
+  const newBlockData = addBlock(
+    blockLayout.i,
+    getNewBlockType(state),
+    getNewBlockSubType(state)
+  )
   const newParent = getParentBlock(newLayout, blockLayout, hierarchy)
   batch(() => {
     dispatch(setAddedBlock({ blockID: blockLayout.i, newBlockData }))
@@ -378,7 +383,7 @@ export const addNewBlock = (blockLayout) => (dispatch, getState) => {
     if (newParent) {
       dispatch(addNewHierachyItem(blockLayout.i, newParent.i))
     }
-    dispatch(setNewDropBlock({ type: null }))
+    dispatch(setNewDropBlock({ type: null, subType: null }))
   })
   dispatch(saveDataOnLocal())
 }
@@ -723,6 +728,7 @@ export const getIsMobileBuilder = (state) => state.builder?.device === 'mobile'
 
 export const getNewBlock = (state) => state.builder.newBlock
 export const getNewBlockType = (state) => state.builder.newBlock.type
+export const getNewBlockSubType = (state) => state.builder.newBlock.subType
 export const getSelectedBlockId = (state) => state.builder.selectedBlockId
 export const getResizingBlock = (state) => state.builder.resizingBlockId
 export const getDraggingBlock = (state) => state.builder.draggingBlock

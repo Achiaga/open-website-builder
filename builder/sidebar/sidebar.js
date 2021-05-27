@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Box, Grid, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { GrAdd, GrClose } from 'react-icons/gr'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,8 +12,10 @@ import MediaIcon from '../../assets/media-icon'
 import SectionIcon from '../../assets/section-icon'
 // import FormIcon from '../../assets/form-icon'
 import ButtonIcon from '../../assets/button-icon'
+import FlurflyIcon from '../../assets/flurly-button'
+import { Box, Grid, Text } from '@chakra-ui/layout'
 
-const ToolSection = ({ Icon, text, type, ...props }) => {
+const ToolSection = ({ Icon, text, type, subType, ...props }) => {
   const dispatch = useDispatch()
 
   return (
@@ -39,7 +40,7 @@ const ToolSection = ({ Icon, text, type, ...props }) => {
         opacity="0.999"
         onDragStart={(e) => {
           e.dataTransfer.setData('text/plain', 'safe')
-          dispatch(setNewDropBlockType(type))
+          dispatch(setNewDropBlockType({ type, subType }))
         }}
         textAlign="center"
         color="#666f7a"
@@ -179,6 +180,12 @@ const BuilderSidebar = () => {
         <ToolSection Icon={SectionIcon} text="Section" type="inception" />
         {/* <ToolSection Icon={FormIcon} text="Form" type="form" /> */}
         <ToolSection Icon={ButtonIcon} text="Button" type="button" />
+        <ToolSection
+          Icon={FlurflyIcon}
+          text="Flurly"
+          type="button"
+          subType="flurly"
+        />
       </Grid>
     </Box>
   )
