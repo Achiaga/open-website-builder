@@ -1,7 +1,6 @@
 import { Box } from '@chakra-ui/layout'
-import { Portal } from '@chakra-ui/portal'
 
-const VerticalAlignment = ({ closestItem, draggingBlockPos, builderRef }) => {
+const VerticalAlignment = ({ closestItem, draggingBlockPos }) => {
   const { right, left } = closestItem
   const topBlock =
     closestItem.y < draggingBlockPos.y ? closestItem : draggingBlockPos
@@ -9,7 +8,7 @@ const VerticalAlignment = ({ closestItem, draggingBlockPos, builderRef }) => {
     closestItem.y < draggingBlockPos.y ? draggingBlockPos : closestItem
   const heights = Math.abs(lowBlock.y - topBlock.y + lowBlock.h)
   return (
-    <Portal id="main-builder" containerRef={builderRef}>
+    <>
       {left && (
         <Box
           pos="absolute"
@@ -40,7 +39,7 @@ const VerticalAlignment = ({ closestItem, draggingBlockPos, builderRef }) => {
           flexDir="column"
         />
       )}
-    </Portal>
+    </>
   )
 }
 

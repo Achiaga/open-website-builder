@@ -1,5 +1,3 @@
-import Head from 'next/head'
-
 import { Box } from '@chakra-ui/layout'
 
 import { initLiveChatScript, initGoogleAnalytics } from '../utils/analytics'

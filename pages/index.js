@@ -28,6 +28,7 @@ export default function Home({ websiteData, subdomain }) {
 }
 
 export async function getServerSideProps(context) {
+  // eslint-disable-next-line no-undef
   const isLocal = process.env.NODE_ENV === 'development'
 
   const host = context.req.headers.host

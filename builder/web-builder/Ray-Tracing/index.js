@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
 import CenterAlignmentRay from './center-aligment-ray'
 import VerticalAlignment from './vertical-alignment'
-import LeftRay from './left-ray'
+import HorizontalRay from './left-ray'
 
 function isBlockOnRow(staticBlockY, draggingBlock, staticBlockHeight) {
   return (
@@ -203,7 +203,149 @@ function getClosestElement(
   return null
 }
 
+// ************************* SECOND EXPERIMENT ****************************
+function getGridPos2({ x, w, h, y }, gridColumnWidth, gridRowHeight) {
+  const sx = x * gridColumnWidth
+  const sy = y * gridRowHeight
+  const sw = w * gridColumnWidth
+  const sh = h * gridRowHeight
+  return { x: sx, y: sy, w: sw, h: sh }
+}
+
+function isBlockHorizontal(staticBlock, draggingBlock) {
+  if (
+    staticBlock.y <= draggingBlock.y + 10 &&
+    staticBlock.y + staticBlock.h >= draggingBlock.y - 10
+  )
+    return true
+}
+
+function getHorizontalElement(
+  layout,
+  draggingBlock,
+  gridColumnWidth,
+  gridRowHeight
+) {
+  const copyLayout = { ...layout }
+  delete copyLayout[draggingBlock.i]
+
+  const horizontalBlocks = []
+  for (const block in copyLayout) {
+    const staticBlockPos = getGridPos2(
+      layout[block],
+      gridColumnWidth,
+      gridRowHeight
+    )
+    const isHoz = isBlockHorizontal(staticBlockPos, draggingBlock)
+    if (isHoz) horizontalBlocks.push(staticBlockPos)
+  }
+
+  return horizontalBlocks
+}
+
+const RayToBlock = ({ origin, dest }) => {
+  const leftDist = origin.x + origin.w
+  const width = dest.x - origin.x - origin.w
+  return (
+    <Box
+      zIndex="9999"
+      bg="green.500"
+      pos="absolute"
+      top={`${origin.y}px`}
+      left={`${leftDist}px`}
+      width={`${width}px`}
+      h="2px"
+    >
+      <Box d="flex" justifyContent="space-between" color="red">
+        <Box as="span" lineHeight="0">
+          X
+        </Box>
+        <Box as="span" lineHeight="0">
+          X
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+
+function orderBlocksLeftToRight(blockList) {
+  return blockList.sort((a, b) => a.x - b.x)
+}
+
+function getSameDistance(orderedBlocks) {
+  let distances = []
+  for (let i = 0; i < orderedBlocks.length; i++) {
+    const actualBlock = orderedBlocks[i]
+    const nextBlock = orderedBlocks[i + 1]
+    if (!nextBlock) return
+    const distance = Math.abs(nextBlock.x - actualBlock.x + actualBlock.w)
+    distances.push(distance)
+  }
+  return distances
+}
+
 export const RayTracing = ({
+  gridColumnWidth,
+  blockPostRef,
+  blockId,
+  isDragging,
+  builderRef,
+}) => {
+  const draggingBlockPos = blockPostRef || {}
+  const layouts = useSelector(getLayout)
+  const gridRowHeight = useSelector(getGridRowHeight)
+
+  const draggingBlock = {
+    i: blockId,
+    x: draggingBlockPos.x,
+    y: draggingBlockPos.y,
+    w: draggingBlockPos.w,
+    h: draggingBlockPos.h,
+  }
+  const horizontalBlocks = getHorizontalElement(
+    layouts,
+    draggingBlock,
+    gridColumnWidth,
+    gridRowHeight
+  )
+  const blockList = [...horizontalBlocks, draggingBlock]
+  const orderedBlocks = orderBlocksLeftToRight(blockList)
+  const distances = getSameDistance(orderedBlocks)
+  const test2 = {
+    i: 'image-a5f5b5a7-8cd3-43d8-8185-29648c21861a',
+    x: 615,
+    y: 553,
+    w: 206,
+    h: 117,
+  }
+  const test = [
+    { x: 131, y: 568, w: 263.99999999999994, h: 98.00000000000006 },
+    { x: 1107.9999999999998, y: 572, w: 192, h: 84 },
+  ]
+  console.log({ distances })
+  return (
+    <Portal id="main-builder" containerRef={builderRef}>
+      <Box
+        pos="absolute"
+        left="50%"
+        transform="translate(-50%,0)"
+        top="0"
+        zIndex="9999"
+        bg="green.500"
+        width="1px"
+        h="100%"
+      />
+      {horizontalBlocks.map((block, index) => {
+        const { origin, dest } =
+          draggingBlock.x > block.x
+            ? { origin: block, dest: draggingBlock }
+            : { dest: block, origin: draggingBlock }
+        return <RayToBlock origin={origin} dest={dest} key={index} />
+      })}
+    </Portal>
+  )
+}
+export const RayTracing2 = ({
   width,
   gridColumnWidth,
   blockPostRef,
@@ -235,7 +377,7 @@ export const RayTracing = ({
   if (!closestItem) return null
 
   return (
-    <>
+    <Portal id="main-builder" containerRef={builderRef}>
       {(closestItem.left || closestItem.right) && (
         <VerticalAlignment
           closestItem={closestItem}
@@ -251,24 +393,22 @@ export const RayTracing = ({
         />
       )}
       {isMidScreen && (
-        <Portal id="main-builder" containerRef={builderRef}>
-          <Box
-            pos="absolute"
-            left="50%"
-            transform="translate(-50%,0)"
-            top="0"
-            zIndex="9999"
-            bg="green.500"
-            width="1px"
-            h="100%"
-          />
-        </Portal>
+        <Box
+          pos="absolute"
+          left="50%"
+          transform="translate(-50%,0)"
+          top="0"
+          zIndex="9999"
+          bg="green.500"
+          width="1px"
+          h="100%"
+        />
       )}
-      <LeftRay
+      <HorizontalRay
         closestItem={closestItem}
         draggingBlockPos={draggingBlockPos}
         containerRef={builderRef}
       />
-    </>
+    </Portal>
   )
 }
