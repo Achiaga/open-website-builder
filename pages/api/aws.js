@@ -150,6 +150,9 @@ function replaceSpecialChars(cipherText) {
   return cipherText
     .toString()
     .replace(/\+/g, '')
+    .replace(/\(/g, '')
+    .replace(/\)/g, '')
+    .replace(/\./g, '')
     .replace(/\//g, '')
     .replace(/=/g, '')
     .replace(/\s/g, '')
