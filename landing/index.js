@@ -14,16 +14,8 @@ import Footer from './footer'
 import { useEffect } from 'react'
 
 import Navbar from '../components/navbar'
-import { NextSeo } from 'next-seo'
 
 // const Navbar = dynamic(() => import('../components/navbar'))
-
-const currentURL = 'https://www.antfolio.app'
-const previewImage = 'https://www.antfolio.app/social-image.png'
-const siteName = 'Antfolio'
-const pageTitle = 'Build Beautiful Websites Faster than ever!'
-const description =
-  'Antfolio is the fastest and easiest way to build beautiful websites with no-code. Have your blazing fast website live in minutes.'
 
 const LandingPage = () => {
   useEffect(() => {
@@ -32,31 +24,6 @@ const LandingPage = () => {
   }, [])
   return (
     <>
-      <NextSeo
-        title={pageTitle}
-        description={description}
-        canonical={currentURL}
-        openGraph={{
-          type: 'website',
-          url: currentURL,
-          title: pageTitle,
-          description: description,
-          images: [
-            {
-              url: previewImage,
-              width: 1200,
-              height: 628,
-              alt: 'Antfolio social image',
-            },
-          ],
-          site_name: siteName,
-        }}
-        twitter={{
-          handle: '@antfolio_app',
-          site: siteName,
-          cardType: 'summary_large_image',
-        }}
-      />
       <Box
         minHeight="100vh"
         display="flex"

@@ -10,7 +10,10 @@ const Blog = ({ slug }) => {
 }
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { slug: 'guides-custom-domain' } }],
+    paths: [
+      { params: { slug: 'guides-custom-domain' } },
+      { params: { slug: 'guides-integration-flurly' } },
+    ],
     fallback: false,
   }
 }

@@ -266,6 +266,11 @@ const backgroundColor = {
       icon: <BgIcon bgColor="#1f441e" />,
     },
     {
+      value: '#39b2ab',
+      title: 'green2',
+      icon: <BgIcon bgColor="#39b2ab" />,
+    },
+    {
       value: '#4CB0EA',
       title: 'blue',
       icon: <BgIcon bgColor="#4CB0EA" />,
