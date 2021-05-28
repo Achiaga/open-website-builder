@@ -161,9 +161,8 @@ const BlogPage = () => {
             />
             <ArticleCard
               title="Add a 'contact me' form"
-              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
-              redirectUrl="/guides"
-              description="Cooming Soon"
+              imageUrl="https://antfolio.s3.amazonaws.com/user-images/e6f761a37bd62b029d70673be85d3ca4/thumbnail-flury-integration.png"
+              redirectUrl="/guides/guides-integration-flurly"
               imgWidth="70%"
               bg="white"
             />
