@@ -131,19 +131,16 @@ async function uploadWebsiteFiles(req, res, s3) {
   const simpleBucketName = domain
   const value = await checkBucketExists(s3, fullBucketName)
   if (value) {
-    const uploadedWebsite = await uploadWebsiteToS3(s3, fullBucketName, html)
+    await uploadWebsiteToS3(s3, fullBucketName, html)
     return respondAPIQuery(res, 'Website updated Successfully', 200)
   }
   if (!value) {
-    const newBucket = await createBucket(s3, fullBucketName)
-    const newSimpleBucket = await createBucket(s3, simpleBucketName)
-    const uploadedWebsite = await uploadWebsiteToS3(s3, fullBucketName)
-    const policy = await setPolicy(s3, fullBucketName)
-    const hosting = await makeWebsiteHosting(s3, fullBucketName)
-    const redirectHosting = await makeWebsiteRedirectHosting(
-      s3,
-      simpleBucketName
-    )
+    await createBucket(s3, fullBucketName)
+    await createBucket(s3, simpleBucketName)
+    await uploadWebsiteToS3(s3, fullBucketName)
+    await setPolicy(s3, fullBucketName)
+    await makeWebsiteHosting(s3, fullBucketName)
+    await makeWebsiteRedirectHosting(s3, simpleBucketName)
   }
 
   respondAPIQuery(res, 'Website published Successfully', 200)
@@ -152,24 +149,23 @@ async function uploadWebsiteFiles(req, res, s3) {
 function replaceSpecialChars(cipherText) {
   return cipherText
     .toString()
-    .replace(/\+/g, 'p1L2u3S')
-    .replace(/\//g, 's1L2a3S4h')
-    .replace(/=/g, 'e1Q2u3A4l')
+    .replace(/\+/g, '')
+    .replace(/\//g, '')
+    .replace(/=/g, '')
     .replace(/\s/g, '')
 }
 
 async function uploadImageToS3(req, res, s3) {
   const { file, name, type, userId } = req.body
+  // eslint-disable-next-line no-undef
   const buf = Buffer.from(
     file.replace(/^data:image\/\w+;base64,/, ''),
     'base64'
   )
-  const encryptedUserId = CryptoJS.AES.encrypt(userId, 'Secret Passphrase')
-  const fileName = `${replaceSpecialChars(
-    encryptedUserId
-  )}/${replaceSpecialChars(name)}`
+  const encryptedUserId = CryptoJS.MD5(userId)
+  const fileName = `${encryptedUserId}/${replaceSpecialChars(name)}`
   try {
-    const value = await s3
+    await s3
       .putObject({
         Bucket: 'antfolio',
         Key: `user-images/${fileName}`,

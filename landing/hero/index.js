@@ -80,7 +80,7 @@ const Hero = () => {
             </svg>
           </Box>
           <Box>
-            <Link href="/templates" prefetch>
+            <Link href="/templates">
               <a>
                 <Button
                   fontSize="2xl"
