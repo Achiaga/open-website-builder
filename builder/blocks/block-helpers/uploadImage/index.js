@@ -73,7 +73,7 @@ export const UploadImage = ({ onSelect }) => {
         <FilePond
           allowMultiple={true}
           maxFiles={1}
-          server="/api"
+          server="/api/empty"
           labelIdle='Drag & Drop your file or <span class="filepond--label-action">Browse</span>'
         />
       </Box>

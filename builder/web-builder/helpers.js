@@ -4,11 +4,16 @@ import { findAllChildren } from '../../features/builderSlice'
 import { blocksProperties } from './default-data'
 // Block Factory *********************************
 
-export function addBlock(newId, blockType) {
+function getBlockPropertiesKey(blockType, blockSubType) {
+  if (blockSubType) return `${blockType}-${blockSubType}`
+  return blockType
+}
+
+export function addBlock(newId, blockType, blockSubType) {
   return {
     type: blockType,
     data: {
-      ...blocksProperties[blockType],
+      ...blocksProperties[getBlockPropertiesKey(blockType, blockSubType)],
     },
   }
 }
