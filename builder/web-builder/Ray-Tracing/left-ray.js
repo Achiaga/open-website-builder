@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/layout'
 const LeftRay = ({ closestItem, draggingBlockPos }) => {
   const width = Math.abs(closestItem.diff)
   const leftPos = closestItem.right ? draggingBlockPos.w : -closestItem.diff
-  // console.log({ leftPos, closestItem })
+
   return (
     <Box
       pos="absolute"
