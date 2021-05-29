@@ -61,6 +61,7 @@ const DraggableItem = ({
   builderRef,
 }) => {
   const [resizeValues, setResizeValues] = useState(null)
+  const layouts = useSelector(getLayout)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
@@ -87,7 +88,7 @@ const DraggableItem = ({
     dispatch(handleResizeStop(delta, blockId, blockType))
     setResizeValues(null)
   }
-
+  console.log('blockId', blockId, layouts)
   function handleResize(_, __, elRef) {
     const { width, height } = elRef.getBoundingClientRect()
     setResizeValues({ width: Math.round(width), height: Math.round(height) })
@@ -109,7 +110,6 @@ const DraggableItem = ({
       i: blockId,
     }
     handleHiglightSection(newBlockLayout)
-
     if (blockId.includes('inception')) {
       dispatch(
         handleDrag(
@@ -323,7 +323,7 @@ const WebBuilder = () => {
       dispatch(setBlockEditable(null))
     }
   }
-
+  console.log('render')
   return (
     <GridLayoutWrapper
       ref={builderRef}
