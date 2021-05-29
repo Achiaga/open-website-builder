@@ -3,12 +3,12 @@ import { Portal } from '@chakra-ui/portal'
 import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
 
-function getGridPos2({ x, w, h, y }, gridColumnWidth, gridRowHeight) {
+function getGridPos({ x, w, h, y, i }, gridColumnWidth, gridRowHeight) {
   const sx = x * gridColumnWidth
   const sy = y * gridRowHeight
   const sw = w * gridColumnWidth
   const sh = h * gridRowHeight
-  return { x: sx, y: sy, w: sw, h: sh }
+  return { x: sx, y: sy, w: sw, h: sh, i }
 }
 
 function isBelowTop(staticBlock, draggingBlock) {
@@ -40,66 +40,6 @@ function isBlockHorizontal(staticBlock, draggingBlock) {
   }
 }
 
-function getHorizontalElement(
-  layout,
-  draggingBlock,
-  gridColumnWidth,
-  gridRowHeight
-) {
-  const copyLayout = { ...layout }
-  delete copyLayout[draggingBlock.i]
-
-  const horizontalBlocks = []
-  for (const block in copyLayout) {
-    const staticBlockPos = getGridPos2(
-      layout[block],
-      gridColumnWidth,
-      gridRowHeight
-    )
-    const isHoz = isBlockHorizontal(staticBlockPos, draggingBlock)
-    if (isHoz) horizontalBlocks.push(staticBlockPos)
-  }
-
-  return horizontalBlocks
-}
-
-function isCenterAlign(origin, dest, dragBlock) {
-  return (
-    origin.y + origin.h / 2 === dest.y + dest.h / 2 &&
-    origin.y + origin.h / 2 === dragBlock.y + dragBlock.h / 2
-  )
-}
-function isTopAlign(origin, dest, dragBlock) {
-  return origin.y === dest.y && origin.y === dragBlock.y
-}
-function isBottomsAlign(origin, dest, dragBlock) {
-  return (
-    origin.y + origin.h === dest.y + dest.h &&
-    origin.y + origin.h === dragBlock.y + dragBlock.h
-  )
-}
-function isTopAlignWithBottoms(origin, dest) {
-  return origin.y === Math.round(dest.y + dest.h)
-}
-function isBottomsAlignWithTop(origin, dest) {
-  return Math.round(origin.y + origin.h) === dest.y
-}
-
-function getAlignment(origin, dest, dragBlock) {
-  const center = isCenterAlign(origin, dest, dragBlock)
-  const top = isTopAlign(origin, dest, dragBlock)
-  const bottom = isBottomsAlign(origin, dest, dragBlock)
-  const bottomTop = isTopAlignWithBottoms(origin, dest)
-  const topBottom = isBottomsAlignWithTop(origin, dest)
-  return {
-    center,
-    top,
-    bottom,
-    bottomTop,
-    topBottom,
-  }
-}
-
 const AlignmentRay = ({ top, left, width, distance }) => {
   return (
     <Box
@@ -124,20 +64,85 @@ const AlignmentRay = ({ top, left, width, distance }) => {
   )
 }
 
-const RayToBlock = ({ origin, dest, distance, dragBlock }) => {
-  const leftDist = origin.x + origin.w
-  const width = dest.x - origin.x - origin.w
+function getHorizontalElement(
+  layout,
+  draggingBlock,
+  gridColumnWidth,
+  gridRowHeight
+) {
+  const copyLayout = { ...layout }
+  delete copyLayout[draggingBlock.i]
 
-  const alignment = getAlignment(origin, dest, dragBlock)
+  const horizontalBlocks = []
+  for (const block in copyLayout) {
+    const staticBlockPos = getGridPos(
+      layout[block],
+      gridColumnWidth,
+      gridRowHeight
+    )
+    const isHoz = isBlockHorizontal(staticBlockPos, draggingBlock)
+    if (isHoz) horizontalBlocks.push(staticBlockPos)
+  }
 
+  return horizontalBlocks
+}
+
+function isCenterAlign(origin, dest, dragBlock) {
+  return (
+    origin.y + origin.h / 2 === dest.y + dest.h / 2 &&
+    origin.y + origin.h / 2 === dragBlock.y + dragBlock.h / 2
+  )
+}
+
+function round(val) {
+  return Math.round(val)
+}
+
+function isTopAlign(origin, dest, dragBlock) {
+  console.log(origin.y, dest.y, dragBlock.y)
+  return (
+    round(origin.y) === round(dest.y) && round(origin.y) === round(dragBlock.y)
+  )
+}
+function isBottomsAlign(origin, dest, dragBlock) {
+  return (
+    round(origin.y + origin.h) === round(dest.y + dest.h) &&
+    round(origin.y + origin.h) === round(dragBlock.y + dragBlock.h)
+  )
+}
+function isTopAlignWithBottoms(origin, dest) {
+  return origin.y === Math.round(dest.y + dest.h)
+}
+function isBottomsAlignWithTop(origin, dest) {
+  return Math.round(origin.y + origin.h) === dest.y
+}
+
+function getAlignment(origin, dest, dragBlock) {
+  const center = isCenterAlign(origin, dest, dragBlock)
+  const top = isTopAlign(origin, dest, dragBlock)
+  const bottom = isBottomsAlign(origin, dest, dragBlock)
+  const bottomTop = isTopAlignWithBottoms(origin, dest)
+  const topBottom = isBottomsAlignWithTop(origin, dest)
+  return {
+    center,
+    top,
+    bottom,
+    bottomTop,
+    topBottom,
+  }
+}
+
+const Rays = ({ alignment, dest, origin, width, showCenter = true }) => {
   return (
     <>
-      <AlignmentRay
-        top={dragBlock.y + dragBlock.h / 2}
-        left={leftDist}
-        width={width}
-        distance={Math.round(distance)}
-      />
+      {showCenter && (
+        <AlignmentRay
+          top={origin.y + origin.h / 2}
+          left={origin.x + origin.w}
+          width={width}
+          distance={Math.round(width)}
+        />
+      )}
       {alignment.center && (
         <AlignmentRay
           top={origin.y + origin.h / 2}
@@ -176,6 +181,38 @@ const RayToBlock = ({ origin, dest, distance, dragBlock }) => {
     </>
   )
 }
+const RayToBlock = ({ origin, index, dragBlock, blocks }) => {
+  const dest = blocks[index + 1]
+  const width = dest.x - origin.x - origin.w
+
+  const alignment = getAlignment(origin, dest, dragBlock)
+  return (
+    <Rays
+      alignment={alignment}
+      origin={origin}
+      dest={dest}
+      key={dest.i}
+      width={width}
+    />
+  )
+}
+const DragToBlock = ({ origin, blocks }) => {
+  const copyBlocks = blocks.filter((block) => block.i !== origin.i)
+  return copyBlocks.map((dest) => {
+    const alignment = getAlignment(origin, dest, origin)
+    const width = dest.x - origin.x - origin.w
+    return (
+      <Rays
+        alignment={alignment}
+        origin={origin}
+        dest={dest}
+        key={dest.i}
+        width={width}
+        showCenter={false}
+      />
+    )
+  })
+}
 
 function orderBlocksLeftToRight(blockList) {
   return blockList.sort((a, b) => a.x - b.x)
@@ -186,7 +223,6 @@ function getSameDistance(orderedBlocks) {
   for (let i = 0; i < orderedBlocks.length; i++) {
     const nextBlock = orderedBlocks[i + 1]
     if (!nextBlock) break
-
     const actualBlock = orderedBlocks[i]
     distances.push(Math.abs(nextBlock.x - (actualBlock.x + actualBlock.w)))
   }
@@ -225,6 +261,7 @@ export const TestRayTracing = ({
     gridColumnWidth,
     gridRowHeight
   )
+  console.log({ layouts, xOrderedBlocks })
   const distances = getSameDistance(xOrderedBlocks)
 
   return (
@@ -235,13 +272,16 @@ export const TestRayTracing = ({
         return (
           <RayToBlock
             origin={block}
-            dest={xOrderedBlocks[index + 1]}
+            index={index}
+            blocks={xOrderedBlocks}
             distance={distances[index]}
             dragBlock={draggingBlock}
             key={index}
           />
         )
       })}
+
+      <DragToBlock origin={draggingBlock} blocks={xOrderedBlocks} />
     </Portal>
   )
 }

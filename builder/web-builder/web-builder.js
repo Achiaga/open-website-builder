@@ -95,7 +95,8 @@ const DraggableItem = ({
 
   function onDrag(_, blockPos) {
     setBlockPostRef({
-      ...blockPos,
+      x: blockPos.x,
+      y: blockPos.y,
       w: w * gridColumnWidth,
       h: h * gridRowHeight,
       i: blockId,
@@ -322,7 +323,6 @@ const WebBuilder = () => {
       dispatch(setBlockEditable(null))
     }
   }
-  console.log('render')
   return (
     <GridLayoutWrapper
       ref={builderRef}
