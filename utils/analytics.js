@@ -39,8 +39,8 @@ gtag('config', '${process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
 // log the pageview with their URL
 export const pageview = (url) => {
   if (process?.env?.NODE_ENV === 'development') return
-  if (window) {
-    window.gtag('config', process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+  if (window && window?.gtag) {
+    window?.gtag?.('config', process?.env?.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
       page_path: url,
     })
   }
@@ -49,7 +49,7 @@ export const pageview = (url) => {
 // log specific events happening.
 export const event = ({ action, params }) => {
   if (process?.env?.NODE_ENV === 'development') return
-  if (window) {
-    window.gtag('event', action, params)
+  if (window && window?.gtag) {
+    window?.gtag?.('event', action, params)
   }
 }
