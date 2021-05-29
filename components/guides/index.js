@@ -160,7 +160,7 @@ const BlogPage = () => {
               bg="white"
             />
             <ArticleCard
-              title="Integrate Flurly on your landing page"
+              title="Integrate Flurly with Antfolio"
               imageUrl="https://antfolio.s3.amazonaws.com/user-images/e6f761a37bd62b029d70673be85d3ca4/thumbnail-flury-integration.png"
               redirectUrl="/guides/guides-integration-flurly"
               imgWidth="70%"
@@ -168,6 +168,22 @@ const BlogPage = () => {
             />
             <ArticleCard
               title="Enable analytics & A/B Testing"
+              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+              redirectUrl="/guides"
+              imgWidth="70%"
+              description="Cooming Soon"
+              bg="white"
+            />
+            <ArticleCard
+              title="Enable custome form"
+              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+              redirectUrl="/guides"
+              imgWidth="70%"
+              description="Cooming Soon"
+              bg="white"
+            />
+            <ArticleCard
+              title="Best Font Families for each use case"
               imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
               redirectUrl="/guides"
               imgWidth="70%"
