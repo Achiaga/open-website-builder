@@ -21,7 +21,7 @@ const ArticleTitle = ({ url, fontSize, children }) => {
   )
 }
 
-const ArticleImage = ({ height, width, redirectUrl, imageUrl }) => {
+const GuideImage = ({ height, width, redirectUrl, imageUrl }) => {
   return (
     <Box
       height={height}
@@ -39,7 +39,7 @@ const ArticleImage = ({ height, width, redirectUrl, imageUrl }) => {
           <Image
             src={imageUrl}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             objectPosition="center center"
           />
         </a>
@@ -114,7 +114,7 @@ const ArticleCard = ({
         transition="ease-out 0.08s"
       >
         <Box bg={bg || 'transparent'} borderRadius="15px">
-          <ArticleImage
+          <GuideImage
             height={['60vw', '250px']}
             width={imgWidth}
             redirectUrl={redirectUrl}
@@ -141,13 +141,13 @@ const BlogPage = () => {
     <>
       <Box>
         <Navbar />
-        <Box px="5rem" zIndex="1">
+        <Box px={['1.5rem', '5rem']} zIndex="1">
           <Box as="section" pb="8rem">
             <MainBlogCard />
           </Box>
           <Box
             d="grid"
-            gridTemplateColumns="1fr 1fr 1fr"
+            gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
             gridGap="5%"
             mt="1rem"
             pb="10rem"
@@ -160,7 +160,7 @@ const BlogPage = () => {
               bg="white"
             />
             <ArticleCard
-              title="Add a 'contact me' form"
+              title="Integrate Flurly on your landing page"
               imageUrl="https://antfolio.s3.amazonaws.com/user-images/e6f761a37bd62b029d70673be85d3ca4/thumbnail-flury-integration.png"
               redirectUrl="/guides/guides-integration-flurly"
               imgWidth="70%"
