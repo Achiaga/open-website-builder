@@ -39,12 +39,13 @@ function Resume({ websiteData, isPublish, resumeId }) {
   if (!isPublish) return <NewPage />
 
   const hasFlurly = hasFlurlyLink(websiteData.blocks)
+  console.log({ hasFlurly })
   return (
     <>
       {hasFlurly && (
         <Head>
-          <script src="https://js.stripe.com/v3/"></script>
-          <script src="https://flurly.com/flurly-checkout.js"></script>
+          <script async src="https://js.stripe.com/v3/"></script>
+          <script async src="https://flurly.com/flurly-checkout.js"></script>
         </Head>
       )}
       <ResumeWebsite
