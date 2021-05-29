@@ -257,7 +257,7 @@ a {
     font-size: 13px;
   }
 }
-@media (max-width: 350px) {
+@media (max-width: 360px) {
   .textStyles h1 {
     font-size: 5em;
   }
@@ -276,6 +276,34 @@ a {
   }
   .textStyles h6 {
     font-size: 1.2em;
+  }
+  .mobile {
+    display: grid !important;
+  }
+  .desktop {
+    display: none !important;
+    font-size: 13px;
+  }
+}
+@media (max-width: 330px) {
+  .textStyles h1 {
+    font-size: 4.5em;
+  }
+  .textStyles h2 {
+    font-size: 2.8em;
+  }
+  .textStyles h3 {
+    font-size: 1.8em;
+  }
+  .textStyles h4 {
+    font-size: 1.4em;
+  }
+  .textStyles button,
+  .textStyles h5 {
+    font-size: 1.3em;
+  }
+  .textStyles h6 {
+    font-size: 1.3em;
   }
   .mobile {
     display: grid !important;
