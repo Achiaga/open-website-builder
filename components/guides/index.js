@@ -175,7 +175,7 @@ const BlogPage = () => {
               bg="white"
             />
             <ArticleCard
-              title="Enable custome form"
+              title="Enable custom forms"
               imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
               redirectUrl="/guides"
               imgWidth="70%"
