@@ -88,7 +88,6 @@ const DraggableItem = ({
     dispatch(handleResizeStop(delta, blockId, blockType))
     setResizeValues(null)
   }
-  console.log('blockId', blockId, layouts)
   function handleResize(_, __, elRef) {
     const { width, height } = elRef.getBoundingClientRect()
     setResizeValues({ width: Math.round(width), height: Math.round(height) })
@@ -99,7 +98,7 @@ const DraggableItem = ({
       ...blockPos,
       w: w * gridColumnWidth,
       h: h * gridRowHeight,
-      blockId,
+      i: blockId,
       isDragging: true,
     })
     const newBlockLayout = {

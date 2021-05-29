@@ -184,11 +184,11 @@ function orderBlocksLeftToRight(blockList) {
 function getSameDistance(orderedBlocks) {
   let distances = []
   for (let i = 0; i < orderedBlocks.length; i++) {
-    const actualBlock = orderedBlocks[i]
     const nextBlock = orderedBlocks[i + 1]
     if (!nextBlock) break
-    const distance = Math.abs(nextBlock.x - (actualBlock.x + actualBlock.w))
-    distances.push(distance)
+
+    const actualBlock = orderedBlocks[i]
+    distances.push(Math.abs(nextBlock.x - (actualBlock.x + actualBlock.w)))
   }
   return distances
 }
@@ -212,18 +212,12 @@ function getXOrderedBlocks(
 
 export const TestRayTracing = ({
   gridColumnWidth,
-  blockPostRef,
-  blockId,
+  blockPostRef: draggingBlock,
   builderRef,
 }) => {
-  const draggingBlockPos = blockPostRef || {}
+  if (!draggingBlock) return null
   const layouts = useSelector(getLayout)
   const gridRowHeight = useSelector(getGridRowHeight)
-
-  const draggingBlock = {
-    i: blockId,
-    ...draggingBlockPos,
-  }
 
   const xOrderedBlocks = getXOrderedBlocks(
     layouts,
@@ -235,16 +229,6 @@ export const TestRayTracing = ({
 
   return (
     <Portal id="main-builder" containerRef={builderRef}>
-      <Box
-        pos="absolute"
-        left="50%"
-        transform="translate(-50%,0)"
-        top="0"
-        zIndex="9999"
-        bg="green.500"
-        width="1px"
-        h="100%"
-      />
       {xOrderedBlocks.map((block, index) => {
         const isLastBlock = index >= xOrderedBlocks.length - 1
         if (isLastBlock) return null
