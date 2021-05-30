@@ -12,96 +12,24 @@ function getGridPos({ x, w, h, y, i }, gridColumnWidth, gridRowHeight) {
 }
 
 function isBelowTop(staticBlock, draggingBlock) {
-  return (
-    draggingBlock.y + 2 >= staticBlock.y &&
-    draggingBlock.y - 2 <= staticBlock.y + staticBlock.h
-  )
+  return Math.abs(draggingBlock.y - staticBlock.y) < 10
 }
 function isAboveBottom(staticBlock, draggingBlock) {
   return (
-    draggingBlock.y + draggingBlock.h >= staticBlock.y - 3 &&
-    draggingBlock.y + draggingBlock.h <= staticBlock.y + staticBlock.h + 3
-  )
-}
-function containsSmallerBlocks(staticBlock, draggingBlock) {
-  return (
-    draggingBlock.y <= staticBlock.y &&
-    draggingBlock.y + draggingBlock.h >= staticBlock.y + staticBlock.h + 3
+    Math.abs(
+      draggingBlock.y + draggingBlock.h - (staticBlock.y + staticBlock.h)
+    ) < 10
   )
 }
 
 function isBlockHorizontal(staticBlock, draggingBlock) {
   if (
-    isBelowTop(staticBlock, draggingBlock) ||
+    isBelowTop(staticBlock, draggingBlock) &&
     isAboveBottom(staticBlock, draggingBlock)
-    // ||
-    // containsSmallerBlocks(staticBlock, draggingBlock)
   ) {
     return true
   }
-}
-
-const AlignmentRay = ({
-  top,
-  left,
-  width,
-  distance,
-  widthX,
-  isEquidistant,
-}) => {
-  return (
-    <Box
-      zIndex="9999"
-      bg={isEquidistant ? 'green.500' : 'blue.500'}
-      pos="absolute"
-      top={`${top}px`}
-      left={`${left}px`}
-      width={`${width}px`}
-      h={isEquidistant ? '2px' : '1px'}
-    >
-      <Box
-        d="flex"
-        width="100%"
-        color={isEquidistant ? 'green.500' : 'red'}
-        pos="relative"
-      >
-        {widthX && distance > 0 ? (
-          <Box
-            as="span"
-            lineHeight="0"
-            letterSpacing="0"
-            pos="absolute"
-            left={isEquidistant ? '-5px' : '-2px'}
-            fontSize={isEquidistant ? 'sm' : '2xs'}
-          >
-            X
-          </Box>
-        ) : null}
-        {distance > 0 ? (
-          <Box
-            pos="absolute"
-            left="50%"
-            transform="translateX(-50%)"
-            color="gray.500"
-          >
-            {Math.round(distance)}
-          </Box>
-        ) : null}
-        {widthX && distance > 0 ? (
-          <Box
-            as="span"
-            lineHeight="0"
-            letterSpacing="0"
-            pos="absolute"
-            right={isEquidistant ? '-5px' : '-2px'}
-            fontSize={isEquidistant ? 'sm' : '2xs'}
-          >
-            X
-          </Box>
-        ) : null}
-      </Box>
-    </Box>
-  )
+  return false
 }
 
 function getHorizontalElement(
@@ -123,7 +51,6 @@ function getHorizontalElement(
     const isHoz = isBlockHorizontal(staticBlockPos, draggingBlock)
     if (isHoz) horizontalBlocks.push(staticBlockPos)
   }
-
   return horizontalBlocks
 }
 
@@ -211,6 +138,68 @@ const HorizontalRays = ({ alignment, dest, origin, isEquidistant }) => {
     </>
   )
 }
+const AlignmentRay = ({
+  top,
+  left,
+  width,
+  distance,
+  widthX,
+  isEquidistant,
+}) => {
+  return (
+    <Box
+      zIndex="9999"
+      bg={isEquidistant ? 'green.500' : 'blue.500'}
+      pos="absolute"
+      top={`${top}px`}
+      left={`${left}px`}
+      width={`${width}px`}
+      h={isEquidistant ? '2px' : '1px'}
+    >
+      <Box
+        d="flex"
+        width="100%"
+        color={isEquidistant ? 'green.500' : 'red'}
+        pos="relative"
+      >
+        {widthX && distance > 0 ? (
+          <Box
+            as="span"
+            lineHeight="0"
+            letterSpacing="0"
+            pos="absolute"
+            left={isEquidistant ? '-5px' : '-2px'}
+            fontSize={isEquidistant ? 'sm' : '2xs'}
+          >
+            X
+          </Box>
+        ) : null}
+        {distance > 0 ? (
+          <Box
+            pos="absolute"
+            left="50%"
+            transform="translateX(-50%)"
+            color="gray.500"
+          >
+            {Math.round(distance)}
+          </Box>
+        ) : null}
+        {widthX && distance > 0 ? (
+          <Box
+            as="span"
+            lineHeight="0"
+            letterSpacing="0"
+            pos="absolute"
+            right={isEquidistant ? '-5px' : '-2px'}
+            fontSize={isEquidistant ? 'sm' : '2xs'}
+          >
+            X
+          </Box>
+        ) : null}
+      </Box>
+    </Box>
+  )
+}
 
 const DragToBlock = ({ dragBlock, blocks }) => {
   const copyBlocks = blocks.filter((block) => block.i !== dragBlock.i)
@@ -240,7 +229,8 @@ function getSameDistance(orderedBlocks) {
     const nextBlock = orderedBlocks[i + 1]
     if (!nextBlock) break
     const actualBlock = orderedBlocks[i]
-    distances.push(Math.abs(nextBlock.x - (actualBlock.x + actualBlock.w)))
+    const distance = Math.abs(nextBlock.x - (actualBlock.x + actualBlock.w))
+    distances.push(Math.round(distance))
   }
   return distances
 }

@@ -61,7 +61,6 @@ const DraggableItem = ({
   builderRef,
 }) => {
   const [resizeValues, setResizeValues] = useState(null)
-  const layouts = useSelector(getLayout)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
