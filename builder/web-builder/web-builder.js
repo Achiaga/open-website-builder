@@ -145,7 +145,6 @@ const DraggableItem = ({
           left: 0,
           top: 0,
           right: right - width,
-          bottom: '100% ',
         }}
       >
         <Box pos="absolute" zIndex={zIndexValue}>
