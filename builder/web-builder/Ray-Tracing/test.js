@@ -40,25 +40,64 @@ function isBlockHorizontal(staticBlock, draggingBlock) {
   }
 }
 
-const AlignmentRay = ({ top, left, width, distance }) => {
+const AlignmentRay = ({
+  top,
+  left,
+  width,
+  distance,
+  widthX,
+  isEquidistant,
+}) => {
   return (
     <Box
       zIndex="9999"
-      bg="green.500"
+      bg={isEquidistant ? 'green.500' : 'blue.500'}
       pos="absolute"
       top={`${top}px`}
       left={`${left}px`}
       width={`${width}px`}
-      h="2px"
+      h={isEquidistant ? '2px' : '1px'}
     >
-      <Box d="flex" justifyContent="space-between" color="red">
-        <Box as="span" lineHeight="0">
-          X
-        </Box>
-        {distance ? <Box>{Math.round(distance)}</Box> : null}
-        <Box as="span" lineHeight="0">
-          X
-        </Box>
+      <Box
+        d="flex"
+        width="100%"
+        color={isEquidistant ? 'green.500' : 'red'}
+        pos="relative"
+      >
+        {widthX && distance > 0 ? (
+          <Box
+            as="span"
+            lineHeight="0"
+            letterSpacing="0"
+            pos="absolute"
+            left={isEquidistant ? '-5px' : '-2px'}
+            fontSize={isEquidistant ? 'sm' : '2xs'}
+          >
+            X
+          </Box>
+        ) : null}
+        {distance > 0 ? (
+          <Box
+            pos="absolute"
+            left="50%"
+            transform="translateX(-50%)"
+            color="gray.500"
+          >
+            {Math.round(distance)}
+          </Box>
+        ) : null}
+        {widthX && distance > 0 ? (
+          <Box
+            as="span"
+            lineHeight="0"
+            letterSpacing="0"
+            pos="absolute"
+            right={isEquidistant ? '-5px' : '-2px'}
+            fontSize={isEquidistant ? 'sm' : '2xs'}
+          >
+            X
+          </Box>
+        ) : null}
       </Box>
     </Box>
   )
@@ -87,34 +126,27 @@ function getHorizontalElement(
   return horizontalBlocks
 }
 
-function isCenterAlign(origin, dest, dragBlock) {
-  return (
-    origin.y + origin.h / 2 === dest.y + dest.h / 2 &&
-    origin.y + origin.h / 2 === dragBlock.y + dragBlock.h / 2
-  )
+function isCenterAlign(origin, dest) {
+  const originCenter = origin.y + origin.h / 2
+  const destCenter = dest.y + dest.h / 2
+  return originCenter - destCenter
 }
 
-function round(val) {
-  return Math.round(val)
+function isTopAlign(origin, dest) {
+  return origin.y - dest.y
 }
-
-function isTopAlign(origin, dest, dragBlock) {
-  console.log(origin.y, dest.y, dragBlock.y)
-  return (
-    round(origin.y) === round(dest.y) && round(origin.y) === round(dragBlock.y)
-  )
-}
-function isBottomsAlign(origin, dest, dragBlock) {
-  return (
-    round(origin.y + origin.h) === round(dest.y + dest.h) &&
-    round(origin.y + origin.h) === round(dragBlock.y + dragBlock.h)
-  )
+function isBottomsAlign(origin, dest) {
+  return origin.y + origin.h - (dest.y + dest.h)
 }
 function isTopAlignWithBottoms(origin, dest) {
-  return origin.y === Math.round(dest.y + dest.h)
+  return origin.y - (dest.y + dest.h)
 }
 function isBottomsAlignWithTop(origin, dest) {
-  return Math.round(origin.y + origin.h) === dest.y
+  return origin.y + origin.h - dest.y
+}
+
+function getIsAlign(diff) {
+  return Math.abs(diff) < 0.5
 }
 
 function getAlignment(origin, dest, dragBlock) {
@@ -132,83 +164,66 @@ function getAlignment(origin, dest, dragBlock) {
   }
 }
 
-const Rays = ({ alignment, dest, origin, width, showCenter = true }) => {
+const HorizontalRays = ({ alignment, dest, origin, isEquidistant }) => {
   return (
     <>
-      {showCenter && (
-        <AlignmentRay
-          top={origin.y + origin.h / 2}
-          left={origin.x + origin.w}
-          width={width}
-          distance={Math.round(width)}
-        />
-      )}
-      {alignment.center && (
+      {getIsAlign(alignment.center) && (
         <AlignmentRay
           top={origin.y + origin.h / 2}
           left={origin.x}
           width={dest.x + dest.w - origin.x}
+          isEquidistant={isEquidistant}
         />
       )}
-      {alignment.top && (
+      {getIsAlign(alignment.top) && (
         <AlignmentRay
           top={origin.y}
           left={origin.x}
           width={dest.x + dest.w - origin.x}
+          isEquidistant={isEquidistant}
         />
       )}
-      {alignment.bottom && (
+      {getIsAlign(alignment.bottom) && (
         <AlignmentRay
           top={origin.y + origin.h}
           left={origin.x}
           width={dest.x + dest.w - origin.x}
+          isEquidistant={isEquidistant}
         />
       )}
-      {alignment.bottomTop && (
+      {getIsAlign(alignment.bottomTop) && (
         <AlignmentRay
           top={origin.y}
           left={origin.x}
           width={dest.x + dest.w - origin.x}
+          isEquidistant={isEquidistant}
         />
       )}
-      {alignment.topBottom && (
+      {getIsAlign(alignment.topBottom) && (
         <AlignmentRay
           top={origin.y + origin.h}
           left={origin.x}
           width={dest.x + dest.w - origin.x}
+          isEquidistant={isEquidistant}
         />
       )}
     </>
   )
 }
-const RayToBlock = ({ origin, index, dragBlock, blocks }) => {
-  const dest = blocks[index + 1]
-  const width = dest.x - origin.x - origin.w
 
-  const alignment = getAlignment(origin, dest, dragBlock)
-  return (
-    <Rays
-      alignment={alignment}
-      origin={origin}
-      dest={dest}
-      key={dest.i}
-      width={width}
-    />
-  )
-}
-const DragToBlock = ({ origin, blocks }) => {
-  const copyBlocks = blocks.filter((block) => block.i !== origin.i)
-  return copyBlocks.map((dest) => {
+const DragToBlock = ({ dragBlock, blocks }) => {
+  const copyBlocks = blocks.filter((block) => block.i !== dragBlock.i)
+  return copyBlocks.map((block, index) => {
+    const [dest, origin] = [block, dragBlock].sort((a, b) => b.x - a.x)
     const alignment = getAlignment(origin, dest, origin)
-    const width = dest.x - origin.x - origin.w
     return (
-      <Rays
+      <HorizontalRays
         alignment={alignment}
         origin={origin}
         dest={dest}
-        key={dest.i}
-        width={width}
+        key={index}
         showCenter={false}
+        isEquidistant
       />
     )
   })
@@ -229,6 +244,16 @@ function getSameDistance(orderedBlocks) {
   return distances
 }
 
+function distanceOccurrences(distances) {
+  var occurrences = {}
+
+  for (var i = 0; i < distances.length; i++) {
+    var num = distances[i]
+    occurrences[num] = occurrences[num] ? occurrences[num] + 1 : 1
+  }
+  return occurrences
+}
+
 function getXOrderedBlocks(
   layouts,
   draggingBlock,
@@ -246,6 +271,22 @@ function getXOrderedBlocks(
   return xOrderedBlocks
 }
 
+const RayToBlock = ({ origin, index, distances, blocks }) => {
+  const dest = blocks[index + 1]
+  const distance = Math.round(dest.x - origin.x - origin.w)
+  const isEquidistant = distances[distance] > 1
+  return (
+    <AlignmentRay
+      top={origin.y + origin.h / 2}
+      left={origin.x + origin.w}
+      width={distance}
+      distance={distance}
+      isEquidistant={isEquidistant}
+      widthX
+    />
+  )
+}
+
 export const TestRayTracing = ({
   gridColumnWidth,
   blockPostRef: draggingBlock,
@@ -261,8 +302,7 @@ export const TestRayTracing = ({
     gridColumnWidth,
     gridRowHeight
   )
-  console.log({ layouts, xOrderedBlocks })
-  const distances = getSameDistance(xOrderedBlocks)
+  const distances = distanceOccurrences(getSameDistance(xOrderedBlocks))
 
   return (
     <Portal id="main-builder" containerRef={builderRef}>
@@ -274,14 +314,12 @@ export const TestRayTracing = ({
             origin={block}
             index={index}
             blocks={xOrderedBlocks}
-            distance={distances[index]}
-            dragBlock={draggingBlock}
+            distances={distances}
             key={index}
           />
         )
       })}
-
-      <DragToBlock origin={draggingBlock} blocks={xOrderedBlocks} />
+      <DragToBlock dragBlock={draggingBlock} blocks={xOrderedBlocks} />
     </Portal>
   )
 }
