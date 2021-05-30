@@ -102,7 +102,10 @@ export function BuilderBlock({ blockId, isDragging }) {
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
 
-  const hasDragHandle = isEditable && type === 'text' && !isMobileBuilder
+  const isText = type === 'text'
+
+  const hasDragHandle = isEditable && isText && !isMobileBuilder
+
   return (
     <Box
       w="100%"
@@ -127,7 +130,7 @@ export function BuilderBlock({ blockId, isDragging }) {
         right: 0,
         top: 0,
         bottom: 0,
-        zIndex: 1,
+        zIndex: isText ? 0 : 1,
         transition: 'border-color .3s',
       }}
     >
