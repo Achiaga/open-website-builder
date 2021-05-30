@@ -1,9 +1,14 @@
-function getGridPos({ x, w, h, y, i }, gridColumnWidth, gridRowHeight) {
-  const sx = x * gridColumnWidth
-  const sy = y * gridRowHeight
-  const sw = w * gridColumnWidth
-  const sh = h * gridRowHeight
-  return { x: sx, y: sy, w: sw, h: sh, i }
+import { getGridPos } from './helpers'
+
+function isBelowTop(staticBlock, draggingBlock) {
+  return Math.abs(draggingBlock.y - staticBlock.y) < 10
+}
+function isAboveBottom(staticBlock, draggingBlock) {
+  return (
+    Math.abs(
+      draggingBlock.y + draggingBlock.h - (staticBlock.y + staticBlock.h)
+    ) < 10
+  )
 }
 
 function isBlockHorizontal(staticBlock, draggingBlock) {
@@ -117,15 +122,4 @@ export function getXOrderedBlocks(
   const blockList = [...horizontalBlocks, draggingBlock]
   const xOrderedBlocks = orderBlocksLeftToRight(blockList)
   return xOrderedBlocks
-}
-
-function isBelowTop(staticBlock, draggingBlock) {
-  return Math.abs(draggingBlock.y - staticBlock.y) < 10
-}
-function isAboveBottom(staticBlock, draggingBlock) {
-  return (
-    Math.abs(
-      draggingBlock.y + draggingBlock.h - (staticBlock.y + staticBlock.h)
-    ) < 10
-  )
 }
