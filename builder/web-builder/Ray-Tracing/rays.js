@@ -81,6 +81,11 @@ const AlignmentRay = ({
   isEquidistant,
   horizontal = false,
 }) => {
+  const xMarksConfig = {
+    withX: withX,
+    distance: distance,
+    isEquidistant: isEquidistant,
+  }
   return (
     <Box
       zIndex="9999"
@@ -99,17 +104,9 @@ const AlignmentRay = ({
         pos="relative"
       >
         {horizontal ? (
-          <HorizontalXs
-            withX={withX}
-            distance={distance}
-            isEquidistant={isEquidistant}
-          />
+          <HorizontalXs {...xMarksConfig} />
         ) : (
-          <VerticalXs
-            withX={withX}
-            distance={distance}
-            isEquidistant={isEquidistant}
-          />
+          <VerticalXs {...xMarksConfig} />
         )}
       </Box>
     </Box>
