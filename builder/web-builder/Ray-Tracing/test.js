@@ -33,8 +33,9 @@ function containsSmallerBlocks(staticBlock, draggingBlock) {
 function isBlockHorizontal(staticBlock, draggingBlock) {
   if (
     isBelowTop(staticBlock, draggingBlock) ||
-    isAboveBottom(staticBlock, draggingBlock) ||
-    containsSmallerBlocks(staticBlock, draggingBlock)
+    isAboveBottom(staticBlock, draggingBlock)
+    // ||
+    // containsSmallerBlocks(staticBlock, draggingBlock)
   ) {
     return true
   }
