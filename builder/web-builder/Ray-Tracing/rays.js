@@ -12,7 +12,7 @@ const XMark = ({ top, bottom, left, right, isEquidistant }) => {
       {...(bottom && { bottom })}
       {...(left && { left })}
       {...(right && { right })}
-      fontSize={isEquidistant ? 'sm' : '2xs'}
+      fontSize={isEquidistant ? 'sm' : '0px'}
     >
       x
     </Box>
@@ -37,7 +37,7 @@ const VerticalXs = ({ withX, distance, isEquidistant }) => {
         </Box>
       )}
       {withX && distance > 0 && (
-        <XMark left={left} bottom={0} isEquidistant={isEquidistant} />
+        <XMark left={left} bottom={'0'} isEquidistant={isEquidistant} />
       )}
     </>
   )
@@ -46,15 +46,10 @@ const HorizontalXs = ({ withX, distance, isEquidistant }) => {
   return (
     <>
       {withX && distance > 0 && (
-        <Box
-          as="span"
-          lineHeight="0"
-          pos="absolute"
+        <XMark
           left={isEquidistant ? '-5px' : '-2px'}
-          fontSize={isEquidistant ? 'sm' : '2xs'}
-        >
-          X
-        </Box>
+          isEquidistant={isEquidistant}
+        />
       )}
       {distance > 0 && (
         <Box
@@ -67,52 +62,12 @@ const HorizontalXs = ({ withX, distance, isEquidistant }) => {
         </Box>
       )}
       {withX && distance > 0 && (
-        <Box
-          as="span"
-          lineHeight="0"
-          pos="absolute"
+        <XMark
           right={isEquidistant ? '-5px' : '-2px'}
-          fontSize={isEquidistant ? 'sm' : '2xs'}
-        >
-          X
-        </Box>
-      )}
-    </>
-  )
-}
-
-const VerticalRay = ({
-  top,
-  left,
-  height,
-  distance,
-  widthX,
-  width,
-  isEquidistant,
-}) => {
-  return (
-    <Box
-      zIndex="9999"
-      bg={isEquidistant ? 'green.500' : 'blue.500'}
-      pos="absolute"
-      top={`${top}px`}
-      left={`${left}px`}
-      height={`${height}px`}
-      width={`${width}px`}
-    >
-      <Box
-        d="flex"
-        height="100%"
-        color={isEquidistant ? 'green.500' : 'red'}
-        pos="relative"
-      >
-        <VerticalXs
-          withX={widthX}
-          distance={distance}
           isEquidistant={isEquidistant}
         />
-      </Box>
-    </Box>
+      )}
+    </>
   )
 }
 
@@ -122,8 +77,9 @@ const AlignmentRay = ({
   width,
   height,
   distance,
-  widthX,
+  withX,
   isEquidistant,
+  horizontal = false,
 }) => {
   return (
     <Box
@@ -138,20 +94,34 @@ const AlignmentRay = ({
       <Box
         d="flex"
         width="100%"
+        height="100%"
         color={isEquidistant ? 'green.500' : 'red'}
         pos="relative"
       >
-        <HorizontalXs
-          withX={widthX}
-          distance={distance}
-          isEquidistant={isEquidistant}
-        />
+        {horizontal ? (
+          <HorizontalXs
+            withX={withX}
+            distance={distance}
+            isEquidistant={isEquidistant}
+          />
+        ) : (
+          <VerticalXs
+            withX={withX}
+            distance={distance}
+            isEquidistant={isEquidistant}
+          />
+        )}
       </Box>
     </Box>
   )
 }
 
-export const RayToBlock = ({ origin, index, distances, blocks }) => {
+export const HorizontalCenterAlignment = ({
+  origin,
+  index,
+  distances,
+  blocks,
+}) => {
   const dest = blocks[index + 1]
   const distance = Math.round(dest.x - origin.x - origin.w)
   const isEquidistant = distances[distance] > 1
@@ -163,24 +133,26 @@ export const RayToBlock = ({ origin, index, distances, blocks }) => {
       height={isEquidistant ? 2 : 1}
       distance={distance}
       isEquidistant={isEquidistant}
-      widthX
+      withX
+      horizontal
     />
   )
 }
 
-export const DragToBlock = ({ dragBlock, blocks }) => {
+export const HorizontalSidesAlignment = ({ dragBlock, blocks }) => {
   const copyBlocks = blocks.filter((block) => block.i !== dragBlock.i)
   return copyBlocks.map((block, index) => {
     const [dest, origin] = [block, dragBlock].sort((a, b) => b.x - a.x)
     const alignment = getAlignment(origin, dest, origin)
     return (
       <HorizontalRays
+        key={index}
         alignment={alignment}
         origin={origin}
         dest={dest}
-        key={index}
         showCenter={false}
         isEquidistant
+        horizontal
       />
     )
   })
@@ -225,14 +197,14 @@ export const VerticalCenterAlignment = ({
   const distance = Math.round(dest.y - origin.y - origin.h)
   const isEquidistant = distances[distance] > 1
   return (
-    <VerticalRay
+    <AlignmentRay
       top={origin.y + origin.h}
       left={origin.x + origin.w / 2}
       height={distance}
       width={isEquidistant ? 2 : 1}
       distance={distance}
       isEquidistant={isEquidistant}
-      widthX
+      withX
     />
   )
 }
@@ -264,13 +236,13 @@ const VerticalRays = ({ alignment, dest, origin, isEquidistant }) => {
   return (
     <>
       {getIsAlign(alignment.center) && (
-        <VerticalRay {...commonValues} left={origin.x + origin.w / 2} />
+        <AlignmentRay {...commonValues} left={origin.x + origin.w / 2} />
       )}
       {getIsAlign(alignment.left) && (
-        <VerticalRay {...commonValues} left={origin.x} />
+        <AlignmentRay {...commonValues} left={origin.x} />
       )}
       {getIsAlign(alignment.right) && (
-        <VerticalRay {...commonValues} left={origin.x + origin.w} />
+        <AlignmentRay {...commonValues} left={origin.x + origin.w} />
       )}
       {getIsAlign(alignment.leftRight) && (
         <AlignmentRay {...commonValues} left={origin.x} />

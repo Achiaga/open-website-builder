@@ -7,8 +7,8 @@ import {
   getBlocksDistances,
 } from './horizontal-helpers'
 import {
-  DragToBlock,
-  RayToBlock,
+  HorizontalSidesAlignment,
+  HorizontalCenterAlignment,
   VerticalCenterAlignment,
   VerticalSidesAlignment,
 } from './rays'
@@ -37,7 +37,7 @@ const HorizontalRayTracing = ({
         const isLastBlock = index >= xOrderedBlocks.length - 1
         if (isLastBlock) return null
         return (
-          <RayToBlock
+          <HorizontalCenterAlignment
             origin={block}
             index={index}
             blocks={xOrderedBlocks}
@@ -46,7 +46,10 @@ const HorizontalRayTracing = ({
           />
         )
       })}
-      <DragToBlock dragBlock={draggingBlock} blocks={xOrderedBlocks} />
+      <HorizontalSidesAlignment
+        dragBlock={draggingBlock}
+        blocks={xOrderedBlocks}
+      />
     </>
   )
 }
