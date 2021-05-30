@@ -16,6 +16,7 @@ import {
 } from '../../features/builderSlice'
 import { GenericContactForm, PrevContactForm } from './form'
 import { ButtonGeneric, PreviewButton } from './button'
+import { useState } from 'react'
 
 const blocksType = {
   image: Image,
@@ -94,13 +95,17 @@ export function BuilderBlock({ blockId, isDragging }) {
   const { type, data } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
+  const [isOver, setIsOver] = useState(false)
 
   if (!type) return null
 
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
 
-  const dragHandle = isEditable && type === 'text' && !isMobileBuilder
+  const isText = type === 'text'
+
+  const hasDragHandle = isEditable && isText && !isMobileBuilder
+
   return (
     <Box
       w="100%"
@@ -111,29 +116,25 @@ export function BuilderBlock({ blockId, isDragging }) {
         if (isEditable || isDragging) return null
         dispatch(setBlockEditable(blockId))
       }}
-      outline="1px solid"
-      outlineOffset="0px"
-      outlineColor={isEditable ? 'primary.600' : 'transparent'}
-      transition="outline-color .3s"
-      className={!dragHandle && 'draggHandle'}
+      onMouseOver={() => setIsOver(true)}
+      onMouseOut={() => setIsOver(false)}
+      className={!hasDragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
       position="relative"
-      _before={
-        isEditable
-          ? {
-              border: '1px solid',
-              borderColor: '#767676',
-              content: "''",
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-            }
-          : {}
-      }
+      _before={{
+        border: '2px solid',
+        borderColor: isEditable || isOver ? 'primary.600' : 'transparent',
+        content: "''",
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: isText ? 0 : 1,
+        transition: 'border-color .3s',
+      }}
     >
-      {dragHandle && <DragHandle />}
+      {hasDragHandle && <DragHandle />}
       {isEditable && !isMobileBuilder && type !== 'text' && !isDragging && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
