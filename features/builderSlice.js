@@ -54,6 +54,9 @@ export const builderSlice = createSlice({
     setLoadingData: (state, action) => {
       state.loadingData = action.payload
     },
+    setGroupSelectedBlocksIds: (state, action) => {
+      state.groupSelectedBlocks = action.payload
+    },
     //This functions are to let the user overwrite DB data
     setTempDBData: (state, action) => {
       //We store here the DB data while the user decides
@@ -154,6 +157,7 @@ export const builderSlice = createSlice({
 export const {
   setBuilderBlocksData,
   setInitialBuilderData,
+  setGroupSelectedBlocksIds,
   setTempDBData,
   setUserData,
   setWebsiteId,
@@ -666,10 +670,17 @@ export function findAllChildren(hierarchy, elementDragginId) {
 export const handleDrag =
   (blockPos, newBlockLayout, blockId, gridColumnWidth, gridRowHeight) =>
   (dispatch, getState) => {
-    const builderDevice = getBuilderDevice(getState())
-    const hierarchy = getHierarchy(getState())
-    const children = [...new Set(findAllChildren(hierarchy, blockId))]
-    const layouts = { ...getLayout(getState()) }
+    const state = getState()
+    const groupedBlocks = getGroupSelectedBlocksIds(state)
+    const builderDevice = getBuilderDevice(state)
+    const hierarchy = getHierarchy(state)
+    const children = [
+      ...new Set([
+        ...(findAllChildren(hierarchy, blockId) || []),
+        ...groupedBlocks,
+      ]),
+    ]
+    const layouts = { ...getLayout(state) }
     const updatedHierarchy = getUpdatedHierarchy(
       layouts,
       newBlockLayout,
@@ -718,6 +729,8 @@ export const getHierarchy = (state) => {
   // }
   return getDesktopHierarchy(state)
 }
+export const getGroupSelectedBlocksIds = (state) =>
+  state.builder.groupSelectedBlocks
 const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy
 const getDesktopHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>

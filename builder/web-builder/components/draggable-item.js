@@ -12,6 +12,7 @@ import {
   getBlockData,
   getSelectedBlockId,
   getIsMobileBuilder,
+  getGroupSelectedBlocksIds,
 } from '../../../features/builderSlice'
 import { BuilderBlock, ResizingCounter } from '../../blocks'
 import { RayTracing } from '../Ray-Tracing'
@@ -41,6 +42,7 @@ const DraggableItem = ({
   const [resizeValues, setResizeValues] = useState(null)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
+  const groupedBlocks = useSelector(getGroupSelectedBlocksIds)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
   const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
@@ -88,7 +90,7 @@ const DraggableItem = ({
     }
     handleHiglightSection(newBlockLayout)
 
-    if (blockId.includes('inception')) {
+    if (blockId.includes('inception') || groupedBlocks?.includes(blockId)) {
       dispatch(
         handleDrag(
           blockPos,
