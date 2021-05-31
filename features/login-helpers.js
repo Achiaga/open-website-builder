@@ -9,6 +9,7 @@ import {
   setLoadingData,
   saveData,
   saveDataOnLocal,
+  setProjectId,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { getUserDataById, getUserDataByProjectId } from '../utils/user-data'
@@ -20,7 +21,7 @@ import isEqual from 'lodash/isEqual'
 // const isEqual = dynamic(() => import('lodash/isEqual'))
 // const templates = dynamic(() => import('../templates'))
 
-function getIsUserAdmin(user) {
+export function getIsUserAdmin(user) {
   return user[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
 }
 
@@ -33,7 +34,6 @@ async function getUserData(user, projectId) {
     } else {
       userData = await getUserDataById(user.sub)
     }
-
     if (!Object.keys(userData).length) return null
     return userData
   } catch (err) {
@@ -55,6 +55,15 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const templateData = templates[template]
   const data = templateData || LSData || templates.fallback
   batch(() => {
+    dispatch(saveDataOnLocal(data))
+    dispatch(setInitialBuilderData(data))
+  })
+}
+export const loadDataFromTemplate = (template) => async (dispatch) => {
+  const data = templates[template] || templates.fallback
+  console.log('loadDataFromTemplate')
+  batch(() => {
+    dispatch(setProjectId(null))
     dispatch(saveDataOnLocal(data))
     dispatch(setInitialBuilderData(data))
   })
