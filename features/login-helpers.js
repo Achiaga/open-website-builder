@@ -22,7 +22,7 @@ import isEqual from 'lodash/isEqual'
 // const templates = dynamic(() => import('../templates'))
 
 export function getIsUserAdmin(user) {
-  return user[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
+  return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
 }
 
 async function getUserData(user, projectId) {
@@ -61,7 +61,6 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
 }
 export const loadDataFromTemplate = (template) => async (dispatch) => {
   const data = templates[template] || templates.fallback
-  console.log('loadDataFromTemplate')
   batch(() => {
     dispatch(setProjectId(null))
     dispatch(saveDataOnLocal(data))
@@ -77,7 +76,7 @@ export const updateInitialState =
   }
 
 const isLogin = (user) => {
-  const userMetadata = user[AUTH0_CUSTOM_CLAIM_PATH]
+  const userMetadata = user?.[AUTH0_CUSTOM_CLAIM_PATH]
   if (!userMetadata.logins_counts > 1) return true
   return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }

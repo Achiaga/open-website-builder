@@ -187,10 +187,11 @@ export const loadInitialData = (user, params) => async (dispatch) => {
   const { origin, template, projectId } = params
   const isAdmin = getIsUserAdmin(user)
   if (!user) return dispatch(loadInitialDataNoAccount(template))
-  if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (isAdmin && template) return dispatch(loadDataFromTemplate(template))
-  if (user && origin !== 'login')
+  if (user && origin === 'login') return dispatch(handleLoginCallback(user))
+  if (user && origin !== 'login') {
     return dispatch(loadDataFromDB(user, template, projectId))
+  }
 }
 
 export const editBlockConfig =
@@ -465,6 +466,7 @@ export const keepDBData = () => (dispatch, getState) => {
     dispatch(setTempDBData(null))
     dispatch(setLoadingData(false))
   })
+  setTimeout(() => dispatch(saveDataOnLocal()), 0)
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
   batch(() => {
