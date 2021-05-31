@@ -31,9 +31,9 @@ export const getUserDataByProjectId = (projectId) => {
     console.error('getUserDataByProjectId', err)
   }
 }
-export const requestUser = (id) => {
+export const requestUserProjects = (userId) => {
   try {
-    return request('read-user-websites', id)
+    return request('read-user-projects', userId)
   } catch (err) {
     console.error('requestUser', err)
   }

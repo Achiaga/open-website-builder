@@ -105,17 +105,22 @@ export async function updateProjectDomain(domain, projectId) {
     console.error('updateProjectDomain', error)
   }
 }
-async function getUserData(userId, res) {
+async function getUserProject(userId, res) {
   const client = await getDBCredentials()
   try {
     const websiteCollection = await getCollection(client)
-    const userData = await websiteCollection.findOne({
-      user_id: userId,
-    })
+    const sort = { updated_at: -1 }
+    const userData = await websiteCollection
+      .find({
+        user_id: userId,
+      })
+      .sort(sort)
+      .limit(1)
+      .toArray()
     await client.close()
-    respondAPIQuery(res, userData || {})
+    respondAPIQuery(res, userData ? userData[0] : {})
   } catch (error) {
-    console.error('getUserData', error)
+    console.error('getUserProject', error)
     await client.close()
     respondAPIQuery(res, { error })
   }
@@ -129,17 +134,17 @@ export async function requestWebsiteData(projectId, res) {
     respondAPIQuery(res, { error })
   }
 }
-export async function requestProjectData(projectId, res) {
+export async function requestProjectDataId(projectId, res) {
   try {
-    const projectData = await getProjectData(projectId)
+    const projectData = await getProjectDataById(projectId)
     respondAPIQuery(res, projectData)
   } catch (error) {
-    console.error('requestProjectData', projectId, error)
+    console.error('requestProjectDataId', projectId, error)
     respondAPIQuery(res, { error })
   }
 }
 
-export async function getProjectData(projectId) {
+export async function getProjectDataById(projectId) {
   if (!projectId) return {}
   const client = await getDBCredentials()
   try {
@@ -150,14 +155,14 @@ export async function getProjectData(projectId) {
     await client.close()
     return projectData
   } catch (err) {
-    console.error('getProjectData error', projectId, err)
+    console.error('getProjectDataById error', projectId, err)
     await client.close()
   }
 }
 export async function getWebsiteData(projectId) {
   if (!projectId) return {}
   try {
-    const projectData = await getProjectData(projectId)
+    const projectData = await getProjectDataById(projectId)
     const websiteData = projectData.resume_data
     return { websiteData, isPublish: projectData.publish }
   } catch (err) {
@@ -222,9 +227,9 @@ export async function checkSubdomainAvailability(
     respondAPIQuery(res, { error: 'fail' }, 500)
   }
 }
-export async function requestUserData(userId, res) {
+export async function requestUserProjects(userId, res) {
   try {
-    const websiteData = await getAllUserData(userId)
+    const websiteData = await getAllUserProjects(userId)
     respondAPIQuery(res, websiteData)
   } catch (error) {
     console.error(error)
@@ -251,19 +256,23 @@ export async function getUserDataFromWebsiteId(projectId) {
     console.error(error)
   }
 }
-export async function getAllUserData(userId) {
+export async function getAllUserProjects(userId) {
   if (!userId) return {}
   const client = await getDBCredentials()
   try {
     const websiteCollection = await getCollection(client)
-    const cursorsUserData = await websiteCollection.find({
-      user_id: userId,
-    })
-    const data = await cursorsUserData.toArray()
+    const projects = await websiteCollection
+      .find(
+        {
+          user_id: userId,
+        },
+        { projection: { resume_data: 0 } }
+      )
+      .toArray()
     await client.close()
-    return { websitesData: data }
+    return { projects }
   } catch (err) {
-    console.error('getAllUserData error', err)
+    console.error('getAllUserProjects error', err)
     await client.close()
     throw err
   }
@@ -314,13 +323,13 @@ export default function betaUsers(req, res) {
     case 'save':
       return updateWebsiteData(data, res)
     case 'read-user':
-      return getUserData(data, res)
+      return getUserProject(data, res)
     case 'read-project':
-      return requestProjectData(data, res)
+      return requestProjectDataId(data, res)
     case 'read-website':
       return requestWebsiteData(data, res)
-    case 'read-user-websites':
-      return requestUserData(data, res)
+    case 'read-user-projects':
+      return requestUserProjects(data, res)
     case 'remove-project':
       return removeProject(data, res)
     case 'subdomain-availability':

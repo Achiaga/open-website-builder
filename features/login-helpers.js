@@ -20,10 +20,14 @@ import isEqual from 'lodash/isEqual'
 // const isEqual = dynamic(() => import('lodash/isEqual'))
 // const templates = dynamic(() => import('../templates'))
 
+function getIsUserAdmin(user) {
+  return user[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
+}
+
 async function getUserData(user, projectId) {
   try {
     let userData
-    const isAdmin = user[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
+    const isAdmin = getIsUserAdmin(user)
     if (isAdmin && projectId) {
       userData = await getUserDataByProjectId(projectId)
     } else {
