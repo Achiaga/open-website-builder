@@ -1,23 +1,27 @@
 import Selector from 'react-selecto'
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setGroupSelectedBlocksIds } from '../../../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getIsGroupSelectable,
+  setGroupSelectedBlocksIds,
+  setIsGroupSelectable,
+} from '../../../features/builderSlice'
 
 const MultipleSelection = () => {
   const dispatch = useDispatch()
-  const [isSelectable, setIsSelectable] = useState(false)
+
   const [selectedBlocks, setSelectedBlocks] = useState([])
+
+  const isGroupSelectable = useSelector(getIsGroupSelectable)
 
   function handleKeyDown(e) {
     if (e.keyCode === 91) {
-      return setIsSelectable(true)
-    } else {
-      setIsSelectable(true)
+      dispatch(setIsGroupSelectable(true))
     }
   }
   function handleKeyUp(e) {
     if (e.keyCode === 91) {
-      setIsSelectable(false)
+      dispatch(setIsGroupSelectable(false))
     }
   }
 
@@ -31,22 +35,21 @@ const MultipleSelection = () => {
   }, [])
   useEffect(() => {
     const ids = selectedBlocks.map(
-      (block) => block?.querySelector('.draggHandle')?.id
+      (block) => block?.querySelector('.selectable-block')?.id
     )
     dispatch(setGroupSelectedBlocksIds(ids))
   }, [selectedBlocks])
 
-  if (!isSelectable) return null
+  if (!isGroupSelectable) return null
 
   return (
     <Selector
       dragContainer={'.elements'}
       selectableTargets={['.selecto-area .cube']}
       hitRate={40}
-      selectFromInside={false}
+      selectFromInside={true}
       toggleContinueSelect={'shift'}
       onSelect={(e) => {
-        console.log('onSelect', e)
         e.added.forEach((el) => {
           el.classList.add('selected')
         })

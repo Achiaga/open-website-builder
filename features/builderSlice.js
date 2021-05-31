@@ -57,6 +57,9 @@ export const builderSlice = createSlice({
     setGroupSelectedBlocksIds: (state, action) => {
       state.groupSelectedBlocks = action.payload
     },
+    setIsGroupSelectable: (state, action) => {
+      state.isGroupSelectable = action.payload
+    },
     //This functions are to let the user overwrite DB data
     setTempDBData: (state, action) => {
       //We store here the DB data while the user decides
@@ -158,6 +161,7 @@ export const {
   setBuilderBlocksData,
   setInitialBuilderData,
   setGroupSelectedBlocksIds,
+  setIsGroupSelectable,
   setTempDBData,
   setUserData,
   setWebsiteId,
@@ -731,6 +735,7 @@ export const getHierarchy = (state) => {
 }
 export const getGroupSelectedBlocksIds = (state) =>
   state.builder.groupSelectedBlocks
+export const getIsGroupSelectable = (state) => state.builder.isGroupSelectable
 const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy
 const getDesktopHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>

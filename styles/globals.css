@@ -9,10 +9,6 @@ body {
   position: relative;
 }
 
-.selecto-area .selected {
-  outline: 2px solid red;
-}
-
 a {
   color: inherit;
   text-decoration: none;
