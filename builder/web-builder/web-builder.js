@@ -1,7 +1,14 @@
-import React, { useCallback, useEffect, useRef, forwardRef } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  forwardRef,
+  useState,
+} from 'react'
 import PropTypes from 'prop-types'
 import { Box } from '@chakra-ui/layout'
 import { v4 as uuid } from 'uuid'
+import Selecto from 'react-selecto'
 
 import { getParentBlock, highlightFutureParentBlock } from './helpers'
 import { GRID_COLUMNS } from './constants'
@@ -53,7 +60,7 @@ const GridLayoutWrapper = forwardRef(
         id="main-builder"
         overflow="hidden"
         pos="relative"
-        className="droppable-element"
+        className="droppable-element elements selecto-area"
         onDragOver={higlightOnDrop}
         bg="gray.50"
         onDrop={(e) => {
@@ -88,6 +95,7 @@ const WebBuilder = () => {
   const lastHoveredEl = useRef()
   const gridRowHeight = useSelector(getGridRowHeight)
   const isMobile = useSelector(getIsMobileBuilder)
+  const [isSelectable, setIsSelectable] = useState(false)
   const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
   const columns = isMobile ? GRID_COLUMNS / 2 : GRID_COLUMNS
   const gridColumnWidth = windowWidth / columns
@@ -98,8 +106,10 @@ const WebBuilder = () => {
     handleWindowResize()
     window.addEventListener('resize', handleWindowResize)
     window.addEventListener('keydown', handleKeyPress)
+    window.addEventListener('keyup', handleKeyUp)
     return () => {
       window.removeEventListener('keydown', handleKeyPress)
+      window.removeEventListener('keyup', handleKeyUp)
       window.removeEventListener('resize', handleWindowResize)
     }
   }, [])
@@ -162,25 +172,63 @@ const WebBuilder = () => {
 
   function handleKeyPress(e) {
     if (e.key === 'Escape') {
-      dispatch(setBlockEditable(null))
+      return dispatch(setBlockEditable(null))
+    }
+    if (e.keyCode === 91) {
+      return setIsSelectable(true)
+    } else {
+      setIsSelectable(true)
     }
   }
-
+  function handleKeyUp(e) {
+    if (e.keyCode === 91) {
+      setIsSelectable(false)
+    }
+  }
   return (
-    <GridLayoutWrapper
-      ref={builderRef}
-      higlightOnDrop={higlightOnDrop}
-      handleDropNewItem={handleDropNewItem}
-    >
-      <MemoizeLayoutsRender
-        layouts={layoutsKeys}
-        handleHiglightSection={handleHiglightSectionMiddleWare}
-        removeHighlightedElem={removeHighlightedElem}
-        gridRowHeight={gridRowHeight}
-        gridColumnWidth={gridColumnWidth}
-        builderRef={builderRef}
-      />
-    </GridLayoutWrapper>
+    <>
+      <GridLayoutWrapper
+        ref={builderRef}
+        higlightOnDrop={higlightOnDrop}
+        handleDropNewItem={handleDropNewItem}
+      >
+        {isSelectable && (
+          <Selecto
+            dragContainer={'.elements'}
+            selectableTargets={['.selecto-area .cube']}
+            hitRate={40}
+            selectFromInside={false}
+            toggleContinueSelect={'shift'}
+            onSelectStart={(e) => {
+              console.log('start', e)
+              e.added.forEach((el) => {
+                el.classList.add('selected')
+              })
+              e.removed.forEach((el) => {
+                el.classList.remove('selected')
+              })
+            }}
+            onSelect={(e) => {
+              console.log('onSelect', e)
+              e.added.forEach((el) => {
+                el.classList.add('selected')
+              })
+              e.removed.forEach((el) => {
+                el.classList.remove('selected')
+              })
+            }}
+          />
+        )}
+        <MemoizeLayoutsRender
+          layouts={layoutsKeys}
+          handleHiglightSection={handleHiglightSectionMiddleWare}
+          removeHighlightedElem={removeHighlightedElem}
+          gridRowHeight={gridRowHeight}
+          gridColumnWidth={gridColumnWidth}
+          builderRef={builderRef}
+        />
+      </GridLayoutWrapper>
+    </>
   )
 }
 

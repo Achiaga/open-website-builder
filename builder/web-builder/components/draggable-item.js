@@ -128,7 +128,7 @@ const DraggableItem = ({
         }}
         style={{ backgroundColor: 'red' }}
       >
-        <Box pos="absolute" zIndex={zIndexValue}>
+        <Box pos="absolute" zIndex={zIndexValue} className="cube">
           <ResizeWrapper
             width={width}
             height={height}
