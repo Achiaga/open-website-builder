@@ -11,7 +11,7 @@ import {
   saveDataOnLocal,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
-import { getUserDataById } from '../utils/user-data'
+import { getUserDataById, getUserDataByProjectId } from '../utils/user-data'
 // import dynamic from 'next/dynamic'
 
 import templates from '../templates'
@@ -20,9 +20,17 @@ import isEqual from 'lodash/isEqual'
 // const isEqual = dynamic(() => import('lodash/isEqual'))
 // const templates = dynamic(() => import('../templates'))
 
-async function getUserData(user) {
+async function getUserData(user, projectId) {
   try {
-    const userData = await getUserDataById(user.sub)
+    let userData
+    const isAdmin = user[AUTH0_CUSTOM_CLAIM_PATH]?.roles?.includes('Admin')
+
+    if (isAdmin && projectId) {
+      userData = await getUserDataByProjectId(projectId)
+    } else {
+      userData = await getUserDataById(user.sub)
+    }
+
     if (!Object.keys(userData).length) return null
     return userData
   } catch (err) {
@@ -75,33 +83,34 @@ const handleSignup = (user) => async (dispatch) => {
   dispatch(setAccountCreated(true))
 }
 
-export const loadDataFromDB = (user, template) => async (dispatch) => {
-  dispatch(setLoadingData(true))
-  const dbData = await getUserData(user, template)
-  const { resume_data, publish, _id, domain, subdomain } = dbData || {}
-  const userData = {
-    userEmail: user.email,
-    userId: user.sub,
-    domain,
-    subdomain,
-    projectId: _id,
-    publish,
-  }
-  if (!resume_data) {
-    dispatch(loadInitialDataNoAccount(template))
-  } else if (templates[template] && resume_data) {
-    batch(() => {
-      dispatch(setTempDBData({ resume_data }))
+export const loadDataFromDB =
+  (user, template, projectId) => async (dispatch) => {
+    dispatch(setLoadingData(true))
+    const dbData = await getUserData(user, projectId)
+    const { resume_data, publish, _id, domain, subdomain } = dbData || {}
+    const userData = {
+      userEmail: user.email,
+      userId: user.sub,
+      domain,
+      subdomain,
+      projectId: _id,
+      publish,
+    }
+    if (!resume_data) {
       dispatch(loadInitialDataNoAccount(template))
+    } else if (templates[template] && resume_data) {
+      batch(() => {
+        dispatch(setTempDBData({ resume_data }))
+        dispatch(loadInitialDataNoAccount(template))
+      })
+    } else {
+      dispatch(updateInitialState({ resume_data }))
+    }
+    batch(() => {
+      dispatch(setUserData(userData))
+      dispatch(setLoadingData(false))
     })
-  } else {
-    dispatch(updateInitialState({ resume_data }))
   }
-  batch(() => {
-    dispatch(setUserData(userData))
-    dispatch(setLoadingData(false))
-  })
-}
 
 export function normalizeBuilderData(data) {
   const normalizedData = {

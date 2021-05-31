@@ -24,6 +24,13 @@ export const getUserDataById = (id) => {
     console.error('getUserDataById', err)
   }
 }
+export const getUserDataByProjectId = (projectId) => {
+  try {
+    return request('read-project', projectId)
+  } catch (err) {
+    console.error('getUserDataByProjectId', err)
+  }
+}
 export const requestUser = (id) => {
   try {
     return request('read-user-websites', id)

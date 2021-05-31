@@ -182,11 +182,11 @@ export const {
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
-  const { origin, template } = params
+  const { origin, template, projectId } = params
   if (!user) return dispatch(loadInitialDataNoAccount(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (user && origin !== 'login')
-    return dispatch(loadDataFromDB(user, template))
+    return dispatch(loadDataFromDB(user, template, projectId))
 }
 
 export const editBlockConfig =

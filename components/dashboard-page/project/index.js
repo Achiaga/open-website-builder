@@ -98,19 +98,17 @@ const ProjectsCards = ({ userProjects }) => {
   if (!userProjects) return <Spinner />
   return (
     <Box mt="1rem" mb="1rem">
-      {userProjects?.length ? (
-        userProjects?.map((website) => {
-          return <ProjectCard project={website} key={website._id} />
-        })
-      ) : (
-        <Link href="/templates" passHref>
-          <a>
-            <Button marginRight="1rem" colorScheme="primary">
-              Create New Project
-            </Button>
-          </a>
-        </Link>
-      )}
+      {userProjects?.map((website) => {
+        return <ProjectCard project={website} key={website._id} />
+      })}
+
+      <Link href="/templates" passHref>
+        <a>
+          <Button marginRight="1rem" colorScheme="primary">
+            Create New Project
+          </Button>
+        </a>
+      </Link>
     </Box>
   )
 }

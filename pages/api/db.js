@@ -1,13 +1,25 @@
-/* eslint-disable no-undef */
 import { MongoClient, ObjectId } from 'mongodb'
 
 function getDBCredentials() {
+  // eslint-disable-next-line no-undef
   const uri = `mongodb+srv://${process?.env?.DB_USER}:${process?.env?.DB_PASSWORD}@${process?.env?.DB_URL}/${process?.env?.DB_NAME}?retryWrites=true&writeConcern=majority`
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   return client
+}
+
+// eslint-disable-next-line no-undef
+const dbName = process?.env?.DB_NAME
+// eslint-disable-next-line no-undef
+const dbCollectionName = process.env.DB_COLLECTION
+
+async function getCollection(client) {
+  await client.connect()
+  const database = client.db(dbName)
+  const websiteCollection = database.collection(dbCollectionName)
+  return websiteCollection
 }
 
 async function createProjectDB(
@@ -22,9 +34,7 @@ async function createProjectDB(
     created_at: Date.now(),
     updates: 0,
   }
-  await client.connect()
-  const database = client.db(process?.env?.DB_NAME)
-  const websiteCollection = database.collection(process.env.DB_COLLECTION)
+  const websiteCollection = await getCollection(client)
   const createResponse = await websiteCollection.insertOne(newDoc)
   const projectId = createResponse.insertedId
   await client.close()
@@ -57,9 +67,7 @@ async function updateWebsiteData(data, res) {
         updates: +1,
       },
     }
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     const updatedValue = await websiteCollection.updateOne(
       filter,
       updateDoc,
@@ -89,10 +97,7 @@ export async function updateProjectDomain(domain, projectId) {
         domain: domain,
       },
     }
-    await client.connect()
-
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     const result = await websiteCollection.updateOne(filter, updateDoc, options)
     await client.close()
     return result
@@ -103,9 +108,7 @@ export async function updateProjectDomain(domain, projectId) {
 async function getUserData(userId, res) {
   const client = await getDBCredentials()
   try {
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     const userData = await websiteCollection.findOne({
       user_id: userId,
     })
@@ -126,32 +129,46 @@ export async function requestWebsiteData(projectId, res) {
     respondAPIQuery(res, { error })
   }
 }
+export async function requestProjectData(projectId, res) {
+  try {
+    const projectData = await getProjectData(projectId)
+    respondAPIQuery(res, projectData)
+  } catch (error) {
+    console.error('requestProjectData', projectId, error)
+    respondAPIQuery(res, { error })
+  }
+}
 
-export async function getWebsiteData(projectId) {
+export async function getProjectData(projectId) {
   if (!projectId) return {}
   const client = await getDBCredentials()
   try {
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
-    const userData = await websiteCollection.findOne({
+    const websiteCollection = await getCollection(client)
+    const projectData = await websiteCollection.findOne({
       _id: ObjectId(projectId),
     })
-    const websiteData = userData.resume_data
     await client.close()
-    return { websiteData, isPublish: userData.publish }
+    return projectData
+  } catch (err) {
+    console.error('getProjectData error', projectId, err)
+    await client.close()
+  }
+}
+export async function getWebsiteData(projectId) {
+  if (!projectId) return {}
+  try {
+    const projectData = await getProjectData(projectId)
+    const websiteData = projectData.resume_data
+    return { websiteData, isPublish: projectData.publish }
   } catch (err) {
     console.error('getWebsiteData error', projectId, err)
-    await client.close()
   }
 }
 export async function getWebsiteDataBySubdomain(subdomain) {
   if (!subdomain) return {}
   const client = await getDBCredentials()
   try {
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     const userData = await websiteCollection.findOne({
       subdomain: subdomain,
     })
@@ -176,8 +193,7 @@ async function updateProjectSubdomain(res, client, subdomain, projectId) {
       subdomain: subdomain,
     },
   }
-  const database = client.db(process?.env?.DB_NAME)
-  const websiteCollection = database.collection(process.env.DB_COLLECTION)
+  const websiteCollection = await getCollection(client)
   await websiteCollection.updateOne(filter, updateDoc, options)
   return true
 }
@@ -187,9 +203,7 @@ export async function checkSubdomainAvailability(
 ) {
   const client = await getDBCredentials()
   try {
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     const domainsCursor = await websiteCollection.find({
       subdomain: subdomain,
     })
@@ -221,9 +235,7 @@ export async function getUserDataFromWebsiteId(projectId) {
   try {
     const client = await getDBCredentials()
     try {
-      await client.connect()
-      const database = client.db(process?.env?.DB_NAME)
-      const websiteCollection = database.collection(process.env.DB_COLLECTION)
+      const websiteCollection = await getCollection(client)
       const cursorsUserData = await websiteCollection.find({
         _id: ObjectId(projectId),
       })
@@ -243,9 +255,7 @@ export async function getAllUserData(userId) {
   if (!userId) return {}
   const client = await getDBCredentials()
   try {
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     const cursorsUserData = await websiteCollection.find({
       user_id: userId,
     })
@@ -261,9 +271,7 @@ export async function getAllUserData(userId) {
 export async function removeProject({ projectId, userId }, res) {
   const client = await getDBCredentials()
   try {
-    await client.connect()
-    const database = client.db(process?.env?.DB_NAME)
-    const websiteCollection = database.collection(process.env.DB_COLLECTION)
+    const websiteCollection = await getCollection(client)
     await websiteCollection.deleteOne({
       _id: ObjectId(projectId),
     })
@@ -276,7 +284,7 @@ export async function removeProject({ projectId, userId }, res) {
   } catch (err) {
     console.error('removeProject error', err)
     await client.close()
-    respondAPIQuery(res, { error })
+    respondAPIQuery(res, { error: err })
   }
 }
 
@@ -307,6 +315,8 @@ export default function betaUsers(req, res) {
       return updateWebsiteData(data, res)
     case 'read-user':
       return getUserData(data, res)
+    case 'read-project':
+      return requestProjectData(data, res)
     case 'read-website':
       return requestWebsiteData(data, res)
     case 'read-user-websites':
