@@ -60,7 +60,7 @@ const ProjectCard = ({ project }) => {
           </Tag>
         )}
         <Box>
-          <Link href="/builder" passHref>
+          <Link href={`/builder?project=${project._id}`} passHref>
             <a>
               <Button
                 marginRight="1rem"

@@ -23,8 +23,7 @@ import isEqual from 'lodash/isEqual'
 async function getUserData(user, projectId) {
   try {
     let userData
-    const isAdmin = user[AUTH0_CUSTOM_CLAIM_PATH]?.roles?.includes('Admin')
-
+    const isAdmin = user[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
     if (isAdmin && projectId) {
       userData = await getUserDataByProjectId(projectId)
     } else {

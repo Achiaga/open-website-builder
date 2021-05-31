@@ -183,6 +183,7 @@ export const {
 
 export const loadInitialData = (user, params) => async (dispatch) => {
   const { origin, template, projectId } = params
+  console.log('loadInitialData', { projectId })
   if (!user) return dispatch(loadInitialDataNoAccount(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (user && origin !== 'login')
