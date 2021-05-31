@@ -46,8 +46,9 @@ const MultipleSelection = () => {
     <Selector
       dragContainer={'.elements'}
       selectableTargets={['.selecto-area .cube']}
-      hitRate={40}
+      hitRate={100}
       selectFromInside={true}
+      selectByClick={false}
       toggleContinueSelect={'shift'}
       onSelect={(e) => {
         e.added.forEach((el) => {

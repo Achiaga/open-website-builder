@@ -31,7 +31,6 @@ function ResumePreview() {
     )
   }
   const hasFlurly = hasFlurlyLink(blocksData.blocks)
-  console.log({ hasFlurly, blocksData })
   return (
     <>
       {hasFlurly && (

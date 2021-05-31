@@ -137,7 +137,7 @@ export function BuilderBlock({ blockId, isDragging }) {
         borderColor: getBorderColor(
           isEditable,
           isOver,
-          groupedBlocksIds.includes(blockId)
+          groupedBlocksIds?.includes(blockId)
         ),
         content: "''",
         position: 'absolute',
