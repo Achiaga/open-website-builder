@@ -19,9 +19,11 @@ import {
 import {
   handleLoginCallback,
   loadInitialDataNoAccount,
+  loadDataFromTemplate,
   loadDataFromDB,
   updateInitialState,
   normalizeBuilderData,
+  getIsUserAdmin,
 } from './login-helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
@@ -63,7 +65,7 @@ export const builderSlice = createSlice({
     setUserData: (state, action) => {
       state.user = action.payload
     },
-    setWebsiteId: (state, action) => {
+    setProjectId: (state, action) => {
       state.user.projectId = action.payload
     },
     setNewDropBlockType: (state, action) => {
@@ -156,7 +158,7 @@ export const {
   setInitialBuilderData,
   setTempDBData,
   setUserData,
-  setWebsiteId,
+  setProjectId,
   setLayout,
   setLayouts,
   setHasMobileBeenEdited,
@@ -182,11 +184,14 @@ export const {
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
-  const { origin, template } = params
+  const { origin, template, projectId } = params
+  const isAdmin = getIsUserAdmin(user)
   if (!user) return dispatch(loadInitialDataNoAccount(template))
+  if (isAdmin && template) return dispatch(loadDataFromTemplate(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
-  if (user && origin !== 'login')
-    return dispatch(loadDataFromDB(user, template))
+  if (user && origin !== 'login') {
+    return dispatch(loadDataFromDB(user, template, projectId))
+  }
 }
 
 export const editBlockConfig =
@@ -461,6 +466,7 @@ export const keepDBData = () => (dispatch, getState) => {
     dispatch(setTempDBData(null))
     dispatch(setLoadingData(false))
   })
+  setTimeout(() => dispatch(saveDataOnLocal()), 0)
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
   batch(() => {
