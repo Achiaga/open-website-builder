@@ -122,7 +122,9 @@ export function BuilderBlock({ blockId, isDragging }) {
       id={blockId}
       onClick={(e) => {
         e.stopPropagation()
-        if (isEditable || isDragging) return null
+        if (isEditable || isDragging) {
+          return null
+        }
         dispatch(setBlockEditable(blockId))
       }}
       onMouseOver={() => setIsOver(true)}

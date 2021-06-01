@@ -12,7 +12,7 @@ const MultipleSelection = () => {
   const dispatch = useDispatch()
 
   const [selectedBlocks, setSelectedBlocks] = useState([])
-  const [isContinueSelectActive, setIsContinueSelectActive] = useState([])
+  const [isContinueSelectActive, setIsContinueSelectActive] = useState(false)
 
   const isGroupSelectable = useSelector(getIsGroupSelectable)
   const selectedBlocksIds = useSelector(getGroupSelectedBlocksIds)
@@ -51,18 +51,19 @@ const MultipleSelection = () => {
 
   if (
     !isGroupSelectable &&
-    selectedBlocksIds?.length > 0 &&
-    !isContinueSelectActive
-  )
+    !isContinueSelectActive &&
+    selectedBlocksIds?.length > 0
+  ) {
     return null
+  }
 
   return (
     <Selector
       dragContainer={'.elements'}
       selectableTargets={['.selecto-area .cube']}
       hitRate={70}
-      selectFromInside={true}
-      selectByClick={true}
+      selectFromInside={isGroupSelectable}
+      selectByClick={!isGroupSelectable}
       toggleContinueSelect={['shift']}
       onSelect={(e) => {
         e.added.forEach((el) => {
