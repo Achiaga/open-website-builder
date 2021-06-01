@@ -5,7 +5,7 @@ import Settings from './settings'
 import { settings } from './routesVariables'
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { useEffect } from 'react'
-import { loadUserProjectsData } from '../../features/userSlice'
+import { loadUserInitialData } from '../../features/userSlice'
 import { useDispatch } from 'react-redux'
 import Head from 'next/head'
 
@@ -19,7 +19,7 @@ const Dashboard = ({ dashboardType }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    user && dispatch(loadUserProjectsData(user.sub))
+    user && dispatch(loadUserInitialData(user.sub))
   }, [user])
 
   if (!user) {

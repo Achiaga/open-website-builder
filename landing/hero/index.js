@@ -38,7 +38,6 @@ const Hero = () => {
             135deg
             ,  #43E28E  0%,#506bf0 100%)"
             backgroundClip="text"
-            textFillColor="transparent"
             mx="1rem"
             fontSize={['4rem', '5rem', '5.5rem', '5rem', '6rem']}
           >
@@ -53,7 +52,6 @@ const Hero = () => {
             135deg
             ,  #43E28E  0%,#506bf0 100%)"
             backgroundClip="text"
-            textFillColor="transparent"
             fontSize={['4rem', '5rem', '5.5rem', '5rem', '6rem']}
           >
             Faster

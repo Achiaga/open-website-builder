@@ -745,6 +745,23 @@
   dependencies:
     "@chakra-ui/utils" "1.1.0"
 
+"@daybrush/utils@^1.0.0", "@daybrush/utils@^1.1.1", "@daybrush/utils@^1.3.1", "@daybrush/utils@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@daybrush/utils/-/utils-1.4.0.tgz#c42ea6e65c044b8854d3456531deb226f2db7a56"
+  integrity sha512-P+l76QjGFwu8IbrFoIHO1equrL02h6wYJLRZ37Snr6o3bPEwPS0mdJqyTZipHMhrWoR44UVtZTUi41GPCDc9PQ==
+
+"@egjs/children-differ@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@egjs/children-differ/-/children-differ-1.0.1.tgz#5465fa80671d5ca3564ebe912f48b05b3e8a14fd"
+  integrity sha512-DRvyqMf+CPCOzAopQKHtW+X8iN6Hy6SFol+/7zCUiE5y4P/OB8JP8FtU4NxtZwtafvSL4faD5KoQYPj3JHzPFQ==
+  dependencies:
+    "@egjs/list-differ" "^1.0.0"
+
+"@egjs/list-differ@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@egjs/list-differ/-/list-differ-1.0.0.tgz#2277aff52e3e4bd9318d5c30ffc3ba3b6216f05e"
+  integrity sha512-HsbMKc0ZAQH+EUeCmI/2PvTYSybmkaWwakU8QGDYYgMVIg9BQ5sM0A0Nnombjxo2+JzXHxmH+jw//yGX+y6GYw==
+
 "@emotion/babel-plugin@^11.0.0":
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.1.2.tgz#68fe1aa3130099161036858c64ee92056c6730b7"
@@ -1035,6 +1052,20 @@
     redux "^4.0.0"
     redux-thunk "^2.3.0"
     reselect "^4.0.0"
+
+"@scena/dragscroll@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.0.1.tgz#efa81c984f0dd00ce90130f29580a471e2a171dc"
+  integrity sha512-EQXsJku85gb8dxlCWmMpqWieunN/Ojr5u5czNQwwC/Ab0YjhdHtvvK9DGS9ej9Uu4+MbN/F4HUTIMhhukx6dSg==
+  dependencies:
+    "@scena/event-emitter" "^1.0.2"
+
+"@scena/event-emitter@^1.0.2", "@scena/event-emitter@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@scena/event-emitter/-/event-emitter-1.0.5.tgz#047e3acef93cf238d7ce3a8cc5a12ec6bd9c3bb1"
+  integrity sha512-AzY4OTb0+7ynefmWFQ6hxDdk0CySAq/D4efljfhtRHCOP7MBF9zUfhKG3TJiroVjASqVgkRJFdenS8ArZo6Olg==
+  dependencies:
+    "@daybrush/utils" "^1.1.1"
 
 "@sindresorhus/is@^4.0.0":
   version "4.0.0"
@@ -1967,6 +1998,14 @@ css-get-unit@1.0.1:
   resolved "https://registry.yarnpkg.com/css-get-unit/-/css-get-unit-1.0.1.tgz#e490b9e56b2cd20f903a22ccafb448382edf7976"
   integrity sha1-5JC55Wss0g+QOiLMr7RIOC7feXY=
 
+css-styled@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/css-styled/-/css-styled-1.0.0.tgz#6fe10a98f95c24fa66cb1c41e11e7c00bcedac13"
+  integrity sha512-lDdPvM2/djv+La110zVY3RGQ7X4OOlzLS+IEjRcn8UlUmJd1+GNcGfDFmsKWwnLBupsY1w0QM1gRgV4RdcCjfw==
+  dependencies:
+    "@daybrush/utils" "^1.0.0"
+    string-hash "^1.1.3"
+
 css-to-react-native@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/css-to-react-native/-/css-to-react-native-3.0.0.tgz#62dbe678072a824a689bcfee011fc96e02a7d756"
@@ -2674,6 +2713,11 @@ framesync@5.0.0, framesync@^5.0.0:
   resolved "https://registry.yarnpkg.com/framesync/-/framesync-5.0.0.tgz#7de8caedf53ac441118e79680f1beb7391c328b6"
   integrity sha512-wd8t+JsQGisluSv1twiEeDv0aNGpavGb9q7xgIk9fGbcIWkNXF/KVtrjnOrCwBWJuiXxlJfNkcvGudsI32FxYA==
 
+framework-utils@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/framework-utils/-/framework-utils-1.1.0.tgz#a3b528bce838dfd623148847dc92371b09d0da2d"
+  integrity sha512-KAfqli5PwpFJ8o3psRNs8svpMGyCSAe8nmGcjQ0zZBWN2H6dZDnq+ABp3N3hdUmFeMrLtjOCTXD4yplUJIWceg==
+
 fs-constants@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-constants/-/fs-constants-1.0.0.tgz#6be0de9be998ce16af8afc24497b9ee9b7ccd9ad"
@@ -2722,6 +2766,14 @@ gauge@~2.7.3:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
+
+gesto@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/gesto/-/gesto-1.3.0.tgz#ff141964faecbbae38e0cfb008607c533a6c694f"
+  integrity sha512-be9jSmhiDMjMzCQwBewOp/kBtKDB97d3e2lNkojMW9Ckgeu8c8Qglx7fopnLweoIGlIYsqDqwxHdJAkyL/TmFA==
+  dependencies:
+    "@daybrush/utils" "^1.0.0"
+    "@scena/event-emitter" "^1.0.2"
 
 get-intrinsic@^1.0.2, get-intrinsic@^1.1.0, get-intrinsic@^1.1.1:
   version "1.1.1"
@@ -3235,6 +3287,20 @@ json5@^1.0.1:
   dependencies:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
+
+keycode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
+  integrity sha1-PQr1bce4uOXLqNCpfxByBO7CKwQ=
+
+keycon@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/keycon/-/keycon-1.1.2.tgz#a7a9f5f22f32012fafd11e68c4283911d0738bce"
+  integrity sha512-yCoUAfwqmQUWrtOFuZhicxasF/4ae+M0aH8yV1wEKKZCZql8v6jWhlVF9dT5i1TfuHSmgt/GNuCaWIHT8wk6eQ==
+  dependencies:
+    "@daybrush/utils" "^1.0.0"
+    "@scena/event-emitter" "^1.0.2"
+    keycode "^2.2.0"
 
 keyv@^4.0.0:
   version "4.0.3"
@@ -3757,6 +3823,13 @@ os-browserify@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
   integrity sha1-hUNzx/XCMVkU/Jv8a9gjj92h7Cc=
+
+overlap-area@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/overlap-area/-/overlap-area-1.0.0.tgz#d44db45b810ec05c4c2c9f430ab60c9473f2101b"
+  integrity sha512-Oi3hxRf6Flvv1upldnjOtV7euFkc75G/wsxYfS/ssNKEZ3Z+HbIoPHkFfLH3hgwqLJKpq9wdFo7I6xcdS6k8yg==
+  dependencies:
+    "@daybrush/utils" "^1.3.1"
 
 p-any@^3.0.0:
   version "3.0.0"
@@ -4297,6 +4370,13 @@ react-remove-scroll@2.4.0:
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
 
+react-selecto@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/react-selecto/-/react-selecto-1.11.1.tgz#b1ac4aa34ea983af8c160989976c2edbf1763d3d"
+  integrity sha512-bdgyyjeZ7w6mOl71h/bzBR7DYgmnxcMwrSkmWDJbEkGlykHXB62v2xDuse9boe88MTCB9vHot5gkrCdUwXbUSA==
+  dependencies:
+    selecto "~1.11.1"
+
 react-style-singleton@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-2.1.1.tgz#ce7f90b67618be2b6b94902a30aaea152ce52e66"
@@ -4496,6 +4576,21 @@ scheduler@^0.20.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+selecto@~1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/selecto/-/selecto-1.11.1.tgz#7f85e85b7ac770bca2d41fd189a34e77e21e3db1"
+  integrity sha512-bR081EKPZINVdCrNyaauHTUDJczytY+n/UqzJZPS7wQgxNHajpDQP1jbeXVLRds7NFMlkwgDSHR0umcW85MbTA==
+  dependencies:
+    "@daybrush/utils" "^1.4.0"
+    "@egjs/children-differ" "^1.0.1"
+    "@scena/dragscroll" "^1.0.1"
+    "@scena/event-emitter" "^1.0.5"
+    css-styled "^1.0.0"
+    framework-utils "^1.1.0"
+    gesto "^1.3.0"
+    keycon "^1.1.2"
+    overlap-area "^1.0.0"
 
 semver@^5.1.0, semver@^5.4.1, semver@^5.6.0:
   version "5.7.1"
@@ -4730,7 +4825,7 @@ stream-http@^2.7.2:
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
 
-string-hash@1.1.3:
+string-hash@1.1.3, string-hash@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
   integrity sha1-6Kr8CsGFW0Zmkp7X3RJ1311sgRs=
