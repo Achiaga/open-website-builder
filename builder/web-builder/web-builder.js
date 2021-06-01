@@ -16,7 +16,6 @@ import {
   getNewBlockType,
   getLayout,
   getIsMobileBuilder,
-  saveDataOnLocal,
 } from '../../features/builderSlice'
 
 import MemoDrag from './components/draggable-item'
@@ -97,7 +96,6 @@ const WebBuilder = () => {
 
   useEffect(() => {
     handleWindowResize()
-    dispatch(saveDataOnLocal())
     window.addEventListener('resize', handleWindowResize)
     window.addEventListener('keydown', handleKeyPress)
     return () => {

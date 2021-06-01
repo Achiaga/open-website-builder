@@ -9,10 +9,9 @@ import {
   setLoadingData,
   saveData,
   saveDataOnLocal,
-  setProjectId,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
-import { getUserDataById, getUserDataByProjectId } from '../utils/user-data'
+import { getUserDataById } from '../utils/user-data'
 // import dynamic from 'next/dynamic'
 
 import templates from '../templates'
@@ -21,19 +20,9 @@ import isEqual from 'lodash/isEqual'
 // const isEqual = dynamic(() => import('lodash/isEqual'))
 // const templates = dynamic(() => import('../templates'))
 
-export function getIsUserAdmin(user) {
-  return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
-}
-
-async function getUserData(user, projectId) {
+async function getUserData(user) {
   try {
-    let userData
-    const isAdmin = getIsUserAdmin(user)
-    if (isAdmin && projectId) {
-      userData = await getUserDataByProjectId(projectId)
-    } else {
-      userData = await getUserDataById(user.sub)
-    }
+    const userData = await getUserDataById(user.sub)
     if (!Object.keys(userData).length) return null
     return userData
   } catch (err) {
@@ -59,14 +48,6 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
     dispatch(setInitialBuilderData(data))
   })
 }
-export const loadDataFromTemplate = (template) => async (dispatch) => {
-  const data = templates[template] || templates.fallback
-  batch(() => {
-    dispatch(setProjectId(null))
-    dispatch(saveDataOnLocal(data))
-    dispatch(setInitialBuilderData(data))
-  })
-}
 export const updateInitialState =
   ({ resume_data }) =>
   async (dispatch) => {
@@ -76,7 +57,7 @@ export const updateInitialState =
   }
 
 const isLogin = (user) => {
-  const userMetadata = user?.[AUTH0_CUSTOM_CLAIM_PATH]
+  const userMetadata = user[AUTH0_CUSTOM_CLAIM_PATH]
   if (!userMetadata.logins_counts > 1) return true
   return new Date() - new Date(userMetadata.createdAt) > 2 * 60 * 1000
 }
@@ -94,34 +75,33 @@ const handleSignup = (user) => async (dispatch) => {
   dispatch(setAccountCreated(true))
 }
 
-export const loadDataFromDB =
-  (user, template, projectId) => async (dispatch) => {
-    dispatch(setLoadingData(true))
-    const dbData = await getUserData(user, projectId)
-    const { resume_data, publish, _id, domain, subdomain } = dbData || {}
-    const userData = {
-      userEmail: user.email,
-      userId: user.sub,
-      domain,
-      subdomain,
-      projectId: _id,
-      publish,
-    }
-    if (!resume_data) {
-      dispatch(loadInitialDataNoAccount(template))
-    } else if (templates[template] && resume_data) {
-      batch(() => {
-        dispatch(setTempDBData({ resume_data }))
-        dispatch(loadInitialDataNoAccount(template))
-      })
-    } else {
-      dispatch(updateInitialState({ resume_data }))
-    }
-    batch(() => {
-      dispatch(setUserData(userData))
-      dispatch(setLoadingData(false))
-    })
+export const loadDataFromDB = (user, template) => async (dispatch) => {
+  dispatch(setLoadingData(true))
+  const dbData = await getUserData(user, template)
+  const { resume_data, publish, _id, domain, subdomain } = dbData || {}
+  const userData = {
+    userEmail: user.email,
+    userId: user.sub,
+    domain,
+    subdomain,
+    projectId: _id,
+    publish,
   }
+  if (!resume_data) {
+    dispatch(loadInitialDataNoAccount(template))
+  } else if (templates[template] && resume_data) {
+    batch(() => {
+      dispatch(setTempDBData({ resume_data }))
+      dispatch(loadInitialDataNoAccount(template))
+    })
+  } else {
+    dispatch(updateInitialState({ resume_data }))
+  }
+  batch(() => {
+    dispatch(setUserData(userData))
+    dispatch(setLoadingData(false))
+  })
+}
 
 export function normalizeBuilderData(data) {
   const normalizedData = {
