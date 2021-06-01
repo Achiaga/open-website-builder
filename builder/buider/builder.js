@@ -21,7 +21,8 @@ function getParams() {
   const urlParams = new URLSearchParams(window.location.search)
   const template = urlParams.get('template')
   const origin = urlParams.get('origin')
-  return { template, origin }
+  const projectId = urlParams.get('project')
+  return { template, origin, projectId }
 }
 
 const Loader = () => {

@@ -1,7 +1,7 @@
 import { Resizable } from 're-resizable'
 import { useEffect, useState } from 'react'
 
-const ResizeHandlesInitialValue = {
+const ReizeHandlesInitialValue = {
   top: false,
   bottom: false,
   left: false,
@@ -29,9 +29,16 @@ const ResizeWrapper = ({
       size={{ width, height }}
       defaultSize={{ width, height }}
       key={blockId}
+      style={{
+        position: 'absolute',
+        zIndex: 2,
+        outline: '2px solid',
+        outlineColor: isOver ? '#586ee0' : 'transparent',
+        transition: 'outline-color .3s',
+      }}
       onResizeStop={onResizeStop}
       enable={{
-        ...ResizeHandlesInitialValue,
+        ...ReizeHandlesInitialValue,
         right: isTextBlock ? true : false,
         bottomRight: isTextBlock ? false : true,
       }}

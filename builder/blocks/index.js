@@ -10,15 +10,12 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlocks,
-  getGroupSelectedBlocksIds,
-  getIsGroupSelectable,
   getIsMobileBuilder,
   getSelectedBlockId,
   setBlockEditable,
 } from '../../features/builderSlice'
 import { GenericContactForm, PrevContactForm } from './form'
 import { ButtonGeneric, PreviewButton } from './button'
-import { useState } from 'react'
 
 const blocksType = {
   image: Image,
@@ -77,7 +74,7 @@ const DragHandle = () => {
     <Box
       rounded="5px"
       boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-      className="dragHandle"
+      className="draggHandle"
       pos="absolute"
       paddingY="2px"
       paddingX="2px"
@@ -91,30 +88,19 @@ const DragHandle = () => {
   )
 }
 
-function getBorderColor(isEditable, isOver, isGrouped) {
-  if (isEditable || isOver || isGrouped) return 'primary.600'
-  return 'transparent'
-}
-
 export function BuilderBlock({ blockId, isDragging }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
-  const isGroupSelectable = useSelector(getIsGroupSelectable)
-  const groupedBlocksIds = useSelector(getGroupSelectedBlocksIds)
-  const [isOver, setIsOver] = useState(false)
 
   if (!type) return null
 
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
 
-  const isText = type === 'text'
-
-  const hasDragHandle = isEditable && isText && !isMobileBuilder
-
+  const dragHandle = isEditable && type === 'text' && !isMobileBuilder
   return (
     <Box
       w="100%"
@@ -125,31 +111,29 @@ export function BuilderBlock({ blockId, isDragging }) {
         if (isEditable || isDragging) return null
         dispatch(setBlockEditable(blockId))
       }}
-      onMouseOver={() => setIsOver(true)}
-      onMouseOut={() => setIsOver(false)}
-      className={`selectable-block ${
-        !hasDragHandle && !isGroupSelectable && 'dragHandle'
-      }`}
+      outline="1px solid"
+      outlineOffset="0px"
+      outlineColor={isEditable ? 'primary.600' : 'transparent'}
+      transition="outline-color .3s"
+      className={!dragHandle && 'draggHandle'}
       _hover={!isEditable && hoverEffect[type]}
       position="relative"
-      _before={{
-        border: '2px solid',
-        borderColor: getBorderColor(
-          isEditable,
-          isOver,
-          groupedBlocksIds?.includes(blockId)
-        ),
-        content: "''",
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        zIndex: isText ? 0 : 1,
-        transition: 'border-color .3s',
-      }}
+      _before={
+        isEditable
+          ? {
+              border: '1px solid',
+              borderColor: '#767676',
+              content: "''",
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }
+          : {}
+      }
     >
-      {hasDragHandle && <DragHandle />}
+      {dragHandle && <DragHandle />}
       {isEditable && !isMobileBuilder && type !== 'text' && !isDragging && (
         <>
           <BlockModifiers data={data} blockKey={blockId} blockType={type} />
