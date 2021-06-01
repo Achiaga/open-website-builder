@@ -2,6 +2,7 @@ import Selector from 'react-selecto'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  getGroupSelectedBlocksIds,
   getIsGroupSelectable,
   setGroupSelectedBlocksIds,
   setIsGroupSelectable,
@@ -11,17 +12,25 @@ const MultipleSelection = () => {
   const dispatch = useDispatch()
 
   const [selectedBlocks, setSelectedBlocks] = useState([])
+  const [isContinueSelectActive, setIsContinueSelectActive] = useState([])
 
   const isGroupSelectable = useSelector(getIsGroupSelectable)
+  const selectedBlocksIds = useSelector(getGroupSelectedBlocksIds)
 
   function handleKeyDown(e) {
     if (e.keyCode === 91) {
       dispatch(setIsGroupSelectable(true))
     }
+    if (e.keyCode === 16) {
+      setIsContinueSelectActive(true)
+    }
   }
   function handleKeyUp(e) {
     if (e.keyCode === 91) {
       dispatch(setIsGroupSelectable(false))
+    }
+    if (e.keyCode === 16) {
+      setIsContinueSelectActive(false)
     }
   }
 
@@ -40,16 +49,21 @@ const MultipleSelection = () => {
     dispatch(setGroupSelectedBlocksIds(ids))
   }, [selectedBlocks])
 
-  if (!isGroupSelectable) return null
+  if (
+    !isGroupSelectable &&
+    selectedBlocksIds?.length > 0 &&
+    !isContinueSelectActive
+  )
+    return null
 
   return (
     <Selector
       dragContainer={'.elements'}
       selectableTargets={['.selecto-area .cube']}
-      hitRate={100}
+      hitRate={70}
       selectFromInside={true}
-      selectByClick={false}
-      toggleContinueSelect={'shift'}
+      selectByClick={true}
+      toggleContinueSelect={['shift']}
       onSelect={(e) => {
         e.added.forEach((el) => {
           el.classList.add('selected')
@@ -58,9 +72,7 @@ const MultipleSelection = () => {
           el.classList.remove('selected')
         })
       }}
-      onSelectEnd={(e) => {
-        setSelectedBlocks(e.selected)
-      }}
+      onSelectEnd={(e) => setSelectedBlocks(e.selected)}
     />
   )
 }
