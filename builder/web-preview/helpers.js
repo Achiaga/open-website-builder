@@ -3,7 +3,6 @@ import { useContext } from 'react'
 import { previewBlocks } from '../blocks'
 import { BlocksContext } from './preview'
 import { GRID_COLUMNS } from '../web-builder/constants'
-import { RedirectWrapper } from '../blocks/text'
 
 const zIndexs = {
   inception: 0,
@@ -26,48 +25,28 @@ export function GeneratePreviewBlock({ layoutItem, desktop }) {
   if (!type || !previewBlocks[type]) return null
   const GenericBlock = previewBlocks[type]
   const zIndex = getBlockZIndex(type)
-  const redirectUrl = data.redirect
 
   return (
-    <>
-      <div
-        key={i}
-        style={{
-          position: 'absolute',
-          left: `calc( ${x} *  ( 100% / ${desktop ? GRID_COLUMNS : 100}) )`,
-          width: `calc( ${w} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
-          top: `calc( ${y}  * ( 100vw  / ${desktop ? GRID_COLUMNS : 100}) )`,
-          height: `calc( ${h} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
-          // border: data?.border,
-          boxShadow: data?.boxShadow,
-          borderRadius: data?.borderRadius,
-          zIndex: zIndex,
-        }}
-      >
-        <GenericBlock
-          {...data}
-          parentHeight={h}
-          isPreview
-          blockId={layoutItem.i}
-        />
-      </div>
-      {redirectUrl && (
-        <button
-          style={{
-            position: 'absolute',
-            left: `calc( ${x} *  ( 100% / ${desktop ? GRID_COLUMNS : 100}) )`,
-            width: `calc( ${w} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
-            top: `calc( ${y}  * ( 100vw  / ${desktop ? GRID_COLUMNS : 100}) )`,
-            height: `calc( ${h} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
-            cursor: 'pointer',
-            overflow: 'hidden',
-            zIndex: 10,
-            borderRadius: data.borderRadius,
-          }}
-        >
-          <RedirectWrapper redirectUrl={redirectUrl} />
-        </button>
-      )}
-    </>
+    <div
+      key={i}
+      style={{
+        position: 'absolute',
+        left: `calc( ${x} *  ( 100% / ${desktop ? GRID_COLUMNS : 100}) )`,
+        width: `calc( ${w} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
+        top: `calc( ${y}  * ( 100vw  / ${desktop ? GRID_COLUMNS : 100}) )`,
+        height: `calc( ${h} * ( 100vw / ${desktop ? GRID_COLUMNS : 100}) )`,
+        // border: data?.border,
+        boxShadow: data?.boxShadow,
+        borderRadius: data?.borderRadius,
+        zIndex: zIndex,
+      }}
+    >
+      <GenericBlock
+        {...data}
+        parentHeight={h}
+        isPreview
+        blockId={layoutItem.i}
+      />
+    </div>
   )
 }
