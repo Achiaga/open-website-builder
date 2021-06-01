@@ -70,6 +70,7 @@ const DraggableItem = ({
     const { width, height } = elRef.getBoundingClientRect()
     setResizeValues({ width: Math.round(width), height: Math.round(height) })
   }
+  console.log('test')
 
   function onDrag(_, blockPos) {
     setBlockPostRef({
