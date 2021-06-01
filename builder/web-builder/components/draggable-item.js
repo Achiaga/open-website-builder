@@ -12,6 +12,7 @@ import {
   getBlockData,
   getSelectedBlockId,
   getIsMobileBuilder,
+  getGroupSelectedBlocksIds,
 } from '../../../features/builderSlice'
 import { BuilderBlock, ResizingCounter } from '../../blocks'
 import { RayTracing } from '../Ray-Tracing'
@@ -41,6 +42,7 @@ const DraggableItem = ({
   const [resizeValues, setResizeValues] = useState(null)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
+  const groupedBlocksIds = useSelector(getGroupSelectedBlocksIds)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
   const selectedBlock = useSelector(getSelectedBlockId)
   if (!blockLayout) return null
@@ -88,7 +90,7 @@ const DraggableItem = ({
     }
     handleHiglightSection(newBlockLayout)
 
-    if (blockId.includes('inception')) {
+    if (blockId.includes('inception') || groupedBlocksIds?.includes(blockId)) {
       dispatch(
         handleDrag(
           blockPos,
@@ -119,16 +121,14 @@ const DraggableItem = ({
         position={{ x: xPos, y: yPos }}
         onStop={onDragStop}
         onDrag={onDrag}
-        handle=".draggHandle"
+        handle=".dragHandle"
         bounds={{
           left: 0,
           top: 0,
           right: right - width,
-          bottom: '100% ',
         }}
-        style={{ backgroundColor: 'red' }}
       >
-        <Box pos="absolute" zIndex={zIndexValue}>
+        <Box pos="absolute" zIndex={zIndexValue} className="cube">
           <ResizeWrapper
             width={width}
             height={height}

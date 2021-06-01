@@ -10,6 +10,8 @@ import { PrevInception } from './prevInception'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getBlocks,
+  getGroupSelectedBlocksIds,
+  getIsGroupSelectable,
   getIsMobileBuilder,
   getSelectedBlockId,
   setBlockEditable,
@@ -75,7 +77,7 @@ const DragHandle = () => {
     <Box
       rounded="5px"
       boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
-      className="draggHandle"
+      className="dragHandle"
       pos="absolute"
       paddingY="2px"
       paddingX="2px"
@@ -89,12 +91,19 @@ const DragHandle = () => {
   )
 }
 
+function getBorderColor(isEditable, isOver, isGrouped) {
+  if (isEditable || isOver || isGrouped) return 'primary.600'
+  return 'transparent'
+}
+
 export function BuilderBlock({ blockId, isDragging }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
   const { type, data } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
+  const isGroupSelectable = useSelector(getIsGroupSelectable)
+  const groupedBlocksIds = useSelector(getGroupSelectedBlocksIds)
   const [isOver, setIsOver] = useState(false)
 
   if (!type) return null
@@ -118,12 +127,18 @@ export function BuilderBlock({ blockId, isDragging }) {
       }}
       onMouseOver={() => setIsOver(true)}
       onMouseOut={() => setIsOver(false)}
-      className={!hasDragHandle && 'draggHandle'}
+      className={`selectable-block ${
+        !hasDragHandle && !isGroupSelectable && 'dragHandle'
+      }`}
       _hover={!isEditable && hoverEffect[type]}
       position="relative"
       _before={{
         border: '2px solid',
-        borderColor: isEditable || isOver ? 'primary.600' : 'transparent',
+        borderColor: getBorderColor(
+          isEditable,
+          isOver,
+          groupedBlocksIds?.includes(blockId)
+        ),
         content: "''",
         position: 'absolute',
         left: 0,

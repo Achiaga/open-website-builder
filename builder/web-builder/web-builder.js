@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 
 import { getParentBlock, highlightFutureParentBlock } from './helpers'
 import { GRID_COLUMNS } from './constants'
-import { useDispatch, useSelector } from 'react-redux'
+import { batch, useDispatch, useSelector } from 'react-redux'
 import {
   getGridRowHeight,
   setGridRowHeight,
@@ -16,9 +16,11 @@ import {
   getNewBlockType,
   getLayout,
   getIsMobileBuilder,
+  setGroupSelectedBlocksIds,
 } from '../../features/builderSlice'
 
 import MemoDrag from './components/draggable-item'
+import MultipleSelection from './multiple-selection'
 
 const blockSizes = {
   form: { w: 60, h: 10 },
@@ -49,11 +51,13 @@ const GridLayoutWrapper = forwardRef(
         w="100%"
         height="100%"
         flexDir="row"
-        onClick={() => dispatch(setBlockEditable(null))}
+        onClick={() => {
+          dispatch(setBlockEditable(null))
+        }}
         id="main-builder"
         overflow="hidden"
         pos="relative"
-        className="droppable-element"
+        className="droppable-element elements selecto-area"
         onDragOver={higlightOnDrop}
         bg="gray.50"
         onDrop={(e) => {
@@ -88,6 +92,7 @@ const WebBuilder = () => {
   const lastHoveredEl = useRef()
   const gridRowHeight = useSelector(getGridRowHeight)
   const isMobile = useSelector(getIsMobileBuilder)
+
   const windowWidth = isMobile ? MobileWindowWidth : window?.innerWidth
   const columns = isMobile ? GRID_COLUMNS / 2 : GRID_COLUMNS
   const gridColumnWidth = windowWidth / columns
@@ -162,25 +167,31 @@ const WebBuilder = () => {
 
   function handleKeyPress(e) {
     if (e.key === 'Escape') {
-      dispatch(setBlockEditable(null))
+      batch(() => {
+        dispatch(setBlockEditable(null))
+        dispatch(setGroupSelectedBlocksIds([]))
+      })
     }
   }
 
   return (
-    <GridLayoutWrapper
-      ref={builderRef}
-      higlightOnDrop={higlightOnDrop}
-      handleDropNewItem={handleDropNewItem}
-    >
-      <MemoizeLayoutsRender
-        layouts={layoutsKeys}
-        handleHiglightSection={handleHiglightSectionMiddleWare}
-        removeHighlightedElem={removeHighlightedElem}
-        gridRowHeight={gridRowHeight}
-        gridColumnWidth={gridColumnWidth}
-        builderRef={builderRef}
-      />
-    </GridLayoutWrapper>
+    <>
+      <GridLayoutWrapper
+        ref={builderRef}
+        higlightOnDrop={higlightOnDrop}
+        handleDropNewItem={handleDropNewItem}
+      >
+        <MultipleSelection />
+        <MemoizeLayoutsRender
+          layouts={layoutsKeys}
+          handleHiglightSection={handleHiglightSectionMiddleWare}
+          removeHighlightedElem={removeHighlightedElem}
+          gridRowHeight={gridRowHeight}
+          gridColumnWidth={gridColumnWidth}
+          builderRef={builderRef}
+        />
+      </GridLayoutWrapper>
+    </>
   )
 }
 

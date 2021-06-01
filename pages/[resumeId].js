@@ -39,7 +39,6 @@ function Resume({ websiteData, isPublish, resumeId }) {
   if (!isPublish) return <NewPage />
 
   const hasFlurly = hasFlurlyLink(websiteData.blocks)
-  console.log({ hasFlurly })
   return (
     <>
       {hasFlurly && (
