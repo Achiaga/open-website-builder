@@ -41,6 +41,8 @@ const ProjectCard = ({ project, defaultOpen = false }) => {
         w="100%"
         padding="1rem"
         pl="2rem"
+        borderBottom="1px solid"
+        borderColor={isOpen ? 'gray.200' : 'transparent'}
       >
         <Text as="p">{project._id}</Text>
         {isPublished ? (
@@ -63,48 +65,50 @@ const ProjectCard = ({ project, defaultOpen = false }) => {
             No Published
           </Tag>
         )}
-        <Box>
-          <Link href={`/builder?project=${project._id}`} passHref>
-            <a>
-              <Button
-                marginRight="1rem"
-                borderColor="primary.700"
-                colorScheme="primary"
-              >
-                Edit
-              </Button>
-            </a>
-          </Link>
-          <Button
-            marginRight="1rem"
-            variant="outline"
-            colorScheme="gray"
-            onClick={handleRemoveProject}
-          >
-            {isRemoving ? <Spinner color="red" /> : 'Delete'}
-          </Button>
+        <Box mx="1rem" cursor="pointer">
+          {isOpen ? (
+            <BsFillCaretUpFill onClick={() => setIsOpen(false)} />
+          ) : (
+            <BsCaretDownFill onClick={() => setIsOpen(true)} />
+          )}
         </Box>
       </Box>
       {isOpen && (
-        <>
-          <Box width="100%" mt="0.5rem" padding="0.5rem" px="2rem">
+        <Box width="100%" p="0.5rem" pl="2rem">
+          <Box width="100%" mt="0.5rem">
             <SubdomainWrapper
               projectId={project._id}
               actualSubdomain={project.subdomain}
             />
           </Box>
-          <Box width="100%" mt="0.5rem" padding="0.5rem" px="2rem">
+          <Box width="100%" mt="0.5rem">
             <DomainsWrapper domain={project.domain} projectId={project._id} />
           </Box>
-        </>
+          <Box d="flex" justifyContent="flex-end" pb="1rem">
+            <Button
+              marginRight="1rem"
+              w="100px"
+              variant="outline"
+              colorScheme="gray"
+              onClick={handleRemoveProject}
+            >
+              {isRemoving ? <Spinner color="red" /> : 'Delete'}
+            </Button>
+            <Link href={`/builder?project=${project._id}`} passHref>
+              <a>
+                <Button
+                  w="100px"
+                  marginRight="1rem"
+                  borderColor="primary.700"
+                  colorScheme="primary"
+                >
+                  Edit
+                </Button>
+              </a>
+            </Link>
+          </Box>
+        </Box>
       )}
-      <Box mx="1rem" mb="0.5rem" cursor="pointer">
-        {isOpen ? (
-          <BsFillCaretUpFill onClick={() => setIsOpen(false)} />
-        ) : (
-          <BsCaretDownFill onClick={() => setIsOpen(true)} />
-        )}
-      </Box>
     </Box>
   )
 }
