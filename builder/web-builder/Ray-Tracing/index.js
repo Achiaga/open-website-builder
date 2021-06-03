@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/layout'
 import { Portal } from '@chakra-ui/portal'
 import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
@@ -93,6 +94,7 @@ const VerticalRayTracing = ({
 }
 
 export const RayTracing = ({
+  width,
   gridColumnWidth,
   blockPostRef: draggingBlock,
   builderRef,
@@ -100,7 +102,9 @@ export const RayTracing = ({
   if (!draggingBlock) return null
   const layouts = useSelector(getLayout)
   const gridRowHeight = useSelector(getGridRowHeight)
-
+  const leftDis = Math.round(draggingBlock?.x + width / 2)
+  const isMidScreen =
+    leftDis - 1 <= window.innerWidth / 2 && leftDis + 1 >= window.innerWidth / 2
   return (
     <Portal id="main-builder" containerRef={builderRef}>
       <HorizontalRayTracing
@@ -115,6 +119,18 @@ export const RayTracing = ({
         gridColumnWidth={gridColumnWidth}
         gridRowHeight={gridRowHeight}
       />
+      {isMidScreen && (
+        <Box
+          pos="absolute"
+          left="50%"
+          transform="translate(-50%,0)"
+          top="0"
+          zIndex="9999"
+          bg="green.500"
+          width="1px"
+          h="100%"
+        />
+      )}
     </Portal>
   )
 }

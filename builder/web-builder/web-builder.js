@@ -161,8 +161,6 @@ const DraggableItem = ({
               width={width}
               gridColumnWidth={gridColumnWidth}
               blockPostRef={blockPostRef}
-              blockId={blockId}
-              isDragging={isDragging}
               builderRef={builderRef}
             />
 
