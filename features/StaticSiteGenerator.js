@@ -257,7 +257,10 @@ const flurlyScripts = `
 	src="https://flurly.com/flurly-checkout.js"
 	crossorigin="cors"
 ></script>`
-export const htmlWrapper = (body, hasFlurlyLink) => {
+const gumroadScript = `
+<script src="https://gumroad.com/js/gumroad.js"></script>`
+
+export const htmlWrapper = (body, hasFlurlyLink, hasGumroadLink) => {
   return `
 <!DOCTYPE html>
 <html>
@@ -265,6 +268,7 @@ ${header}
 <body>
 ${body}
 ${hasFlurlyLink ? flurlyScripts : ''}
+${hasGumroadLink ? gumroadScript : ''}
 </body>
 </html>
 `
