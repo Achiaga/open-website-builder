@@ -21,13 +21,13 @@ export function GeneratePreviewBlock({ layoutItem, desktop }) {
   const {
     builder: { blocks },
   } = useContext(BlocksContext)
-  const { data, type } = blocks[layoutItem.i] || {}
+  const { data, type, subType } = blocks[layoutItem.i] || {}
   const { w, h, x, y, i } = layoutItem || {}
   if (!type || !previewBlocks[type]) return null
   const GenericBlock = previewBlocks[type]
   const zIndex = getBlockZIndex(type)
   const redirectUrl = data.redirect
-
+  console.log(subType)
   return (
     <>
       <div
@@ -46,12 +46,13 @@ export function GeneratePreviewBlock({ layoutItem, desktop }) {
       >
         <GenericBlock
           {...data}
+          subType={subType}
           parentHeight={h}
           isPreview
           blockId={layoutItem.i}
         />
       </div>
-      {redirectUrl && (
+      {redirectUrl && type === 'inception' && (
         <button
           style={{
             position: 'absolute',

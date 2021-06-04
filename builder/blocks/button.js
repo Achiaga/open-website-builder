@@ -4,38 +4,56 @@ import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
 import { RedirectWrapper } from './text'
 
+const GumroadButton = ({ children }) => {
+  return (
+    <a
+      className="gumroad-button"
+      href="https://gumroad.com/l/demo?wanted=true"
+      target="_blank"
+      rel="noreferrer"
+    >
+      {children}
+    </a>
+  )
+}
+
 export const CustomButton = ({ children, ...props }) => {
   const gradient = props.gradientColor || []
 
   const fontColor = props.color
-
+  console.log({ props })
+  const isGumroadButton = props.subType === 'gumroad'
   return (
     <div
-      className="textStyles"
+      className={`textStyles`}
       style={{
         width: '100%',
         height: '100%',
       }}
     >
-      <button
-        style={{
-          fontSize: 'inherit',
-          width: '100%',
-          height: '100%',
-          boxShadow: props.boxShadow,
-          border: props.border,
-          borderRadius: props.borderRadius,
-          background: !gradient[1]
-            ? props.backgroundColor
-            : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
-          color: fontColor,
-          overflow: 'hidden',
-          cursor: 'pointer',
-          padding: '0px 1rem',
-        }}
-      >
-        {children}
-      </button>
+      {isGumroadButton ? (
+        <GumroadButton> {children}</GumroadButton>
+      ) : (
+        <button
+          style={{
+            fontSize: 'inherit',
+            width: '100%',
+            height: '100%',
+            boxShadow: props.boxShadow,
+            border: props.border,
+            borderRadius: props.borderRadius,
+            background: !gradient[1]
+              ? props.backgroundColor
+              : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
+            color: fontColor,
+            overflow: 'hidden',
+            cursor: 'pointer',
+            padding: '0px 1rem',
+          }}
+        >
+          {children}
+        </button>
+      )}
     </div>
   )
 }
@@ -95,8 +113,8 @@ export const PreviewButton = (props) => {
     gradientColor,
     text,
     fontColor,
+    subType,
   } = props
-
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
       <CustomButton
@@ -105,6 +123,7 @@ export const PreviewButton = (props) => {
         backgroundColor={backgroundColor}
         gradientColor={gradientColor}
         color={fontColor}
+        subType={subType}
       >
         {text || ''}
       </CustomButton>
