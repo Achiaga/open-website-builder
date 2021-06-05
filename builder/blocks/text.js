@@ -78,7 +78,6 @@ const Styles = ({ children }) => {
       tabSize="4"
       textAlign="left"
       whiteSpace="pre-wrap"
-      wordWrap="break-word"
       bg="transparent"
       w="100%"
       sx={{
@@ -140,7 +139,6 @@ export const PrevText = (props) => {
           padding: '0px',
           tabSize: '4',
           textAlign: 'left',
-          wordWrap: 'break-word',
           backgroundColor: 'transparent',
           width: '100%',
         }}

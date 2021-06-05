@@ -22,7 +22,6 @@ const ECommerceExtensions = (blocks) => {
   const stringifyBlocks = JSON.stringify(blocks)
   const hasFlurly = hasFlurlyLink(stringifyBlocks)
   const hasGumroad = hasGumroadLink(stringifyBlocks)
-  console.log({ hasGumroad })
   return (
     <Head>
       {hasFlurly && FlurlyExtension}

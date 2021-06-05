@@ -27,7 +27,6 @@ export function GeneratePreviewBlock({ layoutItem, desktop }) {
   const GenericBlock = previewBlocks[type]
   const zIndex = getBlockZIndex(type)
   const redirectUrl = data.redirect
-  console.log(subType)
   return (
     <>
       <div

@@ -4,10 +4,14 @@ import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
 import { RedirectWrapper } from './text'
 
-const GumroadButton = ({ children }) => {
+const GumroadButton = ({ children, type }) => {
+  const isGumroadButton = type === 'gumroad'
+  if (!isGumroadButton) {
+    return <>{children}</>
+  }
   return (
     <a
-      className="gumroad-button"
+      // className="gumroad-button"
       href="https://gumroad.com/l/demo?wanted=true"
       target="_blank"
       rel="noreferrer"
@@ -21,8 +25,7 @@ export const CustomButton = ({ children, ...props }) => {
   const gradient = props.gradientColor || []
 
   const fontColor = props.color
-  console.log({ props })
-  const isGumroadButton = props.subType === 'gumroad'
+
   return (
     <div
       className={`textStyles`}
@@ -31,29 +34,25 @@ export const CustomButton = ({ children, ...props }) => {
         height: '100%',
       }}
     >
-      {isGumroadButton ? (
-        <GumroadButton> {children}</GumroadButton>
-      ) : (
-        <button
-          style={{
-            fontSize: 'inherit',
-            width: '100%',
-            height: '100%',
-            boxShadow: props.boxShadow,
-            border: props.border,
-            borderRadius: props.borderRadius,
-            background: !gradient[1]
-              ? props.backgroundColor
-              : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
-            color: fontColor,
-            overflow: 'hidden',
-            cursor: 'pointer',
-            padding: '0px 1rem',
-          }}
-        >
-          {children}
-        </button>
-      )}
+      <button
+        style={{
+          fontSize: 'inherit',
+          width: '100%',
+          height: '100%',
+          boxShadow: props.boxShadow,
+          border: props.border,
+          borderRadius: props.borderRadius,
+          background: !gradient[1]
+            ? props.backgroundColor
+            : `linear-gradient(225deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
+          color: fontColor,
+          overflow: 'hidden',
+          cursor: 'pointer',
+          padding: '0px 1rem',
+        }}
+      >
+        {children}
+      </button>
     </div>
   )
 }
@@ -69,6 +68,7 @@ export const ButtonGeneric = (props) => {
     backgroundColor,
     gradientColor,
     fontColor,
+    subType,
   } = props
 
   function handleChange(e) {
@@ -81,6 +81,8 @@ export const ButtonGeneric = (props) => {
       editBlockConfig({ newData: updatedBlock, blockId: props.parentBlockId })
     )
   }, [textInput])
+
+  console.log('button Generic', props)
 
   return (
     <CustomButton
