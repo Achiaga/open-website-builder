@@ -4,7 +4,10 @@ export function hasFlurlyLink(stringifyBlocks) {
   return stringifyBlocks.includes('https://flurly.com')
 }
 export function hasGumroadLink(stringifyBlocks) {
-  return stringifyBlocks.includes('https://gumroad.com')
+  return (
+    stringifyBlocks.includes('https://gumroad.com') ||
+    stringifyBlocks.includes('https://gum.co/')
+  )
 }
 
 const FlurlyExtension = (

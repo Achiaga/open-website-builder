@@ -1,4 +1,5 @@
 import localforage from 'localforage'
+import { hasGumroadLink } from '../components/integrations/ECommerceExtensions'
 import { htmlWrapper } from './StaticSiteGenerator'
 
 export async function getUserDataFromLS() {
@@ -14,6 +15,6 @@ export async function getUserDataFromLS() {
 
 export function generateStaticHTML(body) {
   const hasFlurlyLink = body.includes('https://flurly.com')
-  const hasGumroadLink = body.includes('https://gumroad.com')
-  return htmlWrapper(body, hasFlurlyLink, hasGumroadLink)
+
+  return htmlWrapper(body, hasFlurlyLink, hasGumroadLink(body))
 }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
 import { WebBuilder } from '../web-builder'
 import { BuilderSidebar } from '../sidebar'
@@ -103,4 +104,4 @@ const Builder = () => {
   )
 }
 
-export default Builder
+export default withPageAuthRequired(Builder)

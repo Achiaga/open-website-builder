@@ -215,7 +215,7 @@ export const editBlockConfig =
     dispatch(saveDataOnLocal())
   }
 
-const removeMobileblock = (blockId) => (dispatch, getState) => {
+const removeMobileBlock = (blockId) => (dispatch, getState) => {
   const state = getState()
   const { blocks } = getBuilderData(getState())
   const layouts = getMobileLayout(state)
@@ -254,7 +254,7 @@ export const removeBlock =
     if (isLastBlock) return
     batch(() => {
       dispatch(setSelectedBlockId(null))
-      dispatch(removeMobileblock(blockId))
+      dispatch(removeMobileBlock(blockId))
       dispatch(setBuilderBlocksData(newBuilderData.blocks))
       dispatch(updateHierarchy(newBuilderData.hierarchy))
       dispatch(updateLayouts(newBuilderData.layouts))
