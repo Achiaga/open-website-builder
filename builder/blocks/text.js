@@ -54,6 +54,13 @@ function cleanRedirect(url) {
 export const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
   const workingRedirectUrl = cleanRedirect(redirectUrl)
+  if (redirectUrl.includes('gumroad')) {
+    return (
+      <a href={workingRedirectUrl} style={{ display: 'flex', height: '100%' }}>
+        {children}
+      </a>
+    )
+  }
   return (
     <a
       href={workingRedirectUrl}

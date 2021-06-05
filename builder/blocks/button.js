@@ -3,22 +3,14 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
 import { RedirectWrapper } from './text'
+import GumroadIcon from '../../assets/gumroad-button'
 
-const GumroadButton = ({ children, type }) => {
+const GumroadButton = ({ type }) => {
   const isGumroadButton = type === 'gumroad'
   if (!isGumroadButton) {
-    return <>{children}</>
+    return null
   }
-  return (
-    <a
-      // className="gumroad-button"
-      href="https://gumroad.com/l/demo?wanted=true"
-      target="_blank"
-      rel="noreferrer"
-    >
-      {children}
-    </a>
-  )
+  return <GumroadIcon />
 }
 
 export const CustomButton = ({ children, ...props }) => {
@@ -49,9 +41,13 @@ export const CustomButton = ({ children, ...props }) => {
           overflow: 'hidden',
           cursor: 'pointer',
           padding: '0px 1rem',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        {children}
+        <GumroadButton type={props.subType} />
+        <div style={{ flex: 1 }}>{children}</div>
       </button>
     </div>
   )
@@ -92,6 +88,7 @@ export const ButtonGeneric = (props) => {
       gradientColor={gradientColor}
       boxShadow={boxShadow}
       color={fontColor}
+      subType={subType}
     >
       <Input
         fontSize="inherit"

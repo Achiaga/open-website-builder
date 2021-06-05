@@ -111,7 +111,7 @@ export function BuilderBlock({ blockId, isDragging }) {
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
 
-  const isText = type === 'text'
+  const isText = type === 'text' || type === 'button'
 
   const hasDragHandle = isEditable && isText && !isMobileBuilder
 

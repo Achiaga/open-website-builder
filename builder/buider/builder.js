@@ -16,7 +16,6 @@ import MobileVersion from '../web-builder/mobile-version'
 import { loadInitialData } from '../../features/builderSlice'
 
 import { MobileWrapper } from './components'
-import Head from 'next/head'
 
 function getParams() {
   const urlParams = new URLSearchParams(window.location.search)
@@ -80,9 +79,6 @@ const Builder = () => {
 
   return (
     <>
-      <Head>
-        <script async src="https://gumroad.com/js/gumroad.js"></script>
-      </Head>
       <Box
         d={['none', 'flex']}
         m="auto"
