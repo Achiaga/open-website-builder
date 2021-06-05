@@ -12,6 +12,7 @@ function getBlockPropertiesKey(blockType, blockSubType) {
 export function addBlock(newId, blockType, blockSubType) {
   return {
     type: blockType,
+    subType: blockSubType,
     data: {
       ...blocksProperties[getBlockPropertiesKey(blockType, blockSubType)],
     },

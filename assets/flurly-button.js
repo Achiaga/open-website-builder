@@ -1,4 +1,4 @@
-const FlurflyIcon = () => {
+const FlurlyIcon = () => {
   return (
     <svg
       width="70"
@@ -16,4 +16,4 @@ const FlurflyIcon = () => {
   )
 }
 
-export default FlurflyIcon
+export default FlurlyIcon

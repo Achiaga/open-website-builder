@@ -12,7 +12,8 @@ import MediaIcon from '../../assets/media-icon'
 import SectionIcon from '../../assets/section-icon'
 // import FormIcon from '../../assets/form-icon'
 import ButtonIcon from '../../assets/button-icon'
-import FlurflyIcon from '../../assets/flurly-button'
+import FlurlyIcon from '../../assets/flurly-button'
+import GumroadIcon from '../../assets/gumroad-button'
 import { Box, Grid, Text } from '@chakra-ui/layout'
 
 const ToolSection = ({ Icon, text, type, subType, ...props }) => {
@@ -181,10 +182,16 @@ const BuilderSidebar = () => {
         {/* <ToolSection Icon={FormIcon} text="Form" type="form" /> */}
         <ToolSection Icon={ButtonIcon} text="Button" type="button" />
         <ToolSection
-          Icon={FlurflyIcon}
+          Icon={FlurlyIcon}
           text="Flurly"
           type="button"
           subType="flurly"
+        />
+        <ToolSection
+          Icon={GumroadIcon}
+          text="Gumroad"
+          type="button"
+          subType="gumroad"
         />
       </Grid>
     </Box>

@@ -99,7 +99,7 @@ function getBorderColor(isEditable, isOver, isGrouped) {
 export function BuilderBlock({ blockId, isDragging }) {
   const dispatch = useDispatch()
   const blocks = useSelector(getBlocks)
-  const { type, data } = blocks[blockId] || {}
+  const { type, data, subType } = blocks[blockId] || {}
   const selectedBlockId = useSelector(getSelectedBlockId)
   const isMobileBuilder = useSelector(getIsMobileBuilder)
   const isGroupSelectable = useSelector(getIsGroupSelectable)
@@ -111,7 +111,7 @@ export function BuilderBlock({ blockId, isDragging }) {
   const GenericBlock = blocksType[type]
   const isEditable = selectedBlockId === blockId
 
-  const isText = type === 'text'
+  const isText = type === 'text' || type === 'button'
 
   const hasDragHandle = isEditable && isText && !isMobileBuilder
 
@@ -158,7 +158,7 @@ export function BuilderBlock({ blockId, isDragging }) {
         </>
       )}
 
-      <GenericBlock parentBlockId={blockId} {...data} />
+      <GenericBlock parentBlockId={blockId} {...data} subType={subType} />
     </Box>
   )
 }

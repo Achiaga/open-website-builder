@@ -54,6 +54,13 @@ function cleanRedirect(url) {
 export const RedirectWrapper = ({ redirectUrl, children }) => {
   if (!redirectUrl) return children
   const workingRedirectUrl = cleanRedirect(redirectUrl)
+  if (redirectUrl.includes('gumroad')) {
+    return (
+      <a href={workingRedirectUrl} style={{ display: 'flex', height: '100%' }}>
+        {children}
+      </a>
+    )
+  }
   return (
     <a
       href={workingRedirectUrl}
@@ -78,7 +85,6 @@ const Styles = ({ children }) => {
       tabSize="4"
       textAlign="left"
       whiteSpace="pre-wrap"
-      wordWrap="break-word"
       bg="transparent"
       w="100%"
       sx={{
@@ -140,7 +146,6 @@ export const PrevText = (props) => {
           padding: '0px',
           tabSize: '4',
           textAlign: 'left',
-          wordWrap: 'break-word',
           backgroundColor: 'transparent',
           width: '100%',
         }}

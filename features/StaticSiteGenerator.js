@@ -246,18 +246,17 @@ const header = `
  <head>
     <meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<style>
-		${styles}
-		</style>
+		<style>	${styles} </style>
 	</head>`
 
 const flurlyScripts = `
 <script src="https://js.stripe.com/v3/"></script>
-<script
-	src="https://flurly.com/flurly-checkout.js"
-	crossorigin="cors"
-></script>`
-export const htmlWrapper = (body, hasFlurlyLink) => {
+<script src="https://flurly.com/flurly-checkout.js" crossorigin="cors"></script>`
+
+const gumroadScript = `
+<script src="https://gumroad.com/js/gumroad.js"></script>`
+
+export const htmlWrapper = (body, hasFlurlyLink, hasGumroadLink) => {
   return `
 <!DOCTYPE html>
 <html>
@@ -265,6 +264,7 @@ ${header}
 <body>
 ${body}
 ${hasFlurlyLink ? flurlyScripts : ''}
+${hasGumroadLink ? gumroadScript : ''}
 </body>
 </html>
 `

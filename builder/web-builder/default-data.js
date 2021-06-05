@@ -36,6 +36,15 @@ export const blocksProperties = {
     inputPlaceholder: 'eg: Buy $9.0',
     fontColor: '#ffffff',
   },
+  'button-gumroad': {
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: '0px',
+    backgroundColor: 'red',
+    text: 'Buy my product',
+    inputPlaceholder: 'eg: Buy $9.0',
+    fontColor: '#ffffff',
+  },
   form: {
     border: 'none',
     boxShadow: 'none',

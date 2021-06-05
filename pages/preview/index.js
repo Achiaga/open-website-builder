@@ -1,10 +1,9 @@
 import { Box } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { ResumeWebsite } from '../../builder/web-preview/preview'
+import ECommerceExtensions from '../../components/integrations/ECommerceExtensions'
 import { getUserDataFromLS } from '../../features/helper'
-import { hasFlurlyLink } from '../[resumeId]'
 
 function ResumePreview() {
   const [blocksData, setBlocksData] = useState(null)
@@ -30,15 +29,10 @@ function ResumePreview() {
       </Box>
     )
   }
-  const hasFlurly = hasFlurlyLink(blocksData.blocks)
+
   return (
     <>
-      {hasFlurly && (
-        <Head>
-          <script async src="https://js.stripe.com/v3/"></script>
-          <script async src="https://flurly.com/flurly-checkout.js"></script>
-        </Head>
-      )}
+      <ECommerceExtensions blocks={blocksData.blocks} />
       <ResumeWebsite userBlocksData={blocksData} />
     </>
   )
