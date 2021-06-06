@@ -26,6 +26,27 @@ export const apiCall = async (path, body) => {
   return await JsonResponse
 }
 
+export async function fetchPostJSON(url, data) {
+  try {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data || {}),
+    })
+    return await response.json()
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
+
 export const addUserToBetaList = (email, userType) => {
   return apiCall('/api/beta', {
     type: userType,
@@ -35,4 +56,17 @@ export const addUserToBetaList = (email, userType) => {
 export const getAllUsers = () =>
   apiCall('/api/beta', {
     type: 'list',
+  })
+
+async function fetchGetJSON(url) {
+  try {
+    const data = await fetch(url).then((res) => res.json())
+    return data
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
+export const getSessionData = (session_id, user) =>
+  fetchPostJSON(`/api/checkout_sessions/${session_id}`, {
+    user,
   })
