@@ -1,4 +1,4 @@
-import { getGridPos } from './helpers'
+import { getGridPos } from '../helpers'
 
 export function getVerticalBlocksDistances(orderedBlocks) {
   let distances = []

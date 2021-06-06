@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/layout'
-import { getAlignment, getIsAlign } from './horizontal-helpers'
-import { getVerticalAlignment } from './vertical-helpers'
+import { getAlignment, getIsAlign } from './horizontal/horizontal-helpers'
+import { getVerticalAlignment } from './vertical/vertical-helpers'
 
 const XMark = ({ top, bottom, left, right, isEquidistant }) => {
   return (

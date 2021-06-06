@@ -1,4 +1,4 @@
-import { getGridPos } from './helpers'
+import { getGridPos } from '../helpers'
 
 function isBelowTop(staticBlock, draggingBlock) {
   return Math.abs(draggingBlock.y - staticBlock.y) < 10
@@ -95,16 +95,6 @@ export function getBlocksDistances(orderedBlocks) {
     distances.push(Math.round(distance))
   }
   return distances
-}
-
-export function distanceOccurrences(distances) {
-  var occurrences = {}
-
-  for (var i = 0; i < distances.length; i++) {
-    var num = distances[i]
-    occurrences[num] = occurrences[num] ? occurrences[num] + 1 : 1
-  }
-  return occurrences
 }
 
 export function getXOrderedBlocks(
