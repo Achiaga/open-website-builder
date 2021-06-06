@@ -12,20 +12,16 @@ export function getVerticalBlocksDistances(orderedBlocks) {
   return distances
 }
 
-function isBlockToRight(staticBlock, draggingBlock) {
-  return Math.abs(draggingBlock.x - staticBlock.x) < 10
+function isBlockToRight(sB, dggB) {
+  return Math.abs(dggB.x - sB.x) < 10
 }
-function isBlockToLeft(staticBlock, draggingBlock) {
-  return (
-    Math.abs(
-      draggingBlock.x + draggingBlock.w - (staticBlock.x + staticBlock.w)
-    ) < 10
-  )
+function isBlockToLeft(sb, dggB) {
+  return Math.abs(dggB.x + dggB.w - (sb.x + sb.w)) < 10
 }
 
 function isBlockVertical(staticBlock, draggingBlock) {
   if (
-    isBlockToRight(staticBlock, draggingBlock) &&
+    isBlockToRight(staticBlock, draggingBlock) ||
     isBlockToLeft(staticBlock, draggingBlock)
   ) {
     return true
@@ -71,9 +67,7 @@ export function getYOrderedBlocks(
     gridColumnWidth,
     gridRowHeight
   )
-  const blockList = [...horizontalBlocks, draggingBlock]
-  const yOrderedBlocks = orderBlocksTopToBottom(blockList)
-  return yOrderedBlocks
+  return orderBlocksTopToBottom([...horizontalBlocks, draggingBlock])
 }
 
 function isCenterAlign(origin, dest) {

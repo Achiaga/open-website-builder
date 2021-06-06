@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux'
 import { getGridRowHeight, getLayout } from '../../../features/builderSlice'
 import { getIsMidScreen } from './helpers'
 
-import HorizontalRayTracing from './horizontal/horizontal-rays'
-import VerticalRayTracing from './vertical/vertical-rays'
+import HorizontalRays from './horizontal/horizontal-rays'
+import VerticalRays from './vertical/vertical-rays'
 
 export const RayTracing = ({
   width,
@@ -22,13 +22,13 @@ export const RayTracing = ({
 
   return (
     <Portal id="main-builder" containerRef={builderRef}>
-      <HorizontalRayTracing
+      <HorizontalRays
         layouts={layouts}
         draggingBlock={draggingBlock}
         gridColumnWidth={gridColumnWidth}
         gridRowHeight={gridRowHeight}
       />
-      <VerticalRayTracing
+      <VerticalRays
         layouts={layouts}
         draggingBlock={draggingBlock}
         gridColumnWidth={gridColumnWidth}

@@ -13,7 +13,7 @@ function isAboveBottom(staticBlock, draggingBlock) {
 
 function isBlockHorizontal(staticBlock, draggingBlock) {
   if (
-    isBelowTop(staticBlock, draggingBlock) &&
+    isBelowTop(staticBlock, draggingBlock) ||
     isAboveBottom(staticBlock, draggingBlock)
   ) {
     return true
