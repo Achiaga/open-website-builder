@@ -51,8 +51,8 @@ export const ResizingCounter = ({ blockPos }) => {
         boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
         fontWeight="600"
       >
-        <Box as="span">w: {blockPos.w}</Box>
-        <Box as="span"> h: {blockPos.h}</Box>
+        <Box as="span">w: {Math.round(blockPos.w)}</Box>
+        <Box as="span"> h: {Math.round(blockPos.h)}</Box>
       </Box>
     </Portal>
   )
