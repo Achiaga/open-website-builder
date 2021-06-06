@@ -76,7 +76,6 @@ const DraggableItem = ({
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
 
-  // const [resizeValues, setResizeValues] = useState(null)
   const [blockPostRef, setBlockPostRef] = useState(null)
 
   function onDragStop(_, blockPos) {
@@ -177,7 +176,7 @@ const DraggableItem = ({
               isDragging={isDragging}
               zIndexValue={zIndexValue}
             />
-            <ResizingCounter pos={{ x: xPos, y: yPos }} />
+            <ResizingCounter blockPos={blockPostRef} />
           </ResizeWrapper>
         </Box>
       </Draggable>

@@ -32,16 +32,16 @@ export const previewBlocks = {
   button: PreviewButton,
 }
 
-export const ResizingCounter = ({ width, height, pos }) => {
-  if (!width || !height) return null
+export const ResizingCounter = ({ blockPos }) => {
+  if (!blockPos?.isDragging) return null
   let widthSizeBox = 110
-  if (width < 100) widthSizeBox = 90
+  if (blockPos.w < 100) widthSizeBox = 90
   return (
     <Portal id="main-builder">
       <Box
         pos="absolute"
-        left={pos.x + width - widthSizeBox}
-        top={pos.y + height + 15}
+        left={blockPos.x + blockPos.w - widthSizeBox}
+        top={blockPos.y + blockPos.h + 15}
         paddingY="3px"
         paddingX="7px"
         bg="white"
@@ -51,8 +51,8 @@ export const ResizingCounter = ({ width, height, pos }) => {
         boxShadow="0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3)"
         fontWeight="600"
       >
-        <Box as="span">w: {width}</Box>
-        <Box as="span"> h: {height}</Box>
+        <Box as="span">w: {blockPos.w}</Box>
+        <Box as="span"> h: {blockPos.h}</Box>
       </Box>
     </Portal>
   )
