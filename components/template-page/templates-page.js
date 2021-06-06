@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { Box, Text, Grid } from '@chakra-ui/react'
+import Navbar from '../navbar'
 
 import Template from './template-layout'
-
-import LogoSvg from '../../assets/logo'
 
 const TEMPLATES = [
   {
@@ -75,27 +73,19 @@ const TemplatePage = () => {
         <title>Antfolio - The best templates made by our best designers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar isSticky={false} />
       <Box
-        width="full"
+        w="full"
         display="flex"
-        justifyContent={['center', 'space-between']}
         alignItems="center"
-        paddingX="20"
-        paddingTop="0.5rem"
+        justifyContent="center"
+        pt={[2, '8rem']}
       >
-        <Link href="/">
-          <Box pt={[4, 4]} cursor="pointer" w={[10, 20]}>
-            <LogoSvg width="3.5rem" />
-          </Box>
-        </Link>
-      </Box>
-      <Box w="full" display="flex" alignItems="center" justifyContent="center">
         <Text
           as="h1"
           textAlign={['center', 'left']}
           fontWeight="bold"
           color="gray.500"
-          pt={[2, 0]}
           fontFamily="Montserrat"
           fontSize={['4xl', '5xl']}
           lineHeight={['3rem', '120%']}
@@ -159,6 +149,7 @@ const TemplatePage = () => {
         paddingX={['6', '16']}
         mt={[6, 10]}
         mb="10"
+        pt={[0, '5rem']}
       >
         {TEMPLATES.map((templateInfo) => (
           <Template key={templateInfo.id} templateInfo={templateInfo} />

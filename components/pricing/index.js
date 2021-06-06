@@ -14,9 +14,9 @@ const PricingPage = () => {
       <Navbar isSticky={false} color="white" />
       <Box as="section" pb="14">
         <Box
-          paddingTop={['3rem', '0']}
+          paddingTop={['3rem', '4rem']}
           bg="#43E28E linear-gradient(91.56deg, #43E28E 0%, #506bf0 122.55%)"
-          height={['60vh', '40rem']}
+          height={['60vh', '50rem']}
         >
           <Box
             h="50vh"
@@ -47,11 +47,11 @@ const PricingPage = () => {
               textAlign="center"
               fontWeight="500"
             >
-              Antfolio helps indiviual and startups of all sizes build better
-              websites faster.
+              Antfolio helps creators of any size to increase sales. We only win
+              if you win. Get the most out of your product.
             </Text>
           </Box>
-          <Box top="0" mt={['-10%', '-5%']} w="100vw">
+          <Box top="0" mt={['-10%', '00%']} w="100vw">
             <PricingCards />
           </Box>
         </Box>

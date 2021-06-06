@@ -138,62 +138,60 @@ const ArticleCard = ({
 
 const BlogPage = () => {
   return (
-    <>
-      <Box>
-        <Navbar />
-        <Box px={['1.5rem', '5rem']} zIndex="1">
-          <Box as="section" pb="8rem">
-            <MainBlogCard />
-          </Box>
-          <Box
-            d="grid"
-            gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
-            gridGap="5%"
-            mt="1rem"
-            pb="10rem"
-          >
-            <ArticleCard
-              title="Setup your custom domain"
-              imageUrl="/domain-guide-thumbnail.png"
-              redirectUrl="/guides/guides-custom-domain"
-              imgWidth="70%"
-              bg="white"
-            />
-            <ArticleCard
-              title="Integrate Flurly with Antfolio"
-              imageUrl="https://antfolio.s3.amazonaws.com/user-images/e6f761a37bd62b029d70673be85d3ca4/thumbnail-flury-integration.png"
-              redirectUrl="/guides/guides-integration-flurly"
-              imgWidth="70%"
-              bg="white"
-            />
-            <ArticleCard
-              title="Enable analytics & A/B Testing"
-              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
-              redirectUrl="/guides"
-              imgWidth="70%"
-              description="Cooming Soon"
-              bg="white"
-            />
-            <ArticleCard
-              title="Enable custom forms"
-              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
-              redirectUrl="/guides"
-              imgWidth="70%"
-              description="Cooming Soon"
-              bg="white"
-            />
-            <ArticleCard
-              title="Best Font Families for each use case"
-              imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
-              redirectUrl="/guides"
-              imgWidth="70%"
-              description="Cooming Soon"
-              bg="white"
-            />
-          </Box>
+    <Box>
+      <Navbar isSticky={false} />
+      <Box px={['1.5rem', '5rem']} zIndex="1">
+        <Box as="section" pb="8rem">
+          <MainBlogCard />
+        </Box>
+        <Box
+          d="grid"
+          gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
+          gridGap="5%"
+          mt="1rem"
+          pb="10rem"
+        >
+          <ArticleCard
+            title="Setup your custom domain"
+            imageUrl="/domain-guide-thumbnail.png"
+            redirectUrl="/guides/guides-custom-domain"
+            imgWidth="70%"
+            bg="white"
+          />
+          <ArticleCard
+            title="Integrate Flurly with Antfolio"
+            imageUrl="https://antfolio.s3.amazonaws.com/user-images/e6f761a37bd62b029d70673be85d3ca4/thumbnail-flury-integration.png"
+            redirectUrl="/guides/guides-integration-flurly"
+            imgWidth="70%"
+            bg="white"
+          />
+          <ArticleCard
+            title="Enable analytics & A/B Testing"
+            imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+            redirectUrl="/guides"
+            imgWidth="70%"
+            description="Cooming Soon"
+            bg="white"
+          />
+          <ArticleCard
+            title="Enable custom forms"
+            imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+            redirectUrl="/guides"
+            imgWidth="70%"
+            description="Cooming Soon"
+            bg="white"
+          />
+          <ArticleCard
+            title="Best Font Families for each use case"
+            imageUrl="https://antfolio.s3.amazonaws.com/idea.png"
+            redirectUrl="/guides"
+            imgWidth="70%"
+            description="Cooming Soon"
+            bg="white"
+          />
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }
 
