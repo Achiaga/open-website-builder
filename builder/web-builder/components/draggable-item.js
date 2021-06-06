@@ -39,24 +39,29 @@ const DraggableItem = ({
   gridColumnWidth,
   builderRef,
 }) => {
-  const [resizeValues, setResizeValues] = useState(null)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const groupedBlocksIds = useSelector(getGroupSelectedBlocksIds)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
   const selectedBlock = useSelector(getSelectedBlockId)
+
   if (!blockLayout) return null
+
   const blockData = useSelector(getBlockData(blockId))
   const isMobile = useSelector(getIsMobileBuilder)
+
   const { x, y, w, h } = blockLayout
   const width = gridColumnWidth * w
   const height = gridRowHeight * h
   const xPos = gridColumnWidth * x
   const yPos = gridRowHeight * y
+
   const blockType = blockData?.type
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
+
   const [blockPostRef, setBlockPostRef] = useState(null)
+
   function onDragStop(_, blockPos) {
     setBlockPostRef(null)
     dispatch(handleDragStop(blockPos, blockId))
@@ -65,12 +70,19 @@ const DraggableItem = ({
 
   function onResizeStop(_, __, ___, delta) {
     dispatch(handleResizeStop(delta, blockId, blockType))
-    setResizeValues(null)
+    setBlockPostRef(null)
   }
 
   function handleResize(_, __, elRef) {
     const { width, height } = elRef.getBoundingClientRect()
-    setResizeValues({ width: Math.round(width), height: Math.round(height) })
+    setBlockPostRef({
+      x: xPos,
+      y: yPos,
+      i: blockId,
+      isDragging: true,
+      w: Math.round(width),
+      h: Math.round(height),
+    })
   }
 
   function onDrag(_, blockPos) {
@@ -79,6 +91,7 @@ const DraggableItem = ({
       w: w * gridColumnWidth,
       h: h * gridRowHeight,
       blockId,
+      i: blockId,
       isDragging: true,
     })
     const newBlockLayout = {
@@ -139,16 +152,13 @@ const DraggableItem = ({
             isSelected={isSelected}
           >
             <RayTracing
-              width={width}
               gridColumnWidth={gridColumnWidth}
               blockPostRef={blockPostRef}
-              blockId={blockId}
-              isDragging={isDragging}
               builderRef={builderRef}
             />
 
             <MemoBlockItem blockId={blockId} isDragging={isDragging} />
-            <ResizingCounter {...resizeValues} pos={{ x: xPos, y: yPos }} />
+            <ResizingCounter blockPos={blockPostRef} />
           </ResizeWrapper>
         </Box>
       </Draggable>

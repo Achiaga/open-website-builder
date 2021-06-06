@@ -78,8 +78,6 @@ export const ButtonGeneric = (props) => {
     )
   }, [textInput])
 
-  console.log('button Generic', props)
-
   return (
     <CustomButton
       borderRadius={borderRadius}
