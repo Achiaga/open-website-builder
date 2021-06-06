@@ -1,6 +1,5 @@
 import { buffer } from 'micro'
 import Cors from 'micro-cors'
-import { NextApiRequest, NextApiResponse } from 'next'
 
 import Stripe from 'stripe'
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -64,4 +63,4 @@ const webhookHandler = async (req, res) => {
   }
 }
 
-export default cors(webhookHandler as any)
+export default cors(webhookHandler)
