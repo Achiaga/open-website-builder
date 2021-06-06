@@ -28,6 +28,8 @@
     "localforage": "^1.9.0",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
     "mongodb": "^3.6.5",
     "next": "10.0.6",
     "next-seo": "^4.24.0",
