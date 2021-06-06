@@ -9,7 +9,6 @@ import HorizontalRays from './horizontal/horizontal-rays'
 import VerticalRays from './vertical/vertical-rays'
 
 export const RayTracing = ({
-  width,
   gridColumnWidth,
   blockPostRef: draggingBlock,
   builderRef,
@@ -18,7 +17,7 @@ export const RayTracing = ({
   const layouts = useSelector(getLayout)
   const gridRowHeight = useSelector(getGridRowHeight)
 
-  const isMidScreen = getIsMidScreen(draggingBlock, width)
+  const isMidScreen = getIsMidScreen(draggingBlock, gridColumnWidth)
 
   return (
     <Portal id="main-builder" containerRef={builderRef}>

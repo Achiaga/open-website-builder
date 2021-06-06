@@ -6,7 +6,8 @@ export function getGridPos({ x, w, h, y, i }, gridColumnWidth, gridRowHeight) {
   return { x: sx, y: sy, w: sw, h: sh, i }
 }
 
-export const getIsMidScreen = (draggingBlock, width) => {
+export const getIsMidScreen = (draggingBlock, gridColumnWidth) => {
+  const width = gridColumnWidth * draggingBlock.w
   const leftDis = Math.round(draggingBlock?.x + width / 2)
   const isMidScreen =
     leftDis - 1 <= window.innerWidth / 2 && leftDis + 1 >= window.innerWidth / 2

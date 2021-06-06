@@ -60,7 +60,6 @@ const DraggableItem = ({
   gridColumnWidth,
   builderRef,
 }) => {
-  const [resizeValues, setResizeValues] = useState(null)
   const dispatch = useDispatch()
   const gridRowHeight = useSelector(getGridRowHeight)
   const blockLayout = useSelector(getBlockLayoutById(blockId))
@@ -76,7 +75,10 @@ const DraggableItem = ({
   const blockType = blockData?.type
   const isTextBlock = blockType === 'text'
   const isSelected = selectedBlock === blockId
+
+  // const [resizeValues, setResizeValues] = useState(null)
   const [blockPostRef, setBlockPostRef] = useState(null)
+
   function onDragStop(_, blockPos) {
     setBlockPostRef(null)
     dispatch(handleDragStop(blockPos, blockId))
@@ -85,11 +87,18 @@ const DraggableItem = ({
 
   function onResizeStop(_, __, ___, delta) {
     dispatch(handleResizeStop(delta, blockId, blockType))
-    setResizeValues(null)
+    setBlockPostRef(null)
   }
   function handleResize(_, __, elRef) {
     const { width, height } = elRef.getBoundingClientRect()
-    setResizeValues({ width: Math.round(width), height: Math.round(height) })
+    setBlockPostRef({
+      x: xPos,
+      y: yPos,
+      i: blockId,
+      isDragging: true,
+      w: Math.round(width),
+      h: Math.round(height),
+    })
   }
 
   function onDrag(_, blockPos) {
@@ -158,7 +167,6 @@ const DraggableItem = ({
             isSelected={isSelected}
           >
             <RayTracing
-              width={width}
               gridColumnWidth={gridColumnWidth}
               blockPostRef={blockPostRef}
               builderRef={builderRef}
@@ -169,7 +177,7 @@ const DraggableItem = ({
               isDragging={isDragging}
               zIndexValue={zIndexValue}
             />
-            <ResizingCounter {...resizeValues} pos={{ x: xPos, y: yPos }} />
+            <ResizingCounter pos={{ x: xPos, y: yPos }} />
           </ResizeWrapper>
         </Box>
       </Draggable>
