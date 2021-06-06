@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/spinner'
 import { useEffect, useState } from 'react'
 import { ResumeWebsite } from '../../builder/web-preview/preview'
+import ECommerceExtensions from '../../components/integrations/ECommerceExtensions'
 import { getUserDataFromLS } from '../../features/helper'
 
 function ResumePreview() {
@@ -29,7 +30,12 @@ function ResumePreview() {
     )
   }
 
-  return <ResumeWebsite userBlocksData={blocksData} />
+  return (
+    <>
+      <ECommerceExtensions blocks={blocksData.blocks} />
+      <ResumeWebsite userBlocksData={blocksData} />
+    </>
+  )
 }
 
 export default ResumePreview

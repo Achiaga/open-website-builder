@@ -131,6 +131,7 @@ const DomainsWrapper = ({ domain, projectId }) => {
               colorScheme="primary"
               minW="fit-content"
               onClick={handleAddDomain}
+              variant="outline"
             >
               {isAddingDomain ? <Spinner /> : 'Add Domain'}
             </Button>

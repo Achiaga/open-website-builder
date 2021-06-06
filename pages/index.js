@@ -1,21 +1,15 @@
 import { UserProvider } from '@auth0/nextjs-auth0'
-import Head from 'next/head'
 import { ResumeWebsite } from '../builder/web-preview/preview'
+import ECommerceExtensions from '../components/integrations/ECommerceExtensions'
 import LandingPage from '../landing'
 import { getWebsiteDataBySubdomain } from './api/db'
-import { isFalsy, hasFlurlyLink } from './[resumeId]'
+import { isFalsy } from './[resumeId]'
 
 export default function Home({ websiteData, subdomain }) {
   if (websiteData && subdomain) {
-    const hasFlurly = hasFlurlyLink(websiteData.blocks)
     return (
       <>
-        {hasFlurly && (
-          <Head>
-            <script src="https://js.stripe.com/v3/"></script>
-            <script src="https://flurly.com/flurly-checkout.js"></script>
-          </Head>
-        )}
+        <ECommerceExtensions blocks={websiteData.blocks} />
         <ResumeWebsite userBlocksData={websiteData} projectId={subdomain} />
       </>
     )

@@ -12,26 +12,21 @@ const ButtonSidebar = ({ children, ...props }) => {
       display="flex"
       justifyContent="start"
       background="none"
-      borderLeft="2px solid transparent"
-      borderRadius="0"
-      borderTopRightRadius="3px"
-      borderBottomRightRadius="3px"
+      borderRadius="0.5rem"
       paddingY="1.25rem"
       paddingLeft="0.75rem"
       height="2rem"
-      fontFamily="Montserrat"
       fontWeight="400"
       marginY="0.25rem"
+      color="primary.500"
       _hover={{
         borderRadius: '3px',
         background: 'primary.200',
       }}
       _active={{
-        borderColor: 'primary.500',
         background: 'primary.100',
         fontWeight: '600',
       }}
-      _focus={{}}
       {...props}
     >
       {children}
@@ -83,7 +78,7 @@ const Sidebar = ({ dashboardType = 'projects' }) => {
         <Link href="/dashboard/projects">
           <ButtonSidebar id="projects" isActive={dashboardType === 'projects'}>
             <RiDashboardLine fontSize="1rem" />
-            <Text as="h4" fontSize="1rem" pl="0.75em">
+            <Text as="h5" fontSize="md" pl="0.75em">
               Projects
             </Text>
           </ButtonSidebar>

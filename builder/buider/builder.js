@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
 import { WebBuilder } from '../web-builder'
 import { BuilderSidebar } from '../sidebar'
@@ -21,7 +22,8 @@ function getParams() {
   const urlParams = new URLSearchParams(window.location.search)
   const template = urlParams.get('template')
   const origin = urlParams.get('origin')
-  return { template, origin }
+  const projectId = urlParams.get('project')
+  return { template, origin, projectId }
 }
 
 const Loader = () => {
@@ -102,4 +104,4 @@ const Builder = () => {
   )
 }
 
-export default Builder
+export default withPageAuthRequired(Builder)

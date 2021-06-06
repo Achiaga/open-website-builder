@@ -3,6 +3,15 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
 import { RedirectWrapper } from './text'
+import GumroadIcon from '../../assets/gumroad-button'
+
+const GumroadButton = ({ type }) => {
+  const isGumroadButton = type === 'gumroad'
+  if (!isGumroadButton) {
+    return null
+  }
+  return <GumroadIcon />
+}
 
 export const CustomButton = ({ children, ...props }) => {
   const gradient = props.gradientColor || []
@@ -11,7 +20,7 @@ export const CustomButton = ({ children, ...props }) => {
 
   return (
     <div
-      className="textStyles"
+      className={`textStyles`}
       style={{
         width: '100%',
         height: '100%',
@@ -32,9 +41,13 @@ export const CustomButton = ({ children, ...props }) => {
           overflow: 'hidden',
           cursor: 'pointer',
           padding: '0px 1rem',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        {children}
+        <GumroadButton type={props.subType} />
+        <div style={{ flex: 1 }}>{children}</div>
       </button>
     </div>
   )
@@ -51,6 +64,7 @@ export const ButtonGeneric = (props) => {
     backgroundColor,
     gradientColor,
     fontColor,
+    subType,
   } = props
 
   function handleChange(e) {
@@ -64,6 +78,8 @@ export const ButtonGeneric = (props) => {
     )
   }, [textInput])
 
+  console.log('button Generic', props)
+
   return (
     <CustomButton
       borderRadius={borderRadius}
@@ -72,6 +88,7 @@ export const ButtonGeneric = (props) => {
       gradientColor={gradientColor}
       boxShadow={boxShadow}
       color={fontColor}
+      subType={subType}
     >
       <Input
         fontSize="inherit"
@@ -95,8 +112,8 @@ export const PreviewButton = (props) => {
     gradientColor,
     text,
     fontColor,
+    subType,
   } = props
-
   return (
     <RedirectWrapper redirectUrl={redirectUrl}>
       <CustomButton
@@ -105,6 +122,7 @@ export const PreviewButton = (props) => {
         backgroundColor={backgroundColor}
         gradientColor={gradientColor}
         color={fontColor}
+        subType={subType}
       >
         {text || ''}
       </CustomButton>

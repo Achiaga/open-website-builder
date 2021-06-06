@@ -19,9 +19,11 @@ import {
 import {
   handleLoginCallback,
   loadInitialDataNoAccount,
+  loadDataFromTemplate,
   loadDataFromDB,
   updateInitialState,
   normalizeBuilderData,
+  getIsUserAdmin,
 } from './login-helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
@@ -54,6 +56,12 @@ export const builderSlice = createSlice({
     setLoadingData: (state, action) => {
       state.loadingData = action.payload
     },
+    setGroupSelectedBlocksIds: (state, action) => {
+      state.groupSelectedBlocks = action.payload
+    },
+    setIsGroupSelectable: (state, action) => {
+      state.isGroupSelectable = action.payload
+    },
     //This functions are to let the user overwrite DB data
     setTempDBData: (state, action) => {
       //We store here the DB data while the user decides
@@ -63,7 +71,7 @@ export const builderSlice = createSlice({
     setUserData: (state, action) => {
       state.user = action.payload
     },
-    setWebsiteId: (state, action) => {
+    setProjectId: (state, action) => {
       state.user.projectId = action.payload
     },
     setNewDropBlockType: (state, action) => {
@@ -154,9 +162,11 @@ export const builderSlice = createSlice({
 export const {
   setBuilderBlocksData,
   setInitialBuilderData,
+  setGroupSelectedBlocksIds,
+  setIsGroupSelectable,
   setTempDBData,
   setUserData,
-  setWebsiteId,
+  setProjectId,
   setLayout,
   setLayouts,
   setHasMobileBeenEdited,
@@ -182,11 +192,14 @@ export const {
 } = builderSlice.actions
 
 export const loadInitialData = (user, params) => async (dispatch) => {
-  const { origin, template } = params
+  const { origin, template, projectId } = params
+  const isAdmin = getIsUserAdmin(user)
   if (!user) return dispatch(loadInitialDataNoAccount(template))
+  if (isAdmin && template) return dispatch(loadDataFromTemplate(template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
-  if (user && origin !== 'login')
-    return dispatch(loadDataFromDB(user, template))
+  if (user && origin !== 'login') {
+    return dispatch(loadDataFromDB(user, template, projectId))
+  }
 }
 
 export const editBlockConfig =
@@ -202,7 +215,7 @@ export const editBlockConfig =
     dispatch(saveDataOnLocal())
   }
 
-const removeMobileblock = (blockId) => (dispatch, getState) => {
+const removeMobileBlock = (blockId) => (dispatch, getState) => {
   const state = getState()
   const { blocks } = getBuilderData(getState())
   const layouts = getMobileLayout(state)
@@ -241,7 +254,7 @@ export const removeBlock =
     if (isLastBlock) return
     batch(() => {
       dispatch(setSelectedBlockId(null))
-      dispatch(removeMobileblock(blockId))
+      dispatch(removeMobileBlock(blockId))
       dispatch(setBuilderBlocksData(newBuilderData.blocks))
       dispatch(updateHierarchy(newBuilderData.hierarchy))
       dispatch(updateLayouts(newBuilderData.layouts))
@@ -461,6 +474,7 @@ export const keepDBData = () => (dispatch, getState) => {
     dispatch(setTempDBData(null))
     dispatch(setLoadingData(false))
   })
+  setTimeout(() => dispatch(saveDataOnLocal()), 0)
 }
 export const addDuplicatedBlock = (blockLayout, newBlockData) => (dispatch) => {
   batch(() => {
@@ -666,10 +680,17 @@ export function findAllChildren(hierarchy, elementDragginId) {
 export const handleDrag =
   (blockPos, newBlockLayout, blockId, gridColumnWidth, gridRowHeight) =>
   (dispatch, getState) => {
-    const builderDevice = getBuilderDevice(getState())
-    const hierarchy = getHierarchy(getState())
-    const children = [...new Set(findAllChildren(hierarchy, blockId))]
-    const layouts = { ...getLayout(getState()) }
+    const state = getState()
+    const groupedBlocks = getGroupSelectedBlocksIds(state)
+    const builderDevice = getBuilderDevice(state)
+    const hierarchy = getHierarchy(state)
+    const children = [
+      ...new Set([
+        ...(findAllChildren(hierarchy, blockId) || []),
+        ...groupedBlocks,
+      ]),
+    ]
+    const layouts = { ...getLayout(state) }
     const updatedHierarchy = getUpdatedHierarchy(
       layouts,
       newBlockLayout,
@@ -718,6 +739,9 @@ export const getHierarchy = (state) => {
   // }
   return getDesktopHierarchy(state)
 }
+export const getGroupSelectedBlocksIds = (state) =>
+  state.builder.groupSelectedBlocks
+export const getIsGroupSelectable = (state) => state.builder.isGroupSelectable
 const getMobileHierarchy = (state) => state.builder.builderData.mobileHierarchy
 const getDesktopHierarchy = (state) => state.builder.builderData.hierarchy
 export const getBlockData = (id) => (state) =>
