@@ -18,8 +18,8 @@ const Features = () => {
       justifyContent="center"
       alignItems="center"
       width="100%"
-      height={['100px', '220px']}
-      marginTop={['0rem', '10rem']}
+      height={['100px', '150px']}
+      marginTop={['0rem', '5rem']}
     >
       <Box pos="absolute" left="4rem">
         <LogoSvg width={45} />

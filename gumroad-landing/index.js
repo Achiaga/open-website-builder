@@ -13,6 +13,7 @@ import { useEffect } from 'react'
 
 import Navbar from '../components/navbar'
 import Product from './product'
+import Integration from './integration'
 
 // const Navbar = dynamic(() => import('../components/navbar'))
 
@@ -44,8 +45,9 @@ const LandingPage = () => {
           <Navbar color="gray.500" />
           <Hero />
           <Product />
+          <Integration />
           <Features />
-          <Steps />
+          {/* <Steps /> */}
           <Footer />
         </Box>
       </Box>

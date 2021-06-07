@@ -102,8 +102,8 @@ const Features = () => {
       justifyContent="center"
       alignItems="center"
       w="100%"
-      mt={['2rem', '15rem']}
-      mb={['2rem', '15rem']}
+      mt={['2rem', '5rem']}
+      mb={['2rem', '2rem']}
       mx={['auto', 0]}
     >
       <BackgroundCircles />
@@ -131,14 +131,14 @@ const Features = () => {
           </Text>
         </Text>
       </Text>
-      <Box
+      {/* <Box
         display={['none', 'block']}
         position="absolute"
         right="0"
         bottom="-30rem"
       >
         <CircleBg />
-      </Box>
+      </Box> */}
       <Box display={['block', 'none']}>
         <Image
           src="/callToAction.png"
@@ -212,7 +212,7 @@ const Features = () => {
           index={7}
           isVideo
         />
-        <Link href={`/builder`}>
+        {/* <Link href={`/builder`}>
           <a>
             <Button
               fontSize="xl"
@@ -232,7 +232,7 @@ const Features = () => {
               {t.features.button}
             </Button>
           </a>
-        </Link>
+        </Link> */}
       </Box>
     </Box>
   )

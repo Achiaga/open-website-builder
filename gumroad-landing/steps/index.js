@@ -30,7 +30,7 @@ const Steps = () => {
         width={['auto', 'auto', '50rem']}
         px={['0', '6rem']}
       >
-        {t.steps.title}
+        Testimonials
       </Text>
       <Box
         position="relative"

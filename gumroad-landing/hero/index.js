@@ -22,6 +22,7 @@ const Hero = () => {
         fontWeight="extrabold"
         fontSize={['3.5rem', '4.5rem', '5rem', '5rem', '6rem']}
         lineHeight="120%"
+        pb="5rem"
         h="100vh"
         textAlign="center"
       >
