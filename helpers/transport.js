@@ -58,14 +58,6 @@ export const getAllUsers = () =>
     type: 'list',
   })
 
-async function fetchGetJSON(url) {
-  try {
-    const data = await fetch(url).then((res) => res.json())
-    return data
-  } catch (err) {
-    throw new Error(err.message)
-  }
-}
 export const getSessionData = (session_id, user) =>
   fetchPostJSON(`/api/checkout_sessions/${session_id}`, {
     user,

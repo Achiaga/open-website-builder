@@ -53,10 +53,9 @@ const CheckoutForm = () => {
           '/pricing?status=payment'
         )}`
       )
-    } else {
-      await redirectToStripePayment()
+      return
     }
-    setLoading(false)
+    user && redirectToStripePayment()
   }
 
   return (

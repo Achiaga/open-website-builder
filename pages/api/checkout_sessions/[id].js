@@ -1,57 +1,61 @@
 import Stripe from 'stripe'
 import axios from 'axios'
 
+const PRO_USER_ROLE = 'rol_kooQON9itYvMSTEc'
+
 // eslint-disable-next-line no-undef
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   // https://github.com/stripe/stripe-node#configuration
   apiVersion: '2020-03-02',
 })
 
+// eslint-disable-next-line no-undef
+const auth0Url = process.env.AUTH0_ISSUER_BASE_URL
+// eslint-disable-next-line no-undef
+const auth0ClientId = process.env.AUTH0_API_CLIENT_ID
+// eslint-disable-next-line no-undef
+const auth0ClientSecret = process.env.AUTH0_API_CLIENT_SECRET
+
 async function getAuth0Token() {
   var options = {
     method: 'POST',
-    url: 'https://dev-m48ae1dx.eu.auth0.com/oauth/token',
+    url: `${auth0Url}/oauth/token`,
     headers: { 'content-type': 'application/json' },
     data: {
       grant_type: 'client_credentials',
-      client_id: process.env.AUTH0_API_CLIENT_ID,
-      client_secret: process.env.AUTH0_API_CLIENT_SECRET,
-      audience: 'https://dev-m48ae1dx.eu.auth0.com/api/v2/',
+      client_id: auth0ClientId,
+      client_secret: auth0ClientSecret,
+      audience: `${auth0Url}/api/v2/`,
     },
   }
   try {
     const res = await axios(options)
-    console.log('success getAuth0Token', res.data)
     return res.data.access_token
   } catch (error) {
     console.error('error getAuth0Token', error.response.data)
   }
 }
 
-async function updateUserRoles(user) {
-  const token = await getAuth0Token()
+async function updateUserRoles(token, user_id) {
   var options = {
     method: 'POST',
-    url: `${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/users/auth0|${user.sub}/roles`,
+    url: `${auth0Url}/api/v2/users/${user_id}/roles`,
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${token}`,
       'cache-control': 'no-cache',
     },
-    data: { roles: ['rol_kooQON9itYvMSTEc'] },
+    data: { roles: [PRO_USER_ROLE] },
   }
   try {
-    console.log(user)
     const res = await axios(options)
-    const res2 = await updateUserMetaData(token, user.sub)
-    console.log('updateUserRoles', res, res2)
     return res.data
   } catch (error) {
-    console.error('updateUserRoles', error.response)
+    console.error('updateUserRoles', user_id, error.response.data)
   }
 }
 
-async function updateUserMetaData(token, user_id) {
+async function updateUserMetaData(token, user_id, checkout_session) {
   var options = {
     method: 'PATCH',
     url: `https://dev-m48ae1dx.eu.auth0.com/api/v2/users/${user_id}`,
@@ -61,18 +65,28 @@ async function updateUserMetaData(token, user_id) {
       'cache-control': 'no-cache',
     },
     data: {
-      user_metadata: { stripe_account: 'surfing', stripe_product: 'product1' },
+      user_metadata: {
+        stripe_account: checkout_session.customer,
+        stripe_subscription: checkout_session.subscription,
+      },
     },
   }
+  try {
+    const response = await axios(options)
+    console.log('updateUserMetaData', user_id, response.data)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-  axios
-    .request(options)
-    .then(function (response) {
-      console.log('updateUserMetaData', response.data)
-    })
-    .catch(function (error) {
-      console.error(error)
-    })
+async function updateUser(user, checkout_session) {
+  const token = await getAuth0Token()
+  const [roles, metaData] = await Promise.all([
+    updateUserRoles(token, user.sub),
+    updateUserMetaData(token, user.sub, checkout_session),
+  ])
+  console.log(roles, metaData)
 }
 
 export default async function handler(req, res) {
@@ -85,8 +99,8 @@ export default async function handler(req, res) {
     const checkout_session = await stripe.checkout.sessions.retrieve(id, {
       expand: ['payment_intent'],
     })
-    console.log('handler', req.body)
-    await updateUserRoles(user)
+    console.log('handler', { checkout_session })
+    await updateUser(user, checkout_session)
 
     res.status(200).json(checkout_session)
   } catch (err) {
