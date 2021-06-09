@@ -10,7 +10,6 @@ import LogoSvg from '../../assets/logo'
 // import BackgroundCircles from './background'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useEffect, useState } from 'react'
-import { GrWindows } from 'react-icons/gr'
 
 const LoginButton = ({ color }) => {
   const { user } = useUser()
@@ -33,6 +32,7 @@ const Navbar = ({ isSticky = true, color }) => {
   const [t] = useTranslation()
   const [scrollY, setScrollY] = useState(0)
   const [redirectLogo, setRedirectLogo] = useState('/')
+  const [redirectTemplates, setRedirectTemplates] = useState('/templates')
 
   const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
     router.pathname
@@ -46,7 +46,10 @@ const Navbar = ({ isSticky = true, color }) => {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('isGumroad')) setRedirectLogo('/gumroad')
+    if (localStorage.getItem('isGumroad')) {
+      setRedirectLogo('/gumroad')
+      setRedirectTemplates('/gumroad/templates')
+    }
   }, [])
 
   function handleScroll() {
@@ -101,7 +104,7 @@ const Navbar = ({ isSticky = true, color }) => {
           display={['none', 'none', 'block']}
           content="Templates"
           color={color || 'gray.500'}
-          redirect="/templates"
+          redirect={redirectTemplates}
           id="templates"
           fontSize="sm"
         />

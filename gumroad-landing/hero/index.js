@@ -40,7 +40,7 @@ const Hero = () => {
             ,  #506bf0  0%,#43E28E 100%)"
             backgroundClip="text"
             mx="1rem"
-            fontSize={['4rem', '5rem', '5.5rem', '5rem', '6rem']}
+            fontSize={['3.5rem', '5rem', '5.5rem', '5rem', '6rem']}
           >
             High Conversion
           </Text>
@@ -52,7 +52,7 @@ const Hero = () => {
             135deg
             ,  #ee5740  0%,#ef7328 100%)"
             backgroundClip="text"
-            fontSize={['4rem', '5rem', '5.5rem', '5rem', '6rem']}
+            fontSize={['3.5rem', '5rem', '5.5rem', '5rem', '6rem']}
           >
             Gumroad{' '}
           </Text>
@@ -87,6 +87,7 @@ const Hero = () => {
                   h={14}
                   bg="gray.900"
                   color="gray.50"
+                  border="2px solid black"
                   _hover={{
                     bg: 'transparent',
                     border: '2px solid black',

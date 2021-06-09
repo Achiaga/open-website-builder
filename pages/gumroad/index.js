@@ -1,6 +1,6 @@
 import { UserProvider } from '@auth0/nextjs-auth0'
 import { useEffect } from 'react'
-import GumroadLandingPage from '../gumroad-landing'
+import GumroadLandingPage from '../../gumroad-landing'
 
 export default function Gumroad() {
   useEffect(() => {

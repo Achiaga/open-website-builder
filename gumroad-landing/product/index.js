@@ -5,6 +5,7 @@ import CursorBuilderIcon from '../../assets/build-cursor-icon'
 import StaticsIcon from '../../assets/statics-icon'
 import RightArrow from '../../assets/right-arrow-icon'
 import BeautifulTemplateIcon from '../../assets/beautiful-template-icon'
+import Button from '../../components/commun/button'
 
 const DetailsProduct = ({ icon, title, body, link, linkText }) => {
   return (
@@ -20,7 +21,9 @@ const DetailsProduct = ({ icon, title, body, link, linkText }) => {
         alignItems="baseline"
         justifyContent="center"
       >
-        <Box pb="0.7rem">{icon}</Box>
+        <Box pb="0.7rem" h="48px">
+          {icon}
+        </Box>
         <Text as="h4" fontSize="2xl" fontWeight="regular" pb="1rem">
           {title}
         </Text>
@@ -55,31 +58,60 @@ const Product = () => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      pb="4rem"
+      pb={['2rem', '4rem']}
     >
       <Text
         as="h1"
-        fontSize="7xl"
+        fontSize={['4xl', '7xl']}
         fontWeight="regular"
         textAlign="center"
         pb="2rem"
       >
         Design Beautiful Landing Pages <br /> That Convert More
       </Text>
-      <Text as="p" textAlign="center" px="15rem" fontSize="14px" pb="4rem">
-        The secret’s out. While websites are great for information and
-        exploration, they’re duds at turning traffic into revenue. With
-        Unbounce, you can create and optimize dedicated landing pages that
-        prompt your visitors with one focused goal instead of leaving them to
-        wander a site full of distractions.
+      <Text
+        as="p"
+        textAlign="center"
+        px={['2rem', '15rem']}
+        fontSize={['12px', '16px']}
+        pb={['2rem', '4rem']}
+      >
+        It is no secret that better landing pages for a product converts more
+        visitors into customers. Companies spend lot of money and resources on
+        creating beautiful landing pages with great UI/UX. Antfolio provides
+        this for you with amazing landing pages already premade by us. You just
+        need to choose one of our beautiful templates and start increase sales.
       </Text>
-      <Box pos="relative" height="400px" width="600px">
+      <Box
+        pos="relative"
+        height={['200px', '500px']}
+        width={['300px', '1300px']}
+      >
         <Image
-          src="/product-landing.png"
+          src="/product.png"
           layout="fill"
-          objectFit="cover"
+          objectFit="contain"
           objectPosition="center center"
         />
+      </Box>
+      <Box mt="2rem">
+        <a href="" target="_blank" rel="noreferrer">
+          <Button
+            fontSize="lg"
+            p="1.25rem"
+            bg="gray.900"
+            color="gray.50"
+            border="2px solid black"
+            _hover={{
+              bg: 'transparent',
+              border: '2px solid black',
+              color: 'black',
+            }}
+            _active={{ bg: 'gray.300' }}
+          >
+            Demo Final Result
+          </Button>
+        </a>
       </Box>
       <Box
         d="grid"
@@ -87,29 +119,27 @@ const Product = () => {
         gridGap="7rem"
         mt="1rem"
         pb="10rem"
-        pt="7rem"
-        px="7rem"
+        pt="5rem"
+        px={['2rem', '7rem']}
       >
         <DetailsProduct
           icon={<CursorBuilderIcon />}
-          title="Build Any Page on Your Own"
-          body="With our easy drag-and-drop builder and all-you-can-eat buffet of 100+ landing page templates, you can bring any campaign vision to life in a fraction of the time it would take with a developer."
+          title="Customize all you want our beautiful templates"
+          body="With our easy drag-and-drop builder and our landing page templates, you will differencate yourself from other gumroad creators, and convert more customers increasing your sales."
           link="/templates"
           linkText="Browser to templates"
         />
         <DetailsProduct
-          icon={<BeautifulTemplateIcon />}
-          title="Create the Exact Page You Want"
-          body="Design pages that look and act 100% the way you want them to.
-            Customizable templates with optional JavaScript and CSS put looks
-            and functionality in your hands, for both desktop and mobile."
+          icon={<StaticsIcon />}
+          title="Show the value of your product and Increase Sales"
+          body="By explaining better the value of your product plus adding images of it will give you more credebality and convince a visitor to buy your product. And Antfolio allow you to do this in a beautiful way."
           link="/templates"
           linkText="Learn More"
         />
         <DetailsProduct
-          icon={<StaticsIcon />}
-          title="Continually Grow Your ROI"
-          body="Get built-in AI conversion power with Smart Traffic and the ability to A/B test your pages to see exactly what’s working. Experiment with messaging, design, and forms to validate what makes more visitors convert more often."
+          icon={<BeautifulTemplateIcon />}
+          title="Gumroad Payment inside your page. No Redirects."
+          body="With our Gumroad integration, your users can use Gumroad payment inside your Antfolio page. You can just share your Antfolio website and the user will be able to pay in there and it will be exactly the same as if the user have paid on Gumroad."
           link="/templates"
           linkText="See Features"
         />

@@ -68,19 +68,23 @@ const Product = () => {
     >
       <Text
         as="h1"
-        fontSize="7xl"
+        fontSize={['4xl', '7xl']}
         fontWeight="regular"
         textAlign="center"
         pb="2rem"
       >
-        Integration
+        Gumroad Integration
       </Text>
-      <Text as="p" textAlign="center" px="15rem" fontSize="14px" pb="4rem">
-        The secret’s out. While websites are great for information and
-        exploration, they’re duds at turning traffic into revenue. With
-        Unbounce, you can create and optimize dedicated landing pages that
-        prompt your visitors with one focused goal instead of leaving them to
-        wander a site full of distractions.
+      <Text
+        as="p"
+        textAlign="center"
+        px={['2rem', '15rem']}
+        fontSize="14px"
+        pb="4rem"
+      >
+        {
+          "We are the best tool to increase your sales for Gumroad creators. Use your Antfolio's website to share with your audience and convert more. We use Gumroad payment mehtod to avoid useless redirects. The payment works the same way as if the user arrives on your gumroad page."
+        }
       </Text>
       <Box
         d="grid"
@@ -88,30 +92,28 @@ const Product = () => {
         gridGap="2rem"
         mt="1rem"
         pb="10rem"
-        px="4rem"
+        px={['2rem', '4rem']}
       >
         <DetailsProduct
           image={'/gumroad-link.jpeg'}
           title="Copy your Gumroad product link"
-          body="With our easy drag-and-drop builder and all-you-can-eat buffet of 100+ landing page templates, you can bring any campaign vision to life in a fraction of the time it would take with a developer."
+          body="Go to your gumroad account and on product/ share -> you can find the url you need to paste on your Antfolio Page on the Button."
           link="/templates"
-          linkText="Browser to templates"
+          linkText="Go to the Guide"
         />
         <DetailsProduct
-          image={'/gumroad-link.jpeg'}
-          title="Create the Exact Page You Want"
-          body="Design pages that look and act 100% the way you want them to.
-            Customizable templates with optional JavaScript and CSS put looks
-            and functionality in your hands, for both desktop and mobile."
+          image={'/gumroad-button.png'}
+          title="Add the gumroad button on antfolio's builder"
+          body="Once on the builder, add the gumroad button on your webpage. Where the user will click to pay for the product."
           link="/templates"
-          linkText="Learn More"
+          linkText="Go to the Guide"
         />
         <DetailsProduct
-          image={'/gumroad-link.jpeg'}
-          title="Continually Grow Your ROI"
-          body="Get built-in AI conversion power with Smart Traffic and the ability to A/B test your pages to see exactly what’s working. Experiment with messaging, design, and forms to validate what makes more visitors convert more often."
+          image={'/gumroad-button-link.png'}
+          title="Add your gumroad link to the button"
+          body="Paste the url of the first step on the button link to connect it with gumroad. And that is all :)"
           link="/templates"
-          linkText="See Features"
+          linkText="Go to the Guide"
         />
       </Box>
     </Box>
