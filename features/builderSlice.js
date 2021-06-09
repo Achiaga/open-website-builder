@@ -23,7 +23,8 @@ import {
   loadDataFromDB,
   updateInitialState,
   normalizeBuilderData,
-  getIsUserAdmin,
+  getHasUserProAdmin,
+  getHasUserProRole,
 } from './login-helpers'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import { generateStaticHTML } from './helper'
@@ -193,9 +194,9 @@ export const {
 
 export const loadInitialData = (user, params) => async (dispatch) => {
   const { origin, template, projectId } = params
-  const isAdmin = getIsUserAdmin(user)
+  const isPro = getHasUserProAdmin(user) || getHasUserProRole(user)
   if (!user) return dispatch(loadInitialDataNoAccount(template))
-  if (isAdmin && template) return dispatch(loadDataFromTemplate(user, template))
+  if (isPro && template) return dispatch(loadDataFromTemplate(user, template))
   if (user && origin === 'login') return dispatch(handleLoginCallback(user))
   if (user && origin !== 'login') {
     return dispatch(loadDataFromDB(user, template, projectId))
@@ -663,13 +664,13 @@ export const handleResizeTextBlock =
     )
   }
 
-export function findAllChildren(hierarchy, elementDragginId) {
+export function findAllChildren(hierarchy, elementDraggingId) {
   let values = []
-  if (!hierarchy?.[elementDragginId]) return null
-  for (let elemId of hierarchy[elementDragginId]) {
+  if (!hierarchy?.[elementDraggingId]) return null
+  for (let elemId of hierarchy[elementDraggingId]) {
     values = [
       ...values,
-      ...hierarchy[elementDragginId],
+      ...hierarchy[elementDraggingId],
       ...(hierarchy[elemId] || []),
       ...(findAllChildren(hierarchy, elemId) || []),
     ]
@@ -731,6 +732,10 @@ export const getHasBuilderData = (state) => !!state.builder.builderData
 export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
 export const getUserId = (state) => state.builder.user.userId
+export const getIsUserAdmin = (state) =>
+  state.builder.user.roles.includes('Admin')
+export const getIsUserPro = (state) =>
+  state.builder.user.roles.includes('Pro') || getIsUserAdmin(state)
 export const getWebsiteId = (state) => state.builder.user?.projectId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {

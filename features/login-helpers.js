@@ -21,10 +21,10 @@ import isEqual from 'lodash/isEqual'
 // const isEqual = dynamic(() => import('lodash/isEqual'))
 // const templates = dynamic(() => import('../templates'))
 
-export function getIsUserAdmin(user) {
+export function getHasUserProAdmin(user) {
   return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
 }
-export function getIsUserPro(user) {
+export function getHasUserProRole(user) {
   return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Pro')
 }
 export function getIsUserRoles(user) {
@@ -34,7 +34,7 @@ export function getIsUserRoles(user) {
 async function getUserData(user, projectId) {
   try {
     let userData
-    const isAdmin = getIsUserAdmin(user)
+    const isAdmin = getHasUserProAdmin(user)
     if (isAdmin && projectId) {
       userData = await getUserDataByProjectId(projectId)
     } else {
@@ -69,6 +69,7 @@ export const loadDataFromTemplate = (user, template) => async (dispatch) => {
   const userData = {
     userEmail: user.email,
     userId: user.sub,
+    roles: getIsUserRoles(user),
   }
   const data = templates[template] || templates.fallback
   batch(() => {
@@ -97,6 +98,7 @@ const handleSignup = (user) => async (dispatch) => {
     userEmail: user.email,
     userId: user.sub,
     publish: false,
+    roles: getIsUserRoles(user),
   }
   const builderData = await getUserDataFromLS()
   dispatch(setUserData(userData))
@@ -117,6 +119,7 @@ export const loadDataFromDB =
       subdomain,
       projectId: _id,
       publish,
+      roles: getIsUserRoles(user),
     }
     if (!resume_data) {
       dispatch(loadInitialDataNoAccount(template))

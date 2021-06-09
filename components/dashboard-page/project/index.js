@@ -10,9 +10,9 @@ import { getUserProjects } from '../../../features/userSlice'
 import DomainsWrapper from './domains'
 import SubdomainWrapper from './subdomain'
 import {
-  getIsUserAdmin,
+  getHasUserProAdmin,
   getIsUserRoles,
-  getIsUserPro,
+  getHasUserProRole,
 } from '../../../features/login-helpers'
 
 const ProjectCard = ({ project, defaultOpen = false }) => {
@@ -169,9 +169,9 @@ const Badges = ({ roles }) => {
 
 const Projects = ({ user }) => {
   const userProjects = useSelector(getUserProjects)
-  const isAdmin = getIsUserAdmin(user)
+  const isAdmin = getHasUserProAdmin(user)
   const roles = getIsUserRoles(user)
-  const isProUser = getIsUserPro(user)
+  const isProUser = getHasUserProRole(user)
 
   return (
     <Box marginLeft="7rem" marginTop="5rem" width="60%">
