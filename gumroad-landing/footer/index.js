@@ -15,13 +15,13 @@ const Features = () => {
     <Box
       position="relative"
       display="flex"
-      justifyContent="center"
+      justifyContent={['space-between', 'center']}
       alignItems="center"
       width="100%"
       height={['100px', '150px']}
       marginTop={['0rem', '5rem']}
     >
-      <Box pos="absolute" left="4rem">
+      <Box pos="absolute" left={['2rem', '4rem']}>
         <LogoSvg width={45} />
       </Box>
       <Box width={['200px', '537px']} d={['none', 'block']}>

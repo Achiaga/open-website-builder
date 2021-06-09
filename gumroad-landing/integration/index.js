@@ -24,7 +24,7 @@ const DetailsProduct = ({ image, title, body, link, linkText }) => {
       >
         <Box
           pos="relative"
-          height="250px"
+          height={['200px', '250px']}
           width="100%"
           borderRadius="10px"
           border="1px solid"

@@ -67,10 +67,10 @@ const Navbar = ({ isSticky = true, color }) => {
       top="0"
       w="100%"
       bgColor="#f8f9fb"
-      h={[50, '70px']}
+      h={['70px', '70px']}
       pr={[4, 4, 28]}
       pl={[4, 4, 24]}
-      pt={[8, 1]}
+      pt={[1, 1]}
       flexDirection="row"
       alignItems="center"
       zIndex="9999"
