@@ -16,6 +16,7 @@ const SelectedDashboard = ({ dashboardType, ...props }) => {
 
 const Dashboard = ({ dashboardType }) => {
   const { user } = useUser()
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const Dashboard = ({ dashboardType }) => {
   return (
     <>
       <Head>
-        <title>Antfolio - Dashboard</title>
+        <title>Dashboard - Antfolio </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box

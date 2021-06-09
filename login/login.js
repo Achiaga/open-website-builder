@@ -29,7 +29,9 @@ import templates from '../templates'
 // eslint-disable-next-line no-undef
 const isDev = process.env.NODE_ENV === 'development'
 
-const logoutUrl = isDev ? 'http://localhost:300' : 'https://antfolio.app'
+export const logoutUrl = isDev
+  ? 'http://localhost:3000'
+  : 'https://antfolio.app'
 
 const MenuItem = ({ children, onClick = () => {}, warning }) => {
   return (

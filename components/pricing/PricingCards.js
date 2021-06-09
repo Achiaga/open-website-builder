@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { event } from '../../utils/analytics'
 import Link from 'next/link'
 import { useUser } from '@auth0/nextjs-auth0'
+import CheckoutForm from './CheckoutForm'
 
 const ActionButton = (props) => (
   <Button size="lg" w="full" fontWeight="bold" {...props} />
@@ -68,7 +69,6 @@ const PricingCards = () => {
         />
         <PricingCard
           zIndex={1}
-          isPopular
           data={{
             price: 4,
             name: 'Pro',
@@ -85,9 +85,9 @@ const PricingCards = () => {
             ],
           }}
           button={
-            <ActionButton colorScheme="primary" onClick={onProOpen}>
-              Get started
-            </ActionButton>
+            <CheckoutForm>
+              <ActionButton colorScheme="primary">Get started</ActionButton>
+            </CheckoutForm>
           }
         />
         {/* <PricingCard

@@ -9,7 +9,11 @@ import { removeProject } from '../../../features/userSlice'
 import { getUserProjects } from '../../../features/userSlice'
 import DomainsWrapper from './domains'
 import SubdomainWrapper from './subdomain'
-import { getIsUserAdmin } from '../../../features/login-helpers'
+import {
+  getIsUserAdmin,
+  getIsUserRoles,
+  getIsUserPro,
+} from '../../../features/login-helpers'
 
 const ProjectCard = ({ project, defaultOpen = false }) => {
   const { user } = useUser()
@@ -129,9 +133,46 @@ const ProjectsCards = ({ userProjects }) => {
     </Box>
   )
 }
+
+const Badge = ({ color, children }) => {
+  return (
+    <Tag
+      size={'lg'}
+      borderRadius="full"
+      variant="solid"
+      colorScheme={color}
+      mr="1rem"
+    >
+      {children}
+    </Tag>
+  )
+}
+
+const roleColors = {
+  Admin: 'purple',
+  Pro: 'primary',
+}
+
+const Badges = ({ roles }) => {
+  return (
+    <Box my="1rem">
+      {roles?.map((role, index) => {
+        return (
+          <Badge color={roleColors[role]} key={index}>
+            {role}
+          </Badge>
+        )
+      })}
+    </Box>
+  )
+}
+
 const Projects = ({ user }) => {
   const userProjects = useSelector(getUserProjects)
   const isAdmin = getIsUserAdmin(user)
+  const roles = getIsUserRoles(user)
+  const isProUser = getIsUserPro(user)
+
   return (
     <Box marginLeft="7rem" marginTop="5rem" width="60%">
       <Text as="h1" fontSize="2.3rem" fontWeight="400" fontFamily="Montserrat">
@@ -141,6 +182,7 @@ const Projects = ({ user }) => {
         </Text>
         !
       </Text>
+      <Badges roles={roles} />
       <Box width="full" mb="1.25rem">
         <Box
           d="flex"
@@ -151,10 +193,10 @@ const Projects = ({ user }) => {
           <Text as="h2" fontSize="1.35rem" fontWeight="400">
             Projects
           </Text>
-          {isAdmin && (
+          {(isAdmin || isProUser) && (
             <Link href="/templates" passHref>
               <a>
-                <Button marginRight="1rem" colorScheme="primary" my="2rem">
+                <Button colorScheme="primary" my="2rem">
                   Create New Project
                 </Button>
               </a>
