@@ -80,11 +80,16 @@ async function updateUserMetaData(token, user_id, checkout_session) {
 }
 
 async function updateUser(user, checkout_session) {
-  const token = await getAuth0Token()
-  const [roles, metaData] = await Promise.all([
-    updateUserRoles(token, user.sub),
-    updateUserMetaData(token, user.sub, checkout_session),
-  ])
+  try {
+    const token = await getAuth0Token()
+    const [roles, metaData] = await Promise.all([
+      updateUserRoles(token, user.sub),
+      updateUserMetaData(token, user.sub, checkout_session),
+    ])
+    console.log('updateUser success', roles, metaData)
+  } catch (err) {
+    console.error('updateUser error', user, checkout_session, err)
+  }
 }
 
 export default async function handler(req, res) {

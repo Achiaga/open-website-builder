@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         mode: 'subscription',
         payment_method_types: ['card'],
         line_items: [{ price: PRICING_CODE, quantity: 1 }],
-        success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${req.headers.origin}/supercharge?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/pricing`,
       }
       const checkoutSession = await stripe.checkout.sessions.create(params)
