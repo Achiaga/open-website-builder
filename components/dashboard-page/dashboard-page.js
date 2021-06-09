@@ -40,7 +40,7 @@ const Dashboard = ({ dashboardType }) => {
   return (
     <>
       <Head>
-        <title>Antfolio - Dashboard</title>
+        <title>Dashboard - Antfolio </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box

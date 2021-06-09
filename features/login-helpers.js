@@ -24,6 +24,12 @@ import isEqual from 'lodash/isEqual'
 export function getIsUserAdmin(user) {
   return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Admin')
 }
+export function getIsUserPro(user) {
+  return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role?.includes('Pro')
+}
+export function getIsUserRoles(user) {
+  return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role
+}
 
 async function getUserData(user, projectId) {
   try {
