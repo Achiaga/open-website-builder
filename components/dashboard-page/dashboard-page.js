@@ -16,6 +16,7 @@ const SelectedDashboard = ({ dashboardType, ...props }) => {
 
 const Dashboard = ({ dashboardType }) => {
   const { user } = useUser()
+
   const dispatch = useDispatch()
 
   useEffect(() => {
