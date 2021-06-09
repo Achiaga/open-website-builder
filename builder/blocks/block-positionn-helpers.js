@@ -26,7 +26,7 @@ function getTranslateValues(element) {
 
 function getBlockPos(blcokId) {
   const element = document.getElementById(blcokId)
-  const parentElement = element?.offsetParent.offsetParent
+  const parentElement = element?.offsetParent?.offsetParent
   return getTranslateValues(parentElement)
 }
 

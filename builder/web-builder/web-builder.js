@@ -173,7 +173,6 @@ const WebBuilder = () => {
       })
     }
   }
-
   return (
     <>
       <GridLayoutWrapper
