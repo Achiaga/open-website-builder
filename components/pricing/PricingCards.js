@@ -67,7 +67,6 @@ const PricingCards = () => {
             </Link>
           }
         />
-        <CheckoutForm />
         <PricingCard
           zIndex={1}
           data={{
@@ -86,9 +85,9 @@ const PricingCards = () => {
             ],
           }}
           button={
-            <ActionButton colorScheme="primary" onClick={onProOpen}>
-              Get started
-            </ActionButton>
+            <CheckoutForm>
+              <ActionButton colorScheme="primary">Get started</ActionButton>
+            </CheckoutForm>
           }
         />
         <PricingCard

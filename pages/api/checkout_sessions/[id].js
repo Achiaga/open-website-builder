@@ -73,7 +73,6 @@ async function updateUserMetaData(token, user_id, checkout_session) {
   }
   try {
     const response = await axios(options)
-    console.log('updateUserMetaData', user_id, response.data)
     return response.data
   } catch (error) {
     console.error(error)
@@ -86,7 +85,6 @@ async function updateUser(user, checkout_session) {
     updateUserRoles(token, user.sub),
     updateUserMetaData(token, user.sub, checkout_session),
   ])
-  console.log(roles, metaData)
 }
 
 export default async function handler(req, res) {
@@ -99,7 +97,6 @@ export default async function handler(req, res) {
     const checkout_session = await stripe.checkout.sessions.retrieve(id, {
       expand: ['payment_intent'],
     })
-    console.log('handler', { checkout_session })
     await updateUser(user, checkout_session)
 
     res.status(200).json(checkout_session)

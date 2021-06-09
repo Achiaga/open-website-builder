@@ -6,8 +6,6 @@ import { Box, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 import CustomSpinner from '../components/custom-spinner'
 
-//?session_id=cs_test_a1OiJczb3HAdRgxPnbFPn2XNoOhh2PFLUJ6feubHFlBOBWbHObzUyzrzcI
-
 const ResultsWrapper = () => {
   const router = useRouter()
   const { user } = useUser()
@@ -27,7 +25,7 @@ const ResultsWrapper = () => {
       user &&
       getSessionData(sessionId || null, user)
         .then((data) => setData(data))
-        .catch((err) => console.log('something went wrong', err))
+        .catch((err) => console.error('something went wrong', err))
   }, [sessionId, user])
   useEffect(() => {
     redirectLogout()

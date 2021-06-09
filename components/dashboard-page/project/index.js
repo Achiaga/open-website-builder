@@ -196,7 +196,7 @@ const Projects = ({ user }) => {
           {(isAdmin || isProUser) && (
             <Link href="/templates" passHref>
               <a>
-                <Button marginRight="1rem" colorScheme="primary" my="2rem">
+                <Button colorScheme="primary" my="2rem">
                   Create New Project
                 </Button>
               </a>

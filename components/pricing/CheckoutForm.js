@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import { loadStripe } from '@stripe/stripe-js'
 import { fetchPostJSON } from '../../helpers/transport'
-import { Button } from '@chakra-ui/button'
 import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
+import { Spinner } from '@chakra-ui/spinner'
 
 let stripePromise
 const getStripe = () => {
@@ -32,7 +32,7 @@ async function redirectToStripePayment() {
 
   console.warn(error.message)
 }
-const CheckoutForm = () => {
+const CheckoutForm = ({ children }) => {
   const { user } = useUser()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -40,13 +40,11 @@ const CheckoutForm = () => {
   const { status } = router.query
   useEffect(() => {
     status && redirectToStripePayment()
-    console.log(status)
   }, [status])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    console.log(user)
     if (!user) {
       router.push(
         `/api/auth/custom-login?returnTo=${encodeURIComponent(
@@ -60,11 +58,9 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <Button type="submit">Pay 10 USD</Button>
-      )}
+      <button type="submit" style={{ width: '100%' }}>
+        {loading ? <Spinner size="md" color="primary.500" /> : children}
+      </button>
     </form>
   )
 }
