@@ -50,7 +50,7 @@ async function updateWebsiteData(data, res) {
       return
     }
     if (!data.userId) {
-      respondAPIQuery(res, 'user id not specified', 403)
+      return respondAPIQuery(res, 'user id not specified', 403)
     }
     const options = {
       upsert: true,

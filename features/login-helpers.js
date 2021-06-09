@@ -59,11 +59,16 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
     dispatch(setInitialBuilderData(data))
   })
 }
-export const loadDataFromTemplate = (template) => async (dispatch) => {
+export const loadDataFromTemplate = (user, template) => async (dispatch) => {
+  const userData = {
+    userEmail: user.email,
+    userId: user.sub,
+  }
   const data = templates[template] || templates.fallback
   batch(() => {
     dispatch(setProjectId(null))
     dispatch(saveDataOnLocal(data))
+    dispatch(setUserData(userData))
     dispatch(setInitialBuilderData(data))
   })
 }
