@@ -11,11 +11,6 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'portfolio-designer-tara',
-    imageUrl: '/portfolio-designer-tara.jpg',
-    tags: [],
-  },
-  {
     id: 'card-angelina',
     imageUrl: '/card-angelina.jpg',
     tags: [],
@@ -31,28 +26,8 @@ const TEMPLATES = [
     tags: [],
   },
   {
-    id: 'portfolio-product-designer-john',
-    imageUrl: '/portfolio-product-designer-john.jpg',
-    tags: [],
-  },
-  {
     id: 'books-plack',
     imageUrl: '/books-plack.jpg',
-    tags: [],
-  },
-  {
-    id: 'portfolio-fullstack-developer-johndoe',
-    imageUrl: '/portfolio-fullstack-developer-johndoe.jpg',
-    tags: [],
-  },
-  {
-    id: 'portfolio-storytelling-sasha',
-    imageUrl: '/portfolio-storytelling-sasha.jpg',
-    tags: [],
-  },
-  {
-    id: 'portfolio-brands-black',
-    imageUrl: '/portfolio-brands-black.jpg',
     tags: [],
   },
   {

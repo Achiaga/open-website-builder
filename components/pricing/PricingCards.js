@@ -43,11 +43,11 @@ const PricingCards = () => {
     <>
       <Box
         d="grid"
-        gridTemplateColumns={'repeat( auto-fit, minmax(320px, 1fr))'}
+        gridTemplateColumns={'repeat( auto-fit, minmax(500px, 1fr))'}
         gridColumnGap="1rem"
         justifyItems="center"
         alignItems="center"
-        px={[3, '3rem']}
+        px={[3, '12rem']}
         pb="4rem"
       >
         <PricingCard
@@ -70,7 +70,7 @@ const PricingCards = () => {
           zIndex={1}
           isPopular
           data={{
-            price: 10,
+            price: 4,
             name: 'Pro',
             description: 'For power users and small teams',
             subHeader: 'Everything in Starter, plus',
@@ -90,7 +90,7 @@ const PricingCards = () => {
             </ActionButton>
           }
         />
-        <PricingCard
+        {/* <PricingCard
           data={{
             label: 'Custom',
             price: false,
@@ -114,7 +114,7 @@ const PricingCards = () => {
               Contact us
             </ActionButton>
           }
-        />
+        /> */}
       </Box>
       <SubscriptionModal
         onOpen={onProOpen}

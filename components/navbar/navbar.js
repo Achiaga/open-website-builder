@@ -9,6 +9,7 @@ import LogoSvg from '../../assets/logo'
 
 // import BackgroundCircles from './background'
 import { useUser } from '@auth0/nextjs-auth0'
+import { useEffect, useState } from 'react'
 
 const LoginButton = ({ color }) => {
   const { user } = useUser()
@@ -29,6 +30,9 @@ const noUserAccess = ['/blog', '/guides']
 const Navbar = ({ isSticky = true, color }) => {
   const router = useRouter()
   const [t] = useTranslation()
+  const [scrollY, setScrollY] = useState(0)
+  const [redirectLogo, setRedirectLogo] = useState('/')
+  const [redirectTemplates, setRedirectTemplates] = useState('/templates')
 
   const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
     router.pathname
@@ -41,17 +45,36 @@ const Navbar = ({ isSticky = true, color }) => {
     })
   }
 
+  useEffect(() => {
+    if (localStorage.getItem('isGumroad')) {
+      setRedirectLogo('/gumroad')
+      setRedirectTemplates('/gumroad/templates')
+    }
+  }, [])
+
+  function handleScroll() {
+    if (window.scrollY < 80) setScrollY(window.scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
+
   return (
     <Flex
-      position={isSticky ? 'sticky' : 'absolute'}
+      position={isSticky ? 'sticky' : 'relative'}
       top="0"
       w="100%"
-      h={[50, '60px']}
+      bgColor="#f8f9fb"
+      h={['70px', '70px']}
       pr={[4, 4, 28]}
       pl={[4, 4, 24]}
-      pt={[8, 1]}
+      pt={[1, 1]}
       flexDirection="row"
       alignItems="center"
+      zIndex="9999"
+      boxShadow={scrollY > 50 ? '11px 15px 29px 0 rgb(48 48 48 / 7%)' : 'unset'}
     >
       <Box
         pos="relative"
@@ -61,7 +84,7 @@ const Navbar = ({ isSticky = true, color }) => {
         align-items="center"
         zIndex="60"
       >
-        <Link href="/">
+        <Link href={redirectLogo}>
           <Box display="flex" alignItems="center" cursor="pointer">
             <LogoSvg width="35px" />
           </Box>
@@ -81,7 +104,7 @@ const Navbar = ({ isSticky = true, color }) => {
           display={['none', 'none', 'block']}
           content="Templates"
           color={color || 'gray.500'}
-          redirect="/templates"
+          redirect={redirectTemplates}
           id="templates"
           fontSize="sm"
         />
