@@ -8,8 +8,9 @@ import {
   setTempDBData,
   setLoadingData,
   saveData,
-  saveDataOnLocal,
+  saveTemplateOnLocal,
   setProjectId,
+  saveAsyncWebsite,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
 import { getUserDataById, getUserDataByProjectId } from '../utils/user-data'
@@ -61,7 +62,7 @@ export const loadInitialDataNoAccount = (template) => async (dispatch) => {
   const templateData = templates[template]
   const data = templateData || LSData || templates.fallback
   batch(() => {
-    dispatch(saveDataOnLocal(data))
+    dispatch(saveTemplateOnLocal(data))
     dispatch(setInitialBuilderData(data))
   })
 }
@@ -74,9 +75,10 @@ export const loadDataFromTemplate = (user, template) => async (dispatch) => {
   const data = templates[template] || templates.fallback
   batch(() => {
     dispatch(setProjectId(null))
-    dispatch(saveDataOnLocal(data))
-    dispatch(setUserData(userData))
+    dispatch(saveTemplateOnLocal(data))
     dispatch(setInitialBuilderData(data))
+    dispatch(setUserData(userData))
+    dispatch(saveAsyncWebsite(data, userData))
   })
 }
 export const updateInitialState =
@@ -122,7 +124,10 @@ export const loadDataFromDB =
       roles: getIsUserRoles(user),
     }
     if (!resume_data) {
-      dispatch(loadInitialDataNoAccount(template))
+      batch(() => {
+        dispatch(loadInitialDataNoAccount(template))
+        dispatch(saveAsyncWebsite(templates[template], userData))
+      })
     } else if (templates[template] && resume_data) {
       batch(() => {
         dispatch(setTempDBData({ resume_data }))

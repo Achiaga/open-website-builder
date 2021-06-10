@@ -26,6 +26,10 @@ const ProjectsCards = ({ userProjects }) => {
   )
 }
 
+function showCreateProjectButton(isPro, userProjects) {
+  return (userProjects && userProjects?.length < 1) || isPro
+}
+
 const Projects = ({ user }) => {
   const userProjects = useSelector(getUserProjects)
   const isPro = useSelector(getIsUserPro)
@@ -47,12 +51,13 @@ const Projects = ({ user }) => {
           d="flex"
           alignItems="center"
           mt="1.5rem"
+          mb="3rem"
           justifyContent="space-between"
         >
           <Text as="h2" fontSize="1.35rem" fontWeight="400">
             Projects
           </Text>
-          {isPro && (
+          {showCreateProjectButton(isPro, userProjects) ? (
             <Link href="/templates" passHref>
               <a>
                 <Button colorScheme="primary" my="2rem">
@@ -60,6 +65,26 @@ const Projects = ({ user }) => {
                 </Button>
               </a>
             </Link>
+          ) : (
+            <Box>
+              <Box as="span">Create More Projects with </Box>
+              <Link href="/pricing" passHref>
+                <a>
+                  <Button
+                    bg="linear-gradient(91.56deg, #43E28E 0%, #506bf0 122.55%)"
+                    border="1px solid"
+                    borderColor="primary.600"
+                    boxShadow="md"
+                    color="white"
+                    _hover={{
+                      filter: 'brightness(1.1)',
+                    }}
+                  >
+                    Antfolio Pro
+                  </Button>
+                </a>
+              </Link>
+            </Box>
           )}
         </Box>
         <ProjectsCards userProjects={userProjects} />

@@ -459,8 +459,18 @@ export const saveData = (publish) => async (dispatch, getState) => {
 }
 
 export const saveWebsite = () => async (dispatch) => {
+  dispatch(saveData())
+}
+export const saveAsyncWebsite = (builderData, userData) => async (dispatch) => {
+  dispatch(setSaveStatus('loading'))
+  const { projectId } = await requestSaveWebsite({
+    ...userData,
+    resume_data: builderData,
+  })
   batch(() => {
-    dispatch(saveData())
+    dispatch(setProjectId(projectId))
+    dispatch(setSaveStatus('success'))
+    dispatch(setLoadingData(false))
   })
 }
 
@@ -648,6 +658,13 @@ export const saveDataOnLocal = () => async (dispatch, getState) => {
     saveOnLocal(builderData)
   }, 0)
 }
+export const saveTemplateOnLocal = (templateData) => async (dispatch) => {
+  dispatch(setSaveStatus(null))
+  setTimeout(() => {
+    saveOnLocal(templateData)
+  }, 0)
+}
+
 export const handleResizeTextBlock =
   (newSize, blockId) => (dispatch, getState) => {
     const blockLayout = getBlockLayoutById(blockId)(getState())
