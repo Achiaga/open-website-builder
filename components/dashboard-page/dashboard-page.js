@@ -20,7 +20,7 @@ const Dashboard = ({ dashboardType }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    user && dispatch(loadUserProjectsData(user.sub))
+    user && dispatch(loadUserProjectsData(user))
   }, [user])
 
   if (!user) {

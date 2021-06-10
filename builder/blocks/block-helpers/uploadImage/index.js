@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Button, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 
 import { FilePond } from 'react-filepond'
@@ -6,8 +6,13 @@ import { FilePond } from 'react-filepond'
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css'
 import { uploadImageToS3 } from '../transporter'
-import { useSelector } from 'react-redux'
-import { getUserId } from '../../../../features/builderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getIsUserPro,
+  getUserId,
+  saveWebsite,
+} from '../../../../features/builderSlice'
+import Link from 'next/link'
 
 async function uploadFile(blob, userId, onSelect) {
   const { name, type } = blob
@@ -20,7 +25,14 @@ async function uploadFile(blob, userId, onSelect) {
   }
 }
 export const UploadImage = ({ onSelect }) => {
+  const dispatch = useDispatch()
   const userId = useSelector(getUserId)
+  const isPro = useSelector(getIsUserPro)
+
+  function handlePro() {
+    dispatch(saveWebsite())
+  }
+
   useEffect(() => {
     const pond = document.querySelector('.filepond--root')
     if (pond) {
@@ -56,27 +68,59 @@ export const UploadImage = ({ onSelect }) => {
           Accept images in JPEG, PNG, GIF (up to 1MB) and SVG format.
         </Text>
       </Box>
-      <Box
-        px="8rem"
-        mt="3rem"
-        height="100%"
-        width="100%"
-        sx={{
-          '.filepond--root ': {
-            'max-height': '10em !important',
-          },
-          '.filepond--credits': {
-            display: 'none',
-          },
-        }}
-      >
-        <FilePond
-          allowMultiple={true}
-          maxFiles={1}
-          server="/api/empty"
-          labelIdle='Drag & Drop your file or <span class="filepond--label-action">Browse</span>'
-        />
-      </Box>
+      {isPro ? (
+        <Box
+          px="8rem"
+          mt="3rem"
+          height="100%"
+          width="100%"
+          sx={{
+            '.filepond--root ': {
+              'max-height': '10em !important',
+            },
+            '.filepond--credits': {
+              display: 'none',
+            },
+          }}
+        >
+          <FilePond
+            allowMultiple={true}
+            maxFiles={1}
+            server="/api/empty"
+            labelIdle='Drag & Drop your file or <span class="filepond--label-action">Browse</span>'
+          />
+        </Box>
+      ) : (
+        <Box
+          d="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          h="200px"
+        >
+          <Text as="span" fontSize="20px" fontWeight="regular" color="gray.500">
+            Upload Images with{' '}
+            <Link href="/pricing" passHref>
+              <a>
+                <Button
+                  colorScheme="green"
+                  size="lg"
+                  bg="linear-gradient(91.56deg, #43E28E 0%, #506bf0 122.55%)"
+                  border="1px solid"
+                  borderColor="primary.600"
+                  onClick={handlePro}
+                  boxShadow="md"
+                  _hover={{
+                    filter: 'brightness(1.1)',
+                  }}
+                >
+                  Antfolio Pro
+                </Button>
+              </a>
+            </Link>
+          </Text>
+        </Box>
+      )}
     </Box>
   )
 }

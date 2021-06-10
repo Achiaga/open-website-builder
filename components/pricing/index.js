@@ -5,7 +5,7 @@ import PricingCards from './PricingCards'
 
 const PricingPage = () => {
   return (
-    <Box height="100vh">
+    <Box height="100vh" overflowY="auto">
       <Head>
         <title>Antfolio - Pricing - Build your website in 15 minutes</title>
         <link rel="icon" href="/favicon.ico" />
@@ -15,7 +15,7 @@ const PricingPage = () => {
       <Box as="section" pb="14">
         <Box
           paddingTop={['3rem', '4rem']}
-          bg="#43E28E linear-gradient(91.56deg, #43E28E 0%, #506bf0 122.55%)"
+          bg="linear-gradient(0deg, rgba(80,107,240,1) 0%, rgba(80,107,240,1) 42%, rgba(72,96,216,1) 86%)"
           height={['60vh', '50rem']}
         >
           <Box

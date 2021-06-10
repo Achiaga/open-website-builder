@@ -24,6 +24,7 @@ function getSelectedImgUrl(imgObj, tabIndex) {
 const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
   const [selectedImg, setSelectedImg] = useState(null)
   const [tabIndex, setTabIndex] = useState(0)
+
   function onSelect(image) {
     setSelectedImg(image)
   }
