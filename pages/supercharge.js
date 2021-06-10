@@ -18,7 +18,7 @@ const ResultsWrapper = () => {
     } catch (err) {
       console.error('error', err)
     }
-    router.push('http://localhost:3000/dashboard')
+    router.push('/dashboard')
   }
   useEffect(() => {
     sessionId &&
