@@ -5,7 +5,7 @@ import PricingCards from './PricingCards'
 
 const PricingPage = () => {
   return (
-    <Box height="100vh">
+    <Box height="100vh" overflowY="auto">
       <Head>
         <title>Antfolio - Pricing - Build your website in 15 minutes</title>
         <link rel="icon" href="/favicon.ico" />
