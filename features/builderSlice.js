@@ -733,9 +733,9 @@ export const getIsLoadingData = (state) => state.builder.loadingData
 export const getUserData = (state) => state.builder.user
 export const getUserId = (state) => state.builder.user.userId
 export const getIsUserAdmin = (state) =>
-  state.builder.user.roles.includes('Admin')
+  state.builder?.user?.roles?.includes('Admin')
 export const getIsUserPro = (state) =>
-  state.builder.user.roles.includes('Pro') || getIsUserAdmin(state)
+  state.builder?.user?.roles?.includes('Pro') || getIsUserAdmin(state)
 export const getWebsiteId = (state) => state.builder.user?.projectId
 export const getBlocks = (state) => state.builder.builderData.blocks
 export const getHierarchy = (state) => {
