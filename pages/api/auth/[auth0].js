@@ -8,9 +8,7 @@ export default handleAuth({
     // eg https://github.com/auth0/nextjs-auth0/blob/beta/src/handlers/login.ts#L70-L72
     const returnTo = req.query.returnTo
     try {
-      await handleLogout(req, res, {
-        returnTo,
-      })
+      await handleLogout(req, res)
     } catch (error) {
       res.status(error.status || 400).end(error.message)
     }

@@ -15,11 +15,7 @@ const ResultsWrapper = () => {
 
   async function redirectLogout() {
     try {
-      await fetch(
-        `/api/auth/logout?returnTo=${encodeURIComponent(
-          `/dashboard`
-        )}&client_id=ho7QSqXJ76ZpWkIkxvGunzq9fmVaD4ac`
-      )
+      await fetch(`/api/auth/logout`)
       router.push('/dashboard')
     } catch (err) {
       console.error('error', err)
