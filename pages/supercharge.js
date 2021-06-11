@@ -15,9 +15,9 @@ const ResultsWrapper = () => {
 
   async function redirectLogout(host) {
     try {
-      await fetch(
+      fetch(
         `/api/auth/logout?returnTo=${encodeURIComponent(
-          `https${host}/dashboard`
+          `https://${host}/dashboard`
         )}&client_id=ho7QSqXJ76ZpWkIkxvGunzq9fmVaD4ac`
       )
       router.push('/dashboard')
