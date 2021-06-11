@@ -13,12 +13,11 @@ const ResultsWrapper = () => {
 
   const sessionId = router.query.session_id
 
-  console.log(window?.location?.host)
-  async function redirectLogout() {
+  async function redirectLogout(host) {
     try {
       await fetch(
         `/api/auth/logout?returnTo=${encodeURIComponent(
-          `https${window?.location?.host}/dashboard`
+          `https${host}/dashboard`
         )}&client_id=ho7QSqXJ76ZpWkIkxvGunzq9fmVaD4ac`
       )
       router.push('/dashboard')
@@ -34,7 +33,8 @@ const ResultsWrapper = () => {
         .catch((err) => console.error('something went wrong', err))
   }, [sessionId, user])
   useEffect(() => {
-    redirectLogout()
+    const host = window?.location?.host
+    redirectLogout(host)
   }, [data])
 
   return (
