@@ -14,11 +14,13 @@ const ResultsWrapper = () => {
   const sessionId = router.query.session_id
   async function redirectLogout() {
     try {
-      await fetch(`/api/auth/logout`)
+      await fetch(
+        '/api/auth/logout?returnTo=http%3A%2F%2Flocalhost%3A3000/dashboard&client_id=ho7QSqXJ76ZpWkIkxvGunzq9fmVaD4ac'
+      )
+      router.push('/dashboard')
     } catch (err) {
       console.error('error', err)
     }
-    router.push('/dashboard')
   }
   useEffect(() => {
     sessionId &&
