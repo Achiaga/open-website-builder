@@ -12,10 +12,14 @@ const ResultsWrapper = () => {
   const [data, setData] = useState(null)
 
   const sessionId = router.query.session_id
+
+  console.log(window?.location?.host)
   async function redirectLogout() {
     try {
       await fetch(
-        '/api/auth/logout?returnTo=http%3A%2F%2Flocalhost%3A3000/dashboard&client_id=ho7QSqXJ76ZpWkIkxvGunzq9fmVaD4ac'
+        `/api/auth/logout?returnTo=${encodeURIComponent(
+          `https${window?.location?.host}/dashboard`
+        )}&client_id=ho7QSqXJ76ZpWkIkxvGunzq9fmVaD4ac`
       )
       router.push('/dashboard')
     } catch (err) {
