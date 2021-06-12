@@ -12,7 +12,7 @@ https://www.antfolio.app
 - yarn dev
 
 ## Env
-
+- So it counts
 - Ask team lead for the keys.
 
 - Add them on the root of the project under env.local
