@@ -3,7 +3,7 @@
 <img width="1440" alt="Screenshot 2021-05-22 at 21 41 25" src="https://user-images.githubusercontent.com/44972334/119239038-8a759a80-bb46-11eb-93c7-1fe56e6abfe0.png">
 
 
-antfolio.app
+https://www.antfolio.app
 
 ## Installation
 
