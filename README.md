@@ -1,6 +1,6 @@
 ## Antfolio
 
-> It started out as a resume builder to outstand between the crowd but it pivot into a resume builder online plus any single static page such as presentation website, any product selling online also works, etc. It is still a wip but it already reached the mvp phase.
+It started out as a resume builder to outstand between the crowd but it pivot into a resume builder online plus any single static page such as presentation website, any product selling online also works, etc. It is still a wip but it already reached the mvp phase.
 
 
 
