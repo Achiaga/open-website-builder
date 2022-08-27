@@ -1,4 +1,3 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
 import { ResumeWebsite } from '../builder/web-preview/preview'
 import ECommerceExtensions from '../components/integrations/ECommerceExtensions'
 import LandingPage from '../landing'
@@ -14,11 +13,7 @@ export default function Home({ websiteData, subdomain }) {
       </>
     )
   }
-  return (
-    <UserProvider>
-      <LandingPage />
-    </UserProvider>
-  )
+  return <LandingPage />
 }
 
 export async function getServerSideProps(context) {

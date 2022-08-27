@@ -1,5 +1,4 @@
 import { Box, Flex } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useTranslation } from '../../hooks/translation'
 import { event } from '../../utils/analytics'
@@ -8,35 +7,14 @@ import NavButton from './nav-button'
 import LogoSvg from '../../assets/logo'
 
 // import BackgroundCircles from './background'
-import { useUser } from '@auth0/nextjs-auth0'
 import { useEffect, useState } from 'react'
 
-const LoginButton = ({ color }) => {
-  const { user } = useUser()
-  return (
-    <NavButton
-      display={['none', 'none', 'block']}
-      content={user ? 'Dashboard' : 'Login'}
-      redirect={user ? '/dashboard' : '/api/auth/custom-login'}
-      id={user ? '/dashboard' : '/api/auth/custom-login'}
-      color={color || 'gray.500'}
-      fontSize="sm"
-    />
-  )
-}
-
-const noUserAccess = ['/blog', '/guides']
-
 const Navbar = ({ isSticky = true, color }) => {
-  const router = useRouter()
   const [t] = useTranslation()
   const [scrollY, setScrollY] = useState(0)
   const [redirectLogo, setRedirectLogo] = useState('/')
   const [redirectTemplates, setRedirectTemplates] = useState('/templates')
 
-  const hideLoginButton = new RegExp(noUserAccess.join('|')).test(
-    router.pathname
-  )
   const handleStartNow = () => {
     event({
       action: 'enter_templates_pages',
@@ -110,22 +88,6 @@ const Navbar = ({ isSticky = true, color }) => {
         />
         <NavButton
           display={['none', 'none', 'block']}
-          content="Pricing"
-          redirect="/pricing"
-          color={color || 'gray.500'}
-          id="pricing"
-          fontSize="sm"
-        />
-        {/* <NavButton
-          display={['none', 'block']}
-          content="Blog"
-          redirect="/blog"
-          color={color || 'gray.500'}
-          id="blog"
-          fontSize="sm"
-        /> */}
-        <NavButton
-          display={['none', 'none', 'block']}
           content="Guides"
           redirect="/guides"
           color={color || 'gray.500'}
@@ -143,8 +105,6 @@ const Navbar = ({ isSticky = true, color }) => {
         color={color || 'gray.500'}
         fontSize={['sm', 'sm']}
       >
-        {!hideLoginButton && <LoginButton color={color} />}
-
         <Link href={'/templates'}>
           <a>
             <Button

@@ -1,6 +1,4 @@
-import { useUser } from '@auth0/nextjs-auth0'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { GiSmartphone } from 'react-icons/gi'
@@ -9,7 +7,6 @@ import {
   getBuilderDevice,
   setBuilderDevice,
   getTempDBData,
-  publishWebsite,
   getPublishStatus,
   setInitialBuilderData,
   getBuilderData,
@@ -19,10 +16,8 @@ import { useState } from 'react'
 import { Button } from '@chakra-ui/button'
 import PublishSuccessModal from './publishModal'
 import Card from './card'
-import SaveButton from './saveButton'
 import AccountCreatedModal from './accountCreatedModal'
 import OverwriteDBWarning from './overwriteDBWarning'
-import { Spinner } from '@chakra-ui/spinner'
 import { removeLocalData } from '../builder/web-builder/helpers'
 import templates from '../templates'
 
@@ -49,29 +44,13 @@ const MenuItem = ({ children, onClick = () => {}, warning }) => {
 }
 
 export function Login() {
-  const { user } = useUser()
   const dispatch = useDispatch()
   const accountCreated = useSelector(getAccountCreated)
   const tempData = useSelector(getTempDBData)
   const publishStatus = useSelector(getPublishStatus)
   const websiteData = useSelector(getBuilderData)
   const builderDevice = useSelector(getBuilderDevice)
-  const router = useRouter()
   const [isMenuOpen, setMenuOpen] = useState(false)
-
-  function handleLogin() {
-    router.push('/api/auth/custom-login')
-  }
-  function handleLogout() {
-    router.push(`/api/auth/logout?returnTo=${encodeURIComponent(logoutUrl)}`)
-  }
-  async function handlePublish() {
-    if (user) {
-      await dispatch(publishWebsite())
-      return
-    }
-    return router.push('/api/auth/custom-login')
-  }
 
   function downloadData() {
     var dataStr =
@@ -104,7 +83,6 @@ export function Login() {
       {publishStatus === 'success' && <PublishSuccessModal />}
       {accountCreated && <AccountCreatedModal />}
       {tempData && <OverwriteDBWarning />}
-      <SaveButton />
       <Box w="full">
         <Card alignItems="center" onClick={handleMenuOption}>
           <IoMenu size={24} />
@@ -132,11 +110,6 @@ export function Login() {
               <a href="/preview" target="_blank">
                 <MenuItem>Preview</MenuItem>
               </a>
-              {user && (
-                <MenuItem onClick={handlePublish}>
-                  {publishStatus === 'loading' ? <Spinner /> : 'Publish'}
-                </MenuItem>
-              )}
               <Box borderBottom="1px solid" borderColor="gray.200" />
               <Link href="/templates">
                 <a>
@@ -144,27 +117,12 @@ export function Login() {
                 </a>
               </Link>
             </Box>
-            {user ? (
-              <Box>
-                <Link href="/dashboard" passHref>
-                  <MenuItem>
-                    <a>Dashboard</a>
-                  </MenuItem>
-                </Link>
-                <Box borderBottom="1px solid" borderColor="gray.200" />
-                <MenuItem onClick={handleLogout} warning>
-                  Logout
-                </MenuItem>
-              </Box>
-            ) : (
-              <Box>
-                <MenuItem onClick={handleLogin}>Login</MenuItem>
-                <Box borderBottom="1px solid" borderColor="gray.200" />
-                <MenuItem onClick={handleRemove} warning>
-                  Clear Builder
-                </MenuItem>
-              </Box>
-            )}
+            <Box>
+              <Box borderBottom="1px solid" borderColor="gray.200" />
+              <MenuItem onClick={handleRemove} warning>
+                Clear Builder
+              </MenuItem>
+            </Box>
             {isDev && (
               <>
                 <MenuItem onClick={downloadData}>Download Data</MenuItem>

@@ -2,9 +2,7 @@ import { useSelector } from 'react-redux'
 import { Box, Spinner } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { useUser } from '@auth0/nextjs-auth0'
 import { useRouter } from 'next/router'
-import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
 import { WebBuilder } from '../web-builder'
 import { BuilderSidebar } from '../sidebar'
@@ -12,8 +10,9 @@ import {
   getHasBuilderData,
   getIsLoadingData,
 } from '../../features/builderSlice'
-import { SettingsBar } from '../sidebar/settingsBar'
 import MobileVersion from '../web-builder/mobile-version'
+import { SettingsBar } from '../sidebar/settingsBar'
+
 import { loadInitialData } from '../../features/builderSlice'
 
 import { MobileWrapper } from './components'
@@ -44,16 +43,11 @@ const Builder = () => {
   const hasBuilderData = useSelector(getHasBuilderData)
   const isLoadingData = useSelector(getIsLoadingData)
   const router = useRouter()
-  const { user, isLoading } = useUser()
   const dispatch = useDispatch()
-
-  function confirmExit() {
-    return ''
-  }
 
   function loadData() {
     const params = getParams()
-    dispatch(loadInitialData(user, params))
+    dispatch(loadInitialData(false, params))
   }
   function removeURLQuery() {
     router.push(
@@ -66,18 +60,13 @@ const Builder = () => {
   }
 
   useEffect(() => {
-    if (user) {
-      window.onbeforeunload = confirmExit
-    }
     return (window.onbeforeunload = '')
-  }, [user])
+  }, [])
 
   useEffect(() => {
-    if (!isLoading) {
-      loadData()
-      removeURLQuery()
-    }
-  }, [isLoading])
+    loadData()
+    removeURLQuery()
+  }, [])
 
   return (
     <>
@@ -105,4 +94,4 @@ const Builder = () => {
   )
 }
 
-export default withPageAuthRequired(Builder)
+export default Builder

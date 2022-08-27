@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/layout'
 
-import { initLiveChatScript, initGoogleAnalytics } from '../utils/analytics'
+import { initGoogleAnalytics } from '../utils/analytics'
 
 import Hero from './hero'
 import VideoDemo from './video-demo'
@@ -17,7 +17,6 @@ import Navbar from '../components/navbar'
 
 const LandingPage = () => {
   useEffect(() => {
-    setTimeout(() => window && window.eval(initLiveChatScript), 10000)
     setTimeout(() => window && window.eval(initGoogleAnalytics), 0)
   }, [])
   return (

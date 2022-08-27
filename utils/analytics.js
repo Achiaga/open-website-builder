@@ -19,14 +19,6 @@ export const initHorjar = (
   a.appendChild(r)
 }
 
-export const initLiveChatScript = `var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'f20b0b447f0ec1947a94002f36323972fbdd06db';
-window.smartsupp||(function(d) {
-	var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-	s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-	c.type='text/javascript';c.charset='utf-8';c.async=true;
-	c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);`
 export const initGoogleAnalytics = `
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}

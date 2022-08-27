@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import Navbar from '../navbar'
-import ArrowRight from '../../assets/arrow-right'
+// import ArrowRight from '../../assets/arrow-right'
 import Link from 'next/link'
 
 const ArticleTitle = ({ url, fontSize, children }) => {
@@ -48,25 +48,25 @@ const GuideImage = ({ height, width, redirectUrl, imageUrl }) => {
   )
 }
 
-const TurnThePage = ({ redirectUrl }) => {
-  return (
-    <Link href={redirectUrl} passHref>
-      <a>
-        <Box d="flex" alignItems="center">
-          <Text
-            fontSize="2xl"
-            color="primary.500"
-            mr="1rem"
-            _hover={{ color: 'primary.700' }}
-          >
-            Turn the page
-          </Text>
-          <ArrowRight fill="#506bf0" />
-        </Box>
-      </a>
-    </Link>
-  )
-}
+// const TurnThePage = ({ redirectUrl }) => {
+//   return (
+//     <Link href={redirectUrl} passHref>
+//       <a>
+//         <Box d="flex" alignItems="center">
+//           <Text
+//             fontSize="2xl"
+//             color="primary.500"
+//             mr="1rem"
+//             _hover={{ color: 'primary.700' }}
+//           >
+//             Turn the page
+//           </Text>
+//           <ArrowRight fill="#506bf0" />
+//         </Box>
+//       </a>
+//     </Link>
+//   )
+// }
 
 const MainBlogCard = () => {
   return (
@@ -151,20 +151,6 @@ const BlogPage = () => {
           mt="1rem"
           pb="10rem"
         >
-          <ArticleCard
-            title="Setup your custom domain"
-            imageUrl="/domain-guide-thumbnail.png"
-            redirectUrl="/guides/guides-custom-domain"
-            imgWidth="70%"
-            bg="white"
-          />
-          <ArticleCard
-            title="Integrate Flurly with Antfolio"
-            imageUrl="https://antfolio.s3.amazonaws.com/user-images/e6f761a37bd62b029d70673be85d3ca4/thumbnail-flury-integration.png"
-            redirectUrl="/guides/guides-integration-flurly"
-            imgWidth="70%"
-            bg="white"
-          />
           <ArticleCard
             title="Enable analytics & A/B Testing"
             imageUrl="https://antfolio.s3.amazonaws.com/idea.png"

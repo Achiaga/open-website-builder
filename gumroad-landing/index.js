@@ -1,12 +1,9 @@
-import Head from 'next/head'
-
 import { Box } from '@chakra-ui/layout'
 
-import { initLiveChatScript, initGoogleAnalytics } from '../utils/analytics'
+import { initGoogleAnalytics } from '../utils/analytics'
 
 import Hero from './hero'
 import Features from './features'
-import Steps from './steps'
 import Footer from './footer'
 // import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
@@ -19,7 +16,6 @@ import Integration from './integration'
 
 const LandingPage = () => {
   useEffect(() => {
-    setTimeout(() => window && window.eval(initLiveChatScript), 10000)
     setTimeout(() => window && window.eval(initGoogleAnalytics), 0)
   }, [])
   return (
@@ -47,7 +43,6 @@ const LandingPage = () => {
           <Product />
           <Integration />
           <Features />
-          {/* <Steps /> */}
           <Footer />
         </Box>
       </Box>
