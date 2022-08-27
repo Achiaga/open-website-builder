@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Box, Text } from '@chakra-ui/layout'
 import { useTranslation } from '../../hooks/translation'
-import { event } from '../../utils/analytics'
 import Link from 'next/link'
 
 import Button from '../../components/commun/button'
@@ -85,14 +84,6 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
 
 const Features = () => {
   const [t] = useTranslation()
-
-  const handleButton = () => {
-    event({
-      action: 'enter_builder',
-      category: 'enter_page',
-      label: 'enter from link landing page',
-    })
-  }
 
   return (
     <Box
@@ -222,7 +213,6 @@ const Features = () => {
               ml={['1rem', '0']}
               mt="2rem"
               background={'black'}
-              onClick={handleButton}
               _hover={{
                 border: '2px solid black',
                 background: 'transparent',

@@ -46,19 +46,3 @@ export async function fetchPostJSON(url, data) {
     throw new Error(err.message)
   }
 }
-
-export const addUserToBetaList = (email, userType) => {
-  return apiCall('/api/beta', {
-    type: userType,
-    email,
-  })
-}
-export const getAllUsers = () =>
-  apiCall('/api/beta', {
-    type: 'list',
-  })
-
-export const getSessionData = (session_id, user) =>
-  fetchPostJSON(`/api/checkout_sessions/${session_id}`, {
-    user,
-  })

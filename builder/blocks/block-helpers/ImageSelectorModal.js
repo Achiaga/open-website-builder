@@ -8,7 +8,6 @@ import { trackDownloads } from '../../../utils/unsplash'
 
 import SidebarTab from './sidebar-tab'
 import { UnpslashImages, ImagesGrid, UrlImagesTab } from './ImagesGrid'
-import { UploadImage } from './uploadImage'
 import { AntfolioImages, AntfolioIcons, AntfolioProps } from './assets'
 import { GrClose } from 'react-icons/gr'
 import noScroll from 'no-scroll'
@@ -225,7 +224,6 @@ const ImageSelectorModal = ({ isOpen, onClose, handleSelectImage }) => {
                   />
                 )}
                 {tabIndex === 4 && <UrlImagesTab onSelect={onSelect} />}
-                {tabIndex === 5 && <UploadImage onSelect={onSelect} />}
               </Box>
             </Box>
           </Box>

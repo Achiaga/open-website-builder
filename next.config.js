@@ -1,19 +1,7 @@
-/* eslint-disable no-undef */
-
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-module.exports = withBundleAnalyzer({
+module.exports = {
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'en',
-  },
-  env: {
-    JEXIA_PROJECT_ID: process.env.JEXIA_PROJECT_ID,
-    JEXIA_KEY: process.env.JEXIA_KEY,
-    JEXIA_SECRET: process.env.JEXIA_SECRET,
-    JEXIA_ZONE: process.env.JEXIA_ZONE,
   },
   images: {
     domains: [
@@ -22,4 +10,4 @@ module.exports = withBundleAnalyzer({
       'antfolio.s3.amazonaws.com',
     ],
   },
-})
+}

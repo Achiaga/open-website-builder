@@ -3,23 +3,9 @@ import { Box, Spinner } from '@chakra-ui/react'
 
 import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
-import { useContext, useEffect, useState } from 'react'
-import { sendEmailNotifiaction } from './block-helpers/transporter'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editBlockConfig } from '../../features/builderSlice'
-import { BlocksContext } from '../web-preview/preview'
-
-async function sendEmail(inputEmail, updateSate, projectId) {
-  updateSate((status) => ({ ...status, loading: true }))
-  try {
-    // await timeout(3000)
-    await sendEmailNotifiaction(projectId, inputEmail)
-    updateSate((status) => ({ ...status, loading: false, success: true }))
-  } catch (err) {
-    updateSate((status) => ({ ...status, error: true, loading: false }))
-    console.error(err)
-  }
-}
 
 function getButtonContent(loading, success, buttonText) {
   if (loading)
@@ -39,14 +25,12 @@ const inputInitialValue = {
 }
 
 export const PrevContactForm = (props) => {
-  const { projectId } = useContext(BlocksContext)
-  const [inputValue, setInputValue] = useState()
+  const [setInputValue] = useState()
   const [requestStatus, setRequestStatus] = useState(inputInitialValue)
   const { loading, success, error } = requestStatus
   function handleSubmitForm(e) {
     e.preventDefault()
     if (success) return
-    sendEmail(inputValue, setRequestStatus, projectId)
   }
 
   function onChange(e) {

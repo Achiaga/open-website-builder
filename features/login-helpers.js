@@ -7,13 +7,10 @@ import {
   setAccountCreated,
   setTempDBData,
   setLoadingData,
-  saveData,
   saveTemplateOnLocal,
   setProjectId,
-  saveAsyncWebsite,
 } from './builderSlice'
 import { getUserDataFromLS } from './helper'
-import { getUserDataById, getUserDataByProjectId } from '../utils/user-data'
 // import dynamic from 'next/dynamic'
 
 import templates from '../templates'
@@ -32,15 +29,9 @@ export function getIsUserRoles(user) {
   return user?.[AUTH0_CUSTOM_CLAIM_PATH]?.role
 }
 
-async function getUserData(user, projectId) {
+async function getUserData() {
   try {
     let userData
-    const isAdmin = getHasUserProAdmin(user)
-    if (isAdmin && projectId) {
-      userData = await getUserDataByProjectId(projectId)
-    } else {
-      userData = await getUserDataById(user.sub)
-    }
     if (!Object.keys(userData).length) return null
     return userData
   } catch (err) {
@@ -78,7 +69,6 @@ export const loadDataFromTemplate = (user, template) => async (dispatch) => {
     dispatch(saveTemplateOnLocal(data))
     dispatch(setInitialBuilderData(data))
     dispatch(setUserData(userData))
-    dispatch(saveAsyncWebsite(data, userData))
   })
 }
 export const updateInitialState =
@@ -105,7 +95,6 @@ const handleSignup = (user) => async (dispatch) => {
   const builderData = await getUserDataFromLS()
   dispatch(setUserData(userData))
   dispatch(updateInitialState({ resume_data: builderData }))
-  dispatch(saveData())
   dispatch(setAccountCreated(true))
 }
 
@@ -126,7 +115,6 @@ export const loadDataFromDB =
     if (!resume_data) {
       batch(() => {
         dispatch(loadInitialDataNoAccount(template))
-        dispatch(saveAsyncWebsite(templates[template], userData))
       })
     } else if (templates[template] && resume_data) {
       batch(() => {

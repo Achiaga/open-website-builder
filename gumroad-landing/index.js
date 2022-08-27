@@ -1,12 +1,8 @@
 import { Box } from '@chakra-ui/layout'
 
-import { initGoogleAnalytics } from '../utils/analytics'
-
 import Hero from './hero'
 import Features from './features'
 import Footer from './footer'
-// import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
 
 import Navbar from '../components/navbar'
 import Product from './product'
@@ -15,9 +11,6 @@ import Integration from './integration'
 // const Navbar = dynamic(() => import('../components/navbar'))
 
 const LandingPage = () => {
-  useEffect(() => {
-    setTimeout(() => window && window.eval(initGoogleAnalytics), 0)
-  }, [])
   return (
     <>
       <Box

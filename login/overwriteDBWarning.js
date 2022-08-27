@@ -1,19 +1,6 @@
 import { Box, Text } from '@chakra-ui/layout'
-import { useDispatch } from 'react-redux'
-
-import { keepDBData, keepTemplate } from '../features/builderSlice'
-import { Button } from '@chakra-ui/button'
 
 const OverwriteDBWarning = () => {
-  const dispatch = useDispatch()
-
-  function handleConfirm() {
-    dispatch(keepTemplate())
-  }
-  function handleDeny() {
-    dispatch(keepDBData())
-  }
-
   return (
     <Box
       left="0"
@@ -55,19 +42,6 @@ const OverwriteDBWarning = () => {
           <Text fontSize="xl" pb="1rem">
             Do you want to save the new Template and delete the old portfolio?
           </Text>
-          <Box d="flex" justifyContent="center" w="100%" pb="2rem">
-            <Button
-              colorScheme="gray"
-              variant="outline"
-              onClick={handleDeny}
-              mr="1.5rem"
-            >
-              <b>Keep Saved Website </b>
-            </Button>
-            <Button colorScheme="primary" onClick={handleConfirm} ml="1.5rem">
-              <b>Keep Current Website </b>
-            </Button>
-          </Box>
           <Box
             mt="2rem"
             justifyContent="end"

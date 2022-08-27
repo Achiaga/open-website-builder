@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { ThemeProvider, CSSReset } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -7,7 +5,6 @@ import PropTypes from 'prop-types'
 import { customTheme } from '../custom-theme'
 import { Fonts } from '../fonts'
 import { store } from '../app/store'
-import { pageview, initHorjar } from '../utils/analytics'
 
 import '../styles/globals.css'
 import '../builder/web-builder/styles.css'
@@ -23,25 +20,6 @@ const description =
   'Antfolio is the fastest and easiest way to build beautiful websites with no-code. Have your blazing fast website live in minutes.'
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
-
-  useEffect(() => {
-    initHorjar()
-  }, [])
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      pageview(url)
-    }
-    //When the component is mounted, subscribe to router changes
-    //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
-
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
   return (
     <>
       <NextSeo

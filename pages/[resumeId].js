@@ -3,8 +3,6 @@ import ErrorPage from '../components/error-page'
 import ECommerceExtensions from '../components/integrations/ECommerceExtensions'
 import NewPage from '../components/not-deploy-page'
 
-import { getWebsiteData } from './api/db'
-
 export function getSubdomain(req) {
   let host
   let sub
@@ -46,16 +44,4 @@ function Resume({ websiteData, isPublish, resumeId }) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const { resumeId } = context.query
-  try {
-    if (isFalsy(resumeId)) return { props: {} }
-    const { websiteData, isPublish } = await getWebsiteData(resumeId)
-    if (!isPublish) return { props: { isPublish } }
-    return { props: { websiteData, isPublish, resumeId } }
-  } catch (err) {
-    console.error(err)
-    return { props: {} }
-  }
-}
 export default Resume

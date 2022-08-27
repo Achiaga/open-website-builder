@@ -1,7 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useTranslation } from '../../hooks/translation'
-import { event } from '../../utils/analytics'
 import Button from '../commun/button'
 import NavButton from './nav-button'
 import LogoSvg from '../../assets/logo'
@@ -14,14 +13,6 @@ const Navbar = ({ isSticky = true, color }) => {
   const [scrollY, setScrollY] = useState(0)
   const [redirectLogo, setRedirectLogo] = useState('/')
   const [redirectTemplates, setRedirectTemplates] = useState('/templates')
-
-  const handleStartNow = () => {
-    event({
-      action: 'enter_templates_pages',
-      category: 'builder',
-      label: 'enter from navbar link',
-    })
-  }
 
   useEffect(() => {
     if (localStorage.getItem('isGumroad')) {
@@ -113,7 +104,6 @@ const Navbar = ({ isSticky = true, color }) => {
               minW="1rem"
               px="0.5rem"
               h={8}
-              onClick={handleStartNow}
               background="black"
               _hover={{
                 borderBottom: '2px solid',

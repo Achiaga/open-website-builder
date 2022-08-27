@@ -4,7 +4,6 @@ import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { Box, Button, Spinner } from '@chakra-ui/react'
 import { removeLocalData } from '../../builder/web-builder/helpers'
-import { event } from '../../utils/analytics'
 
 const CustomButton = ({ colorScheme, children }) => {
   return (
@@ -29,19 +28,6 @@ const Template = ({ templateInfo }) => {
 
   function editTemplate() {
     setSelected(true)
-    event({
-      action: 'edit_template',
-      category: 'templates',
-      label: templateInfo.id,
-    })
-  }
-
-  function previewTemplate() {
-    event({
-      action: 'preview_template',
-      category: 'templates',
-      label: templateInfo.id,
-    })
   }
 
   return (
@@ -82,7 +68,7 @@ const Template = ({ templateInfo }) => {
               </a>
             </Link>
           </div>
-          <div onClick={previewTemplate}>
+          <div>
             <Link href={`/preview/template/${templateInfo.id}`} passHref>
               <a target="_blank">
                 <CustomButton colorScheme="gray"> Preview</CustomButton>

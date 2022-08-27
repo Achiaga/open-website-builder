@@ -1,11 +1,6 @@
 import Image from 'next/image'
 import { Box, Text } from '@chakra-ui/layout'
 import { useTranslation } from '../../hooks/translation'
-import { event } from '../../utils/analytics'
-import Link from 'next/link'
-
-import Button from '../../components/commun/button'
-import CircleBg from '../../assets/features-circle'
 import BackgroundCircles from './background'
 
 const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
@@ -85,14 +80,6 @@ const Feature = ({ imageUrl, title, description, isVideo = false, index }) => {
 
 const Features = () => {
   const [t] = useTranslation()
-
-  const handleButton = () => {
-    event({
-      action: 'enter_builder',
-      category: 'enter_page',
-      label: 'enter from link landing page',
-    })
-  }
 
   return (
     <Box
@@ -212,27 +199,6 @@ const Features = () => {
           index={7}
           isVideo
         />
-        {/* <Link href={`/builder`}>
-          <a>
-            <Button
-              fontSize="xl"
-              minW="7.5rem"
-              w="12rem"
-              h={14}
-              ml={['1rem', '0']}
-              mt="2rem"
-              background={'black'}
-              onClick={handleButton}
-              _hover={{
-                border: '2px solid black',
-                background: 'transparent',
-                color: 'black',
-              }}
-            >
-              {t.features.button}
-            </Button>
-          </a>
-        </Link> */}
       </Box>
     </Box>
   )
