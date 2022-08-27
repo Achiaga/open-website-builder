@@ -1,43 +1,9 @@
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { UserProvider, useUser } from '@auth0/nextjs-auth0'
-import { getSessionData } from '../helpers/transport'
+import { UserProvider } from '@auth0/nextjs-auth0'
 import { Box, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 import CustomSpinner from '../components/custom-spinner'
 
 const ResultsWrapper = () => {
-  const router = useRouter()
-  const { user } = useUser()
-  const [data, setData] = useState(null)
-
-  const sessionId = router.query.session_id
-
-  async function redirectLogout() {
-    try {
-      router.push(
-        `/api/auth/logout?returnTo=${encodeURIComponent('/dashboard')}`
-      )
-    } catch (err) {
-      console.error('error', err)
-    } finally {
-      // router.push('/dashboard')
-    }
-  }
-  useEffect(() => {
-    console.log(sessionId, user)
-    sessionId &&
-      user &&
-      getSessionData(sessionId || null, user)
-        .then((data) => setData(data))
-        .catch((err) => console.error('something went wrong', err))
-  }, [sessionId, user])
-
-  useEffect(() => {
-    const host = window?.location?.host
-    data && redirectLogout(host)
-  }, [data])
-
   return (
     <>
       <Image
@@ -79,7 +45,7 @@ const ResultsWrapper = () => {
           <Box>
             <CustomSpinner />
             <Text w="100%" textAlign="center" color="primary.400">
-              {data ? 'Redirecting to Dashboard...' : 'Working hard...'}
+              Working hard...
             </Text>
           </Box>
 
