@@ -20,6 +20,9 @@ It is still a wip but it has already reached the MVP.
 
 <img width="512" alt="Screenshot 2022-08-27 at 20 35 33" src="https://user-images.githubusercontent.com/44972334/187043732-d9b8e04f-6b17-4e96-98c8-7ae5b252016f.png">
 
+## RayCasting
+
+![Screenshot 2022-08-28 at 10 33 15 (2)](https://user-images.githubusercontent.com/44972334/187065329-56443287-61fb-4d13-b4f8-e88012fce2ad.png)
 
 ## Installation
 
